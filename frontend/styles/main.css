@@ -1,0 +1,19 @@
+@import "./navbar.css";
+@import "./signInPage.css";
+@import "./signUpPage.css";
+@import "./notFound.css";
+
+
+.hide{
+    display:   none;
+}
+
+
+.focus{
+    background-color: rgba(0, 0, 0, 0.1);  /* 遮罩 */
+}
+
+
+.container{
+    margin-top: 4.8rem;
+}

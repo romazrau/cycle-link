@@ -5,6 +5,7 @@
 + vs code套件的live server啟動根目錄的index.html
 
 ### 使用babel與webpack功能
+> 期中用不到
 1. 複製一份html檔放入build/。
 1. 將html的js引用檔案改成build.js。
 1. `npm run dev`啟動webpack-dev-server(WDS)。

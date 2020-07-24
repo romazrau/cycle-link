@@ -1,0 +1,151 @@
+@import "./var.css";
+
+*{
+    font-family: 'Noto Sans TC', sans-serif;
+    margin: 0;
+}
+
+
+
+:root{
+    --green-color:#499854;
+    --blue-color:#31708E;
+    --lightblue-color:#8FC1E3;
+    --pink-color:#D9AAB7;
+    --lightgrey-color:#979494;
+    --black-color:#000000;
+    --white-color:#FFFFFF;
+    /*使用方法 background-color: var(--black-color);*/
+}
+
+
+/* .empty_header,.header{
+    width: 100%;
+    height: 60px;
+} */
+
+.header{
+    color: var(--blue-color);                 /* 顏色 */
+    background-color: var(--lightblue-color);
+    width: 100vw;
+    max-width: 100vw;
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5000;
+
+    box-sizing: border-box;     
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.712);
+}
+
+.header_title {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem; 
+
+    text-decoration: none;
+}
+
+.header_title > img {
+    width: 4rem;       /* logo 大小 */
+    height: 4rem;
+}
+
+.header_title > p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+    top: 0.5rem;          /* title 文字飄移位置 */
+    left: -0.7rem;
+}
+
+.header_title > p > span{
+    display: block;
+    color: var(--white-color);
+}
+
+
+.div_dropdownmenu ul,
+.div_dropdownmenu li {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+
+.div_dropdownmenu > ul {
+    display: flex;
+}
+
+
+.li_menutitle {
+    position: relative;
+}
+
+/*menu樣式----------------------------------------*/
+.li_menutitle a {
+    /* background: var(--lightblue-color); */
+    color: #FFFFFF;
+    display: inline-block;  /* ? block   */
+    /* font: bold 12px/20px sans-serif; */
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+      
+}
+
+.li_menutitle:hover a {
+    transition: all 0.25s ease;
+    background-color: var(--green-color);
+    color: black;
+
+}
+
+.li_menutitle > a {
+    padding: 1rem 2.5vw 1rem 2.5vw;  /* 導覽連結(上右下左) 左右間距 與 撐滿header bar高 */   
+}
+
+
+
+.ul_submenu {
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 35px;
+    visibility: hidden;
+    z-index: 1;
+}
+
+
+/* |---------------顯示子目錄--------------|
+li:hover ul.ul_submenu {
+    opacity: 1;
+    top: 60px; 子目錄高度
+    
+     visibility: visible;
+} 
+
+
+ .li_submenu {
+    float: none;
+    width: 100%;
+}
+
+.ul_submenu a:hover {
+    background: #DF4B05;
+}
+
+.ul_submenu a {
+    background-color: #000000;
+} */
+
+
+
+
