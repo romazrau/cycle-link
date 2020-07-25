@@ -8,5 +8,6 @@
 > 期中用不到
 1. 複製一份html檔放入build/。
 1. 將html的js引用檔案改成build.js。
-1. `npm run dev`啟動webpack-dev-server(WDS)。
-1. WDS參考src/*.js自動生成bundle.js到build/底下，並持續自動更新直到關閉WDS。
+1. 更改html的css路徑。
+1. `npx webpack`啟動webpack，參考src/*.js生成bundle.js到build/底下。
+1. 瘦身版本完成
