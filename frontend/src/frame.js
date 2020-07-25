@@ -1,34 +1,20 @@
-// navbar contrl
-function ClsNavbarContrl() {
-    let navlinkList = document.querySelectorAll('.header_nav');
-
-    this.navbarFocusThis = (e) => {             //被點擊的套顏色方法     
-        console.log("按了哪個", e);
-        navlinkList.forEach((ele) => {
-            ele.classList.remove("focus");
-        })
-        e.classList.add("focus");
-    }
-
-    this.setNavbarFocusByPageId = (e) =>{  //TODO 
-        console.log("page id:", e);
-    }
-
-
-    navlinkList.forEach((e) => {
-        e.addEventListener(
-            "click",
-            () => this.navbarFocusThis(e)
-        )
-    })
-
-}
-const NavbarContr = new ClsNavbarContrl();
-
-
-
 //router
 function ClsRouter() {
+
+    // navbar contrl
+    const setNavbarFocusByHash = (hash) => {  //focus對應的navbar link用
+        console.log("page id:", hash);
+
+        let navlinkList = document.querySelectorAll('.header_nav');
+        navlinkList.forEach((e) => {
+            e.classList.remove("focus");
+        })
+
+        let targetNav = document.querySelector(`#navbar_${hash}`)
+        if(targetNav) {  //確定這個nav存在，才套色
+            targetNav.classList.add('focus');
+        }
+    }
 
     this.changePage = (hash) => {   //切換頁面用  #.../../..
         try {
@@ -39,9 +25,9 @@ function ClsRouter() {
             let target = hashSplit[0];
             target = target.substr(1);    //去掉#
 
-            let isPageShow = false     //確定有頁面開啟
+            let isPageShow = false     //判斷是否有頁面開啟
             pages.forEach((e) => {    //切換頁面
-                if(e.id == `page_${target}`){     //id名字重要 page_...
+                if(e.id === `page_${target}`){     //id名字重要 page_...
                     e.classList.remove('hide');
                     isPageShow = true;  //確定有頁面開啟
                 }else{
@@ -49,10 +35,11 @@ function ClsRouter() {
                 }
             })
 
-            if(!isPageShow){
+            if(!isPageShow){  //沒有指定頁面時，指定not fround page
                 document.querySelector('#page_PAGE-NOT-FOUND').classList.remove('hide');
             }
 
+            setNavbarFocusByHash(target);  //改變navbar focus狀態 
 
         } catch (e) {
             console.error("changePage錯誤:",e.name ,e.message);
