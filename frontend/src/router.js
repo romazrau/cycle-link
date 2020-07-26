@@ -26,7 +26,7 @@ function ClsRouter() {
             targetHash = targetHash ? targetHash : "home";
 
             const pages = document.querySelectorAll('.page');
-            console.log(pages);
+            // console.log(pages);
             let isPageShow = false     //判斷是否有頁面開啟
             pages.forEach((e) => {    //切換頁面
                 if(e.id === `page_${targetHash}`){     //id名字重要 page_...

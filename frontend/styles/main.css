@@ -1,11 +1,14 @@
 @import "./var.css";  /* *顏色變數 */
 @import "./navbar.css";
-@import "./signInPage.css";
-@import "./signUpPage.css";
 @import "./notFound.css";
 @import "./loading.css";
 @import "./home.css";
 @import "./activity.css";
+@import "./news.css";
+@import "./signInPage.css";
+@import "./signUpPage.css";
+@import "./footer.css";
+
 
 
 * {

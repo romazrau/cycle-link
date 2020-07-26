@@ -1,0 +1,35 @@
+/* ------------- footer ------------- */
+footer {
+    display: flex;
+    height: 200px;
+    background-color: rgba(241, 241, 241, 0.87);
+    justify-content: space-around;
+    align-items: center;
+}
+.footer_box{
+    width: 15px;
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+footer a {
+    text-decoration: none;
+    color: rgb(131, 131, 131);
+    font-size: 16px;
+}
+footer a:hover{
+    position: relative;
+    top: 2px;
+    left: 1px;
+    color: var(--lightblue-color);
+}
+
+.footer_icon {
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    width: 200px;
+    justify-content: space-around;
+    align-items: center;
+}
+/* ------------- footer ------------- */
