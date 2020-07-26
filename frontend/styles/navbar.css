@@ -1,24 +1,3 @@
-@import "./var.css";
-
-*{
-    font-family: 'Noto Sans TC', sans-serif;
-    margin: 0;
-}
-
-
-
-:root{
-    --green-color:#499854;
-    --blue-color:#31708E;
-    --lightblue-color:#8FC1E3;
-    --pink-color:#D9AAB7;
-    --lightgrey-color:#979494;
-    --black-color:#000000;
-    --white-color:#FFFFFF;
-    /*使用方法 background-color: var(--black-color);*/
-}
-
-
 /* .empty_header,.header{
     width: 100%;
     height: 60px;
@@ -62,8 +41,8 @@
     align-items: center;
 
     position: relative;
-    top: 0.5rem;          /* title 文字飄移位置 */
-    left: -0.7rem;
+    top: 0.3rem;          /* title 文字飄移位置 */
+    left: 0rem;
 }
 
 .header_title > p > span{
@@ -94,23 +73,21 @@
     /* background: var(--lightblue-color); */
     color: #FFFFFF;
     display: inline-block;  /* ? block   */
+    box-sizing: border-box;
+    height: 100%;
     /* font: bold 12px/20px sans-serif; */
-    padding: 10px 25px;
+    padding: 1rem 2.5vw;  /* 導覽連結(上右下左) 左右間距 與 撐滿header bar高 */   
     text-align: center;
     text-decoration: none;
       
 }
 
-.li_menutitle:hover a {
+/* .li_menutitle:hover a {
     transition: all 0.25s ease;
     background-color: var(--green-color);
     color: black;
 
-}
-
-.li_menutitle > a {
-    padding: 1rem 2.5vw 1rem 2.5vw;  /* 導覽連結(上右下左) 左右間距 與 撐滿header bar高 */   
-}
+} */
 
 
 
@@ -147,5 +124,21 @@ li:hover ul.ul_submenu {
 } */
 
 
-
-
+/* *hover 會伸縮的底線區域 -------------------*/
+.nav-underline:before {  
+    content: "";
+    position: absolute;
+    bottom: 0.5rem;
+    width: 0;
+    border-bottom: 2px solid #fff;
+  }
+  .nav-underline:hover:before {
+    width: 50%;
+  }
+  .nav-underline:before {
+    -webkit-transition: width 0.5s ease-in-out;
+    -moz-transition: width 0.5s ease-in-out;
+    -ms-transition: width 0.5s ease-in-out;
+    -o-transition: width 0.5s ease-in-out;
+    transition: width 0.5s ease-in-out;
+  }

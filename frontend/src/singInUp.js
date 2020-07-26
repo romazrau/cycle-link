@@ -42,7 +42,7 @@ function ClsSelectBirthday() {
 
 
   const updataDateDay = (day) => {
-    console.log(day);
+    // console.log(day);
     let output = "";
     for (let i = 1; i <= day; i++) {
       output += `<option value='${i}'>${i}</option>`;

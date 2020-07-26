@@ -3,8 +3,7 @@ function ClsRouter() {
 
     // navbar contrl
     const setNavbarFocusByHash = (hash) => {  //focus對應的navbar link用
-        console.log("page id:", hash);
-
+        // console.log("page id:", hash);
         let navlinkList = document.querySelectorAll('.header_nav');
         navlinkList.forEach((e) => {
             e.classList.remove("focus");
@@ -48,7 +47,7 @@ function ClsRouter() {
     }
 
     // 初始化
-    this.changePage("#log-in");
+    this.changePage("#home");
 
     // 每當 hash 變動的時候
     window.addEventListener("hashchange", () => {

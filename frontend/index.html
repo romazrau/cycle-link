@@ -19,34 +19,38 @@
 
 <body>
 
-    <header >
+    <header>
         <nav class='header'>
             <a class='header_title' href="">
                 <img src="./img/logo.png" alt='海龜' />
                 <p>
-                    <span>Good</span>
-                    <span>for Good</span>
+                    <span>Cycle</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Link</span>
                 </p>
             </a>
 
             <div class="div_dropdownmenu">
                 <ul>
 
-                    <li id="navbar_about-us" class="li_menutitle header_nav"><a href="#about-us">About Me<br>關於我們</a>
+                    <li id="navbar_about-us" class="li_menutitle header_nav "><a href="#about-us"
+                            class="nav-underline">About Me<br>關於我們</a>
                         <ul class="ul_submenu">
                             <li class="li_submenu"><a href="">介紹</a></li>
                             <li class="li_submenu"><a href="">AAAAA</a></li>
                             <li class="li_submenu"><a href="">BBBBBBB</a></li>
                         </ul>
                     </li>
-                    <li id="navbar_second-hand" class="li_menutitle header_nav"><a href="#second-hand">Second Hand<br>二手市集</a>
+                    <li id="navbar_second-hand" class="li_menutitle header_nav"><a href="#second-hand"
+                            class="nav-underline">Second
+                            Hand<br>二手市集</a>
                         <ul class="ul_submenu">
                             <li class="li_submenu"><a href="">市集首頁</a></li>
                             <li class="li_submenu"><a href="">熱門商品</a></li>
                             <li class="li_submenu"><a href="">AAAA</a></li>
                         </ul>
                     </li>
-                    <li id="navbar_activity" class="li_menutitle header_nav"><a href="#activity">Activity<br>活動</a>
+                    <li id="navbar_activity" class="li_menutitle header_nav"><a href="#activity"
+                            class="nav-underline">Activity<br>活動</a>
                         <ul class="ul_submenu">
                             <li class="li_submenu"><a href="">活動首頁</a></li>
                             <li class="li_submenu"><a href="">熱門活動</a></li>
@@ -54,12 +58,14 @@
 
                         </ul>
                     </li>
-                    <li id="navbar_news" class="li_menutitle header_nav"><a href="#news">News <br>新聞</a></li>
-                    <li id="navbar_ST-coin" class="li_menutitle header_nav"><a href="#ST-coin">ST Coin<br>海龜幣</a></li>
+                    <li id="navbar_news" class="li_menutitle header_nav"><a href="#news" class="nav-underline">News
+                            <br>新聞</a></li>
+                    <li id="navbar_ST-coin" class="li_menutitle header_nav"><a href="#ST-coin" class="nav-underline">ST
+                            Coin<br>海龜幣</a></li>
 
                 </ul>
             </div>
-            <div class="div_container_login header_nav">
+            <div class="div_container_login">
                 <div class="div_dropdownmenu">
                     <ul>
                         <li id="navbar_log-in" class="li_menutitle header_nav"><a href="#log-in">Log in<br>登入</a></li>
@@ -68,27 +74,9 @@
             </div>
         </nav>
     </header>
-    <!-- <header class='header'>
-        <div class='header_title'>
-            <img src="./img/logo.png" alt='海龜' />
-            <p>
-                <span>Good</span>
-                <span>for Good</span>
-            </p>
-
-        </div>
-
-        <nav id="header_nav" class='header_nav'>
-            <a id='navlink_secondHand' href="#second-hand"><span>Second-hand</span><span>二手交易</span></a>
-            <a id='navlink_aboutUs' href="#about-us"><span>About us</span><span>關於我們</span></a>
-            <a id='navlink_lohIn' class='focus' href="#log-in"><span>Log in</span><span>會員登入</span></a>
-        </nav>
-
-    </header> -->
-
 
     <div class='container'>
-
+        <!-- * page命名規則 id= page_...  class= page  hide    ****************      ****************       ****************   -->
         <div id='page_PAGE-NOT-FOUND' class='page page_pageNotFund hide'>
             <div class='fixCover'>
                 <img class='cover_img' src="./img/貓星.jpg" alt="背景圖">
@@ -98,7 +86,209 @@
             </div>
         </div>
 
-        <div id='page_log-in' class='page page_signIn'>
+        <!-- * home  ****************      ****************       ****************   -->
+        <div id="page_home" class="page hide">
+            <!---------------------------------- 主要活動顯示 ---------------------------------->
+            <div class="home_top_event">
+                <img src="img/A1.jpg" id="A1">
+                <p>福隆 淨灘活動</br>2 天 08 : 28 : 06</p>
+            </div>
+            <!-------------------------------------- main -------------------------------------->
+            <main class="home_main">
+                <!---------------------------------- 市集物品 ---------------------------------->
+                <div class="home_market_title">
+                    <div class="home_market_title_2">
+                        <img src="img/like.png" class="home_title_imgs" alt="">
+                        <h3>以物換物 - 快來使用海龜幣吧！</h3>
+                    </div>
+                    <div class="home_market_title_2">
+                        <span>如何使用海龜幣</span>
+                        <img src="img/info.png" class="home_title_imgs" alt="">
+                    </div>
+                </div>
+                <div class="home_market_item">
+                    <div class="home_market_item_sell">
+                        <img src="img/item5.JPG" class="home_market_item_img">
+                        <h3>抓寶神器</h3>
+                        <p> 不論走路、騎車、開車都能快速抓怪，讓您輕鬆快速晉級，可設定自動領取補給站，可設定自動丟擲。</p>
+                        <img src="img/dollar.png" class="home_dollar_imgs" alt=""><span>1,000</span>
+                    </div>
+                    <div class="home_market_item_buy">
+                        <img src="img/item2.jpg" class="home_market_item_img">
+                        <h3>徵 杯子</h3>
+                        <p>杯是種大多數情況下用來盛載液體的器皿，通常用玻璃、瓷或不鏽鋼製造，在餐廳打包飲料，則常用紙杯或膠杯盛載。 杯多呈圓柱形，上面開口，中空，以供盛物。</p>
+                        <img src="img/dollar.png" class="home_dollar_imgs" alt=""><span>1,000</span>
+                    </div>
+                    <div class="home_market_item_sell">
+                        <img src="img/item3.png" class="home_market_item_img">
+                        <h3>B&O H4</h3>
+                        <p>純粹演繹。優美音質。時尚耳罩式耳機配備 Voice Assistant，可提供長時間的舒適感受和長達 19 小時的播放時間。</p>
+                        <img src="img/dollar.png" class="home_dollar_imgs" alt=""><span>1,000</span>
+                    </div>
+                    <div class="home_market_item_buy">
+                        <img src="img/item4.jpeg" class="home_market_item_img">
+                        <h3>徵 奴才</h3>
+                        <p>在你家裡，很明顯貓才是你的主子。你卻心甘情願的給它鏟屎，買好吃的，隨便它在家裡跑跑跳跳、肆意破壞。只要它開心，願意讓你擼擼毛就好。</p>
+                        <img src="img/dollar.png" class="home_dollar_imgs" alt=""><span>1,000</span>
+                    </div>
+                </div>
+                <!---------------------------------- 最新活動消息 ---------------------------------->
+                <div class="home_market_title">
+                    <div class="home_market_title_2">
+                        <img src="img/like.png" class="home_title_imgs" alt="">
+                        <h3>最新活動消息＆新聞資訊</h3>
+                    </div>
+                </div>
+                <div class="home_div_all">
+                    <div class="home_div_event_left">
+                        <div class="home_div_event">
+                            <div class="home_div_event_2">
+                                <div class="home_div_event_num"
+                                    style="border-radius: 5px 5px 0px 0px;margin-bottom: 2px;">
+                                    <p>1</p>
+                                </div>
+                                <div class="home_div_event_text">
+                                    <a href="#">[活動] 潛水撿垃圾，愛海洋！ 於 2020/07/23 13:00 開始</a>
+                                </div>
+                            </div>
+                            <div class="home_div_event_2">
+                                <div class="home_div_event_num" style="margin-bottom: 2px;">
+                                    <p>2</p>
+                                </div>
+                                <div class="home_div_event_text">
+                                    <a href="#">Researcher & Analyst of Fundraising Strategies</a>
+                                </div>
+                            </div>
+                            <div class="home_div_event_2">
+                                <div class="home_div_event_num" style="border-radius: 0px 0px 5px 5px;">
+                                    <p>3</p>
+                                </div>
+                                <div class="home_div_event_text">
+                                    <a href="#">[新聞] 有機咖啡豆，減低碳足跡</a>
+                                </div>
+                            </div>
+                            <div class="home_div_event_SA">
+                                <a href="news.html">See ALL</a>
+                            </div>
+                        </div>
+                        <!---------------------------------- 最新活動_影片區 ---------------------------------->
+                        <div class="home_div_video">
+                            <div>
+                                <iframe width="500" height="300" src="https://www.youtube.com/embed/B-BQnCwTBeQ"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>
+                            <div class="home_div_video_text">
+                                <h3>保護海洋vlog</h3>
+                                <div class="home_footer_box"></div>
+                                <p><span>海龜</span>是古老的航海家。除了最冷的海域外，海龜幾乎遍佈各大洋。漁業是海龜的主要威脅，因為牠們時常遭到漁網「混獲」。除此之外，非法龜卵採集、販運海龜產品和海洋污染也都是很大的問題……
+                                </p>
+                            </div>
+                        </div>
+                        <!---------------------------------- 認識海龜幣 ---------------------------------->
+                        <div class="home_intro_dollar">
+                            <div>
+                                <img src="img/logo.png" class="home_intro_dollar_img" alt="">
+                            </div>
+                            <div class="home_intro_dollar_text">
+                                <h4><img src="img/dollar.png" class="home_dollar_imgs" alt="">認識海龜幣</h4>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum excepturi, neque
+                                    laboriosam
+                                    hic
+                                    delectus doloremque voluptates nulla quis aliquam error placeat, culpa aperiam
+                                    exercitationem
+                                    eaque
+                                    id quaerat sed? Aspernatur, id!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!---------------------------------- 新聞資訊 ---------------------------------->
+                    <div class="home_div_news">
+                        <div>
+                            <img src="img/qk1.png" class="home_icon" alt="">
+                            <h3>有機咖啡豆</h3>
+                            <h3>減低碳足跡</h3>
+                            <img src="./img/qk2.png" class="home_icon" alt="">
+                        </div>
+                        <img src="img/coffee.jpg" class="home_div_news_img" alt="">
+                        <p>咖啡越新鮮越好…對吧？這個說法其實不完全對。雖然沒有人想喝過期的老豆，但烘焙好的咖啡豆直接沖煮，其風味一定會讓你失望，因為咖啡這時仍在大量排氣的狀態。不論你是烘焙者還是沖煮者，你都必須了解排氣，本文讓我們了解什麼是排氣（養豆），排氣如何影響你沖的咖啡、以及要如何進行這些動作。
+                        </p>
+                        <a href="#">See more...</a>
+                    </div>
+                </div>
+                <!-------------------------------------- 右下聊天機器人 -------------------------------------->
+                <div>
+                    <img src="img/talk.png" class="home_message" alt="">
+                </div>
+            </main>
+            <!-------------------------------------- footer -------------------------------------->
+            <footer class="home_footer">
+                <div>
+                    <div>
+                        <h4>COUNTRY/REGION</h4>
+                        <div class="home_footer_box"></div>
+                        <a href="#">Taiwan</a>
+                    </div>
+                    <div>
+                        <h4>LANGUAGE</h4>
+                        <div class="home_footer_box"></div>
+                        <a href="#">English</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>CUSTOMER CARE</h4>
+                    <div class="home_footer_box"></div>
+                    <div>
+                        <a href="#">Longin/Register</a><br>
+                        <a href="#">Customer support</a><br>
+                        <a href="#">Contact us</a><br>
+                        <a href="#">Latest magazine</a><br>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>OUR POLICIES</h4>
+                    <div class="home_footer_box"></div>
+                    <div>
+                        <a href="#">Privacy Policy</a><br>
+                        <a href="#">Cookie Policy</a><br>
+                        <a href="#">Accessibility</a><br>
+                        <a href="#">Policies and terms</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>OUR COMPANY</h4>
+                    <div class="home_footer_box"></div>
+                    <a href="#">Press</a><br>
+                    <a href="#">Corporate</a><br>
+                    <a href="#">Investors</a><br>
+                    <a href="#">Careers</a><br>
+                </div>
+                <div>
+                    <div class="home_footer_icon">
+                        <i class="fab fa-facebook fa-2x"></i>
+                        <i class="fab fa-instagram fa-2x"></i>
+                        <i class="fab fa-twitter fa-2x"></i>
+                        <i class="fab fa-youtube fa-2x"></i>
+                        <i class="fab fa-pinterest fa-2x"></i>
+                    </div>
+                    <div>
+                        <a href="#">Download app for iOS</a><br>
+                        <a href="#">Download app for Android</a><br>
+                        <a href="#">iOS AR Experience</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+
+
+
+
+
+        <!-- * log in   ****************      ****************       ****************   -->
+        <div id='page_log-in' class='page page_signIn hide'>
             <div class="page_signIn_left">
                 <h1>歡迎回來</h1>
                 <p>一些敘述</p>
@@ -131,8 +321,8 @@
             </div>
         </div>
 
+        <!-- * sign up  ****************      ****************       ****************   -->
         <div id='page_sign-Up' class='page page_signUp hide'>
-
             <div class="signUp_top">
                 <h1>加入我們</h1>
                 <p>一些敘述</p>
@@ -220,7 +410,6 @@
                         </div>
 
 
-
                         <div class="signUp_submit">
                             <input type="submit" value="註冊">
                         </div>
@@ -244,6 +433,11 @@
 
 
     <script src='./src/frame.js'></script>
+    <!-- home -->
+    <script src="https://kit.fontawesome.com/8bc7da0888.js" crossorigin="anonymous"></script>
+    <script src="./src/home.js"></script>
+    <!--  -->
+
     <script src="./src/singInUp.js"></script>
 </body>
 
