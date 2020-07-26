@@ -3,6 +3,7 @@
 @import "./signInPage.css";
 @import "./signUpPage.css";
 @import "./notFound.css";
+@import "./loading.css";
 @import "./home.css";
 @import "./activity.css";
 
@@ -10,6 +11,11 @@
 * {
     margin: 0px;
     font-family: 'Noto Sans TC', sans-serif;
+}
+
+
+.container{
+    margin-top: 4.8rem;
 }
 
 .hide{
@@ -22,6 +28,6 @@
 }
 
 
-.container{
-    margin-top: 4.8rem;
-}
+
+
+

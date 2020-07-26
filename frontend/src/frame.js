@@ -17,16 +17,19 @@ function ClsRouter() {
 
     this.changePage = (hash) => {   //切換頁面用  #.../../..
         try {
-            const pages = document.querySelectorAll('.page')
-
             let hashSplit = hash.split('/');   //處理hash字串  #../..
             console.log("hash: ", hashSplit);
-            let target = hashSplit[0];
-            target = target.substr(1);    //去掉#
+            let targetHash = hashSplit[0];
+            targetHash = targetHash.substr(1);    //去掉#
 
+            //特殊路徑
+            targetHash = targetHash ? targetHash : "home";
+
+            const pages = document.querySelectorAll('.page');
+            console.log(pages);
             let isPageShow = false     //判斷是否有頁面開啟
             pages.forEach((e) => {    //切換頁面
-                if(e.id === `page_${target}`){     //id名字重要 page_...
+                if(e.id === `page_${targetHash}`){     //id名字重要 page_...
                     e.classList.remove('hide');
                     isPageShow = true;  //確定有頁面開啟
                 }else{
@@ -38,7 +41,7 @@ function ClsRouter() {
                 document.querySelector('#page_PAGE-NOT-FOUND').classList.remove('hide');
             }
 
-            setNavbarFocusByHash(target);  //改變navbar focus狀態 
+            setNavbarFocusByHash(targetHash);  //改變navbar focus狀態 
 
         } catch (e) {
             console.error("changePage錯誤:",e.name ,e.message);
@@ -46,12 +49,16 @@ function ClsRouter() {
 
     }
 
-    // 初始化
-    this.changePage("#home");
-
+    
     // 每當 hash 變動的時候
     window.addEventListener("hashchange", () => {
         this.changePage(location.hash);
     });
+
+    // 當網頁 reload
+    window.addEventListener("load", () => {
+        this.changePage(location.hash);
+    });
+
 }
 const Router = new ClsRouter();
