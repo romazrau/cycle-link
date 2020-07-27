@@ -3,7 +3,7 @@
 
 .page_signIn{
     box-sizing: border-box;
-    width: 100vw;
+    width: 100%;
     min-height: 80vh;
     padding: 3rem;
     display:flex;
