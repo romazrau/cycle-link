@@ -3,8 +3,10 @@
 @import "./notFound.css";
 @import "./loading.css";
 @import "./home.css";
+@import "./market_home.css";
 @import "./activity.css";
 @import "./news.css";
+@import "./aboutUs.css";
 @import "./signInPage.css";
 @import "./signUpPage.css";
 @import "./footer.css";
@@ -17,7 +19,7 @@
 }
 
 
-.container{
+.page_container{
     margin-top: 4.8rem;
 }
 

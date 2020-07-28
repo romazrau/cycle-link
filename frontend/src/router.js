@@ -1,55 +1,83 @@
 //router
 function ClsRouter() {
 
-    // navbar contrl
-    const setNavbarFocusByHash = (hash) => {  //focus對應的navbar link用
+    // navbar link focus switch
+    const setNavbarFocusByHash = (hashTitle) => {  //focus對應的navbar link用
         // console.log("page id:", hash);
         let navlinkList = document.querySelectorAll('.header_nav');
-        navlinkList.forEach((e) => {
+        navlinkList.forEach((e) => {    //先全部移除focus
             e.classList.remove("focus");
         })
 
-        let targetNav = document.querySelector(`#navbar_${hash}`)
-        if(targetNav) {  //確定這個nav存在，才套色
+        let targetNav = document.querySelector(`#navbar_${hashTitle}`)
+        if (targetNav) {  //確定這個nav存在，才套色
             targetNav.classList.add('focus');
         }
     }
 
+    //page switch
     this.changePage = (hash) => {   //切換頁面用  #.../../..
         try {
-            let hashSplit = hash.split('/');   //處理hash字串  #../..
-            console.log("hash: ", hashSplit);
-            let targetHash = hashSplit[0];
-            targetHash = targetHash.substr(1);    //去掉#
+            let hashSplitArray = hash.split('/');   //處理hash字串  #../..
+            console.log("hash: ", hashSplitArray);
+            let hashTitle = hashSplitArray[0];
+            hashTitle = hashTitle.substr(1);    //去掉#
 
             //特殊路徑
-            targetHash = targetHash ? targetHash : "home";
+            hashTitle = hashTitle ? hashTitle : "home";  //沒有等於開啟home
 
             const pages = document.querySelectorAll('.page');
             // console.log(pages);
-            let isPageShow = false     //判斷是否有頁面開啟
-            pages.forEach((e) => {    //切換頁面
-                if(e.id === `page_${targetHash}`){     //id名字重要 page_...
-                    e.classList.remove('hide');
-                    isPageShow = true;  //確定有頁面開啟
-                }else{
-                    e.classList.add('hide');
-                }
+            pages.forEach((e) => {    //關閉所有頁面
+                e.classList.add('hide');
             })
 
-            if(!isPageShow){  //沒有指定頁面時，指定not fround page
-                document.querySelector('#page_PAGE-NOT-FOUND').classList.remove('hide');
+            switch (hashTitle) {   //路由判斷
+                case "home":
+                    document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
+                    break;
+
+                case "second-hand":
+                    document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
+                    break;
+
+                case "activity":
+                    document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
+                    break;
+
+                case "news":
+                    document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
+                    break;
+
+                // case "st-coin":
+                //     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
+                //     break;
+
+                case "about-us":
+                    document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
+                    break;
+
+                case "log-in":
+                    document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
+                    break;
+
+                case "sign-Up":
+                    document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
+                    break;
+
+                default:
+                    document.querySelector('#page_PAGE-NOT-FOUND').classList.remove('hide');
             }
 
-            setNavbarFocusByHash(targetHash);  //改變navbar focus狀態 
+            setNavbarFocusByHash(hashTitle);  //改變navbar focus狀態 
 
         } catch (e) {
-            console.error("changePage錯誤:",e.name ,e.message);
+            console.error("changePage錯誤:", e.name, e.message);
         }
 
     }
 
-    
+
     // 每當 hash 變動的時候
     window.addEventListener("hashchange", () => {
         this.changePage(location.hash);

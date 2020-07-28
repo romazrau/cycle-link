@@ -1,6 +1,5 @@
 .fixCover{
     position: relative;
-    width: 100vw;
 }
 
 .cover_img{
@@ -17,5 +16,6 @@
     display: flex;
     align-items: center;
     color: white;
-    font-size: 20vw;
+    font-size: 18vw;
+    text-align: center;
 }
