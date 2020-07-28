@@ -30,6 +30,10 @@
     text-decoration: none;
 }
 
+.header_title:hover {
+   text-decoration: none;
+}
+
 .header_title > img {
     width: 4rem;       /* logo 大小 */
     height: 4rem;
