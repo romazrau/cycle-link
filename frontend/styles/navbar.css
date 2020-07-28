@@ -31,7 +31,7 @@
 }
 
 .header_title > img {
-    width: 4rem;       /* logo 大小 */
+    width: auto;       /* logo 大小 */
     height: 4rem;
 }
 
