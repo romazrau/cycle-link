@@ -97,3 +97,13 @@ $(".pdt_items_w").mouseout(function () {
     $(this).css("background-color", "#31708E"),
         $(this).find("h4").css("background-color", "#FFFFFF")
 });
+
+
+
+//go to search market
+document.querySelector("#btn-go2marketSearch").addEventListener(
+    "click",
+    () => {
+        location.hash = "#second-hand/search/"
+    }
+)

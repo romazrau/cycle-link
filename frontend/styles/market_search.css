@@ -1,0 +1,125 @@
+.container_market_search_page{
+    background-color: var(--pink-color);
+    width: 100%;
+    height:230rem;
+    padding: 10px 10rem;
+}
+
+.mrkSearch_top_search{
+    background-color: var(--blue-color);
+    border-radius: 1rem;
+    width: 80rem;
+    height: 40px;
+    margin: 40px auto;
+}
+
+.mrkSearch_search_icon{
+    line-height: 40px;
+    margin:  25px;
+    color: var(--white-color);
+}
+
+.mrkSearch_container_main {
+    max-width: 100%;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.aside_market_search_page {
+    background-color:var(--white-color);
+    width: 20%;
+    height: 100%;
+    padding: 10px 30px;
+}
+
+.aside_market_search_page h3{
+    border-bottom: 1px solid var(--pink-color);
+    margin: 30px;
+}
+
+.aside_market_search_page h4{
+    border: 1px solid var(--pink-color);
+    border-radius: 5px;
+    /* width: 75px; */
+    padding: 5px;
+    text-align: center;
+}
+.mrkSearch_span_row{
+    margin-bottom: 10px;
+}
+.mrkSearch_span_row span {
+    background-color: var(--lightgrey-color);
+    border-radius: 5px;
+}
+
+.mrkSearch_container_waterfall {
+    display: flex;
+    width: 80%;
+    margin-left: 2rem;
+}
+
+.mrkSearch_waterfall {
+    flex-shrink: 1;
+    width: 25%;
+    height: 2050px;
+    margin: 0px;
+}
+
+.mrkSearch_waterfall li {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    
+}
+
+.mrkSearch_img_div{
+    width: 100%;
+    overflow: hidden;
+}
+.mrkSearch_img_div img{
+    transform:scale(1,1);
+    transition: all 1s ease-out;
+}
+.mrkSearch_img_div img:hover{
+    transform:scale(1.2,1.2);
+}
+
+.mrkSearch_li {
+    list-style-type: none;
+}
+
+.mrkSearch_dollar_icon{
+    width:20px;
+    height:20px;
+}
+
+.mrkSearch_page_container{
+    background-color: var(--pink-color);
+    text-align: center;
+}
+.mrkSearch_pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.mrkSearch_pagination li {
+    display: inline;
+}
+
+.mrkSearch_pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.mrkSearch_message {
+    position: absolute;
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    right: 1rem;
+    bottom: 2rem;
+}

@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <!-- *bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 
     <!-- 內部引用資料 -->
@@ -232,7 +232,7 @@
             </main>
         </div>
 
-        <!-- * second hand (market home)  ****************      ****************       ****************   -->
+        <!-- * second hand (market)  ****************      ****************       ****************   -->
         <div id="page_second-hand" class="page hide">
             <div class="tabContainer">
                 <div class="buttonContainer">
@@ -313,7 +313,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button>GO ! </button>
+                        <button id="btn-go2marketSearch">GO !</button>
                     </div>
                     <br><br><br>
                     <!---------- 附近好物 ---------->
@@ -450,7 +450,7 @@
                                 </p>
                                 <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
                             </div>
-        
+
                             <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
                                 <img src="img/sport_pdt/sport02.PNG" class="pdt_items_img">
                                 <h4>用過的棒球們</h4>
@@ -482,7 +482,7 @@
                         </div>
                     </div>
                 </div>
-        
+
                 <!---------- 徵求頁面 ---------->
                 <div class="tabPanel wanted">
                     <div class="main_show">
@@ -693,7 +693,7 @@
                                 </p>
                                 <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
                             </div>
-        
+
                             <div class="pdt_items_w col-xs-12 col-sm-6 col-md-4 col-lg-2">
                                 <img src="img/sport_pdt/sport02.PNG" class="pdt_items_img">
                                 <h4>用過的棒球們</h4>
@@ -729,7 +729,7 @@
                     <img src="img/talk.png" class="message">
                 </div>
             </div>
-            
+
         </div>
 
         <!-- * activity  ****************      ****************       ****************   -->
@@ -993,18 +993,19 @@
 
         </div>
 
-        
+
         <!-- * about us  ****************      ****************       ****************   -->
         <div id="page_about-us" class="page hide">
             <div class="aboutUs_backimgbox">
-                <img src="img/Duvar-ka-d-sahne-duvarlar-zel-3d-arka-plan-duvar-ka-tlar-Orman-manzara-trail-sunshin.jpg_q50.jpg" alt="">
+                <img src="img/Duvar-ka-d-sahne-duvarlar-zel-3d-arka-plan-duvar-ka-tlar-Orman-manzara-trail-sunshin.jpg_q50.jpg"
+                    alt="">
             </div>
-        
+
             <div class="aboutUs_box">
                 <div class="aboutUs_pd30">
                     <h2>我們的存在，因為脆弱的地球需要改變、需要行動</h2>
                     <span>我們在全球的工作，都基於我們對使用者的承諾:</span>
-        
+
                     <div class="aboutUs_dflex">
                         <div class="aboutUs_titlebox">
                             <h2>始終如一</h2>
@@ -1026,8 +1027,8 @@
                     </div>
                 </div>
             </div>
-        
-        
+
+
             <div class="aboutUs_wrapper">
                 <div class="aboutUs_pd30">
                     <h2> 我們的團隊</h2>
@@ -1081,9 +1082,9 @@
                         </div>
                     </div>
                     <hr>
-        
+
                 </div>
-        
+
             </div>
         </div>
 
@@ -1229,6 +1230,225 @@
             </div>
         </div>
 
+
+        <!-- * 路徑在別人底下的葉面 #.. / 這些葉面  ****************      ****************       ****************   -->
+        <!-- * market_search  ****************      ****************       ****************   -->
+        <div id="page_market-search" class="page hide">
+            <!-- 買家/賣家 -->
+            <div class="container_market_search_page">
+                <div class="mrkSearch_top_search">
+                    <a href=# class="mrkSearch_search_icon">
+                        <i class="fas fa-search"></i></a>
+                </div>
+                <div class="mrkSearch_container_main">
+                    <aside class="aside_market_search_page">
+                        <h3>條件篩選</h3>
+                        <h4>商品標籤</h4>
+                        <div class="pdt_tag">
+                            <div class="mrkSearch_span_row">
+                                <span>#美妝用品</span>
+                                <span>#運動用品</span></div>
+                            <div class="mrkSearch_span_row">
+                                <span>#你先拿我OK</span>
+                                <span>#毛小孩最愛</span>
+                                <span>#小朋友長大了</span></div>
+                            <div class="mrkSearch_span_row">
+                                <span>#書籍</span>
+                                <span>#3C產品</span></div>
+                            <div class="mrkSearch_span_row">
+                                <span>#搬家出清</span>
+                                <span>#生活用品</span></div>
+                            <div class="mrkSearch_span_row">
+                                <span>#買到剁手手</span>
+                                <span>#二手家具</span>
+                                <span>#飾品</span></div>
+                            <div class="mrkSearch_span_row">
+                                <span>#皮包背包</span>
+                                <span>#家電</span>
+                                <span>#居家必備</span></div>
+                            <div class="mrkSearch_span_row">
+                                <span>#過去就讓它過去ㄅ</span>
+                                <span>#手機殼</span></div>
+                            <div class="mrkSearch_span_row">
+                            </div>
+                            <h4>商品地點</h4>
+                            <div class="pdt_location_opt">台北市
+                                <div><input type="checkbox">中山區
+                                    <input type="checkbox">中正區
+                                    <input type="checkbox">萬華區
+                                    <input type="checkbox">大安區</div>
+                                <div><input type="checkbox">文山區
+                                    <input type="checkbox">松山區
+                                    <input type="checkbox">內湖區
+                                    <input type="checkbox">信義區</div>
+
+                            </div>
+                            <h4>運送方式</h4>
+                            <div class="pdt_deliever_opt">
+                                <input type="checkbox">面交
+                                <input type="checkbox">宅配
+                                <input type="checkbox">超商
+                            </div>
+                            <h4>價格範圍</h4>
+                            <input type="range" min="1" max="100" value=[15,35] id="price_range">
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt="">
+                            <span id="price_value"></span>
+
+                    </aside>
+                    <div class="mrkSearch_container_waterfall">
+                        <ul class="mrkSearch_waterfall">
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/game_pdt/game02.PNG"></div>
+                                <h3>二手Switch + 動物森友會</h3>
+                                <p>期中被二一，不能再玩了QQ</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/book_pdt/book02.PNG"></div>
+                                <h3>少女漫畫出清～不分售</h3>
+                                <p>酸酸甜甜的校園戀愛故事</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li"> 
+                                <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill03.jpg"></div>
+                                <h3>網頁架設，價格內議</h3>
+                                <p>輕鬆架設電商平台</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby02.PNG"></div>
+                                <h3>3歲女生童鞋</h3>
+                                <p>鞋況良好，小孩長大穿不下了</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/book_pdt/book03.PNG"></div>
+                                <h3>書籍出清</h3>
+                                <p>希望你有看到喜歡的書:)</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                        </ul>
+                        <ul class="mrkSearch_waterfall">
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby05.PNG"></div>
+                                <h3>整理倉庫，玩具大出清</h3>
+                                <p>年代久遠，包裝完整，出貨前會清理一下</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/game_pdt/game01.PNG"></div>
+                                <h3>Switch遊戲片出清</h3>
+                                <p>未舔，保存良好</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill04.jpg"></div>
+                                <h3>牆壁油漆</h3>
+                                <p>價格內議，急需海龜幣</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/clothes_pdt/clothes09.PNG"></div>
+                                <h3>二手日系女性襯衫</h3>
+                                <p>鬼遮眼買了一堆差不多的衣服，出清</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/game_pdt/game06.PNG"></div>
+                                <h3>復古遊戲機送遊戲卡</h3>
+                                <p>兒時回憶的機台～</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                        </ul>
+                        <ul class="mrkSearch_waterfall">
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/game_pdt/game04.PNG"></div>
+                                <h3>PS4二手遊戲片</h3>
+                                <p>破關了出清</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/book_pdt/book07.PNG"></div>
+                                <h3>各類書籍出清，歡迎詢問</h3>
+                                <p>舊的不去新的不來</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill05.jpg"></div>
+                                <h3>專業清潔打掃</h3>
+                                <p>小強就交給我處理吧</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li"> 
+                                <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby03.PNG"></div>
+                                <h3>火柴盒車車收藏</h3>
+                                <p>要搬家了，忍痛割愛</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/book_pdt/book06.PNG"></div>
+                                <h3>心靈書籍治療的你心</h3>
+                                <p>這些都是好書，買回家看看吧</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                        </ul>
+                        <ul class="mrkSearch_waterfall">
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/game_pdt/game03.PNG"></div>
+                                <h3>二手PS4（另有三款遊戲）</h3>
+                                <p>PS5出了～我來啦～</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/book_pdt/book01.PNG"></div>
+                                <h3>暢銷小說出清</h3>
+                                <p>都看完了～保證好看</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill02.jpg"></div>
+                                <h3>水彩/油畫創作</h3>
+                                <p>客製化創作（聊聊討論）</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby01.PNG"></div>
+                                <h3>超多尿布褲，三條才出貨哦</h3>
+                                <p>八成新，有好好清潔保存</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/book_pdt/book04.PNG"></div>
+                                <h3>九把刀的書</h3>
+                                <p>有緣人快來帶走他們吧</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <img src="img/talk.png" class="mrkSearch_message">
+                </div>
+            </div>
+            <div class="mrkSearch_page_container">
+                <ul class="mrkSearch_pagination">
+                    <li class="mrkSearch_li"><a href="#">«</a></li>
+                    <li class="mrkSearch_li"><a href="#">1</a></li>
+                    <li class="mrkSearch_li"><a class="active" href="#">2</a></li>
+                    <li class="mrkSearch_li"><a href="#">3</a></li>
+                    <li class="mrkSearch_li"><a href="#">4</a></li>
+                    <li class="mrkSearch_li"><a href="#">5</a></li>
+                    <li class="mrkSearch_li"><a href="#">6</a></li>
+                    <li class="mrkSearch_li"><a href="#">7</a></li>
+                    <li class="mrkSearch_li"><a href="#">»</a></li>
+                </ul>
+            </div>
+
+
+        </div>
+
+
+
     </div>
 
 
@@ -1294,7 +1514,7 @@
 
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/8bc7da0888.js" crossorigin="anonymous"></script>
-    
+
     <!--  -->
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -1306,10 +1526,11 @@
     integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
     crossorigin="anonymous"></script> -->
     <!--  -->
-    
+
     <script src='./src/router.js'></script>
     <script src="./src/home.js"></script>
-    <script src="./src/mkt_homepage.js"></script>
+    <script src="./src/market.js"></script>
+    <script scr="./src/market_search.js"></script>
     <script src="./src/singInUp.js"></script>
 </body>
 

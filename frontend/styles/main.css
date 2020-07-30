@@ -1,9 +1,11 @@
 @import "./var.css";  /* *顏色變數 */
+/* page */
 @import "./navbar.css";
 @import "./notFound.css";
 @import "./loading.css";
 @import "./home.css";
-@import "./market_home.css";
+@import "./market.css";
+@import "./market_search.css";
 @import "./activity.css";
 @import "./news.css";
 @import "./aboutUs.css";

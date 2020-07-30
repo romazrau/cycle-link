@@ -2,7 +2,7 @@
 function ClsRouter() {
 
     // navbar link focus switch
-    const setNavbarFocusByHash = (hashTitle) => {  //focus對應的navbar link用
+    const changeNavbarFocusByHash = (hashTitle) => {  //focus對應的navbar link用
         // console.log("page id:", hash);
         let navlinkList = document.querySelectorAll('.header_nav');
         navlinkList.forEach((e) => {    //先全部移除focus
@@ -16,19 +16,21 @@ function ClsRouter() {
     }
 
     //page switch
-    this.changePage = (hash) => {   //切換頁面用  #.../../..
+    this.changePageByHash = (hash) => {   //切換頁面用  #.../../..
         try {
-            let hashSplitArray = hash.split('/');   //處理hash字串  #../..
+            //處理hash字串  #../../..
+            let hashSplitArray = hash.split('/');   //[#.. , .. , ..]  
             console.log("hash: ", hashSplitArray);
-            let hashTitle = hashSplitArray[0];
+            let hashTitle = hashSplitArray[0];   // #..
             hashTitle = hashTitle.substr(1);    //去掉#
 
-            //特殊路徑
+            //特殊路徑處理
             hashTitle = hashTitle ? hashTitle : "home";  //沒有等於開啟home
 
+            //關閉所有頁面
             const pages = document.querySelectorAll('.page');
             // console.log(pages);
-            pages.forEach((e) => {    //關閉所有頁面
+            pages.forEach((e) => {      //去掉focus class
                 e.classList.add('hide');
             })
 
@@ -37,7 +39,12 @@ function ClsRouter() {
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
 
-                case "second-hand":
+                case "second-hand": 
+                    if (hashSplitArray[1] == "search") {   //開啟搜尋頁面
+                        document.querySelector(`#page_market-search`).classList.remove("hide");
+                        break;
+                    }
+
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
 
@@ -69,10 +76,10 @@ function ClsRouter() {
                     document.querySelector('#page_PAGE-NOT-FOUND').classList.remove('hide');
             }
 
-            setNavbarFocusByHash(hashTitle);  //改變navbar focus狀態 
+            changeNavbarFocusByHash(hashTitle);  //改變navbar focus狀態 
 
         } catch (e) {
-            console.error("changePage錯誤:", e.name, e.message);
+            console.error("changePageByHash錯誤:", e.name, e.message);
         }
 
     }
@@ -80,12 +87,12 @@ function ClsRouter() {
 
     // 每當 hash 變動的時候
     window.addEventListener("hashchange", () => {
-        this.changePage(location.hash);
+        this.changePageByHash(location.hash);
     });
 
     // 當網頁 reload
     window.addEventListener("load", () => {
-        this.changePage(location.hash);
+        this.changePageByHash(location.hash);
     });
 
 }
