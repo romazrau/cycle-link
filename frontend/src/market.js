@@ -99,6 +99,21 @@ function ClsMarket() {
       $(this).find("h4").css("background-color", "#FFFFFF");
   });
 
+  //切換買賣
+  document.querySelector("#market_goToBuy").addEventListener(
+    'click',
+    ()=>{
+      showPanel(0,'#31708E');
+    }
+  );
+  document.querySelector("#market_goToWant").addEventListener(
+    'click',
+    ()=>{
+      showPanel(1,'#31708E');
+    }
+  )
+
+
   //go to search market
   document
     .querySelector("#btn-go2marketSearch")
