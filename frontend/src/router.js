@@ -87,6 +87,7 @@ function ClsRouter() {
             }
 
             changeNavbarFocusByHash(hashTitle);  //改變navbar focus狀態 
+            window.scrollTo(0,0);
 
         } catch (e) {
             console.error("changePageByHash錯誤:", e.name, e.message);
