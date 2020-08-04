@@ -39,7 +39,7 @@ function ClsRouter() {
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
 
-                case "second-hand": 
+                case "second-hand":
                     if (hashSplitArray[1] == "search") {   //開啟搜尋頁面
                         document.querySelector(`#page_market-search`).classList.remove("hide");
                         break;
@@ -53,7 +53,7 @@ function ClsRouter() {
                     break;
 
                 case "news":
-                    if(hashSplitArray[1] == "detail"){  //開啟新聞文章頁面
+                    if (hashSplitArray[1] == "detail") {  //開啟新聞文章頁面
                         document.querySelector('#page_news-detail').classList.remove("hide");
                         break;
                     }
@@ -76,6 +76,11 @@ function ClsRouter() {
                 case "sign-Up":
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
+
+                case "personal-page":
+                    document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
+                    break;
+
 
                 default:
                     document.querySelector('#page_PAGE-NOT-FOUND').classList.remove('hide');
