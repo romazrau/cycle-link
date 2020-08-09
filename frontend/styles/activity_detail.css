@@ -1,0 +1,474 @@
+
+.flex-container {
+  display: flex;
+}
+
+
+
+.eventInfoText p {
+  color: lightslategrey;
+  /* font-family: ; */
+}
+
+.eventInfoText h2 {
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 36px;
+}
+.eventInfoText p {
+  font-size: 24px;
+}
+
+.eventInfoShareButton {
+  position: absolute;
+  width: 138px;
+  height: 49px;
+  left: 1000px;
+  top: 160px;
+
+  /* margin-left: 600px; */
+}
+
+/* flex-end and baseline*/
+.eTopPeople {
+  display: flex;
+  align-items: flex-end;
+}
+
+.eventInfoTopPeopleNameText {
+  font-size: 18px;
+  font-family: "Noto Sans TC";
+}
+
+.eventInfoShareButton button {
+  font-family: Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 100;
+  font-size: 24px;
+  line-height: 28px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.eventInfoShareButton button img {
+  margin-left: 10px;
+}
+
+.mainclass {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.topPeopleName {
+  display: flex;
+}
+
+.greyMainBackGround {
+  background-color: var(--lightgrey-color);
+  margin-left: -50px;
+  margin-right: -50px;
+  margin-top: 20px;
+}
+
+.eventDetailImg {
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+.rightPart {
+  padding: 30px;
+}
+
+.rightPart button {
+  width: 200px;
+  height: 60px;
+  border-radius: 10px;
+  background-color: var(--green-color);
+  border: none;
+  font-size: 24px;
+  color: white;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+.loveicon {
+  width: 50px;
+  margin-left: 20px;
+}
+
+.rightPartTop {
+  display: flex;
+  align-items: center;
+}
+
+.rightPartCard {
+  width: 300px;
+  height: 400px;
+  background-color: white;
+  border-radius: 20px;
+  margin-top: 20px;
+  padding: 30px;
+}
+
+.rightPartCardTime {
+  display: flex;
+}
+
+.rightPartCardAddress {
+  display: flex;
+}
+
+.rightPartCardTime p {
+  font-size: 18px;
+  font-family: "Noto Sans TC";
+  color: gray;
+  margin-left: 30px;
+}
+
+.rightPartCardAddress p {
+  font-size: 18px;
+  font-family: "Noto Sans TC";
+  color: gray;
+  margin-left: 30px;
+}
+
+.rightPartCardAddress {
+  margin-top: 15px;
+}
+
+.tagButton {
+  margin-left: 50px;
+}
+
+.tagButton button {
+  width: 105px;
+  height: 30px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  color: #3599af;
+  margin: 10px;
+}
+.leftPart p {
+  width: 700px;
+  font-size: 18px;
+  font-family: "Noto Sans TC";
+  margin-left: 50px;
+}
+
+.eventParticipateText {
+  margin-left: 50px;
+}
+
+.eventParticipateText div {
+  font-size: 18px;
+  font-family: "Noto Sans TC";
+  font-weight: bolder;
+  /* margin-left: 50px; */
+  margin-top: 50px;
+}
+
+
+
+/* 高度變170 >>box-sizing:border-box 包含border變150*/
+.whiteBox {
+  margin-top: 30px;
+  /* 想更好的辦法置中 */
+  padding-top: 20px;
+  width: 150px;
+  height: 150px;
+  border-radius: 30px;
+  background-color: white;
+  /* for div only 左右置中 */
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.eventParticipate {
+  /* for flex 垂直置中 */
+  align-items: center;
+  justify-content: center;
+}
+
+.eventLauncher {
+  font-size: 12px;
+  font-family: "Noto Sans TC";
+  color: gray;
+}
+
+.eventParticipateImgBox {
+  width: 50px;
+  height: 50px;
+
+  /* for img 置中在白框框 */
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+/* object-fit 沒照他的的container 寬度 ？？？？*/
+.eventParticipateImgBox img {
+  width: 50px;
+  object-fit: fill;
+}
+
+.DivForImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.WBfirst {
+  margin-left: 50px;
+}
+
+.WBrest {
+  margin-left: 30px;
+}
+
+.joinClub {
+  
+  margin-left: 50px;
+  margin-top: 30px;
+  width: 700px;
+  height: 100px;
+  /* padding-top: 20px; */
+  padding-left: 20px;
+
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+}
+
+/* 飄上去height ％ ?????????????*/
+.joinClubFlex{
+   
+    justify-content: space-between;
+    align-items: center;
+    height: 50%;
+  
+}
+
+.joinClubImg { 
+  /* 這邊我只是複製貼上看不懂 */
+  /* position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%); */
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.joinClubImg img {
+  width: 50px;
+}
+
+
+
+.line {
+  border-top: solid gray 1px;
+  height: 1px;
+  margin-left: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.lineInContainer{
+  border-top: solid var(--lightgrey-color) 1px;
+  height: 1px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+
+.massage {
+  position: relative;
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+
+/* btn class option 1 */
+.massageTopButton {
+  /* 有更好的辦法嗎？????? */
+  position: absolute;
+  right: 0px;
+  height: 40px;
+  width: 130px;
+  background-color: var(--green-color);
+  border-radius: 10px;
+  border-style: none;
+  color: white;
+}
+
+/* btn class option 2 */
+.massageTopButton2{
+  position: absolute;
+  right: 0px;
+  height: 40px;
+  width: 130px;
+  border-radius: 10px;
+  border-style: none;
+
+  background-color:var(--white-color);
+  color:var(--grey-color);
+  box-shadow: 0.2rem 0.2rem 0.2rem var(--grey-color);
+}
+
+
+
+/* 寬度沒有依照父層>因為padding稱出去>用box-sizing: border-box;*/
+.messageInputBox{
+  box-sizing: border-box;
+  border: none;
+  width: 100%;
+  outline: none;
+  padding: 10px;
+  margin-top: 30px;
+  box-shadow: 0.1rem 0.1rem 0.1rem var(--lightgrey-color);
+ 
+}
+
+.messageInputBox:focus{
+
+  background-color:var(--lightgrey-color);
+  padding: 10px;
+  transition: 0.5s;;
+  margin-right: 10px;
+}
+
+.btnMessageSent{
+  background-color: var(--green-color);
+  color: white;
+  height: 40px;
+  width: 80px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.btnMessageSent2{
+  background-color:var(--white-color);
+  color:var(--grey-color);
+  box-shadow: 0.2rem 0.2rem 0.2rem var(--grey-color);
+
+  height: 40px;
+  width: 80px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 20px;
+
+}
+
+
+/* 留言後顯示 */
+.inputAft{
+  margin-top: 10px;
+}
+
+
+
+
+/* <input class=' messageInputBox'> 的父層 */
+.massageBottom {
+  background-color: var(--white-color);
+  width: 700px;
+  /* height: 150px; */
+  border-radius: 30px;
+  margin-top: 50px;
+  padding:30px;
+}
+
+/* 暫時得很失敗？？？？ */
+.massageBottomImgDefault {
+  background-color: var(--grey-color);
+  width: 100px;
+  height: 100px;
+}
+
+.verticalBar {
+  border-left: 1px solid black;
+  height: 30px;
+}
+
+.massageBottomTop {
+  align-items: center;
+}
+
+.massageBottomTopUser {
+  margin-left: 10px;
+}
+
+.verticalBar {
+  margin-left: 10px;
+}
+
+.massageBottomTopDate {
+  margin-left: 10px;
+}
+
+.massageBottomMiddle {
+  margin-top: 10px;
+}
+.massageBottomBottom {
+  margin-top: 10px;
+}
+
+.divForCardImg {
+  border-radius: 20px;
+  overflow: hidden;
+  width: 200px;
+  height: 150px;
+}
+
+.cardBottomIcons {
+  align-items: center;
+}
+
+.cardSectorTitle {
+  margin-bottom: 10px;
+
+  font-size: 24px;
+}
+
+.cardBar {
+  margin-left: 50px;
+}
+
+.cardTime {
+  margin-top: 10px;
+}
+
+.cardActName {
+  margin-top: 10px;
+}
+
+.cardBottomIcons {
+  margin-top: 10px;
+}
+
+.googleMap {
+  margin-top: 20px;
+}
+
+/* .rightPart {
+  position: fixed;
+  top: 0px;
+  right: 200px;
+} */
+
+.cardMargin{
+    margin-left: 20px;
+}
+
+
+
