@@ -15,7 +15,7 @@ const main = document.querySelector(".activity_event");
 
 
 //AJAX
-let data = [{
+let ActCardData = [{
         imgPath: "img/event1.jpeg",
         date: "Sunday, July 30,2020,10:30",
         title: "潛水撿垃圾，愛海洋！",
@@ -68,7 +68,7 @@ let data = [{
 ]
 
 
-data.map(
+ActCardData.map(
     (e, index) => {
         main.innerHTML += htmlActCard(e);
     }
