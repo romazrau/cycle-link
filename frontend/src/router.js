@@ -49,6 +49,12 @@ function ClsRouter() {
                     break;
 
                 case "activity":
+                    if (hashSplitArray[1] == "detail") {  //開啟活動頁面
+                        document.querySelector('#page_activity-detail').classList.remove("hide");
+                        break;
+                    }
+
+
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
 
