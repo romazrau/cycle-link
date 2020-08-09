@@ -482,18 +482,16 @@
         </div>
     </div>
 
-    </div>
-
     <!-- * activity  ****************      ****************       ****************   -->
     <div id="page_activity" class="page hide">
         <!---------------------------------- 主要活動顯示 ---------------------------------->
         <div class="activity_top">
             <img src="img/2.jpg">
             <input type="text">
-            <select name="type" id="">
-                <option value="clearsea">淨海</option>
-                <option value="clearmoutain">淨山</option>
-                <option value="run">路跑</option>
+            <select name="type" id="activity_option">
+                <!-- <option value="clearsea">淨海</option>
+                    <option value="clearmoutain">淨山</option>
+                    <option value="run">路跑</option> -->
             </select>
             <button>GO</button>
         </div>
@@ -640,23 +638,19 @@
                 </div>
                 <img src="img/right.svg" class="activity_event_icon_right" alt="">
             </div>
-        </div>
+            <!---------------------------------- 瀏覽過的活動 ---------------------------------->
 
-    </div>
+            <div class="activity_event_history1">
+                <h2>瀏覽過的活動</h2>
 
-
-    <!-- * news  ****************      ****************       ****************   -->
-    <div id="page_news" class="page hide">
-        <!-------------------------------------- main -------------------------------------->
-        <main class="news_main">
-            <div class="news_group">
-                <div class="news">
-                    <div>
-                        <h3><a href="#news/detail">Computer science taught me that books weren’t important. It was
-                                wrong.</a></h3>
-                        <h5><a href="" style="color: gray;">How I fell in love with books again</a></h5>
-                        <p>Amy J. Ko in Bits and Behavior</p>
-                        <p style="color: gray;">Jul 18</p>
+                <div class="activity_event_history3">
+                    <img src="img/right.svg" class="activity_event_icon_right" alt="">
+                    <div class="activity_event_history2">
+                        <!-- <div>
+                        <img src="img/event1.jpeg" class="activity_event_img" alt="">
+                        <p>Sunday, July 30,2020,10:30</p>
+                        <h3>潛水撿垃圾，愛海洋！</h3>
+                        <img src="img/icon1.svg" class="activity_icon" alt=""><span>999</span>
                     </div>
                     <div><img src="img/news1.png" alt=""></div>
                 </div>
@@ -685,14 +679,17 @@
                 </div>
                 <div class="news">
                     <div>
-                        <h3><a href="">One-on-ones are my most valuable meetings; here’s how I run them</a></h3>
-                        <h5><a href="" style="color: gray;">Here are signs that are too disturbing to ignore</a>
-                        </h5>
-                        <p>Charles Stephen in Noteworthy</p>
-                        <p style="color: gray;">Jul 3</p>
+                        <img src="img/event1.jpeg" class="activity_event_img" alt="">
+                        <p>Sunday, July 30,2020,10:30</p>
+                        <h3>潛水撿垃圾，愛海洋！</h3>
+                        <img src="img/icon1.svg" class="activity_icon" alt=""><span>999</span>
+                    </div> -->
                     </div>
                     <div><img src="img/news4.png" alt=""></div>
                 </div>
+
+
+
             </div>
 
             <div class="news_group">
@@ -740,729 +737,1190 @@
                     <div><img src="img/news4.png" alt=""></div>
                 </div>
             </div>
-        </main>
+            </main>
 
 
-    </div>
-
-
-    <!-- * about us  ****************      ****************       ****************   -->
-    <div id="page_about-us" class="page hide">
-        <div class="aboutUs_backimgbox">
-            <img src="img/Duvar-ka-d-sahne-duvarlar-zel-3d-arka-plan-duvar-ka-tlar-Orman-manzara-trail-sunshin.jpg_q50.jpg"
-                alt="">
         </div>
 
-        <div class="aboutUs_box">
-            <div class="aboutUs_pd30">
-                <h2>我們的存在，因為脆弱的地球需要改變、需要行動</h2>
-                <span>我們在全球的工作，都基於我們對使用者的承諾:</span>
 
-                <div class="aboutUs_dflex">
-                    <div class="aboutUs_titlebox">
-                        <h2>始終如一</h2>
-                        <p>確保地球維持孕育多元生命的能力，是綠色和平近50年來不變的使命！</p>
+        <!-- * about us  ****************      ****************       ****************   -->
+        <div id="page_about-us" class="page hide">
+            <div class="aboutUs_backimgbox">
+                <img src="img/Duvar-ka-d-sahne-duvarlar-zel-3d-arka-plan-duvar-ka-tlar-Orman-manzara-trail-sunshin.jpg_q50.jpg"
+                    alt="">
+            </div>
+
+            <div class="aboutUs_box">
+                <div class="aboutUs_pd30">
+                    <h2>我們的存在，因為脆弱的地球需要改變、需要行動</h2>
+                    <span>我們在全球的工作，都基於我們對使用者的承諾:</span>
+
+                    <div class="aboutUs_dflex">
+                        <div class="aboutUs_titlebox">
+                            <h2>始終如一</h2>
+                            <p>確保地球維持孕育多元生命的能力，是綠色和平近50年來不變的使命！</p>
+                        </div>
+                        <div class="aboutUs_titlebox">
+                            <h2>群眾力量</h2>
+                            <p>集合「People Power」是成功的公開秘訣！要求企業、政府為生態與環境做對的事。</p>
+                        </div>
+                        <div class="aboutUs_titlebox">
+                            <h2>始終如一</h2>
+                            <p>確保地球維持孕育多元生命的能力，是綠色和平近50年來不變的使命！</p>
+                        </div>
+                        <div class="aboutUs_titlebox">
+                            <h2>群眾力量</h2>
+                            <p>集合「People Power」是成功的公開秘訣！要求企業、政府為生態與環境做對的事。</p>
+                        </div>
+                        <hr>
                     </div>
-                    <div class="aboutUs_titlebox">
-                        <h2>群眾力量</h2>
-                        <p>集合「People Power」是成功的公開秘訣！要求企業、政府為生態與環境做對的事。</p>
-                    </div>
-                    <div class="aboutUs_titlebox">
-                        <h2>始終如一</h2>
-                        <p>確保地球維持孕育多元生命的能力，是綠色和平近50年來不變的使命！</p>
-                    </div>
-                    <div class="aboutUs_titlebox">
-                        <h2>群眾力量</h2>
-                        <p>集合「People Power」是成功的公開秘訣！要求企業、政府為生態與環境做對的事。</p>
+                </div>
+            </div>
+
+
+            <div class="aboutUs_wrapper">
+                <div class="aboutUs_pd30">
+                    <h2> 我們的團隊</h2>
+                    <span>Our Team</span>
+                    <br><br>
+                    <div class="aboutUs_dflex">
+                        <div class="aboutUs_imgbox">
+                            <img src="img/head2.PNG" alt="">
+                        </div>
+                        <div class="aboutUs_content">
+                            <h3>Charles Leclerc</h3>
+                            <span>CEO</span>
+                            <hr class="aboutUs_hr_style">
+                            <p>有一種態度，叫認真 <br>有一種勇敢，叫面對<br>有一種瀟灑，叫坦率<br>期望自已能夠一直抱著這樣的信念勇往直前！</p>
+                        </div>
                     </div>
                     <hr>
+                    <div class="aboutUs_dflex">
+                        <div class="aboutUs_imgbox">
+                            <img src="img/head4.PNG" alt="">
+                        </div>
+                        <div class="aboutUs_content">
+                            <h3>Charles Leclerc</h3>
+                            <span>CEO</span>
+                            <hr class="aboutUs_hr_style">
+                            <p>有一種態度，叫認真 <br>有一種勇敢，叫面對<br>有一種瀟灑，叫坦率<br>期望自已能夠一直抱著這樣的信念勇往直前！</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="aboutUs_dflex">
+                        <div class="aboutUs_imgbox">
+                            <img src="img/head3.PNG" alt="">
+                        </div>
+                        <div class="aboutUs_content">
+                            <h3>Charles Leclerc</h3>
+                            <span>CEO</span>
+                            <hr class="aboutUs_hr_style">
+                            <p>有一種態度，叫認真 <br>有一種勇敢，叫面對<br>有一種瀟灑，叫坦率<br>期望自已能夠一直抱著這樣的信念勇往直前！</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="aboutUs_dflex">
+                        <div class="aboutUs_imgbox">
+                            <img src="img/head.png" alt="">
+                        </div>
+                        <div class="aboutUs_content">
+                            <h3>Charles Leclerc</h3>
+                            <span>CEO</span>
+                            <hr class="aboutUs_hr_style">
+                            <p>有一種態度，叫認真 <br>有一種勇敢，叫面對<br>有一種瀟灑，叫坦率<br>期望自已能夠一直抱著這樣的信念勇往直前！</p>
+                        </div>
+                    </div>
+                    <hr>
+
                 </div>
+
             </div>
         </div>
 
 
-        <div class="aboutUs_wrapper">
-            <div class="aboutUs_pd30">
-                <h2> 我們的團隊</h2>
-                <span>Our Team</span>
-                <br><br>
-                <div class="aboutUs_dflex">
-                    <div class="aboutUs_imgbox">
-                        <img src="img/head2.PNG" alt="">
-                    </div>
-                    <div class="aboutUs_content">
-                        <h3>Charles Leclerc</h3>
-                        <span>CEO</span>
-                        <hr class="aboutUs_hr_style">
-                        <p>有一種態度，叫認真 <br>有一種勇敢，叫面對<br>有一種瀟灑，叫坦率<br>期望自已能夠一直抱著這樣的信念勇往直前！</p>
-                    </div>
-                </div>
-                <hr>
-                <div class="aboutUs_dflex">
-                    <div class="aboutUs_imgbox">
-                        <img src="img/head4.PNG" alt="">
-                    </div>
-                    <div class="aboutUs_content">
-                        <h3>Charles Leclerc</h3>
-                        <span>CEO</span>
-                        <hr class="aboutUs_hr_style">
-                        <p>有一種態度，叫認真 <br>有一種勇敢，叫面對<br>有一種瀟灑，叫坦率<br>期望自已能夠一直抱著這樣的信念勇往直前！</p>
-                    </div>
-                </div>
-                <hr>
-                <div class="aboutUs_dflex">
-                    <div class="aboutUs_imgbox">
-                        <img src="img/head3.PNG" alt="">
-                    </div>
-                    <div class="aboutUs_content">
-                        <h3>Charles Leclerc</h3>
-                        <span>CEO</span>
-                        <hr class="aboutUs_hr_style">
-                        <p>有一種態度，叫認真 <br>有一種勇敢，叫面對<br>有一種瀟灑，叫坦率<br>期望自已能夠一直抱著這樣的信念勇往直前！</p>
-                    </div>
-                </div>
-                <hr>
-                <div class="aboutUs_dflex">
-                    <div class="aboutUs_imgbox">
-                        <img src="img/head.png" alt="">
-                    </div>
-                    <div class="aboutUs_content">
-                        <h3>Charles Leclerc</h3>
-                        <span>CEO</span>
-                        <hr class="aboutUs_hr_style">
-                        <p>有一種態度，叫認真 <br>有一種勇敢，叫面對<br>有一種瀟灑，叫坦率<br>期望自已能夠一直抱著這樣的信念勇往直前！</p>
-                    </div>
-                </div>
-                <hr>
 
+
+        <!-- * log in   ****************      ****************       ****************   -->
+        <div id='page_log-in' class='page page_signIn hide'>
+            <div class="page_signIn_left">
+                <h1>歡迎回來</h1>
+                <p>一些敘述</p>
             </div>
 
-        </div>
-    </div>
+            <div class="page_signIn_right">
+                <form class="form_signIn" action="" method="POST" enctype="text/plain">
 
-
-
-
-    <!-- * log in   ****************      ****************       ****************   -->
-    <div id='page_log-in' class='page page_signIn hide'>
-        <div class="page_signIn_left">
-            <h1>歡迎回來</h1>
-            <p>一些敘述</p>
-        </div>
-
-        <div class="page_signIn_right">
-            <form class="form_signIn" action="" method="POST" enctype="text/plain">
-
-                <div class="signIn_inputBlock">
-                    <label for="account">帳號: </label>
-                    <input id="Input_signInName" type="text" name="account" placeholder="">
-                </div>
-
-                <div class="signIn_inputBlock">
-                    <div class="signIn_PasswordText">
-                        <label for="password">密碼: </label>
-                        <a href="#123">忘記密碼?</a>
-                    </div>
-                    <input id="Input_signInPassword" type="password" name="password" placeholder="">
-                </div>
-
-                <div class="signIn_submit">
-                    <input type="submit" value="登入">
-                </div>
-
-                <div class="text_switch2signUp">
-                    <span>沒有帳號嗎?</span>&nbsp;&nbsp;<a id="switch2signUp" href="#sign-Up">加入會員</a>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- * sign up  ****************      ****************       ****************   -->
-    <div id='page_sign-Up' class='page page_signUp hide'>
-        <div class="signUp_top">
-            <h1>加入我們</h1>
-            <p>一些敘述</p>
-        </div>
-
-        <div>
-            <form class="form_signUp" action="" method="POST" enctype="text/plain">
-
-                <div class="form_signUp_left">
-                    <div class="signUp_inputBlock">
+                    <div class="signIn_inputBlock">
                         <label for="account">帳號: </label>
-                        <input type="text" name="account" placeholder="">
+                        <input id="Input_signInName" type="text" name="account" placeholder="">
                     </div>
 
-                    <div class="signUp_inputBlock">
-                        <label for="password">密碼: </label>
-                        <input type="password" name="password" placeholder="">
-                    </div>
-
-                    <div class="signUp_inputBlock">
-                        <label for="passwordCheck">確認密碼: </label>
-                        <input type="password" name="passwordCheck" placeholder="">
-                    </div>
-
-                    <div class="signUp_inputBlock">
-                        <label for="name">真實姓名: </label>
-                        <input type="text" name="name" placeholder="">
-                    </div>
-
-                    <div class="signUp_inputBlock">
-                        <label for="bithday">身分證字號: </label>
-                        <input type="text" name="bithday" placeholder="">
-                    </div>
-
-                </div>
-
-                <div class="form_signUp_right">
-
-                    <div class="signUp_inputBlock">
-                        <label for="bithday">生日: </label>
-                        <div class="signUp_bithday">
-                            <select name="dateYear" id="signUp_dateYear" size="1">
-                                <option value="2020">2020</option>
-                            </select>
-                            <span>年</span>
-                            <select name="dateMM" id="signUp_dateMM" size="1">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                            </select>
-                            <span>月</span>
-                            <select name="dateDD" id="signUp_dateDD" size="1">
-                                <option value="1">1</option>
-                            </select>
-                            <span>日</span>
+                    <div class="signIn_inputBlock">
+                        <div class="signIn_PasswordText">
+                            <label for="password">密碼: </label>
+                            <a href="#123">忘記密碼?</a>
                         </div>
+                        <input id="Input_signInPassword" type="password" name="password" placeholder="">
                     </div>
 
-                    <div class="signUp_inputBlock">
-                        <label for="city">居住城市: </label>
-                        <select type="text" name="city" placeholder="">
-                            <option value="taipei" selected>台北市</option>
-                            <option value="">基隆</option>
-
-                        </select>
+                    <div class="signIn_submit">
+                        <input type="submit" value="登入">
                     </div>
 
-                    <div class="signUp_inputBlock">
-                        <label for="adress">居住地址: </label>
-                        <input type="text" name="adress" placeholder="">
+                    <div class="text_switch2signUp">
+                        <span>沒有帳號嗎?</span>&nbsp;&nbsp;<a id="switch2signUp" href="#sign-Up">加入會員</a>
                     </div>
-
-                    <div class="signUp_inputBlock">
-                        <label for="phoneNumber">手機號碼: </label>
-                        <input type="text" name="phoneNumber" placeholder="">
-                    </div>
-
-
-                    <div class="signUp_submit">
-                        <input type="submit" value="註冊">
-                    </div>
-
-                    <div class="text_switch2signIn">
-                        <span>已經有帳號了嗎?</span>&nbsp;&nbsp;<a id="switch2signIn" href="#log-in">登入帳號</a>
-                    </div>
-
-                </div>
-
-
-
-            </form>
-        </div>
-    </div>
-
-
-    <!-- * Personal page  ****************      ****************       ****************   -->
-    <div id='page_personal-page' class='page  hide'>
-
-        <div class="personal_container">
-            <div class="personal_imgbox">
-                <img src="img/img4.jpg" alt="">
-            </div>
-            <div class="personal_wrapper">
-                <h3>Hi Guys</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, dolorum eaque quasi aliquid
-                    incidunt nostrum veniam itaque molestias, velit tempore harum amet deleniti facere reprehenderit
-                    nihil quisquam voluptate architecto dignissimos!</p>
-                <div class="personal_pro_file">
-                    <ul>
-                        <li>
-                            <span class="personal_file_title">Name</span>
-                            <span class="personal_file_middle">:</span>
-                            <span class="personal_file_text">Li Jinchen</span>
-                        </li>
-                        <li>
-                            <span class="personal_file_title">Age</span>
-                            <span class="personal_file_middle">:</span>
-                            <span class="personal_file_text">26 years</span>
-                        </li>
-                        <li>
-                            <span class="personal_file_title">Experience</span>
-                            <span class="personal_file_middle">:</span>
-                            <span class="personal_file_text">4 years</span>
-                        </li>
-                        <li>
-                            <span class="personal_file_title">Country</span>
-                            <span class="personal_file_middle">:</span>
-                            <span class="personal_file_text">USA</span>
-                        </li>
-                        <li>
-                            <span class="personal_file_title">Location</span>
-                            <span class="personal_file_middle">:</span>
-                            <span class="personal_file_text">New York</span>
-                        </li>
-                        <li>
-                            <span class="personal_file_title">Email</span>
-                            <span class="personal_file_middle">:</span>
-                            <span class="personal_file_text">ABC123@gmail.com</span>
-                        </li>
-                        <li>
-                            <span class="personal_file_title">Phone</span>
-                            <span class="personal_file_middle">:</span>
-                            <span class="personal_file_text">0800-123-123</span>
-                        </li>
-                    </ul>
-
-                </div>
+                </form>
             </div>
         </div>
 
-        <section class="personal_section">
-            <h2>what I do </h2>
+        <!-- * sign up  ****************      ****************       ****************   -->
+        <div id='page_sign-Up' class='page page_signUp hide'>
+            <div class="signUp_top">
+                <h1>加入我們</h1>
+                <p>一些敘述</p>
+            </div>
+
+            <div>
+                <form class="form_signUp" action="" method="POST" enctype="text/plain">
+
+                    <div class="form_signUp_left">
+                        <div class="signUp_inputBlock">
+                            <label for="account">帳號: </label>
+                            <input type="text" name="account" placeholder="">
+                        </div>
+
+                        <div class="signUp_inputBlock">
+                            <label for="password">密碼: </label>
+                            <input type="password" name="password" placeholder="">
+                        </div>
+
+                        <div class="signUp_inputBlock">
+                            <label for="passwordCheck">確認密碼: </label>
+                            <input type="password" name="passwordCheck" placeholder="">
+                        </div>
+
+                        <div class="signUp_inputBlock">
+                            <label for="name">真實姓名: </label>
+                            <input type="text" name="name" placeholder="">
+                        </div>
+
+                        <div class="signUp_inputBlock">
+                            <label for="bithday">身分證字號: </label>
+                            <input type="text" name="bithday" placeholder="">
+                        </div>
+
+                    </div>
+
+                    <div class="form_signUp_right">
+
+                        <div class="signUp_inputBlock">
+                            <label for="bithday">生日: </label>
+                            <div class="signUp_bithday">
+                                <select name="dateYear" id="signUp_dateYear" size="1">
+                                    <option value="2020">2020</option>
+                                </select>
+                                <span>年</span>
+                                <select name="dateMM" id="signUp_dateMM" size="1">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                                <span>月</span>
+                                <select name="dateDD" id="signUp_dateDD" size="1">
+                                    <option value="1">1</option>
+                                </select>
+                                <span>日</span>
+                            </div>
+                        </div>
+
+                        <div class="signUp_inputBlock">
+                            <label for="city">居住城市: </label>
+                            <select type="text" name="city" placeholder="">
+                                <option value="taipei" selected>台北市</option>
+                                <option value="">基隆</option>
+
+                            </select>
+                        </div>
+
+                        <div class="signUp_inputBlock">
+                            <label for="adress">居住地址: </label>
+                            <input type="text" name="adress" placeholder="">
+                        </div>
+
+                        <div class="signUp_inputBlock">
+                            <label for="phoneNumber">手機號碼: </label>
+                            <input type="text" name="phoneNumber" placeholder="">
+                        </div>
+
+
+                        <div class="signUp_submit">
+                            <input type="submit" value="註冊">
+                        </div>
+
+                        <div class="text_switch2signIn">
+                            <span>已經有帳號了嗎?</span>&nbsp;&nbsp;<a id="switch2signIn" href="#log-in">登入帳號</a>
+                        </div>
+
+                    </div>
+
+
+
+                </form>
+            </div>
+        </div>
+
+
+        <!-- * Personal page  ****************      ****************       ****************   -->
+        <div id='page_personal-page' class='page  hide'>
+
             <div class="personal_container">
-                <div class="personal_box">
-                    <div class="personal_seccon">
-                        <img src="img/carlist.png" alt="">
-                    </div>
-                    <div class="personal_services_content">
-                        <h4><a href="#">My Shop</a></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse condi.</p>
-                    </div>
+                <div class="personal_imgbox">
+                    <img src="img/img4.jpg" alt="">
                 </div>
+                <div class="personal_wrapper">
+                    <h3>Hi Guys</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, dolorum eaque quasi aliquid
+                        incidunt nostrum veniam itaque molestias, velit tempore harum amet deleniti facere reprehenderit
+                        nihil quisquam voluptate architecto dignissimos!</p>
+                    <div class="personal_pro_file">
+                        <ul>
+                            <li>
+                                <span class="personal_file_title">Name</span>
+                                <span class="personal_file_middle">:</span>
+                                <span class="personal_file_text">Li Jinchen</span>
+                            </li>
+                            <li>
+                                <span class="personal_file_title">Age</span>
+                                <span class="personal_file_middle">:</span>
+                                <span class="personal_file_text">26 years</span>
+                            </li>
+                            <li>
+                                <span class="personal_file_title">Experience</span>
+                                <span class="personal_file_middle">:</span>
+                                <span class="personal_file_text">4 years</span>
+                            </li>
+                            <li>
+                                <span class="personal_file_title">Country</span>
+                                <span class="personal_file_middle">:</span>
+                                <span class="personal_file_text">USA</span>
+                            </li>
+                            <li>
+                                <span class="personal_file_title">Location</span>
+                                <span class="personal_file_middle">:</span>
+                                <span class="personal_file_text">New York</span>
+                            </li>
+                            <li>
+                                <span class="personal_file_title">Email</span>
+                                <span class="personal_file_middle">:</span>
+                                <span class="personal_file_text">ABC123@gmail.com</span>
+                            </li>
+                            <li>
+                                <span class="personal_file_title">Phone</span>
+                                <span class="personal_file_middle">:</span>
+                                <span class="personal_file_text">0800-123-123</span>
+                            </li>
+                        </ul>
 
-                <div class="personal_box">
-                    <div class="personal_seccon">
-                        <img src="img/money1.png" alt="">
-                    </div>
-                    <div class="personal_services_content">
-                        <h4><a href="#">My Wallet</a></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse condi.</p>
-                    </div>
-                </div>
-                <div class="personal_box">
-                    <div class="personal_seccon">
-                        <img src="img/carlist.png" alt="">
-                    </div>
-                    <div class="personal_services_content">
-                        <h4><a href="#">My Money</a></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse condi.</p>
-                    </div>
-                </div>
-                <div class="personal_box">
-                    <div class="personal_seccon">
-                        <img src="img/event.png" alt="">
-                    </div>
-                    <div class="personal_services_content">
-                        <h4><a href="#">My Event</a></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse condi.</p>
                     </div>
                 </div>
             </div>
-        </section>
-        <div class="personal_container">
-            <div class="personal_bar-block">
 
-                <div class="personal_baritembox"><a href="javascript:void(0)"
-                        class="personal_bar-item personal_button personal_tablink personal_testbtn"
-                        onclick="PersonalPage.openClass(event, 'class1')">My
-                        Shop</a></div>
-                <div class="personal_baritembox"><a href="javascript:void(0)"
-                        class="personal_bar-item personal_button personal_tablink"
-                        onclick="PersonalPage.openClass(event, 'class2')">My
-                        Event</a></div>
-                <div class="personal_baritembox"><a href="javascript:void(0)"
-                        class="personal_bar-item personal_button personal_tablink"
-                        onclick="PersonalPage.openClass(event, 'class3')">Forget</a></div>
-            </div>
-        </div>
-
-        <div id="class1" class="personal_container personal_class">
-            <div class="personal_event personal_eventw100">
-                <div>
-                    <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
-                    <p>Sunday, July 30,2020,10:30</p>
-                    <h3>潛水撿垃圾，愛海洋！</h3>
-                    <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
-                </div>
-                <div>
-                    <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
-                    <p>Sunday, July 30,2020,10:30</p>
-                    <h3>潛水撿垃圾，愛海洋！</h3>
-                    <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
-                </div>
-                <div>
-                    <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
-                    <p>Sunday, July 30,2020,10:30</p>
-                    <h3>潛水撿垃圾，愛海洋！</h3>
-                    <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
-                </div>
-                <div>
-                    <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
-                    <p>Sunday, July 30,2020,10:30</p>
-                    <h3>潛水撿垃圾，愛海洋！</h3>
-                    <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
-                </div>
-            </div>
-        </div>
-
-        <div id="class2" class="personal_container personal_class">
-            <div class="personal_event personal_eventw100">
-                <div>
-                    <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
-                    <p>Sunday, July 30,2020,10:30</p>
-                    <h3>潛水撿垃圾，愛海洋！</h3>
-                    <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
-                </div>
-                <div>
-                    <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
-                    <p>Sunday, July 30,2020,10:30</p>
-                    <h3>潛水撿垃圾，愛海洋！</h3>
-                    <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
-                </div>
-                <div>
-                    <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
-                    <p>Sunday, July 30,2020,10:30</p>
-                    <h3>潛水撿垃圾，愛海洋！</h3>
-                    <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
-                </div>
-            </div>
-        </div>
-
-        <div id="class3" class="personal_container personal_class">
-            <div class="personal_event personal_eventw100">
-                <div>
-                    <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
-                    <p>Sunday, July 30,2020,10:30</p>
-                    <h3>潛水撿垃圾，愛海洋！</h3>
-                    <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
-                </div>
-                <div>
-                    <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
-                    <p>Sunday, July 30,2020,10:30</p>
-                    <h3>潛水撿垃圾，愛海洋！</h3>
-                    <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-    <!-- * 路徑在別人底下的葉面 #.. / 這些葉面  ****************      ****************       ****************   -->
-    <!-- * market-search  ****************      ****************       ****************   -->
-    <div id="page_market-search" class="page hide">
-        <!-- 買家/賣家 -->
-        <div class="container_market_search_page">
-            <div class="mrkSearch_top_search">
-                <a href=# class="mrkSearch_search_icon">
-                    <i class="fas fa-search"></i></a>
-            </div>
-            <div class="mrkSearch_container_main">
-                <aside class="aside_market_search_page">
-                    <h3>條件篩選</h3>
-                    <h4>商品標籤</h4>
-                    <div class="pdt_tag">
-                        <div class="mrkSearch_span_row">
-                            <span>#美妝用品</span>
-                            <span>#運動用品</span></div>
-                        <div class="mrkSearch_span_row">
-                            <span>#你先拿我OK</span>
-                            <span>#毛小孩最愛</span>
-                            <span>#小朋友長大了</span></div>
-                        <div class="mrkSearch_span_row">
-                            <span>#書籍</span>
-                            <span>#3C產品</span></div>
-                        <div class="mrkSearch_span_row">
-                            <span>#搬家出清</span>
-                            <span>#生活用品</span></div>
-                        <div class="mrkSearch_span_row">
-                            <span>#買到剁手手</span>
-                            <span>#二手家具</span>
-                            <span>#飾品</span></div>
-                        <div class="mrkSearch_span_row">
-                            <span>#皮包背包</span>
-                            <span>#家電</span>
-                            <span>#居家必備</span></div>
-                        <div class="mrkSearch_span_row">
-                            <span>#過去就讓它過去ㄅ</span>
-                            <span>#手機殼</span></div>
-                        <div class="mrkSearch_span_row">
+            <section class="personal_section">
+                <h2>what I do </h2>
+                <div class="personal_container">
+                    <div class="personal_box">
+                        <div class="personal_seccon">
+                            <img src="img/carlist.png" alt="">
                         </div>
-                        <h4>商品地點</h4>
-                        <div class="pdt_location_opt">台北市
-                            <div><input type="checkbox">中山區
-                                <input type="checkbox">中正區
-                                <input type="checkbox">萬華區
-                                <input type="checkbox">大安區</div>
-                            <div><input type="checkbox">文山區
-                                <input type="checkbox">松山區
-                                <input type="checkbox">內湖區
-                                <input type="checkbox">信義區</div>
-
+                        <div class="personal_services_content">
+                            <h4><a href="#">My Shop</a></h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse condi.</p>
                         </div>
-                        <h4>運送方式</h4>
-                        <div class="pdt_deliever_opt">
-                            <input type="checkbox">面交
-                            <input type="checkbox">宅配
-                            <input type="checkbox">超商
-                        </div>
-                        <h4>價格範圍</h4>
-                        <input type="range" min="1" max="100" value=[15,35] id="price_range">
-                        <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt="">
-                        <span id="price_value"></span>
+                    </div>
 
-                </aside>
-                <div class="mrkSearch_container_waterfall">
-                    <ul class="mrkSearch_waterfall">
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/game_pdt/game02.PNG"></div>
-                            <h3>二手Switch + 動物森友會</h3>
-                            <p>期中被二一，不能再玩了QQ</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/book_pdt/book02.PNG"></div>
-                            <h3>少女漫畫出清～不分售</h3>
-                            <p>酸酸甜甜的校園戀愛故事</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill03.jpg"></div>
-                            <h3>網頁架設，價格內議</h3>
-                            <p>輕鬆架設電商平台</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby02.PNG"></div>
-                            <h3>3歲女生童鞋</h3>
-                            <p>鞋況良好，小孩長大穿不下了</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/book_pdt/book03.PNG"></div>
-                            <h3>書籍出清</h3>
-                            <p>希望你有看到喜歡的書:)</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                    </ul>
-                    <ul class="mrkSearch_waterfall">
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby05.PNG"></div>
-                            <h3>整理倉庫，玩具大出清</h3>
-                            <p>年代久遠，包裝完整，出貨前會清理一下</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/game_pdt/game01.PNG"></div>
-                            <h3>Switch遊戲片出清</h3>
-                            <p>未舔，保存良好</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill04.jpg"></div>
-                            <h3>牆壁油漆</h3>
-                            <p>價格內議，急需海龜幣</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/clothes_pdt/clothes09.PNG"></div>
-                            <h3>二手日系女性襯衫</h3>
-                            <p>鬼遮眼買了一堆差不多的衣服，出清</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/game_pdt/game06.PNG"></div>
-                            <h3>復古遊戲機送遊戲卡</h3>
-                            <p>兒時回憶的機台～</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                    </ul>
-                    <ul class="mrkSearch_waterfall">
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/game_pdt/game04.PNG"></div>
-                            <h3>PS4二手遊戲片</h3>
-                            <p>破關了出清</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/book_pdt/book07.PNG"></div>
-                            <h3>各類書籍出清，歡迎詢問</h3>
-                            <p>舊的不去新的不來</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill05.jpg"></div>
-                            <h3>專業清潔打掃</h3>
-                            <p>小強就交給我處理吧</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby03.PNG"></div>
-                            <h3>火柴盒車車收藏</h3>
-                            <p>要搬家了，忍痛割愛</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/book_pdt/book06.PNG"></div>
-                            <h3>心靈書籍治療的你心</h3>
-                            <p>這些都是好書，買回家看看吧</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                    </ul>
-                    <ul class="mrkSearch_waterfall">
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/game_pdt/game03.PNG"></div>
-                            <h3>二手PS4（另有三款遊戲）</h3>
-                            <p>PS5出了～我來啦～</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/book_pdt/book01.PNG"></div>
-                            <h3>暢銷小說出清</h3>
-                            <p>都看完了～保證好看</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill02.jpg"></div>
-                            <h3>水彩/油畫創作</h3>
-                            <p>客製化創作（聊聊討論）</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby01.PNG"></div>
-                            <h3>超多尿布褲，三條才出貨哦</h3>
-                            <p>八成新，有好好清潔保存</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                        <li class="mrkSearch_li">
-                            <div class="mrkSearch_img_div"><img src="img/book_pdt/book04.PNG"></div>
-                            <h3>九把刀的書</h3>
-                            <p>有緣人快來帶走他們吧</p>
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                        </li>
-                    </ul>
+                    <div class="personal_box">
+                        <div class="personal_seccon">
+                            <img src="img/money1.png" alt="">
+                        </div>
+                        <div class="personal_services_content">
+                            <h4><a href="#">My Wallet</a></h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse condi.</p>
+                        </div>
+                    </div>
+                    <div class="personal_box">
+                        <div class="personal_seccon">
+                            <img src="img/carlist.png" alt="">
+                        </div>
+                        <div class="personal_services_content">
+                            <h4><a href="#">My Money</a></h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse condi.</p>
+                        </div>
+                    </div>
+                    <div class="personal_box">
+                        <div class="personal_seccon">
+                            <img src="img/event.png" alt="">
+                        </div>
+                        <div class="personal_services_content">
+                            <h4><a href="#">My Event</a></h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse condi.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="personal_container">
+                <div class="personal_bar-block">
+
+                    <div class="personal_baritembox"><a href="javascript:void(0)"
+                            class="personal_bar-item personal_button personal_tablink personal_testbtn"
+                            onclick="PersonalPage.openClass(event, 'class1')">My
+                            Shop</a></div>
+                    <div class="personal_baritembox"><a href="javascript:void(0)"
+                            class="personal_bar-item personal_button personal_tablink"
+                            onclick="PersonalPage.openClass(event, 'class2')">My
+                            Event</a></div>
+                    <div class="personal_baritembox"><a href="javascript:void(0)"
+                            class="personal_bar-item personal_button personal_tablink"
+                            onclick="PersonalPage.openClass(event, 'class3')">Forget</a></div>
                 </div>
             </div>
-            <div>
-                <img src="img/talk.png" class="mrkSearch_message">
-            </div>
-        </div>
-        <div class="mrkSearch_page_container">
-            <ul class="mrkSearch_pagination">
-                <li class="mrkSearch_li"><a href="#">«</a></li>
-                <li class="mrkSearch_li"><a href="#">1</a></li>
-                <li class="mrkSearch_li"><a class="active" href="#">2</a></li>
-                <li class="mrkSearch_li"><a href="#">3</a></li>
-                <li class="mrkSearch_li"><a href="#">4</a></li>
-                <li class="mrkSearch_li"><a href="#">5</a></li>
-                <li class="mrkSearch_li"><a href="#">6</a></li>
-                <li class="mrkSearch_li"><a href="#">7</a></li>
-                <li class="mrkSearch_li"><a href="#">»</a></li>
-            </ul>
-        </div>
 
-
-    </div>
-
-
-    <!-- * news-detail  ****************      ****************       ****************   -->
-    <div id="page_news-detail" class="page hide">
-        <!-------------------------------------- 左側作者欄 -------------------------------------->
-        <div class="newsDe_writer_info_left">
-            <p>Anupam Chugh</p>
-            <span class="newsDe_writer_info_left_span">For the uninitiated, a lot of apps today use an Advertising
-                identifier
-                (IDFA). It allows developers and marketers to track activity for advertising purposes.</span>
-            <br><i class="far fa-heart"></i><span>35</span>
-        </div>
-        <!-------------------------------------- main -------------------------------------->
-        <main class="newsDe_main">
-            <!-------------------------------------- 文章標題 -------------------------------------->
-            <div>
-                <h1>
-                    Apple Is Killing A Billion-Dollar Ad Industry With One Popup
-                </h1>
-                <h2>The new iOS 14 privacy feature spells trouble for advertisement agencies and promises to end an
-                    era of
-                    personalized ads</h2>
-            </div>
-            <!-------------------------------------- 作者資訊 -------------------------------------->
-            <div class="newsDe_writer">
-                <div class="newsDe_writer_info">
+            <div id="class1" class="personal_container personal_class">
+                <div class="personal_event personal_eventw100">
                     <div>
-                        <img src="img/c1.jpeg" alt="">
+                        <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
+                        <p>Sunday, July 30,2020,10:30</p>
+                        <h3>潛水撿垃圾，愛海洋！</h3>
+                        <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
                     </div>
                     <div>
-                        <a href="#">Anupam Chugh</a><br>
-                        <span>Jul 7 · 4 min read</span>
+                        <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
+                        <p>Sunday, July 30,2020,10:30</p>
+                        <h3>潛水撿垃圾，愛海洋！</h3>
+                        <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
+                    </div>
+                    <div>
+                        <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
+                        <p>Sunday, July 30,2020,10:30</p>
+                        <h3>潛水撿垃圾，愛海洋！</h3>
+                        <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
+                    </div>
+                    <div>
+                        <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
+                        <p>Sunday, July 30,2020,10:30</p>
+                        <h3>潛水撿垃圾，愛海洋！</h3>
+                        <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
                     </div>
                 </div>
-                <div class="newsDe_writen_icon">
-                    <i class="fab fa-facebook-square fa-2x" style="color: var(--blue-color);"></i>
-                    <i class="fab fa-twitter-square fa-2x" style="color: var(--blue-color);"></i>
-                    <i class="fab fa-linkedin fa-2x" style="color: var(--blue-color);"></i>
+            </div>
+
+            <div id="class2" class="personal_container personal_class">
+                <div class="personal_event personal_eventw100">
+                    <div>
+                        <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
+                        <p>Sunday, July 30,2020,10:30</p>
+                        <h3>潛水撿垃圾，愛海洋！</h3>
+                        <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
+                    </div>
+                    <div>
+                        <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
+                        <p>Sunday, July 30,2020,10:30</p>
+                        <h3>潛水撿垃圾，愛海洋！</h3>
+                        <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
+                    </div>
+                    <div>
+                        <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
+                        <p>Sunday, July 30,2020,10:30</p>
+                        <h3>潛水撿垃圾，愛海洋！</h3>
+                        <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
+                    </div>
                 </div>
             </div>
-            <!-------------------------------------- 文章內容 -------------------------------------->
-            <figure>
-                <img src="img/news_title.jpg" title="Photo by Tobias Moore on Unsplash" alt="">
-                <figcaption>Photo by Tobias Moore on Unsplash</figcaption>
-            </figure>
-            <div>
-                <p>When Apple’s WWDC 2020 digital-only Keynote event kickstarted, all eyes were on the new mac OS
-                    Big Sur
-                    and the ambitious Apple Silicon chips.</p>
-                <p>But, from the perspective of advertisement agencies, it was the new iOS 14 privacy-based features
-                    that
-                    sent shockwaves in their industry and became the major talking point.</p>
-                <p>For the uninitiated, a lot of apps today use an Advertising identifier (IDFA). It allows
-                    developers and
-                    marketers to track activity for advertising purposes.</p>
-                <p>Plenty of marketing agencies backed by Google and Facebook run campaigns to record purchases,
-                    usage time,
-                    user actions, and subsequently serve personalized ads.</p>
-                <p>Over 100K apps on the App Store today have the Facebook or Google SDK integrated which tracks and
-                    sends
-                    your data to the tech giants and third party brokers.</p>
-                <p>But iOS 14 is all set to change that by being upfront and transparent with users about how their
-                    data is
-                    used for ads.</p>
+
+            <div id="class3" class="personal_container personal_class">
+                <div class="personal_event personal_eventw100">
+                    <div>
+                        <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
+                        <p>Sunday, July 30,2020,10:30</p>
+                        <h3>潛水撿垃圾，愛海洋！</h3>
+                        <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
+                    </div>
+                    <div>
+                        <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
+                        <p>Sunday, July 30,2020,10:30</p>
+                        <h3>潛水撿垃圾，愛海洋！</h3>
+                        <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
+                    </div>
+                </div>
             </div>
-            <!-------------------------------------- 文章標籤 -------------------------------------->
-            <div class="newsDe_tag">
-                <ul>
-                    <li><a href="#">Apple</a></li>
-                    <li><a href="#">Marketing</a></li>
-                    <li><a href="#">Business</a></li>
-                    <li><a href="#">Advertising</a></li>
+        </div>
+
+
+
+
+
+        <!-- * 路徑在別人底下的葉面 #.. / 這些葉面  ****************      ****************       ****************   -->
+        <!-- * market-search  ****************      ****************       ****************   -->
+        <div id="page_market-search" class="page hide">
+            <!-- 買家/賣家 -->
+            <div class="container_market_search_page">
+                <div class="mrkSearch_top_search">
+                    <a href=# class="mrkSearch_search_icon">
+                        <i class="fas fa-search"></i></a>
+                </div>
+                <div class="mrkSearch_container_main">
+                    <aside class="aside_market_search_page">
+                        <h3>條件篩選</h3>
+                        <h4>商品標籤</h4>
+                        <div class="pdt_tag">
+                            <div class="mrkSearch_span_row">
+                                <span>#美妝用品</span>
+                                <span>#運動用品</span></div>
+                            <div class="mrkSearch_span_row">
+                                <span>#你先拿我OK</span>
+                                <span>#毛小孩最愛</span>
+                                <span>#小朋友長大了</span></div>
+                            <div class="mrkSearch_span_row">
+                                <span>#書籍</span>
+                                <span>#3C產品</span></div>
+                            <div class="mrkSearch_span_row">
+                                <span>#搬家出清</span>
+                                <span>#生活用品</span></div>
+                            <div class="mrkSearch_span_row">
+                                <span>#買到剁手手</span>
+                                <span>#二手家具</span>
+                                <span>#飾品</span></div>
+                            <div class="mrkSearch_span_row">
+                                <span>#皮包背包</span>
+                                <span>#家電</span>
+                                <span>#居家必備</span></div>
+                            <div class="mrkSearch_span_row">
+                                <span>#過去就讓它過去ㄅ</span>
+                                <span>#手機殼</span></div>
+                            <div class="mrkSearch_span_row">
+                            </div>
+                            <h4>商品地點</h4>
+                            <div class="pdt_location_opt">台北市
+                                <div><input type="checkbox">中山區
+                                    <input type="checkbox">中正區
+                                    <input type="checkbox">萬華區
+                                    <input type="checkbox">大安區</div>
+                                <div><input type="checkbox">文山區
+                                    <input type="checkbox">松山區
+                                    <input type="checkbox">內湖區
+                                    <input type="checkbox">信義區</div>
+
+                            </div>
+                            <h4>運送方式</h4>
+                            <div class="pdt_deliever_opt">
+                                <input type="checkbox">面交
+                                <input type="checkbox">宅配
+                                <input type="checkbox">超商
+                            </div>
+                            <h4>價格範圍</h4>
+                            <input type="range" min="1" max="100" value=[15,35] id="price_range">
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt="">
+                            <span id="price_value"></span>
+
+                    </aside>
+                    <div class="mrkSearch_container_waterfall">
+                        <ul class="mrkSearch_waterfall">
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/game_pdt/game02.PNG"></div>
+                                <h3>二手Switch + 動物森友會</h3>
+                                <p>期中被二一，不能再玩了QQ</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/book_pdt/book02.PNG"></div>
+                                <h3>少女漫畫出清～不分售</h3>
+                                <p>酸酸甜甜的校園戀愛故事</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill03.jpg"></div>
+                                <h3>網頁架設，價格內議</h3>
+                                <p>輕鬆架設電商平台</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby02.PNG"></div>
+                                <h3>3歲女生童鞋</h3>
+                                <p>鞋況良好，小孩長大穿不下了</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/book_pdt/book03.PNG"></div>
+                                <h3>書籍出清</h3>
+                                <p>希望你有看到喜歡的書:)</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                        </ul>
+                        <ul class="mrkSearch_waterfall">
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby05.PNG"></div>
+                                <h3>整理倉庫，玩具大出清</h3>
+                                <p>年代久遠，包裝完整，出貨前會清理一下</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/game_pdt/game01.PNG"></div>
+                                <h3>Switch遊戲片出清</h3>
+                                <p>未舔，保存良好</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill04.jpg"></div>
+                                <h3>牆壁油漆</h3>
+                                <p>價格內議，急需海龜幣</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/clothes_pdt/clothes09.PNG"></div>
+                                <h3>二手日系女性襯衫</h3>
+                                <p>鬼遮眼買了一堆差不多的衣服，出清</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/game_pdt/game06.PNG"></div>
+                                <h3>復古遊戲機送遊戲卡</h3>
+                                <p>兒時回憶的機台～</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                        </ul>
+                        <ul class="mrkSearch_waterfall">
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/game_pdt/game04.PNG"></div>
+                                <h3>PS4二手遊戲片</h3>
+                                <p>破關了出清</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/book_pdt/book07.PNG"></div>
+                                <h3>各類書籍出清，歡迎詢問</h3>
+                                <p>舊的不去新的不來</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill05.jpg"></div>
+                                <h3>專業清潔打掃</h3>
+                                <p>小強就交給我處理吧</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby03.PNG"></div>
+                                <h3>火柴盒車車收藏</h3>
+                                <p>要搬家了，忍痛割愛</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/book_pdt/book06.PNG"></div>
+                                <h3>心靈書籍治療的你心</h3>
+                                <p>這些都是好書，買回家看看吧</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                        </ul>
+                        <ul class="mrkSearch_waterfall">
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/game_pdt/game03.PNG"></div>
+                                <h3>二手PS4（另有三款遊戲）</h3>
+                                <p>PS5出了～我來啦～</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/book_pdt/book01.PNG"></div>
+                                <h3>暢銷小說出清</h3>
+                                <p>都看完了～保證好看</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill02.jpg"></div>
+                                <h3>水彩/油畫創作</h3>
+                                <p>客製化創作（聊聊討論）</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby01.PNG"></div>
+                                <h3>超多尿布褲，三條才出貨哦</h3>
+                                <p>八成新，有好好清潔保存</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                            <li class="mrkSearch_li">
+                                <div class="mrkSearch_img_div"><img src="img/book_pdt/book04.PNG"></div>
+                                <h3>九把刀的書</h3>
+                                <p>有緣人快來帶走他們吧</p>
+                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <img src="img/talk.png" class="mrkSearch_message">
+                </div>
+            </div>
+            <div class="mrkSearch_page_container">
+                <ul class="mrkSearch_pagination">
+                    <li class="mrkSearch_li"><a href="#">«</a></li>
+                    <li class="mrkSearch_li"><a href="#">1</a></li>
+                    <li class="mrkSearch_li"><a class="active" href="#">2</a></li>
+                    <li class="mrkSearch_li"><a href="#">3</a></li>
+                    <li class="mrkSearch_li"><a href="#">4</a></li>
+                    <li class="mrkSearch_li"><a href="#">5</a></li>
+                    <li class="mrkSearch_li"><a href="#">6</a></li>
+                    <li class="mrkSearch_li"><a href="#">7</a></li>
+                    <li class="mrkSearch_li"><a href="#">»</a></li>
                 </ul>
             </div>
 
-        </main>
-    </div>
+
+        </div>
+
+
+        <!-- * news-detail  ****************      ****************       ****************   -->
+        <div id="page_news-detail" class="page hide">
+            <!-------------------------------------- 左側作者欄 -------------------------------------->
+            <div class="newsDe_writer_info_left">
+                <p>Anupam Chugh</p>
+                <span class="newsDe_writer_info_left_span">For the uninitiated, a lot of apps today use an Advertising
+                    identifier
+                    (IDFA). It allows developers and marketers to track activity for advertising purposes.</span>
+                <br><i class="far fa-heart"></i><span>35</span>
+            </div>
+            <!-------------------------------------- main -------------------------------------->
+            <main class="newsDe_main">
+                <!-------------------------------------- 文章標題 -------------------------------------->
+                <div>
+                    <h1>
+                        Apple Is Killing A Billion-Dollar Ad Industry With One Popup
+                    </h1>
+                    <h2>The new iOS 14 privacy feature spells trouble for advertisement agencies and promises to end an
+                        era of
+                        personalized ads</h2>
+                </div>
+                <!-------------------------------------- 作者資訊 -------------------------------------->
+                <div class="newsDe_writer">
+                    <div class="newsDe_writer_info">
+                        <div>
+                            <img src="img/c1.jpeg" alt="">
+                        </div>
+                        <div>
+                            <a href="#">Anupam Chugh</a><br>
+                            <span>Jul 7 · 4 min read</span>
+                        </div>
+                    </div>
+                    <div class="newsDe_writen_icon">
+                        <i class="fab fa-facebook-square fa-2x" style="color: var(--blue-color);"></i>
+                        <i class="fab fa-twitter-square fa-2x" style="color: var(--blue-color);"></i>
+                        <i class="fab fa-linkedin fa-2x" style="color: var(--blue-color);"></i>
+                    </div>
+                </div>
+                <!-------------------------------------- 文章內容 -------------------------------------->
+                <figure>
+                    <img src="img/news_title.jpg" title="Photo by Tobias Moore on Unsplash" alt="">
+                    <figcaption>Photo by Tobias Moore on Unsplash</figcaption>
+                </figure>
+                <div>
+                    <p>When Apple’s WWDC 2020 digital-only Keynote event kickstarted, all eyes were on the new mac OS
+                        Big Sur
+                        and the ambitious Apple Silicon chips.</p>
+                    <p>But, from the perspective of advertisement agencies, it was the new iOS 14 privacy-based features
+                        that
+                        sent shockwaves in their industry and became the major talking point.</p>
+                    <p>For the uninitiated, a lot of apps today use an Advertising identifier (IDFA). It allows
+                        developers and
+                        marketers to track activity for advertising purposes.</p>
+                    <p>Plenty of marketing agencies backed by Google and Facebook run campaigns to record purchases,
+                        usage time,
+                        user actions, and subsequently serve personalized ads.</p>
+                    <p>Over 100K apps on the App Store today have the Facebook or Google SDK integrated which tracks and
+                        sends
+                        your data to the tech giants and third party brokers.</p>
+                    <p>But iOS 14 is all set to change that by being upfront and transparent with users about how their
+                        data is
+                        used for ads.</p>
+                </div>
+                <!-------------------------------------- 文章標籤 -------------------------------------->
+                <div class="newsDe_tag">
+                    <ul>
+                        <li><a href="#">Apple</a></li>
+                        <li><a href="#">Marketing</a></li>
+                        <li><a href="#">Business</a></li>
+                        <li><a href="#">Advertising</a></li>
+                    </ul>
+                </div>
+
+            </main>
+        </div>
+
+
+        <!-- * activity-detail  ****************      ****************       ****************   -->
+        <div id="page_activity-detail" class="page hide">
+            <main class="mainclass">
+
+                <!-- main 的margin left 在這邊沒用 -->
+                <div class="eventInfoTop flex-container">
+                    <div class="eventInfoText">
+                        <p>Saturday, July 18, 2020</p>
+                        <h2>福隆海灘淨灘趣！</h2>
+                        <div class="eTopPeople">
+                            <div class="DivForImg">
+                                <img src="./img/download.jpeg" alt="sophie" width="50">
+                            </div>
+                            <div class="topPeopleName">
+                                <div class="eventInfoTopPeopleNameText">
+                                    蘇菲唐納
+                                </div>
+                                <img src="./img/tick.svg" alt="tickIcon" width="20">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="eventInfoShareButton">
+                        <button type="button">share<img src="./img/shareIcon.svg" alt="shareicon" width="20"></button>
+                    </div>
+                </div>
+                <div class="greyMainBackGround" id="greyMainBackGround">
+                    <div class="eventDetail flex-container">
+                        <div class="leftPart">
+                            <img class="eventDetailImg" src="./img/shutterstock_445264117.jpg" alt="seaturtle"
+                                width="700px">
+                            <div class="tagButton flex-container">
+                                <button type="button">#環保</button>
+                                <button type="button">＃淨灘</button>
+                                <button type="button">＃小海龜</button>
+                            </div>
+                            <p>面對日益嚴重的海岸垃圾問題，做而言不如起而行，
+                                行動才是解決問題的關鍵，讓我們親自動手來清潔這塊美麗的家園吧!
+
+                                淨灘活動，其實不單純只是到海邊打掃沙灘、撿撿垃圾的勞動服務；
+                                藉由事前的淨灘報告，來說明活動的安全事項，並正確辨識什麼是該撿的垃圾，
+                                讓大家知道淨灘背後，也是有許多需要注意眉眉角角，
+
+                                透過剖析 ICC 國際淨灘紀錄表，來看見臺灣海岸淨灘活動，
+                                所記錄下的每一個海邊垃圾種類及數量統計，了解到底都是哪些垃圾在污染海洋，
+                                而我們又該怎麼來改變生活習慣，減少這些垃圾的產生。
+                                ​
+
+                                若除了淨灘，您還有更多的時間，海湧工作室也會帶領大家進行海廢藝術創作，
+                                透過創作來翻轉大家對於垃圾的印象很多廢棄物只要留心留意，都能夠變成有用的物品！！
+                                ​
+                                跟著海湧一起淨灘，與大自然有最近距離的接觸，帶著課程中所學習的內容，活出更加環保的減塑健康生活，不只是為了環境，也為了自己，讓我們一同創造一段愛地球之旅吧！
+
+                                淨灘活動說明：
+                                一套完整的淨灘活動，包含車程與事前解說，時間長度建議約為 3~4 個小時。
+                                在淨灘活動開始前，會先進行事前解說，透過此解說不僅會讓每位參加者了解淨灘活動中，該注意到的細節與安全事項外，也會引導大家認知到，我們日常生活對於環境的影響，讓保護環境這件事，不會因為淨灘活動結束而停止，讓參與者把友善環境的理念化為行動，延續到日常生活中開始實踐。
+                                ​
+                                淨灘活動包含：
+                                淨灘整體活動企劃、活動後垃圾清運處理、清潔隊聯絡、淨灘行前講座、淨灘相關器材、活動保險、交通安排建議、擴音設備等。
+                            </p>
+
+
+                            <div class="eventParticipateText flex-container">
+                                <div>活動參與者</div>
+                                <div>（2)</div>
+                                <div>感興趣</div>
+                                <div>(15)</div>
+                            </div>
+
+
+
+                            <div class="eventParticipatePersonCard flex-container">
+                                <div class="whiteBox WBfirst">
+
+                                    <div class="eventParticipateImgBox">
+                                        <img src="./img/download.jpeg" alt="sophie">
+                                    </div>
+                                    <div class="eventParticipate flex-container">
+                                        <div>蘇菲唐納</div>
+
+                                        <img src="./img/tick.svg" alt="tickIcon" width="20px">
+                                    </div>
+                                    <div class="eventLauncher">發起人</div>
+
+                                </div>
+
+
+                                <div class="whiteBox WBrest">
+                                    <div class="eventParticipateImgBox">
+                                        <img src="./img/jon.jpg" alt="jon">
+                                    </div>
+                                    <div class="eventParticipate flex-container">
+                                        <div>強史諾</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="joinClub">
+                                <div class="joinClubFlex flex-container">
+                                    <div class="flex-container">
+                                        <div class="joinClubImg">
+                                            <img src="./img/trash.jpg" alt="trash">
+                                        </div>
+                                        <div class="joinClubText">
+                                            <div class="joinClubUpperText">北台灣撿垃圾社團</div>
+                                            <div class="joinClubLowerText">more event 更多活動..</div>
+                                        </div>
+                                    </div>
+                                    <!-- img as a link -->
+                                    <a href="#" class="joinClubIcon">
+                                        <img src="./img/gotorightbutton.svg" alt="go to club" style="width:50px">
+                                    </a>
+
+
+                                </div>
+                            </div>
+
+                            <div class="line"></div>
+
+
+                            <!-- 留言區 -->
+                            <div class="massage">
+                                <div class="massageTop flex-container">
+                                    <div class="massageTopText flex-container">
+                                        <div class="massageTopTextTitle">留言</div>
+                                        <div class="massageTopTextNum">(1)</div>
+                                    </div>
+                                    <button type="button" class="massageTopButton" id="btnMessage">我要留言</button>
+                                </div>
+
+                                <!-- 留言白框 -->
+                                <div class="massageBottom">
+                                    <div class="massageBottomTop flex-container">
+                                        <div class="DivForImg">
+                                            <img src="" alt="">
+                                            <div class="massageBottomImgDefault"></div>
+                                        </div>
+                                        <div class="massageBottomTopUser">訪客</div>
+                                        <div class="verticalBar"></div>
+                                        <div class="massageBottomTopDate">July 12</div>
+                                    </div>
+                                    <div class="massageBottomMiddle">hi請問可以候補嗎？</div>
+                                    <div class="massageBottomBottom flex-container">
+                                        <div class="massageBottomBottomNum">(1)</div>
+                                        <div>reply</div>
+                                    </div>
+
+                                    <!-- messageInputBoxCon 留言視窗出現 and append 新留言 -->
+                                    <div id="messageInputBoxCon"></div>
+                                </div>
+                            </div>
+
+                            <div class="line"></div>
+
+                            <div class="cardBar">
+
+                                <div class="cardSectorTitle">我喜歡的活動</div>
+
+                                <div class="flex-container">
+
+                                    <!-- 一張卡 -->
+                                    <div class="card">
+                                        <div class="divForCardImg">
+                                            <img src="./img/diving.jpeg" alt="diving">
+                                        </div>
+                                        <div class="cardTime">Sunday, July 30,2020,10:30am</div>
+                                        <div class="cardActName">潛水減垃圾，愛海洋！</div>
+                                        <div class="cardBottomIcons flex-container">
+                                            <div>
+                                                <img src="./img/loveicon.svg" alt="loveicon" width="30px">
+                                            </div>
+                                            <div>30</div>
+                                            <div>
+                                                <img src="./img/coin.png" alt="coinicon" width="30px">
+                                            </div>
+                                            <div>100</div>
+                                        </div>
+                                    </div>
+                                    <!--  -->
+                                    <div class="card cardMargin">
+                                        <div class="divForCardImg">
+                                            <img src="./img/diving.jpeg" alt="diving">
+                                        </div>
+                                        <div class="cardTime">Sunday, July 30,2020,10:30am</div>
+                                        <div class="cardActName">潛水減垃圾，愛海洋！</div>
+                                        <div class="cardBottomIcons flex-container">
+                                            <div>
+                                                <img src="./img/loveicon.svg" alt="loveicon" width="30px">
+                                            </div>
+                                            <div>30</div>
+                                            <div>
+                                                <img src="./img/coin.png" alt="coinicon" width="30px">
+                                            </div>
+                                            <div>100</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card cardMargin">
+                                        <div class="divForCardImg">
+                                            <img src="./img/diving.jpeg" alt="diving">
+                                        </div>
+                                        <div class="cardTime">Sunday, July 30,2020,10:30am</div>
+                                        <div class="cardActName">潛水減垃圾，愛海洋！</div>
+                                        <div class="cardBottomIcons flex-container">
+                                            <div>
+                                                <img src="./img/loveicon.svg" alt="loveicon" width="30px">
+                                            </div>
+                                            <div>30</div>
+                                            <div>
+                                                <img src="./img/coin.png" alt="coinicon" width="30px">
+                                            </div>
+                                            <div>100</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="card cardMargin">
+                                        <div class="divForCardImg">
+                                            <img src="./img/diving.jpeg" alt="diving">
+                                        </div>
+                                        <div class="cardTime">Sunday, July 30,2020,10:30am</div>
+                                        <div class="cardActName">潛水減垃圾，愛海洋！</div>
+                                        <div class="cardBottomIcons flex-container">
+                                            <div>
+                                                <img src="./img/loveicon.svg" alt="loveicon" width="30px">
+                                            </div>
+                                            <div>30</div>
+                                            <div>
+                                                <img src="./img/coin.png" alt="coinicon" width="30px">
+                                            </div>
+                                            <div>100</div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+                                </div>
+                                <!-- 一條活動flex結束 -->
+
+                                <div class="cardSectorTitle">類似的活動</div>
+
+                                <div class="flex-container">
+
+                                    <!-- 一張卡 -->
+                                    <div class="card">
+                                        <div class="divForCardImg">
+                                            <img src="./img/diving.jpeg" alt="diving">
+                                        </div>
+                                        <div class="cardTime">Sunday, July 30,2020,10:30am</div>
+                                        <div class="cardActName">潛水減垃圾，愛海洋！</div>
+                                        <div class="cardBottomIcons flex-container">
+                                            <div>
+                                                <img src="./img/loveicon.svg" alt="loveicon" width="30px">
+                                            </div>
+                                            <div>30</div>
+                                            <div>
+                                                <img src="./img/coin.png" alt="coinicon" width="30px">
+                                            </div>
+                                            <div>100</div>
+                                        </div>
+                                    </div>
+                                    <!--  -->
+                                    <div class="card cardMargin">
+                                        <div class="divForCardImg">
+                                            <img src="./img/diving.jpeg" alt="diving">
+                                        </div>
+                                        <div class="cardTime">Sunday, July 30,2020,10:30am</div>
+                                        <div class="cardActName">潛水減垃圾，愛海洋！</div>
+                                        <div class="cardBottomIcons flex-container">
+                                            <div>
+                                                <img src="./img/loveicon.svg" alt="loveicon" width="30px">
+                                            </div>
+                                            <div>30</div>
+                                            <div>
+                                                <img src="./img/coin.png" alt="coinicon" width="30px">
+                                            </div>
+                                            <div>100</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card cardMargin">
+                                        <div class="divForCardImg">
+                                            <img src="./img/diving.jpeg" alt="diving">
+                                        </div>
+                                        <div class="cardTime">Sunday, July 30,2020,10:30am</div>
+                                        <div class="cardActName">潛水減垃圾，愛海洋！</div>
+                                        <div class="cardBottomIcons flex-container">
+                                            <div>
+                                                <img src="./img/loveicon.svg" alt="loveicon" width="30px">
+                                            </div>
+                                            <div>30</div>
+                                            <div>
+                                                <img src="./img/coin.png" alt="coinicon" width="30px">
+                                            </div>
+                                            <div>100</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="card cardMargin">
+                                        <div class="divForCardImg">
+                                            <img src="./img/diving.jpeg" alt="diving">
+                                        </div>
+                                        <div class="cardTime">Sunday, July 30,2020,10:30am</div>
+                                        <div class="cardActName">潛水減垃圾，愛海洋！</div>
+                                        <div class="cardBottomIcons flex-container">
+                                            <div>
+                                                <img src="./img/loveicon.svg" alt="loveicon" width="30px">
+                                            </div>
+                                            <div>30</div>
+                                            <div>
+                                                <img src="./img/coin.png" alt="coinicon" width="30px">
+                                            </div>
+                                            <div>100</div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                                </div>
+                                <!-- 一條活動flex結束 -->
+
+                                <div class="cardSectorTitle">瀏覽過的活動</div>
+
+                                <div class="flex-container">
+
+                                    <!-- 一張卡 -->
+                                    <div class="card">
+                                        <div class="divForCardImg">
+                                            <img src="./img/diving.jpeg" alt="diving">
+                                        </div>
+                                        <div class="cardTime">Sunday, July 30,2020,10:30am</div>
+                                        <div class="cardActName">潛水減垃圾，愛海洋！</div>
+                                        <div class="cardBottomIcons flex-container">
+                                            <div>
+                                                <img src="./img/loveicon.svg" alt="loveicon" width="30px">
+                                            </div>
+                                            <div>30</div>
+                                            <div>
+                                                <img src="./img/coin.png" alt="coinicon" width="30px">
+                                            </div>
+                                            <div>100</div>
+                                        </div>
+                                    </div>
+                                    <!--  -->
+                                    <div class="card cardMargin">
+                                        <div class="divForCardImg">
+                                            <img src="./img/diving.jpeg" alt="diving">
+                                        </div>
+                                        <div class="cardTime">Sunday, July 30,2020,10:30am</div>
+                                        <div class="cardActName">潛水減垃圾，愛海洋！</div>
+                                        <div class="cardBottomIcons flex-container">
+                                            <div>
+                                                <img src="./img/loveicon.svg" alt="loveicon" width="30px">
+                                            </div>
+                                            <div>30</div>
+                                            <div>
+                                                <img src="./img/coin.png" alt="coinicon" width="30px">
+                                            </div>
+                                            <div>100</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card cardMargin">
+                                        <div class="divForCardImg">
+                                            <img src="./img/diving.jpeg" alt="diving">
+                                        </div>
+                                        <div class="cardTime">Sunday, July 30,2020,10:30am</div>
+                                        <div class="cardActName">潛水減垃圾，愛海洋！</div>
+                                        <div class="cardBottomIcons flex-container">
+                                            <div>
+                                                <img src="./img/loveicon.svg" alt="loveicon" width="30px">
+                                            </div>
+                                            <div>30</div>
+                                            <div>
+                                                <img src="./img/coin.png" alt="coinicon" width="30px">
+                                            </div>
+                                            <div>100</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="card cardMargin">
+                                        <div class="divForCardImg">
+                                            <img src="./img/diving.jpeg" alt="diving">
+                                        </div>
+                                        <div class="cardTime">Sunday, July 30,2020,10:30am</div>
+                                        <div class="cardActName">潛水減垃圾，愛海洋！</div>
+                                        <div class="cardBottomIcons flex-container">
+                                            <div>
+                                                <img src="./img/loveicon.svg" alt="loveicon" width="30px">
+                                            </div>
+                                            <div>30</div>
+                                            <div>
+                                                <img src="./img/coin.png" alt="coinicon" width="30px">
+                                            </div>
+                                            <div>100</div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                                <!-- 一條活動flex結束 -->
+
+
+                            </div>
+
+
+
+
+                        </div>
+                        <!-- leftpartend -->
+
+
+
+                        <!-- Right part -->
+                        <div class="rightPart" id="rightPart">
+                            <div class="rightPartTop">
+                                <button type="button">我要參加</button><img class="loveicon" src="./img/loveicon.svg"
+                                    alt="loveicon">
+                            </div>
+                            <div class="rightPartCard">
+                                <div class="rightPartCardTime">
+                                    <img src="./img/clock.svg" alt="clockicon" width="25px">
+                                    <p>Saturday, July 18, 2020</p>
+                                </div>
+                                <div class="rightPartCardAddress">
+                                    <img src="./img/location.svg" alt="location icon" width="30px">
+                                    <p>中華民國（臺灣）新北市貢寮區福隆裡興隆街40號</p>
+                                </div>
+                                <div class="googleMap" id="googleMap" style="width:100%;height:230px;"></div>
+
+                            </div>
+                        </div>
+                        <!-- rightPart end -->
+
+
+                    </div>
+                    <!-- 灰色背景flex -->
+
+                </div>
+
+            </main>
+
+
+        </div>
+
 
 
 
@@ -1554,6 +2012,7 @@
     <script src="./src/personalPage.js"></script>
     <script src="./src/aboutUs.js"></script>
     <script src="./src/activity.js"></script>
+    <script src="./src/activity_detail.js"></script>
 </body>
 
 </html>
