@@ -235,23 +235,24 @@
 
         <!-- * second hand (market)  ****************      ****************       ****************   -->
         <div id="page_second-hand" class="page hide">
-            <div class="tabContainer">
-                <div class="tabPanel">
-                    <div class="main_show">
-                        <div class="wrapper">
-                            <div class="container_bubble">
-                                <div class="bubble">
-                                    <div class="bubble_content">
-                                        我想要買……
-                                    </div>
-                                    <div class="box tagbox_result">
-                                    </div>
-                                    <div class="bubbleTail"></div>
-                                </div>
-                                <img src="img/think02.png">
+            <div class="market_tabContainer">
+                <div class="tag_wrapper">
+                    <div class="container_bubble">
+                        <div class="bubble">
+                            <div class="bubble_content">
+                                我想要買……
                             </div>
-                            <div class="box tagbox_row1">
-                                <div id="tag1" class="tag" draggable="true">
+                            <div class="box tagbox_result">
+                            </div>
+                            <div class="bubbleTail"></div>
+                        </div>
+                        <img src="img/think02.png">
+                    </div>
+                    <div class="box tagbox_opt1"></div>
+                    <div class="box tagbox_opt2"></div>
+                    <div class="box tagbox_opt3"></div>
+                </div>
+                <!-- <div id="tag1" class="tag" draggable="true">
                                     #育嬰用品
                                 </div>
                                 <div id="tag2" class="tag" draggable="true">
@@ -268,9 +269,9 @@
                                 </div>
                                 <div id="tag6" class="tag" draggable="true">
                                     #包包
-                                </div>
-                            </div>
-                            <div class="box tagbox_row2">
+                                </div> -->
+                <!-- </div> -->
+                <!-- <div class="box tagbox_row2">
                                 <div id="tag7" class="tag" draggable="true">
                                     #鞋子
                                 </div>
@@ -306,202 +307,201 @@
                                 <div id="tag17" class="tag" draggable="true">
                                     #鐘錶
                                 </div>
-                            </div>
-                        </div>
-                        <button id="btn-go2marketSearch">GO !</button>
-                    </div>
-                    <br><br><br>
-                    <!---------- 附近好物 ---------->
-                    <div class="container_location">
-                        <div class="mkt_title">
-                            <h2>找附近的好物</h2>
-                        </div>
-                        <div class="location_filter_container">
-                            <img src="img/map.png">
-                            <div class="location_filter_setting">
-                                <h3>所在位置</h3>
-                                <span>台北市大安區 </span><img src="img/info.png" title="您不在這個位置嗎？">
-                                <h3>距離設定</h3>
-                                <input type="range" min="1" max="100" value="50" id="distance_range">
-                                <p>距離: <span id="distance_value"></span>公里</p>
-                                <h3>放大倍率</h3>
-                                <select>
-                                    <option>5X</option>
-                                    <option>10X</option>
-                                    <option>100X</option>
-                                </select>
-                                <h3>感興趣的標籤</h3>
-                                <div class="location_tag">
-                                    #育嬰用品
-                                </div>
-                                <div class="location_tag">
-                                    #露營工具
-                                </div>
-                                <div class="location_tag">
-                                    #玩具
-                                </div>
-                                <input type="text">
-                                <!-- 點了出現小窗商品簡介，之後再連到商品頁面 -->
-                            </div>
-                        </div>
-                    </div>
-                    <!---------- 最新上架 ---------->
-                    <div class="mkt_title">
-                        <h2>最新上架</h2>
-                    </div>
-                    <div class="dec_div"></div>
-                    <div class="container_pdt">
-                        <div class="row">
-                            <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                                <img src="img/new_arrival/nv01.PNG" class="pdt_items_img">
-                                <h4>電腦鍵盤</h4>
-                                <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                                </p>
-                                <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                            </div>
-                            <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                                <img src="img/new_arrival/nv02.PNG" class="pdt_items_img">
-                                <h4>吸塵器</h4>
-                                <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                                </p>
-                                <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                            </div>
-                            <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                                <img src="img/new_arrival/nv03.PNG" class="pdt_items_img">
-                                <h4>造型墨鏡</h4>
-                                <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                                </p>
-                                <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                            </div>
-                            <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                                <img src="img/new_arrival/nv04.PNG" class="pdt_items_img">
-                                <h4>女性襯衫</h4>
-                                <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                                </p>
-                                <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                            </div>
-                            <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                                <img src="img/new_arrival/nv05.PNG" class="pdt_items_img">
-                                <h4>相機鏡頭</h4>
-                                <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                                </p>
-                                <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!---------- 熱排商品 ---------->
-                    <div class="mkt_title">
-                        <h2>熱排商品</h2>
-                    </div>
-                    <div class="container_pdt">
-                        <div class="row">
-                            <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                                <img src="img/new_arrival/nv01.PNG" class="pdt_items_img">
-                                <h4>電腦鍵盤</h4>
-                                <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                                </p>
-                                <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                            </div>
-                            <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                                <img src="img/new_arrival/nv02.PNG" class="pdt_items_img">
-                                <h4>吸塵器</h4>
-                                <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                                </p>
-                                <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                            </div>
-                            <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                                <img src="img/new_arrival/nv03.PNG" class="pdt_items_img">
-                                <h4>造型墨鏡</h4>
-                                <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                                </p>
-                                <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                            </div>
-                            <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                                <img src="img/new_arrival/nv04.PNG" class="pdt_items_img">
-                                <h4>女性襯衫</h4>
-                                <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                                </p>
-                                <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                            </div>
-                            <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                                <img src="img/new_arrival/nv05.PNG" class="pdt_items_img">
-                                <h4>相機鏡頭</h4>
-                                <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                                </p>
-                                <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!---------- 運動用品 ---------->
-                    <div class="mkt_title">
-                        <h2>運動用品</h2>
-                    </div>
-                    <div class="container_pdt">
-                        <div class="row">
-                            <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                                <img src="img/sport_pdt/sport01.PNG" class="pdt_items_img">
-                                <h4>拳擊手套</h4>
-                                <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                                </p>
-                                <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                            </div>
-
-                            <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                                <img src="img/sport_pdt/sport02.PNG" class="pdt_items_img">
-                                <h4>用過的棒球們</h4>
-                                <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                                </p>
-                                <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                            </div>
-                            <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                                <img src="img/sport_pdt/sport03.PNG" class="pdt_items_img">
-                                <h4>假魚魚餌</h4>
-                                <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                                </p>
-                                <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                            </div>
-                            <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                                <img src="img/sport_pdt/sport04.PNG" class="pdt_items_img">
-                                <h4>棒球手套</h4>
-                                <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                                </p>
-                                <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                            </div>
-                            <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                                <img src="img/sport_pdt/sport05.PNG" class="pdt_items_img">
-                                <h4>網球拍組合</h4>
-                                <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                                </p>
-                                <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                            </div>
-                        </div>
-                    </div>
+                            </div> -->
+                <button id="btn-go2marketSearch">GO !</button>
+            </div>
+            <br><br><br>
+            <!---------- 附近好物 ---------->
+            <div class="market_findbylocation_container">
+                <div class="market_title">
+                    <h2>找附近的好物</h2>
                 </div>
-                <div>
-                    <img src="img/talk.png" class="message">
+                <div class="location_filter_container">
+                    <img src="img/map.png">
+                    <div class="location_filter_setting">
+                        <h3>所在位置</h3>
+                        <span>台北市大安區 </span><img src="img/info.png" title="您不在這個位置嗎？">
+                        <h3>距離設定</h3>
+                        <input type="range" min="1" max="100" value="50" id="distance_range">
+                        <p>距離: <span id="distance_value"></span>公里</p>
+                        <h3>放大倍率</h3>
+                        <select>
+                            <option>5X</option>
+                            <option>10X</option>
+                            <option>100X</option>
+                        </select>
+                        <h3>感興趣的標籤</h3>
+                        <div class="location_tag">
+                            #育嬰用品
+                        </div>
+                        <div class="location_tag">
+                            #露營工具
+                        </div>
+                        <div class="location_tag">
+                            #玩具
+                        </div>
+                        <input type="text">
+                        <!-- 點了出現小窗商品簡介，之後再連到商品頁面 -->
+                    </div>
                 </div>
             </div>
+            <!---------- 最新上架 ---------->
+            <div class="market_title">
+                <h2>最新上架</h2>
+            </div>
+            <!-- <div class="dec_div"></div> -->
+            <div class="market_pdt_container">
+                <div class="row">
+                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                        <img src="img/new_arrival/nv01.PNG" class="pdt_items_img">
+                        <h4>電腦鍵盤</h4>
+                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
+                        </p>
+                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
+                    </div>
+                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                        <img src="img/new_arrival/nv02.PNG" class="pdt_items_img">
+                        <h4>吸塵器</h4>
+                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
+                        </p>
+                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
+                    </div>
+                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                        <img src="img/new_arrival/nv03.PNG" class="pdt_items_img">
+                        <h4>造型墨鏡</h4>
+                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
+                        </p>
+                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
+                    </div>
+                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                        <img src="img/new_arrival/nv04.PNG" class="pdt_items_img">
+                        <h4>女性襯衫</h4>
+                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
+                        </p>
+                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
+                    </div>
+                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                        <img src="img/new_arrival/nv05.PNG" class="pdt_items_img">
+                        <h4>相機鏡頭</h4>
+                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
+                        </p>
+                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
+                    </div>
+                </div>
+            </div>
+            <!---------- 熱排商品 ---------->
+            <div class="market_title">
+                <h2>熱排商品</h2>
+            </div>
+            <div class="container_pdt">
+                <div class="row">
+                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                        <img src="img/new_arrival/nv01.PNG" class="pdt_items_img">
+                        <h4>電腦鍵盤</h4>
+                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
+                        </p>
+                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
+                    </div>
+                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                        <img src="img/new_arrival/nv02.PNG" class="pdt_items_img">
+                        <h4>吸塵器</h4>
+                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
+                        </p>
+                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
+                    </div>
+                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                        <img src="img/new_arrival/nv03.PNG" class="pdt_items_img">
+                        <h4>造型墨鏡</h4>
+                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
+                        </p>
+                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
+                    </div>
+                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                        <img src="img/new_arrival/nv04.PNG" class="pdt_items_img">
+                        <h4>女性襯衫</h4>
+                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
+                        </p>
+                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
+                    </div>
+                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                        <img src="img/new_arrival/nv05.PNG" class="pdt_items_img">
+                        <h4>相機鏡頭</h4>
+                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
+                        </p>
+                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
+                    </div>
+                </div>
+            </div>
+            <!---------- 運動用品 ---------->
+            <div class="market_title">
+                <h2>運動用品</h2>
+            </div>
+            <div class="container_pdt">
+                <div class="row">
+                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                        <img src="img/sport_pdt/sport01.PNG" class="pdt_items_img">
+                        <h4>拳擊手套</h4>
+                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
+                        </p>
+                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
+                    </div>
 
+                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                        <img src="img/sport_pdt/sport02.PNG" class="pdt_items_img">
+                        <h4>用過的棒球們</h4>
+                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
+                        </p>
+                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
+                    </div>
+                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                        <img src="img/sport_pdt/sport03.PNG" class="pdt_items_img">
+                        <h4>假魚魚餌</h4>
+                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
+                        </p>
+                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
+                    </div>
+                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                        <img src="img/sport_pdt/sport04.PNG" class="pdt_items_img">
+                        <h4>棒球手套</h4>
+                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
+                        </p>
+                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
+                    </div>
+                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                        <img src="img/sport_pdt/sport05.PNG" class="pdt_items_img">
+                        <h4>網球拍組合</h4>
+                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
+                        </p>
+                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div>
+            <img src="img/talk.png" class="message">
+        </div>
+    </div>
 
-        <!-- * activity  ****************      ****************       ****************   -->
-        <div id="page_activity" class="page hide">
-            <!---------------------------------- 主要活動顯示 ---------------------------------->
-            <div class="activity_top">
-                <img src="img/2.jpg">
-                <input type="text">
-                <select name="type" id="">
-                    <option value="clearsea">淨海</option>
-                    <option value="clearmoutain">淨山</option>
-                    <option value="run">路跑</option>
-                </select>
-                <button>GO</button>
-            </div>
-            <!-------------------------------------- main -------------------------------------->
-            <main class="activity_main ">
-                <!-------------------------------------- 活動 -------------------------------------->
-                <div class="activity_event">
-                    <!--   <div>
+    </div>
+
+    <!-- * activity  ****************      ****************       ****************   -->
+    <div id="page_activity" class="page hide">
+        <!---------------------------------- 主要活動顯示 ---------------------------------->
+        <div class="activity_top">
+            <img src="img/2.jpg">
+            <input type="text">
+            <select name="type" id="">
+                <option value="clearsea">淨海</option>
+                <option value="clearmoutain">淨山</option>
+                <option value="run">路跑</option>
+            </select>
+            <button>GO</button>
+        </div>
+        <!-------------------------------------- main -------------------------------------->
+        <main class="activity_main ">
+            <!-------------------------------------- 活動 -------------------------------------->
+            <div class="activity_event">
+                <!--   <div>
                         <img src="img/event1.jpeg" class="activity_event_img" alt="">
                         <p>Sunday, July 30,2020,10:30</p>
                         <h3>潛水撿垃圾，愛海洋！</h3>
@@ -603,866 +603,866 @@
                         <h3>潛水撿垃圾，愛海洋！</h3>
                         <img src="img/icon1.svg" class="activity_icon" alt=""><span>999</span>
                     </div> -->
-                </div>
-            </main>
-            <!-- <p>找不到你要的活動嗎？</p> -->
-            <div class="activity_event_history2_a">
-                <a href="#">我要發起活動</a>
             </div>
-            <!---------------------------------- 瀏覽過的活動 ---------------------------------->
-            <div class="activity_event_history1">
-                <h2>瀏覽過的活動</h2>
-                <div class="activity_event_history2">
-                    <img src="img/right.svg" class="activity_event_icon_right" alt="">
-                    <div>
-                        <img src="img/event1.jpeg" class="activity_event_img" alt="">
-                        <p>Sunday, July 30,2020,10:30</p>
-                        <h3>潛水撿垃圾，愛海洋！</h3>
-                        <img src="img/icon1.svg" class="activity_icon" alt=""><span>999</span>
-                    </div>
-                    <div>
-                        <img src="img/event1.jpeg" class="activity_event_img" alt="">
-                        <p>Sunday, July 30,2020,10:30</p>
-                        <h3>潛水撿垃圾，愛海洋！</h3>
-                        <img src="img/icon1.svg" class="activity_icon" alt=""><span>999</span>
-                    </div>
-                    <div>
-                        <img src="img/event1.jpeg" class="activity_event_img" alt="">
-                        <p>Sunday, July 30,2020,10:30</p>
-                        <h3>潛水撿垃圾，愛海洋！</h3>
-                        <img src="img/icon1.svg" class="activity_icon" alt=""><span>999</span>
-                    </div>
-                    <div>
-                        <img src="img/event1.jpeg" class="activity_event_img" alt="">
-                        <p>Sunday, July 30,2020,10:30</p>
-                        <h3>潛水撿垃圾，愛海洋！</h3>
-                        <img src="img/icon1.svg" class="activity_icon" alt=""><span>999</span>
-                    </div>
-                    <img src="img/right.svg" class="activity_event_icon_right" alt="">
-                </div>
-            </div>
-
+        </main>
+        <!-- <p>找不到你要的活動嗎？</p> -->
+        <div class="activity_event_history2_a">
+            <a href="#">我要發起活動</a>
         </div>
-
-
-        <!-- * news  ****************      ****************       ****************   -->
-        <div id="page_news" class="page hide">
-            <!-------------------------------------- main -------------------------------------->
-            <main class="news_main">
-                <div class="news_group">
-                    <div class="news">
-                        <div>
-                            <h3><a href="#news/detail">Computer science taught me that books weren’t important. It was
-                                    wrong.</a></h3>
-                            <h5><a href="" style="color: gray;">How I fell in love with books again</a></h5>
-                            <p>Amy J. Ko in Bits and Behavior</p>
-                            <p style="color: gray;">Jul 18</p>
-                        </div>
-                        <div><img src="img/news1.png" alt=""></div>
-                    </div>
-                    <div class="news">
-                        <div>
-                            <h3><a href="#news/detail">7 Revealing Ways America is Collapsing as Rome Did</a></h3>
-                            <h5><a href="" style="color: gray;">Here are signs that are too disturbing to ignore</a>
-                            </h5>
-                            <p>Charles Stephen in Noteworthy</p>
-                            <p style="color: gray;">Jul 3</p>
-                        </div>
-                        <div><img src="img/news2.png" alt=""></div>
-                    </div>
-                </div>
-
-                <div class="news_group">
-                    <div class="news">
-                        <div>
-                            <h3><a href="">Series Of Free Courses To Become A Data Scientist</a></h3>
-                            <h5><a href="" style="color: gray;">Here are signs that are too disturbing to ignore</a>
-                            </h5>
-                            <p>Charles Stephen in Noteworthy</p>
-                            <p style="color: gray;">Jul 3</p>
-                        </div>
-                        <div><img src="img/news3.png" alt=""></div>
-                    </div>
-                    <div class="news">
-                        <div>
-                            <h3><a href="">One-on-ones are my most valuable meetings; here’s how I run them</a></h3>
-                            <h5><a href="" style="color: gray;">Here are signs that are too disturbing to ignore</a>
-                            </h5>
-                            <p>Charles Stephen in Noteworthy</p>
-                            <p style="color: gray;">Jul 3</p>
-                        </div>
-                        <div><img src="img/news4.png" alt=""></div>
-                    </div>
-                </div>
-
-                <div class="news_group">
-                    <div class="news">
-                        <div>
-                            <h3><a href="news_page.html">Computer science taught me that books weren’t important. It was
-                                    wrong.</a></h3>
-                            <h5><a href="" style="color: gray;">How I fell in love with books again</a></h5>
-                            <p>Amy J. Ko in Bits and Behavior</p>
-                            <p style="color: gray;">Jul 18</p>
-                        </div>
-                        <div><img src="img/news1.png" alt=""></div>
-                    </div>
-                    <div class="news">
-                        <div>
-                            <h3><a href="">7 Revealing Ways America is Collapsing as Rome Did</a></h3>
-                            <h5><a href="" style="color: gray;">Here are signs that are too disturbing to ignore</a>
-                            </h5>
-                            <p>Charles Stephen in Noteworthy</p>
-                            <p style="color: gray;">Jul 3</p>
-                        </div>
-                        <div><img src="img/news2.png" alt=""></div>
-                    </div>
-                </div>
-
-                <div class="news_group">
-                    <div class="news">
-                        <div>
-                            <h3><a href="">Series Of Free Courses To Become A Data Scientist</a></h3>
-                            <h5><a href="" style="color: gray;">Here are signs that are too disturbing to ignore</a>
-                            </h5>
-                            <p>Charles Stephen in Noteworthy</p>
-                            <p style="color: gray;">Jul 3</p>
-                        </div>
-                        <div><img src="img/news3.png" alt=""></div>
-                    </div>
-                    <div class="news">
-                        <div>
-                            <h3><a href="">One-on-ones are my most valuable meetings; here’s how I run them</a></h3>
-                            <h5><a href="" style="color: gray;">Here are signs that are too disturbing to ignore</a>
-                            </h5>
-                            <p>Charles Stephen in Noteworthy</p>
-                            <p style="color: gray;">Jul 3</p>
-                        </div>
-                        <div><img src="img/news4.png" alt=""></div>
-                    </div>
-                </div>
-            </main>
-
-
-        </div>
-
-
-        <!-- * about us  ****************      ****************       ****************   -->
-        <div id="page_about-us" class="page hide">
-            <div class="aboutUs_backimgbox">
-                <img src="img/Duvar-ka-d-sahne-duvarlar-zel-3d-arka-plan-duvar-ka-tlar-Orman-manzara-trail-sunshin.jpg_q50.jpg"
-                    alt="">
-            </div>
-
-            <div class="aboutUs_box">
-                <div class="aboutUs_pd30">
-                    <h2>我們的存在，因為脆弱的地球需要改變、需要行動</h2>
-                    <span>我們在全球的工作，都基於我們對使用者的承諾:</span>
-
-                    <div class="aboutUs_dflex">
-                        <div class="aboutUs_titlebox">
-                            <h2>始終如一</h2>
-                            <p>確保地球維持孕育多元生命的能力，是綠色和平近50年來不變的使命！</p>
-                        </div>
-                        <div class="aboutUs_titlebox">
-                            <h2>群眾力量</h2>
-                            <p>集合「People Power」是成功的公開秘訣！要求企業、政府為生態與環境做對的事。</p>
-                        </div>
-                        <div class="aboutUs_titlebox">
-                            <h2>始終如一</h2>
-                            <p>確保地球維持孕育多元生命的能力，是綠色和平近50年來不變的使命！</p>
-                        </div>
-                        <div class="aboutUs_titlebox">
-                            <h2>群眾力量</h2>
-                            <p>集合「People Power」是成功的公開秘訣！要求企業、政府為生態與環境做對的事。</p>
-                        </div>
-                        <hr>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="aboutUs_wrapper">
-                <div class="aboutUs_pd30">
-                    <h2> 我們的團隊</h2>
-                    <span>Our Team</span>
-                    <br><br>
-                    <div class="aboutUs_dflex">
-                        <div class="aboutUs_imgbox">
-                            <img src="img/head2.PNG" alt="">
-                        </div>
-                        <div class="aboutUs_content">
-                            <h3>Charles Leclerc</h3>
-                            <span>CEO</span>
-                            <hr class="aboutUs_hr_style">
-                            <p>有一種態度，叫認真 <br>有一種勇敢，叫面對<br>有一種瀟灑，叫坦率<br>期望自已能夠一直抱著這樣的信念勇往直前！</p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="aboutUs_dflex">
-                        <div class="aboutUs_imgbox">
-                            <img src="img/head4.PNG" alt="">
-                        </div>
-                        <div class="aboutUs_content">
-                            <h3>Charles Leclerc</h3>
-                            <span>CEO</span>
-                            <hr class="aboutUs_hr_style">
-                            <p>有一種態度，叫認真 <br>有一種勇敢，叫面對<br>有一種瀟灑，叫坦率<br>期望自已能夠一直抱著這樣的信念勇往直前！</p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="aboutUs_dflex">
-                        <div class="aboutUs_imgbox">
-                            <img src="img/head3.PNG" alt="">
-                        </div>
-                        <div class="aboutUs_content">
-                            <h3>Charles Leclerc</h3>
-                            <span>CEO</span>
-                            <hr class="aboutUs_hr_style">
-                            <p>有一種態度，叫認真 <br>有一種勇敢，叫面對<br>有一種瀟灑，叫坦率<br>期望自已能夠一直抱著這樣的信念勇往直前！</p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="aboutUs_dflex">
-                        <div class="aboutUs_imgbox">
-                            <img src="img/head.png" alt="">
-                        </div>
-                        <div class="aboutUs_content">
-                            <h3>Charles Leclerc</h3>
-                            <span>CEO</span>
-                            <hr class="aboutUs_hr_style">
-                            <p>有一種態度，叫認真 <br>有一種勇敢，叫面對<br>有一種瀟灑，叫坦率<br>期望自已能夠一直抱著這樣的信念勇往直前！</p>
-                        </div>
-                    </div>
-                    <hr>
-
-                </div>
-
-            </div>
-        </div>
-
-
-
-
-        <!-- * log in   ****************      ****************       ****************   -->
-        <div id='page_log-in' class='page page_signIn hide'>
-            <div class="page_signIn_left">
-                <h1>歡迎回來</h1>
-                <p>一些敘述</p>
-            </div>
-
-            <div class="page_signIn_right">
-                <form class="form_signIn" action="" method="POST" enctype="text/plain">
-
-                    <div class="signIn_inputBlock">
-                        <label for="account">帳號: </label>
-                        <input id="Input_signInName" type="text" name="account" placeholder="">
-                    </div>
-
-                    <div class="signIn_inputBlock">
-                        <div class="signIn_PasswordText">
-                            <label for="password">密碼: </label>
-                            <a href="#123">忘記密碼?</a>
-                        </div>
-                        <input id="Input_signInPassword" type="password" name="password" placeholder="">
-                    </div>
-
-                    <div class="signIn_submit">
-                        <input type="submit" value="登入">
-                    </div>
-
-                    <div class="text_switch2signUp">
-                        <span>沒有帳號嗎?</span>&nbsp;&nbsp;<a id="switch2signUp" href="#sign-Up">加入會員</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- * sign up  ****************      ****************       ****************   -->
-        <div id='page_sign-Up' class='page page_signUp hide'>
-            <div class="signUp_top">
-                <h1>加入我們</h1>
-                <p>一些敘述</p>
-            </div>
-
-            <div>
-                <form class="form_signUp" action="" method="POST" enctype="text/plain">
-
-                    <div class="form_signUp_left">
-                        <div class="signUp_inputBlock">
-                            <label for="account">帳號: </label>
-                            <input type="text" name="account" placeholder="">
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="password">密碼: </label>
-                            <input type="password" name="password" placeholder="">
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="passwordCheck">確認密碼: </label>
-                            <input type="password" name="passwordCheck" placeholder="">
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="name">真實姓名: </label>
-                            <input type="text" name="name" placeholder="">
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="bithday">身分證字號: </label>
-                            <input type="text" name="bithday" placeholder="">
-                        </div>
-
-                    </div>
-
-                    <div class="form_signUp_right">
-
-                        <div class="signUp_inputBlock">
-                            <label for="bithday">生日: </label>
-                            <div class="signUp_bithday">
-                                <select name="dateYear" id="signUp_dateYear" size="1">
-                                    <option value="2020">2020</option>
-                                </select>
-                                <span>年</span>
-                                <select name="dateMM" id="signUp_dateMM" size="1">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
-                                <span>月</span>
-                                <select name="dateDD" id="signUp_dateDD" size="1">
-                                    <option value="1">1</option>
-                                </select>
-                                <span>日</span>
-                            </div>
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="city">居住城市: </label>
-                            <select type="text" name="city" placeholder="">
-                                <option value="taipei" selected>台北市</option>
-                                <option value="">基隆</option>
-
-                            </select>
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="adress">居住地址: </label>
-                            <input type="text" name="adress" placeholder="">
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="phoneNumber">手機號碼: </label>
-                            <input type="text" name="phoneNumber" placeholder="">
-                        </div>
-
-
-                        <div class="signUp_submit">
-                            <input type="submit" value="註冊">
-                        </div>
-
-                        <div class="text_switch2signIn">
-                            <span>已經有帳號了嗎?</span>&nbsp;&nbsp;<a id="switch2signIn" href="#log-in">登入帳號</a>
-                        </div>
-
-                    </div>
-
-
-
-                </form>
-            </div>
-        </div>
-
-
-        <!-- * Personal page  ****************      ****************       ****************   -->
-        <div id='page_personal-page' class='page  hide'>
-
-            <div class="personal_container">
-                <div class="personal_imgbox">
-                    <img src="img/img4.jpg" alt="">
-                </div>
-                <div class="personal_wrapper">
-                    <h3>Hi Guys</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, dolorum eaque quasi aliquid
-                        incidunt nostrum veniam itaque molestias, velit tempore harum amet deleniti facere reprehenderit
-                        nihil quisquam voluptate architecto dignissimos!</p>
-                    <div class="personal_pro_file">
-                        <ul>
-                            <li>
-                                <span class="personal_file_title">Name</span>
-                                <span class="personal_file_middle">:</span>
-                                <span class="personal_file_text">Li Jinchen</span>
-                            </li>
-                            <li>
-                                <span class="personal_file_title">Age</span>
-                                <span class="personal_file_middle">:</span>
-                                <span class="personal_file_text">26 years</span>
-                            </li>
-                            <li>
-                                <span class="personal_file_title">Experience</span>
-                                <span class="personal_file_middle">:</span>
-                                <span class="personal_file_text">4 years</span>
-                            </li>
-                            <li>
-                                <span class="personal_file_title">Country</span>
-                                <span class="personal_file_middle">:</span>
-                                <span class="personal_file_text">USA</span>
-                            </li>
-                            <li>
-                                <span class="personal_file_title">Location</span>
-                                <span class="personal_file_middle">:</span>
-                                <span class="personal_file_text">New York</span>
-                            </li>
-                            <li>
-                                <span class="personal_file_title">Email</span>
-                                <span class="personal_file_middle">:</span>
-                                <span class="personal_file_text">ABC123@gmail.com</span>
-                            </li>
-                            <li>
-                                <span class="personal_file_title">Phone</span>
-                                <span class="personal_file_middle">:</span>
-                                <span class="personal_file_text">0800-123-123</span>
-                            </li>
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
-
-            <section class="personal_section">
-                <h2>what I do </h2>
-                <div class="personal_container">
-                    <div class="personal_box">
-                        <div class="personal_seccon">
-                            <img src="img/carlist.png" alt="">
-                        </div>
-                        <div class="personal_services_content">
-                            <h4><a href="#">My Shop</a></h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse condi.</p>
-                        </div>
-                    </div>
-
-                    <div class="personal_box">
-                        <div class="personal_seccon">
-                            <img src="img/money1.png" alt="">
-                        </div>
-                        <div class="personal_services_content">
-                            <h4><a href="#">My Wallet</a></h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse condi.</p>
-                        </div>
-                    </div>
-                    <div class="personal_box">
-                        <div class="personal_seccon">
-                            <img src="img/carlist.png" alt="">
-                        </div>
-                        <div class="personal_services_content">
-                            <h4><a href="#">My Money</a></h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse condi.</p>
-                        </div>
-                    </div>
-                    <div class="personal_box">
-                        <div class="personal_seccon">
-                            <img src="img/event.png" alt="">
-                        </div>
-                        <div class="personal_services_content">
-                            <h4><a href="#">My Event</a></h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse condi.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <div class="personal_container">
-                <div class="personal_bar-block">
-
-                    <div class="personal_baritembox"><a href="javascript:void(0)"
-                            class="personal_bar-item personal_button personal_tablink personal_testbtn"
-                            onclick="PersonalPage.openClass(event, 'class1')">My
-                            Shop</a></div>
-                    <div class="personal_baritembox"><a href="javascript:void(0)"
-                            class="personal_bar-item personal_button personal_tablink"
-                            onclick="PersonalPage.openClass(event, 'class2')">My
-                            Event</a></div>
-                    <div class="personal_baritembox"><a href="javascript:void(0)"
-                            class="personal_bar-item personal_button personal_tablink"
-                            onclick="PersonalPage.openClass(event, 'class3')">Forget</a></div>
-                </div>
-            </div>
-
-            <div id="class1" class="personal_container personal_class">
-                <div class="personal_event personal_eventw100">
-                    <div>
-                        <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
-                        <p>Sunday, July 30,2020,10:30</p>
-                        <h3>潛水撿垃圾，愛海洋！</h3>
-                        <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
-                    </div>
-                    <div>
-                        <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
-                        <p>Sunday, July 30,2020,10:30</p>
-                        <h3>潛水撿垃圾，愛海洋！</h3>
-                        <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
-                    </div>
-                    <div>
-                        <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
-                        <p>Sunday, July 30,2020,10:30</p>
-                        <h3>潛水撿垃圾，愛海洋！</h3>
-                        <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
-                    </div>
-                    <div>
-                        <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
-                        <p>Sunday, July 30,2020,10:30</p>
-                        <h3>潛水撿垃圾，愛海洋！</h3>
-                        <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
-                    </div>
-                </div>
-            </div>
-
-            <div id="class2" class="personal_container personal_class">
-                <div class="personal_event personal_eventw100">
-                    <div>
-                        <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
-                        <p>Sunday, July 30,2020,10:30</p>
-                        <h3>潛水撿垃圾，愛海洋！</h3>
-                        <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
-                    </div>
-                    <div>
-                        <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
-                        <p>Sunday, July 30,2020,10:30</p>
-                        <h3>潛水撿垃圾，愛海洋！</h3>
-                        <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
-                    </div>
-                    <div>
-                        <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
-                        <p>Sunday, July 30,2020,10:30</p>
-                        <h3>潛水撿垃圾，愛海洋！</h3>
-                        <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
-                    </div>
-                </div>
-            </div>
-
-            <div id="class3" class="personal_container personal_class">
-                <div class="personal_event personal_eventw100">
-                    <div>
-                        <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
-                        <p>Sunday, July 30,2020,10:30</p>
-                        <h3>潛水撿垃圾，愛海洋！</h3>
-                        <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
-                    </div>
-                    <div>
-                        <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
-                        <p>Sunday, July 30,2020,10:30</p>
-                        <h3>潛水撿垃圾，愛海洋！</h3>
-                        <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-        <!-- * 路徑在別人底下的葉面 #.. / 這些葉面  ****************      ****************       ****************   -->
-        <!-- * market-search  ****************      ****************       ****************   -->
-        <div id="page_market-search" class="page hide">
-            <!-- 買家/賣家 -->
-            <div class="container_market_search_page">
-                <div class="mrkSearch_top_search">
-                    <a href=# class="mrkSearch_search_icon">
-                        <i class="fas fa-search"></i></a>
-                </div>
-                <div class="mrkSearch_container_main">
-                    <aside class="aside_market_search_page">
-                        <h3>條件篩選</h3>
-                        <h4>商品標籤</h4>
-                        <div class="pdt_tag">
-                            <div class="mrkSearch_span_row">
-                                <span>#美妝用品</span>
-                                <span>#運動用品</span></div>
-                            <div class="mrkSearch_span_row">
-                                <span>#你先拿我OK</span>
-                                <span>#毛小孩最愛</span>
-                                <span>#小朋友長大了</span></div>
-                            <div class="mrkSearch_span_row">
-                                <span>#書籍</span>
-                                <span>#3C產品</span></div>
-                            <div class="mrkSearch_span_row">
-                                <span>#搬家出清</span>
-                                <span>#生活用品</span></div>
-                            <div class="mrkSearch_span_row">
-                                <span>#買到剁手手</span>
-                                <span>#二手家具</span>
-                                <span>#飾品</span></div>
-                            <div class="mrkSearch_span_row">
-                                <span>#皮包背包</span>
-                                <span>#家電</span>
-                                <span>#居家必備</span></div>
-                            <div class="mrkSearch_span_row">
-                                <span>#過去就讓它過去ㄅ</span>
-                                <span>#手機殼</span></div>
-                            <div class="mrkSearch_span_row">
-                            </div>
-                            <h4>商品地點</h4>
-                            <div class="pdt_location_opt">台北市
-                                <div><input type="checkbox">中山區
-                                    <input type="checkbox">中正區
-                                    <input type="checkbox">萬華區
-                                    <input type="checkbox">大安區</div>
-                                <div><input type="checkbox">文山區
-                                    <input type="checkbox">松山區
-                                    <input type="checkbox">內湖區
-                                    <input type="checkbox">信義區</div>
-
-                            </div>
-                            <h4>運送方式</h4>
-                            <div class="pdt_deliever_opt">
-                                <input type="checkbox">面交
-                                <input type="checkbox">宅配
-                                <input type="checkbox">超商
-                            </div>
-                            <h4>價格範圍</h4>
-                            <input type="range" min="1" max="100" value=[15,35] id="price_range">
-                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt="">
-                            <span id="price_value"></span>
-
-                    </aside>
-                    <div class="mrkSearch_container_waterfall">
-                        <ul class="mrkSearch_waterfall">
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/game_pdt/game02.PNG"></div>
-                                <h3>二手Switch + 動物森友會</h3>
-                                <p>期中被二一，不能再玩了QQ</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/book_pdt/book02.PNG"></div>
-                                <h3>少女漫畫出清～不分售</h3>
-                                <p>酸酸甜甜的校園戀愛故事</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill03.jpg"></div>
-                                <h3>網頁架設，價格內議</h3>
-                                <p>輕鬆架設電商平台</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby02.PNG"></div>
-                                <h3>3歲女生童鞋</h3>
-                                <p>鞋況良好，小孩長大穿不下了</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/book_pdt/book03.PNG"></div>
-                                <h3>書籍出清</h3>
-                                <p>希望你有看到喜歡的書:)</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                        </ul>
-                        <ul class="mrkSearch_waterfall">
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby05.PNG"></div>
-                                <h3>整理倉庫，玩具大出清</h3>
-                                <p>年代久遠，包裝完整，出貨前會清理一下</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/game_pdt/game01.PNG"></div>
-                                <h3>Switch遊戲片出清</h3>
-                                <p>未舔，保存良好</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill04.jpg"></div>
-                                <h3>牆壁油漆</h3>
-                                <p>價格內議，急需海龜幣</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/clothes_pdt/clothes09.PNG"></div>
-                                <h3>二手日系女性襯衫</h3>
-                                <p>鬼遮眼買了一堆差不多的衣服，出清</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/game_pdt/game06.PNG"></div>
-                                <h3>復古遊戲機送遊戲卡</h3>
-                                <p>兒時回憶的機台～</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                        </ul>
-                        <ul class="mrkSearch_waterfall">
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/game_pdt/game04.PNG"></div>
-                                <h3>PS4二手遊戲片</h3>
-                                <p>破關了出清</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/book_pdt/book07.PNG"></div>
-                                <h3>各類書籍出清，歡迎詢問</h3>
-                                <p>舊的不去新的不來</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill05.jpg"></div>
-                                <h3>專業清潔打掃</h3>
-                                <p>小強就交給我處理吧</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby03.PNG"></div>
-                                <h3>火柴盒車車收藏</h3>
-                                <p>要搬家了，忍痛割愛</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/book_pdt/book06.PNG"></div>
-                                <h3>心靈書籍治療的你心</h3>
-                                <p>這些都是好書，買回家看看吧</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                        </ul>
-                        <ul class="mrkSearch_waterfall">
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/game_pdt/game03.PNG"></div>
-                                <h3>二手PS4（另有三款遊戲）</h3>
-                                <p>PS5出了～我來啦～</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/book_pdt/book01.PNG"></div>
-                                <h3>暢銷小說出清</h3>
-                                <p>都看完了～保證好看</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill02.jpg"></div>
-                                <h3>水彩/油畫創作</h3>
-                                <p>客製化創作（聊聊討論）</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby01.PNG"></div>
-                                <h3>超多尿布褲，三條才出貨哦</h3>
-                                <p>八成新，有好好清潔保存</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                            <li class="mrkSearch_li">
-                                <div class="mrkSearch_img_div"><img src="img/book_pdt/book04.PNG"></div>
-                                <h3>九把刀的書</h3>
-                                <p>有緣人快來帶走他們吧</p>
-                                <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
-                            </li>
-                        </ul>
-                    </div>
+        <!---------------------------------- 瀏覽過的活動 ---------------------------------->
+        <div class="activity_event_history1">
+            <h2>瀏覽過的活動</h2>
+            <div class="activity_event_history2">
+                <img src="img/right.svg" class="activity_event_icon_right" alt="">
+                <div>
+                    <img src="img/event1.jpeg" class="activity_event_img" alt="">
+                    <p>Sunday, July 30,2020,10:30</p>
+                    <h3>潛水撿垃圾，愛海洋！</h3>
+                    <img src="img/icon1.svg" class="activity_icon" alt=""><span>999</span>
                 </div>
                 <div>
-                    <img src="img/talk.png" class="mrkSearch_message">
+                    <img src="img/event1.jpeg" class="activity_event_img" alt="">
+                    <p>Sunday, July 30,2020,10:30</p>
+                    <h3>潛水撿垃圾，愛海洋！</h3>
+                    <img src="img/icon1.svg" class="activity_icon" alt=""><span>999</span>
+                </div>
+                <div>
+                    <img src="img/event1.jpeg" class="activity_event_img" alt="">
+                    <p>Sunday, July 30,2020,10:30</p>
+                    <h3>潛水撿垃圾，愛海洋！</h3>
+                    <img src="img/icon1.svg" class="activity_icon" alt=""><span>999</span>
+                </div>
+                <div>
+                    <img src="img/event1.jpeg" class="activity_event_img" alt="">
+                    <p>Sunday, July 30,2020,10:30</p>
+                    <h3>潛水撿垃圾，愛海洋！</h3>
+                    <img src="img/icon1.svg" class="activity_icon" alt=""><span>999</span>
+                </div>
+                <img src="img/right.svg" class="activity_event_icon_right" alt="">
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- * news  ****************      ****************       ****************   -->
+    <div id="page_news" class="page hide">
+        <!-------------------------------------- main -------------------------------------->
+        <main class="news_main">
+            <div class="news_group">
+                <div class="news">
+                    <div>
+                        <h3><a href="#news/detail">Computer science taught me that books weren’t important. It was
+                                wrong.</a></h3>
+                        <h5><a href="" style="color: gray;">How I fell in love with books again</a></h5>
+                        <p>Amy J. Ko in Bits and Behavior</p>
+                        <p style="color: gray;">Jul 18</p>
+                    </div>
+                    <div><img src="img/news1.png" alt=""></div>
+                </div>
+                <div class="news">
+                    <div>
+                        <h3><a href="#news/detail">7 Revealing Ways America is Collapsing as Rome Did</a></h3>
+                        <h5><a href="" style="color: gray;">Here are signs that are too disturbing to ignore</a>
+                        </h5>
+                        <p>Charles Stephen in Noteworthy</p>
+                        <p style="color: gray;">Jul 3</p>
+                    </div>
+                    <div><img src="img/news2.png" alt=""></div>
                 </div>
             </div>
-            <div class="mrkSearch_page_container">
-                <ul class="mrkSearch_pagination">
-                    <li class="mrkSearch_li"><a href="#">«</a></li>
-                    <li class="mrkSearch_li"><a href="#">1</a></li>
-                    <li class="mrkSearch_li"><a class="active" href="#">2</a></li>
-                    <li class="mrkSearch_li"><a href="#">3</a></li>
-                    <li class="mrkSearch_li"><a href="#">4</a></li>
-                    <li class="mrkSearch_li"><a href="#">5</a></li>
-                    <li class="mrkSearch_li"><a href="#">6</a></li>
-                    <li class="mrkSearch_li"><a href="#">7</a></li>
-                    <li class="mrkSearch_li"><a href="#">»</a></li>
+
+            <div class="news_group">
+                <div class="news">
+                    <div>
+                        <h3><a href="">Series Of Free Courses To Become A Data Scientist</a></h3>
+                        <h5><a href="" style="color: gray;">Here are signs that are too disturbing to ignore</a>
+                        </h5>
+                        <p>Charles Stephen in Noteworthy</p>
+                        <p style="color: gray;">Jul 3</p>
+                    </div>
+                    <div><img src="img/news3.png" alt=""></div>
+                </div>
+                <div class="news">
+                    <div>
+                        <h3><a href="">One-on-ones are my most valuable meetings; here’s how I run them</a></h3>
+                        <h5><a href="" style="color: gray;">Here are signs that are too disturbing to ignore</a>
+                        </h5>
+                        <p>Charles Stephen in Noteworthy</p>
+                        <p style="color: gray;">Jul 3</p>
+                    </div>
+                    <div><img src="img/news4.png" alt=""></div>
+                </div>
+            </div>
+
+            <div class="news_group">
+                <div class="news">
+                    <div>
+                        <h3><a href="news_page.html">Computer science taught me that books weren’t important. It was
+                                wrong.</a></h3>
+                        <h5><a href="" style="color: gray;">How I fell in love with books again</a></h5>
+                        <p>Amy J. Ko in Bits and Behavior</p>
+                        <p style="color: gray;">Jul 18</p>
+                    </div>
+                    <div><img src="img/news1.png" alt=""></div>
+                </div>
+                <div class="news">
+                    <div>
+                        <h3><a href="">7 Revealing Ways America is Collapsing as Rome Did</a></h3>
+                        <h5><a href="" style="color: gray;">Here are signs that are too disturbing to ignore</a>
+                        </h5>
+                        <p>Charles Stephen in Noteworthy</p>
+                        <p style="color: gray;">Jul 3</p>
+                    </div>
+                    <div><img src="img/news2.png" alt=""></div>
+                </div>
+            </div>
+
+            <div class="news_group">
+                <div class="news">
+                    <div>
+                        <h3><a href="">Series Of Free Courses To Become A Data Scientist</a></h3>
+                        <h5><a href="" style="color: gray;">Here are signs that are too disturbing to ignore</a>
+                        </h5>
+                        <p>Charles Stephen in Noteworthy</p>
+                        <p style="color: gray;">Jul 3</p>
+                    </div>
+                    <div><img src="img/news3.png" alt=""></div>
+                </div>
+                <div class="news">
+                    <div>
+                        <h3><a href="">One-on-ones are my most valuable meetings; here’s how I run them</a></h3>
+                        <h5><a href="" style="color: gray;">Here are signs that are too disturbing to ignore</a>
+                        </h5>
+                        <p>Charles Stephen in Noteworthy</p>
+                        <p style="color: gray;">Jul 3</p>
+                    </div>
+                    <div><img src="img/news4.png" alt=""></div>
+                </div>
+            </div>
+        </main>
+
+
+    </div>
+
+
+    <!-- * about us  ****************      ****************       ****************   -->
+    <div id="page_about-us" class="page hide">
+        <div class="aboutUs_backimgbox">
+            <img src="img/Duvar-ka-d-sahne-duvarlar-zel-3d-arka-plan-duvar-ka-tlar-Orman-manzara-trail-sunshin.jpg_q50.jpg"
+                alt="">
+        </div>
+
+        <div class="aboutUs_box">
+            <div class="aboutUs_pd30">
+                <h2>我們的存在，因為脆弱的地球需要改變、需要行動</h2>
+                <span>我們在全球的工作，都基於我們對使用者的承諾:</span>
+
+                <div class="aboutUs_dflex">
+                    <div class="aboutUs_titlebox">
+                        <h2>始終如一</h2>
+                        <p>確保地球維持孕育多元生命的能力，是綠色和平近50年來不變的使命！</p>
+                    </div>
+                    <div class="aboutUs_titlebox">
+                        <h2>群眾力量</h2>
+                        <p>集合「People Power」是成功的公開秘訣！要求企業、政府為生態與環境做對的事。</p>
+                    </div>
+                    <div class="aboutUs_titlebox">
+                        <h2>始終如一</h2>
+                        <p>確保地球維持孕育多元生命的能力，是綠色和平近50年來不變的使命！</p>
+                    </div>
+                    <div class="aboutUs_titlebox">
+                        <h2>群眾力量</h2>
+                        <p>集合「People Power」是成功的公開秘訣！要求企業、政府為生態與環境做對的事。</p>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="aboutUs_wrapper">
+            <div class="aboutUs_pd30">
+                <h2> 我們的團隊</h2>
+                <span>Our Team</span>
+                <br><br>
+                <div class="aboutUs_dflex">
+                    <div class="aboutUs_imgbox">
+                        <img src="img/head2.PNG" alt="">
+                    </div>
+                    <div class="aboutUs_content">
+                        <h3>Charles Leclerc</h3>
+                        <span>CEO</span>
+                        <hr class="aboutUs_hr_style">
+                        <p>有一種態度，叫認真 <br>有一種勇敢，叫面對<br>有一種瀟灑，叫坦率<br>期望自已能夠一直抱著這樣的信念勇往直前！</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="aboutUs_dflex">
+                    <div class="aboutUs_imgbox">
+                        <img src="img/head4.PNG" alt="">
+                    </div>
+                    <div class="aboutUs_content">
+                        <h3>Charles Leclerc</h3>
+                        <span>CEO</span>
+                        <hr class="aboutUs_hr_style">
+                        <p>有一種態度，叫認真 <br>有一種勇敢，叫面對<br>有一種瀟灑，叫坦率<br>期望自已能夠一直抱著這樣的信念勇往直前！</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="aboutUs_dflex">
+                    <div class="aboutUs_imgbox">
+                        <img src="img/head3.PNG" alt="">
+                    </div>
+                    <div class="aboutUs_content">
+                        <h3>Charles Leclerc</h3>
+                        <span>CEO</span>
+                        <hr class="aboutUs_hr_style">
+                        <p>有一種態度，叫認真 <br>有一種勇敢，叫面對<br>有一種瀟灑，叫坦率<br>期望自已能夠一直抱著這樣的信念勇往直前！</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="aboutUs_dflex">
+                    <div class="aboutUs_imgbox">
+                        <img src="img/head.png" alt="">
+                    </div>
+                    <div class="aboutUs_content">
+                        <h3>Charles Leclerc</h3>
+                        <span>CEO</span>
+                        <hr class="aboutUs_hr_style">
+                        <p>有一種態度，叫認真 <br>有一種勇敢，叫面對<br>有一種瀟灑，叫坦率<br>期望自已能夠一直抱著這樣的信念勇往直前！</p>
+                    </div>
+                </div>
+                <hr>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <!-- * log in   ****************      ****************       ****************   -->
+    <div id='page_log-in' class='page page_signIn hide'>
+        <div class="page_signIn_left">
+            <h1>歡迎回來</h1>
+            <p>一些敘述</p>
+        </div>
+
+        <div class="page_signIn_right">
+            <form class="form_signIn" action="" method="POST" enctype="text/plain">
+
+                <div class="signIn_inputBlock">
+                    <label for="account">帳號: </label>
+                    <input id="Input_signInName" type="text" name="account" placeholder="">
+                </div>
+
+                <div class="signIn_inputBlock">
+                    <div class="signIn_PasswordText">
+                        <label for="password">密碼: </label>
+                        <a href="#123">忘記密碼?</a>
+                    </div>
+                    <input id="Input_signInPassword" type="password" name="password" placeholder="">
+                </div>
+
+                <div class="signIn_submit">
+                    <input type="submit" value="登入">
+                </div>
+
+                <div class="text_switch2signUp">
+                    <span>沒有帳號嗎?</span>&nbsp;&nbsp;<a id="switch2signUp" href="#sign-Up">加入會員</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- * sign up  ****************      ****************       ****************   -->
+    <div id='page_sign-Up' class='page page_signUp hide'>
+        <div class="signUp_top">
+            <h1>加入我們</h1>
+            <p>一些敘述</p>
+        </div>
+
+        <div>
+            <form class="form_signUp" action="" method="POST" enctype="text/plain">
+
+                <div class="form_signUp_left">
+                    <div class="signUp_inputBlock">
+                        <label for="account">帳號: </label>
+                        <input type="text" name="account" placeholder="">
+                    </div>
+
+                    <div class="signUp_inputBlock">
+                        <label for="password">密碼: </label>
+                        <input type="password" name="password" placeholder="">
+                    </div>
+
+                    <div class="signUp_inputBlock">
+                        <label for="passwordCheck">確認密碼: </label>
+                        <input type="password" name="passwordCheck" placeholder="">
+                    </div>
+
+                    <div class="signUp_inputBlock">
+                        <label for="name">真實姓名: </label>
+                        <input type="text" name="name" placeholder="">
+                    </div>
+
+                    <div class="signUp_inputBlock">
+                        <label for="bithday">身分證字號: </label>
+                        <input type="text" name="bithday" placeholder="">
+                    </div>
+
+                </div>
+
+                <div class="form_signUp_right">
+
+                    <div class="signUp_inputBlock">
+                        <label for="bithday">生日: </label>
+                        <div class="signUp_bithday">
+                            <select name="dateYear" id="signUp_dateYear" size="1">
+                                <option value="2020">2020</option>
+                            </select>
+                            <span>年</span>
+                            <select name="dateMM" id="signUp_dateMM" size="1">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <span>月</span>
+                            <select name="dateDD" id="signUp_dateDD" size="1">
+                                <option value="1">1</option>
+                            </select>
+                            <span>日</span>
+                        </div>
+                    </div>
+
+                    <div class="signUp_inputBlock">
+                        <label for="city">居住城市: </label>
+                        <select type="text" name="city" placeholder="">
+                            <option value="taipei" selected>台北市</option>
+                            <option value="">基隆</option>
+
+                        </select>
+                    </div>
+
+                    <div class="signUp_inputBlock">
+                        <label for="adress">居住地址: </label>
+                        <input type="text" name="adress" placeholder="">
+                    </div>
+
+                    <div class="signUp_inputBlock">
+                        <label for="phoneNumber">手機號碼: </label>
+                        <input type="text" name="phoneNumber" placeholder="">
+                    </div>
+
+
+                    <div class="signUp_submit">
+                        <input type="submit" value="註冊">
+                    </div>
+
+                    <div class="text_switch2signIn">
+                        <span>已經有帳號了嗎?</span>&nbsp;&nbsp;<a id="switch2signIn" href="#log-in">登入帳號</a>
+                    </div>
+
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+
+
+    <!-- * Personal page  ****************      ****************       ****************   -->
+    <div id='page_personal-page' class='page  hide'>
+
+        <div class="personal_container">
+            <div class="personal_imgbox">
+                <img src="img/img4.jpg" alt="">
+            </div>
+            <div class="personal_wrapper">
+                <h3>Hi Guys</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, dolorum eaque quasi aliquid
+                    incidunt nostrum veniam itaque molestias, velit tempore harum amet deleniti facere reprehenderit
+                    nihil quisquam voluptate architecto dignissimos!</p>
+                <div class="personal_pro_file">
+                    <ul>
+                        <li>
+                            <span class="personal_file_title">Name</span>
+                            <span class="personal_file_middle">:</span>
+                            <span class="personal_file_text">Li Jinchen</span>
+                        </li>
+                        <li>
+                            <span class="personal_file_title">Age</span>
+                            <span class="personal_file_middle">:</span>
+                            <span class="personal_file_text">26 years</span>
+                        </li>
+                        <li>
+                            <span class="personal_file_title">Experience</span>
+                            <span class="personal_file_middle">:</span>
+                            <span class="personal_file_text">4 years</span>
+                        </li>
+                        <li>
+                            <span class="personal_file_title">Country</span>
+                            <span class="personal_file_middle">:</span>
+                            <span class="personal_file_text">USA</span>
+                        </li>
+                        <li>
+                            <span class="personal_file_title">Location</span>
+                            <span class="personal_file_middle">:</span>
+                            <span class="personal_file_text">New York</span>
+                        </li>
+                        <li>
+                            <span class="personal_file_title">Email</span>
+                            <span class="personal_file_middle">:</span>
+                            <span class="personal_file_text">ABC123@gmail.com</span>
+                        </li>
+                        <li>
+                            <span class="personal_file_title">Phone</span>
+                            <span class="personal_file_middle">:</span>
+                            <span class="personal_file_text">0800-123-123</span>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <section class="personal_section">
+            <h2>what I do </h2>
+            <div class="personal_container">
+                <div class="personal_box">
+                    <div class="personal_seccon">
+                        <img src="img/carlist.png" alt="">
+                    </div>
+                    <div class="personal_services_content">
+                        <h4><a href="#">My Shop</a></h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse condi.</p>
+                    </div>
+                </div>
+
+                <div class="personal_box">
+                    <div class="personal_seccon">
+                        <img src="img/money1.png" alt="">
+                    </div>
+                    <div class="personal_services_content">
+                        <h4><a href="#">My Wallet</a></h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse condi.</p>
+                    </div>
+                </div>
+                <div class="personal_box">
+                    <div class="personal_seccon">
+                        <img src="img/carlist.png" alt="">
+                    </div>
+                    <div class="personal_services_content">
+                        <h4><a href="#">My Money</a></h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse condi.</p>
+                    </div>
+                </div>
+                <div class="personal_box">
+                    <div class="personal_seccon">
+                        <img src="img/event.png" alt="">
+                    </div>
+                    <div class="personal_services_content">
+                        <h4><a href="#">My Event</a></h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse condi.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="personal_container">
+            <div class="personal_bar-block">
+
+                <div class="personal_baritembox"><a href="javascript:void(0)"
+                        class="personal_bar-item personal_button personal_tablink personal_testbtn"
+                        onclick="PersonalPage.openClass(event, 'class1')">My
+                        Shop</a></div>
+                <div class="personal_baritembox"><a href="javascript:void(0)"
+                        class="personal_bar-item personal_button personal_tablink"
+                        onclick="PersonalPage.openClass(event, 'class2')">My
+                        Event</a></div>
+                <div class="personal_baritembox"><a href="javascript:void(0)"
+                        class="personal_bar-item personal_button personal_tablink"
+                        onclick="PersonalPage.openClass(event, 'class3')">Forget</a></div>
+            </div>
+        </div>
+
+        <div id="class1" class="personal_container personal_class">
+            <div class="personal_event personal_eventw100">
+                <div>
+                    <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
+                    <p>Sunday, July 30,2020,10:30</p>
+                    <h3>潛水撿垃圾，愛海洋！</h3>
+                    <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
+                </div>
+                <div>
+                    <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
+                    <p>Sunday, July 30,2020,10:30</p>
+                    <h3>潛水撿垃圾，愛海洋！</h3>
+                    <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
+                </div>
+                <div>
+                    <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
+                    <p>Sunday, July 30,2020,10:30</p>
+                    <h3>潛水撿垃圾，愛海洋！</h3>
+                    <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
+                </div>
+                <div>
+                    <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
+                    <p>Sunday, July 30,2020,10:30</p>
+                    <h3>潛水撿垃圾，愛海洋！</h3>
+                    <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="class2" class="personal_container personal_class">
+            <div class="personal_event personal_eventw100">
+                <div>
+                    <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
+                    <p>Sunday, July 30,2020,10:30</p>
+                    <h3>潛水撿垃圾，愛海洋！</h3>
+                    <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
+                </div>
+                <div>
+                    <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
+                    <p>Sunday, July 30,2020,10:30</p>
+                    <h3>潛水撿垃圾，愛海洋！</h3>
+                    <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
+                </div>
+                <div>
+                    <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
+                    <p>Sunday, July 30,2020,10:30</p>
+                    <h3>潛水撿垃圾，愛海洋！</h3>
+                    <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="class3" class="personal_container personal_class">
+            <div class="personal_event personal_eventw100">
+                <div>
+                    <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
+                    <p>Sunday, July 30,2020,10:30</p>
+                    <h3>潛水撿垃圾，愛海洋！</h3>
+                    <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
+                </div>
+                <div>
+                    <img src="img/imgs/event1.jpeg" class="personal_event_img" alt="">
+                    <p>Sunday, July 30,2020,10:30</p>
+                    <h3>潛水撿垃圾，愛海洋！</h3>
+                    <img src="img/imgs/icon1.svg" class="personal_icon" alt=""><span>999</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- * 路徑在別人底下的葉面 #.. / 這些葉面  ****************      ****************       ****************   -->
+    <!-- * market-search  ****************      ****************       ****************   -->
+    <div id="page_market-search" class="page hide">
+        <!-- 買家/賣家 -->
+        <div class="container_market_search_page">
+            <div class="mrkSearch_top_search">
+                <a href=# class="mrkSearch_search_icon">
+                    <i class="fas fa-search"></i></a>
+            </div>
+            <div class="mrkSearch_container_main">
+                <aside class="aside_market_search_page">
+                    <h3>條件篩選</h3>
+                    <h4>商品標籤</h4>
+                    <div class="pdt_tag">
+                        <div class="mrkSearch_span_row">
+                            <span>#美妝用品</span>
+                            <span>#運動用品</span></div>
+                        <div class="mrkSearch_span_row">
+                            <span>#你先拿我OK</span>
+                            <span>#毛小孩最愛</span>
+                            <span>#小朋友長大了</span></div>
+                        <div class="mrkSearch_span_row">
+                            <span>#書籍</span>
+                            <span>#3C產品</span></div>
+                        <div class="mrkSearch_span_row">
+                            <span>#搬家出清</span>
+                            <span>#生活用品</span></div>
+                        <div class="mrkSearch_span_row">
+                            <span>#買到剁手手</span>
+                            <span>#二手家具</span>
+                            <span>#飾品</span></div>
+                        <div class="mrkSearch_span_row">
+                            <span>#皮包背包</span>
+                            <span>#家電</span>
+                            <span>#居家必備</span></div>
+                        <div class="mrkSearch_span_row">
+                            <span>#過去就讓它過去ㄅ</span>
+                            <span>#手機殼</span></div>
+                        <div class="mrkSearch_span_row">
+                        </div>
+                        <h4>商品地點</h4>
+                        <div class="pdt_location_opt">台北市
+                            <div><input type="checkbox">中山區
+                                <input type="checkbox">中正區
+                                <input type="checkbox">萬華區
+                                <input type="checkbox">大安區</div>
+                            <div><input type="checkbox">文山區
+                                <input type="checkbox">松山區
+                                <input type="checkbox">內湖區
+                                <input type="checkbox">信義區</div>
+
+                        </div>
+                        <h4>運送方式</h4>
+                        <div class="pdt_deliever_opt">
+                            <input type="checkbox">面交
+                            <input type="checkbox">宅配
+                            <input type="checkbox">超商
+                        </div>
+                        <h4>價格範圍</h4>
+                        <input type="range" min="1" max="100" value=[15,35] id="price_range">
+                        <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt="">
+                        <span id="price_value"></span>
+
+                </aside>
+                <div class="mrkSearch_container_waterfall">
+                    <ul class="mrkSearch_waterfall">
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/game_pdt/game02.PNG"></div>
+                            <h3>二手Switch + 動物森友會</h3>
+                            <p>期中被二一，不能再玩了QQ</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/book_pdt/book02.PNG"></div>
+                            <h3>少女漫畫出清～不分售</h3>
+                            <p>酸酸甜甜的校園戀愛故事</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill03.jpg"></div>
+                            <h3>網頁架設，價格內議</h3>
+                            <p>輕鬆架設電商平台</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby02.PNG"></div>
+                            <h3>3歲女生童鞋</h3>
+                            <p>鞋況良好，小孩長大穿不下了</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/book_pdt/book03.PNG"></div>
+                            <h3>書籍出清</h3>
+                            <p>希望你有看到喜歡的書:)</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                    </ul>
+                    <ul class="mrkSearch_waterfall">
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby05.PNG"></div>
+                            <h3>整理倉庫，玩具大出清</h3>
+                            <p>年代久遠，包裝完整，出貨前會清理一下</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/game_pdt/game01.PNG"></div>
+                            <h3>Switch遊戲片出清</h3>
+                            <p>未舔，保存良好</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill04.jpg"></div>
+                            <h3>牆壁油漆</h3>
+                            <p>價格內議，急需海龜幣</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/clothes_pdt/clothes09.PNG"></div>
+                            <h3>二手日系女性襯衫</h3>
+                            <p>鬼遮眼買了一堆差不多的衣服，出清</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/game_pdt/game06.PNG"></div>
+                            <h3>復古遊戲機送遊戲卡</h3>
+                            <p>兒時回憶的機台～</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                    </ul>
+                    <ul class="mrkSearch_waterfall">
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/game_pdt/game04.PNG"></div>
+                            <h3>PS4二手遊戲片</h3>
+                            <p>破關了出清</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/book_pdt/book07.PNG"></div>
+                            <h3>各類書籍出清，歡迎詢問</h3>
+                            <p>舊的不去新的不來</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill05.jpg"></div>
+                            <h3>專業清潔打掃</h3>
+                            <p>小強就交給我處理吧</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby03.PNG"></div>
+                            <h3>火柴盒車車收藏</h3>
+                            <p>要搬家了，忍痛割愛</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/book_pdt/book06.PNG"></div>
+                            <h3>心靈書籍治療的你心</h3>
+                            <p>這些都是好書，買回家看看吧</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                    </ul>
+                    <ul class="mrkSearch_waterfall">
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/game_pdt/game03.PNG"></div>
+                            <h3>二手PS4（另有三款遊戲）</h3>
+                            <p>PS5出了～我來啦～</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/book_pdt/book01.PNG"></div>
+                            <h3>暢銷小說出清</h3>
+                            <p>都看完了～保證好看</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/skill_pdt/skill02.jpg"></div>
+                            <h3>水彩/油畫創作</h3>
+                            <p>客製化創作（聊聊討論）</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/baby_pdt/baby01.PNG"></div>
+                            <h3>超多尿布褲，三條才出貨哦</h3>
+                            <p>八成新，有好好清潔保存</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                        <li class="mrkSearch_li">
+                            <div class="mrkSearch_img_div"><img src="img/book_pdt/book04.PNG"></div>
+                            <h3>九把刀的書</h3>
+                            <p>有緣人快來帶走他們吧</p>
+                            <img src="img/dollar.png" class="mrkSearch_dollar_icon" alt=""><span>1,000</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <img src="img/talk.png" class="mrkSearch_message">
+            </div>
+        </div>
+        <div class="mrkSearch_page_container">
+            <ul class="mrkSearch_pagination">
+                <li class="mrkSearch_li"><a href="#">«</a></li>
+                <li class="mrkSearch_li"><a href="#">1</a></li>
+                <li class="mrkSearch_li"><a class="active" href="#">2</a></li>
+                <li class="mrkSearch_li"><a href="#">3</a></li>
+                <li class="mrkSearch_li"><a href="#">4</a></li>
+                <li class="mrkSearch_li"><a href="#">5</a></li>
+                <li class="mrkSearch_li"><a href="#">6</a></li>
+                <li class="mrkSearch_li"><a href="#">7</a></li>
+                <li class="mrkSearch_li"><a href="#">»</a></li>
+            </ul>
+        </div>
+
+
+    </div>
+
+
+    <!-- * news-detail  ****************      ****************       ****************   -->
+    <div id="page_news-detail" class="page hide">
+        <!-------------------------------------- 左側作者欄 -------------------------------------->
+        <div class="newsDe_writer_info_left">
+            <p>Anupam Chugh</p>
+            <span class="newsDe_writer_info_left_span">For the uninitiated, a lot of apps today use an Advertising
+                identifier
+                (IDFA). It allows developers and marketers to track activity for advertising purposes.</span>
+            <br><i class="far fa-heart"></i><span>35</span>
+        </div>
+        <!-------------------------------------- main -------------------------------------->
+        <main class="newsDe_main">
+            <!-------------------------------------- 文章標題 -------------------------------------->
+            <div>
+                <h1>
+                    Apple Is Killing A Billion-Dollar Ad Industry With One Popup
+                </h1>
+                <h2>The new iOS 14 privacy feature spells trouble for advertisement agencies and promises to end an
+                    era of
+                    personalized ads</h2>
+            </div>
+            <!-------------------------------------- 作者資訊 -------------------------------------->
+            <div class="newsDe_writer">
+                <div class="newsDe_writer_info">
+                    <div>
+                        <img src="img/c1.jpeg" alt="">
+                    </div>
+                    <div>
+                        <a href="#">Anupam Chugh</a><br>
+                        <span>Jul 7 · 4 min read</span>
+                    </div>
+                </div>
+                <div class="newsDe_writen_icon">
+                    <i class="fab fa-facebook-square fa-2x" style="color: var(--blue-color);"></i>
+                    <i class="fab fa-twitter-square fa-2x" style="color: var(--blue-color);"></i>
+                    <i class="fab fa-linkedin fa-2x" style="color: var(--blue-color);"></i>
+                </div>
+            </div>
+            <!-------------------------------------- 文章內容 -------------------------------------->
+            <figure>
+                <img src="img/news_title.jpg" title="Photo by Tobias Moore on Unsplash" alt="">
+                <figcaption>Photo by Tobias Moore on Unsplash</figcaption>
+            </figure>
+            <div>
+                <p>When Apple’s WWDC 2020 digital-only Keynote event kickstarted, all eyes were on the new mac OS
+                    Big Sur
+                    and the ambitious Apple Silicon chips.</p>
+                <p>But, from the perspective of advertisement agencies, it was the new iOS 14 privacy-based features
+                    that
+                    sent shockwaves in their industry and became the major talking point.</p>
+                <p>For the uninitiated, a lot of apps today use an Advertising identifier (IDFA). It allows
+                    developers and
+                    marketers to track activity for advertising purposes.</p>
+                <p>Plenty of marketing agencies backed by Google and Facebook run campaigns to record purchases,
+                    usage time,
+                    user actions, and subsequently serve personalized ads.</p>
+                <p>Over 100K apps on the App Store today have the Facebook or Google SDK integrated which tracks and
+                    sends
+                    your data to the tech giants and third party brokers.</p>
+                <p>But iOS 14 is all set to change that by being upfront and transparent with users about how their
+                    data is
+                    used for ads.</p>
+            </div>
+            <!-------------------------------------- 文章標籤 -------------------------------------->
+            <div class="newsDe_tag">
+                <ul>
+                    <li><a href="#">Apple</a></li>
+                    <li><a href="#">Marketing</a></li>
+                    <li><a href="#">Business</a></li>
+                    <li><a href="#">Advertising</a></li>
                 </ul>
             </div>
 
-
-        </div>
-
-
-        <!-- * news-detail  ****************      ****************       ****************   -->
-        <div id="page_news-detail" class="page hide">
-            <!-------------------------------------- 左側作者欄 -------------------------------------->
-            <div class="newsDe_writer_info_left">
-                <p>Anupam Chugh</p>
-                <span class="newsDe_writer_info_left_span">For the uninitiated, a lot of apps today use an Advertising
-                    identifier
-                    (IDFA). It allows developers and marketers to track activity for advertising purposes.</span>
-                <br><i class="far fa-heart"></i><span>35</span>
-            </div>
-            <!-------------------------------------- main -------------------------------------->
-            <main class="newsDe_main">
-                <!-------------------------------------- 文章標題 -------------------------------------->
-                <div>
-                    <h1>
-                        Apple Is Killing A Billion-Dollar Ad Industry With One Popup
-                    </h1>
-                    <h2>The new iOS 14 privacy feature spells trouble for advertisement agencies and promises to end an
-                        era of
-                        personalized ads</h2>
-                </div>
-                <!-------------------------------------- 作者資訊 -------------------------------------->
-                <div class="newsDe_writer">
-                    <div class="newsDe_writer_info">
-                        <div>
-                            <img src="img/c1.jpeg" alt="">
-                        </div>
-                        <div>
-                            <a href="#">Anupam Chugh</a><br>
-                            <span>Jul 7 · 4 min read</span>
-                        </div>
-                    </div>
-                    <div class="newsDe_writen_icon">
-                        <i class="fab fa-facebook-square fa-2x" style="color: var(--blue-color);"></i>
-                        <i class="fab fa-twitter-square fa-2x" style="color: var(--blue-color);"></i>
-                        <i class="fab fa-linkedin fa-2x" style="color: var(--blue-color);"></i>
-                    </div>
-                </div>
-                <!-------------------------------------- 文章內容 -------------------------------------->
-                <figure>
-                    <img src="img/news_title.jpg" title="Photo by Tobias Moore on Unsplash" alt="">
-                    <figcaption>Photo by Tobias Moore on Unsplash</figcaption>
-                </figure>
-                <div>
-                    <p>When Apple’s WWDC 2020 digital-only Keynote event kickstarted, all eyes were on the new mac OS
-                        Big Sur
-                        and the ambitious Apple Silicon chips.</p>
-                    <p>But, from the perspective of advertisement agencies, it was the new iOS 14 privacy-based features
-                        that
-                        sent shockwaves in their industry and became the major talking point.</p>
-                    <p>For the uninitiated, a lot of apps today use an Advertising identifier (IDFA). It allows
-                        developers and
-                        marketers to track activity for advertising purposes.</p>
-                    <p>Plenty of marketing agencies backed by Google and Facebook run campaigns to record purchases,
-                        usage time,
-                        user actions, and subsequently serve personalized ads.</p>
-                    <p>Over 100K apps on the App Store today have the Facebook or Google SDK integrated which tracks and
-                        sends
-                        your data to the tech giants and third party brokers.</p>
-                    <p>But iOS 14 is all set to change that by being upfront and transparent with users about how their
-                        data is
-                        used for ads.</p>
-                </div>
-                <!-------------------------------------- 文章標籤 -------------------------------------->
-                <div class="newsDe_tag">
-                    <ul>
-                        <li><a href="#">Apple</a></li>
-                        <li><a href="#">Marketing</a></li>
-                        <li><a href="#">Business</a></li>
-                        <li><a href="#">Advertising</a></li>
-                    </ul>
-                </div>
-
-            </main>
-        </div>
+        </main>
+    </div>
 
 
 
