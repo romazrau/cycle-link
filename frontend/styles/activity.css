@@ -75,6 +75,7 @@
     /* background-color: var(--grey-color); */
     border-top: 1px solid var(--lightblue-color);
     height: 400px;
+    /* display: flex; */
 }
 
 .activity_event_history1 h2 {
@@ -110,6 +111,10 @@
 .activity_event_history2_a a {
     text-decoration: none;
     color: white;
+}
+
+.activity_event_history3 {
+    display: flex;
 }
 
 .activity_event_icon_right {
