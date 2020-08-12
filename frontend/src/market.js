@@ -11,7 +11,7 @@ function ClsMarket() {
   const tagbox_opt2 = document.querySelector(".tagbox_opt2");
   const tagbox_opt3 = document.querySelector(".tagbox_opt3");
 
-  //AJAX
+  //Tag假資料，之後需要用AJAX帶入真的假資料
   let pdtTagFakeDate1 = [
     {
       tagName: "露營工具",
@@ -70,7 +70,7 @@ function ClsMarket() {
     },
   ];
 
-  //把假資料匯入div中
+  //把Tag假資料匯入div中
   pdtTagFakeDate1.map(
     (e, index) => {
       // e.index = index;
@@ -89,16 +89,6 @@ function ClsMarket() {
       tagbox_opt3.innerHTML += pdtTagImport(e, index);
     }
   )
-
-  const pdtItemImport = (p) => {
-    return `
-    <div class="pdt_items">
-    <img src="img/${p.fPath}.PNG" class="pdt_items_img">
-    <h4>${p.fName}</h4>
-    <p>${p.fDetail}</p>
-    <img src="img/dollar.png" class="dollar_icon"><span>${p.fPrice}</span>
-    </div>`;
-  }
 
   //拖曳tag
   var dropTarget = document.querySelector(".tag_wrapper");
@@ -134,17 +124,7 @@ function ClsMarket() {
     output.innerHTML = this.value;
   };
 
-  //pdt item hover
-  $(".pdt_items").mouseover(function () {
-    $(this).css("background-color", "#FFFFFF"),
-      $(this).css("border", "5px solid #D9AAB7"),
-      $(this).find("h4").css("background-color", "#D9AAB7");
-  });
 
-  $(".pdt_items").mouseout(function () {
-    $(this).css("background-color", "#D9AAB7"),
-      $(this).find("h4").css("background-color", "#FFFFFF");
-  });
 
   //go to search market
   document
@@ -152,5 +132,114 @@ function ClsMarket() {
     .addEventListener("click", () => {
       location.hash = "#second-hand/search/";
     });
+
+  //匯入商品的版型
+  const pdtItemImport = (t, index) => {
+    return `
+    <div class="market_main_pdt_items">
+    <img src="${t.fPath}" class="market_main_pdt_items_img">
+    <h4>${t.fName}</h4>
+    <p>${t.fDetail}</p>
+    <img src="img/dollar.png" class="dollar_icon"><span>${t.fPrice}</span>
+    </div>`;
+  }
+  const marketNewRow = document.querySelector(".market_new_row");
+  const marketHotRow = document.querySelector(".market_hot_row");
+  const marketRecRow = document.querySelector(".market_rec_row");
+
+  //PDT假資料，之後需要用AJAX帶入真的假資料
+  let pdtFakeDate1 = [
+    {
+      fName: "電腦鍵盤",
+      fDetail: "使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。",
+      fPrice: 1000,
+      fPath: "img/new_arrival/nv01.PNG",
+    },
+    {
+      fName: "吸塵器",
+      fDetail: "使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。",
+      fPrice: 1000,
+      fPath: "img/new_arrival/nv02.PNG",
+    },
+    {
+      fName: "造型墨鏡",
+      fDetail: "使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。",
+      fPrice: 1000,
+      fPath: "img/new_arrival/nv03.PNG",
+    },
+    {
+      fName: "女性襯衫",
+      fDetail: "使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。",
+      fPrice: 1000,
+      fPath: "img/new_arrival/nv04.PNG",
+    },
+    {
+      fName: "相機鏡頭",
+      fDetail: "使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。",
+      fPrice: 1000,
+      fPath: "img/new_arrival/nv05.PNG",
+    },
+  ];
+  let pdtFakeDate2 = [
+    {
+      fName: "拳擊手套",
+      fDetail: "使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。",
+      fPrice: 1000,
+      fPath: "img/sport_pdt/sport01.PNG",
+    },
+    {
+      fName: "用過的棒球們",
+      fDetail: "使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。",
+      fPrice: 1000,
+      fPath: "img/sport_pdt/sport02.PNG",
+    },
+    {
+      fName: "假魚魚餌",
+      fDetail: "使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。",
+      fPrice: 1000,
+      fPath: "img/sport_pdt/sport03.PNG",
+    },
+    {
+      fName: "棒球手套",
+      fDetail: "使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。",
+      fPrice: 1000,
+      fPath: "img/sport_pdt/sport04.PNG",
+    },
+    {
+      fName: "網球拍組合",
+      fDetail: "使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。",
+      fPrice: 1000,
+      fPath: "img/sport_pdt/sport05.PNG",
+    },
+  ];
+
+  //把PDT假資料匯入div中
+  pdtFakeDate1.map(
+    (e, index) => {
+      marketNewRow.innerHTML += pdtItemImport(e);
+    }
+  )
+  pdtFakeDate2.map(
+    (e, index) => {
+      marketHotRow.innerHTML += pdtItemImport(e);
+    }
+  )
+  pdtFakeDate1.map(
+    (e, index) => {
+      marketRecRow.innerHTML += pdtItemImport(e);
+    }
+  )
+
+  //market_main_pdt_items hover好像怪怪ㄉ 用CSS HOVER好ㄌ
+  // $(".market_main_pdt_items").mouseover(function () {
+  //   $(this).css("background-color", "#FFFFFF"),
+  //     $(this).css("border", "5px solid #D9AAB7"),
+  //     $(this).find("h4").css("background-color", "#D9AAB7");
+  // });
+
+  // $(".market_main_pdt_items").mouseout(function () {
+  //   $(this).css("background-color", "#D9AAB7"),
+  //     $(this).find("h4").css("background-color", "#FFFFFF");
+  // });
 }
 const Market = new ClsMarket();
