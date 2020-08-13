@@ -66,7 +66,7 @@
             <div class="div_container_login">
                 <div class="div_dropdownmenu">
                     <ul>
-                        <li id="navbar_log-in" class="li_menutitle header_nav"><a href="#log-in">Log in<br>登入</a></li>
+                        <li id="navbar_log-in" class="li_menutitle header_nav"><a id="header_link_login" href="#log-in">Log in<br>登入</a></li>
                     </ul>
                 </div>
             </div>
@@ -696,7 +696,7 @@
                     </div>
 
                     <div class="signIn_submit">
-                        <input type="submit" value="登入">
+                        <input id="loginSubmit" type="submit" value="登入">
                     </div>
 
                     <div class="text_switch2signUp">
@@ -1676,10 +1676,12 @@
     <!--  -->
 
     <!-- *內部引用 -->
+    <script type="module" src="./src/app.js" ></script>
     <script src='./src/router.js'></script>
     <script src="./src/home.js"></script>
     <script src="./src/market.js"></script>
     <script scr="./src/market_search.js"></script>
+    <script type="module" src="./src/login.js" ></script>
     <script src="./src/singInUp.js"></script>
     <script src="./src/news_detial.js"></script>
     <script src="./src/personalPage.js"></script>
