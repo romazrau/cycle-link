@@ -175,7 +175,7 @@ function ClsActivityDetail() {
 
     const data2html = (o) => {
         return `
-        <div class="card cardMargin">
+    <div class="card cardMargin">
         <div class="divForCardImg">
             <img src=${o.imgPath} alt="diving">
         </div>
@@ -183,13 +183,23 @@ function ClsActivityDetail() {
         <div class="cardActName">${o.name}</div>
         <div class="cardBottomIcons flex-container">
             <div>
-                <img src="./img/loveicon.svg" alt="loveicon" width="30px">
+                <img src="./img/loveicon.svg" alt="loveicon" width="15px">
             </div>
             <div>${o.like}</div>
             <div>
-                <img src="./img/coin.png" alt="coinicon" width="30px">
+                <img src="./img/coin.png" alt="coinicon" width="15px">
             </div>
             <div>${o.coins}</div>
+        </div>
+        <div class="cardBottomIcons flex-container">
+            <div>
+                <img src="./img/coin.png" alt="coinicon" width="15px">
+            </div>
+            <div>${o.member}</div>
+            <div>
+                <img src="./img/coin.png" alt="coinicon" width="15px">
+            </div>
+            <div>${o.local}</div>
         </div>
     </div>
         `;
@@ -202,28 +212,36 @@ function ClsActivityDetail() {
             time: "2020/12/24",
             name: "潛水撿垃圾",
             like: 30,
-            coins: 100
+            coins: 100,
+            member:"彌勒佛",
+            local:"烏石港"
         },
         {
             imgPath: "./img/diving.jpeg",
             time: "2020/12/24",
             name: "潛水撿垃圾",
             like: 30,
-            coins: 100
+            coins: 100,
+            member:"彌勒佛",
+            local:"烏石港"
         },
         {
             imgPath: "./img/diving.jpeg",
             time: "2020/12/24",
             name: "潛水撿垃圾",
             like: 30,
-            coins: 100
+            coins: 100,
+            member:"彌勒佛",
+            local:"烏石港"
         },
         {
             imgPath: "./img/diving.jpeg",
             time: "2020/12/24",
             name: "潛水撿垃圾",
             like: 30,
-            coins: 100
+            coins: 100,
+            member:"彌勒佛",
+            local:"烏石港"
         },
     ];
 
@@ -233,28 +251,36 @@ function ClsActivityDetail() {
             time: "2020/12/24",
             name: "潛水撿垃圾",
             like: 30,
-            coins: 100
+            coins: 100,
+            member:"彌勒佛",
+            local:"烏石港"
         },
         {
             imgPath: "./img/diving.jpeg",
             time: "2020/12/24",
             name: "潛水撿垃圾",
             like: 30,
-            coins: 100
+            coins: 100,
+            member:"彌勒佛",
+            local:"烏石港"
         },
         {
             imgPath: "./img/diving.jpeg",
             time: "2020/12/24",
             name: "潛水撿垃圾",
             like: 30,
-            coins: 100
+            coins: 100,
+            member:"彌勒佛",
+            local:"烏石港"
         },
         {
             imgPath: "./img/diving.jpeg",
             time: "2020/12/24",
             name: "潛水撿垃圾",
             like: 30,
-            coins: 100
+            coins: 100,
+            member:"彌勒佛",
+            local:"烏石港"
         },
     ];
 
@@ -263,28 +289,36 @@ function ClsActivityDetail() {
         time: "2020/12/24",
         name: "潛水撿垃圾",
         like: 30,
-        coins: 100
+        coins: 100,
+        member:"彌勒佛",
+        local:"烏石港"
     },
     {
         imgPath: "./img/diving.jpeg",
         time: "2020/12/24",
         name: "潛水撿垃圾",
         like: 30,
-        coins: 100
+        coins: 100,
+        member:"彌勒佛",
+        local:"烏石港"
     },
     {
         imgPath: "./img/diving.jpeg",
         time: "2020/12/24",
         name: "潛水撿垃圾",
         like: 30,
-        coins: 100
+        coins: 100,
+        member:"彌勒佛",
+        local:"烏石港"
     },
     {
         imgPath: "./img/diving.jpeg",
         time: "2020/12/24",
         name: "潛水撿垃圾",
         like: 30,
-        coins: 100
+        coins: 100,
+        member:"彌勒佛",
+        local:"烏石港"
     },
 ];
 
@@ -296,10 +330,10 @@ function ClsActivityDetail() {
 
 
 
-    fakedata1.map(
-        (e, index) => {
-            fakeDataContainerRow1.innerHTML += data2html(e)
-        })
+    // fakedata1.map(
+    //     (e, index) => {
+    //         fakeDataContainerRow1.innerHTML += data2html(e)
+    //     })
     fakedata2.map(
         (e, index) => {
             fakeDataContainerRow2.innerHTML += data2html(e)
