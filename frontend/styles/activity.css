@@ -61,7 +61,19 @@
     margin-bottom: 2rem;
 }
 
+.activity_event2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
+
+
 .activity_event div {
+    width: 23%;
+}
+
+.activity_event2 div {
     width: 23%;
 }
 
