@@ -1,37 +1,3 @@
-// switch sign up & sign in page
-// function ClsSwithchSignInUpPage() {
-//   let isPageInDisplay = true;
-//   let pageIn = document.querySelector("#subPage_signIn");
-//   let pageUp = document.querySelector("#subPage_signUp");
-
-//   this.switch = (e) => {
-//     e.preventDefault()
-//     if (isPageInDisplay) {
-//       pageIn.classList.add("hide");
-//       pageUp.classList.remove("hide");
-//     } else {
-//       pageIn.classList.remove("hide");
-//       pageUp.classList.add("hide");
-//     }
-//     isPageInDisplay = !isPageInDisplay;
-//     console.group("Swithch SignInUp Page");
-
-//     console.log("is PageIn Display:" + isPageInDisplay);
-//     console.groupEnd();
-//   };
-
-//   document
-//     .querySelector("#switch2signUp")
-//     .addEventListener("click", this.switch);
-//   document
-//     .querySelector("#switch2signIn")
-//     .addEventListener("click", this.switch);
-// }
-// const SwithchSignInUpPage = new ClsSwithchSignInUpPage();
-
-
-
-
 //生日時間 ----------------------------------------------------------------
 function ClsSelectBirthday() {
   let output = "";
