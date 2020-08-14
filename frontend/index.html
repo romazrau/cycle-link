@@ -1349,8 +1349,19 @@
                         </div>
                     </div>
                     <div class="eventInfoShareButton">
-                        <button type="button">share<img src="./img/shareIcon.svg" alt="shareicon" width="20"></button>
+                        <button type="button" onclick="document.getElementById('light').style.display='block'; document.getElementById('fade').style.display='block'">share<img src="./img/shareIcon.svg" alt="shareicon" width="20"></button>
                     </div>
+                    <!-- 彈框遮蔽 -->
+                    <!-- 顯示主視窗 -->
+               <div id="light" class="white_content">
+                        <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
+                            關閉</a>
+                        <br><input type="text" id="" value="">
+                    </div>
+                    <div id="fade" class="black_overlay"></div>
+                                <!--end-->
+
+
                 </div>
                 <div class="greyMainBackGround" id="greyMainBackGround">
                     <div class="eventDetail flex-container">

@@ -14,12 +14,12 @@ function ClsActivityDetail() {
 
         let leftPartTop = leftPart.offsetTop;
         // console.log(leftPartTop);
-
+        let navbarTop = document.querySelector('.header').offsetHeight;
 
 
         // 用css
-        if (getWinOffSet >= leftPartTop) {
-            RightPart.style.marginTop = `${getWinOffSet - leftPartTop}px`;
+        if (getWinOffSet >= leftPartTop - navbarTop ) {
+            RightPart.style.marginTop = `${getWinOffSet - leftPartTop + navbarTop}px`;
         }
 
         //TODO 錯誤發生 滾動太快！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！  
@@ -52,6 +52,8 @@ function ClsActivityDetail() {
         };
         var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
     }
+
+    
 
 
 
