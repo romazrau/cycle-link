@@ -60,6 +60,10 @@
 }
 .topPeopleName {
   display: flex;
+  
+}
+.topPeopleName span{
+  margin-left:1rem;
 }
 
 .greyMainBackGround {
