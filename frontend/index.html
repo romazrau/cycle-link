@@ -74,6 +74,43 @@
         </nav>
     </header>
 
+    <!-- * 懸浮icon -->
+    <div class="chat_container">
+        <div class="chat_room_window hide">
+            <img class="chat_window_close" src="./img/icons8-close-window-200.png" alt="X">
+            <div class="chat_window_title">亞古獸</div>
+            <div class="chat_message">
+                <div class="caht_notMe">哈囉~</div>
+                <div class="caht_notMe">你的狗勾好可愛</div>
+                <div class="caht_notMe">可以跟他交朋友嗎 &lt;3</div>
+                <div class="caht_Me">ㄟ都</div>
+                <div class="caht_notMe">謝謝</div>
+            </div>     
+                  
+        </div>
+
+        <div class="chat_list_window hide">
+            <img class="chat_window_close" src="./img/icons8-close-window-200.png" alt="X">
+            <div class="chat_window_title">聊天列表</div>
+            <ul class="chat_list">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+            </ul>      
+        </div>
+
+        <div class="chat_icon_container">
+        <img src="img/talk.png" class="chat_icon_main" alt="聊天">
+        <img id="chat_robot_icon"  src="./img/icons8-broken-robot-100.png" class="chat_icon widthAndHeight2Zero"  alt="客服">
+        <img id="chat_friend_icon"  src="./img/icons8-user-group-100.png" class="chat_icon widthAndHeight2Zero"  alt="我的聯絡人">
+    </div>
+    </div>
+
+
+    <!-- * page -->
     <div class='page_container'>
         <!-- * page命名規則 id= page_...  class= page  hide    ****************      ****************       ****************   -->
         <!-- not fround page -->
@@ -121,25 +158,7 @@
                         <h3>抓寶神器</h3>
                         <p> 不論走路、騎車、開車都能快速抓怪，讓您輕鬆快速晉級，可設定自動領取補給站，可設定自動丟擲。</p>
                         <img src="img/dollar.png" class="home_dollar_imgs" alt=""><span>1,000</span>
-                    </div>
-                    <div class="hoe_marmket_item_buy">
-                        <img src="img/item2.jpg" class="home_market_item_img">
-                        <h3>徵 杯子</h3>
-                        <p>杯是種大多數情況下用來盛載液體的器皿，通常用玻璃、瓷或不鏽鋼製造，在餐廳打包飲料，則常用紙杯或膠杯盛載。 杯多呈圓柱形，上面開口，中空，以供盛物。</p>
-                        <img src="img/dollar.png" class="home_dollar_imgs" alt=""><span>1,000</span>
-                    </div>
-                    <div class="home_market_item_sell">
-                        <img src="img/item3.png" class="home_market_item_img">
-                        <h3>B&O H4</h3>
-                        <p>純粹演繹。優美音質。時尚耳罩式耳機配備 Voice Assistant，可提供長時間的舒適感受和長達 19 小時的播放時間。</p>
-                        <img src="img/dollar.png" class="home_dollar_imgs" alt=""><span>1,000</span>
-                    </div>
-                    <div class="home_market_item_buy">
-                        <img src="img/item4.jpeg" class="home_market_item_img">
-                        <h3>徵 奴才</h3>
-                        <p>在你家裡，很明顯貓才是你的主子。你卻心甘情願的給它鏟屎，買好吃的，隨便它在家裡跑跑跳跳、肆意破壞。只要它開心，願意讓你擼擼毛就好。</p>
-                        <img src="img/dollar.png" class="home_dollar_imgs" alt=""><span>1,000</span>
-                    </div> -->
+                    </div>-->
                 </div>
                 <!---------------------------------- 最新活動消息 ---------------------------------->
                 <div class="home_market_title">
@@ -159,27 +178,7 @@
                                 <div class="home_div_event_text">
                                     <a href="s#">[活動] 潛水撿垃圾，愛海洋！ 於 2020/07/23 13:00 開始</a>
                                 </div>
-                            </div>
-                            <div class="home_div_event_2">
-                                <div class="home_div_event_num" style="margin-bottom: 2px;">
-                                    <p>2</p>
-                                </div>
-                                <div class="home_div_event_text">
-                                    <a href="#">Researcher & Analyst of Fundraising Strategies</a>
-                                </div>
-                            </div>
-                            <div class="home_div_event_2">
-                                <div class="home_div_event_num" style="border-radius: 0px 0px 5px 5px;">
-                                    <p>3</p>
-                                </div>
-                                <div class="home_div_event_text">
-                                    <a href="#">[新聞] 有機咖啡豆，
-                                        減低碳足跡</a>
-                                </div>
-                            </div>
-                            <div class="home_div_event_SA">
-                                <a href="news.html">See ALL</a>
-                            </div> -->
+                            </div>-->
                         </div>
                         <!---------------------------------- 最新活動_影片區 ---------------------------------->
                         <div class="home_div_video">
@@ -228,9 +227,7 @@
                     </div>
                 </div>
                 <!-------------------------------------- 右下聊天機器人 -------------------------------------->
-                <div>
-                    <img src="img/talk.png" class="home_message" alt="">
-                </div>
+                
             </main>
         </div>
 
@@ -253,62 +250,6 @@
                     <div class="box tagbox_opt2"></div>
                     <div class="box tagbox_opt3"></div>
                 </div>
-                <!-- <div id="tag1" class="tag" draggable="true">
-                                    #育嬰用品
-                                </div>
-                                <div id="tag2" class="tag" draggable="true">
-                                    #露營工具
-                                </div>
-                                <div id="tag3" class="tag" draggable="true">
-                                    #玩具
-                                </div>
-                                <div id="tag4" class="tag" draggable="true">
-                                    #女生衣物
-                                </div>
-                                <div id="tag5" class="tag" draggable="true">
-                                    #男性衣物
-                                </div>
-                                <div id="tag6" class="tag" draggable="true">
-                                    #包包
-                                </div> -->
-                <!-- </div> -->
-                <!-- <div class="box tagbox_row2">
-                                <div id="tag7" class="tag" draggable="true">
-                                    #鞋子
-                                </div>
-                                <div id="tag8" class="tag" draggable="true">
-                                    #電器用品
-                                </div>
-                                <div id="tag9" class="tag" draggable="true">
-                                    #回不去了
-                                </div>
-                                <div id="tag10" class="tag" draggable="true">
-                                    #運動用品
-                                </div>
-                                <div id="tag11" class="tag" draggable="true">
-                                    #書籍
-                                </div>
-                            </div>
-                            <div class="box tagbox_row1">
-                                <div id="tag12" class="tag" draggable="true">
-                                    #食物們
-                                </div>
-                                <div id="tag13" class="tag" draggable="true">
-                                    #日常用品
-                                </div>
-                                <div id="tag14" class="tag" draggable="true">
-                                    #繪畫工具
-                                </div>
-                                <div id="tag15" class="tag" draggable="true">
-                                    #美妝用品
-                                </div>
-                                <div id="tag16" class="tag" draggable="true">
-                                    #特殊才藝
-                                </div>
-                                <div id="tag17" class="tag" draggable="true">
-                                    #鐘錶
-                                </div>
-                            </div> -->
                 <button id="btn-go2marketSearch">GO !</button>
             </div>
             <br><br><br>
@@ -349,34 +290,7 @@
             <!-- <div class="dec_div"></div> -->
             <div class="market_pdt_container">
                 <div class="market_pdt_row market_new_row">
-                    <!-- <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                        <img src="img/new_arrival/nv01.PNG" class="pdt_items_img">
-                        <h4>電腦鍵盤</h4>
-                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                        </p>
-                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                    </div>
-                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                        <img src="img/new_arrival/nv02.PNG" class="pdt_items_img">
-                        <h4>吸塵器</h4>
-                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                        </p>
-                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                    </div>
-                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                        <img src="img/new_arrival/nv03.PNG" class="pdt_items_img">
-                        <h4>造型墨鏡</h4>
-                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                        </p>
-                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                    </div>
-                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                        <img src="img/new_arrival/nv04.PNG" class="pdt_items_img">
-                        <h4>女性襯衫</h4>
-                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                        </p>
-                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                    </div>
+                    <!-- 
                     <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
                         <img src="img/new_arrival/nv05.PNG" class="pdt_items_img">
                         <h4>相機鏡頭</h4>
@@ -398,35 +312,7 @@
                         <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
                         </p>
                         <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                    </div>
-                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                        <img src="img/new_arrival/nv02.PNG" class="pdt_items_img">
-                        <h4>吸塵器</h4>
-                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                        </p>
-                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                    </div>
-                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                        <img src="img/new_arrival/nv03.PNG" class="pdt_items_img">
-                        <h4>造型墨鏡</h4>
-                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                        </p>
-                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                    </div>
-                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                        <img src="img/new_arrival/nv04.PNG" class="pdt_items_img">
-                        <h4>女性襯衫</h4>
-                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                        </p>
-                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                    </div>
-                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                        <img src="img/new_arrival/nv05.PNG" class="pdt_items_img">
-                        <h4>相機鏡頭</h4>
-                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                        </p>
-                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                    </div> -->
+                    -->
                 </div>
             </div>
             <!---------- 推薦商品 ---------->
@@ -440,37 +326,8 @@
                         <h4>拳擊手套</h4>
                         <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
                         </p>
-                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                    </div>
-
-                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                        <img src="img/sport_pdt/sport02.PNG" class="pdt_items_img">
-                        <h4>用過的棒球們</h4>
-                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                        </p>
-                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                    </div>
-                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                        <img src="img/sport_pdt/sport03.PNG" class="pdt_items_img">
-                        <h4>假魚魚餌</h4>
-                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                        </p>
-                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                    </div>
-                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                        <img src="img/sport_pdt/sport04.PNG" class="pdt_items_img">
-                        <h4>棒球手套</h4>
-                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                        </p>
-                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                    </div>
-                    <div class="pdt_items col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                        <img src="img/sport_pdt/sport05.PNG" class="pdt_items_img">
-                        <h4>網球拍組合</h4>
-                        <p>使用一年多。棄坑賣出。線材外皮有點破損，但完全不影響使用。無盒，附矽膠防水鍵膜。
-                        </p>
-                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span>
-                    </div> -->
+                        <img src="img/dollar.png" class="dollar_icon"><span>1,000</span></div>
+                   -->
                 </div>
             </div>
             <div>
@@ -513,8 +370,6 @@
                 </div>
             </div>
         </div>
-
-
 
 
         <!-- * news  ****************      ****************       ****************   -->
@@ -675,7 +530,7 @@
         <div id='page_log-in' class='page page_signIn hide'>
             <div class="page_signIn_left">
                 <h1>歡迎回來</h1>
-                <p>一些敘述</p>
+                <p>Cycle - link</p>
             </div>
 
             <div class="page_signIn_right">
@@ -1015,28 +870,7 @@
                         <div class="aside_mktSearch_row" id="aside_mktSearch_tags_container">
                             <!-- <div class="mktSearch_span_row">
                                 <span>#美妝用品</span>
-                                <span>#運動用品</span></div>
-                            <div class="mktSearch_span_row">
-                                <span>#你先拿我OK</span>
-                                <span>#毛小孩最愛</span>
-                                <span>#小朋友長大了</span></div>
-                            <div class="mktSearch_span_row">
-                                <span>#書籍</span>
-                                <span>#3C產品</span></div>
-                            <div class="mktSearch_span_row">
-                                <span>#搬家出清</span>
-                                <span>#生活用品</span></div>
-                            <div class="mktSearch_span_row">
-                                <span>#買到剁手手</span>
-                                <span>#二手家具</span>
-                                <span>#飾品</span></div>
-                            <div class="mktSearch_span_row">
-                                <span>#皮包背包</span>
-                                <span>#家電</span>
-                                <span>#居家必備</span></div>
-                            <div class="mktSearch_span_row">
-                                <span>#過去就讓它過去ㄅ</span>
-                                <span>#手機殼</span></div> -->
+                                <span>#運動用品</span></div>-->
                         </div>
 
                         <h4>商品地點</h4>
@@ -1731,6 +1565,7 @@
     <!-- *內部引用 -->
     <script type="module" src="./src/app.js"></script>
     <script src='./src/router.js'></script>
+    <!-- page -->
     <script src="./src/home.js"></script>
     <script src="./src/market.js"></script>
     <script src="./src/market_search.js"></script>
@@ -1741,6 +1576,9 @@
     <script src="./src/aboutUs.js"></script>
     <script src="./src/activity.js"></script>
     <script src="./src/activity_detail.js"></script>
+    <!-- 其他 -->
+    <script src="./src/chat.js"></script>
+
 </body>
 
 </html>

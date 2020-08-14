@@ -225,12 +225,3 @@
     margin-left: 1rem;
     width: 90%;
 }
-/* ------------- 右下聊天機器人 ------------- */
-.home_message {
-    position: absolute;
-    position: fixed;
-    width: 50px;
-    height: 50px;
-    right: 1rem;
-    bottom: 2rem;
-}
