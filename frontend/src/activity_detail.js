@@ -346,3 +346,14 @@ function ClsActivityDetail() {
 
 }
 const ActivityDetail = new ClsActivityDetail();
+
+function ActivityChangeStatus(){
+    //  if 以登入 執行下列
+    let btn=document.getElementById("rightPartTop_button");
+    btn.disabled=true;
+    btn.style.backgroundColor="#979494";
+    btn.style.color= "#D9AAB7";
+    btn.innerHTML="審核中";
+
+    //else{加入會員}
+}   
