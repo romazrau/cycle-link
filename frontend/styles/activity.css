@@ -127,10 +127,13 @@
 
 .activity_event_history3 {
     display: flex;
+    justify-content: space-around;
 }
 
 .activity_event_icon_right {
     width: 2rem;
+    max-height:2rem ;
+   margin-top: 5rem;
 }
 
 /* ------------- footer ------------- */
