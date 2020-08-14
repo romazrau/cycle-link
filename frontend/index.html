@@ -145,7 +145,7 @@
                 <div class="home_market_title">
                     <div class="home_market_title_2">
                         <img src="img/like.png" class="home_title_imgs" alt="">
-                        <h3>最新活動消息＆新聞資訊</h3>
+                        <h3>最新活動消息</h3>
                     </div>
                 </div>
                 <div class="home_div_all">
@@ -1349,18 +1349,7 @@
                         </div>
                     </div>
 
-                    <div class="eventInfoShareButton">
-                        <button type="button" onclick="document.getElementById('light').style.display='block'; document.getElementById('fade').style.display='block'">share<img src="./img/shareIcon.svg" alt="shareicon" width="20"></button>
-                    </div>
-                    <!-- 彈框遮蔽 -->
-                    <!-- 顯示主視窗 -->
-               <div id="light" class="white_content">
-                        <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
-                            關閉</a>
-                        <br><input type="text" id="" value="">
-                    </div>
-                    <div id="fade" class="black_overlay"></div>
-                                <!--end-->
+                   
 
 
 
@@ -1618,7 +1607,7 @@
                                 <button class="rightPartTop_button" type="button">我要參加</button><img class="loveicon" src="./img/loveicon.svg"
                                     alt="loveicon">
                                     <!-- <div class="eventInfoShareButton"> -->
-                                        <button class="eventInfoShareButton" type="button" >share</button>
+                                        <button class="eventInfoShareButton" type="button" onclick="document.getElementById('light').style.display='block'; document.getElementById('fade').style.display='block'" >share</button>
                                     <!-- </div> -->
                             </div>
                             
@@ -1636,6 +1625,15 @@
                             </div>
                         </div>
                         <!-- rightPart end -->
+                    
+                        <!-- 顯示主視窗 -->
+                   <div id="light" class="white_content">
+                            <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
+                                X</a>
+                            <br><input type="text" id="" value="">
+                        </div>
+                        <div id="fade" class="black_overlay"></div>
+                                    <!--end-->
 
 
                     </div>

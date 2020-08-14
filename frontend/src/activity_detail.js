@@ -1,7 +1,9 @@
 //用class包起來
 
 function ClsActivityDetail() {
-    // 有binding到  
+
+    
+    //Right Part fix
     function getRightPartInSync() {
 
         let getWinOffSet = window.pageYOffset;
@@ -9,21 +11,16 @@ function ClsActivityDetail() {
         let RightPart = document.getElementById("rightPart");
         let leftPart = document.querySelector('.leftPart');
         //  有抓到element
-
         //  console.log(typeof(getWinOffSet));
-
         let leftPartTop = leftPart.offsetTop;
         // console.log(leftPartTop);
         let navbarTop = document.querySelector('.header').offsetHeight;
-
 
         // 用css
         if (getWinOffSet >= leftPartTop - navbarTop ) {
             RightPart.style.marginTop = `${getWinOffSet - leftPartTop + navbarTop}px`;
         }
-
-        //TODO 錯誤發生 滾動太快！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！  
-
+      
     }
 
     //正常寫法
