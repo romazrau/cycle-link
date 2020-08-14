@@ -166,7 +166,7 @@
   margin: 10px;
 }
 .leftPart p {
-  width: 700px;
+  
   font-size: 18px;
   font-family: "Noto Sans TC";
   margin-left: 50px;
@@ -183,6 +183,11 @@
   /* margin-left: 50px; */
   margin-top: 50px;
 }
+.eventDetailP{
+
+  width: 100%;
+}
+
 
 
 
