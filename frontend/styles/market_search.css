@@ -1,11 +1,11 @@
 .container_market_search_page{
-    background-color: var(--pink-color);
+    background-color: var(--lightgrey-color);
     width: 100%;
     height:230rem;
     padding: 10px 10rem;
 }
 
-.mrkSearch_top_search{
+.mktSearch_top_search_bar{
     background-color: var(--blue-color);
     border-radius: 1rem;
     width: 80rem;
@@ -13,13 +13,13 @@
     margin: 40px auto;
 }
 
-.mrkSearch_search_icon{
+.mktSearch_search_icon{
     line-height: 40px;
     margin:  25px;
     color: var(--white-color);
 }
 
-.mrkSearch_container_main {
+.mktSearch_container_main {
     max-width: 100%;
     width: 100%;
     height: 100vh;
@@ -34,88 +34,106 @@
 }
 
 .aside_market_search_page h3{
-    border-bottom: 1px solid var(--pink-color);
-    margin: 30px;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
 }
 
 .aside_market_search_page h4{
-    border: 1px solid var(--pink-color);
+    background-color: var(--pink-color);
     border-radius: 5px;
-    /* width: 75px; */
     padding: 5px;
     text-align: center;
 }
-.mrkSearch_span_row{
+
+.aside_mktSearch_row{
+    margin-bottom: 3rem;
+}
+
+.mktSearch_tag_row{
     margin-bottom: 10px;
 }
-.mrkSearch_span_row span {
+.mktSearch_tag_row span {
     background-color: var(--lightgrey-color);
     border-radius: 5px;
 }
+.mktSearch_location_bar{
+    border: 2px solid var(--grey-color);
+    border-radius: 1rem;
+    height: 45px;
+    padding: 10px;
+}
 
-.mrkSearch_container_waterfall {
+#mktSearch_location{
+    border: none;
+}
+
+#mktSearch_location:active{
+    border: 0px solid transparent;
+}
+
+.mktSearch_container_waterfall {
     display: flex;
     width: 80%;
     margin-left: 2rem;
 }
 
-.mrkSearch_waterfall {
+.mktSearch_waterfall {
     flex-shrink: 1;
     width: 25%;
     height: 2050px;
     margin: 0px;
 }
 
-.mrkSearch_waterfall li {
+.mktSearch_waterfall li {
     background-color: white;
     padding: 20px;
     margin-bottom: 20px;
     
 }
 
-.mrkSearch_img_div{
+.mktSearch_img_div{
     width: 100%;
     overflow: hidden;
 }
-.mrkSearch_img_div img{
+.mktSearch_img_div img{
     transform:scale(1,1);
     transition: all 1s ease-out;
 }
-.mrkSearch_img_div img:hover{
+.mktSearch_img_div img:hover{
     transform:scale(1.2,1.2);
 }
 
-.mrkSearch_li {
+.mktSearch_li {
     list-style-type: none;
 }
 
-.mrkSearch_dollar_icon{
+.mktSearch_dollar_icon{
     width:20px;
     height:20px;
 }
 
-.mrkSearch_page_container{
+.mktSearch_page_container{
     background-color: var(--pink-color);
     text-align: center;
 }
-.mrkSearch_pagination {
+.mktSearch_pagination {
     display: inline-block;
     padding: 0;
     margin: 0;
 }
 
-.mrkSearch_pagination li {
+.mktSearch_pagination li {
     display: inline;
 }
 
-.mrkSearch_pagination li a {
+.mktSearch_pagination li a {
     color: black;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
 }
 
-.mrkSearch_message {
+.mktSearch_message {
     position: absolute;
     position: fixed;
     width: 50px;
