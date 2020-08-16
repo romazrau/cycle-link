@@ -22,10 +22,11 @@
 
 <body>
     <header>
-        <nav  id="navbar_main" class='header'>
+        <nav id="navbar_main" class='header'>
             <a class='header_title' href="">
                 <img src="./img/ 海龜gogoGIF.gif" alt='海龜' />
             </a>
+
 
             <div class="div_dropdownmenu">
                 <ul>
@@ -47,7 +48,7 @@
                     <li id="navbar_news" class="li_menutitle header_nav">
                         <a href="#news" class="nav-underline">News<br>新聞</a>
                     </li>
-  
+
 
                     <li id="navbar_about-us" class="li_menutitle header_nav "><a href="#about-us"
                             class="nav-underline">About Us<br>關於我們</a>
@@ -230,6 +231,16 @@
 
         <!-- * activity  ****************      ****************       ****************   -->
         <div id="page_activity" class="page hide">
+            <div id="activity_navbar" class="page_navbar">
+                <div class="container page_navbar_row">
+
+                    <div>CC</div>
+
+                    <div>
+                        <button class="page_navbar_btn">創建活動</button>
+                    </div>
+                </div>
+            </div>
             <!---------------------------------- 主要活動顯示 ---------------------------------->
             <div class="activity_top">
                 <img src="img/2.jpg">
@@ -241,63 +252,64 @@
                     </div>
 
                     <div class="active_advance_row">
-                    <div id="activity_advence_show" >進階搜尋<div class="activity_advence_t">▼</div></div>
+                        <div id="activity_advence_show">進階搜尋<div class="activity_advence_t">▼</div>
+                        </div>
 
-                </div>
+                    </div>
 
                     <div class="activity_advence_search_container hide">
 
                         <div class="active_advance_search">
                             <div class="active_advance_search_tile">舉辦縣市:</div>
-                            <div id="active_advance_search_city" >
+                            <div id="active_advance_search_city">
                                 <!-- <div class='activity_search_city'>
                                     <input type="checkbox"  name="city" value="">
                                     <span>台北市</span>
                                 </div> -->
                             </div>
                         </div>
-                        
+
                         <div class="active_advance_row">
-                        <div class="active_advance_search">
-                            <div class="active_advance_search_tile">時間範圍:</div>
-                            <div class="active_advance_dateRange">
-                                <select name="dateStart" size="1">
-                                    <option value="2020">2020/10/09</option>
-                                </select>
-    
-                                <span>起，至</span>
-    
-                                <select name="dateEnd" size="1">
-                                    <option value="2020">2020/10/09</option>
-                                </select>
-                                <span>止</span>
-    
-                                </select>
+                            <div class="active_advance_search">
+                                <div class="active_advance_search_tile">時間範圍:</div>
+                                <div class="active_advance_dateRange">
+                                    <select name="dateStart" size="1">
+                                        <option value="2020">2020/10/09</option>
+                                    </select>
+
+                                    <span>起，至</span>
+
+                                    <select name="dateEnd" size="1">
+                                        <option value="2020">2020/10/09</option>
+                                    </select>
+                                    <span>止</span>
+
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        </div>
-    
-    
+
+
                         <div class="active_advance_row">
                             <div class="active_advance_search">
                                 <div class="active_advance_search_tile">忽略額滿活動</div>
-                                <input type="checkbox"  name=""" value="">
+                                <input type="checkbox" name=""" value="">
                             </div>
     
-                            <div class="active_advance_search">
+                            <div class=" active_advance_search">
                                 <div class="active_advance_search_tile">忽略已舉辦活動</div>
-                                <input type="checkbox"  name="" value="">
+                                <input type="checkbox" name="" value="">
                             </div>
-        
+
 
 
                         </div>
-                       
+
                     </div>
 
                 </div>
 
-            <button>GO</button>
+                <button>GO</button>
             </div>
             <!-------------------------------------- main -------------------------------------->
             <main class="activity_main ">
@@ -324,11 +336,24 @@
                 </div>
             </div>
         </div>
-        
-        
-        
+
+
+
         <!-- * Community  ****************      ****************       ****************   -->
         <div id="page_community" class="page hide">
+            <div id="community_navbar" class="page_navbar">
+                <div class="container page_navbar_row">
+
+                    <div>CC</div>
+
+                    <div>
+                        <button class="page_navbar_btn">創建社團</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div style="height: 200vh;"></div>
         </div>
 
 
@@ -1311,6 +1336,7 @@
     <script src="./src/aboutUs.js"></script>
     <script src="./src/activity.js"></script>
     <script src="./src/activity_detail.js"></script>
+    <script src="./src/community.js"></script>
     <!-- 其他 -->
     <script src="./src/navbar.js"></script>
     <script src="./src/chat.js"></script>

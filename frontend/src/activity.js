@@ -1,5 +1,25 @@
 function ClsActivity() {
 
+    // *second nav bar
+    let pageY = window.pageYOffset;
+    const activityNavbar = document.querySelector("#activity_navbar");
+    window.addEventListener(
+        'scroll',
+        () => {
+            if (window.pageYOffset - pageY > 0) {
+                activityNavbar.classList.remove("transYsWidthTo0Bottom");
+            } else {
+                activityNavbar.classList.add("transYsWidthTo0Bottom");
+
+            }
+
+            pageY = window.pageYOffset;
+        }
+    );
+
+
+
+
     const htmlActSearch = (o) => {
         return ` 
         <option value="clearsea">${o.tag}</option>`;
@@ -8,14 +28,14 @@ function ClsActivity() {
 
 
     let ActSearchData = [{
-            tag: "淨海"
-        },
-        {
-            tag: "淨山"
-        },
-        {
-            tag: "路跑"
-        },
+        tag: "淨海"
+    },
+    {
+        tag: "淨山"
+    },
+    {
+        tag: "路跑"
+    },
     ]
 
     ActSearchData.map(
@@ -29,7 +49,7 @@ function ClsActivity() {
     //show
     document.querySelector("#activity_advence_show").addEventListener(
         "click",
-        ()=>{
+        () => {
             document.querySelector(".activity_advence_search_container").classList.toggle("hide");
             document.querySelector(".activity_advence_t").classList.toggle("upside_down")
         }
@@ -51,9 +71,9 @@ function ClsActivity() {
         "澎湖縣",
         "連江縣",
         "金門縣"
-    ]  
+    ]
 
-    const data2CityCheckbox = array =>{
+    const data2CityCheckbox = array => {
         let result = ""
         array.map((e) => {
             result += `<div class='activity_search_city'><input type="checkbox"  name="city" value="${e}">
@@ -89,38 +109,38 @@ function ClsActivity() {
 
     //AJAX
     let ActCardData = [{
-            imgPath: "img/event1.jpeg",
-            date: "Sunday, July 30,2020,10:30",
-            title: "潛水撿垃圾，愛海洋！",
-            count: 999,
-            member:"彌勒佛",
-            local:"烏石港"
-        },
-        {
-            imgPath: "img/event1.jpeg",
-            date: "Sunday, July 30,2020,10:30",
-            title: "潛水撿垃圾，愛海洋！",
-            count: 999,
-            member:"彌勒佛",
-            local:"烏石港"
-        },
-        {
-            imgPath: "img/event1.jpeg",
-            date: "Sunday, July 30,2020,10:30",
-            title: "潛水撿垃圾，愛海洋！",
-            count: 999,
-            member:"彌勒佛",
-            local:"烏石港"
-        },
-        {
-            imgPath: "img/event1.jpeg",
-            date: "Sunday, July 30,2020,10:30",
-            title: "潛水撿垃圾，愛海洋！",
-            count: 999,
-            member:"彌勒佛",
-            local:"烏石港"
-        }
-       
+        imgPath: "img/event1.jpeg",
+        date: "Sunday, July 30,2020,10:30",
+        title: "潛水撿垃圾，愛海洋！",
+        count: 999,
+        member: "彌勒佛",
+        local: "烏石港"
+    },
+    {
+        imgPath: "img/event1.jpeg",
+        date: "Sunday, July 30,2020,10:30",
+        title: "潛水撿垃圾，愛海洋！",
+        count: 999,
+        member: "彌勒佛",
+        local: "烏石港"
+    },
+    {
+        imgPath: "img/event1.jpeg",
+        date: "Sunday, July 30,2020,10:30",
+        title: "潛水撿垃圾，愛海洋！",
+        count: 999,
+        member: "彌勒佛",
+        local: "烏石港"
+    },
+    {
+        imgPath: "img/event1.jpeg",
+        date: "Sunday, July 30,2020,10:30",
+        title: "潛水撿垃圾，愛海洋！",
+        count: 999,
+        member: "彌勒佛",
+        local: "烏石港"
+    }
+
     ]
 
 
@@ -129,12 +149,12 @@ function ClsActivity() {
             ActCard.innerHTML += htmlActCard(e);
         }
     )
-    
 
-//------------------------------------------------------
 
-const htmlActCard2 = (o) => {
-    return ` 
+    //------------------------------------------------------
+
+    const htmlActCard2 = (o) => {
+        return ` 
 <div id="ActCard2">
 <img src="${o.imgPath}" class="activity_event_img" alt="">
 <p>${o.date}</p>
@@ -142,54 +162,54 @@ const htmlActCard2 = (o) => {
 <img src="img/icon1.svg" class="activity_icon" alt=""><span>${o.count}</span>
 </div>`;
 
-}
-
-const ActCard2 = document.querySelector(".activity_event2");
-
-//AJAX
-let ActCardData2 = [{
-    imgPath: "img/event1.jpeg",
-    date: "Sunday, July 30,2020,10:30",
-    title: "潛水撿垃圾，愛海洋！",
-    count: 999,
-    member:"彌勒佛",
-    local:"烏石港"
-},
-{
-    imgPath: "img/event1.jpeg",
-    date: "Sunday, July 30,2020,10:30",
-    title: "潛水撿垃圾，愛海洋！",
-    count: 999,
-    member:"彌勒佛",
-    local:"烏石港"
-},
-{
-    imgPath: "img/event1.jpeg",
-    date: "Sunday, July 30,2020,10:30",
-    title: "潛水撿垃圾，愛海洋！",
-    count: 999,
-    member:"彌勒佛",
-    local:"烏石港"
-},
-{
-    imgPath: "img/event1.jpeg",
-    date: "Sunday, July 30,2020,10:30",
-    title: "潛水撿垃圾，愛海洋！",
-    count: 999,
-    member:"彌勒佛",
-    local:"烏石港"
-}
-
-]
-
-
-ActCardData2.map(
-    (e, index) => {
-        ActCard2.innerHTML += htmlActCard(e);
     }
-)
 
-//------------------------------------------------------
+    const ActCard2 = document.querySelector(".activity_event2");
+
+    //AJAX
+    let ActCardData2 = [{
+        imgPath: "img/event1.jpeg",
+        date: "Sunday, July 30,2020,10:30",
+        title: "潛水撿垃圾，愛海洋！",
+        count: 999,
+        member: "彌勒佛",
+        local: "烏石港"
+    },
+    {
+        imgPath: "img/event1.jpeg",
+        date: "Sunday, July 30,2020,10:30",
+        title: "潛水撿垃圾，愛海洋！",
+        count: 999,
+        member: "彌勒佛",
+        local: "烏石港"
+    },
+    {
+        imgPath: "img/event1.jpeg",
+        date: "Sunday, July 30,2020,10:30",
+        title: "潛水撿垃圾，愛海洋！",
+        count: 999,
+        member: "彌勒佛",
+        local: "烏石港"
+    },
+    {
+        imgPath: "img/event1.jpeg",
+        date: "Sunday, July 30,2020,10:30",
+        title: "潛水撿垃圾，愛海洋！",
+        count: 999,
+        member: "彌勒佛",
+        local: "烏石港"
+    }
+
+    ]
+
+
+    ActCardData2.map(
+        (e, index) => {
+            ActCard2.innerHTML += htmlActCard(e);
+        }
+    )
+
+    //------------------------------------------------------
 
 
     const htmlHisAct = (o) => {
@@ -211,32 +231,32 @@ ActCardData2.map(
         date: "Sunday, July 30,2020,10:30",
         title: "潛水撿垃圾，愛海洋！",
         count: 999,
-        member:"彌勒佛",
-        local:"烏石港"
+        member: "彌勒佛",
+        local: "烏石港"
     },
     {
         imgPath: "img/event1.jpeg",
         date: "Sunday, July 30,2020,10:30",
         title: "潛水撿垃圾，愛海洋！",
         count: 999,
-        member:"彌勒佛",
-        local:"烏石港"
+        member: "彌勒佛",
+        local: "烏石港"
     },
     {
         imgPath: "img/event1.jpeg",
         date: "Sunday, July 30,2020,10:30",
         title: "潛水撿垃圾，愛海洋！",
         count: 999,
-        member:"彌勒佛",
-        local:"烏石港"
+        member: "彌勒佛",
+        local: "烏石港"
     },
     {
         imgPath: "img/event1.jpeg",
         date: "Sunday, July 30,2020,10:30",
         title: "潛水撿垃圾，愛海洋！",
         count: 999,
-        member:"彌勒佛",
-        local:"烏石港"
+        member: "彌勒佛",
+        local: "烏石港"
     }
     ]
 
