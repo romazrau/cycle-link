@@ -35,6 +35,12 @@
     height: 0rem;
 }
 
+.transYsWidthTo0{
+    transform-origin: top left;
+    transform:translateY(-5rem) scaleY(0);
+}
+
+
 
 .upside_down{
     transform: rotate(-180deg);

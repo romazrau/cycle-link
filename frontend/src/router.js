@@ -50,6 +50,10 @@ function ClsRouter() {
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
 
+                case "community":
+                    document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
+                    break;
+
                 case "news":
                     if (hashSplitArray[1] == "detail") {  //開啟新聞文章頁面
                         document.querySelector('#page_news-detail').classList.remove("hide");
@@ -59,9 +63,6 @@ function ClsRouter() {
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
 
-                // case "st-coin":
-                //     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
-                //     break;
 
                 case "about-us":
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
@@ -85,7 +86,7 @@ function ClsRouter() {
             }
 
             changeNavbarFocusByHash(hashTitle);  //改變navbar focus狀態 
-            window.scrollTo(0,0);
+            window.scrollTo(0, 0);
 
         } catch (e) {
             console.error("changePageByHash錯誤:", e.name, e.message);
