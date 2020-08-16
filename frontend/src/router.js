@@ -39,14 +39,6 @@ function ClsRouter() {
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
 
-                case "second-hand":
-                    if (hashSplitArray[1] == "search") {   //開啟搜尋頁面
-                        document.querySelector(`#page_market-search`).classList.remove("hide");
-                        break;
-                    }
-
-                    document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
-                    break;
 
                 case "activity":
                     if (hashSplitArray[1] == "detail") {  //開啟活動頁面
