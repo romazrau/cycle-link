@@ -76,37 +76,35 @@
 
     <!-- * 懸浮icon -->
     <div class="chat_container">
-        <div class="chat_room_window hide">
-            <img class="chat_window_close" src="./img/icons8-close-window-200.png" alt="X">
-            <div class="chat_window_title">亞古獸</div>
-            <div class="chat_message">
-                <div class="caht_notMe">哈囉~</div>
-                <div class="caht_notMe">你的狗勾好可愛</div>
-                <div class="caht_notMe">可以跟他交朋友嗎 &lt;3</div>
-                <div class="caht_Me">ㄟ都</div>
-                <div class="caht_notMe">謝謝</div>
-            </div>     
-                  
-        </div>
-
-        <div class="chat_list_window hide">
-            <img class="chat_window_close" src="./img/icons8-close-window-200.png" alt="X">
-            <div class="chat_window_title">聊天列表</div>
-            <ul class="chat_list">
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>5</li>
-                <li>6</li>
-            </ul>      
-        </div>
 
         <div class="chat_icon_container">
-        <img src="img/talk.png" class="chat_icon_main" alt="聊天">
-        <img id="chat_robot_icon"  src="./img/icons8-broken-robot-100.png" class="chat_icon widthAndHeight2Zero"  alt="客服">
-        <img id="chat_friend_icon"  src="./img/icons8-user-group-100.png" class="chat_icon widthAndHeight2Zero"  alt="我的聯絡人">
-    </div>
+            <img src="img/talk.png" class="chat_icon_main" alt="聊天">
+            <img id="chat_robot_icon" src="./img/icons8-broken-robot-100.png" class="chat_icon widthAndHeight2Zero"
+                alt="客服">
+            <img id="chat_friend_icon" src="./img/icons8-user-group-100.png" class="chat_icon widthAndHeight2Zero"
+                alt="我的聯絡人">
+        </div>
+
+
+        <!-- 聊天機器人 -->
+        <div class="chat_robot_room_window hide">
+            <img id="chat_robot_window_close" class="chat_window_close" src="./img/icons8-close-window-200.png" alt="X">
+            <div id="chat_message_window_title" class="chat_window_title">聊天機器人</div>
+            <div id="chat_robot_message" class="chat_message">
+                訊息
+            </div>
+        </div>
+
+
+        <div class="chat_list_window hide">
+            <img id="chat_list_window_close" class="chat_window_close" src="./img/icons8-close-window-200.png" alt="X">
+            <div class="chat_window_title">聊天列表</div>
+            <ul class="chat_list">
+                <!-- 列表 -->
+            </ul>
+        </div>
+
+
     </div>
 
 
@@ -227,7 +225,7 @@
                     </div>
                 </div>
                 <!-------------------------------------- 右下聊天機器人 -------------------------------------->
-                
+
             </main>
         </div>
 
@@ -1184,7 +1182,7 @@
                         </div>
                     </div>
 
-                   
+
 
 
 
@@ -1200,37 +1198,37 @@
                                 <button type="button">#小海龜</button>
                             </div>
                             <div class="eventDetailP">
-                            <p>面對日益嚴重的海岸垃圾問題，做而言不如起而行，
-                                行動才是解決問題的關鍵，讓我們親自動手來清潔這塊美麗的家園吧!
+                                <p>面對日益嚴重的海岸垃圾問題，做而言不如起而行，
+                                    行動才是解決問題的關鍵，讓我們親自動手來清潔這塊美麗的家園吧!
 
-                                淨灘活動，其實不單純只是到海邊打掃沙灘、撿撿垃圾的勞動服務；
-                                藉由事前的淨灘報告，來說明活動的安全事項，並正確辨識什麼是該撿的垃圾，
-                                讓大家知道淨灘背後，也是有許多需要注意眉眉角角，
+                                    淨灘活動，其實不單純只是到海邊打掃沙灘、撿撿垃圾的勞動服務；
+                                    藉由事前的淨灘報告，來說明活動的安全事項，並正確辨識什麼是該撿的垃圾，
+                                    讓大家知道淨灘背後，也是有許多需要注意眉眉角角，
 
-                                透過剖析 ICC 國際淨灘紀錄表，來看見臺灣海岸淨灘活動，
-                                所記錄下的每一個海邊垃圾種類及數量統計，了解到底都是哪些垃圾在污染海洋，
-                                而我們又該怎麼來改變生活習慣，減少這些垃圾的產生。
-                                ​
+                                    透過剖析 ICC 國際淨灘紀錄表，來看見臺灣海岸淨灘活動，
+                                    所記錄下的每一個海邊垃圾種類及數量統計，了解到底都是哪些垃圾在污染海洋，
+                                    而我們又該怎麼來改變生活習慣，減少這些垃圾的產生。
+                                    ​
 
-                                若除了淨灘，您還有更多的時間，海湧工作室也會帶領大家進行海廢藝術創作，
-                                透過創作來翻轉大家對於垃圾的印象很多廢棄物只要留心留意，都能夠變成有用的物品！！
-                                ​
-                                跟著海湧一起淨灘，與大自然有最近距離的接觸，帶著課程中所學習的內容，活出更加環保的減塑健康生活，不只是為了環境，也為了自己，讓我們一同創造一段愛地球之旅吧！
+                                    若除了淨灘，您還有更多的時間，海湧工作室也會帶領大家進行海廢藝術創作，
+                                    透過創作來翻轉大家對於垃圾的印象很多廢棄物只要留心留意，都能夠變成有用的物品！！
+                                    ​
+                                    跟著海湧一起淨灘，與大自然有最近距離的接觸，帶著課程中所學習的內容，活出更加環保的減塑健康生活，不只是為了環境，也為了自己，讓我們一同創造一段愛地球之旅吧！
 
-                                淨灘活動說明：
-                                一套完整的淨灘活動，包含車程與事前解說，時間長度建議約為 3~4 個小時。
-                                在淨灘活動開始前，會先進行事前解說，透過此解說不僅會讓每位參加者了解淨灘活動中，該注意到的細節與安全事項外，也會引導大家認知到，我們日常生活對於環境的影響，讓保護環境這件事，不會因為淨灘活動結束而停止，讓參與者把友善環境的理念化為行動，延續到日常生活中開始實踐。
-                                ​
-                                淨灘活動包含：
-                                淨灘整體活動企劃、活動後垃圾清運處理、清潔隊聯絡、淨灘行前講座、淨灘相關器材、活動保險、交通安排建議、擴音設備等。
-                            </p>
+                                    淨灘活動說明：
+                                    一套完整的淨灘活動，包含車程與事前解說，時間長度建議約為 3~4 個小時。
+                                    在淨灘活動開始前，會先進行事前解說，透過此解說不僅會讓每位參加者了解淨灘活動中，該注意到的細節與安全事項外，也會引導大家認知到，我們日常生活對於環境的影響，讓保護環境這件事，不會因為淨灘活動結束而停止，讓參與者把友善環境的理念化為行動，延續到日常生活中開始實踐。
+                                    ​
+                                    淨灘活動包含：
+                                    淨灘整體活動企劃、活動後垃圾清運處理、清潔隊聯絡、淨灘行前講座、淨灘相關器材、活動保險、交通安排建議、擴音設備等。
+                                </p>
                             </div>
 
                             <div class="eventParticipateText flex-container">
 
                                 <div>活動參與者</div>
                                 <div>（2)</div>
-                                
+
                             </div>
 
 
@@ -1255,7 +1253,7 @@
                                     </div>
                                     <div class="eventParticipate flex-container">
                                         <div>蘇菲唐納</div>
-                                        
+
                                         <img src="./img/tick.svg" alt="tickIcon" width="20px">
                                     </div>
                                     <div class="eventLauncher">發起人</div>
@@ -1267,7 +1265,7 @@
                                     </div>
                                     <div class="eventParticipate flex-container">
                                         <div>蘇菲唐納</div>
-                                        
+
                                         <img src="./img/tick.svg" alt="tickIcon" width="20px">
                                     </div>
                                     <div class="eventLauncher">發起人</div>
@@ -1279,13 +1277,13 @@
                                     </div>
                                     <div class="eventParticipate flex-container">
                                         <div>蘇菲唐納</div>
-                                        
+
                                         <img src="./img/tick.svg" alt="tickIcon" width="20px">
                                     </div>
                                     <div class="eventLauncher">發起人</div>
                                 </div>
 
-                               
+
 
                             </div>
                             <div class="eventParticipatePersonCard flex-container">
@@ -1296,7 +1294,7 @@
                                     </div>
                                     <div class="eventParticipate flex-container">
                                         <div>蘇菲唐納</div>
-                                        
+
                                         <img src="./img/tick.svg" alt="tickIcon" width="20px">
                                     </div>
                                     <div class="eventLauncher">發起人</div>
@@ -1308,7 +1306,7 @@
                                     </div>
                                     <div class="eventParticipate flex-container">
                                         <div>蘇菲唐納</div>
-                                        
+
                                         <img src="./img/tick.svg" alt="tickIcon" width="20px">
                                     </div>
                                     <div class="eventLauncher">發起人</div>
@@ -1320,7 +1318,7 @@
                                     </div>
                                     <div class="eventParticipate flex-container">
                                         <div>蘇菲唐納</div>
-                                        
+
                                         <img src="./img/tick.svg" alt="tickIcon" width="20px">
                                     </div>
                                     <div class="eventLauncher">發起人</div>
@@ -1332,13 +1330,13 @@
                                     </div>
                                     <div class="eventParticipate flex-container">
                                         <div>蘇菲唐納</div>
-                                        
+
                                         <img src="./img/tick.svg" alt="tickIcon" width="20px">
                                     </div>
                                     <div class="eventLauncher">發起人</div>
                                 </div>
 
-                               
+
 
                             </div>
 
@@ -1440,13 +1438,15 @@
                         <!-- Right part -->
                         <div class="rightPart" id="rightPart">
                             <div class="rightPartTop">
-                                <button class="rightPartTop_button" onclick="ActivityChangeStatus()" type="button">我要參加</button><img class="loveicon" src="./img/loveicon.svg"
+                                <button class="rightPartTop_button" onclick="ActivityChangeStatus()"
+                                    type="button">我要參加</button><img class="loveicon" src="./img/loveicon.svg"
                                     alt="loveicon">
-                                    <!-- <div class="eventInfoShareButton"> -->
-                                        <button class="eventInfoShareButton" type="button" onclick="document.getElementById('light').style.display='block'; document.getElementById('fade').style.display='block'" >share</button>
-                                    <!-- </div> -->
+                                <!-- <div class="eventInfoShareButton"> -->
+                                <button class="eventInfoShareButton" type="button"
+                                    onclick="document.getElementById('light').style.display='block'; document.getElementById('fade').style.display='block'">share</button>
+                                <!-- </div> -->
                             </div>
-                            
+
                             <div class="rightPartCard">
                                 <div class="rightPartCardTime">
                                     <img src="./img/clock.svg" alt="clockicon" width="25px">
@@ -1461,15 +1461,16 @@
                             </div>
                         </div>
                         <!-- rightPart end -->
-                    
+
                         <!-- 顯示主視窗 -->
-                   <div id="light" class="white_content">
-                            <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
+                        <div id="light" class="white_content">
+                            <a href="javascript:void(0)"
+                                onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
                                 X</a>
                             <br><input type="text" id="" value="">
                         </div>
                         <div id="fade" class="black_overlay"></div>
-                                    <!--end-->
+                        <!--end-->
 
 
                     </div>
