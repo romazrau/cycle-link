@@ -25,6 +25,53 @@ function ClsActivity() {
     )
 
 
+    //*進階搜尋區 ---------------------------------------------------------
+    //show
+    document.querySelector("#activity_advence_show").addEventListener(
+        "click",
+        ()=>{
+            document.querySelector(".activity_advence_search_container").classList.toggle("hide");
+            document.querySelector(".activity_advence_t").classList.toggle("upside_down")
+        }
+    );
+
+
+    //日期
+
+
+
+    //舉辦縣市
+    const activityCityData = [
+        "台北市",
+        "新北市",
+        "桃園市",
+        "台中市",
+        "台南市",
+        "高雄市",
+        "澎湖縣",
+        "連江縣",
+        "金門縣"
+    ]  
+
+    const data2CityCheckbox = array =>{
+        let result = ""
+        array.map((e) => {
+            result += `<div class='activity_search_city'><input type="checkbox"  name="city" value="${e}">
+                       <span>${e}</span></div>`
+        })
+        return result;
+    }
+
+
+    //顯示進階搜尋
+    document.querySelector('#active_advance_search_city').innerHTML = data2CityCheckbox(activityCityData);
+
+
+
+
+
+
+
     const htmlActCard = (o) => {
         return ` 
     <div id="ActCard">

@@ -31,6 +31,19 @@
     margin-top: 4.8rem;
 }
 
+
+.widthAndHeight2Zero{
+    width: 0rem;
+    height: 0rem;
+}
+
+
+.upside_down{
+    transform: rotate(-180deg);
+}
+
+
+
 .hide{
     display:   none;
 }
@@ -39,6 +52,10 @@
 .focus{
     background-color: rgba(0, 0, 0, 0.1);  /* 遮罩 */
 }
+
+
+
+
 
 
 
