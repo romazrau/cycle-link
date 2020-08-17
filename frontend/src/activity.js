@@ -113,32 +113,32 @@ function ClsActivity() {
         date: "Sunday, July 30,2020,10:30",
         title: "潛水撿垃圾，愛海洋！",
         count: 999,
-        member: "彌勒佛",
-        local: "烏石港"
+        member: "林志引",
+        local: "福隆"
     },
     {
-        imgPath: "img/event1.jpeg",
-        date: "Sunday, July 30,2020,10:30",
-        title: "潛水撿垃圾，愛海洋！",
-        count: 999,
-        member: "彌勒佛",
-        local: "烏石港"
+        imgPath: "img/event2.jpg",
+        date: "Sunday, June 20,2010,08:30",
+        title: "螢光夜跑",
+        count: 100,
+        member: "王曉明",
+        local: "新北大道"
     },
     {
-        imgPath: "img/event1.jpeg",
+        imgPath: "img/event3.jpg",
         date: "Sunday, July 30,2020,10:30",
         title: "潛水撿垃圾，愛海洋！",
-        count: 999,
-        member: "彌勒佛",
-        local: "烏石港"
+        count: 99,
+        member: "洲仔於",
+        local: "布袋漁港"
     },
     {
-        imgPath: "img/event1.jpeg",
+        imgPath: "img/event4.jpg",
         date: "Sunday, July 30,2020,10:30",
-        title: "潛水撿垃圾，愛海洋！",
-        count: 999,
-        member: "彌勒佛",
-        local: "烏石港"
+        title: "飢餓三十！",
+        count: 500,
+        member: "時間管理大師",
+        local: "桃園"
     }
 
     ]
@@ -231,32 +231,32 @@ function ClsActivity() {
         date: "Sunday, July 30,2020,10:30",
         title: "潛水撿垃圾，愛海洋！",
         count: 999,
-        member: "彌勒佛",
-        local: "烏石港"
+        member: "林志引",
+        local: "福隆"
     },
     {
-        imgPath: "img/event1.jpeg",
-        date: "Sunday, July 30,2020,10:30",
-        title: "潛水撿垃圾，愛海洋！",
-        count: 999,
-        member: "彌勒佛",
-        local: "烏石港"
+        imgPath: "img/event2.jpg",
+        date: "Sunday, June 20,2010,08:30",
+        title: "螢光夜跑",
+        count: 100,
+        member: "王曉明",
+        local: "新北大道"
     },
     {
-        imgPath: "img/event1.jpeg",
+        imgPath: "img/event3.jpg",
         date: "Sunday, July 30,2020,10:30",
         title: "潛水撿垃圾，愛海洋！",
-        count: 999,
-        member: "彌勒佛",
-        local: "烏石港"
+        count: 99,
+        member: "洲仔於",
+        local: "布袋漁港"
     },
     {
-        imgPath: "img/event1.jpeg",
+        imgPath: "img/event4.jpg",
         date: "Sunday, July 30,2020,10:30",
-        title: "潛水撿垃圾，愛海洋！",
-        count: 999,
-        member: "彌勒佛",
-        local: "烏石港"
+        title: "飢餓三十！",
+        count: 500,
+        member: "時間管理大師",
+        local: "桃園"
     }
     ]
 
