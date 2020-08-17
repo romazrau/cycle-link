@@ -240,7 +240,7 @@
                     <div>CC</div>
 
                     <div>
-                        <button class="page_navbar_btn">創建活動</button>
+                        <button class="page_navbar_btn" onclick="location.hash = '#create-activity'">創建活動</button>
                     </div>
                 </div>
             </div>
@@ -350,7 +350,7 @@
                     <div>CC</div>
 
                     <div>
-                        <button class="page_navbar_btn">創建社團</button>
+                        <button class="page_navbar_btn" onclick="location.hash = '#create-community'">創建社團</button>
                     </div>
                 </div>
             </div>
@@ -1410,6 +1410,7 @@
 
 
         <!-- * 不在navbar link上的葉面  ****************      ****************       ****************   -->
+
         <!-- * create-activity  ****************      ****************       ****************   -->
         <div id="page_create-activity" class="page hide">
             <main>
@@ -1661,6 +1662,200 @@
         </div>
 
 
+        <!-- * create-communtity  ****************      ****************       ****************   -->
+        <div id="page_create-community" class="page hide">
+
+            <main>
+                <!-- ------------- 左側資訊 --------------- -->
+            
+                <div class="page_hc_flex">
+                  <div class="page_hc_title">
+                    <h2>創建社團</h2>
+                    <div>
+                      <a href="#create-community" class="page_hc_title_div">
+                        <p class="page_hc_title_circle">1</p>
+                        基本資料
+                      </a>
+                      <a href="#create-community" class="page_hc_title_div">
+                        <p class="page_hc_title_circle">2</p>
+                        詳細資料
+                      </a>
+                      <a href="#create-community" class="page_hc_title_div">
+                        <p class="page_hc_title_circle">✓</p>
+                        社團加入審核
+                      </a>
+                    </div>
+                  </div>
+            
+                  <!-- ------------- Basic Info --------------- -->
+            
+                  <div class="page_hc_basicInfo_container">
+                    <div class="page_hc_basicInfo">
+                      <h2>基本資料</h2>
+                      <p>
+                        Name your event and tell event-goers why they should come. Add
+                        details that highlight what makes it unique.
+                      </p>
+                      <div class="page_hc_basicInfo_div">
+                        <div class="page_hc_basicInfo_div2">
+                          <p>社團名稱</p>
+                          <div class="page_hc_flex">
+                            <input type="text" maxlength="20" id="page_hc_name" class="page_hc_full" />
+                            <p class="page_hc_ml" id="page_hc_name_count">0</p>
+                            <p>&nbsp;/&nbsp;20</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="page_hc_basicInfo_div">
+                        <div class="page_hc_basicInfo_div2">
+                          <p>Privacy Settings</p>
+                          <select name="type">
+                            <option value="">公開</option>
+                            <option value="">私人</option>
+                          </select>
+                        </div>
+                      </div>
+            
+                      <div class="page_hc_basicInfo_div3">
+                        <button id="page_hc_btn_next">Next</button>
+                      </div>
+                    </div>
+            
+                    <!-- ------------- Details --------------- -->
+            
+                    <div class="page_hc_basicInfo">
+                      <h2>詳細資料</h2>
+                      <p>
+                        Name your event and tell event-goers why they should come. Add
+                        details that highlight what makes it unique.
+                      </p>
+                      <div class="page_hc_basicInfo_div">
+                        <div class="page_hc_basicInfo_div2">
+                          <p>社團首頁圖片</p>
+                          <div class="page_hc_flex">
+                            <button class="hc_imgUpload ">Upload</button>
+                            <input type="text" class="page_hc_full" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="page_hc_basicInfo_div">
+                        <div class="page_hc_basicInfo_div2">
+                          <p>社團描述</p>
+                          <div class="page_hc_flex">
+                            <textarea name="" id="page_hc_text" cols="60" rows="8" maxlength="500"></textarea>
+                            <p class="page_hc_flex_end page_hc_ml" id="page_hc_text_count">0</p>
+                            <p class="page_hc_flex_end">&nbsp;/&nbsp;500</p>
+                          </div>
+                        </div>
+                      </div>
+            
+                      <div class="page_hc_basicInfo_div3">
+                        <button id="page_hc_btn_pre">Pre</button>
+                        <button id="page_hc_btn_done">Done</button>
+                      </div>
+                    </div>
+            
+                    <!-- ------------- 審核 --------------- -->
+            
+                    <div class="page_hc_basicInfo">
+                      <h2>社團加入審核</h2>
+                      <p>
+                        Name your event and tell event-goers why they should come. Add
+                        details that highlight what makes it unique.
+                      </p>
+                      <div class="page_hc_basicInfo_div">
+                        <div class="page_hc_basicInfo_div2">
+                          <p>待審核&nbsp;(&nbsp;5&nbsp;)</p>
+                          <div class="page_hc_flex">
+                            <input type="checkbox" style="align-self: center;" />
+                            <div class="page_hc_check">
+                              <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                              <p>JL1992</p>
+                            </div>
+                            <input type="checkbox" style="align-self: center;" />
+                            <div class="page_hc_check">
+                              <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                              <p>Wwill35489</p>
+                            </div>
+                            <input type="checkbox" style="align-self: center;" />
+                            <div class="page_hc_check">
+                              <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                              <p>romazrau</p>
+                            </div>
+                            <input type="checkbox" style="align-self: center;" />
+                            <div class="page_hc_check">
+                              <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                              <p>Wwill35489</p>
+                            </div>
+                            <input type="checkbox" style="align-self: center;" />
+                            <div class="page_hc_check">
+                              <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                              <p>romazrau</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="page_hc_basicInfo_div3">
+                        <button id="page_hc_btn_done">Done</button>
+                      </div>
+                      <div class="page_hc_basicInfo_div">
+                        <div class="page_hc_basicInfo_div2">
+                          <p>社團成員&nbsp;(&nbsp;6&nbsp;)</p>
+                          <div class="page_hc_flex">
+                            <div class="page_hc_check">
+                              <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                              <p>ddd555</p>
+                            </div>
+                            <div class="page_hc_check">
+                              <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                              <p>ccc666</p>
+                            </div>
+                            <div class="page_hc_check">
+                              <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                              <p>AndyKao123</p>
+                            </div>
+                            <div class="page_hc_check">
+                              <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                              <p>ddd555</p>
+                            </div>
+                            <div class="page_hc_check">
+                              <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                              <p>ccc666</p>
+                            </div>
+                            <div class="page_hc_check">
+                              <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                              <p>AndyKao123</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="page_hc_basicInfo_div">
+                        <div class="page_hc_basicInfo_div2">
+                          <p>候補成員&nbsp;(&nbsp;3&nbsp;)</p>
+                          <div class="page_hc_flex">
+                            <div class="page_hc_check">
+                              <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                              <p>happytree78</p>
+                            </div>
+                            <div class="page_hc_check">
+                              <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                              <p>omg666</p>
+                            </div>
+                            <div class="page_hc_check">
+                              <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                              <p>forever520</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </main>
+
+        </div>
+
+
 
     </div>
 
@@ -1731,6 +1926,7 @@
     <script src="./src/activity_detail.js"></script>
     <script src="./src/community.js"></script>
     <script src="./src/create_activities.js"></script>
+    <script src="./src/create_community.js"></script>
     <!-- 其他 -->
     <script src="./src/navbar.js"></script>
     <script src="./src/chat.js"></script>
