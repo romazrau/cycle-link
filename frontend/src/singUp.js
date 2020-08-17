@@ -1,5 +1,6 @@
+function ClsSignUp() {
+
 //生日時間 ----------------------------------------------------------------
-function ClsSelectBirthday() {
   let output = "";
   for (let i = 1; i <= 100; i++) {
     output += `<option value='${2020 - i}'>${2020 - i}</option>`;
@@ -18,10 +19,10 @@ function ClsSelectBirthday() {
   updataDateDay(31);
 
 
-  document.querySelectorAll("#dateYear, #dateMM").forEach((e) => {
+  document.querySelectorAll("#signUp_dateYear, #signUp_dateMM").forEach((e) => {
     e.addEventListener("change", () => {
-      let yy = document.getElementById("dateYear").value;
-      let mm = document.getElementById("dateMM").value;
+      let yy = document.getElementById("signUp_dateYear").value;
+      let mm = document.getElementById("signUp_dateMM").value;
       console.log(yy, mm);
       if (mm == 2) {
         let date = new Date(`${yy}, ${mm}, 29`);
@@ -34,8 +35,14 @@ function ClsSelectBirthday() {
       }
     });
   });
+
+
+
+
+
+
 }
-const SelectBirthday = new ClsSelectBirthday();
+const Signup = new ClsSignUp();
 
 
 

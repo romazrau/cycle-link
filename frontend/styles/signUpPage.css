@@ -86,6 +86,9 @@
 }
 
 
+.signUp_bithday > select{
+    min-width: 3.5rem;
+}
 
 
 
