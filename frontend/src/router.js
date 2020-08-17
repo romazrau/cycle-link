@@ -72,11 +72,21 @@ function ClsRouter() {
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
 
+                // 沒有navbar 區
                 case "sign-Up":
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
 
                 case "personal-page":
+                    document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
+                    break;
+
+                case "create-activity":
+                    document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
+                    break;
+                    create_community
+
+                case "create-community":
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
 

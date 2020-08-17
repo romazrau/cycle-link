@@ -1,0 +1,246 @@
+/* ---------- 功能用 ---------- */
+/* .page_hc_container {
+  display: flex;
+} */
+
+.page_hc_flex {
+  display: flex;
+}
+
+.page_hc_ml {
+  margin-left: 1rem;
+}
+
+.page_hc_flex_end {
+  display: flex;
+  align-self: flex-end;
+}
+
+.page_hc_full {
+  width: 100%;
+}
+
+/* ---------- 開始 ---------- */
+.page_hc_title_div {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem 1rem 2rem;
+  text-decoration: none;
+  color: var(--grey-color);
+}
+
+.page_hc_title_div:hover {
+  color: var(--blue-color);
+  transition: all 0.5s;
+}
+
+.page_hc_container h2 {
+  margin-bottom: 2rem;
+  color: #3a3a3a;
+}
+
+.page_hc_title_circle {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--blue-color);
+  color: honeydew;
+  margin-right: 0.5rem;
+  margin-left: 1rem;
+  line-height: 2rem;
+}
+
+.page_hc_title {
+  width: 20%;
+  min-width: 150px;
+  padding-top: 3rem;
+  text-align: center;
+}
+
+.page_hc_basicInfo_container {
+  width: 80%;
+  /* min-width: 960px; */
+  background-color: rgb(245, 245, 245);
+}
+
+.page_hc_basicInfo_container p {
+  color: var(--grey-color);
+}
+
+.page_hc_basicInfo {
+  max-width: 720px;
+  padding: 3rem 0;
+  margin: 0rem auto;
+  background-color: rgb(245, 245, 245);
+}
+
+.page_hc_basicInfo_div {
+  margin: 2rem 0rem;
+}
+
+.page_hc_basicInfo_div2 {
+  border-radius: 0.5rem;
+  padding: 1rem 2rem 1rem 2rem;
+  background-color: white;
+}
+
+#ac_date_from,
+#ac_date_to {
+  border: 1px solid rgb(209, 209, 209);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  margin: 0rem 1rem;
+  padding: 0.5rem;
+  max-width: 110px;
+}
+
+#ac_date_from:hover,
+#ac_date_to:hover {
+  border: 1px solid var(--blue-color);
+  transition: all 0.5s;
+}
+
+#ac_date_from:focus,
+#ac_date_to:focus {
+  border: 1px solid var(--blue-color);
+  outline: none;
+}
+
+.page_hc_basicInfo_div2 select {
+  border: 1px solid rgb(209, 209, 209);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.page_hc_basicInfo_div2 select:hover {
+  border: 1px solid var(--blue-color);
+  transition: all 0.5s;
+}
+
+.page_hc_basicInfo_div2 select:focus {
+  border: 1px solid var(--blue-color);
+  outline: none;
+}
+
+.page_hc_basicInfo_div p {
+  margin-bottom: 0.5rem;
+}
+
+
+.page_hc_basicInfo_div2 input {
+  border: 0rem;
+  border-bottom: 1px solid rgb(209, 209, 209);
+  font-size: 18px;
+  /* width: 100%; */
+}
+
+.page_hc_basicInfo_div2 input:hover {
+  border-bottom: 1px solid var(--blue-color);
+  transition: all 0.5s;
+}
+
+.page_hc_basicInfo_div2 input:focus {
+  border-bottom: 1px solid var(--blue-color);
+  outline: none;
+}
+
+
+/* #page_hc_time {
+  border: 1px solid rgb(209, 209, 209);
+  border-radius: 0.5rem;
+  padding: 0.35rem 1rem;
+  margin: 0.1rem 0.5rem 0rem 1rem;
+  width: 10%;
+
+} */
+
+.page_hc_basicInfo_div3 {
+  text-align: end;
+}
+
+.page_hc_basicInfo_div2 textarea {
+  font-size: 20px;
+  border: 1px solid rgb(209, 209, 209);
+  resize: none;
+}
+
+.page_hc_basicInfo_div2 textarea:hover {
+  border: 1px solid var(--blue-color);
+  transition: all 0.5s;
+}
+
+.page_hc_basicInfo_div2 textarea:focus {
+  border: 1px solid var(--blue-color);
+  outline: none;
+}
+
+#page_hc_btn_next,
+#page_hc_btn_done {
+  padding: 0.8rem 1.5rem 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  border: 1px solid white;
+  background-color: var(--blue-color);
+  color: white;
+}
+
+#page_hc_btn_next:hover,
+#page_hc_btn_done:hover {
+  border: 1px solid rgb(209, 209, 209);
+  transition: all 0.5s;
+}
+
+#page_hc_btn_pre {
+  padding: 0.8rem 1.5rem 0.8rem 1.5rem;
+  margin-right: 1rem;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(209, 209, 209);
+  background-color: white;
+  color: var(--blue-color);
+}
+
+#page_hc_btn_pre:hover {
+  border: 1px solid var(--blue-color);
+  transition: all 0.5s;
+}
+
+.hc_imgUpload {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(209, 209, 209);
+  background-color: white;
+  color: var(--blue-color);
+  margin-right: 1rem;
+}
+
+.page_hc_container button:hover {
+  cursor: pointer;
+  border: 1px solid var(--blue-color);
+  transition: all 0.5s;
+}
+
+.page_hc_container button:focus {
+  border: 1px solid var(--blue-color);
+  outline: none;
+}
+
+.page_hc_check {
+  min-width: 80px;
+  max-width: 80px;
+  text-align: center;
+  margin-right: 1rem;
+  margin-left: 0.3rem;
+  word-wrap: break-word;
+}
+
+#page_hc_please {
+  font-size: 10px;
+  color: rgb(230, 84, 84);
+  align-self: center;
+  width: 15%;
+}
+
