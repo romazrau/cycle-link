@@ -68,6 +68,22 @@
 }
 
 
+.chat_input{
+    width: 100%;
+
+}
+
+.chat_input > textarea{
+    width: 100%;
+    margin: 0;
+    resize : none;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    margin-bottom: -10px;
+    padding: 0.5rem 0.5rem;
+}
+
+
 /* 以下聊天室 */
 .chat_room_window{
     position: relative;
@@ -77,6 +93,9 @@
     background-color: var(--pink-color);
     border-radius: 0.5rem;
     font-size: 1rem;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .chat_message{
@@ -84,6 +103,7 @@
     display: flex;
     flex-direction: column;
     font-size: 1rem;
+    flex-grow: 1;
 }
 
 .caht_notMe{
@@ -136,6 +156,9 @@
     background-color: var(--lightblue-color);
     border-radius: 0.5rem;
     font-size: 1rem;
+
+    display: flex;
+    flex-direction: column;
 }
 
 

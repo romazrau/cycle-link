@@ -80,7 +80,9 @@ function ClsChat(){
         array.map((e) => {
             result += `<div class=${e.isMe ? "caht_Me" : "caht_notMe"}>${e.msg}</div>`;
         });
-        result += "</div></div>";
+        result += `</div><div class="chat_input">
+                    <textarea placeholder="想說什麼呢?" row="2"></textarea>
+                   </div></div>`;
         return result;
     };
 
