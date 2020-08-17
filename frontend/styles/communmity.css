@@ -36,7 +36,9 @@ body{
 }
 .communmity_container_middle
 {
-    width: 45%;
+    /* width: 45%; */
+    flex-grow: 1;
+    max-width: 750px;
     padding: 1rem 3rem;
     
 }
@@ -90,7 +92,7 @@ body{
     /* height: ; */
 }
 .communmity_container_middle_content_imgbox img{
-    width: 70%;
+    /* width: 70%; */
     height: 100%;
     /* height: ; */
 }
