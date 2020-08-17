@@ -72,6 +72,7 @@ function ClsRouter() {
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
 
+                // 沒有navbar 區
                 case "sign-Up":
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
@@ -79,6 +80,11 @@ function ClsRouter() {
                 case "personal-page":
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
+
+                case "create-activity":
+                    document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
+                    break;
+
 
 
                 default:
