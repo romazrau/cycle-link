@@ -51,7 +51,7 @@ body{
 }
 .communmity_search_head_left input{
     outline: none;
-    caret-color: transparent;
+    /* caret-color: transparent; */
     height: 50px;
     font-size: 20px;
     border:none
