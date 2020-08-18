@@ -213,6 +213,15 @@
   cursor: pointer;
 }
 
+.cc_imgUpload_div {
+  width: 70vh;
+}
+
+.cc_imgUpload_div img {
+  width: 100%;
+}
+
+
 .create_community_container button:hover {
   cursor: pointer;
   border: 1px solid var(--lightblue-color);
