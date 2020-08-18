@@ -391,7 +391,7 @@
     margin-top: 0.5rem;
 }
 
-.container {
+#page_personal-maneger .container {
     max-width: 1240px;
     /* padding: 20px 0; */
     margin: auto;
