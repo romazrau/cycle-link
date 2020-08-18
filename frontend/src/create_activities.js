@@ -104,3 +104,13 @@ function inputTag() {
     }
     $("#test_tag_input").val("");
 };
+
+// ----------- 圖片載入 -----------
+$('.ca_imgUpload').change(function () {
+    var file = $('.ca_imgUpload')[0].files[0];
+    var reader = new FileReader;
+    reader.onload = function (e) {
+        $('.ca_img_avatar').attr('src', e.target.result);
+    };
+    reader.readAsDataURL(file);
+});
