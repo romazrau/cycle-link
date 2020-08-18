@@ -198,7 +198,7 @@
   cursor: pointer;
 }
 
-.hc_imgUpload {
+.cc_imgUpload_lbl {
   padding: 0.5rem;
   border-radius: 0.5rem;
   border: 1px solid rgb(209, 209, 209);
@@ -207,7 +207,7 @@
   margin-right: 1rem;
 }
 
-.hc_imgUpload:hover {
+.cc_imgUpload_lbl:hover {
   border: 1px solid var(--lightblue-color);
   transition: all 0.5s;
   cursor: pointer;

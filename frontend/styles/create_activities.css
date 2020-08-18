@@ -209,7 +209,7 @@
   cursor: pointer;
 }
 
-.ca_imgUpload {
+.ca_imgUpload_lbl {
   padding: 0.5rem;
   border-radius: 0.5rem;
   border: 1px solid rgb(209, 209, 209);
@@ -218,7 +218,25 @@
   margin-right: 1rem;
 }
 
-.ca_imgUpload:hover {
+/* .ca_imgUpload {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(209, 209, 209);
+  background-color: white;
+  color: var(--blue-color);
+  margin-right: 1rem;
+} */
+
+.ca_imgUpload_div {
+  width: 70vh;
+}
+
+.ca_imgUpload_div img {
+  /* width: 50vh; */
+  width: 100%;
+}
+
+.ca_imgUpload_lbl:hover {
   border: 1px solid var(--blue-color);
   transition: all 0.5s;
   cursor: pointer;

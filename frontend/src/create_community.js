@@ -30,3 +30,13 @@ $(function () {
         $("#create_community_text_count").text(counter);
     })
 })
+
+// ----------- 圖片載入 -----------
+$('.cc_imgUpload').change(function () {
+    var file = $('.cc_imgUpload')[0].files[0];
+    var reader = new FileReader;
+    reader.onload = function (e) {
+        $('.cc_img_avatar').attr('src', e.target.result);
+    };
+    reader.readAsDataURL(file);
+});
