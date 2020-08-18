@@ -45,8 +45,7 @@
   border-radius: 50%;
   background-color: var(--lightblue-color);
   color: honeydew;
-  margin-right: 0.5rem;
-  margin-left: 1rem;
+  margin: 0rem 0.5rem 0rem 1rem;
   line-height: 2rem;
 }
 
@@ -180,6 +179,7 @@
 #create_community_btn_done:hover {
   border: 1px solid rgb(209, 209, 209);
   transition: all 0.5s;
+  cursor: pointer;
 }
 
 #create_community_btn_pre {
@@ -195,6 +195,7 @@
 #create_community_btn_pre:hover {
   border: 1px solid var(--lightblue-color);
   transition: all 0.5s;
+  cursor: pointer;
 }
 
 .hc_imgUpload {
@@ -204,6 +205,10 @@
   background-color: white;
   color: var(--lightblue-color);
   margin-right: 1rem;
+}
+
+.hc_imgUpload:hover {
+  cursor: pointer;
 }
 
 .create_community_container button:hover {

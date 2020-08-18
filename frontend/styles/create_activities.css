@@ -45,8 +45,7 @@
   border-radius: 50%;
   background-color: var(--blue-color);
   color: honeydew;
-  margin-right: 0.5rem;
-  margin-left: 1rem;
+  margin: 0rem 0.5rem 0rem 1rem;
   line-height: 2rem;
 }
 
@@ -191,6 +190,7 @@
 #create_active_btn_done:hover {
   border: 1px solid rgb(209, 209, 209);
   transition: all 0.5s;
+  cursor: pointer;
 }
 
 #create_active_btn_pre {
@@ -206,6 +206,7 @@
 #create_active_btn_pre:hover {
   border: 1px solid var(--blue-color);
   transition: all 0.5s;
+  cursor: pointer;
 }
 
 .ca_imgUpload {
@@ -215,6 +216,10 @@
   background-color: white;
   color: var(--blue-color);
   margin-right: 1rem;
+}
+
+.ca_imgUpload:hover {
+  cursor: pointer;
 }
 
 .create_active_container button:hover {
