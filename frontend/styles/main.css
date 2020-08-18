@@ -15,6 +15,7 @@
 @import "./signUpPage.css";
 @import "./footer.css";
 @import "./communmity.css";
+@import "./communtiyDetail.css";
 @import "./create_activities.css";
 @import "./create_community.css";
 /*  其他 */
@@ -112,3 +113,7 @@
     background-color: rgba(0, 0, 0, 0.1);
     /* 遮罩 */
 }
+
+.nowrap {
+    flex-wrap: nowrap;
+  }

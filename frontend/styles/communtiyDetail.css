@@ -1,0 +1,590 @@
+/*******************共用 ******************/
+/* .Hiden{
+ display: none;}
+ */
+
+
+hr {
+  border-top: 1px solid lightgrey;
+}
+
+.SeeMoreBtn {
+  border: 1px solid var(--blue-color);
+  border-radius: 10px;
+  width: 100%;
+  color: var(--blue-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+}
+
+.ShowMoreBtn {
+  border: 1px solid var(--grey-color);
+  background-color: var(--white-color);
+  border-radius: 10px;
+  width: 100%;
+  color: var(--grey-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+}
+
+.MarginLeft1rem {
+  margin-left: 1rem;
+}
+
+.GroupEnglishFont {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.Group_FontFamily {
+  font-family: monospace;
+}
+
+.Group_reply {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 2rem;
+}
+
+.Group_FlexJustifyContentSB {
+  justify-content: space-between;
+}
+
+.FontSectionTitle {
+  font-family: monospace;
+  font-weight: 300;
+  font-size: 1.8rem;
+  margin-top: 50px;
+  justify-content: space-between;
+}
+.FontSectionText {
+  font-family: monospace;
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+  margin-top: 30px;
+}
+
+.ReadMoreLink {
+  font-size: 1rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 1.8rem;
+}
+
+.PositionRalative {
+  position: relative;
+}
+
+.DividedLine {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.Size20IconMarginRight {
+  margin-right: 10px;
+}
+
+.Size20IconMarginLeft {
+  margin-left: 10px;
+}
+
+.Container {
+  width: 75vw;
+  /* 置中 :上下0 左右auto*/
+  margin: 0 auto;
+}
+
+.FlexContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.DivForImg {
+  /* width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden; */
+}
+
+.GroupTopLeftW60 {
+  width: 60%;
+}
+
+.GroupTopRightW40 {
+  width: 40%;
+}
+
+.PaddingLeft50px {
+  margin-left: 50px;
+}
+
+.Group_FontFamily a:link {
+  color: black;
+  text-decoration: none;
+}
+
+.Group_FontFamily a:visited {
+  color: black;
+}
+
+.Group_FontFamily a:hover {
+  color: var(--blue-color);
+}
+
+.Icon20Color {
+  opacity: 0.5;
+}
+
+.SeeAll {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  color: var(--white-color);
+}
+
+.LeftSwitchCard {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  /* align-content: space-between; */
+  padding-left: 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  /* margin-top: 2rem; */
+}
+
+.GroupJustifyContentC {
+  justify-content: center;
+}
+.GroupAlignItemsC {
+  align-items: center;
+}
+
+/******************* TOP ******************/
+.MiddleNavBar {
+  margin-bottom: 30px;
+}
+.GrayBackGround {
+  background-color: var(--lightgrey-color);
+  padding-bottom: 2rem;
+}
+
+.LinkBar {
+  font-size: 1.2rem;
+  font-family: monospace;
+  justify-content: space-between;
+  /* padding-left: 50px; */
+  padding-right: 50px;
+}
+
+.GroupTopMainPicDivForImg {
+  border-radius: 10px;
+  height: 300px;
+  overflow: hidden;
+}
+
+.GroupTopLeft {
+  max-width: 60%;
+}
+
+.GroupTopRight {
+  margin-left: 50px;
+  position: relative;
+}
+
+.GroupTopEventName {
+  font-size: 2.5rem;
+  font-family: monospace;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.GroupTopRightEventInfoBox {
+  font-family: monospace;
+}
+
+.Boldtitle {
+  font-weight: bold;
+}
+
+.GroupBottomMainMember {
+  margin-top: 2rem;
+  /* 沒作用 */
+}
+
+.g {
+  margin-top: 2rem;
+}
+
+/******************* MIDDLE ******************/
+
+.card {
+  background-color: var(--white-color);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.GroupBottomCardTime {
+  font-family: monospace;
+  font-size: 1.2rem;
+  color: var(--blue-color);
+}
+
+.GroupBottomCardEventName {
+  font-family: monospace;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.GroupBottomCardLocation {
+  font-family: monospace;
+  font-size: 1.2rem;
+  color: var(--grey-color);
+}
+
+.GroupBottomCardDD {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.GroupCardBtn {
+  background-color: var(--white-color);
+  border: 1px solid var(--blue-color);
+  border-radius: 10px;
+  padding: 10px 15px;
+  color: var(--blue-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 0.5rem 2rem;
+  align-self: flex-end;
+}
+
+.GroupRightInfoPhotoContainer {
+  margin-top: 2rem;
+}
+
+.GoupRightInfoPhoto {
+  margin-right: 0.5rem;
+}
+
+/******************* BOTTOM ******************/
+.EventBottom {
+  margin-top: 2rem;
+}
+
+.GroupEventBtnText {
+  margin-top: 25px;
+}
+
+.GroupBottomLeft {
+  max-width: 60%;
+  box-sizing: border-box;
+  padding-right: 2rem;
+}
+
+.GroupBottomRight {
+  width: 40%;
+}
+
+.EventBottomLeft {
+  width: 30%;
+}
+
+.MemberBottomLeft {
+  width: 30%;
+  box-sizing: border-box;
+  padding-right: 2rem;
+}
+.MemberBottomRight {
+  width: 70%;
+}
+
+.EventBottomRight {
+  width: 70%;
+  padding-left: 1rem;
+  box-sizing: border-box;
+}
+
+.BottomRightSearchList {
+  width: 90%;
+  /* height:100px; 不要設高度才有顏色*/
+  background-color: var(--white-color);
+  border-radius: 8px;
+  padding: 1rem 2rem;
+}
+
+.BottomLeftInfoCard {
+  width: 95%;
+  height: 100px;
+
+  /* margin: auto; */
+}
+
+.EventCardBottom {
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.BottomRightInfoCard {
+  width: 90%;
+  margin-bottom: 20px;
+  background-color: var(--white-color);
+  padding: 2rem 2rem;
+  /* height: 100px; */
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.DiscussionBottomInputBox {
+  background-color: gray;
+}
+.GroupTopRightEventInfoBoxBottom {
+  position: absolute;
+  bottom: 0px;
+}
+
+.Photo {
+  box-sizing: border-box;
+  border-radius: 10px;
+  /* margin: 5px; */
+  width: 33%;
+  /* 固定長寬 */
+}
+
+.MessageBox {
+  background-color: var(--white-color);
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+  justify-content: space-between;
+}
+
+.PhotoBox {
+  margin-top: 30px;
+}
+
+.Photo {
+  margin: 2px 2px;
+}
+
+.LeaveMessage {
+  width: 85%;
+  height: 3rem;
+}
+
+.FontSectionTitleRight {
+  font-family: monospace;
+  font-weight: 300;
+  font-size: 1.8rem;
+}
+
+.RightPartTopInfo {
+  align-items: center;
+}
+
+.SeeAllRight {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  color: var(--blue-color);
+}
+
+.FontSectionTitleMessage {
+  font-family: monospace;
+  font-weight: 300;
+  font-size: 1.8rem;
+  margin-top: 1rem;
+
+  justify-content: space-between;
+}
+
+.GroupMessageCardTime {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  margin-left: 1rem;
+  color: var(--grey-color);
+}
+
+.GroupMessageCardName {
+  font-size: 1.2rem;
+  margin-left: 1rem;
+}
+
+.GroupMessageCardNotion {
+  margin-left: 1rem;
+}
+
+.MessagePost {
+  padding: 1rem 2rem;
+}
+
+.GroupMessageCardText {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 1rem;
+}
+
+.GroupInfoNotion {
+  font-size: 1.5rem;
+}
+
+.Group_replyNumReplies {
+  margin-left: 0.5rem;
+}
+
+.GroupRight {
+  margin-top: 30px;
+}
+
+.GroupRightInfo {
+  margin-left: 15px;
+  font-size: 1rem;
+}
+
+.GroupRightInfoM {
+  font-size: 0.8rem;
+}
+
+.GroupMemberSearch {
+  /* padding: 1rem 2rem; */
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.GroupMemberBottomRightInfoCard {
+  width: 90%;
+  margin-bottom: 20px;
+  background-color: var(--white-color);
+  padding: 2rem 2rem;
+  /* height: 100px; */
+  border-radius: 8px;
+  display: flex;
+}
+
+.GroupMemberBottomRightMemberCard {
+  margin: 2rem 0;
+
+  background-color: var(--white-color);
+
+  /* height: 100px; */
+  border-radius: 8px;
+  display: flex;
+}
+
+.GroupMemberBottomRightInfoCardText {
+  margin-right: 1rem;
+}
+
+.GroupMemberSort {
+  color: var(--grey-color);
+}
+
+.GroupMemberCardInfo {
+  margin-left: 1rem;
+}
+
+.Rotate90 {
+  transform: rotate(90deg);
+}
+.GroupMemberSearchInput {
+  width: 100%;
+  box-sizing: border-box;
+  display: inline-block;
+  margin-top: 1rem;
+  height: 3rem;
+}
+
+.GroupEventMemberCard {
+  margin-top: 2rem;
+}
+
+.GroupDiscussion {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.GroupMemberSeeAllBtn {
+  box-sizing: border-box;
+  text-align: center;
+  border: 1px solid var(--grey-color);
+
+  border-radius: 10px;
+  width: 100%;
+  color: var(--grey-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+}
+
+
+
+.group_margin_bottom{
+  margin-bottom: 2rem;
+}
+
+
+.group_maneger_img{
+  height: 3rem;
+}
+
+
+
+
+/* *photo flow  ----------------------------------------- */
+.photo_flow_container{
+  width: 100%;
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding-top: 2rem;
+}
+
+.photo_flow_col{
+  margin: 0 0.5rem;
+  /* background-color: antiquewhite; */
+  flex-grow: 1;
+  flex-basis: 50vw;
+}
+
+.photo_flow_card{
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+
+.photo_flow_card_img{
+  border-radius: 5px;
+  width: 100%;
+}
+
+
+.photo_flow_card_wrapper{
+  opacity:0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000017;
+  position: absolute;
+  top: 0;
+}
+
+.photo_flow_card_wrapper:hover {
+  opacity:1;
+}
+
+.photo_flow_card_msg{
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.5rem 0.5rem;
+  border-radius: 2rem;
+  background-color: #ffffff;
+}
+
+
+
