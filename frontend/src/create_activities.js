@@ -1,33 +1,33 @@
 // ----------- 頁面轉換 -----------
-$(".page_hc_basicInfo").eq(0).css("display", "block").siblings().css("display", "none");
+$(".create_active_basicInfo").eq(0).css("display", "block").siblings().css("display", "none");
 
-$(".page_hc_title_div").click(function () {
+$(".create_active_title_div").click(function () {
     hcTitle = $(this).index();
-    $(".page_hc_basicInfo").eq(hcTitle).css("display", "block").siblings().css("display", "none");
-    console.log($(".page_hc_basicInfo"));
+    $(".create_active_basicInfo").eq(hcTitle).css("display", "block").siblings().css("display", "none");
+    console.log($(".create_active_basicInfo"));
 });
-$("#page_hc_btn_next").click(function () {
-    $(".page_hc_basicInfo").eq(1).css("display", "block").siblings().css("display", "none");
-    console.log($(".page_hc_basicInfo"));
+$("#create_active_btn_next").click(function () {
+    $(".create_active_basicInfo").eq(1).css("display", "block").siblings().css("display", "none");
+    console.log($(".create_active_basicInfo"));
 });
-$("#page_hc_btn_pre").click(function () {
-    $(".page_hc_basicInfo").eq(0).css("display", "block").siblings().css("display", "none");
-    console.log($(".page_hc_basicInfo"));
+$("#create_active_btn_pre").click(function () {
+    $(".create_active_basicInfo").eq(0).css("display", "block").siblings().css("display", "none");
+    console.log($(".create_active_basicInfo"));
 });
 
 // ----------- 字數限制 -----------
 $(function () {
     $(document).keyup(function () {
-        var text = $("#page_hc_name").val();
+        var text = $("#create_active_name").val();
         var counter = text.length;
-        $("#page_hc_name_count").text(counter);
+        $("#create_active_name_count").text(counter);
     })
 })
 $(function () {
     $(document).keyup(function () {
-        var text = $("#page_hc_text").val();
+        var text = $("#create_active_text").val();
         var counter = text.length;
-        $("#page_hc_text_count").text(counter);
+        $("#create_active_text_count").text(counter);
     })
 })
 
@@ -41,7 +41,7 @@ $(function () {
         "Hsinchu, 新竹市",
         "Miaoli, 苗栗縣",
     ];
-    $("#page_hc_local_tags").autocomplete({
+    $("#create_active_local_tags").autocomplete({
         source: availableTags,
         autoFocus: true,
         classes: {
@@ -84,11 +84,11 @@ $(function () {
 });
 
 // ----------- 標籤寫入 -----------
-var page_hc_tag_count = 0;
+var create_active_tag_count = 0;
 
 function inputTag() {
-    if (page_hc_tag_count >= 5) {
-        document.getElementById("page_hc_please").innerHTML = "標籤最多五個";
+    if (create_active_tag_count >= 5) {
+        document.getElementById("create_active_please").innerHTML = "標籤最多五個";
         return;
     }
     const tagInput = $("#test_tag_input").val();
@@ -96,9 +96,9 @@ function inputTag() {
     if (tagInput != "") {
         const htmlTagInput = `<div id="test_tag">${tagInput}<button>x</button>`;
         document.getElementById("test_a").innerHTML += htmlTagInput;
-        page_hc_tag_count++;
+        create_active_tag_count++;
     } else {
-        document.getElementById("page_hc_please").innerHTML = "請輸入文字";
+        document.getElementById("create_active_please").innerHTML = "請輸入文字";
         // alert("請輸入文字");
         return;
     }

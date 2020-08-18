@@ -7,13 +7,13 @@
     height: 600px;
 }
 
-.activity_search_container{
+.activity_search_container {
     position: absolute;
     left: 8rem;
-    top: 10rem;   
+    top: 10rem;
 }
 
-.active_main_search{
+.active_main_search {
     margin-bottom: 1rem;
 }
 
@@ -36,34 +36,35 @@
     color: gray;
     border: 1px solid #ffffff;
     /* border-radius: 10px; */
+    outline: none;
 }
 
 
 /* *進接搜尋區 */
-#activity_advence_show{
+#activity_advence_show {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     border-radius: 8%;
-    display: flex;    
+    display: flex;
 }
 
-#activity_advence_show:hover{
+#activity_advence_show:hover {
     background-color: #ffffff6b;
 
 }
 
-.activity_advence_t{
+.activity_advence_t {
     transition: all 0.5s;
 }
 
 
-.activity_advence_search_container{
+.activity_advence_search_container {
     max-width: 80vw;
 
 }
 
 
-.active_advance_search{
+.active_advance_search {
     position: relative;
     margin-left: 0.5rem;
     margin-bottom: 0.5rem;
@@ -73,18 +74,18 @@
     border-radius: 5px;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
-    font-size: 1rem; 
-    min-height: 3rem;   
+    font-size: 1rem;
+    min-height: 3rem;
     max-width: 500px;
 }
 
-.active_advance_search_tile{
+.active_advance_search_tile {
     flex-shrink: 0;
     line-height: 100%;
     margin-right: 0.5rem;
 }
 
-.active_advance_dateRange{
+.active_advance_dateRange {
     flex-grow: 1;
     display: flex;
     flex-wrap: wrap;
@@ -92,17 +93,17 @@
     min-width: 300px;
 }
 
-#active_advance_search_city{
+#active_advance_search_city {
     display: flex;
     flex-wrap: wrap;
 }
 
 
-.activity_search_city{
+.activity_search_city {
     min-width: 5rem;
 }
 
-.active_advance_row{
+.active_advance_row {
     flex-grow: 1;
     display: flex;
     flex-wrap: wrap;
@@ -228,8 +229,8 @@
 
 .activity_event_icon_right {
     width: 2rem;
-    max-height:2rem ;
-   margin-top: 5rem;
+    max-height: 2rem;
+    margin-top: 5rem;
 }
 
 /* ------------- footer ------------- */
@@ -269,4 +270,3 @@
     justify-content: space-around;
     align-items: center;
 }
-

@@ -311,294 +311,294 @@
                 </div>
             </section>
         </div>
- 
 
 
-                <!-- * activity  ****************      ****************       ****************   -->
-                <div id="page_activity" class="page hide">
-                    <div id="activity_navbar" class="page_navbar">
-                        <div class="container page_navbar_row">
 
-                            <div>CC</div>
+        <!-- * activity  ****************      ****************       ****************   -->
+        <div id="page_activity" class="page hide">
+            <div id="activity_navbar" class="page_navbar">
+                <div class="container page_navbar_row">
 
-                            <div>
-                                <button class="page_navbar_btn"
-                                    onclick="location.hash = '#create-activity'">創建活動</button>
-                            </div>
-                        </div>
+                    <div>CC</div>
+
+                    <div>
+                        <button class="page_navbar_btn" onclick="location.hash = '#create-activity'">創建活動</button>
+                    </div>
+                </div>
+            </div>
+
+            <!---------------------------------- 主要活動顯示 ---------------------------------->
+            <div class="activity_top">
+                <img src="img/2.jpg">
+                <div class="activity_search_container">
+                    <div class="active_main_search">
+                        <input type="text">
+                        <select name="type" id="activity_option">
+                        </select>
                     </div>
 
-                <!---------------------------------- 主要活動顯示 ---------------------------------->
-                <div class="activity_top">
-                    <img src="img/2.jpg">
-                    <div class="activity_search_container">
-                        <div class="active_main_search">
-                            <input type="text">
-                            <select name="type" id="activity_option">
-                            </select>
+                    <div class="active_advance_row">
+                        <div id="activity_advence_show">進階搜尋<div class="activity_advence_t">▼</div>
                         </div>
 
-                        <div class="active_advance_row">
-                            <div id="activity_advence_show">進階搜尋<div class="activity_advence_t">▼</div>
-                            </div>
+                    </div>
 
-                        </div>
+                    <div class="activity_advence_search_container hide">
 
-                        <div class="activity_advence_search_container hide">
-
-                            <div class="active_advance_search">
-                                <div class="active_advance_search_tile">舉辦縣市:</div>
-                                <div id="active_advance_search_city">
-                                    <!-- <div class='activity_search_city'>
+                        <div class="active_advance_search">
+                            <div class="active_advance_search_tile">舉辦縣市:</div>
+                            <div id="active_advance_search_city">
+                                <!-- <div class='activity_search_city'>
                                     <input type="checkbox"  name="city" value="">
                                     <span>台北市</span>
                                 </div> -->
+                            </div>
+                        </div>
+
+                        <div class="active_advance_row">
+                            <div class="active_advance_search">
+                                <div class="active_advance_search_tile">時間範圍:</div>
+                                <div class="active_advance_dateRange">
+                                    <select name="dateStart" size="1">
+                                        <option value="2020">2020/10/09</option>
+                                    </select>
+
+                                    <span>起，至</span>
+
+                                    <select name="dateEnd" size="1">
+                                        <option value="2020">2020/10/09</option>
+                                    </select>
+                                    <span>止</span>
+
+                                    </select>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="active_advance_row">
-                                <div class="active_advance_search">
-                                    <div class="active_advance_search_tile">時間範圍:</div>
-                                    <div class="active_advance_dateRange">
-                                        <select name="dateStart" size="1">
-                                            <option value="2020">2020/10/09</option>
-                                        </select>
 
-                                        <span>起，至</span>
+                        <div class="active_advance_row">
+                            <div class="active_advance_search">
+                                <div class="active_advance_search_tile">忽略額滿活動</div>
+                                <input type="checkbox" name="" value="">
+                            </div>
 
-                                        <select name="dateEnd" size="1">
-                                            <option value="2020">2020/10/09</option>
-                                        </select>
-                                        <span>止</span>
-
-                                        </select>
-                                    </div>
-                                </div>
+                            <div class=" active_advance_search">
+                                <div class="active_advance_search_tile">忽略已舉辦活動</div>
+                                <input type="checkbox" name="" value="">
                             </div>
 
 
-                            <div class="active_advance_row">
-                                <div class="active_advance_search">
-                                    <div class="active_advance_search_tile">忽略額滿活動</div>
-                                    <input type="checkbox" name="" value="">
-                                </div>
-
-                                <div class=" active_advance_search">
-                                    <div class="active_advance_search_tile">忽略已舉辦活動</div>
-                                    <input type="checkbox" name="" value="">
-                                </div>
-
-
-
-                            </div>
 
                         </div>
 
                     </div>
 
-                    <button>GO</button>
                 </div>
-                <!-------------------------------------- main -------------------------------------->
-                <main class="activity_main ">
-                    <!-------------------------------------- 活動 -------------------------------------->
-                    <h2>主題系列活動推薦</h2>
-                    <div class="activity_event">
-                    </div>
-                    <h2>為您推薦</h2>
-                    <div class="activity_event2">
-                    </div>
-                </main>
-                <!-- <p>找不到你要的活動嗎？</p> -->
-                <div class="activity_event_history2_a">
-                    <a href="#">我要發起活動</a>
-                </div>
-                <!---------------------------------- 瀏覽過的活動 ---------------------------------->
 
-                <div class="activity_event_history1">
-                    <h2>瀏覽過的活動</h2>
-                    <div class="activity_event_history3">
-                        <img src="img/left.jpg" class="activity_event_icon_right" alt="">
-                        <div class="activity_event_history2"></div>
-                        <img src="img/right.svg" class="activity_event_icon_right" alt="">
+                <button>GO</button>
+            </div>
+            <!-------------------------------------- main -------------------------------------->
+            <main class="activity_main ">
+                <!-------------------------------------- 活動 -------------------------------------->
+                <h2>主題系列活動推薦</h2>
+                <div class="activity_event">
+                </div>
+                <h2>為您推薦</h2>
+                <div class="activity_event2">
+                </div>
+            </main>
+            <!-- <p>找不到你要的活動嗎？</p> -->
+            <div class="activity_event_history2_a">
+                <a href="#">我要發起活動</a>
+            </div>
+            <!---------------------------------- 瀏覽過的活動 ---------------------------------->
+
+            <div class="activity_event_history1">
+                <h2>瀏覽過的活動</h2>
+                <div class="activity_event_history3">
+                    <img src="img/left.jpg" class="activity_event_icon_right" alt="">
+                    <div class="activity_event_history2"></div>
+                    <img src="img/right.svg" class="activity_event_icon_right" alt="">
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- * Community  ****************      ****************       ****************   -->
+        <div id="page_community" class="page hide">
+            <div id="community_navbar" class="page_navbar">
+                <div class="container page_navbar_row">
+
+                    <div>CC</div>
+
+                    <div>
+                        <button class="page_navbar_btn" onclick="location.hash = '#create-community'">創建社團</button>
                     </div>
                 </div>
             </div>
 
 
+            <div class="communmity_main">
+                <div class="communmity_container_left">
+                    <header class="communmity_container_title_left">
+                        <h1>Filters</h1>
 
-            <!-- * Community  ****************      ****************       ****************   -->
-            <div id="page_community" class="page hide">
-                <div id="community_navbar" class="page_navbar">
-                    <div class="container page_navbar_row">
+                    </header>
+                    <div class="communmity_content_left">
+                        <ul class="communmity_content_left_item">
+                            <hr>
+                            <li> <a href="#">Date</a> </li>
+                            <li> <a href="#">Price</a> </li>
+                            <hr>
+                            <li> <a href="#">Category</a></li>
+                            <li> <a href="#">Format</a></li>
+                            <hr>
 
-                        <div>CC</div>
+                        </ul>
+                    </div>
+                    <div class="communmity_content_Date_left communmity_displaynone ">
+                        <ul class="communmity_content_left_item">
+                            <hr>
+                            <li> <a href="#">Weekend</a> </li>
+                            <li> <a href="#">This week</a> </li>
+                            <hr>
+                            <li> <a href="#">This month</a></li>
+                            <li> <a href="#">Next month</a></li>
+                            <hr>
 
-                        <div>
-                            <button class="page_navbar_btn" onclick="location.hash = '#create-community'">創建社團</button>
+                        </ul>
+                    </div>
+                    <div class="communmity_content_Price_left communmity_displaynone ">
+                        <ul class="communmity_content_left_item">
+                            <hr>
+                            <li> <a href="#">Free</a> </li>
+                            <li> <a href="#">Any price</a> </li>
+                            <hr>
+                            <li> <a href="#">This month</a></li>
+                            <li> <a href="#">Next month</a></li>
+                            <hr>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="communmity_container_middle">
+                    <div class="communmity_search_head">
+                        <div class="communmity_search_head_left">
+                            <input class="communmity_search_event" type="search" placeholder="Search anything" focus
+                                value="">
+                            <br>
+                            <input class="communmity_search_event" type="text" placeholder="in Online events" value="">
+                        </div>
+                        <div class="communmity_search_head_right">
+                            <button>search</button>
                         </div>
                     </div>
+                    <div class="communmity_shadow">
+                        <div class="communmity_container_middle_content ">
+                            <div class="communmity_container_middle_content_imgbox">
+                                <img src="./img/communmity_images1.jpg" alt="">
+                            </div>
+                            <div class="communmity_container_middle_content_title">
+                                <span>
+                                    Sun, Aug 16, 2020 9:30 PM CST + 3 more events
+                                </span>
+                                <h3>周子瑜粉絲見面會</h3>
+                                <p>free</p>
+                            </div>
+                            <div class="communmity_container_middle_content_icon">
+                                <div class="communmity_icon_box">
+                                    <span><button><img src="./img/share.svg" alt=""></button></span>
+                                    <span><button><img src="./img/like.svg" alt=""></button></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="communmity_shadow">
+                        <div class="communmity_container_middle_content ">
+                            <div class="communmity_container_middle_content_imgbox">
+                                <img src="./img/communmity_images4.jpg" alt="">
+                            </div>
+                            <div class="communmity_container_middle_content_title">
+                                <span>
+                                    Sun, Aug 16, 2020 9:30 PM CST + 3 more events
+                                </span>
+                                <h3>R.I.P</h3>
+                                <p>free</p>
+                            </div>
+                            <div class="communmity_container_middle_content_icon">
+                                <div class="communmity_icon_box">
+                                    <span><button><img src="./img/share.svg" alt=""></button></span>
+                                    <span><button><img src="./img/like.svg" alt=""></button></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="communmity_shadow">
+                        <div class="communmity_container_middle_content ">
+                            <div class="communmity_container_middle_content_imgbox">
+                                <img src="./img/communmity_images3.jpg" alt="">
+                            </div>
+                            <div class="communmity_container_middle_content_title">
+                                <span>
+                                    Sun, Aug 16, 2020 9:30 PM CST + 3 more events
+                                </span>
+                                <h3>上海時裝秀</h3>
+                                <p>free</p>
+                            </div>
+                            <div class="communmity_container_middle_content_icon">
+                                <div class="communmity_icon_box">
+                                    <span><button><img src="./img/share.svg" alt=""></button></span>
+                                    <span><button><img src="./img/like.svg" alt=""></button></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="communmity_shadow">
+                        <div class="communmity_container_middle_content ">
+                            <div class="communmity_container_middle_content_imgbox">
+                                <img src="./img/communmity_images5.jpg" alt="">
+                            </div>
+                            <div class="communmity_container_middle_content_title">
+                                <span>
+                                    Sun, Aug 16, 2020 9:30 PM CST + 3 more events
+                                </span>
+                                <h3>嬰兒腳臭大賽</h3>
+                                <p>free</p>
+                            </div>
+                            <div class="communmity_container_middle_content_icon">
+                                <div class="communmity_icon_box">
+                                    <span><button><img src="./img/share.svg" alt=""></button></span>
+                                    <span><button><img src="./img/like.svg" alt=""></button></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="communmity_shadow">
+                        <div class="communmity_container_middle_content ">
+                            <div class="communmity_container_middle_content_imgbox">
+                                <img src="./img/communmity_images2.jpg" alt="">
+                            </div>
+                            <div class="communmity_container_middle_content_title">
+                                <span>
+                                    Sun, Aug 16, 2020 9:30 PM CST + 3 more events
+                                </span>
+                                <h3>朴信惠粉絲見面會</h3>
+                                <p>free</p>
+                            </div>
+                            <div class="communmity_container_middle_content_icon">
+                                <div class="communmity_icon_box">
+                                    <span><button><img src="./img/share.svg" alt=""></button></span>
+                                    <span><button><img src="./img/like.svg" alt=""></button></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
 
-                <div class="communmity_main">
-                    <div class="communmity_container_left">
-                        <header class="communmity_container_title_left" >
-                            <h1>Filters</h1>
-                            
-                        </header>
-                        <div class="communmity_content_left">
-                            <ul class="communmity_content_left_item">
-                                <hr>
-                                <li> <a href="#">Date</a> </li>
-                                <li> <a href="#">Price</a> </li>
-                                <hr>
-                                <li> <a href="#">Category</a></li>
-                                <li> <a href="#">Format</a></li>
-                                <hr>
-                                  
-                            </ul>
-                        </div>
-                        <div class="communmity_content_Date_left communmity_displaynone ">
-                            <ul class="communmity_content_left_item">
-                                <hr>
-                                <li> <a href="#">Weekend</a> </li>
-                                <li> <a href="#">This week</a> </li>
-                                <hr>
-                                <li> <a href="#">This month</a></li>
-                                <li> <a href="#">Next month</a></li>
-                                <hr>
-                                  
-                            </ul>
-                        </div>
-                        <div class="communmity_content_Price_left communmity_displaynone ">
-                            <ul class="communmity_content_left_item">
-                                <hr>
-                                <li> <a href="#">Free</a> </li>
-                                <li> <a href="#">Any price</a> </li>
-                                <hr>
-                                <li> <a href="#">This month</a></li>
-                                <li> <a href="#">Next month</a></li>
-                                <hr>
-                                  
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="communmity_container_middle">
-                        <div class="communmity_search_head">
-                            <div class="communmity_search_head_left">
-                                <input class="communmity_search_event" type="search"  placeholder="Search anything" focus  value="">
-                                <br>
-                                <input class="communmity_search_event" type="text" placeholder="in Online events" value="">
-                            </div>
-                            <div class="communmity_search_head_right">
-                                <button>search</button>
-                            </div>
-                        </div>
-                        <div class="communmity_shadow">
-                            <div class="communmity_container_middle_content ">
-                                <div class="communmity_container_middle_content_imgbox">
-                                    <img src="./img/communmity_images1.jpg" alt="">  
-                                </div>
-                                <div class="communmity_container_middle_content_title">
-                                    <span>
-                                        Sun, Aug 16, 2020 9:30 PM CST + 3 more events
-                                    </span>
-                                    <h3>周子瑜粉絲見面會</h3>
-                                    <p>free</p>
-                                </div>
-                                <div class="communmity_container_middle_content_icon">
-                                    <div class="communmity_icon_box">
-                                        <span><button><img src="./img/share.svg" alt=""></button></span>
-                                        <span><button><img src="./img/like.svg" alt=""></button></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="communmity_shadow">
-                            <div class="communmity_container_middle_content ">
-                                <div class="communmity_container_middle_content_imgbox">
-                                    <img src="./img/communmity_images4.jpg" alt="">  
-                                </div>
-                                <div class="communmity_container_middle_content_title">
-                                    <span>
-                                        Sun, Aug 16, 2020 9:30 PM CST + 3 more events
-                                    </span>
-                                    <h3>R.I.P</h3>
-                                    <p>free</p>
-                                </div>
-                                <div class="communmity_container_middle_content_icon">
-                                    <div class="communmity_icon_box">
-                                        <span><button><img src="./img/share.svg" alt=""></button></span>
-                                        <span><button><img src="./img/like.svg" alt=""></button></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="communmity_shadow">
-                            <div class="communmity_container_middle_content ">
-                                <div class="communmity_container_middle_content_imgbox">
-                                    <img src="./img/communmity_images3.jpg" alt="">  
-                                </div>
-                                <div class="communmity_container_middle_content_title">
-                                    <span>
-                                        Sun, Aug 16, 2020 9:30 PM CST + 3 more events
-                                    </span>
-                                    <h3>上海時裝秀</h3>
-                                    <p>free</p>
-                                </div>
-                                <div class="communmity_container_middle_content_icon">
-                                    <div class="communmity_icon_box">
-                                        <span><button><img src="./img/share.svg" alt=""></button></span>
-                                        <span><button><img src="./img/like.svg" alt=""></button></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="communmity_shadow">
-                            <div class="communmity_container_middle_content ">
-                                <div class="communmity_container_middle_content_imgbox">
-                                    <img src="./img/communmity_images5.jpg" alt="">  
-                                </div>
-                                <div class="communmity_container_middle_content_title">
-                                    <span>
-                                        Sun, Aug 16, 2020 9:30 PM CST + 3 more events
-                                    </span>
-                                    <h3>嬰兒腳臭大賽</h3>
-                                    <p>free</p>
-                                </div>
-                                <div class="communmity_container_middle_content_icon">
-                                    <div class="communmity_icon_box">
-                                        <span><button><img src="./img/share.svg" alt=""></button></span>
-                                        <span><button><img src="./img/like.svg" alt=""></button></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="communmity_shadow">
-                            <div class="communmity_container_middle_content ">
-                                <div class="communmity_container_middle_content_imgbox">
-                                    <img src="./img/communmity_images2.jpg" alt="">  
-                                </div>
-                                <div class="communmity_container_middle_content_title">
-                                    <span>
-                                        Sun, Aug 16, 2020 9:30 PM CST + 3 more events
-                                    </span>
-                                    <h3>朴信惠粉絲見面會</h3>
-                                    <p>free</p>
-                                </div>
-                                <div class="communmity_container_middle_content_icon">
-                                    <div class="communmity_icon_box">
-                                        <span><button><img src="./img/share.svg" alt=""></button></span>
-                                        <span><button><img src="./img/like.svg" alt=""></button></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-            
-            
-                </div>
+            </div>
 
 
 
@@ -1499,20 +1499,19 @@
             <main>
                 <!-- ------------- 左側資訊 --------------- -->
 
-                <div class="page_hc_flex">
-                    <div class="page_hc_title">
+                <div class="create_active_flex">
+                    <div class="create_active_title">
                         <h2>創建活動</h2>
                         <div>
-                            <a href="#create-activity" class="page_hc_title_div">
-                                <p class="page_hc_title_circle">1</p>
-                                基本資料
+                            <a href="#create-activity" class="create_active_title_div">
+                                <p class="create_active_title_circle">1</p>基本資料
                             </a>
-                            <a href="#create-activity" class="page_hc_title_div">
-                                <p class="page_hc_title_circle">2</p>
+                            <a href="#create-activity" class="create_active_title_div">
+                                <p class="create_active_title_circle">2</p>
                                 詳細資料
                             </a>
-                            <a href="#create-activity" class="page_hc_title_div">
-                                <p class="page_hc_title_circle">✓</p>
+                            <a href="#create-activity" class="create_active_title_div">
+                                <p class="create_active_title_circle">✓</p>
                                 活動參與審核
                             </a>
                         </div>
@@ -1520,25 +1519,25 @@
 
                     <!-- ------------- Basic Info --------------- -->
 
-                    <div class="page_hc_basicInfo_container">
-                        <div class="page_hc_basicInfo">
+                    <div class="create_active_basicInfo_container">
+                        <div class="create_active_basicInfo">
                             <h2>基本資料</h2>
-                            <p>
-                                Name your event and tell event-goers why they should come. Add
+                            <p>Name your event and tell event-goers why they should come. Add
                                 details that highlight what makes it unique.
                             </p>
-                            <div class="page_hc_basicInfo_div">
-                                <div class="page_hc_basicInfo_div2 ">
+                            <div class="create_active_basicInfo_div">
+                                <div class="create_active_basicInfo_div2 ">
                                     <p>活動名稱</p>
-                                    <div class="page_hc_flex ">
-                                        <input type="text" maxlength="50" id="page_hc_name" class="page_hc_full" />
-                                        <p class="page_hc_ml" id="page_hc_name_count">0</p>
+                                    <div class="create_active_flex ">
+                                        <input type="text" maxlength="50" id="create_active_name"
+                                            class="create_active_full" />
+                                        <p class="create_active_ml" id="create_active_name_count">0</p>
                                         <p>&nbsp;/&nbsp;50</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="page_hc_basicInfo_div">
-                                <div class="page_hc_basicInfo_div2">
+                            <div class="create_active_basicInfo_div">
+                                <div class="create_active_basicInfo_div2">
                                     <p>活動發起者</p>
                                     <select name="type">
                                         <option value="">個人</option>
@@ -1546,18 +1545,19 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="page_hc_basicInfo_div">
+                            <div class="create_active_basicInfo_div">
                                 <!-- Google API??????-->
-                                <div class="page_hc_basicInfo_div2">
+                                <div class="create_active_basicInfo_div2">
                                     <p>活動地點</p>
-                                    <div class="page_hc_flex" style="align-items: center;">
+                                    <div class="create_active_flex" style="align-items: center;">
                                         <i class="fas fa-map-marker-alt"></i>
-                                        <input type="text" class="page_hc_ml page_hc_full" id="page_hc_local_tags" />
+                                        <input type="text" class="create_active_ml create_active_full"
+                                            id="create_active_local_tags" />
                                     </div>
                                 </div>
                             </div>
-                            <div class="page_hc_basicInfo_div">
-                                <div class="page_hc_basicInfo_div2">
+                            <div class="create_active_basicInfo_div">
+                                <div class="create_active_basicInfo_div2">
                                     <p>活動日期</p>
                                     <label for="ac_date_from">Start</label>
                                     <input type="text" id="ac_date_from" name="ac_date_from" autocomplete="off" />
@@ -1575,58 +1575,59 @@
                                     </select><br>
                                 </div>
                             </div>
-                            <div class="page_hc_basicInfo_div3">
-                                <button id="page_hc_btn_next">Next</button>
+                            <div class="create_active_basicInfo_div3">
+                                <button id="create_active_btn_next">Next</button>
                             </div>
                         </div>
 
                         <!-- ------------- Details --------------- -->
 
-                        <div class="page_hc_basicInfo">
+                        <div class="create_active_basicInfo">
                             <h2>詳細資料</h2>
                             <p>
                                 Name your event and tell event-goers why they should come. Add
                                 details that highlight what makes it unique.
                             </p>
-                            <div class="page_hc_basicInfo_div">
+                            <div class="create_active_basicInfo_div">
 
-                                <div class="page_hc_basicInfo_div2">
+                                <div class="create_active_basicInfo_div2">
                                     <p>活動圖片</p>
-                                    <div class="page_hc_flex">
-                                        <button class="hc_imgUpload">Upload</button>
-                                        <input type="text" class="page_hc_full" />
+                                    <div class="create_active_flex">
+                                        <button class="ca_imgUpload">Upload</button>
+                                        <input type="text" class="create_active_full" />
                                     </div>
                                 </div>
                             </div>
-                            <div class="page_hc_basicInfo_div">
-                                <div class="page_hc_basicInfo_div2">
+                            <div class="create_active_basicInfo_div">
+                                <div class="create_active_basicInfo_div2">
                                     <p>活動內容描述</p>
-                                    <div class="page_hc_flex">
-                                        <textarea name="" id="page_hc_text" cols="60" rows="8"
+                                    <div class="create_active_flex">
+                                        <textarea name="" id="create_active_text" cols="60" rows="8"
                                             maxlength="500"></textarea>
-                                        <p class="page_hc_flex_end page_hc_ml" id="page_hc_text_count">0</p>
-                                        <p class="page_hc_flex_end">&nbsp;/&nbsp;500</p>
+                                        <p class="create_active_flex_end create_active_ml"
+                                            id="create_active_text_count">0</p>
+                                        <p class="create_active_flex_end">&nbsp;/&nbsp;500</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="page_hc_basicInfo_div">
-                                <div class="page_hc_basicInfo_div2">
+                            <div class="create_active_basicInfo_div">
+                                <div class="create_active_basicInfo_div2">
                                     <p>活動標籤(小標籤最多五個)</p>
-                                    <div class="page_hc_flex">
+                                    <div class="create_active_flex">
                                         <select name="type">
                                             <option value="">淨山</option>
                                             <option value="">淨海</option>
                                             <option value="">路跑</option>
                                         </select>
-                                        <input type="text" class="page_hc_ml page_hc_full" id="test_tag_input" value=""
-                                            onblur="inputTag()" placeholder="此處輸入可輸入五個小標籤"
-                                            onfocus="this.placeholder=''" /><span id="page_hc_please"></span>
+                                        <input type="text" class="create_active_ml create_active_full"
+                                            id="test_tag_input" value="" onblur="inputTag()" placeholder="此處輸入可輸入五個小標籤"
+                                            onfocus="this.placeholder=''" /><span id="create_active_please"></span>
                                     </div>
                                     <div id="test_a" style="display: flex;"></div>
                                 </div>
                             </div>
-                            <div class="page_hc_basicInfo_div">
-                                <div class="page_hc_basicInfo_div2 page_hc_flex">
+                            <div class="create_active_basicInfo_div">
+                                <div class="create_active_basicInfo_div2 create_active_flex">
                                     <div>
                                         <p>最小人數</p>
                                         <input type="checkbox" />
@@ -1639,99 +1640,99 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="page_hc_basicInfo_div3">
-                                <button id="page_hc_btn_pre">Pre</button>
-                                <button id="page_hc_btn_done">Done</button>
+                            <div class="create_active_basicInfo_div3">
+                                <button id="create_active_btn_pre">Pre</button>
+                                <button id="create_active_btn_done">Done</button>
                             </div>
                         </div>
 
                         <!-- ------------- 審核 --------------- -->
 
-                        <div class="page_hc_basicInfo">
+                        <div class="create_active_basicInfo">
                             <h2>活動參與審核</h2>
                             <p>
                                 Name your event and tell event-goers why they should come. Add
                                 details that highlight what makes it unique.
                             </p>
-                            <div class="page_hc_basicInfo_div">
-                                <div class="page_hc_basicInfo_div2">
+                            <div class="create_active_basicInfo_div">
+                                <div class="create_active_basicInfo_div2">
                                     <p>待審核&nbsp;(&nbsp;5&nbsp;)</p>
-                                    <div class="page_hc_flex">
+                                    <div class="create_active_flex">
                                         <input type="checkbox" style="align-self: center;" />
-                                        <div class="page_hc_check">
+                                        <div class="create_active_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>JL1992</p>
                                         </div>
                                         <input type="checkbox" style="align-self: center;" />
-                                        <div class="page_hc_check">
+                                        <div class="create_active_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>Wwill35489</p>
                                         </div>
                                         <input type="checkbox" style="align-self: center;" />
-                                        <div class="page_hc_check">
+                                        <div class="create_active_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>romazrau</p>
                                         </div>
                                         <input type="checkbox" style="align-self: center;" />
-                                        <div class="page_hc_check">
+                                        <div class="create_active_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>Wwill35489</p>
                                         </div>
                                         <input type="checkbox" style="align-self: center;" />
-                                        <div class="page_hc_check">
+                                        <div class="create_active_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>romazrau</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="page_hc_basicInfo_div3">
-                                <button id="page_hc_btn_done">Done</button>
+                            <div class="create_active_basicInfo_div3">
+                                <button id="create_active_btn_done">Done</button>
                             </div>
-                            <div class="page_hc_basicInfo_div">
-                                <div class="page_hc_basicInfo_div2">
+                            <div class="create_active_basicInfo_div">
+                                <div class="create_active_basicInfo_div2">
                                     <p>參加成員&nbsp;(&nbsp;6&nbsp;)</p>
-                                    <div class="page_hc_flex">
-                                        <div class="page_hc_check">
+                                    <div class="create_active_flex">
+                                        <div class="create_active_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>ddd555</p>
                                         </div>
-                                        <div class="page_hc_check">
+                                        <div class="create_active_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>ccc666</p>
                                         </div>
-                                        <div class="page_hc_check">
+                                        <div class="create_active_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>AndyKao123</p>
                                         </div>
-                                        <div class="page_hc_check">
+                                        <div class="create_active_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>ddd555</p>
                                         </div>
-                                        <div class="page_hc_check">
+                                        <div class="create_active_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>ccc666</p>
                                         </div>
-                                        <div class="page_hc_check">
+                                        <div class="create_active_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>AndyKao123</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="page_hc_basicInfo_div">
-                                <div class="page_hc_basicInfo_div2">
+                            <div class="create_active_basicInfo_div">
+                                <div class="create_active_basicInfo_div2">
                                     <p>候補成員&nbsp;(&nbsp;3&nbsp;)</p>
-                                    <div class="page_hc_flex">
-                                        <div class="page_hc_check">
+                                    <div class="create_active_flex">
+                                        <div class="create_active_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>happytree78</p>
                                         </div>
-                                        <div class="page_hc_check">
+                                        <div class="create_active_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>omg666</p>
                                         </div>
-                                        <div class="page_hc_check">
+                                        <div class="create_active_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>forever520</p>
                                         </div>
@@ -1753,20 +1754,20 @@
             <main>
                 <!-- ------------- 左側資訊 --------------- -->
 
-                <div class="page_hc_flex">
-                    <div class="page_hc_title">
+                <div class="create_community_flex">
+                    <div class="create_community_title">
                         <h2>創建社團</h2>
                         <div>
-                            <a href="#create-community" class="page_hc_title_div">
-                                <p class="page_hc_title_circle">1</p>
+                            <a href="#create-community" class="create_community_title_div">
+                                <p class="create_community_title_circle">1</p>
                                 基本資料
                             </a>
-                            <a href="#create-community" class="page_hc_title_div">
-                                <p class="page_hc_title_circle">2</p>
+                            <a href="#create-community" class="create_community_title_div">
+                                <p class="create_community_title_circle">2</p>
                                 詳細資料
                             </a>
-                            <a href="#create-community" class="page_hc_title_div">
-                                <p class="page_hc_title_circle">✓</p>
+                            <a href="#create-community" class="create_community_title_div">
+                                <p class="create_community_title_circle">✓</p>
                                 社團加入審核
                             </a>
                         </div>
@@ -1774,25 +1775,26 @@
 
                     <!-- ------------- Basic Info --------------- -->
 
-                    <div class="page_hc_basicInfo_container">
-                        <div class="page_hc_basicInfo">
+                    <div class="create_community_basicInfo_container">
+                        <div class="create_community_basicInfo">
                             <h2>基本資料</h2>
                             <p>
                                 Name your event and tell event-goers why they should come. Add
                                 details that highlight what makes it unique.
                             </p>
-                            <div class="page_hc_basicInfo_div">
-                                <div class="page_hc_basicInfo_div2">
+                            <div class="create_community_basicInfo_div">
+                                <div class="create_community_basicInfo_div2">
                                     <p>社團名稱</p>
-                                    <div class="page_hc_flex">
-                                        <input type="text" maxlength="20" id="page_hc_name" class="page_hc_full" />
-                                        <p class="page_hc_ml" id="page_hc_name_count">0</p>
+                                    <div class="create_community_flex">
+                                        <input type="text" maxlength="20" id="create_community_name"
+                                            class="create_community_full" />
+                                        <p class="create_community_ml" id="create_community_name_count">0</p>
                                         <p>&nbsp;/&nbsp;20</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="page_hc_basicInfo_div">
-                                <div class="page_hc_basicInfo_div2">
+                            <div class="create_community_basicInfo_div">
+                                <div class="create_community_basicInfo_div2">
                                     <p>Privacy Settings</p>
                                     <select name="type">
                                         <option value="">公開</option>
@@ -1801,133 +1803,134 @@
                                 </div>
                             </div>
 
-                            <div class="page_hc_basicInfo_div3">
-                                <button id="page_hc_btn_next">Next</button>
+                            <div class="create_community_basicInfo_div3">
+                                <button id="create_community_btn_next">Next</button>
                             </div>
                         </div>
 
                         <!-- ------------- Details --------------- -->
 
-                        <div class="page_hc_basicInfo">
+                        <div class="create_community_basicInfo">
                             <h2>詳細資料</h2>
                             <p>
                                 Name your event and tell event-goers why they should come. Add
                                 details that highlight what makes it unique.
                             </p>
-                            <div class="page_hc_basicInfo_div">
-                                <div class="page_hc_basicInfo_div2">
+                            <div class="create_community_basicInfo_div">
+                                <div class="create_community_basicInfo_div2">
                                     <p>社團首頁圖片</p>
-                                    <div class="page_hc_flex">
+                                    <div class="create_community_flex">
                                         <button class="hc_imgUpload ">Upload</button>
-                                        <input type="text" class="page_hc_full" />
+                                        <input type="text" class="create_community_full" />
                                     </div>
                                 </div>
                             </div>
-                            <div class="page_hc_basicInfo_div">
-                                <div class="page_hc_basicInfo_div2">
+                            <div class="create_community_basicInfo_div">
+                                <div class="create_community_basicInfo_div2">
                                     <p>社團描述</p>
-                                    <div class="page_hc_flex">
-                                        <textarea name="" id="page_hc_text" cols="60" rows="8"
+                                    <div class="create_community_flex">
+                                        <textarea name="" id="create_community_text" cols="60" rows="8"
                                             maxlength="500"></textarea>
-                                        <p class="page_hc_flex_end page_hc_ml" id="page_hc_text_count">0</p>
-                                        <p class="page_hc_flex_end">&nbsp;/&nbsp;500</p>
+                                        <p class="create_community_flex_end create_community_ml"
+                                            id="create_community_text_count">0</p>
+                                        <p class="create_community_flex_end">&nbsp;/&nbsp;500</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="page_hc_basicInfo_div3">
-                                <button id="page_hc_btn_pre">Pre</button>
-                                <button id="page_hc_btn_done">Done</button>
+                            <div class="create_community_basicInfo_div3">
+                                <button id="create_community_btn_pre">Pre</button>
+                                <button id="create_community_btn_done">Done</button>
                             </div>
                         </div>
 
                         <!-- ------------- 審核 --------------- -->
 
-                        <div class="page_hc_basicInfo">
+                        <div class="create_community_basicInfo">
                             <h2>社團加入審核</h2>
                             <p>
                                 Name your event and tell event-goers why they should come. Add
                                 details that highlight what makes it unique.
                             </p>
-                            <div class="page_hc_basicInfo_div">
-                                <div class="page_hc_basicInfo_div2">
+                            <div class="create_community_basicInfo_div">
+                                <div class="create_community_basicInfo_div2">
                                     <p>待審核&nbsp;(&nbsp;5&nbsp;)</p>
-                                    <div class="page_hc_flex">
+                                    <div class="create_community_flex">
                                         <input type="checkbox" style="align-self: center;" />
-                                        <div class="page_hc_check">
+                                        <div class="create_community_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>JL1992</p>
                                         </div>
                                         <input type="checkbox" style="align-self: center;" />
-                                        <div class="page_hc_check">
+                                        <div class="create_community_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>Wwill35489</p>
                                         </div>
                                         <input type="checkbox" style="align-self: center;" />
-                                        <div class="page_hc_check">
+                                        <div class="create_community_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>romazrau</p>
                                         </div>
                                         <input type="checkbox" style="align-self: center;" />
-                                        <div class="page_hc_check">
+                                        <div class="create_community_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>Wwill35489</p>
                                         </div>
                                         <input type="checkbox" style="align-self: center;" />
-                                        <div class="page_hc_check">
+                                        <div class="create_community_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>romazrau</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="page_hc_basicInfo_div3">
-                                <button id="page_hc_btn_done">Done</button>
+                            <div class="create_community_basicInfo_div3">
+                                <button id="create_community_btn_done">Done</button>
                             </div>
-                            <div class="page_hc_basicInfo_div">
-                                <div class="page_hc_basicInfo_div2">
+                            <div class="create_community_basicInfo_div">
+                                <div class="create_community_basicInfo_div2">
                                     <p>社團成員&nbsp;(&nbsp;6&nbsp;)</p>
-                                    <div class="page_hc_flex">
-                                        <div class="page_hc_check">
+                                    <div class="create_community_flex">
+                                        <div class="create_community_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>ddd555</p>
                                         </div>
-                                        <div class="page_hc_check">
+                                        <div class="create_community_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>ccc666</p>
                                         </div>
-                                        <div class="page_hc_check">
+                                        <div class="create_community_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>AndyKao123</p>
                                         </div>
-                                        <div class="page_hc_check">
+                                        <div class="create_community_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>ddd555</p>
                                         </div>
-                                        <div class="page_hc_check">
+                                        <div class="create_community_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>ccc666</p>
                                         </div>
-                                        <div class="page_hc_check">
+                                        <div class="create_community_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>AndyKao123</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="page_hc_basicInfo_div">
-                                <div class="page_hc_basicInfo_div2">
+                            <div class="create_community_basicInfo_div">
+                                <div class="create_community_basicInfo_div2">
                                     <p>候補成員&nbsp;(&nbsp;3&nbsp;)</p>
-                                    <div class="page_hc_flex">
-                                        <div class="page_hc_check">
+                                    <div class="create_community_flex">
+                                        <div class="create_community_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>happytree78</p>
                                         </div>
-                                        <div class="page_hc_check">
+                                        <div class="create_community_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>omg666</p>
                                         </div>
-                                        <div class="page_hc_check">
+                                        <div class="create_community_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>forever520</p>
                                         </div>
@@ -1950,23 +1953,23 @@
     <footer>
         <div class="footer_info">
             <div>
-                <h4>Account</h4>
+                <h6>Account</h6>
                 <ul>
-                    <li><a href="#">Sign up</a></li>
+                    <li><a href="#sign-Up">Sign up</a></li>
                     <li><a href="#log-in">Log in</a></li>
                     <li><a href="#personal-page">MY</a></li>
                 </ul>
             </div>
             <div>
-                <h4>Discover</h4>
+                <h6>Discover</h6>
                 <ul>
-                    <li><a href="#Community">Groups</a></li>
-                    <li><a href="#activity">Calendar</a></li>
+                    <li><a href="#community">Community</a></li>
+                    <li><a href="#activity">Activity</a></li>
                     <li><a href="#">Topics</a></li>
                 </ul>
             </div>
             <div>
-                <h4>Cycle-Link</h4>
+                <h6>Cycle-Link</h6>
                 <ul>
                     <li><a href="#about-us">About Us</a></li>
                     <li><a href="#">Careers</a></li>
