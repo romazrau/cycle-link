@@ -208,6 +208,8 @@
 }
 
 .hc_imgUpload:hover {
+  border: 1px solid var(--lightblue-color);
+  transition: all 0.5s;
   cursor: pointer;
 }
 
