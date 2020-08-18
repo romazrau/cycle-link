@@ -1448,12 +1448,12 @@
                         <div class="rightPart" id="rightPart">
                             <div class="rightPartTop">
                                 <button class="rightPartTop_button" onclick="ActivityChangeStatus()"
-                                    type="button">我要參加</button><img class="loveicon" src="./img/loveicon.svg"
-                                    alt="loveicon">
+                                    type="button">我要參加</button>
                                 <!-- <div class="eventInfoShareButton"> -->
                                 <button class="eventInfoShareButton" type="button"
                                     onclick="document.getElementById('light').style.display='block'; document.getElementById('fade').style.display='block'">share</button>
-                                <!-- </div> -->
+                                <!-- </div> --><img class="loveicon" src="./img/loveicon.svg"
+                                    alt="loveicon">
                             </div>
 
                             <div class="rightPartCard">
@@ -1472,11 +1472,17 @@
                         <!-- rightPart end -->
 
                         <!-- 顯示主視窗 -->
+
                         <div id="light" class="white_content">
                             <a href="javascript:void(0)"
                                 onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
-                                X</a>
-                            <br><input type="text" id="" value="">
+                                X</a> <br>
+                            <div class="activity_detail_shareMain"> <input type="text" class="activity_detail_shareTxt" value="http://127.0.0.1:5501/frontend/index.html#activity/detail/?=1"><input type="button" class="activity_detail_shareBtn btn-info" value="複製"></div>
+                            
+                          
+                            <div class="activity_detail_shareFooter">  <a href=""><img src="./img/facebook.png" alt=""></a><a href=""><img src="./img/twitter.png" alt=""></a><a href=""><img src="./img/instagram.png" alt=""></a></div>
+                              
+
                         </div>
                         <div id="fade" class="black_overlay"></div>
                         <!--end-->
