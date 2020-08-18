@@ -16,8 +16,25 @@
    );
 
 
+   //跳轉
+   document.querySelectorAll(".communmity_container_middle_content ").forEach(
+       (item) => {
+           item.addEventListener(
+               "click",
+               (e) => {
+                   location.hash = "#community/detail/id=?";
+               }
+           )
+       }
+   )
 
-   }
+
+
+
+
+
+
+}
    
    
    

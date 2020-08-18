@@ -51,6 +51,12 @@ function ClsRouter() {
                     break;
 
                 case "community":
+                    if (hashSplitArray[1] == "detail") {  //開啟活動頁面
+                        document.querySelector('#page_community-detail').classList.remove("hide");
+                        break;
+                    }
+
+
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
 
@@ -77,6 +83,11 @@ function ClsRouter() {
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
 
+                case "personal-maneger":
+                        document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
+                        break;
+
+
                 case "personal-page":
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
@@ -84,7 +95,7 @@ function ClsRouter() {
                 case "create-activity":
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
-                    create_community
+
 
                 case "create-community":
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
