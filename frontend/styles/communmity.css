@@ -120,9 +120,17 @@ body{
 }
 .communmity_icon_box button{
     width: 45%;
-    background-color:white;
+    background-color:transparent;
     border: none;
+    outline: none;
 }
+
+.communmity_icon_box button:hover{
+    background-color: rgba(0, 0, 0, 0.055);
+}
+
+
+
 .communmity_displaynone{
     display: none;
 }
