@@ -1,6 +1,6 @@
-function ClsPersonalManeger(){
+function ClsPersonalManeger() {
 
-
+    //可惡這只是變色
     this.openClass = (evt, className) => {
         var i, x, tablinks;
         x = document.getElementsByClassName("class");
@@ -140,13 +140,7 @@ function ClsPersonalManeger(){
         }
     }
 
-
-
-
-
     $(".button_removeProductTag").click(function () {
-
-
         let RemoveName = document.querySelector(".removeProductDropdownlist").value;
 
         $(".removeProductDropdownlist option:selected").remove();
@@ -154,7 +148,6 @@ function ClsPersonalManeger(){
             if (item === RemoveName) {
                 console.log(item);
                 array.splice(index, 1);
-
             }
 
             document.getElementById("newProductTagText").innerHTML = "標籤:";
@@ -168,18 +161,13 @@ function ClsPersonalManeger(){
 
     /*新增活動標籤*/
     var NewTagNameList_Activity = [""];
-
-
-
     $(".button_NewActivityTag").click(function () {
 
         if (NewTagNameList_Activity.length >= maxTagsNumbers) {
             window.alert("最多新增5個標籤");
         } else {
-
             NewTagName = $(".newActivityTag").val();
             NewTagNameCheck(NewTagNameList_Activity, newActivityTagText, removeActivityDropdownlist);
-
             if (ck == 1) {
                 NewTagNameList_Activity.push(NewTagName);
                 document.getElementById("newActivityTagText").innerHTML += NewTagName + ", ";
@@ -219,13 +207,9 @@ function ClsPersonalManeger(){
 
         $(this).siblings().css("opacity", "0.5");
 
-
     }, function () {
         $(this).siblings().css("opacity", "1");
     })
-
-
-
 
 }
 const PersonalManeger = new ClsPersonalManeger();

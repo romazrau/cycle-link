@@ -153,21 +153,24 @@
 .Memberfieldset{
     border: 0px;
 }
-.datawrap{
-    display: flex;
-}
+
 .dataContainer{
     width: 33%;
 }
 .dataItem{
-
     margin: 0.8rem;
-    
 }
 
 .dataItem input{
     float: right;
+    border: none;
     width: 66%;
+}
+.dataItem textarea{
+    border: none;
+}
+.datawrap .dataContainer{
+    height: 600px;
 }
 
 
@@ -363,7 +366,23 @@
     display: flex;
 }
 
-.icon_left {
+.peoplefilebox_right_items{
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+.peoplefilebox_left{
+    margin-top: 3rem;
+    margin-left: 8rem;
+}
+.peoplefilebox_left button{
+    margin-bottom: 2rem;
+    border: 0 solid transparent;
+    background-color: var(--white-color);
+    line-height: 3rem;
+    width: 7rem;
+}
+
+/* .icon_left {
     margin: 0 10rem;
 }
 
@@ -381,7 +400,7 @@
 
 .iconbox span {
     justify-content: center;
-}
+} 
 
 .peoplefile_img {
     margin-right: 1rem;
@@ -389,7 +408,7 @@
 
 .peoplefile_detail {
     margin-top: 0.5rem;
-}
+}*/
 
 #page_personal-maneger .container {
     max-width: 1240px;
