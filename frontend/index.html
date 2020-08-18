@@ -1836,12 +1836,12 @@
                                 <!--------------- event left part  ------------------->
                                 <div class="EventBottomLeft ">
                                     <div class="BottomLeftInfoCard LeftSwitchCard">
-                                        <a href="#">即將到來活動</a>
-                                        <a href="#">過去活動</a>
+                                        <a id="commingEvent" href="#community/detail">即將到來活動</a>
+                                        <a id="pastEvent" href="#community/detail">過去活動</a>
                                     </div>
                                 </div>
                                 <!---------------///  event right part coming event ///  ------------------->
-                                <div class="EventBottomRight">
+                                <div class="EventBottomRight comingEvent">
                                     <!-- 一張卡 -->
                                     <div class="BottomRightInfoCard">
                                         <div class="GroupBottomCardTime">Saturday, August 1, 2020</div>
@@ -1914,7 +1914,7 @@
                                     <!---------------///  event right part coming event end ///  ------------------->
                                 </div>
                                 <!---------------///  event right part past event ///  ------------------->
-                                <div class="EventBottomRight hide">
+                                <div class="EventBottomRight pastEvent hide">
                                     <!-- 一張卡 -->
                                     <div class="BottomRightInfoCard">
                                         <div class="GroupBottomCardTime">Saturday, Dec 1, 2019</div>
@@ -2012,8 +2012,8 @@
                             id="GroupDetailPage_Member">
                             <div class="MemberBottomLeft GroupBottomMainMember">
                                 <div class="BottomLeftInfoCard LeftSwitchCard">
-                                    <div>所有成員</div>
-                                    <div>管理員</div>
+                                    <a id="allMember" href="#community/detail">所有成員</a>
+                                    <a id="rankingMember" href="#community/detail">管理員</a>
                                 </div>
                             </div>
 
@@ -2022,7 +2022,7 @@
                                 <!-- 框 -->
                                 <div class="BottomRightSearchList">
                                     <!------------------------ /// Member right part switch hidden（所有成員）///  ------------------------>
-                                    <div class="hide">
+                                    <div class="allMember" class="hide">
                                         <div class="FlexContainer Group_FlexJustifyContentSB GroupMemberSearch">
                                             <div>成員列表</div>
                                             <div class="FlexContainer">
@@ -2103,7 +2103,7 @@
 
                                     </div>
                                     <!------------------------ /// Member right part switch hidden（管理員）///  ------------------------>
-                                    <div class="">
+                                    <div class="rankingMember">
                                         <div class="FlexContainer Group_FlexJustifyContentSB GroupMemberSearch">
                                             <div>管理員列表</div>
                                             <div class="FlexContainer">
