@@ -142,8 +142,8 @@
 }
 
 .activity_icon {
-    width: 20px;
-    height: 20px;
+    height: 1rem;
+    padding-right: 4px;
 }
 
 .activity_main {
@@ -166,13 +166,41 @@
 }
 
 
-.activity_event div {
-    width: 23%;
+.activity_event, .activity_event2{
+    display: flex;
+    align-content: stretch;
 }
 
-.activity_event2 div {
-    width: 23%;
+.activity_event_card{
+    background-color: var(--lightgrey-color);
+    padding: 0.2rem;
+    box-sizing: content-box;
+    position: relative;
+    max-width: 23%;
+    min-width: 15rem;
+    height: 20rem;
+    border-radius: 15px;
+    flex-shrink: 0;
+    margin-bottom: 2rem;
 }
+
+
+
+@media (max-width: 1200px) {
+    .activity_event_card{
+        max-width: 40%;
+        width: 40%
+    };
+}
+
+@media (max-width: 700px) {
+    .activity_event_card{
+        max-width: 80%;
+        width: 80%
+    };
+}
+
+
 
 .activity_event_img {
     width: 100%;
@@ -180,11 +208,25 @@
     border-radius: 15px;
 }
 
+
+.activity_event_card_icons{
+    position: absolute;
+    bottom: 0.5rem;
+    width: calc(100% - 0.8rem);
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+
 .activity_event_history1 {
     /* background-color: var(--grey-color); */
     border-top: 1px solid var(--lightblue-color);
-    height: 400px;
+    min-height: 400px;
     /* display: flex; */
+    margin-bottom: 3rem;
+
 }
 
 .activity_event_history1 h2 {
@@ -194,17 +236,15 @@
 
 .activity_event_history2 {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     margin-bottom: 2rem;
     margin: 0rem 3rem;
-    height: 320px;
+    min-height: 320px;
     align-items: center;
 }
 
-.activity_event_history2 div {
-    width: 23%;
-    margin: 0rem 1rem;
-}
+
 
 .activity_event_history2_a {
     display: flex;

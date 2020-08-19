@@ -94,13 +94,19 @@ function ClsActivity() {
 
     const htmlActCard = (o) => {
         return ` 
-    <div id="ActCard">
+    <div id="ActCard" class="activity_event_card">
     <img src="${o.imgPath}" class="activity_event_img" alt="">
     <p>${o.date}</p>
     <h3>${o.title}</h3>
+    <div class="activity_event_card_icons">
+    <div>
     <img src="img/icon1.svg" class="activity_icon" alt=""><span>${o.count}</span>
+    </div><div>
     <img src="img/icon_user.svg" class="activity_icon" alt=""><span>${o.member}</span>
+    </div><div>
     <img src="img/icon_gps.svg" class="activity_icon" alt=""><span>${o.local}</span>
+    </div>
+    </div>
     </div>`;
 
     }
@@ -211,19 +217,6 @@ function ClsActivity() {
 
     //------------------------------------------------------
 
-
-    const htmlHisAct = (o) => {
-        return `
-    <div>
-    <img src="${o.imgPath}" class="activity_event_img" alt="">
-    <p>${o.date}</p>
-    <h3>${o.title}</h3>
-    <img src="img/icon1.svg" class="activity_icon" alt=""><span>${o.count}</span>
-    <img src="img/icon_user.svg" class="activity_icon" alt=""><span>${o.member}</span>
-    <img src="img/icon_gps.svg" class="activity_icon" alt=""><span>${o.local}</span>
-    </div>`
-    }
-
     const HisAct = document.querySelector(".activity_event_history2")
 
     let HisActData = [{
@@ -262,7 +255,7 @@ function ClsActivity() {
 
     HisActData.map(
         (e, index) => {
-            HisAct.innerHTML += htmlHisAct(e);
+            HisAct.innerHTML += htmlActCard(e);
         }
     )
 
