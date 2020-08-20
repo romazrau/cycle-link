@@ -1,5 +1,5 @@
 /* ------------- 右下聊天機器人 ------------- */
-.chat_container{
+.chat_container {
     position: fixed;
     right: 1rem;
     bottom: 2rem;
@@ -13,7 +13,7 @@
 
 
 /* *以下icon */
-.chat_icon_container{
+.chat_icon_container {
     min-width: 3rem;
     min-height: 3rem;
     display: flex;
@@ -23,7 +23,7 @@
 }
 
 
-.chat_icon_main{
+.chat_icon_main {
     width: 3rem;
     height: 3rem;
     transition: all 1s;
@@ -39,14 +39,15 @@
 
 
 .chat_icon:hover {
-    transform: rotate(330deg) scale(1.5);   /* 變形:轉度  縮放 */
+    transform: rotate(330deg) scale(1.5);
+    /* 變形:轉度  縮放 */
 }
 
 
 
 
 /* 聊天標題 */
-.chat_window_title{
+.chat_window_title {
     border-bottom: solid 1px white;
     font-size: 1.2rem;
     font-weight: 600;
@@ -54,47 +55,49 @@
     margin-bottom: 0.2rem;
     display: flex;
     justify-content: space-around;
+    color: white;
 }
 
-.chat_window_close{
+.chat_window_close {
     position: absolute;
     top: 0.2rem;
-    right:0.5rem;
-    width: 2rem;
+    right: 0.5rem;
+    width: 1rem;
 }
 
-.chat_window_close:hover{
+.chat_window_close:hover {
     transform: scale(1.2);
+    cursor: pointer;
 }
 
 
-.chat_input{
+.chat_input {
     width: 100%;
 
 }
 
-.chat_input > textarea{
+.chat_input>textarea {
     width: 100%;
     margin: 0;
-    resize : none;
+    resize: none;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
     margin-bottom: -10px;
     padding: 0.5rem 0.5rem;
 }
 
-.chat_input > textarea:focus{
+.chat_input>textarea:focus {
     outline: none;
 }
 
 
 /* 以下聊天室 */
-.chat_room_window{
+.chat_room_window {
     position: relative;
     margin-right: 2rem;
     width: 20rem;
     min-height: 20rem;
-    background-color: var(--pink-color);
+    background-color: var(--blue-color);
     border-radius: 0.5rem;
     font-size: 1rem;
 
@@ -102,7 +105,7 @@
     flex-direction: column;
 }
 
-.chat_message{
+.chat_message {
     padding: 0 1rem;
     display: flex;
     flex-direction: column;
@@ -110,7 +113,7 @@
     flex-grow: 1;
 }
 
-.caht_notMe{
+.caht_notMe {
     padding: 0.2rem 0.2rem;
     margin-top: 0.2rem;
     border-radius: 0.5rem;
@@ -118,7 +121,7 @@
     align-self: flex-start;
 }
 
-.caht_Me{
+.caht_Me {
     padding: 0.2rem 0.2rem;
     margin-top: 0.2rem;
     border-radius: 0.5rem;
@@ -129,30 +132,30 @@
 
 
 /* 以下聊天列表 */
-.chat_list_window{
+.chat_list_window {
     position: relative;
     margin-right: 2rem;
     min-width: 10rem;
     min-height: 20rem;
-    background-color: var(--pink-color);
-    border-radius: 0.5rem;   
+    background-color: rgb(218, 218, 218);
+    border-radius: 0.5rem;
 }
 
-.chat_list{
+.chat_list {
     padding: 0 1rem;
     list-style-type: none;
     font-size: 1rem;
 }
 
 
-.chat_list li:hover{
+.chat_list li:hover {
     border: solid 1px var(--white-color);
 }
 
 
 
 /* 以下聊天機器人 */
-.chat_robot_room_window{
+.chat_robot_room_window {
     position: relative;
     margin-right: 2rem;
     width: 20rem;
@@ -164,7 +167,3 @@
     display: flex;
     flex-direction: column;
 }
-
-
-
-

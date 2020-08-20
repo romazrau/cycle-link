@@ -87,19 +87,20 @@
 
         <!-- 聊天機器人 -->
         <div class="chat_robot_room_window hide">
-            <img id="chat_robot_window_close" class="chat_window_close" src="./img/icons8-close-window-200.png" alt="X">
+            <img id="chat_robot_window_close" class="chat_window_close" src="./img/times-solid.svg" alt="X">
             <div id="chat_message_window_title" class="chat_window_title">聊天機器人</div>
             <div id="chat_robot_message" class="chat_message">
                 訊息
             </div>
             <div class="chat_input">
-                <textarea placeholder="想說什麼呢?" row="2"></textarea>
+                <textarea placeholder="想說什麼呢?" onfocus="this.placeholder=''" onblur="this.placeholder='想說什麼呢?'"
+                    row="2"></textarea>
             </div>
         </div>
 
 
         <div class="chat_list_window hide">
-            <img id="chat_list_window_close" class="chat_window_close" src="./img/icons8-close-window-200.png" alt="X">
+            <img id="chat_list_window_close" class="chat_window_close" src="./img/times-solid.svg" alt="X">
             <div class="chat_window_title">聊天列表</div>
             <ul class="chat_list">
                 <!-- 列表 -->

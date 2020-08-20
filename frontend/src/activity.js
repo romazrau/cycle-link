@@ -207,7 +207,7 @@ function ClsActivity() {
     //AJAX
     let ActCardData2 = [{
             imgPath: "img/event9.jpg",
-            date: "Sunday, July 30,2020,10:30",
+            date: "2020/11/19",
             title: "城市獵人 - 生態公園夜觀",
             count: 999,
             member: "彌勒佛",
@@ -215,7 +215,7 @@ function ClsActivity() {
         },
         {
             imgPath: "img/event10.jpg",
-            date: "Sunday, July 30,2020,10:30",
+            date: "2020/08/20",
             title: "綠的手作坊 - 漂流木新生命",
             count: 999,
             member: "彌勒佛",
@@ -223,7 +223,7 @@ function ClsActivity() {
         },
         {
             imgPath: "img/event11.png",
-            date: "Sunday, July 30,2020,10:30",
+            date: "2020/10/16",
             title: "海洋危機，拯救機會",
             count: 999,
             member: "彌勒佛",
