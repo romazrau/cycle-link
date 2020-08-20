@@ -42,8 +42,8 @@ footer li a:hover {
   position: relative;
   top: 2px;
   left: 1px;
-  color: var(--lightblue-color);
   transition: all 0.5s;
+  color: var(--lightblue-color);
 }
 
 .footer_icon a {
@@ -52,9 +52,6 @@ footer li a:hover {
 }
 
 .footer_icon a:hover {
-  /* position: relative;
-    top: 2px;
-    left: 1px; */
   color: var(--lightblue-color);
   transition: all 0.5s;
 }
@@ -80,24 +77,4 @@ footer li a:hover {
   align-self: flex-end;
   font-size: 14px;
   color: #f6f7f8;
-}
-
-#test_tag {
-  background-color: rgb(233, 233, 233);
-  /* border: 1px solid rgb(131, 131, 131); */
-  border-radius: 1rem;
-  /* width: 15%; */
-  margin-top: 0.5rem;
-  margin-left: 0.5rem;
-  padding: 0.3rem 1rem 0.3rem 1rem;
-  line-height: 1.5rem;
-}
-
-#test_tag button {
-  border: 0px solid rgb(131, 131, 131);
-  border-radius: 3px;
-  background-color: white;
-  margin-left: 0.4rem;
-  padding: 0rem 0.2rem 0rem 0.2rem;
-  line-height: 1rem;
 }

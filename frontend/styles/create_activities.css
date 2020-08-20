@@ -1,8 +1,4 @@
-/* ---------- 功能用 ---------- */
-/* .create_active_container {
-  display: flex;
-} */
-
+/* *---------- 功能用 ---------- */
 .create_active_flex {
   display: flex;
 }
@@ -20,7 +16,7 @@
   width: 100%;
 }
 
-/* ---------- 開始 ---------- */
+/* *---------- 開始 ---------- */
 .create_active_title_div {
   display: flex;
   align-items: center;
@@ -58,7 +54,6 @@
 
 .create_active_basicInfo_container {
   width: 80%;
-  /* min-width: 960px; */
   background-color: rgb(245, 245, 245);
 }
 
@@ -133,7 +128,6 @@
   border: 0rem;
   border-bottom: 1px solid rgb(209, 209, 209);
   font-size: 18px;
-  /* width: 100%; */
 }
 
 .create_active_basicInfo_div2 input:hover {
@@ -145,16 +139,6 @@
   border-bottom: 1px solid var(--blue-color);
   outline: none;
 }
-
-
-/* #create_active_time {
-  border: 1px solid rgb(209, 209, 209);
-  border-radius: 0.5rem;
-  padding: 0.35rem 1rem;
-  margin: 0.1rem 0.5rem 0rem 1rem;
-  width: 10%;
-
-} */
 
 .create_active_basicInfo_div3 {
   text-align: end;
@@ -217,15 +201,6 @@
   color: var(--blue-color);
   margin-right: 1rem;
 }
-
-/* .ca_imgUpload {
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  border: 1px solid rgb(209, 209, 209);
-  background-color: white;
-  color: var(--blue-color);
-  margin-right: 1rem;
-} */
 
 .ca_imgUpload_div {
   width: 70vh;
