@@ -1,14 +1,13 @@
-let HomeBannerdata =[
-  {
-    fImagePath:"img/A2.jpg",
-    fTitle:"福隆 淨灘活動",
-    fTime:"2 天 08 : 28 : 06",
+let HomeBannerdata = [{
+    fImagePath: "img/home_topEvent_02.jpg",
+    fTitle: "世界環境清潔日",
+    fTime: "2 天 08 : 28 : 06",
 
   },
   {
-    fImagePath:"img/A1.jpg",
-    fTitle:"小琉球 淨灘活動",
-    fTime:"4 天 01 : 22 : 06",
+    fImagePath: "img/home_topEvent_01.jpg",
+    fTitle: "保護海龜",
+    fTime: "4 天 01 : 22 : 06",
 
   }
 ]
@@ -16,21 +15,22 @@ let HomeBannerdata =[
 
 function HomeBanner(data) {
   let postion = 0;
+
   function scrollPic() {
     if (postion > data.length - 1) {
       postion = 0;
-      
+
     }
-        document.getElementById("A1").src = data[postion].fImagePath;
-        document.getElementById("home_top_event_p").innerHTML=data[postion].fTitle+"</br>"+data[postion].fTime;
+    document.getElementById("A1").src = data[postion].fImagePath;
+    document.getElementById("home_top_event_p").innerHTML = data[postion].fTitle + "</br>" + data[postion].fTime;
     postion++;
-      }
+  }
   setInterval(scrollPic, 2000);
 }
 
 const Home = new HomeBanner(HomeBannerdata);
 
-document.querySelector(".home_top_event").innerHTML=`<img src="${HomeBannerdata[0].fImagePath}" id="A1">
+document.querySelector(".home_top_event").innerHTML = `<img src="${HomeBannerdata[0].fImagePath}" id="A1">
 <p id="home_top_event_p">${HomeBannerdata[0].fTitle+"</br>"+HomeBannerdata[0].fTime}</p>`
 
 
@@ -38,8 +38,8 @@ document.querySelector(".home_top_event").innerHTML=`<img src="${HomeBannerdata[
 
 
 
-const HomePage_BuyItemCard =(o)=>{
-  
+const HomePage_BuyItemCard = (o) => {
+
   return `
   <div class="home_market_item_sell">
            <img src="${o.fImagePath}" class="home_market_item_img">
@@ -47,7 +47,7 @@ const HomePage_BuyItemCard =(o)=>{
            <p> ${o.fContent}</p>
            <img src="${o.fIconPath}" class="home_dollar_imgs" alt=""><span>${o.fCount}</span>
    </div>`
-  
+
 }
 
 // let HomePageItemdata = [
@@ -95,20 +95,20 @@ const HomePage_BuyItemCard =(o)=>{
 // const NewsItemBox=document.querySelector(".home_div_event")
 // let HomePageNewsItemdata = [
 //   {
-    
+
 //     fTitle: "潛水撿垃圾，愛海洋！",
 //     fTime: "2020/07/23 13:00", 
 //      fNewsItemLink:"#",
 // },
 // {
-  
+
 //   fTitle: "淨山撿垃圾，愛地球！",
 //   fTime: "2020/08/13 13:00", 
 //   fNewsItemLink:"#",
 // },
 // ]
 // const HomePage_NewsItem =(o,index)=>{
- 
+
 //  return `
 //  <div class="home_div_event_2">
 //   <div class="home_div_event_num"
@@ -125,11 +125,11 @@ const HomePage_BuyItemCard =(o)=>{
 // HomePageNewsItemdata.map(
 //   (e, index) => 
 //   {
-  
+
 //     NewsItemBox.innerHTML +=HomePage_NewsItem(e,index);
 //   }
 // )
-  
+
 
 
 // const NewsRightBox=document.querySelector(".home_div_news")
@@ -138,7 +138,7 @@ const HomePage_BuyItemCard =(o)=>{
 //   return `<div>
 //   <img src="img/qk1.png" class="home_icon" alt="">
 //   <h3>${o.fTitle}</h3>
-  
+
 //   <img src="./img/qk2.png" class="home_icon" alt="">
 // </div>
 // <img src="${o.fImagePath}" class="home_div_news_img" alt="">
@@ -157,4 +157,3 @@ const HomePage_BuyItemCard =(o)=>{
 // NewsRightData.map((e,index) =>{
 //   NewsRightBox.innerHTML+=HomePage_NewsRightBox(e);
 // })
-
