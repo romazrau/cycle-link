@@ -30,7 +30,7 @@
 
 
 .page_container {
-    margin-top: 4.8rem;
+    margin-top: 0rem;
 }
 
 .page_navbar {
@@ -83,7 +83,7 @@
 
 
 
-/* 附加class 區 */
+/* *附加class 區------ */
 .widthAndHeight2Zero {
     width: 0rem;
     height: 0rem;
@@ -117,4 +117,5 @@
 
 .nowrap {
     flex-wrap: nowrap;
-  }
+}
+
