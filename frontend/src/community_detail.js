@@ -14,7 +14,16 @@ function ClsCommuntityDetail() {
     }
 
 
+    const switchFocusLink = function(el){
+        document.querySelectorAll(".GroupLink").forEach(
+            i =>{
+                i.children[0].classList.remove("GroupLinkFocus");
+            }
+        )
 
+        el.classList.add("GroupLinkFocus");
+
+    }
 
 
 
@@ -29,6 +38,7 @@ function ClsCommuntityDetail() {
                     let tid = e.currentTarget.getAttribute("value");
                     // console.log(e.currentTarget, tid);
                     switchPage(tid);
+                    switchFocusLink(e.currentTarget.children[0]);
                 }
             )
         }
@@ -247,6 +257,13 @@ function ClsCommuntityDetail() {
             }
         }
     )
+
+    
+   
+
+
+    
+
 
 
 
