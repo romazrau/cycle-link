@@ -124,13 +124,17 @@ hr {
   text-decoration: none;
 }
 
+
 .Group_FontFamily a:visited {
   color: black;
 }
 
-.Group_FontFamily a:hover {
+.GroupLinkFocus{
+  border-bottom:4px solid var(--blue-color);
   color: var(--blue-color);
 }
+
+
 
 .Icon20Color {
   opacity: 0.5;
@@ -219,6 +223,30 @@ hr {
 }
 
 /******************* MIDDLE ******************/
+
+.GroupLink > a{
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0.2rem 0;
+
+  
+}
+
+
+.GroupLink > a:hover{
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0.2rem 0;
+  border-bottom:4px solid var(--blue-color);
+  color: var(--blue-color);
+  
+}
+
+
+
+
+
+
 
 .card {
   background-color: var(--white-color);
