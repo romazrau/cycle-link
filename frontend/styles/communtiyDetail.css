@@ -119,20 +119,23 @@ hr {
   margin-left: 50px;
 }
 
+
+
 .Group_FontFamily a:link {
   color: black;
   text-decoration: none;
 }
 
-
+/* 無法override a : visited*/
 .Group_FontFamily a:visited {
   color: black;
 }
 
 .GroupLinkFocus{
   border-bottom:4px solid var(--blue-color);
-  color: var(--blue-color);
+  color: var(--blue-color) !important;
 }
+
 
 
 
@@ -223,6 +226,28 @@ hr {
 }
 
 /******************* MIDDLE ******************/
+
+
+
+.LC{
+  border-left: 0.4rem solid var(--blue-color) ; 
+  color: var(--blue-color) !important;
+  padding-left: 0.5rem;
+  margin-top: 0.8rem;
+
+
+}
+
+.LO{
+  border-left: 0.4rem solid var(--white-color);
+  
+  padding-left: 0.5rem;
+  margin-top: 0.8rem;
+
+}
+
+
+
 
 .GroupLink > a{
   display: inline-block;

@@ -1,6 +1,6 @@
 function ClsCommuntityDetail() {
 
-
+//轉換頁面
     const switchPage = function (id) {
 
         document.querySelectorAll(".GroupDetailPage").forEach(
@@ -13,24 +13,27 @@ function ClsCommuntityDetail() {
         document.querySelector(`#${id}`).classList.remove("hide");
     }
 
-
+//nav bar 轉換
     const switchFocusLink = function(el){
         document.querySelectorAll(".GroupLink").forEach(
             i =>{
                 i.children[0].classList.remove("GroupLinkFocus");
+                i.children[0].classList.add("a:visited");
+                
             }
         )
-
+        // el.classList.remove("a:visited");
         el.classList.add("GroupLinkFocus");
 
     }
 
 
-
-
     let nodeList = document.querySelectorAll(".GroupLink");
     // console.log(nodeList);
 
+
+
+//click 事件綁定兩件事
     nodeList.forEach(
         (i) => {
             i.addEventListener(
@@ -69,7 +72,40 @@ function ClsCommuntityDetail() {
     })
 
 
+    //hover
+    //社團活動左邊切換
 
+function whenMouseOut(event){
+    event.target.classList.remove("LC");
+    event.target.classList.add("LO");
+}
+
+
+    console.log(document.querySelectorAll(".LO"));
+    document.querySelectorAll(".LO").forEach(
+        i=>{
+            
+            
+    
+            i.addEventListener("mouseover",function(event){
+                // console.log(112);
+             
+                console.log(event.target.classList.remove("LO"));
+                event.target.classList.add("LC");
+            })
+
+            i.addEventListener("mouseout",whenMouseOut)
+
+            i.addEventListener("click",function(event){
+                // console.log(i); <<< DOM element
+           
+                event.target.classList.add("LC");
+                i.removeEventListener("mouseout",whenMouseOut);
+            })
+        
+
+        }
+    )
 
 
 
