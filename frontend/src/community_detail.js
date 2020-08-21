@@ -63,13 +63,23 @@ function ClsCommuntityDetail() {
     })
 
 
-    //成員管理員切換
-    let allMemLink = document.getElementById("allMember");
-    let rankingMemLink = document.getElementById("rankingMember");
+    // 成員管理員切換
+    let allMemLink = document.querySelector("#allMember");
+    let rankingMemLink = document.querySelector("#rankingMember");
+    // console.log(allMemLink,rankingMemLink);
 
     allMemLink.addEventListener("click",function(){
-        // document.querySelector(".rankingMember").classList.add("hide");
-    })
+        // console.log(1);
+        document.querySelector(".allMember").classList.remove("hide");
+        document.querySelector(".rankingMember").classList.add("hide");
+
+    });
+
+    rankingMemLink.addEventListener("click",function(){
+    
+        document.querySelector(".allMember").classList.add("hide");
+        document.querySelector(".rankingMember").classList.remove("hide");
+    });
 
 
     //hover
@@ -96,12 +106,20 @@ function whenMouseOut(event){
 
             i.addEventListener("mouseout",whenMouseOut)
 
-            i.addEventListener("click",function(event){
-                // console.log(i); <<< DOM element
-           
-                event.target.classList.add("LC");
-                i.removeEventListener("mouseout",whenMouseOut);
-            })
+            // i.addEventListener("click",function(event){
+            //     // console.log(i); <<< DOM element
+            //     document.querySelector(".LeftSwitchCard").forEach(
+            //         x=>{
+            //             x.children[0].classList.remove("LC");
+            //             x.children[1].classList.remove("LC");
+            //         }
+            //     )
+            //     event.target.classList.add("LC");
+            //     i.removeEventListener("mouseout",whenMouseOut);
+                
+            // })
+
+
         
 
         }
