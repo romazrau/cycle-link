@@ -30,9 +30,9 @@
 
 
             <div class="div_dropdownmenu">
-                <ul>
-                    <li id="navbar_activity" class="li_menutitle header_nav"><a href="#activity"
-                            class="nav-underline">Activity<br>活動</a>
+                <div id="navbar_activity" class="li_menutitle header_nav"><a href="#activity"
+                        class="nav-underline">Activity<br>活動</a>
+                </div>
             </div>
 
             <div id="navbar_community" class="li_menutitle header_nav">
@@ -73,7 +73,7 @@
         </div>
 
 
-        <!-- 聊天機器人 -->
+        <!-- * 聊天機器人 -->
         <div class="chat_robot_room_window hide">
             <img id="chat_robot_window_close" class="chat_window_close" src="./img/times-solid.svg" alt="X">
             <div id="chat_message_window_title" class="chat_window_title">聊天機器人</div>
@@ -396,7 +396,7 @@
                 </div>
             </div>
             <div class="activity_create_btn">
-                <a href="#">我要發起活動</a>
+                <a href="#create-activity">我要發起活動</a>
             </div>
             <!---------------------------------- 瀏覽過的活動 ---------------------------------->
 
@@ -1021,7 +1021,7 @@
 
 
 
-        <!-- * 路徑在別人底下的葉面 #.. / 這些葉面  ****************      ****************       ****************   -->
+        <!-- * 路徑在別人底下的頁面 #.. / 這些頁面  ****************      ****************       ****************   -->
 
         <!-- * news-detail  ****************      ****************       ****************   -->
         <div id="page_news-detail" class="page hide">
@@ -1118,159 +1118,207 @@
                                     <p class="activity_detail_info_name_H">Hosted By</p>
                                     <div class=" activity_detail_flex">
                                         <p>蘇菲唐納</p>
-                                        <img src="./img/tick.svg" alt="tickIcon" width="15">
+                                        <img src="./img/tick.svg" alt="tickIcon" class="activity_detail_info_status">
                                     </div>
                                 </div>
 
                             </div>
                         </div>
+                    </div>
+                    <div class="activity_detail_info_share activity_detail_flex">
+                        <!-- <div class="activity_detail_right_top" style="margin-right: 1rem;">
+                            <button>參加</button>
+                            <img src="img/icon1.svg" alt="" class="activity_detail_right_love">
+                        </div> -->
+                        <button><img src="img/share.svg" width="20"></button>
                     </div>
                     <!-- <p>活動狀態：審核中</p> -->
                 </div>
 
                 <!--------------------------- 活動左側 內文 --------------------------->
                 <div class="activity_detail_text activity_detail_flex">
-                    <div class="activity_detail_text_left">
-                        <div class="activity_detail_text_left_img">
-                            <img src="img/event12.jpg" alt="">
-                        </div>
-                        <div class="activity_detail_text_detail">
-                            <h3>Detail</h3>
-                            <p>
-                                (Chinese level requirement: A1 level up)
-                                <br>
-                                Taiwanese love singing karaoke so much. KTV in Taiwan is a night out that you won’t want
-                                to
-                                miss!
-                                Everyone should try it at least once.
-                                <br>
-                                Come to this workshop, you can learn sentences and popular words commonly spoken, then
-                                integrate
-                                into Taiwanese life!
-                                <br>
-                                <br>
-                                📆 Date: 28 August<br>
-                                🕘 Time: 19:30-21:30 on Friday<br>
-                                📍Location: ShuoHao Language Center<br>
-                                💁🏻‍♀‍ 4 people for the minimum<br>
-                                💲Tuition fee: 400 NTD. (Pay the tuition in advance.)<br>
-                                <br>
-                                Application here ：https://forms.gle/JWHYuZvY17LGvNxH9
-                                <br>
-                                Location: 台北市大安區復興南路二段 82 號<br>
-                                8F., No. 82, Sec. 2, Fuxing S. Rd., Da’an Dist., Taipei City 106, Taiwan (R.O.C.)
-                                <br>
-                                <br>
-                                Phone:[masked]<br>
-                                FB: https://www.facebook.com/SHLanguageCenter/<br>
-                                Time: 19:30-21:30pm (2hrs)
-                                <br>
-                                <br>
-                                主辦單位保有隨時修改及終止本活動之權利。於所辦任何活動上所拍攝之照片影片均有權永久使用於主辦單位之所有活動頁面及網頁。
-                                When attending this event organizers reserve the right to refuse service to anyone for
-                                any
-                                reason
-                                and to take and use photos or videos for an unlimited period of time.
-                            </p>
-                        </div>
-                        <div class="activity_detail_participant_all">
-                            <div class="activity_detail_flex" style="justify-content: space-between;">
-                                <h3>活動參與者 (5)</h3>
-                                <p>See All</p>
+                    <div class="activity_detail_text_all">
+                        <div class="activity_detail_text_left">
+                            <div class="activity_detail_text_left_img">
+                                <img src="img/event12.jpg" alt="">
                             </div>
                             <div class="activity_detail_flex">
-                                <div class="activity_detail_participant">
-                                    <div class="activity_detail_info_img_circle">
-                                        <div class="activity_detail_info_img_div">
-                                            <img src="./img/c1.jpeg" class="activity_detail_info_img">
+                                <div class="activity_detail_tag">
+                                    <p>#2020</p>
+                                </div>
+                                <div class="activity_detail_tag">
+                                    <p>#國家地理</p>
+                                </div>
+                                <div class="activity_detail_tag">
+                                    <p>#就差你一個</p>
+                                </div>
+                            </div>
+                            <div class="activity_detail_text_detail">
+                                <h5>Detail</h5>
+                                <p>
+                                    (Chinese level requirement: A1 level up)
+                                    <br>
+                                    Taiwanese love singing karaoke so much. KTV in Taiwan is a night out that you won’t
+                                    want
+                                    to
+                                    miss!
+                                    Everyone should try it at least once.
+                                    <br>
+                                    Come to this workshop, you can learn sentences and popular words commonly spoken,
+                                    then
+                                    integrate
+                                    into Taiwanese life!
+                                    <br>
+                                    <br>
+                                    📆 Date: 28 August<br>
+                                    🕘 Time: 19:30-21:30 on Friday<br>
+                                    📍Location: ShuoHao Language Center<br>
+                                    💁🏻‍♀‍ 4 people for the minimum<br>
+                                    💲Tuition fee: 400 NTD. (Pay the tuition in advance.)<br>
+                                    <br>
+                                    Application here ：https://forms.gle/JWHYuZvY17LGvNxH9
+                                    <br>
+                                    Location: 台北市大安區復興南路二段 82 號<br>
+                                    8F., No. 82, Sec. 2, Fuxing S. Rd., Da’an Dist., Taipei City 106, Taiwan (R.O.C.)
+                                    <br>
+                                    <br>
+                                    Phone:[masked]<br>
+                                    FB: https://www.facebook.com/SHLanguageCenter/<br>
+                                    Time: 19:30-21:30pm (2hrs)
+                                    <br>
+                                    <br>
+                                    主辦單位保有隨時修改及終止本活動之權利。於所辦任何活動上所拍攝之照片影片均有權永久使用於主辦單位之所有活動頁面及網頁。
+                                    When attending this event organizers reserve the right to refuse service to anyone
+                                    for
+                                    any
+                                    reason
+                                    and to take and use photos or videos for an unlimited period of time.
+                                </p>
+                            </div>
+                            <div class="activity_detail_participant_all">
+                                <div class="activity_detail_flex" style="justify-content: space-between;">
+                                    <h5>活動參與者 (5)</h5>
+                                    <p>See All</p>
+                                </div>
+                                <div class="activity_detail_participant_flex">
+                                    <div class="activity_detail_participant">
+                                        <div class="activity_detail_info_img_circle">
+                                            <div class="activity_detail_info_img_div">
+                                                <img src="./img/c1.jpeg" class="activity_detail_info_img">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <p>蘇菲唐納</p>
-                                    <span>Organizer</span>
-                                </div>
-                                <div class="activity_detail_participant">
-                                    <div class="activity_detail_info_img_circle">
-                                        <div class="activity_detail_info_img_div">
-                                            <img src="./img/id3.jpg" class="activity_detail_info_img">
+                                        <div class="activity_detail_flex">
+                                            <p>蘇菲唐納</p><img src="./img/tick.svg" alt="tickIcon"
+                                                class="activity_detail_info_status">
                                         </div>
+                                        <span>Organizer</span>
                                     </div>
-                                    <p>Wwill354</p>
-                                    <span>Member</span>
-                                </div>
-                                <div class="activity_detail_participant">
-                                    <p>?</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="activity_detail_Societies">
-                            <div class="activity_detail_info_img_circle" style="margin-left: 1rem;">
-                                <div class="activity_detail_info_img_div">
-                                    <img src="./img/item5.JPG" class="activity_detail_info_img">
-                                </div>
-                            </div>
-                            <div style="margin-left: 1rem;">
-                                <p>北台灣撿垃圾社團</p>
-                                <p>more event</p>
-                            </div>
-                            <img src="imgs/right.svg" alt="" width="20vw">
-                        </div>
-                        <!-- 留言區 -->
-                        <div class="massage">
-                            <div class="massageTop activity_detail_flex">
-                                <div class="massageTopText activity_detail_flex">
-                                    <div class="massageTopTextTitle">留言</div>
-                                    <div class="massageTopTextNum">(1)</div>
-                                </div>
-                                <button type="button" class="massageTopButton" id="btnMessage">我要留言</button>
-                            </div>
-
-                            <!-- 留言白框 -->
-                            <div class="massageBottom">
-                                <div class="massageBottomTop activity_detail_flex">
-                                    <div class="DivForImg">
-                                        <img src="" alt="">
-                                        <div class="massageBottomImgDefault"></div>
+                                    <div class="activity_detail_participant">
+                                        <div class="activity_detail_info_img_circle">
+                                            <div class="activity_detail_info_img_div">
+                                                <img src="./img/id3.jpg" class="activity_detail_info_img">
+                                            </div>
+                                        </div>
+                                        <p>Wwill354</p>
+                                        <span>Member</span>
                                     </div>
-                                    <div class="massageBottomTopUser">訪客</div>
-                                    <div class="verticalBar"></div>
-                                    <div class="massageBottomTopDate">July 12</div>
-                                </div>
-                                <div class="massageBottomMiddle">hi請問可以候補嗎？</div>
-                                <div class="massageBottomBottom activity_detail_flex">
-                                    <div class="massageBottomBottomNum">(1)</div>
-                                    <div>reply</div>
+                                    <div class="activity_detail_participant">
+                                        <div class="activity_detail_info_img_circle">
+                                            <div class="activity_detail_info_img_div">
+                                                <img src="./img/home08.jpg" class="activity_detail_info_img">
+                                            </div>
+                                        </div>
+                                        <p>奔跑8boy</p>
+                                        <span>Member</span>
+                                    </div>
+                                    <div class="activity_detail_participant">
+                                        <div class="activity_detail_info_img_circle">
+                                            <div class="activity_detail_info_img_div">
+                                                <img src="./img/id1.jpg" class="activity_detail_info_img">
+                                            </div>
+                                        </div>
+                                        <p>aa5568</p>
+                                        <span>Member</span>
+                                    </div>
                                 </div>
 
-                                <!-- messageInputBoxCon 留言視窗出現 and append 新留言 -->
-                                <div id="messageInputBoxCon"></div>
+                            </div>
+                            <div class="activity_detail_Societies">
+                                <div class="activity_detail_Societies_img_circle" style="margin-left: 1rem;">
+                                    <div class="activity_detail_Societies_img_div">
+                                        <img src="./img/item5.JPG" class="activity_detail_Societies_img">
+                                    </div>
+                                </div>
+                                <div class="activity_detail_Societies_info">
+                                    <p>北台灣撿垃圾社團</p>
+                                    <p>see more events</p>
+                                </div>
+                                <img src="img/right.svg" alt="" width="20vw">
+                            </div>
+                            <!-- 留言區 -->
+                            <div class="massage">
+                                <div class="massageTop activity_detail_flex">
+                                    <div class="massageTopText activity_detail_flex">
+                                        <div class="massageTopTextTitle">留言</div>
+                                        <div class="massageTopTextNum">(1)</div>
+                                    </div>
+                                    <button type="button" class="massageTopButton" id="btnMessage">我要留言</button>
+                                </div>
+
+                                <!-- 留言白框 -->
+                                <div class="massageBottom">
+                                    <div class="massageBottomTop activity_detail_flex">
+                                        <div class="DivForImg">
+                                            <img src="" alt="">
+                                            <div class="massageBottomImgDefault"></div>
+                                        </div>
+                                        <div class="massageBottomTopUser">訪客</div>
+                                        <div class="verticalBar"></div>
+                                        <div class="massageBottomTopDate">July 12</div>
+                                    </div>
+                                    <div class="massageBottomMiddle">hi請問可以候補嗎？</div>
+                                    <div class="massageBottomBottom activity_detail_flex">
+                                        <div class="massageBottomBottomNum">(1)</div>
+                                        <div>reply</div>
+                                    </div>
+
+                                    <!-- messageInputBoxCon 留言視窗出現 and append 新留言 -->
+                                    <div id="messageInputBoxCon"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--------------------------- 活動右側 --------------------------->
+                        <div class="activity_detail_right_container">
+                            <div class="activity_detail_right">
+                                <div class="activity_detail_right_top">
+                                    <button>參加</button>
+                                    <img src="img/icon1.svg" alt="" class="activity_detail_right_love">
+                                </div>
+                                <div class="activity_detail_right_info">
+                                    <div class="">
+                                        <img src="img/860755.svg" alt="" class="activity_detail_right_icon">
+                                        <p>2020/08/30 (日)<br>06:30 to 08:30</p>
+                                    </div>
+                                    <div class="">
+                                        <img src="img/929497.svg" alt="" class="activity_detail_right_icon">
+                                        <p>大佳河濱公園</p>
+                                    </div>
+                                    <div class="">
+                                        <img src="img/certificate-solid.svg" alt="" class="activity_detail_right_icon">
+                                        <p>舉辦中</p>
+                                    </div>
+                                    <div class="">
+                                        <img src="img/coin.png" alt="" class="activity_detail_right_icon">
+                                        <p>2000</p>
+                                    </div>
+                                    <div class="activity_detail_right_map">
+                                        <img src="img/map01.png" alt="" class="activity_detail_right_map">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <!--------------------------- 活動右側 --------------------------->
-                    <div class="activity_detail_right_container">
-                        <div class="activity_detail_right">
-                            <div class="activity_detail_right_top">
-                                <button>我要參加</button>
-                                <img src="img/icon1.svg" alt="" class="activity_detail_right_love">
-                            </div>
-                            <div class="activity_detail_right_info">
-                                <div class="">
-                                    <img src="img/860755.svg" alt="" class="activity_detail_right_icon">
-                                    <p>2020/08/30 06:30</p>
-                                </div>
-                                <div class="">
-                                    <img src="img/929497.svg" alt="" class="activity_detail_right_icon">
-                                    <p>大佳河濱公園</p>
-                                </div>
-                                <div class="activity_detail_right_map">
-                                    <img src="img/map01.png" alt="" class="activity_detail_right_map">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
@@ -2016,9 +2064,9 @@
 
 
 
-        <!-- * 不在navbar link上的葉面  ****************      ****************       ****************   -->
+        <!-- * 不在navbar link上的頁面  ****************      ****************       ****************   -->
 
-        <!-- * 會員葉面  ****************      ****************       ****************   -->
+        <!-- * 會員頁面  ****************      ****************       ****************   -->
         <div id="page_personal-maneger" class="page hide">
 
             <div class="personal-maneger-header">
@@ -2805,7 +2853,7 @@
         </div>
     </div>
 
-    <!-------------------------------------- footer -------------------------------------->
+    <!-- * ****************     **************** footer ****************    **************** -->
     <footer>
         <div class="footer_info">
             <div>

@@ -10,7 +10,7 @@ function ClsActivityDetail() {
     var ticking = false;
 
     window.addEventListener('scroll', function (e) {
-        last_known_scroll_position = window.scrollY;
+        last_known_scroll_position = window.scrollY + 25;
         if (!ticking) {
             window.requestAnimationFrame(function () {
                 boxMove2(last_known_scroll_position);
