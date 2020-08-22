@@ -33,41 +33,30 @@
                 <ul>
                     <li id="navbar_activity" class="li_menutitle header_nav"><a href="#activity"
                             class="nav-underline">Activity<br>活動</a>
-                        <ul class="ul_submenu">
-                            <li class="li_submenu"><a href="">活動首頁</a></li>
-                            <li class="li_submenu"><a href="">熱門活動</a></li>
-                            <li class="li_submenu"><a href="">發起活動</a></li>
+            </div>
 
-                        </ul>
-                    </li>
+            <div id="navbar_community" class="li_menutitle header_nav">
+                <a href="#community" class="nav-underline">Community<br>社團</a>
+            </div>
 
-                    <li id="navbar_community" class="li_menutitle header_nav">
-                        <a href="#community" class="nav-underline">Community<br>社團</a>
-                    </li>
-
-                    <li id="navbar_news" class="li_menutitle header_nav">
-                        <a href="#news" class="nav-underline">News<br>新聞</a>
-                    </li>
+            <div id="navbar_news" class="li_menutitle header_nav">
+                <a href="#news" class="nav-underline">News<br>新聞</a>
+            </div>
 
 
-                    <li id="navbar_about-us" class="li_menutitle header_nav "><a href="#about-us"
-                            class="nav-underline">About Us<br>關於我們</a>
-                        <ul class="ul_submenu">
-                            <li class="li_submenu"><a href="">介紹</a></li>
-                            <li class="li_submenu"><a href="">AAAAA</a></li>
-                            <li class="li_submenu"><a href="">BBBBBBB</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
+            <div id="navbar_about-us" class="li_menutitle header_nav "><a href="#about-us" class="nav-underline">About
+                    Us<br>關於我們</a>
+            </div>
             </div>
             <div class="div_container_login">
-                <div class="div_dropdownmenu">
-                    <ul>
-                        <li id="navbar_log-in" class="li_menutitle header_nav"><a id="header_link_login"
-                                href="#log-in">Log in<br>登入</a></li>
-                    </ul>
-                </div>
+                <div id="navbar_log-in" class="li_menutitle header_nav"><a id="header_link_login" href="#log-in">Log
+                        in<br>登入</a></div>
+            </div>
+
+            <div class="navbar_menu">
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
         </nav>
     </header>
@@ -1600,7 +1589,7 @@
                                         <div class="GroupComingEvent FontSectionTitle">社團成員</div>
                                         <div class="FontSectionTitle">(4)</div>
                                     </div>
-                                    <a href="#" class="SeeAllRight FontSectionTitle">see all</a>
+                                    <!-- <a href="#" class="SeeAllRight FontSectionTitle">see all</a> -->
                                 </div>
                                 <div class="FlexContainer GroupRightInfoPhotoContainer">
                                     <div><img class="GoupRightInfoPhoto" src="./img/id1.jpg" width="30"></div>
@@ -1631,8 +1620,8 @@
                                 <!--------------- event left part  ------------------->
                                 <div class="EventBottomLeft ">
                                     <div class="BottomLeftInfoCard LeftSwitchCard">
-                                        <a id="commingEvent" href="#community/detail">即將到來活動</a>
-                                        <a id="pastEvent" href="#community/detail">過去活動</a>
+                                        <a id="commingEvent" class="LO" href="#community/detail">即將到來活動</a>
+                                        <a id="pastEvent" class="LO" href="#community/detail">過去活動</a>
                                     </div>
                                 </div>
                                 <!---------------///  event right part coming event ///  ------------------->
@@ -1704,12 +1693,13 @@
                                         </div>
 
                                     </div>
-                                    <button class="SeeMoreBtn">see more</button>
+                                    <button class="SeeMoreBtnforUnderCard">show more</button>
                                     <!--------------- event right part  ------------------->
                                     <!---------------///  event right part coming event end ///  ------------------->
                                 </div>
                                 <!---------------///  event right part past event ///  ------------------->
                                 <div class="EventBottomRight pastEvent hide">
+
                                     <!-- 一張卡 -->
                                     <div class="BottomRightInfoCard">
                                         <div class="GroupBottomCardTime">Saturday, Dec 1, 2019</div>
@@ -1793,7 +1783,8 @@
                                         </div>
                                     </div>
                                     <!--  -->
-                                    <button class="SeeMoreBtn">show more</button>
+                                    <button class="SeeMoreBtnforUnderCard">show more</button>
+
 
                                 </div>
 
@@ -1807,8 +1798,8 @@
                             id="GroupDetailPage_Member">
                             <div class="MemberBottomLeft GroupBottomMainMember">
                                 <div class="BottomLeftInfoCard LeftSwitchCard">
-                                    <a id="allMember" href="#community/detail">所有成員</a>
-                                    <a id="rankingMember" href="#community/detail">管理員</a>
+                                    <a id="allMember" class="LO" href="#community/detail">所有成員</a>
+                                    <a id="rankingMember" class="LO" href="#community/detail">管理員</a>
                                 </div>
                             </div>
 
@@ -1817,7 +1808,7 @@
                                 <!-- 框 -->
                                 <div class="BottomRightSearchList">
                                     <!------------------------ /// Member right part switch hidden（所有成員）///  ------------------------>
-                                    <div class="allMember" class="hide">
+                                    <div class="allMember">
                                         <div class="FlexContainer Group_FlexJustifyContentSB GroupMemberSearch">
                                             <div>成員列表</div>
                                             <div class="FlexContainer">
@@ -1898,7 +1889,7 @@
 
                                     </div>
                                     <!------------------------ /// Member right part switch hidden（管理員）///  ------------------------>
-                                    <div class="rankingMember">
+                                    <div class="rankingMember hide">
                                         <div class="FlexContainer Group_FlexJustifyContentSB GroupMemberSearch">
                                             <div>管理員列表</div>
                                             <div class="FlexContainer">
@@ -1940,10 +1931,10 @@
                         <div class="GroupBottomMain GroupDetailPage hide GroupDiscussion"
                             id="GroupDetailPage_Discussion">
                             <!-------------------下層留言區 (和討論區同)------------------>
-                            <div class="FlexContainer FontSectionTitle">
+                            <div class="FlexContainer ">
                                 <div class="FlexContainer">
-                                    <div class="GroupComingEvent">文章</div>
-                                    <div>(10)</div>
+                                    <div class="GroupComingEvent FontSectionTitle">文章</div>
+                                    <div class="FontSectionTitle">(10)</div>
                                 </div>
                             </div>
 

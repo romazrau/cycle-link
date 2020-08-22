@@ -1,16 +1,23 @@
 .activity_top {
+    /* position: relative; */
     position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    width: 100vw;
+    height: 80vh;
+    min-width: 1200px;
 }
 
 .activity_top img {
     width: 100%;
-    /* height: 600px; */
 }
 
 .activity_search_container {
     position: absolute;
     left: 8rem;
-    top: 10rem;
+    top: 15rem;
 }
 
 .active_main_search {
@@ -116,7 +123,7 @@
 .activity_top button {
     position: absolute;
     left: 40rem;
-    top: 10rem;
+    top: 15rem;
     width: 80px;
     height: 60px;
     background-color: var(--blue-color);
