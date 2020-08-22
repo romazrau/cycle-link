@@ -18,6 +18,19 @@ hr {
   padding: 1rem;
 }
 
+.SeeMoreBtnforUnderCard{
+  border: 1px solid var(--blue-color);
+  border-radius: 10px;
+  width: 90%;
+  color: var(--blue-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+
+
+
+}
+
 .ShowMoreBtn {
   border: 1px solid var(--grey-color);
   background-color: var(--white-color);
@@ -119,20 +132,23 @@ hr {
   margin-left: 50px;
 }
 
+
+
 .Group_FontFamily a:link {
   color: black;
   text-decoration: none;
 }
 
-
+/* 無法override a : visited*/
 .Group_FontFamily a:visited {
   color: black;
 }
 
 .GroupLinkFocus{
   border-bottom:4px solid var(--blue-color);
-  color: var(--blue-color);
+  color: var(--blue-color) !important;
 }
+
 
 
 
@@ -151,12 +167,13 @@ hr {
   display: flex;
   flex-direction: column;
   /* align-items: center; */
-  justify-content: center;
+  justify-content:space-between;
   /* align-content: space-between; */
-  padding-left: 1rem;
+  /* padding-left: 1rem; */
   border-radius: 8px;
   font-size: 1rem;
   /* margin-top: 2rem; */
+  height: 100px;
 }
 
 .GroupJustifyContentC {
@@ -223,6 +240,28 @@ hr {
 }
 
 /******************* MIDDLE ******************/
+
+
+
+.LC{
+  border-left: 0.4rem solid var(--blue-color) ; 
+  color: var(--blue-color) !important;
+  padding-left: 0.5rem;
+  /* margin-top: 0.8rem; */
+
+
+}
+
+.LO{
+  border-left: 0.4rem solid var(--white-color);
+  
+  padding-left: 0.5rem;
+  /* margin-top: 0.8rem; */
+
+}
+
+
+
 
 .GroupLink > a{
   display: inline-block;
@@ -314,11 +353,13 @@ hr {
 .GroupBottomLeft {
   max-width: 60%;
   box-sizing: border-box;
-  padding-right: 2rem;
+  padding-right: 0rem;
 }
 
 .GroupBottomRight {
   width: 40%;
+  /* margin-left: 1px */
+  padding-left: 50px;
 }
 
 .EventBottomLeft {
@@ -350,7 +391,9 @@ hr {
 
 .BottomLeftInfoCard {
   width: 95%;
-  height: 100px;
+  padding:1.2rem 0;
+
+  /* height: 100px; */
 
   /* margin: auto; */
 }
@@ -617,3 +660,4 @@ hr {
 
 
 
+/* 抓來的 */
