@@ -14,7 +14,7 @@
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 
     <!-- 內部引用資料 -->
-    <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./img/海龜幣.png" type="image/x-icon">
     <link rel="stylesheet" href="./styles/main.css">
 
 
@@ -387,6 +387,33 @@
             </div>
             <!-------------------------------------- main -------------------------------------->
             <div class="activity_main">
+                <div class="search_container search_hidden">
+                    <div id="search_city" class="search_box  ">
+                        <div id="search_city_text" class="search_citytext"></div>
+                    </div>
+                    <div id="search_citydetial" class="search_city_detail search_hidden ">
+                        <ul>
+                            <li class="select_city">台北市</li>
+                            <li class="select_city">台中市</li>
+                            <li class="select_city">高雄市</li>
+                            <li class="select_city">台北市</li>
+                            <li class="select_city">台中市</li>
+                            <li class="select_city">高雄市</li>
+                        </ul>
+                    </div>
+                    <div id="search_date" class="search_box ">
+                        <div id="search_date_text" class="search_datetext"></div>
+                    </div>
+                    <div id="search_datedetial" class="search_datetext search_hidden">
+                        <label for="ac_date_start_from">Startdate</label>
+                        <input type="text" id="ac_date_start_from" name="ac_date_start_from" autocomplete="off"
+                            onchange="getstartdate(this.id)" />
+                        <label for="ac_date_end_from">Enddate</label>
+                        <input type="text" id="ac_date_end_from" name="ac_date_end_from" autocomplete="off" />
+                    </div>
+            
+            
+                </div>
                 <!-------------------------------------- 活動 -------------------------------------->
                 <h3>主題活動</h3>
                 <div class="activity_event" id="activity_event_top">
@@ -1382,10 +1409,10 @@
 
                 <!------------------------------------- 中間nav bar ----------------------------------->
                 <div class="Container">
-                    <div class="FlexContainer MiddleNavBar">
+                    <div class="FlexContainer MiddleNavBar Group_FlexJustifyContentSB">
                         <div class="GroupTopLeftW60">
                             <div class="LinkBar FlexContainer">
-                                <div class="GroupLink" value="GroupDetailPage_home"><a href="#community/detail">介 紹</a>
+                                <div class="GroupLink" value="GroupDetailPage_home"><a class="GroupLinkFocus" href="#community/detail">介 紹</a>
                                 </div>
                                 <div class="GroupLink" value="GroupDetailPage_Discussion"><a href="#community/detail">文
                                         章</a></div>
@@ -1396,16 +1423,15 @@
                                 <div class="GroupLink" value="GroupDetailPage_Member"><a href="#community/detail">成
                                         員</a>
                                 </div>
+                                
+                                
+                                
 
 
                             </div>
                         </div>
-                        <div class="GroupTopRightW40 GroupMarginLeft50px">
-                            <select class="PaddingLeft50px">
-                                <option>我是社員</option>
-                                <option>退出社團</option>
-                            </select>
-                        </div>
+                        <div class="GroupDiveBtn">我是社員</div>
+                    
                     </div>
                 </div>
 
