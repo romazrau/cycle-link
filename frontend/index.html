@@ -387,6 +387,33 @@
             </div>
             <!-------------------------------------- main -------------------------------------->
             <div class="activity_main">
+                <div class="search_container">
+                    <div id="search_city" class="search_box  ">
+                        <div id="search_city_text" class="search_citytext"></div>
+                    </div>
+                    <div id="search_citydetial" class="search_city_detail search_hidden ">
+                        <ul>
+                            <li class="select_city">台北市</li>
+                            <li class="select_city">台中市</li>
+                            <li class="select_city">高雄市</li>
+                            <li class="select_city">台北市</li>
+                            <li class="select_city">台中市</li>
+                            <li class="select_city">高雄市</li>
+                        </ul>
+                    </div>
+                    <div id="search_date" class="search_box ">
+                        <div id="search_date_text" class="search_datetext"></div>
+                    </div>
+                    <div id="search_datedetial" class="search_datetext search_hidden">
+                        <label for="ac_date_start_from">Startdate</label>
+                        <input type="text" id="ac_date_start_from" name="ac_date_start_from" autocomplete="off"
+                            onchange="getstartdate(this.id)" />
+                        <label for="ac_date_end_from">Enddate</label>
+                        <input type="text" id="ac_date_end_from" name="ac_date_end_from" autocomplete="off" />
+                    </div>
+            
+            
+                </div>
                 <!-------------------------------------- 活動 -------------------------------------->
                 <h3>主題活動</h3>
                 <div class="activity_event" id="activity_event_top">
