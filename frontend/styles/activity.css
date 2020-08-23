@@ -221,7 +221,7 @@
 
 .active_card:hover {
     cursor: pointer;
-    transform: translate(-3px, -5px);
+    transform: translate(0px, -5px);
     transition: all 0.5s;
 }
 
@@ -240,11 +240,12 @@
 }
 
 
+
 .active_card_info {
     position: absolute;
     bottom: -4rem;
-    left: 2rem;
-    padding: 0.5rem;
+    left: 2.2rem;
+    padding: 0.5rem 1rem;
     background-color: white;
     border-radius: 0.6rem;
     width: 80%;
