@@ -273,7 +273,7 @@ hr {
 }
 
 .GroupDiveBtnText {
-  padding-left: 1rem;
+  padding: 0 1rem;
   color: var(--grey-color);
 }
 
@@ -730,5 +730,14 @@ hr {
   border-radius: 2rem;
   background-color: #ffffff;
 }
+
+.GroupDiveBtn img {
+  opacity: 50%;
+}
+/* 
+.GroupOvalBtn {
+  border: 1px solid gray;
+  padding: 1rem;
+} */
 
 /* 抓來的 */
