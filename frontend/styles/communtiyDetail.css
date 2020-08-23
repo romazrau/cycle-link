@@ -3,13 +3,9 @@
  display: none;}
  */
 
-
 hr {
   border-top: 1px solid lightgrey;
 }
-
-
-
 
 .ShowMoreBtn {
   border: 1px solid var(--grey-color);
@@ -24,7 +20,7 @@ hr {
   transition: all 0.3s;
 }
 
-.ShowMoreBtn:hover{
+.ShowMoreBtn:hover {
   border: 1px solid var(--white-color);
   background-color: var(--grey-color);
   border-radius: 10px;
@@ -35,7 +31,7 @@ hr {
   padding: 1rem;
 }
 
-.ShowMoreBtn:active{
+.ShowMoreBtn:active {
   border: 1px solid var(--grey-color);
   background-color: var(--white-color);
   border-radius: 10px;
@@ -47,19 +43,19 @@ hr {
   outline: none;
 }
 
-.SeeMoreBtnforUnderCard{
- width: 90%;
- border: 1px solid var(--grey-color);
- border-radius: 10px;
- color: var(--grey-color);
- font-size: 1rem;
- margin-top: 25px;
- padding: 1rem;
- outline: none;
- transition: all 0.3s;
+.SeeMoreBtnforUnderCard {
+  width: 90%;
+  border: 1px solid var(--grey-color);
+  border-radius: 10px;
+  color: var(--grey-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+  outline: none;
+  transition: all 0.3s;
 }
 
-.SeeMoreBtnforUnderCard:hover{
+.SeeMoreBtnforUnderCard:hover {
   border: 1px solid var(--white-color);
   background-color: var(--grey-color);
   border-radius: 10px;
@@ -70,7 +66,7 @@ hr {
   padding: 1rem;
 }
 
-.SeeMoreBtnforUnderCard:active{
+.SeeMoreBtnforUnderCard:active {
   border: 1px solid var(--grey-color);
   background-color: var(--white-color);
   border-radius: 10px;
@@ -79,11 +75,7 @@ hr {
   font-size: 1rem;
   margin-top: 25px;
   padding: 1rem;
-
 }
-
-
-
 
 .MarginLeft1rem {
   margin-left: 1rem;
@@ -175,8 +167,6 @@ hr {
   margin-left: 50px;
 }
 
-
-
 .Group_FontFamily a:link {
   color: black;
   text-decoration: none;
@@ -187,13 +177,10 @@ hr {
   color: black;
 }
 
-.GroupLinkFocus{
-  border-bottom:4px solid var(--blue-color);
+.GroupLinkFocus {
+  border-bottom: 4px solid var(--blue-color);
   color: var(--blue-color) !important;
 }
-
-
-
 
 .Icon20Color {
   opacity: 0.5;
@@ -210,7 +197,7 @@ hr {
   display: flex;
   flex-direction: column;
   /* align-items: center; */
-  justify-content:space-between;
+  justify-content: space-between;
   /* align-content: space-between; */
   /* padding-left: 1rem; */
   border-radius: 8px;
@@ -240,8 +227,7 @@ hr {
   font-size: 1.2rem;
   font-family: monospace;
   justify-content: space-between;
-  /* padding-left: 50px; */
-  padding-right: 50px;
+  padding-right: 1rem;
 }
 
 .GroupTopMainPicDivForImg {
@@ -255,7 +241,7 @@ hr {
 }
 
 .GroupTopRight {
-  margin-left: 50px;
+  margin-left: 60px;
   position: relative;
 }
 
@@ -282,77 +268,65 @@ hr {
 .g {
   margin-top: 2rem;
 }
-.GroupDiveBtn{
-  color: var(--grey-color);
-
+.GroupDiveBtn {
+  padding-left: 50px;
 }
 
+.GroupDiveBtnText {
+  padding-left: 1rem;
+  color: var(--grey-color);
+}
 
 /******************* MIDDLE ******************/
 
-
-
-.LO:hover{
-  border-left: 0.4rem solid var(--blue-color) ; 
+.LO:hover {
+  border-left: 0.4rem solid var(--blue-color);
   color: var(--blue-color) !important;
   padding-left: 0.5rem;
   /* margin-top: 0.8rem; */
 }
 
-
-.LO{
+.LO {
   border-left: 0.4rem solid var(--white-color);
-  
+
   padding-left: 0.5rem;
   /* margin-top: 0.8rem; */
-
 }
 
-.LC{
-  border-left: 0.4rem solid var(--blue-color) ; 
+.LC {
+  border-left: 0.4rem solid var(--blue-color);
   color: var(--blue-color) !important;
   padding-left: 0.5rem;
   /* margin-top: 0.8rem; */
 }
 
-
-
-
-.GroupLink > a{
+.GroupLink > a {
   display: inline-block;
   box-sizing: border-box;
   padding: 0.2rem 0;
-
-  
 }
 
-
-.GroupLink > a:hover{
+.GroupLink > a:hover {
   display: inline-block;
   box-sizing: border-box;
   /* padding: 0.2rem 0; */
-  border-bottom:4px solid var(--blue-color);
+  border-bottom: 4px solid var(--blue-color);
   color: var(--blue-color);
-  
 }
 
-.GroupRightInfoText{
+.GroupRightInfoText {
   /* text-align: center;
   justify-content: center; */
-  align-items:center;
+  align-items: center;
 }
 
-
-.GroupMemberPic{
- margin-bottom:1rem;
+.GroupMemberPic {
+  margin-bottom: 1rem;
 }
 
-.GroupHolderName{
+.GroupHolderName {
   margin-right: 0.5rem;
 }
-
-
-
 
 .card {
   background-color: var(--white-color);
@@ -398,17 +372,22 @@ hr {
   margin-top: 25px;
   padding: 0.5rem 2rem;
   align-self: flex-end;
-  transition: all 0.3s ;
+  transition: all 0.3s;
 
   outline: none;
 }
 
-.GroupCardBtn:focus {outline:0;}
-.ShowMoreBtn:focus{outline:0;}
-.SeeMoreBtnforUnderCard:focus{outline:0;}
+.GroupCardBtn:focus {
+  outline: 0;
+}
+.ShowMoreBtn:focus {
+  outline: 0;
+}
+.SeeMoreBtnforUnderCard:focus {
+  outline: 0;
+}
 
-.GroupCardBtn:hover{
-
+.GroupCardBtn:hover {
   background-color: var(--blue-color);
   border: 1px solid var(--white-color);
   border-radius: 10px;
@@ -418,35 +397,21 @@ hr {
   margin-top: 25px;
   padding: 0.5rem 2rem;
   align-self: flex-end;
-  
 }
 
-.GroupCardBtn:active{
-  background-color:var(--white-color);
+.GroupCardBtn:active {
+  background-color: var(--white-color);
   border: 1px solid var(--blue-color);
   color: var(--blue-color);
 }
 
-
-
-
-
-
-
 .GroupRightInfoPhotoContainer {
   margin-top: 2rem;
-
 }
 
 .GoupRightInfoPhoto {
   margin-right: 0.5rem;
 }
-
-
-
-
-
-
 
 /******************* BOTTOM ******************/
 .EventBottom {
@@ -498,7 +463,7 @@ hr {
 
 .BottomLeftInfoCard {
   width: 95%;
-  padding:1.2rem 0;
+  padding: 1.2rem 0;
 
   /* height: 100px; */
 
@@ -663,11 +628,9 @@ hr {
   color: var(--grey-color);
 }
 
-
-.Size20IconOpacity{
-opacity: 0.5;
+.Size20IconOpacity {
+  opacity: 0.5;
 }
-
 
 .GroupMemberCardInfo {
   margin-left: 1rem;
@@ -682,10 +645,9 @@ opacity: 0.5;
   display: inline-block;
   margin-top: 2rem;
   height: 3rem;
-  
 }
-::placeholder{
-  color:var(--grey-color);
+::placeholder {
+  color: var(--grey-color);
   padding-left: 1rem;
 }
 
@@ -712,22 +674,16 @@ opacity: 0.5;
   padding: 1rem;
 }
 
-
-
-.group_margin_bottom{
+.group_margin_bottom {
   margin-bottom: 2rem;
 }
 
-
-.group_maneger_img{
+.group_maneger_img {
   height: 3rem;
 }
 
-
-
-
 /* *photo flow  ----------------------------------------- */
-.photo_flow_container{
+.photo_flow_container {
   width: 100%;
 
   display: flex;
@@ -736,27 +692,25 @@ opacity: 0.5;
   padding-top: 2rem;
 }
 
-.photo_flow_col{
+.photo_flow_col {
   margin: 0 0.5rem;
   /* background-color: antiquewhite; */
   flex-grow: 1;
   flex-basis: 50vw;
 }
 
-.photo_flow_card{
+.photo_flow_card {
   position: relative;
   margin-bottom: 2rem;
 }
 
-
-.photo_flow_card_img{
+.photo_flow_card_img {
   border-radius: 5px;
   width: 100%;
 }
 
-
-.photo_flow_card_wrapper{
-  opacity:0;
+.photo_flow_card_wrapper {
+  opacity: 0;
   width: 100%;
   height: 100%;
   background-color: #00000017;
@@ -765,10 +719,10 @@ opacity: 0.5;
 }
 
 .photo_flow_card_wrapper:hover {
-  opacity:1;
+  opacity: 1;
 }
 
-.photo_flow_card_msg{
+.photo_flow_card_msg {
   position: absolute;
   top: 1rem;
   left: 1rem;
@@ -776,7 +730,5 @@ opacity: 0.5;
   border-radius: 2rem;
   background-color: #ffffff;
 }
-
-
 
 /* 抓來的 */
