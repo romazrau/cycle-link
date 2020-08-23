@@ -2,7 +2,7 @@
 
 function ClsActivityDetail() {
     function boxMove2(y) {
-        console.log(y);
+        // console.log(y);
         box = document.querySelector('.activity_detail_right')
         box.style.marginTop = `${y}px`;
     }
@@ -28,13 +28,13 @@ function ClsActivityDetail() {
     let btnMessage = document.querySelector("#btnMessage");
 
     //binding it with onmouseover event
-    btnMessage.addEventListener("mouseover", getClsChange);
+    // btnMessage.addEventListener("mouseover", getClsChange);
     //there are two css class massageTopButton and massageTopButton2
     btnMessage.addEventListener("mouseout", getClsChangeback);
 
-    function getClsChange() {
-        btnMessage.className = "massageTopButton2";
-    }
+    // function getClsChange() {
+    //     btnMessage.className = "massageTopButton2";
+    // }
 
     function getClsChangeback() {
         btnMessage.className = "massageTopButton";
@@ -66,10 +66,8 @@ function ClsActivityDetail() {
         divOfMassage.innerHTML =
             " <div class='lineInContainer'></div>\
 <div class='massageBottomTop activity_detail_flex'>\
-<div class='DivForImg'>\
-<img src='' alt=''>\
 <div class='massageBottomImgDefault'>\
-</div>\
+<img src='' alt=''>\
 </div>\
 <div class='massageBottomTopUser'>訪客</div>\
 <div class='verticalBar'></div>\
@@ -96,16 +94,16 @@ function ClsActivityDetail() {
 
         let btnSent = document.querySelector("#btnMessageSent");
 
-        btnSent.addEventListener("mouseover", btnSentClsChange);
-        btnSent.addEventListener("mouseout", btnSentClsChangeBack);
+        //     btnSent.addEventListener("mouseover", btnSentClsChange);
+        //     btnSent.addEventListener("mouseout", btnSentClsChangeBack);
 
-        function btnSentClsChange() {
-            btnSent.className = "btnMessageSent2";
-        }
+        //     function btnSentClsChange() {
+        //         btnSent.className = "btnMessageSent2";
+        //     }
 
-        function btnSentClsChangeBack() {
-            btnSent.className = "btnMessageSent";
-        }
+        //     function btnSentClsChangeBack() {
+        //         btnSent.className = "btnMessageSent";
+        //     }
     }
     //確認按鈕做事件綁定
     function sentMassage() {

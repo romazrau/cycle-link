@@ -8,6 +8,10 @@
   display: flex;
 }
 
+/* .activity_detail_fontBold {
+  font-weight: bold;
+} */
+
 /* 活動標題和發起者 */
 .activity_detail_container p {
   margin: 0;
@@ -19,6 +23,10 @@
   margin: 0px auto;
   width: 1060px;
   padding: 1.5rem 0;
+}
+
+.activity_detail_info_all h2 {
+  font-weight: bold;
 }
 
 
@@ -67,11 +75,16 @@
 .activity_detail_info_name {
   align-self: center;
   margin-left: 0.7rem;
+
 }
 
 .activity_detail_info_name_H {
   font-size: 14px;
   color: grey;
+}
+
+.activity_detail_info_name a {
+  color: black;
 }
 
 .activity_detail_info_status {
@@ -90,6 +103,10 @@
 
 .activity_detail_text_detail {
   margin-top: 1rem;
+}
+
+.activity_detail_text_detail h5 {
+  font-weight: bold;
 }
 
 .activity_detail_text {
@@ -111,12 +128,28 @@
 }
 
 /* 活動左側 標籤 */
+.activity_detail_bigTag {
+  padding: 0.3rem 1rem;
+  margin: 1rem 1rem 0 0;
+  border-radius: 0.5rem;
+  background-color: var(--blue-color);
+
+}
+
+.activity_detail_bigTag a {
+  color: white;
+}
+
 .activity_detail_tag {
   /* width: 100px; */
   padding: 0.3rem 1rem;
   margin: 1rem 1rem 0 0;
   border-radius: 0.5rem;
   background-color: white;
+
+}
+
+.activity_detail_tag a {
   color: var(--blue-color);
 }
 
@@ -145,7 +178,7 @@
 }
 
 .activity_detail_right_top button {
-  border: 0px;
+  border: 1px solid var(--blue-color);
   border-radius: 0.8rem;
   padding: 0.7rem 2rem;
   /* margin-bottom: 1rem; */
@@ -154,9 +187,17 @@
   font-size: 20px;
 }
 
+.activity_detail_right_top button:hover {
+  border: 1px solid var(--blue-color);
+  background-color: white;
+  color: var(--blue-color);
+  transition: all 0.5s;
+}
+
 .activity_detail_right_love {
   width: 3rem;
   margin-left: 1rem;
+  color: red;
 }
 
 .activity_detail_right_top button:hover {
@@ -194,7 +235,20 @@
 
 /* 活動參與者 */
 .activity_detail_participant_all {
-  margin-top: 1rem;
+  margin-top: 5rem;
+}
+
+.activity_detail_participant_all h5 {
+  font-weight: bold;
+}
+
+.activity_detail_participant_all a {
+  color: grey;
+}
+
+.activity_detail_participant_all a:hover {
+  color: var(--blue-color);
+  transition: all 0.5s;
 }
 
 .activity_detail_participant_flex {
@@ -210,9 +264,14 @@
   height: 10rem;
   border-radius: 1rem;
   background-color: white;
-  /* margin-right: 0.5rem; */
   margin-top: 1rem;
-  /* padding: 2rem 2rem; */
+}
+
+.activity_detail_participant:hover {
+  cursor: pointer;
+  /* border: 1px solid red; */
+  box-shadow: 0 0 10px rgb(226, 226, 226);
+  transition: all 0.5s;
 }
 
 .activity_detail_participant p {
@@ -232,20 +291,30 @@
   /* width: 50vw; */
   /* height: 15vh; */
   max-width: 800px;
-  margin-top: 1rem;
-  padding: 1rem 0;
+  margin-top: 3rem;
+  padding: 1.5rem;
   border-radius: 1rem;
   background-color: white;
 }
+
 
 .activity_detail_Societies_info {
   margin: 0 1rem;
 }
 
+.activity_detail_Societies_info a {
+  color: grey;
+}
+
+.activity_detail_Societies_info a:hover {
+  color: var(--blue-color);
+  transition: all 0.5s;
+}
+
 .activity_detail_Societies_img_circle {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   border: 2px solid var(--blue-color);
   border-radius: 15%;
 }
@@ -254,8 +323,8 @@
   position: absolute;
   top: 3px;
   left: 3px;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   overflow: hidden;
   border-radius: 15%;
 }
@@ -278,101 +347,75 @@
   margin-top: 3rem;
 }
 
-
-.massageTopButton {
-  position: absolute;
-  right: 0px;
-  height: 40px;
-  width: 130px;
-  background-color: var(--green-color);
-  border-radius: 10px;
-  border-style: none;
-  color: white;
+.massageTop {
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* btn class option 2 */
-.massageTopButton2 {
-  position: absolute;
-  right: 0px;
-  height: 40px;
-  width: 130px;
-  border-radius: 10px;
-  border-style: none;
+.massageTopText {
+  font-size: 20px;
+  font-weight: bold;
+}
 
+.massageTopButton,
+.btnMessageSent {
+  background-color: var(--blue-color);
+  border-radius: 10px;
+  border: 1px solid var(--blue-color);
+  color: white;
+  padding: 0.4rem 1rem;
+}
+
+.massageTopButton:hover,
+.btnMessageSent:hover {
+  cursor: pointer;
+  border: 1px solid var(--blue-color);
   background-color: var(--white-color);
-  color: var(--grey-color);
-  box-shadow: 0.2rem 0.2rem 0.2rem var(--grey-color);
+  color: var(--blue-color);
+  transition: all 0.5s;
 }
 
 
 
 .messageInputBox {
-  box-sizing: border-box;
-  border: none;
+  /* box-sizing: border-box; */
+  border: 0;
+  border-bottom: 1px solid var(--blue-color);
   width: 100%;
   outline: none;
-  padding: 10px;
-  margin-top: 30px;
-  box-shadow: 0.1rem 0.1rem 0.1rem var(--lightgrey-color);
+  padding: 0.5rem 0.5rem 0.2rem 0.5rem;
+  margin: 0.5rem 0;
+  /* box-shadow: 0.1rem 0.1rem 0.1rem var(--lightgrey-color); */
 
 }
 
 .messageInputBox:focus {
 
   background-color: var(--lightgrey-color);
-  padding: 10px;
+  /* padding: 10px; */
   transition: 0.5s;
-  ;
   margin-right: 10px;
-}
-
-.btnMessageSent {
-  background-color: var(--green-color);
-  color: white;
-  height: 40px;
-  width: 80px;
-  border: none;
-  border-radius: 10px;
-  margin-top: 20px;
-}
-
-.btnMessageSent2 {
-  background-color: var(--white-color);
-  color: var(--grey-color);
-  box-shadow: 0.2rem 0.2rem 0.2rem var(--grey-color);
-
-  height: 40px;
-  width: 80px;
-  border: none;
-  border-radius: 10px;
-  margin-top: 20px;
-
 }
 
 
 /* 留言後顯示 */
 .inputAft {
-  margin-top: 10px;
+  margin: 10px;
 }
-
-
-
 
 /* <input class=' messageInputBox'> 的父層 */
 .massageBottom {
   background-color: var(--white-color);
-  /* width: 100%; */
-  /* height: 150px; */
   border-radius: 30px;
-  margin-top: 50px;
-  padding: 30px;
+  margin-top: 1rem;
+  padding: 2rem 1rem;
 }
 
-/* 暫時得很失敗？？？？ */
 .massageBottomImgDefault {
   background-color: var(--grey-color);
   width: 50px;
   height: 50px;
+  border-radius: 50%;
 }
 
 .verticalBar {
@@ -406,9 +449,10 @@
 
 .lineInContainer {
   border-top: solid var(--lightgrey-color) 1px;
-  height: 1px;
+  /* height: 1px;
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 50px; */
+  margin: 1rem 0;
 }
 
 /* .divForCardImg {

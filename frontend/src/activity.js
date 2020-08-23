@@ -88,7 +88,7 @@ function ClsActivity() {
 
 
     //* ------------------------------------- 文字樣板 -------------------------------------
-    const htmlActCard = (o) => {
+    this.htmlActCard = (o) => {
         return ` 
     <div class="active_card_container">
         <div class="active_card" >
@@ -183,7 +183,7 @@ function ClsActivity() {
 
     ActCardData.map(
         (e, index) => {
-            ActCard.innerHTML += htmlActCard(e);
+            ActCard.innerHTML += this.htmlActCard(e);
         }
     )
 
@@ -234,7 +234,7 @@ function ClsActivity() {
 
     ActCardData2.map(
         (e, index) => {
-            ActCard2.innerHTML += htmlActCard(e);
+            ActCard2.innerHTML += this.htmlActCard(e);
         }
     )
 
@@ -273,7 +273,7 @@ function ClsActivity() {
 
     HisActData.map(
         (e, index) => {
-            HisAct.innerHTML += htmlActCard(e);
+            HisAct.innerHTML += this.htmlActCard(e);
         }
     )
 
