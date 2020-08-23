@@ -389,6 +389,33 @@
             </div>
             <!-------------------------------------- main -------------------------------------->
             <div class="activity_main">
+                <div class="search_container search_hidden">
+                    <div id="search_city" class="search_box  ">
+                        <div id="search_city_text" class="search_citytext"></div>
+                    </div>
+                    <div id="search_citydetial" class="search_city_detail search_hidden ">
+                        <ul>
+                            <li class="select_city">台北市</li>
+                            <li class="select_city">台中市</li>
+                            <li class="select_city">高雄市</li>
+                            <li class="select_city">台北市</li>
+                            <li class="select_city">台中市</li>
+                            <li class="select_city">高雄市</li>
+                        </ul>
+                    </div>
+                    <div id="search_date" class="search_box ">
+                        <div id="search_date_text" class="search_datetext"></div>
+                    </div>
+                    <div id="search_datedetial" class="search_datetext search_hidden">
+                        <label for="ac_date_start_from">Startdate</label>
+                        <input type="text" id="ac_date_start_from" name="ac_date_start_from" autocomplete="off"
+                            onchange="getstartdate(this.id)" />
+                        <label for="ac_date_end_from">Enddate</label>
+                        <input type="text" id="ac_date_end_from" name="ac_date_end_from" autocomplete="off" />
+                    </div>
+            
+            
+                </div>
                 <!-------------------------------------- 活動 -------------------------------------->
                 <h3>主題活動</h3>
                 <div class="activity_event" id="activity_event_top">
@@ -1119,7 +1146,7 @@
                                 <div class="activity_detail_info_name">
                                     <p class="activity_detail_info_name_H">Hosted By</p>
                                     <div class=" activity_detail_flex">
-                                        <p>蘇菲唐納</p>
+                                        <a href="#">蘇菲唐納</a>
                                         <img src="./img/tick.svg" alt="tickIcon" class="activity_detail_info_status">
                                     </div>
                                 </div>
@@ -1132,9 +1159,9 @@
                             <button>參加</button>
                             <img src="img/icon1.svg" alt="" class="activity_detail_right_love">
                         </div> -->
+                        <button style="margin-right: 1rem;"><img src="img/edit-regular.svg" width="20"></button>
                         <button><img src="img/share.svg" width="20"></button>
                     </div>
-                    <!-- <p>活動狀態：審核中</p> -->
                 </div>
 
                 <!--------------------------- 活動左側 內文 --------------------------->
@@ -1145,14 +1172,17 @@
                                 <img src="img/event12.jpg" alt="">
                             </div>
                             <div class="activity_detail_flex">
-                                <div class="activity_detail_tag">
-                                    <p>#2020</p>
+                                <div class="activity_detail_bigTag">
+                                    <a href="#">路跑</a>
                                 </div>
                                 <div class="activity_detail_tag">
-                                    <p>#國家地理</p>
+                                    <a href="#">#2020</a>
                                 </div>
                                 <div class="activity_detail_tag">
-                                    <p>#就差你一個</p>
+                                    <a href="#">#國家地理</a>
+                                </div>
+                                <div class="activity_detail_tag">
+                                    <a href="#">#就差你一個</a>
                                 </div>
                             </div>
                             <div class="activity_detail_text_detail">
@@ -1200,7 +1230,7 @@
                             <div class="activity_detail_participant_all">
                                 <div class="activity_detail_flex" style="justify-content: space-between;">
                                     <h5>活動參與者 (5)</h5>
-                                    <p>See All</p>
+                                    <a href="#">See All</a>
                                 </div>
                                 <div class="activity_detail_participant_flex">
                                     <div class="activity_detail_participant">
@@ -1253,7 +1283,7 @@
                                 </div>
                                 <div class="activity_detail_Societies_info">
                                     <p>北台灣撿垃圾社團</p>
-                                    <p>see more events</p>
+                                    <a href="">see more events</a>
                                 </div>
                                 <img src="img/right.svg" alt="" width="20vw">
                             </div>
@@ -1270,9 +1300,9 @@
                                 <!-- 留言白框 -->
                                 <div class="massageBottom">
                                     <div class="massageBottomTop activity_detail_flex">
-                                        <div class="DivForImg">
+                                        <div class="massageBottomImgDefault">
                                             <img src="" alt="">
-                                            <div class="massageBottomImgDefault"></div>
+                                            <!-- <div class="massageBottomImgDefault"></div> -->
                                         </div>
                                         <div class="massageBottomTopUser">訪客</div>
                                         <div class="verticalBar"></div>
@@ -1295,7 +1325,7 @@
                             <div class="activity_detail_right">
                                 <div class="activity_detail_right_top">
                                     <button>參加</button>
-                                    <img src="img/icon1.svg" alt="" class="activity_detail_right_love">
+                                    <a href=""><img src="img/icon1.svg" alt="" class="activity_detail_right_love"></a>
                                 </div>
                                 <div class="activity_detail_right_info">
                                     <div class="">
@@ -2966,6 +2996,7 @@
     <script type="module" src="./src/app.js"></script>
     <script src='./src/router.js'></script>
     <!-- page -->
+    <script src="./src/activity.js"></script>
     <script src="./src/home.js"></script>
     <script type="module" src="./src/login.js"></script>
     <script src="./src/singUp.js"></script>
@@ -2973,7 +3004,6 @@
     <script src="./src/personalPage.js"></script>
     <script src="./src/personal_maneger.js"></script>
     <script src="./src/aboutUs.js"></script>
-    <script src="./src/activity.js"></script>
     <script src="./src/activity_detail.js"></script>
     <script src="./src/community.js"></script>
     <script src="./src/community_detail.js"></script>

@@ -57,6 +57,7 @@ function ClsActivity() {
 
 
     //日期
+    
 
 
 
@@ -87,8 +88,118 @@ function ClsActivity() {
     document.querySelector('#active_advance_search_city').innerHTML = data2CityCheckbox(activityCityData);
 
 
+
+
+
+
+
+    // 進階搜尋_DA
+    //抓取地址
+    var btncity = document.getElementById("search_city");
+    var btncitydetial = document.getElementById("search_citydetial");
+    btncity.addEventListener('click', function () {
+        btncity.classList.add("search_hidden");
+        btncitydetial.classList.remove("search_hidden");
+    });
+    var list = document.getElementsByTagName("li");
+    var searchcitytext = "";
+    var btncitytext = document.getElementById("search_city_text");
+    for (var i = 0; i < list.length; i++) {
+        list[i].addEventListener('click', function () {
+            // searchcitytext = this.innerHTML;
+            btncitydetial.classList.add("search_hidden");
+            btncity.classList.remove("search_hidden");
+            btncitytext.innerHTML = this.innerHTML;
+        })
+    }
+    // ----------------------------------------------------------------
+    var btndate = document.getElementById("search_date");
+    var btndatedetial = document.getElementById("search_datedetial");
+    btndate.addEventListener('click', function () {
+        btndate.classList.add("search_hidden");
+        btndatedetial.classList.remove("search_hidden");
+    });
+    
+    // 抓時間
+    $(function () {
+        //jQuery datepicker 設定限制日期最小最大 minDate maxDate hideIfNoPrevNext
+        $("#ac_date_start_from").datepicker({
+            onSelect: function (dateText, inst) {
+                var dateAsString = dateText; //the first parameter of this function
+                var dateAsObject = $(this).datepicker('getDate'); //the getDate method
+                getstartdate(dateAsString);
+                // startdate(dateAsString);
+                startdate = dateText;
+            },
+            //顯示上個月日期 及下個月日期 ，但是不可選的。
+            //default:false
+            showOtherMonths: true,
+            // 設置當沒有上一個/下一個可選擇的情況下，隱藏掉相應的按鈕。（默認為不可用）
+            //配合有設定最大最小時使用
+            //default:false
+            hideIfNoPrevNext: true,
+            //設置一個最小的可選日期。可以是Date對象，或者是數字（從今天算起，例如+7），
+            //或者有效的字符串('y'代表年, 'm'代表月, 'w'代表周, 'd'代表日, 例如：'+1m +7d')。
+            minDate: "+7d",
+            //  設置一個最大的可選日期。可以是Date對象，或者是數字（從今天算起，例如+7），
+            //或者有效的字符串('y'代表年, 'm'代表月, 'w'代表周, 'd'代表日, 例如：'+1m +7d')。
+            maxDate: "+1m"
+        });
+        
+        $("#ac_date_end_from").datepicker({
+            onSelect: function (dateText, inst) {
+                var dateAsString = dateText; //the first parameter of this function
+                var dateAsObject = $(this).datepicker('getDate'); //the getDate method
+                getenddate(dateAsString);
+                displaydate();
+            },
+            //顯示上個月日期 及下個月日期 ，但是不可選的。
+            //default:false
+            showOtherMonths: true,
+            // 設置當沒有上一個/下一個可選擇的情況下，隱藏掉相應的按鈕。（默認為不可用）
+            //配合有設定最大最小時使用
+            //default:false
+            hideIfNoPrevNext: true,
+            //設置一個最小的可選日期。可以是Date對象，或者是數字（從今天算起，例如+7），
+            //或者有效的字符串('y'代表年, 'm'代表月, 'w'代表周, 'd'代表日, 例如：'+1m +7d')。
+            minDate: "+7d",
+            //  設置一個最大的可選日期。可以是Date對象，或者是數字（從今天算起，例如+7），
+            //或者有效的字符串('y'代表年, 'm'代表月, 'w'代表周, 'd'代表日, 例如：'+1m +7d')。
+            maxDate: "+1m"
+
+        });
+        
+        
+
+    });
+    //抓取時間
+    function getstartdate(startdate)
+    {
+        var startdatetext = document.getElementById("search_date_text");
+        startdatetext.innerHTML ="起始日 <br>"+ startdate +'<br>';
+    }
+    
+    function getenddate(enddate)
+    {
+        var enddatetext = document.getElementById("search_date_text");
+        enddatetext.innerHTML += "結束日 <br>"+ enddate;
+    }
+
+    function displaydate(){
+        btndatedetial.classList.add("search_hidden");
+        btndate.classList.remove("search_hidden");
+    }
+
+
+
+
+
+
+
+
+
     //* ------------------------------------- 文字樣板 -------------------------------------
-    const htmlActCard = (o) => {
+    this.htmlActCard = (o) => {
         return ` 
     <div class="active_card_container">
         <div class="active_card" >
@@ -183,7 +294,7 @@ function ClsActivity() {
 
     ActCardData.map(
         (e, index) => {
-            ActCard.innerHTML += htmlActCard(e);
+            ActCard.innerHTML += this.htmlActCard(e);
         }
     )
 
@@ -234,7 +345,7 @@ function ClsActivity() {
 
     ActCardData2.map(
         (e, index) => {
-            ActCard2.innerHTML += htmlActCard(e);
+            ActCard2.innerHTML += this.htmlActCard(e);
         }
     )
 
@@ -273,7 +384,7 @@ function ClsActivity() {
 
     HisActData.map(
         (e, index) => {
-            HisAct.innerHTML += htmlActCard(e);
+            HisAct.innerHTML += this.htmlActCard(e);
         }
     )
 
