@@ -30,26 +30,27 @@
 
 
             <div class="div_dropdownmenu">
-                    <div id="navbar_activity" class="li_menutitle header_nav"><a href="#activity"
-                            class="nav-underline">Activity<br>活動</a>
-                    </div>
+                <div id="navbar_activity" class="li_menutitle header_nav"><a href="#activity"
+                        class="nav-underline">Activity<br>活動</a>
+                </div>
+            </div>
 
-                    <div id="navbar_community" class="li_menutitle header_nav">
-                        <a href="#community" class="nav-underline">Community<br>社團</a>
-                    </div>
+            <div id="navbar_community" class="li_menutitle header_nav">
+                <a href="#community" class="nav-underline">Community<br>社團</a>
+            </div>
 
-                    <div id="navbar_news" class="li_menutitle header_nav">
-                        <a href="#news" class="nav-underline">News<br>新聞</a>
-                    </div>
+            <div id="navbar_news" class="li_menutitle header_nav">
+                <a href="#news" class="nav-underline">News<br>新聞</a>
+            </div>
 
 
-                    <div id="navbar_about-us" class="li_menutitle header_nav "><a href="#about-us"
-                            class="nav-underline">About Us<br>關於我們</a>
-                    </div>
+            <div id="navbar_about-us" class="li_menutitle header_nav "><a href="#about-us" class="nav-underline">About
+                    Us<br>關於我們</a>
+            </div>
             </div>
             <div class="div_container_login">
-                        <div id="navbar_log-in" class="li_menutitle header_nav"><a id="header_link_login"
-                                href="#log-in">Log in<br>登入</a></div>
+                <div id="navbar_log-in" class="li_menutitle header_nav"><a id="header_link_login" href="#log-in">Log
+                        in<br>登入</a></div>
             </div>
 
             <div class="navbar_menu">
@@ -72,7 +73,7 @@
         </div>
 
 
-        <!-- 聊天機器人 -->
+        <!-- * 聊天機器人 -->
         <div class="chat_robot_room_window hide">
             <img id="chat_robot_window_close" class="chat_window_close" src="./img/times-solid.svg" alt="X">
             <div id="chat_message_window_title" class="chat_window_title">聊天機器人</div>
@@ -316,7 +317,7 @@
 
             <!---------------------------------- 主要活動顯示 ---------------------------------->
             <div class="activity_top">
-                <img src="img/top_event01.jpg">
+                <img src="img/eventTop_01.svg">
                 <div class="activity_search_container">
                     <div class="active_main_search">
                         <input type="text">
@@ -395,7 +396,7 @@
                 </div>
             </div>
             <div class="activity_create_btn">
-                <a href="#">我要發起活動</a>
+                <a href="#create-activity">我要發起活動</a>
             </div>
             <!---------------------------------- 瀏覽過的活動 ---------------------------------->
 
@@ -1020,7 +1021,7 @@
 
 
 
-        <!-- * 路徑在別人底下的葉面 #.. / 這些葉面  ****************      ****************       ****************   -->
+        <!-- * 路徑在別人底下的頁面 #.. / 這些頁面  ****************      ****************       ****************   -->
 
         <!-- * news-detail  ****************      ****************       ****************   -->
         <div id="page_news-detail" class="page hide">
@@ -1101,213 +1102,163 @@
 
         <!-- * activity-detail  ****************      ****************       ****************   -->
         <div id="page_activity-detail" class="page hide">
-            <main class="mainclass">
-
-                <!-- main 的margin left 在這邊沒用 -->
-                <div class="eventInfoTop flex-container">
-                    <div class="eventInfoText">
-                        <p>Saturday, July 18, 2020</p>
-                        <h2>福隆海灘淨灘趣！</h2>
-                        <div class="eTopPeople">
-                            <div class="DivForImg">
-                                <img src="./img/download.jpeg" alt="sophie" width="50">
-                            </div>
-                            <div class="topPeopleName">
-                                <div class="eventInfoTopPeopleNameText">
-                                    蘇菲唐納
+            <div class="activity_detail_container">
+                <!--------------------------- 活動標題和發起者 --------------------------->
+                <div class="activity_detail_info_all activity_detail_flex">
+                    <div>
+                        <h2>2020 國家地理路跑 - 世界地球日 50 週年</h2>
+                        <div class="activity_detail_info">
+                            <div class="activity_detail_flex">
+                                <div class="activity_detail_info_img_circle">
+                                    <div class="activity_detail_info_img_div">
+                                        <img src="./img/c1.jpeg" class="activity_detail_info_img">
+                                    </div>
                                 </div>
-                                <img src="./img/tick.svg" alt="tickIcon" width="20">
-                                <span>活動狀態:</span><span>審核中</span>
-                            </div>
+                                <div class="activity_detail_info_name">
+                                    <p class="activity_detail_info_name_H">Hosted By</p>
+                                    <div class=" activity_detail_flex">
+                                        <p>蘇菲唐納</p>
+                                        <img src="./img/tick.svg" alt="tickIcon" class="activity_detail_info_status">
+                                    </div>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
-
-
-
-
-
+                    <div class="activity_detail_info_share activity_detail_flex">
+                        <!-- <div class="activity_detail_right_top" style="margin-right: 1rem;">
+                            <button>參加</button>
+                            <img src="img/icon1.svg" alt="" class="activity_detail_right_love">
+                        </div> -->
+                        <button><img src="img/share.svg" width="20"></button>
+                    </div>
+                    <!-- <p>活動狀態：審核中</p> -->
                 </div>
-                <div class="greyMainBackGround" id="greyMainBackGround">
-                    <div class="eventDetail flex-container">
-                        <div class="leftPart">
-                            <img class="eventDetailImg" src="./img/shutterstock_445264117.jpg" alt="seaturtle"
-                                width="700px">
-                            <div class="tagButton flex-container">
-                                <button type="button">#環保</button>
-                                <button type="button">#淨灘</button>
-                                <button type="button">#小海龜</button>
+
+                <!--------------------------- 活動左側 內文 --------------------------->
+                <div class="activity_detail_text activity_detail_flex">
+                    <div class="activity_detail_text_all">
+                        <div class="activity_detail_text_left">
+                            <div class="activity_detail_text_left_img">
+                                <img src="img/event12.jpg" alt="">
                             </div>
-                            <div class="eventDetailP">
-                                <p>面對日益嚴重的海岸垃圾問題，做而言不如起而行，
-                                    行動才是解決問題的關鍵，讓我們親自動手來清潔這塊美麗的家園吧!
-
-                                    淨灘活動，其實不單純只是到海邊打掃沙灘、撿撿垃圾的勞動服務；
-                                    藉由事前的淨灘報告，來說明活動的安全事項，並正確辨識什麼是該撿的垃圾，
-                                    讓大家知道淨灘背後，也是有許多需要注意眉眉角角，
-
-                                    透過剖析 ICC 國際淨灘紀錄表，來看見臺灣海岸淨灘活動，
-                                    所記錄下的每一個海邊垃圾種類及數量統計，了解到底都是哪些垃圾在污染海洋，
-                                    而我們又該怎麼來改變生活習慣，減少這些垃圾的產生。
-                                    ​
-
-                                    若除了淨灘，您還有更多的時間，海湧工作室也會帶領大家進行海廢藝術創作，
-                                    透過創作來翻轉大家對於垃圾的印象很多廢棄物只要留心留意，都能夠變成有用的物品！！
-                                    ​
-                                    跟著海湧一起淨灘，與大自然有最近距離的接觸，帶著課程中所學習的內容，活出更加環保的減塑健康生活，不只是為了環境，也為了自己，讓我們一同創造一段愛地球之旅吧！
-
-                                    淨灘活動說明：
-                                    一套完整的淨灘活動，包含車程與事前解說，時間長度建議約為 3~4 個小時。
-                                    在淨灘活動開始前，會先進行事前解說，透過此解說不僅會讓每位參加者了解淨灘活動中，該注意到的細節與安全事項外，也會引導大家認知到，我們日常生活對於環境的影響，讓保護環境這件事，不會因為淨灘活動結束而停止，讓參與者把友善環境的理念化為行動，延續到日常生活中開始實踐。
-                                    ​
-                                    淨灘活動包含：
-                                    淨灘整體活動企劃、活動後垃圾清運處理、清潔隊聯絡、淨灘行前講座、淨灘相關器材、活動保險、交通安排建議、擴音設備等。
+                            <div class="activity_detail_flex">
+                                <div class="activity_detail_tag">
+                                    <p>#2020</p>
+                                </div>
+                                <div class="activity_detail_tag">
+                                    <p>#國家地理</p>
+                                </div>
+                                <div class="activity_detail_tag">
+                                    <p>#就差你一個</p>
+                                </div>
+                            </div>
+                            <div class="activity_detail_text_detail">
+                                <h5>Detail</h5>
+                                <p>
+                                    (Chinese level requirement: A1 level up)
+                                    <br>
+                                    Taiwanese love singing karaoke so much. KTV in Taiwan is a night out that you won’t
+                                    want
+                                    to
+                                    miss!
+                                    Everyone should try it at least once.
+                                    <br>
+                                    Come to this workshop, you can learn sentences and popular words commonly spoken,
+                                    then
+                                    integrate
+                                    into Taiwanese life!
+                                    <br>
+                                    <br>
+                                    📆 Date: 28 August<br>
+                                    🕘 Time: 19:30-21:30 on Friday<br>
+                                    📍Location: ShuoHao Language Center<br>
+                                    💁🏻‍♀‍ 4 people for the minimum<br>
+                                    💲Tuition fee: 400 NTD. (Pay the tuition in advance.)<br>
+                                    <br>
+                                    Application here ：https://forms.gle/JWHYuZvY17LGvNxH9
+                                    <br>
+                                    Location: 台北市大安區復興南路二段 82 號<br>
+                                    8F., No. 82, Sec. 2, Fuxing S. Rd., Da’an Dist., Taipei City 106, Taiwan (R.O.C.)
+                                    <br>
+                                    <br>
+                                    Phone:[masked]<br>
+                                    FB: https://www.facebook.com/SHLanguageCenter/<br>
+                                    Time: 19:30-21:30pm (2hrs)
+                                    <br>
+                                    <br>
+                                    主辦單位保有隨時修改及終止本活動之權利。於所辦任何活動上所拍攝之照片影片均有權永久使用於主辦單位之所有活動頁面及網頁。
+                                    When attending this event organizers reserve the right to refuse service to anyone
+                                    for
+                                    any
+                                    reason
+                                    and to take and use photos or videos for an unlimited period of time.
                                 </p>
                             </div>
-
-                            <div class="eventParticipateText flex-container">
-
-                                <div>活動參與者</div>
-                                <div>（2)</div>
-
-                            </div>
-
-
-
-                            <div class="eventParticipatePersonCard flex-container">
-                                <div class="whiteBox WBfirst">
-
-                                    <div class="eventParticipateImgBox">
-                                        <img src="./img/download.jpeg" alt="sophie">
-                                    </div>
-                                    <div class="eventParticipate flex-container">
-                                        <div>蘇菲唐納</div>
-
-                                        <img src="./img/tick.svg" alt="tickIcon" width="20px">
-                                    </div>
-                                    <div class="eventLauncher">發起人</div>
+                            <div class="activity_detail_participant_all">
+                                <div class="activity_detail_flex" style="justify-content: space-between;">
+                                    <h5>活動參與者 (5)</h5>
+                                    <p>See All</p>
                                 </div>
-                                <div class="whiteBox WBfirst">
-
-                                    <div class="eventParticipateImgBox">
-                                        <img src="./img/download.jpeg" alt="sophie">
-                                    </div>
-                                    <div class="eventParticipate flex-container">
-                                        <div>蘇菲唐納</div>
-
-                                        <img src="./img/tick.svg" alt="tickIcon" width="20px">
-                                    </div>
-                                    <div class="eventLauncher">發起人</div>
-                                </div>
-                                <div class="whiteBox WBfirst">
-
-                                    <div class="eventParticipateImgBox">
-                                        <img src="./img/download.jpeg" alt="sophie">
-                                    </div>
-                                    <div class="eventParticipate flex-container">
-                                        <div>蘇菲唐納</div>
-
-                                        <img src="./img/tick.svg" alt="tickIcon" width="20px">
-                                    </div>
-                                    <div class="eventLauncher">發起人</div>
-                                </div>
-                                <div class="whiteBox WBfirst">
-
-                                    <div class="eventParticipateImgBox">
-                                        <img src="./img/download.jpeg" alt="sophie">
-                                    </div>
-                                    <div class="eventParticipate flex-container">
-                                        <div>蘇菲唐納</div>
-
-                                        <img src="./img/tick.svg" alt="tickIcon" width="20px">
-                                    </div>
-                                    <div class="eventLauncher">發起人</div>
-                                </div>
-
-
-
-                            </div>
-                            <div class="eventParticipatePersonCard flex-container">
-                                <div class="whiteBox WBfirst">
-
-                                    <div class="eventParticipateImgBox">
-                                        <img src="./img/download.jpeg" alt="sophie">
-                                    </div>
-                                    <div class="eventParticipate flex-container">
-                                        <div>蘇菲唐納</div>
-
-                                        <img src="./img/tick.svg" alt="tickIcon" width="20px">
-                                    </div>
-                                    <div class="eventLauncher">發起人</div>
-                                </div>
-                                <div class="whiteBox WBfirst">
-
-                                    <div class="eventParticipateImgBox">
-                                        <img src="./img/download.jpeg" alt="sophie">
-                                    </div>
-                                    <div class="eventParticipate flex-container">
-                                        <div>蘇菲唐納</div>
-
-                                        <img src="./img/tick.svg" alt="tickIcon" width="20px">
-                                    </div>
-                                    <div class="eventLauncher">發起人</div>
-                                </div>
-                                <div class="whiteBox WBfirst">
-
-                                    <div class="eventParticipateImgBox">
-                                        <img src="./img/download.jpeg" alt="sophie">
-                                    </div>
-                                    <div class="eventParticipate flex-container">
-                                        <div>蘇菲唐納</div>
-
-                                        <img src="./img/tick.svg" alt="tickIcon" width="20px">
-                                    </div>
-                                    <div class="eventLauncher">發起人</div>
-                                </div>
-                                <div class="whiteBox WBfirst">
-
-                                    <div class="eventParticipateImgBox">
-                                        <img src="./img/download.jpeg" alt="sophie">
-                                    </div>
-                                    <div class="eventParticipate flex-container">
-                                        <div>蘇菲唐納</div>
-
-                                        <img src="./img/tick.svg" alt="tickIcon" width="20px">
-                                    </div>
-                                    <div class="eventLauncher">發起人</div>
-                                </div>
-
-
-
-                            </div>
-
-
-                            <div class="joinClub">
-                                <div class="joinClubFlex flex-container">
-                                    <div class="flex-container">
-                                        <div class="joinClubImg">
-                                            <img src="./img/trash.jpg" alt="trash">
+                                <div class="activity_detail_participant_flex">
+                                    <div class="activity_detail_participant">
+                                        <div class="activity_detail_info_img_circle">
+                                            <div class="activity_detail_info_img_div">
+                                                <img src="./img/c1.jpeg" class="activity_detail_info_img">
+                                            </div>
                                         </div>
-                                        <div class="joinClubText">
-                                            <div class="joinClubUpperText">北台灣撿垃圾社團</div>
-                                            <div class="joinClubLowerText">more event 更多活動..</div>
+                                        <div class="activity_detail_flex">
+                                            <p>蘇菲唐納</p><img src="./img/tick.svg" alt="tickIcon"
+                                                class="activity_detail_info_status">
                                         </div>
+                                        <span>Organizer</span>
                                     </div>
-                                    <!-- img as a link -->
-                                    <a href="#" class="joinClubIcon">
-                                        <img src="./img/gotorightbutton.svg" alt="go to club" style="width:50px">
-                                    </a>
-
+                                    <div class="activity_detail_participant">
+                                        <div class="activity_detail_info_img_circle">
+                                            <div class="activity_detail_info_img_div">
+                                                <img src="./img/id3.jpg" class="activity_detail_info_img">
+                                            </div>
+                                        </div>
+                                        <p>Wwill354</p>
+                                        <span>Member</span>
+                                    </div>
+                                    <div class="activity_detail_participant">
+                                        <div class="activity_detail_info_img_circle">
+                                            <div class="activity_detail_info_img_div">
+                                                <img src="./img/home08.jpg" class="activity_detail_info_img">
+                                            </div>
+                                        </div>
+                                        <p>奔跑8boy</p>
+                                        <span>Member</span>
+                                    </div>
+                                    <div class="activity_detail_participant">
+                                        <div class="activity_detail_info_img_circle">
+                                            <div class="activity_detail_info_img_div">
+                                                <img src="./img/id1.jpg" class="activity_detail_info_img">
+                                            </div>
+                                        </div>
+                                        <p>aa5568</p>
+                                        <span>Member</span>
+                                    </div>
                                 </div>
+
                             </div>
-
-                            <div class="line"></div>
-
-
+                            <div class="activity_detail_Societies">
+                                <div class="activity_detail_Societies_img_circle" style="margin-left: 1rem;">
+                                    <div class="activity_detail_Societies_img_div">
+                                        <img src="./img/item5.JPG" class="activity_detail_Societies_img">
+                                    </div>
+                                </div>
+                                <div class="activity_detail_Societies_info">
+                                    <p>北台灣撿垃圾社團</p>
+                                    <p>see more events</p>
+                                </div>
+                                <img src="img/right.svg" alt="" width="20vw">
+                            </div>
                             <!-- 留言區 -->
                             <div class="massage">
-                                <div class="massageTop flex-container">
-                                    <div class="massageTopText flex-container">
+                                <div class="massageTop activity_detail_flex">
+                                    <div class="massageTopText activity_detail_flex">
                                         <div class="massageTopTextTitle">留言</div>
                                         <div class="massageTopTextNum">(1)</div>
                                     </div>
@@ -1316,7 +1267,7 @@
 
                                 <!-- 留言白框 -->
                                 <div class="massageBottom">
-                                    <div class="massageBottomTop flex-container">
+                                    <div class="massageBottomTop activity_detail_flex">
                                         <div class="DivForImg">
                                             <img src="" alt="">
                                             <div class="massageBottomImgDefault"></div>
@@ -1326,7 +1277,7 @@
                                         <div class="massageBottomTopDate">July 12</div>
                                     </div>
                                     <div class="massageBottomMiddle">hi請問可以候補嗎？</div>
-                                    <div class="massageBottomBottom flex-container">
+                                    <div class="massageBottomBottom activity_detail_flex">
                                         <div class="massageBottomBottomNum">(1)</div>
                                         <div>reply</div>
                                     </div>
@@ -1335,106 +1286,49 @@
                                     <div id="messageInputBoxCon"></div>
                                 </div>
                             </div>
-
-                            <div class="line"></div>
-
-                            <div class="cardBar">
-
-                                <!-- <div class="cardSectorTitle">我喜歡的活動</div>
-
-                                <div id="activity-detail-row-1" class="flex-container">
-                                    
-                                </div> -->
-
-
-                                <div class="cardSectorTitle">類似的活動</div>
-
-                                <div id="activity-detail-row-2" class="flex-container">
-                                    <!-- 一條活動flex -->
-                                </div>
-
-
-
-                                <div class="cardSectorTitle">瀏覽過的活動</div>
-
-                                <div id="activity-detail-row-3" class="flex-container">
-
-                                </div>
-
-
-
-                                <!-- 一條活動flex結束 -->
-
-
-                            </div>
-
-
-
-
                         </div>
-                        <!-- leftpartend -->
 
-
-
-                        <!-- Right part -->
-                        <div class="rightPart" id="rightPart">
-                            <div class="rightPartTop">
-                                <button class="rightPartTop_button" onclick="ActivityChangeStatus()"
-                                    type="button">我要參加</button>
-                                <!-- <div class="eventInfoShareButton"> -->
-                                <button class="eventInfoShareButton" type="button"
-                                    onclick="document.getElementById('light').style.display='block'; document.getElementById('fade').style.display='block'">share</button>
-                                <!-- </div> --><img class="loveicon" src="./img/loveicon.svg" alt="loveicon">
-                            </div>
-
-                            <div class="rightPartCard">
-                                <div class="rightPartCardTime">
-                                    <img src="./img/clock.svg" alt="clockicon" width="25px">
-                                    <p>Saturday, July 18, 2020</p>
+                        <!--------------------------- 活動右側 --------------------------->
+                        <div class="activity_detail_right_container">
+                            <div class="activity_detail_right">
+                                <div class="activity_detail_right_top">
+                                    <button>參加</button>
+                                    <img src="img/icon1.svg" alt="" class="activity_detail_right_love">
                                 </div>
-                                <div class="rightPartCardAddress">
-                                    <img src="./img/location.svg" alt="location icon" width="30px">
-                                    <p>中華民國（臺灣）新北市貢寮區福隆裡興隆街40號</p>
+                                <div class="activity_detail_right_info">
+                                    <div class="">
+                                        <img src="img/860755.svg" alt="" class="activity_detail_right_icon">
+                                        <p>2020/08/30 (日)<br>06:30 to 08:30</p>
+                                    </div>
+                                    <div class="">
+                                        <img src="img/929497.svg" alt="" class="activity_detail_right_icon">
+                                        <p>大佳河濱公園</p>
+                                    </div>
+                                    <div class="">
+                                        <img src="img/certificate-solid.svg" alt="" class="activity_detail_right_icon">
+                                        <p>舉辦中</p>
+                                    </div>
+                                    <div class="">
+                                        <img src="img/coin.png" alt="" class="activity_detail_right_icon">
+                                        <p>2000</p>
+                                    </div>
+                                    <div class="activity_detail_right_map">
+                                        <img src="img/map01.png" alt="" class="activity_detail_right_map">
+                                    </div>
                                 </div>
-                                <div class="googleMap" id="googleMap" style="width:100%;height:230px;"></div>
-
                             </div>
                         </div>
-                        <!-- rightPart end -->
-
-                        <!-- 顯示主視窗 -->
-
-                        <div id="light" class="white_content">
-                            <a href="javascript:void(0)"
-                                onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
-                                X</a> <br>
-                            <div class="activity_detail_shareMain"> <input type="text" class="activity_detail_shareTxt"
-                                    value="http://127.0.0.1:5501/frontend/index.html#activity/detail/?=1"><input
-                                    type="button" class="activity_detail_shareBtn btn-info" value="複製"></div>
-
-
-                            <div class="activity_detail_shareFooter"> <a href=""><img src="./img/facebook.png"
-                                        alt=""></a><a href=""><img src="./img/twitter.png" alt=""></a><a href=""><img
-                                        src="./img/instagram.png" alt=""></a></div>
-
-
-                        </div>
-                        <div id="fade" class="black_overlay"></div>
-                        <!--end-->
-
-
                     </div>
-                    <!-- 灰色背景flex -->
-
                 </div>
 
-            </main>
+            </div>
+
 
 
         </div>
 
 
-        <!-- * activity-detail  ****************      ****************       ****************   -->
+        <!-- * community-detail  ****************      ****************       ****************   -->
         <div id="page_community-detail" class="page hide">
 
             <div class="Group_FontFamily">
@@ -1490,13 +1384,14 @@
                             <div class="LinkBar FlexContainer">
                                 <div class="GroupLink" value="GroupDetailPage_home"><a class="GroupLinkFocus" href="#community/detail">介 紹</a>
                                 </div>
-                                <div class="GroupLink" value="GroupDetailPage_Discussion"><a
-                                        href="#community/detail">文 章</a></div>
+                                <div class="GroupLink" value="GroupDetailPage_Discussion"><a href="#community/detail">文
+                                        章</a></div>
                                 <div id="Group_navlink_Picture" class="GroupLink" value="GroupDetailPage_Picture"><a
                                         href="#community/detail">照 片</a></div>
                                 <div class="GroupLink" value="GroupDetailPage_Event"><a href="#community/detail">活 動</a>
                                 </div>
-                                <div class="GroupLink" value="GroupDetailPage_Member"><a href="#community/detail">成 員</a>
+                                <div class="GroupLink" value="GroupDetailPage_Member"><a href="#community/detail">成
+                                        員</a>
                                 </div>
                                 
                                 
@@ -1773,7 +1668,10 @@
                                 <div class="EventBottomLeft ">
                                     <div class="BottomLeftInfoCard LeftSwitchCard">
                                         <a id="commingEvent" class="LO" href="#community/detail">即將到來活動</a>
-                                        <a id="pastEvent"  class="LO" href="#community/detail">過去活動</a>
+                                        <<<<<<< HEAD <a id="pastEvent" class="LO" href="#community/detail">過去活動</a>
+                                            =======
+                                            <a id="pastEvent" class="LO" href="#community/detail">過去活動</a>
+                                            >>>>>>> 7e125c0c0ed1de429ef83d67c42935c46bbdbe5b
                                     </div>
                                 </div>
                                 <!---------------///  event right part coming event ///  ------------------->
@@ -1851,92 +1749,92 @@
                                 </div>
                                 <!---------------///  event right part past event ///  ------------------->
                                 <div class="EventBottomRight pastEvent hide">
-                            
-                                    <!-- 一張卡 -->
-                                    <div class="BottomRightInfoCard">
-                                        <div class="GroupBottomCardTime">Saturday, Dec 1, 2019</div>
-                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                        <div class="FlexContainer">
-                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                    <<<<<<< HEAD=======>>>>>>> 7e125c0c0ed1de429ef83d67c42935c46bbdbe5b
+                                        <!-- 一張卡 -->
+                                        <div class="BottomRightInfoCard">
+                                            <div class="GroupBottomCardTime">Saturday, Dec 1, 2019</div>
+                                            <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                            <div class="FlexContainer">
+                                                <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                                <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!--  -->
+                                        <!--  -->
 
-                                    <!-- 一張卡 -->
-                                    <div class="BottomRightInfoCard">
-                                        <div class="GroupBottomCardTime">Saturday, Nov 1, 2019</div>
-                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                        <div class="FlexContainer">
-                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                        <!-- 一張卡 -->
+                                        <div class="BottomRightInfoCard">
+                                            <div class="GroupBottomCardTime">Saturday, Nov 1, 2019</div>
+                                            <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                            <div class="FlexContainer">
+                                                <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                                <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!--  -->
-                                    <!-- 一張卡 -->
-                                    <div class="BottomRightInfoCard">
-                                        <div class="GroupBottomCardTime">Saturday, Oct 1, 2019</div>
-                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                        <div class="FlexContainer">
-                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                        <!--  -->
+                                        <!-- 一張卡 -->
+                                        <div class="BottomRightInfoCard">
+                                            <div class="GroupBottomCardTime">Saturday, Oct 1, 2019</div>
+                                            <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                            <div class="FlexContainer">
+                                                <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                                <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                            </div>
+                                            <div class="GroupBottomCardDD">
+                                                潛水安全注意事項
+                                                潛水一定要找伴，絕對不可獨自下水，熟悉的地方，可以潛伴一同下水，不熟的地方，需有潛導帶領，不可貿然下水，如有潛導帶隊，需全程服從潛導的指令，不可自行脫隊潛水。
+                                                不潛原則，天氣不好不潛，能見度不好不潛，身體狀況不好不潛，浪大不潛，閃電打雷不潛，上下岸困難不潛，沒有潛伴不潛，裝備不齊不潛，酒後或宿醉不潛，有流不潛。
+                                            </div>
                                         </div>
-                                        <div class="GroupBottomCardDD">
-                                            潛水安全注意事項
-                                            潛水一定要找伴，絕對不可獨自下水，熟悉的地方，可以潛伴一同下水，不熟的地方，需有潛導帶領，不可貿然下水，如有潛導帶隊，需全程服從潛導的指令，不可自行脫隊潛水。
-                                            不潛原則，天氣不好不潛，能見度不好不潛，身體狀況不好不潛，浪大不潛，閃電打雷不潛，上下岸困難不潛，沒有潛伴不潛，裝備不齊不潛，酒後或宿醉不潛，有流不潛。
+                                        <!--  -->
+                                        <!-- 一張卡 -->
+                                        <div class="BottomRightInfoCard">
+                                            <div class="GroupBottomCardTime">Saturday, Sep 1, 2019</div>
+                                            <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                            <div class="FlexContainer">
+                                                <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                                <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                            </div>
+                                            <div class="GroupBottomCardDD">
+                                                潛水安全注意事項
+                                                潛水一定要找伴，絕對不可獨自下水，熟悉的地方，可以潛伴一同下水，不熟的地方，需有潛導帶領，不可貿然下水，如有潛導帶隊，需全程服從潛導的指令，不可自行脫隊潛水。
+                                                不潛原則，天氣不好不潛，能見度不好不潛，身體狀況不好不潛，浪大不潛，閃電打雷不潛，上下岸困難不潛，沒有潛伴不潛，裝備不齊不潛，酒後或宿醉不潛，有流不潛。
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!--  -->
-                                    <!-- 一張卡 -->
-                                    <div class="BottomRightInfoCard">
-                                        <div class="GroupBottomCardTime">Saturday, Sep 1, 2019</div>
-                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                        <div class="FlexContainer">
-                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
-                                        </div>
-                                        <div class="GroupBottomCardDD">
-                                            潛水安全注意事項
-                                            潛水一定要找伴，絕對不可獨自下水，熟悉的地方，可以潛伴一同下水，不熟的地方，需有潛導帶領，不可貿然下水，如有潛導帶隊，需全程服從潛導的指令，不可自行脫隊潛水。
-                                            不潛原則，天氣不好不潛，能見度不好不潛，身體狀況不好不潛，浪大不潛，閃電打雷不潛，上下岸困難不潛，沒有潛伴不潛，裝備不齊不潛，酒後或宿醉不潛，有流不潛。
-                                        </div>
-                                    </div>
-                                    <!--  -->
+                                        <!--  -->
 
-                                    <!-- 一張卡 -->
-                                    <div class="BottomRightInfoCard">
-                                        <div class="GroupBottomCardTime">Saturday, Jul 1, 2019</div>
-                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                        <div class="FlexContainer">
-                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                        <!-- 一張卡 -->
+                                        <div class="BottomRightInfoCard">
+                                            <div class="GroupBottomCardTime">Saturday, Jul 1, 2019</div>
+                                            <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                            <div class="FlexContainer">
+                                                <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                                <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                            </div>
+                                            <div class="FlexContainer">
+                                                <div><img src="./img/id1.jpg" width="30"></div>
+                                                <div>1</div>
+                                                <div>人參加</div><img src="./img/icon_chat.svg" width="20">
+                                                <div>3</div>
+                                            </div>
                                         </div>
-                                        <div class="FlexContainer">
-                                            <div><img src="./img/id1.jpg" width="30"></div>
-                                            <div>1</div>
-                                            <div>人參加</div><img src="./img/icon_chat.svg" width="20">
-                                            <div>3</div>
+                                        <!--  -->
+                                        <!-- 一張卡 -->
+                                        <div class="BottomRightInfoCard">
+                                            <div class="GroupBottomCardTime">Saturday, Jun 1, 2019</div>
+                                            <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                            <div class="FlexContainer">
+                                                <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                                <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                            </div>
+                                            <div class="FlexContainer">
+                                                <div><img src="./img/id1.jpg" width="30"></div>
+                                                <div>1</div>
+                                                <div>人參加</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!--  -->
-                                    <!-- 一張卡 -->
-                                    <div class="BottomRightInfoCard">
-                                        <div class="GroupBottomCardTime">Saturday, Jun 1, 2019</div>
-                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                        <div class="FlexContainer">
-                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
-                                        </div>
-                                        <div class="FlexContainer">
-                                            <div><img src="./img/id1.jpg" width="30"></div>
-                                            <div>1</div>
-                                            <div>人參加</div>
-                                        </div>
-                                    </div>
-                                    <!--  -->
-                                    <button class="SeeMoreBtnforUnderCard">show more</button>
-                                
+                                        <!--  -->
+                                        <button class="SeeMoreBtnforUnderCard">show more</button>
+                                        <<<<<<< HEAD=======>>>>>>> 7e125c0c0ed1de429ef83d67c42935c46bbdbe5b
 
                                 </div>
 
@@ -2165,9 +2063,9 @@
 
 
 
-        <!-- * 不在navbar link上的葉面  ****************      ****************       ****************   -->
+        <!-- * 不在navbar link上的頁面  ****************      ****************       ****************   -->
 
-        <!-- * 會員葉面  ****************      ****************       ****************   -->
+        <!-- * 會員頁面  ****************      ****************       ****************   -->
         <div id="page_personal-maneger" class="page hide">
 
             <div class="personal-maneger-header">
@@ -2954,7 +2852,7 @@
         </div>
     </div>
 
-    <!-------------------------------------- footer -------------------------------------->
+    <!-- * ****************     **************** footer ****************    **************** -->
     <footer>
         <div class="footer_info">
             <div>

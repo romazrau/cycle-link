@@ -30,7 +30,7 @@
 
 
 .page_container {
-    margin-top: 0rem;
+    margin-top: 4.8rem;
 }
 
 .page_navbar {
@@ -118,4 +118,3 @@
 .nowrap {
     flex-wrap: nowrap;
 }
-

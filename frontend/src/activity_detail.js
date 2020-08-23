@@ -1,57 +1,24 @@
 //用class包起來
 
 function ClsActivityDetail() {
-
-    
-    //Right Part fix
-    function getRightPartInSync() {
-
-        let getWinOffSet = window.pageYOffset;
-
-        let RightPart = document.getElementById("rightPart");
-        let leftPart = document.querySelector('.leftPart');
-        //  有抓到element
-        //  console.log(typeof(getWinOffSet));
-        let leftPartTop = leftPart.offsetTop;
-        // console.log(leftPartTop);
-        let navbarTop = document.querySelector('.header').offsetHeight;
-
-        // 用css
-        if (getWinOffSet >= leftPartTop - navbarTop ) {
-            RightPart.style.marginTop = `${getWinOffSet - leftPartTop + navbarTop}px`;
-        }
-      
+    function boxMove2(y) {
+        console.log(y);
+        box = document.querySelector('.activity_detail_right')
+        box.style.marginTop = `${y}px`;
     }
-
-    //正常寫法
-    // window.addEventListener("scroll", 
-    //   function(){
-    //     getRightPartInSync(window.pageYOffset)
-    //   }
-    // );
     var last_known_scroll_position = 0;
-
-
-
+    var ticking = false;
 
     window.addEventListener('scroll', function (e) {
-        window.requestAnimationFrame(
-            getRightPartInSync
-        );
+        last_known_scroll_position = window.scrollY + 25;
+        if (!ticking) {
+            window.requestAnimationFrame(function () {
+                boxMove2(last_known_scroll_position);
+                ticking = false;
+            });
+        }
+        ticking = true;
     });
-
-
-    //GOOGLE map//
-    function myMap() {
-        var mapProp = {
-            center: new google.maps.LatLng(51.508742, -0.120850),
-            zoom: 5,
-        };
-        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-    }
-
-    
-
 
 
 
@@ -96,18 +63,19 @@ function ClsActivityDetail() {
 
         //創一個div
         let divOfMassage = document.createElement("div");
-        divOfMassage.innerHTML = " <div class='lineInContainer'></div>\
-  <div class='massageBottomTop flex-container'>\
-  <div class='DivForImg'>\
-  <img src='' alt=''>\
-  <div class='massageBottomImgDefault'>\
-  </div>\
-  </div>\
-  <div class='massageBottomTopUser'>訪客</div>\
-  <div class='verticalBar'></div>\
-  <div class='massageBottomTopDate'>July 12</div>\
-  </div>\
-  <div class='divForInput'><input class='messageInputBox' id='messageInputBox' type='text'><br><button  id='btnMessageSent' class='btnMessageSent' type='button'>確定</button></div>";
+        divOfMassage.innerHTML =
+            " <div class='lineInContainer'></div>\
+<div class='massageBottomTop activity_detail_flex'>\
+<div class='DivForImg'>\
+<img src='' alt=''>\
+<div class='massageBottomImgDefault'>\
+</div>\
+</div>\
+<div class='massageBottomTopUser'>訪客</div>\
+<div class='verticalBar'></div>\
+<div class='massageBottomTopDate'>July 12</div>\
+</div>\
+<div class='divForInput'><input class='messageInputBox' id='messageInputBox' type='text'><br><button  id='btnMessageSent' class='btnMessageSent' type='button'>確定</button></div>";
 
         invisibleDiv.appendChild(divOfMassage);
         //這是留言方格
@@ -139,7 +107,6 @@ function ClsActivityDetail() {
             btnSent.className = "btnMessageSent";
         }
     }
-
     //確認按鈕做事件綁定
     function sentMassage() {
 
@@ -171,189 +138,16 @@ function ClsActivityDetail() {
         }
     }
 
-
-    const data2html = (o) => {
-        return `
-    <div class="card cardMargin">
-        <div class="divForCardImg">
-            <img src=${o.imgPath} alt="diving">
-        </div>
-        <div class="cardTime">${o.time}</div>
-        <div class="cardActName">${o.name}</div>
-        <div class="cardBottomIcons flex-container">
-            <div>
-                <img src="./img/loveicon.svg" alt="loveicon" width="15px">
-            </div>
-            <div>${o.like}</div>
-            <div>
-                <img src="./img/coin.png" alt="coinicon" width="15px">
-            </div>
-            <div>${o.coins}</div>
-        </div>
-        <div class="cardBottomIcons flex-container">
-            <div>
-                <img src="./img/coin.png" alt="coinicon" width="15px">
-            </div>
-            <div>${o.member}</div>
-            <div>
-                <img src="./img/coin.png" alt="coinicon" width="15px">
-            </div>
-            <div>${o.local}</div>
-        </div>
-    </div>
-        `;
-    }
-
-
-
-    let fakedata1 = [{
-            imgPath: "./img/diving.jpeg",
-            time: "2020/12/24",
-            name: "潛水撿垃圾",
-            like: 30,
-            coins: 100,
-            member:"彌勒佛",
-            local:"烏石港"
-        },
-        {
-            imgPath: "./img/diving.jpeg",
-            time: "2020/12/24",
-            name: "潛水撿垃圾",
-            like: 30,
-            coins: 100,
-            member:"彌勒佛",
-            local:"烏石港"
-        },
-        {
-            imgPath: "./img/diving.jpeg",
-            time: "2020/12/24",
-            name: "潛水撿垃圾",
-            like: 30,
-            coins: 100,
-            member:"彌勒佛",
-            local:"烏石港"
-        },
-        {
-            imgPath: "./img/diving.jpeg",
-            time: "2020/12/24",
-            name: "潛水撿垃圾",
-            like: 30,
-            coins: 100,
-            member:"彌勒佛",
-            local:"烏石港"
-        },
-    ];
-
-
-    let fakedata2 = [{
-            imgPath: "./img/diving.jpeg",
-            time: "2020/12/24",
-            name: "潛水撿垃圾",
-            like: 30,
-            coins: 100,
-            member:"彌勒佛",
-            local:"烏石港"
-        },
-        {
-            imgPath: "./img/diving.jpeg",
-            time: "2020/12/24",
-            name: "潛水撿垃圾",
-            like: 30,
-            coins: 100,
-            member:"彌勒佛",
-            local:"烏石港"
-        },
-        {
-            imgPath: "./img/diving.jpeg",
-            time: "2020/12/24",
-            name: "潛水撿垃圾",
-            like: 30,
-            coins: 100,
-            member:"彌勒佛",
-            local:"烏石港"
-        },
-        {
-            imgPath: "./img/diving.jpeg",
-            time: "2020/12/24",
-            name: "潛水撿垃圾",
-            like: 30,
-            coins: 100,
-            member:"彌勒佛",
-            local:"烏石港"
-        },
-    ];
-
-    let fakedata3 = [{
-        imgPath: "./img/diving.jpeg",
-        time: "2020/12/24",
-        name: "潛水撿垃圾",
-        like: 30,
-        coins: 100,
-        member:"彌勒佛",
-        local:"烏石港"
-    },
-    {
-        imgPath: "./img/diving.jpeg",
-        time: "2020/12/24",
-        name: "潛水撿垃圾",
-        like: 30,
-        coins: 100,
-        member:"彌勒佛",
-        local:"烏石港"
-    },
-    {
-        imgPath: "./img/diving.jpeg",
-        time: "2020/12/24",
-        name: "潛水撿垃圾",
-        like: 30,
-        coins: 100,
-        member:"彌勒佛",
-        local:"烏石港"
-    },
-    {
-        imgPath: "./img/diving.jpeg",
-        time: "2020/12/24",
-        name: "潛水撿垃圾",
-        like: 30,
-        coins: 100,
-        member:"彌勒佛",
-        local:"烏石港"
-    },
-];
-
-
-
-    const fakeDataContainerRow1 = document.querySelector("#activity-detail-row-1");
-    const fakeDataContainerRow2 = document.querySelector("#activity-detail-row-2");
-    const fakeDataContainerRow3 = document.querySelector("#activity-detail-row-3");
-
-
-
-    // fakedata1.map(
-    //     (e, index) => {
-    //         fakeDataContainerRow1.innerHTML += data2html(e)
-    //     })
-    fakedata2.map(
-        (e, index) => {
-            fakeDataContainerRow2.innerHTML += data2html(e)
-        })
-    fakedata3.map(
-        (e, index) => {
-            fakeDataContainerRow3.innerHTML += data2html(e)
-        })
-
-
-
 }
 const ActivityDetail = new ClsActivityDetail();
 
-function ActivityChangeStatus(){
-    //  if 以登入 執行下列
-    let btn=document.getElementById("rightPartTop_button");
-    btn.disabled=true;
-    btn.style.backgroundColor="#979494";
-    btn.style.color= "#D9AAB7";
-    btn.innerHTML="審核中";
+// function ActivityChangeStatus() {
+//     //  if 以登入 執行下列
+//     let btn = document.getElementById("rightPartTop_button");
+//     btn.disabled = true;
+//     btn.style.backgroundColor = "#979494";
+//     btn.style.color = "#D9AAB7";
+//     btn.innerHTML = "審核中";
 
-    //else{加入會員}
-}   
+//     //else{加入會員}
+// }
