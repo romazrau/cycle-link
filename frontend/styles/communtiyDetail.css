@@ -8,28 +8,8 @@ hr {
   border-top: 1px solid lightgrey;
 }
 
-.SeeMoreBtn {
-  border: 1px solid var(--blue-color);
-  border-radius: 10px;
-  width: 100%;
-  color: var(--blue-color);
-  font-size: 1rem;
-  margin-top: 25px;
-  padding: 1rem;
-}
-
-.SeeMoreBtnforUnderCard{
-  border: 1px solid var(--blue-color);
-  border-radius: 10px;
-  width: 90%;
-  color: var(--blue-color);
-  font-size: 1rem;
-  margin-top: 25px;
-  padding: 1rem;
 
 
-
-}
 
 .ShowMoreBtn {
   border: 1px solid var(--grey-color);
@@ -40,7 +20,70 @@ hr {
   font-size: 1rem;
   margin-top: 25px;
   padding: 1rem;
+  outline: none;
+  transition: all 0.3s;
 }
+
+.ShowMoreBtn:hover{
+  border: 1px solid var(--white-color);
+  background-color: var(--grey-color);
+  border-radius: 10px;
+  width: 100%;
+  color: var(--white-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+}
+
+.ShowMoreBtn:active{
+  border: 1px solid var(--grey-color);
+  background-color: var(--white-color);
+  border-radius: 10px;
+  width: 100%;
+  color: var(--grey-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+  outline: none;
+}
+
+.SeeMoreBtnforUnderCard{
+ width: 90%;
+ border: 1px solid var(--grey-color);
+ border-radius: 10px;
+ color: var(--grey-color);
+ font-size: 1rem;
+ margin-top: 25px;
+ padding: 1rem;
+ outline: none;
+ transition: all 0.3s;
+}
+
+.SeeMoreBtnforUnderCard:hover{
+  border: 1px solid var(--white-color);
+  background-color: var(--grey-color);
+  border-radius: 10px;
+  width: 90%;
+  color: var(--white-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+}
+
+.SeeMoreBtnforUnderCard:active{
+  border: 1px solid var(--grey-color);
+  background-color: var(--white-color);
+  border-radius: 10px;
+  width: 90%;
+  color: var(--grey-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+
+}
+
+
+
 
 .MarginLeft1rem {
   margin-left: 1rem;
@@ -186,6 +229,7 @@ hr {
 /******************* TOP ******************/
 .MiddleNavBar {
   margin-bottom: 30px;
+  align-items: center;
 }
 .GrayBackGround {
   background-color: var(--lightgrey-color);
@@ -240,7 +284,7 @@ hr {
 }
 .GroupDiveBtn{
   color: var(--grey-color);
-  margin-right: 135px;
+
 }
 
 
@@ -292,8 +336,20 @@ hr {
   
 }
 
+.GroupRightInfoText{
+  /* text-align: center;
+  justify-content: center; */
+  align-items:center;
+}
 
 
+.GroupMemberPic{
+ margin-bottom:1rem;
+}
+
+.GroupHolderName{
+  margin-right: 0.5rem;
+}
 
 
 
@@ -348,6 +404,8 @@ hr {
 }
 
 .GroupCardBtn:focus {outline:0;}
+.ShowMoreBtn:focus{outline:0;}
+.SeeMoreBtnforUnderCard:focus{outline:0;}
 
 .GroupCardBtn:hover{
 
@@ -377,11 +435,18 @@ hr {
 
 .GroupRightInfoPhotoContainer {
   margin-top: 2rem;
+
 }
 
 .GoupRightInfoPhoto {
   margin-right: 0.5rem;
 }
+
+
+
+
+
+
 
 /******************* BOTTOM ******************/
 .EventBottom {
@@ -399,7 +464,7 @@ hr {
 }
 
 .GroupBottomRight {
-  width: 40%;
+  width: 30%;
   /* margin-left: 1px */
   padding-left: 50px;
 }
@@ -564,9 +629,10 @@ hr {
 }
 
 .GroupMemberSearch {
-  /* padding: 1rem 2rem; */
+  padding-bottom: 1.5rem;
   font-size: 1rem;
   font-weight: bold;
+  border-bottom: 1px solid var(--lightgrey-color);
 }
 
 .GroupMemberBottomRightInfoCard {
@@ -597,6 +663,12 @@ hr {
   color: var(--grey-color);
 }
 
+
+.Size20IconOpacity{
+opacity: 0.5;
+}
+
+
 .GroupMemberCardInfo {
   margin-left: 1rem;
 }
@@ -608,8 +680,13 @@ hr {
   width: 100%;
   box-sizing: border-box;
   display: inline-block;
-  margin-top: 1rem;
+  margin-top: 2rem;
   height: 3rem;
+  
+}
+::placeholder{
+  color:var(--grey-color);
+  padding-left: 1rem;
 }
 
 .GroupEventMemberCard {

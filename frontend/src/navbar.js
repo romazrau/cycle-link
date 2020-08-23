@@ -52,7 +52,7 @@ function ClsNavbar() {
                         isGIFrun = 1;
                         e.currentTarget.innerHTML = "";
                         const gif = document.createElement("img");
-                        gif.src = "./img/ 海龜gogoGIF.gif?" + imGcount;
+                        gif.src = "./img/-gogoGIF1-unscreen.gif?" + imGcount;
                         gif.alt = "海龜";
                         e.currentTarget.appendChild(gif);
                         imGcount++;

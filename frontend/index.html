@@ -25,33 +25,35 @@
     <header>
         <nav id="navbar_main" class='header'>
             <a class='header_title' href="">
-                <img src="./img/ 海龜gogoGIF.gif" alt='海龜' />
+                <img src="./img/-gogoGIF1-unscreen.gif" alt='海龜' />
             </a>
 
 
             <div class="div_dropdownmenu">
-                <div id="navbar_activity" class="li_menutitle header_nav"><a href="#activity"
-                        class="nav-underline">Activity<br>活動</a>
+                <div id="navbar_activity" class="li_menutitle header_nav">
+                    <a href="#activity" class="nav-underline">Activity<br>活動</a>
                 </div>
-            </div>
 
-            <div id="navbar_community" class="li_menutitle header_nav">
-                <a href="#community" class="nav-underline">Community<br>社團</a>
-            </div>
+                <div id="navbar_community" class="li_menutitle header_nav">
+                    <a href="#community" class="nav-underline">Community<br>社團</a>
+                </div>
 
-            <div id="navbar_news" class="li_menutitle header_nav">
-                <a href="#news" class="nav-underline">News<br>新聞</a>
-            </div>
+                <div id="navbar_news" class="li_menutitle header_nav">
+                    <a href="#news" class="nav-underline">News<br>新聞</a>
+                </div>
 
 
-            <div id="navbar_about-us" class="li_menutitle header_nav "><a href="#about-us" class="nav-underline">About
-                    Us<br>關於我們</a>
-            </div>
+                <div id="navbar_about-us" class="li_menutitle header_nav "><a href="#about-us"
+                        class="nav-underline">About
+                        Us<br>關於我們</a>
+                </div>
             </div>
             <div class="div_container_login">
                 <div id="navbar_log-in" class="li_menutitle header_nav"><a id="header_link_login" href="#log-in">Log
                         in<br>登入</a></div>
             </div>
+            </div>
+
 
             <div class="navbar_menu">
                 <div></div>
@@ -1382,7 +1384,8 @@
                     <div class="FlexContainer MiddleNavBar Group_FlexJustifyContentSB">
                         <div class="GroupTopLeftW60">
                             <div class="LinkBar FlexContainer">
-                                <div class="GroupLink" value="GroupDetailPage_home"><a class="GroupLinkFocus" href="#community/detail">介 紹</a>
+                                <div class="GroupLink" value="GroupDetailPage_home"><a class="GroupLinkFocus"
+                                        href="#community/detail">介 紹</a>
                                 </div>
                                 <div class="GroupLink" value="GroupDetailPage_Discussion"><a href="#community/detail">文
                                         章</a></div>
@@ -1393,15 +1396,15 @@
                                 <div class="GroupLink" value="GroupDetailPage_Member"><a href="#community/detail">成
                                         員</a>
                                 </div>
-                                
-                                
-                                
+
+
+
 
 
                             </div>
                         </div>
                         <div class="GroupDiveBtn">我是社員</div>
-                    
+
                     </div>
                 </div>
 
@@ -1621,14 +1624,31 @@
                             </div>
 
 
+
+                            <!-- <div class="activity_detail_info_img_circle">
+                                        <div class="activity_detail_info_img_div">
+                                            <img src="./img/c1.jpeg" class="activity_detail_info_img">
+                                        </div>
+                                    </div> -->
+
+
+
+
                             <!----------------------------------下層右----------------------------------->
                             <div class="GroupBottomRight">
                                 <div class="FontSectionTitle">社團管理員</div>
                                 <div class="FlexContainer GroupRight">
-                                    <img src="./img/id2.jpg" class="group_maneger_img">
-                                    <div class="GroupRightInfo">
-                                        <div class="">郭安迪</div>
-                                        <a class="GroupEnglishFont GroupRightInfoM" href="#">Message</a>
+                                    <div class="activity_detail_info_img_circle">
+                                        <div class="activity_detail_info_img_div">
+                                            <img src="./img/id2.jpg" class="activity_detail_info_img">
+                                        </div>
+                                    </div>
+                                    <div class="GroupRightInfo FlexContainer GroupRightInfoText">
+
+                                        <a href="#" class="GroupHolderName">蘇菲唐納</a>
+                                        <a class="GroupEnglishFont GroupRightInfoM" href="#">
+                                            <img src="./img/icon_chat.svg" width="20"></a>
+
                                     </div>
                                 </div>
                                 <div class="FlexContainer RightPartTopInfo Group_FlexJustifyContentSB ">
@@ -1638,11 +1658,31 @@
                                     </div>
                                     <!-- <a href="#" class="SeeAllRight FontSectionTitle">see all</a> -->
                                 </div>
-                                <div class="FlexContainer GroupRightInfoPhotoContainer">
-                                    <div><img class="GoupRightInfoPhoto" src="./img/id1.jpg" width="30"></div>
-                                    <div><img class="GoupRightInfoPhoto" src="./img/id2.jpg" width="30"></div>
-                                    <div><img class="GoupRightInfoPhoto" src="./img/id3.jpg" width="30"></div>
-                                    <div><img class="GoupRightInfoPhoto" src="./img/id4.jpeg" width="30"></div>
+                                <div class="FlexContainer GroupRightInfoPhotoContainer
+                                Group_FlexJustifyContentSB">
+                                    <div class="activity_detail_info_img_circle GroupMemberPic">
+                                        <div class="activity_detail_info_img_div">
+                                            <img class="activity_detail_info_img GoupRightInfoPhoto" src="./img/id1.jpg"
+                                                width="30">
+                                        </div>
+                                    </div>
+
+                                    <div class="activity_detail_info_img_circle GroupMemberPic">
+                                        <div class="activity_detail_info_img_div"><img
+                                                class="GoupRightInfoPhoto activity_detail_info_img" src="./img/id2.jpg"
+                                                width="30"></div>
+                                    </div>
+                                    <div class="activity_detail_info_img_circle GroupMemberPic">
+                                        <div class="activity_detail_info_img_div"><img
+                                                class="GoupRightInfoPhoto activity_detail_info_img" src="./img/id3.jpg"
+                                                width="30"></div>
+                                    </div>
+
+                                    <div class="activity_detail_info_img_circle GroupMemberPic">
+                                        <div class="activity_detail_info_img_div"><img
+                                                class="GoupRightInfoPhoto activity_detail_info_img" src="./img/id4.jpeg"
+                                                width="30"></div>
+                                    </div>
                                 </div>
 
 
@@ -1668,10 +1708,8 @@
                                 <div class="EventBottomLeft ">
                                     <div class="BottomLeftInfoCard LeftSwitchCard">
                                         <a id="commingEvent" class="LO" href="#community/detail">即將到來活動</a>
-                                        <<<<<<< HEAD <a id="pastEvent" class="LO" href="#community/detail">過去活動</a>
-                                            =======
-                                            <a id="pastEvent" class="LO" href="#community/detail">過去活動</a>
-                                            >>>>>>> 7e125c0c0ed1de429ef83d67c42935c46bbdbe5b
+                                        <a id="pastEvent" class="LO" href="#community/detail">過去活動</a>
+
                                     </div>
                                 </div>
                                 <!---------------///  event right part coming event ///  ------------------->
@@ -1749,92 +1787,90 @@
                                 </div>
                                 <!---------------///  event right part past event ///  ------------------->
                                 <div class="EventBottomRight pastEvent hide">
-                                    <<<<<<< HEAD=======>>>>>>> 7e125c0c0ed1de429ef83d67c42935c46bbdbe5b
-                                        <!-- 一張卡 -->
-                                        <div class="BottomRightInfoCard">
-                                            <div class="GroupBottomCardTime">Saturday, Dec 1, 2019</div>
-                                            <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                            <div class="FlexContainer">
-                                                <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                                <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
-                                            </div>
+                                    <!-- 一張卡 -->
+                                    <div class="BottomRightInfoCard">
+                                        <div class="GroupBottomCardTime">Saturday, Dec 1, 2019</div>
+                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                        <div class="FlexContainer">
+                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
                                         </div>
-                                        <!--  -->
+                                    </div>
+                                    <!--  -->
 
-                                        <!-- 一張卡 -->
-                                        <div class="BottomRightInfoCard">
-                                            <div class="GroupBottomCardTime">Saturday, Nov 1, 2019</div>
-                                            <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                            <div class="FlexContainer">
-                                                <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                                <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
-                                            </div>
+                                    <!-- 一張卡 -->
+                                    <div class="BottomRightInfoCard">
+                                        <div class="GroupBottomCardTime">Saturday, Nov 1, 2019</div>
+                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                        <div class="FlexContainer">
+                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
                                         </div>
-                                        <!--  -->
-                                        <!-- 一張卡 -->
-                                        <div class="BottomRightInfoCard">
-                                            <div class="GroupBottomCardTime">Saturday, Oct 1, 2019</div>
-                                            <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                            <div class="FlexContainer">
-                                                <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                                <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
-                                            </div>
-                                            <div class="GroupBottomCardDD">
-                                                潛水安全注意事項
-                                                潛水一定要找伴，絕對不可獨自下水，熟悉的地方，可以潛伴一同下水，不熟的地方，需有潛導帶領，不可貿然下水，如有潛導帶隊，需全程服從潛導的指令，不可自行脫隊潛水。
-                                                不潛原則，天氣不好不潛，能見度不好不潛，身體狀況不好不潛，浪大不潛，閃電打雷不潛，上下岸困難不潛，沒有潛伴不潛，裝備不齊不潛，酒後或宿醉不潛，有流不潛。
-                                            </div>
+                                    </div>
+                                    <!--  -->
+                                    <!-- 一張卡 -->
+                                    <div class="BottomRightInfoCard">
+                                        <div class="GroupBottomCardTime">Saturday, Oct 1, 2019</div>
+                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                        <div class="FlexContainer">
+                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
                                         </div>
-                                        <!--  -->
-                                        <!-- 一張卡 -->
-                                        <div class="BottomRightInfoCard">
-                                            <div class="GroupBottomCardTime">Saturday, Sep 1, 2019</div>
-                                            <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                            <div class="FlexContainer">
-                                                <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                                <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
-                                            </div>
-                                            <div class="GroupBottomCardDD">
-                                                潛水安全注意事項
-                                                潛水一定要找伴，絕對不可獨自下水，熟悉的地方，可以潛伴一同下水，不熟的地方，需有潛導帶領，不可貿然下水，如有潛導帶隊，需全程服從潛導的指令，不可自行脫隊潛水。
-                                                不潛原則，天氣不好不潛，能見度不好不潛，身體狀況不好不潛，浪大不潛，閃電打雷不潛，上下岸困難不潛，沒有潛伴不潛，裝備不齊不潛，酒後或宿醉不潛，有流不潛。
-                                            </div>
+                                        <div class="GroupBottomCardDD">
+                                            潛水安全注意事項
+                                            潛水一定要找伴，絕對不可獨自下水，熟悉的地方，可以潛伴一同下水，不熟的地方，需有潛導帶領，不可貿然下水，如有潛導帶隊，需全程服從潛導的指令，不可自行脫隊潛水。
+                                            不潛原則，天氣不好不潛，能見度不好不潛，身體狀況不好不潛，浪大不潛，閃電打雷不潛，上下岸困難不潛，沒有潛伴不潛，裝備不齊不潛，酒後或宿醉不潛，有流不潛。
                                         </div>
-                                        <!--  -->
+                                    </div>
+                                    <!--  -->
+                                    <!-- 一張卡 -->
+                                    <div class="BottomRightInfoCard">
+                                        <div class="GroupBottomCardTime">Saturday, Sep 1, 2019</div>
+                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                        <div class="FlexContainer">
+                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                        </div>
+                                        <div class="GroupBottomCardDD">
+                                            潛水安全注意事項
+                                            潛水一定要找伴，絕對不可獨自下水，熟悉的地方，可以潛伴一同下水，不熟的地方，需有潛導帶領，不可貿然下水，如有潛導帶隊，需全程服從潛導的指令，不可自行脫隊潛水。
+                                            不潛原則，天氣不好不潛，能見度不好不潛，身體狀況不好不潛，浪大不潛，閃電打雷不潛，上下岸困難不潛，沒有潛伴不潛，裝備不齊不潛，酒後或宿醉不潛，有流不潛。
+                                        </div>
+                                    </div>
+                                    <!--  -->
 
-                                        <!-- 一張卡 -->
-                                        <div class="BottomRightInfoCard">
-                                            <div class="GroupBottomCardTime">Saturday, Jul 1, 2019</div>
-                                            <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                            <div class="FlexContainer">
-                                                <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                                <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
-                                            </div>
-                                            <div class="FlexContainer">
-                                                <div><img src="./img/id1.jpg" width="30"></div>
-                                                <div>1</div>
-                                                <div>人參加</div><img src="./img/icon_chat.svg" width="20">
-                                                <div>3</div>
-                                            </div>
+                                    <!-- 一張卡 -->
+                                    <div class="BottomRightInfoCard">
+                                        <div class="GroupBottomCardTime">Saturday, Jul 1, 2019</div>
+                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                        <div class="FlexContainer">
+                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
                                         </div>
-                                        <!--  -->
-                                        <!-- 一張卡 -->
-                                        <div class="BottomRightInfoCard">
-                                            <div class="GroupBottomCardTime">Saturday, Jun 1, 2019</div>
-                                            <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                            <div class="FlexContainer">
-                                                <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                                <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
-                                            </div>
-                                            <div class="FlexContainer">
-                                                <div><img src="./img/id1.jpg" width="30"></div>
-                                                <div>1</div>
-                                                <div>人參加</div>
-                                            </div>
+                                        <div class="FlexContainer">
+                                            <div><img src="./img/id1.jpg" width="30"></div>
+                                            <div>1</div>
+                                            <div>人參加</div><img src="./img/icon_chat.svg" width="20">
+                                            <div>3</div>
                                         </div>
-                                        <!--  -->
-                                        <button class="SeeMoreBtnforUnderCard">show more</button>
-                                        <<<<<<< HEAD=======>>>>>>> 7e125c0c0ed1de429ef83d67c42935c46bbdbe5b
+                                    </div>
+                                    <!--  -->
+                                    <!-- 一張卡 -->
+                                    <div class="BottomRightInfoCard">
+                                        <div class="GroupBottomCardTime">Saturday, Jun 1, 2019</div>
+                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                        <div class="FlexContainer">
+                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                        </div>
+                                        <div class="FlexContainer">
+                                            <div><img src="./img/id1.jpg" width="30"></div>
+                                            <div>1</div>
+                                            <div>人參加</div>
+                                        </div>
+                                    </div>
+                                    <!--  -->
+                                    <button class="SeeMoreBtnforUnderCard">show more</button>
 
                                 </div>
 
@@ -1863,24 +1899,33 @@
                                             <div>成員列表</div>
                                             <div class="FlexContainer">
                                                 <div class="GroupMemberSort  Size20IconMarginRight ">排序方式</div>
-                                                <div class="Size20IconMarginRight "><img
-                                                        src="./img/icon_arrowDropdown.svg" width="20"></div>
-                                                <div class="Size20IconMarginRight Rotate90"><img
-                                                        src="./img/icon_arrow.svg" width="20">
-                                                </div>
+                                                <a href="#">
+                                                    <div class="Size20IconMarginRight Size20IconOpacity"><img
+                                                            src="./img/icon_arrowDropdown.svg" width="20"></div>
+                                                </a>
+                                                <a href="#">
+                                                    <div class="Size20IconMarginRight Size20IconOpacity Rotate90"><img
+                                                            src="./img/icon_arrow.svg" width="20">
+                                                    </div>
+                                                </a>
                                             </div>
                                         </div>
-                                        <input class="GroupMemberSearchInput" type="text">
+                                        <input class="GroupMemberSearchInput" type="text"
+                                            placeholder="who you wanna search for?">
 
                                         <!------- 會員卡 -------->
                                         <div
                                             class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
                                             <div class="FlexContainer">
                                                 <a href="#" class="DivForImg">
-                                                    <img src="./img/id3.jpg" width="30">
+                                                    <div class="activity_detail_info_img_circle">
+                                                        <div class="activity_detail_info_img_div">
+                                                            <img src="./img/id3.jpg" class="activity_detail_info_img">
+                                                        </div>
+                                                    </div>
                                                 </a>
                                                 <div class="GroupMemberCardInfo">
-                                                    <a href="#">王威比</a>
+                                                    <a href="#">Wwill354</a>
                                                     <div class="FlexContainer">
                                                         <div>May 11, 2019</div>
                                                         <div>加入此社團</div>
@@ -1899,12 +1944,17 @@
                                             class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
                                             <div class="FlexContainer">
                                                 <a href="#" class="DivForImg">
-                                                    <img src="./img/id3.jpg" width="30">
+                                                    <div class="activity_detail_info_img_circle">
+                                                        <div class="activity_detail_info_img_div">
+                                                            <img src="./img/home08.jpg"
+                                                                class="activity_detail_info_img">
+                                                        </div>
+                                                    </div>
                                                 </a>
                                                 <div class="GroupMemberCardInfo">
-                                                    <a href="#">王威比</a>
+                                                    <a href="#">奔跑8boy</a>
                                                     <div class="FlexContainer">
-                                                        <div>May 11, 2019</div>
+                                                        <div>March 03, 2019</div>
                                                         <div>加入此社團</div>
                                                     </div>
                                                 </div>
@@ -1920,12 +1970,16 @@
                                             class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
                                             <div class="FlexContainer">
                                                 <a href="#" class="DivForImg">
-                                                    <img src="./img/id3.jpg" width="30">
+                                                    <div class="activity_detail_info_img_circle">
+                                                        <div class="activity_detail_info_img_div">
+                                                            <img src="./img/id1.jpg" class="activity_detail_info_img">
+                                                        </div>
+                                                    </div>
                                                 </a>
                                                 <div class="GroupMemberCardInfo">
-                                                    <a href="#">王威比</a>
+                                                    <a href="#">aa5568</a>
                                                     <div class="FlexContainer">
-                                                        <div>May 11, 2019</div>
+                                                        <div>Jun 6, 2019</div>
                                                         <div>加入此社團</div>
                                                     </div>
                                                 </div>
@@ -1935,7 +1989,7 @@
                                             </a>
                                         </div>
                                         <!-------  -------->
-                                        <button class="ShowMoreBtn">show more</button>
+                                        <button class="ShowMoreBtn">show more!</button>
 
                                     </div>
                                     <!------------------------ /// Member right part switch hidden（管理員）///  ------------------------>
@@ -1943,10 +1997,10 @@
                                         <div class="FlexContainer Group_FlexJustifyContentSB GroupMemberSearch">
                                             <div>管理員列表</div>
                                             <div class="FlexContainer">
-                                                <div>排序方式</div>
-                                                <a href="#"><img class="Size20IconMarginLeft"
+                                                <div class="GroupMemberSort">排序方式</div>
+                                                <a href="#"><img class="Size20IconMarginLeft Size20IconOpacity"
                                                         src="./img/icon_arrowDropdown.svg" width="20"></a>
-                                                <a href="#"><img class="Size20IconMarginLeft Rotate90"
+                                                <a href="#"><img class="Size20IconMarginLeft Rotate90 Size20IconOpacity"
                                                         src="./img/icon_arrow.svg" width="20"></a>
                                             </div>
                                         </div>
@@ -1956,10 +2010,14 @@
 
                                             <div class="FlexContainer">
                                                 <a href="#" class="DivForImg">
-                                                    <img src="./img/id3.jpg" width="30">
+                                                    <div class="activity_detail_info_img_circle">
+                                                        <div class="activity_detail_info_img_div">
+                                                            <img src="./img/id2.jpg" class="activity_detail_info_img">
+                                                        </div>
+                                                    </div>
                                                 </a>
                                                 <div class="GroupMemberCardInfo">
-                                                    <a href="#">王威比</a>
+                                                    <a href="#">蘇菲唐納</a>
                                                     <div class="FlexContainer">
                                                         <div class="GroupMemberBottomRightInfoCardText">May 11, 2019
                                                         </div>
@@ -1999,7 +2057,7 @@
                             <div class="card MessagePost">
                                 <div class="FlexContainer Group_FlexJustifyContentSB">
                                     <div class="FlexContainer">
-                                        <img src="./img/id3.jpg" width="30">
+                                        <img src="./img/id.jpg" width="30">
                                         <div class="GroupMessageCardName GroupFontFamily">王威比</div>
                                         <div class="GroupMessageCardNotion">|</div>
                                         <div class="GroupMessageCardTime">Mar 20</div>
