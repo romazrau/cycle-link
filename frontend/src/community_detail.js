@@ -85,39 +85,43 @@ function ClsCommuntityDetail() {
     //hover
     //社團活動左邊切換
 
-function whenMouseOut(event){
-    event.target.classList.remove("LC");
-    event.target.classList.add("LO");
-}
+// function whenMouseOut(event){
+//     event.target.classList.remove("LC");
+//     event.target.classList.add("LO");
+// }
 
 
-    console.log(document.querySelectorAll(".LO"));
+    // console.log(document.querySelectorAll(".LO"));
     document.querySelectorAll(".LO").forEach(
         i=>{
-            
+           
             
     
-            i.addEventListener("mouseover",function(event){
-                // console.log(112);
+            // i.addEventListener("mouseover",function(event){
+            //     // console.log(112);
              
-                console.log(event.target.classList.remove("LO"));
-                event.target.classList.add("LC");
-            })
-
-            i.addEventListener("mouseout",whenMouseOut)
-
-            // i.addEventListener("click",function(event){
-            //     // console.log(i); <<< DOM element
-            //     document.querySelector(".LeftSwitchCard").forEach(
-            //         x=>{
-            //             x.children[0].classList.remove("LC");
-            //             x.children[1].classList.remove("LC");
-            //         }
-            //     )
+            //     console.log(event.target.classList.remove("LO"));
             //     event.target.classList.add("LC");
-            //     i.removeEventListener("mouseout",whenMouseOut);
-                
             // })
+
+            // i.addEventListener("mouseout",whenMouseOut)
+
+            i.addEventListener("click",function(event){
+                // console.log(i); <<< DOM element
+              
+                
+                document.querySelectorAll(".LO").forEach(
+                    i=>{
+                        i.classList.remove("LC");
+                    }
+                )
+
+
+                console.log(event.target)
+                event.target.classList.add("LC");
+                // i.removeEventListener("mouseout",whenMouseOut);
+                
+            })
 
 
         
