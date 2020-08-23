@@ -176,13 +176,13 @@ function ClsActivity() {
     function getstartdate(startdate)
     {
         var startdatetext = document.getElementById("search_date_text");
-        startdatetext.innerHTML ="起始日"+ startdate +'<br>';
+        startdatetext.innerHTML ="起始日 <br>"+ startdate +'<br>';
     }
     
     function getenddate(enddate)
     {
         var enddatetext = document.getElementById("search_date_text");
-        enddatetext.innerHTML += enddate;
+        enddatetext.innerHTML += "結束日 <br>"+ enddate;
     }
 
     function displaydate(){
