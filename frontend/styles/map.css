@@ -18,10 +18,7 @@
     /*隱藏滾輪*/
     display: none;
     }
-* a{
-    text-decoration: none;
-    color:black;
-}
+
 #map_cityspan{
     background-color: var(--blue-color);
     color:var(--white-color);
@@ -29,10 +26,6 @@
     display: block;
 
 }
-
-
-
-
 
 
 .map_container{
@@ -50,7 +43,7 @@
     position: fixed;
     width: 20vw;
     height: 100%;
-    top:0;
+    top:5rem;
     right:0;
     z-index: 1000;
     background-color: #fff;

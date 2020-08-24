@@ -60,11 +60,11 @@ function ClsRouter() {
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
 
-                case "news":
-                    if (hashSplitArray[1] == "detail") {  //開啟新聞文章頁面
-                        document.querySelector('#page_news-detail').classList.remove("hide");
-                        break;
-                    }
+                case "map":
+                    // if (hashSplitArray[1] == "detail") {  //開啟新聞文章頁面
+                    //     document.querySelector('#page_news-detail').classList.remove("hide");
+                    //     break;
+                    // }
 
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;

@@ -157,7 +157,8 @@ var map_cities = document.querySelectorAll(".map_city");
         });
       /*點擊顯示*/
       for (let i = 0; i < map_cities.length; i++) {
-        map_cities[i].addEventListener("click", () => {
+        map_cities[i].addEventListener("click", (e) => {
+          e.preventDefault();
           document.getElementById("map_cityspan").innerHTML =
             map_cities[i].textContent;
             
