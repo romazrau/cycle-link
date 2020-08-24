@@ -4,18 +4,18 @@ function ClsNavbar() {
     let menu = document.querySelector(".navbar_menu");
     let navLinksContainer = document.querySelector(".div_dropdownmenu");
     let account = document.querySelector(".div_container_login");
-    menu.addEventListener("click", function(event){
+    menu.addEventListener("click", function (event) {
         menu.classList.toggle("navbar_menu_line_change");
         navLinksContainer.classList.toggle("navbar_menu_show");
-        [...navLinksContainer.children].map( item => {
+        [...navLinksContainer.children].map(item => {
             item.classList.toggle("navbarLink_show");
         })
     });
 
-    this.closeShowMenu = () =>{
+    this.closeShowMenu = () => {
         menu.classList.remove("navbar_menu_line_change");
         navLinksContainer.classList.remove("navbar_menu_show");
-        [...navLinksContainer.children].map( item => {
+        [...navLinksContainer.children].map(item => {
             item.classList.remove("navbarLink_show");
         })
     }
@@ -52,16 +52,18 @@ function ClsNavbar() {
                         isGIFrun = 1;
                         e.currentTarget.innerHTML = "";
                         const gif = document.createElement("img");
-                        gif.src = "./img/-gogoGIF1-unscreen.gif?" + imGcount;
+                        gif.src = "./img/ 海龜gogoGIF.gif?" + imGcount;
                         gif.alt = "海龜";
                         e.currentTarget.appendChild(gif);
                         imGcount++;
                         setTimeout(
-                            ()=>{res("OK")},
+                            () => {
+                                res("OK")
+                            },
                             1500
                         )
                     }
-                ).then(()=>{
+                ).then(() => {
                     isGIFrun = 0;
                 })
             }

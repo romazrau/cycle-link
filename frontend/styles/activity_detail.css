@@ -29,8 +29,6 @@
   font-weight: bold;
 }
 
-
-
 .activity_detail_info_share button {
   border: 0px;
   border-radius: 0.6rem;
@@ -75,7 +73,6 @@
 .activity_detail_info_name {
   align-self: center;
   margin-left: 0.7rem;
-
 }
 
 .activity_detail_info_name_H {
@@ -91,8 +88,6 @@
   width: 15px;
   margin-left: 0.3rem;
 }
-
-
 
 /* 活動左側 內文 */
 .activity_detail_text_all {
@@ -110,7 +105,7 @@
 }
 
 .activity_detail_text {
-  background-color: #F6F7F8;
+  background-color: #f6f7f8;
 }
 
 .activity_detail_text_left {
@@ -133,7 +128,6 @@
   margin: 1rem 1rem 0 0;
   border-radius: 0.5rem;
   background-color: var(--blue-color);
-
 }
 
 .activity_detail_bigTag a {
@@ -146,15 +140,11 @@
   margin: 1rem 1rem 0 0;
   border-radius: 0.5rem;
   background-color: white;
-
 }
 
 .activity_detail_tag a {
   color: var(--blue-color);
 }
-
-
-
 
 /* 活動右側 */
 .activity_detail_right_container {
@@ -297,7 +287,6 @@
   background-color: white;
 }
 
-
 .activity_detail_Societies_info {
   margin: 0 1rem;
 }
@@ -337,10 +326,6 @@
   transform: translate(-50%, -50%);
 }
 
-
-
-
-
 /* *留言區 */
 .massage {
   position: relative;
@@ -375,8 +360,6 @@
   transition: all 0.5s;
 }
 
-
-
 .messageInputBox {
   /* box-sizing: border-box; */
   border: 0;
@@ -386,17 +369,14 @@
   padding: 0.5rem 0.5rem 0.2rem 0.5rem;
   margin: 0.5rem 0;
   /* box-shadow: 0.1rem 0.1rem 0.1rem var(--lightgrey-color); */
-
 }
 
 .messageInputBox:focus {
-
   background-color: var(--lightgrey-color);
   /* padding: 10px; */
   transition: 0.5s;
   margin-right: 10px;
 }
-
 
 /* 留言後顯示 */
 .inputAft {

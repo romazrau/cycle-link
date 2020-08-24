@@ -17,6 +17,9 @@
     <link rel="shortcut icon" href="./img/海龜幣.png" type="image/x-icon">
     <link rel="stylesheet" href="./styles/main.css">
 
+    <!-- 行事曆 -->
+    <link rel="stylesheet" type="text/css" href="/fullcalendar/lib/main.css" rel="external nofollow">
+    <script src='/fullcalendar/lib/main.js'></script>
 
     <title>小海龜</title>
 </head>
@@ -25,7 +28,7 @@
     <header>
         <nav id="navbar_main" class='header'>
             <a class='header_title' href="">
-                <img src="./img/-gogoGIF1-unscreen.gif" alt='海龜' />
+                <img src="./img/ 海龜gogoGIF.gif" alt='海龜' />
             </a>
 
 
@@ -1438,11 +1441,19 @@
                             </div>
 
                         </div>
+
                         <div class="GroupDiveBtn FlexContainer GroupOvalBtn">
-                            <img src="./img/icon_user.svg" width="25px">
-                            <div class="GroupDiveBtnText">我是社員</div>
-                            <!-- <img src="./img/icon_triangle_downside.svg" width="25px"> -->
+                            <div class="GroupNavBtn FlexContainer">
+                                <img src="./img/icon_user.svg" width="25px">
+                                <div class="GroupDiveBtnText">退出社團</div>
+                                <!-- <img src="./img/icon_triangle_downside.svg" width="25px"> -->
+                            </div>
+                            <!-- <div class="GroupNavBtn FlexContainer">
+                                <img src="./img/icon_user.svg" width="25px">
+                                <div class="GroupDiveBtnText">退出社團</div>
+                            </div> -->
                         </div>
+
 
                     </div>
                 </div>
@@ -2075,53 +2086,87 @@
 
                         </div>
                         <!----------------------------------------////// 下層＿討論區 ////////---------------------------------------->
-                        <div class="GroupBottomMain GroupDetailPage hide GroupDiscussion"
+                        <div class="GroupBottomMain GroupDetailPage hide GroupDiscussion "
                             id="GroupDetailPage_Discussion">
-                            <!-------------------下層留言區 (和討論區同)------------------>
-                            <div class="FlexContainer ">
-                                <div class="FlexContainer">
-                                    <div class="GroupComingEvent FontSectionTitle">文章</div>
-                                    <div class="FontSectionTitle">(10)</div>
-                                </div>
+
+
+
+                            <div class="FlexContainer GroupDiscussionTitle">
+                                <div class="GroupComingEvent FontSectionTitle">文章</div>
+                                <div class="FontSectionTitle">(10)</div>
                             </div>
 
-                            <div class="FlexContainer MessageBox">
-                                <img src="./img/id4.jpeg" width="30">
-                                <input class="LeaveMessage" type="text">
-                                <img src="./img/icon_send.svg" width="20">
+                            <!------------------------/// Left part switch hidden///  ------------------------>
+                            <div class="FlexContainer">
+                                <div class="DiscussionLeft">
+                                    <div class="FlexContainer MessageBox">
+                                        <div class="Group_detail_Societies_img_div">
+                                            <img class="Group_detail_Societies_img" src="./img/id1.jpg" width="30">
+                                        </div>
+                                        <input class="LeaveMessage" type="text" placeholder="Post something...">
+                                        <a href="#">
+                                            <img src="./img/icon_photo.svg" width="23">
+                                        </a>
+                                        <a href="#">
+                                            <img src="./img/icon_send.svg" width="20">
+                                        </a>
+
+                                    </div>
+
+
+                                    <!------ 一張卡 ------->
+                                    <div class="card MessagePost">
+                                        <div class="FlexContainer Group_FlexJustifyContentSB">
+                                            <div class="FlexContainer GroupAlignItemsC">
+                                                <div class="Group_detail_Societies_img_div">
+                                                    <img class="Group_detail_Societies_img" src="./img/id2.jpg"
+                                                        width="30">
+                                                </div>
+                                                <div class="GroupMessageCardName GroupFontFamily">蘇菲唐納</div>
+                                                <div class="GroupMessageCardNotion">|</div>
+                                                <div class="GroupMessageCardTime">Mar 20</div>
+                                            </div>
+                                            <div>
+                                                <a href="#" class="GroupInfoNotion">:</a>
+                                            </div>
+
+                                        </div>
+                                        <div class="GroupMessageCardText">Hi, anyone still going during this time by any
+                                            chance?
+                                            (:
+                                        </div>
+                                        <div class="FlexContainer Group_FlexJustifyContentSB">
+                                            <div class="GroupMessageCardReply FlexContainer Group_reply ">
+                                                <a class="Group_replyNum" href="#">2</a>
+                                                <a class="Group_replyNum Group_replyNumReplies " href="#">replies</a>
+                                            </div>
+                                            <a class="Group_reply" href="#">reply</a>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- <a href="#" class="GroupMemberSeeAllBtn">see all</a>  -->
+                                </div>
+                                <!------------------------/// Right part switch hidden///  ------------------------>
+                                <div class="DiscussionRight ">
+                                    <div class="FlexContainer SearchBox">
+                                        <div>
+                                            <img class="GroupSearchIcon" src="./img/icon_search.svg" width="30px">
+                                        </div>
+                                        <input class="LeaveMessageRight" type="text" placeholder="Search post?">
+                                        <div class="GroupRightHash">
+                                            <a href="#" class="HashBtn">#淨灘</a>
+                                            <a href="#" class="HashBtn">#垃圾</a>
+                                            <!-- <a href="#" class="HashBtn"></a> -->
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
                             </div>
-
-
-                            <!------ 一張卡 ------->
-                            <div class="card MessagePost">
-                                <div class="FlexContainer Group_FlexJustifyContentSB">
-                                    <div class="FlexContainer">
-                                        <img src="./img/id.jpg" width="30">
-                                        <div class="GroupMessageCardName GroupFontFamily">王威比</div>
-                                        <div class="GroupMessageCardNotion">|</div>
-                                        <div class="GroupMessageCardTime">Mar 20</div>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="GroupInfoNotion">:</a>
-                                    </div>
-
-                                </div>
-                                <div class="GroupMessageCardText">Hi, anyone still going during this time by any chance?
-                                    (:
-                                </div>
-                                <div class="FlexContainer Group_FlexJustifyContentSB">
-                                    <div class="GroupMessageCardReply FlexContainer Group_reply ">
-                                        <a class="Group_replyNum" href="#">2</a>
-                                        <a class="Group_replyNum Group_replyNumReplies " href="#">replies</a>
-                                    </div>
-                                    <a class="Group_reply" href="#">reply</a>
-                                </div>
-
-                            </div>
-
-                            <a href="#" class="GroupMemberSeeAllBtn">see all</a>
-
                         </div>
+
 
 
                         <!----------------------------------------////// 下層＿照片 ////////---------------------------------------->

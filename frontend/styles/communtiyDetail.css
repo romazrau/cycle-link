@@ -19,6 +19,9 @@ hr {
   outline: none;
   transition: all 0.3s;
 }
+.IconOpacity {
+  /* opacity: 50%; */
+}
 
 .ShowMoreBtn:hover {
   border: 1px solid var(--white-color);
@@ -218,8 +221,28 @@ hr {
   margin-bottom: 30px;
   align-items: center;
 }
+
+.GroupNavBtn {
+  padding: 0.5rem 0.8rem;
+  transition: all 0.5s;
+  color: var(--grey-color);
+}
+
+.GroupNavBtn:hover {
+  /* border: 1px solid none; */
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+  background-color: var(--lightgrey-color);
+  color: gray;
+}
+
+.GroupNavBtn {
+  cursor: pointer;
+}
+
 .GrayBackGround {
   background-color: var(--lightgrey-color);
+  border-radius: 4px;
   padding-bottom: 2rem;
 }
 
@@ -274,7 +297,6 @@ hr {
 
 .GroupDiveBtnText {
   padding: 0 1rem;
-  color: var(--grey-color);
 }
 
 /******************* MIDDLE ******************/
@@ -418,6 +440,16 @@ hr {
   margin-top: 2rem;
 }
 
+.HashBtn {
+  background-color: var(--lightgrey-color);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+.GroupRightHash {
+  margin-top: 2rem;
+}
+
 .GroupEventBtnText {
   margin-top: 25px;
 }
@@ -507,6 +539,17 @@ hr {
   margin-top: 1rem;
   border-radius: 10px;
   justify-content: space-between;
+  align-items: center;
+}
+
+.SearchBox {
+  background-color: var(--lightblue-color);
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .PhotoBox {
@@ -518,8 +561,23 @@ hr {
 }
 
 .LeaveMessage {
+  width: 75%;
+  height: 3rem;
+  background-color: var(--lightgrey-color);
+  border: 1px solid var(--grey-color);
+  border-radius: 4px;
+  color: var(--grey-color);
+}
+
+.LeaveMessageRight {
   width: 85%;
   height: 3rem;
+  background-color: var(--lightgrey-color);
+  /* border: 1px solid var(--grey-color); */
+  border-radius: 4px;
+  color: var(--grey-color);
+  border: none;
+  /* margin-left: 0.5rem; */
 }
 
 .FontSectionTitleRight {
@@ -656,8 +714,8 @@ hr {
 }
 
 .GroupDiscussion {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   box-sizing: border-box;
 }
 
@@ -680,6 +738,23 @@ hr {
 
 .group_maneger_img {
   height: 3rem;
+}
+
+.DiscussionLeft {
+  width: 60%;
+}
+
+.DiscussionRight {
+  width: 30%;
+  padding-left: 60px;
+}
+
+.GroupDiscussionTitle {
+  width: 100%;
+}
+
+.GroupSearchIcon {
+  margin: 0;
 }
 
 /* *photo flow  ----------------------------------------- */
@@ -734,10 +809,24 @@ hr {
 .GroupDiveBtn img {
   opacity: 50%;
 }
-/* 
-.GroupOvalBtn {
-  border: 1px solid gray;
-  padding: 1rem;
-} */
+
+.Group_detail_Societies_img_div {
+  position: relative;
+  top: 3px;
+  left: 3px;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 50%;
+  /* border: 1px solid var(--lightgrey-color); */
+}
+
+.Group_detail_Societies_img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 /* 抓來的 */
