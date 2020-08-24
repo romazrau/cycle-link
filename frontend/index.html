@@ -8,6 +8,9 @@
     <!-- 外部引用資料 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""
+    />
     <!-- *bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -41,8 +44,8 @@
                     <a href="#community" class="nav-underline">Community<br>社團</a>
                 </div>
 
-                <div id="navbar_news" class="li_menutitle header_nav">
-                    <a href="#news" class="nav-underline">News<br>新聞</a>
+                <div id="navbar_map" class="li_menutitle header_nav">
+                    <a href="#map" class="nav-underline">Map<br>地圖</a>
                 </div>
 
 
@@ -393,7 +396,7 @@
             <!-------------------------------------- main -------------------------------------->
             <div class="activity_main">
                 <div class="search_container search_hidden">
-                    <div id="search_city" class="search_box  ">
+                    <div id="search_city" class="search_box">
                         <div id="search_city_text" class="search_citytext"></div>
                     </div>
                     <div id="search_citydetial" class="search_city_detail search_hidden ">
@@ -441,28 +444,62 @@
                 </div>
             </div>
         </div>
-
-
-
+        
         <!-- * Community  ****************      ****************       ****************   -->
         <div id="page_community" class="page hide">
+            <div class="community_main_container">
+                <div class="community_main_banner">
+                  <div class="community_main_banner_searchbar">
+                    <div class="CM_banner_searchbar_tag">
+                      <div class="CM_banner_searchbar_tag_item">
+                        <a href="#"><i class="fas fa-fire-alt"></i> 熱門社團</a>
+                      </div>
+                      <div class="CM_banner_searchbar_tag_item">
+                        <a href="#"><i class="far fa-compass"></i> 探索</a>
+                      </div>
+                    </div>
+                    <div class="CM_banner_searchbar_input_container">
+                      <div class="CM_searchbar_category">
+                        <div class="CM_searchbar_catlinee CM_catlinee1"></div>
+                        <div class="CM_searchbar_catlinee CM_catlinee2"></div>
+                        <div class="CM_searchbar_catlinee CM_catlinee3"></div>
+                      </div>
+                      <div class="CM_banner_searchbar_input"><input type="text" /></div>
+                      <div class="CM_banner_searchbar_searchIcon">
+                        <a href="#"><i class="fas fa-search"></i></a>
+                      </div>
+                    </div>
+                    <div class="CM_appearCategory_item_container">
+                      <div class="CM_appearCategory_item">
+                        種樹社團
+                      </div>
+                      <div class="CM_appearCategory_item">
+                        種樹社團
+                      </div>
+                      <div class="CM_appearCategory_item">
+                        種樹社團
+                      </div>
+                    </div>
+                  </div>
+                  <img src="img/sam+x+lopez+creative+community.png" />
+                </div>
+                <div class="community_main_timeline">
+                  <ul class="community_main_ul_timeline"></ul>
+                </div>
+              </div>
+            <!-- ///達達切的讚讚社團首頁就給活動用ㄅ
             <div id="community_navbar" class="page_navbar">
                 <div class="container page_navbar_row">
-
                     <div>CC</div>
-
                     <div>
                         <button class="page_navbar_btn" onclick="location.hash = '#create-community'">創建社團</button>
                     </div>
                 </div>
             </div>
-
-
             <div class="communmity_main">
                 <div class="communmity_container_left">
                     <header class="communmity_container_title_left">
                         <h1>Filters</h1>
-
                     </header>
                     <div class="communmity_content_left">
                         <ul class="communmity_content_left_item">
@@ -473,7 +510,6 @@
                             <li> <a href="#">熱門社團</a></li>
                             <li> <a href="#">探索</a></li>
                             <hr>
-
                         </ul>
                     </div>
                     <div class="communmity_content_Date_left communmity_displaynone ">
@@ -485,7 +521,6 @@
                             <li> <a href="#">This month</a></li>
                             <li> <a href="#">Next month</a></li>
                             <hr>
-
                         </ul>
                     </div>
                     <div class="communmity_content_Price_left communmity_displaynone ">
@@ -497,7 +532,6 @@
                             <li> <a href="#">This month</a></li>
                             <li> <a href="#">Next month</a></li>
                             <hr>
-
                         </ul>
                     </div>
                 </div>
@@ -506,8 +540,8 @@
                         <div class="communmity_search_head_left">
                             <input class="communmity_search_event" type="search" placeholder="Search anything" focus
                                 value="">
-                            <!-- <br>
-                            <input class="communmity_search_event" type="text" placeholder="in Online events" value=""> -->
+                             <br>
+                            <input class="communmity_search_event" type="text" placeholder="in Online events" value="">
                         </div>
                         <div class="communmity_search_head_right">
                             <button>search</button>
@@ -613,21 +647,79 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-
-            </div>
-
-
-
+            </div> -->
         </div>
 
 
         <!-- * news  ****************      ****************       ****************   -->
-        <div id="page_news" class="page hide">
+        <div id="page_map" class="page hide">
             <!-------------------------------------- main -------------------------------------->
-            <main class="news_main">
+            <div class="map_container">
+                <div id="mapid"></div>
+                <div class="map_controllList">
+                  <div class="map_controllBar">
+                    <div class="map_controlltitle"><a href="">請選擇城市</a></div>
+                    <span id="map_cityspan">待選</span>
+                    <div class="map_citymenu">
+                      <a href="#" class="map_city">台北</a>
+                      <a href="#" class="map_city">台中</a>
+                      <a href="#" class="map_city">台南</a>
+                      <a href="#" class="map_city">高雄</a>
+                      <a href="#" class="map_city">桃園</a>
+                      <a href="#" class="map_city">宜蘭</a>
+                      
+                    </div>
+                  </div>
+                  <div class="map_controllBar">
+                    <div class="map_controlltitle">設定距離</div>
+                    <input
+                      type="range"
+                      value="0"
+                      min="0"
+                      max="20"
+                      id="map_Setdistance"
+                    /><br />
+                    附近<label for="" id="Activitydistance"></label>
+                    <span>公里的活動</span>
+                  </div>
+                  <div class="map_controllBar">
+                    <div class="map_controlltitle">類別</div>
+                    <div class="map_typeBox">
+                      <div class="map_typeBtn"><a href="">淨海</a></div>
+                      <div class="map_typeBtn"><a href="">路跑</a></div>
+                      <div class="map_typeBtn"><a href="">環境</a></div>
+                    </div>
+                  </div>
+                  <div class="map_introductionBox">
+                    
+                    <div class="map_controlltitle">簡介</div>
+                    <a href="#activity/detail"><img class="map_imgbox" src="" alt=""></a>
+                    <p id="map_activityintroduction"></p>
+          
+                  </div>
+                </div>
+          
+          
+          
+              </div>
+              <script
+                src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+                integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+                crossorigin=""
+              ></script>
+              <script src="./src/map.js"></script>
+
+
+
+
+
+
+
+
+
+
+            <!-- <main class="news_main">
                 <div class="news_group">
                     <div class="news">
                         <div>
@@ -675,7 +767,7 @@
                         <div><img src="img/news4.png" alt=""></div>
                     </div>
                 </div>
-            </main>
+            </main> -->
 
 
         </div>
@@ -1148,7 +1240,7 @@
                         <h2>2020 國家地理路跑 - 世界地球日 50 週年</h2>
                         <div class="activity_detail_info">
                             <div class="activity_detail_flex">
-                                <div class="activity_detail_info_img_circle">
+                                <div class="activity_detail_info_img_circle" onclick="location.hash='#personal-page/1'">
                                     <div class="activity_detail_info_img_div">
                                         <img src="./img/c1.jpeg" class="activity_detail_info_img">
                                     </div>
@@ -1328,6 +1420,9 @@
                                     <div id="messageInputBoxCon"></div>
                                 </div>
                             </div>
+                            <h5 style="margin-top: 3rem;font-weight: bold;">為您推薦</h5>
+                            <div id="activity_detail_see">
+                            </div>
                         </div>
 
                         <!--------------------------- 活動右側 --------------------------->
@@ -1355,7 +1450,11 @@
                                         <p>2000</p>
                                     </div>
                                     <div class="activity_detail_right_map">
-                                        <img src="img/map01.png" alt="" class="activity_detail_right_map">
+                                        <iframe
+                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.8021294706664!2d121.53890655092397!3d25.074694842733358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ac0099201ca3%3A0xe5164eddb6bbeab1!2z5aSn5L2z5rKz5r-x5YWs5ZyS!5e0!3m2!1szh-TW!2stw!4v1598202965298!5m2!1szh-TW!2stw"
+                                            width="100%" height="250" frameborder="0" style="border:0;"
+                                            allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                                        <!-- <img src="img/map01.png" alt="" class="activity_detail_right_map"> -->
                                     </div>
                                 </div>
                             </div>
@@ -3059,6 +3158,7 @@
     <script src="./src/personal_maneger.js"></script>
     <script src="./src/aboutUs.js"></script>
     <script src="./src/activity_detail.js"></script>
+    <script src="./src/community_main.js"></script>
     <script src="./src/community.js"></script>
     <script src="./src/community_detail.js"></script>
     <script src="./src/create_activities.js"></script>

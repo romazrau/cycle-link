@@ -52,6 +52,10 @@
   border-radius: 50%;
 }
 
+.activity_detail_info_img_circle:hover {
+  cursor: pointer;
+}
+
 .activity_detail_info_img_div {
   position: absolute;
   top: 3px;
@@ -154,6 +158,7 @@
 }
 
 .activity_detail_right {
+  margin-top: 1.5rem;
   width: 340px;
   /* position: absolute; */
   /* left: 5rem; */
@@ -324,6 +329,16 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* *瀏覽 */
+#activity_detail_see {
+  display: flex;
+  /* flex-wrap: wrap; */
+  align-content: stretch;
+  justify-content: space-around;
+  /* max-width: 600px; */
+  margin: 3rem auto;
 }
 
 /* *留言區 */

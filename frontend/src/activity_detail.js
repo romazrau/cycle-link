@@ -9,39 +9,34 @@ function ClsActivityDetail() {
     var last_known_scroll_position = 0;
     var ticking = false;
 
+
+
     window.addEventListener('scroll', function (e) {
-        last_known_scroll_position = window.scrollY + 25;
-        if (!ticking) {
-            window.requestAnimationFrame(function () {
-                boxMove2(last_known_scroll_position);
-                ticking = false;
-            });
+        last_known_scroll_position = window.scrollY - 150;
+        if (window.scrollY > 150) {
+            if (!ticking) {
+                window.requestAnimationFrame(function () {
+                    boxMove2(last_known_scroll_position);
+                    ticking = false;
+                });
+            }
+            ticking = true;
         }
-        ticking = true;
     });
 
 
 
-    // 留言//
+    // * -------------- 留言區 ------------- //
     //ONMOUSEOVER
     //get the btn element by id 
     let btnMessage = document.querySelector("#btnMessage");
-
-    //binding it with onmouseover event
-    // btnMessage.addEventListener("mouseover", getClsChange);
-    //there are two css class massageTopButton and massageTopButton2
     btnMessage.addEventListener("mouseout", getClsChangeback);
-
-    // function getClsChange() {
-    //     btnMessage.className = "massageTopButton2";
-    // }
 
     function getClsChangeback() {
         btnMessage.className = "massageTopButton";
     }
 
     //留言按鈕ONCLICK
-
     //btn element binding with click 
     btnMessage.addEventListener("click", showMessagebox);
 
@@ -54,7 +49,6 @@ function ClsActivityDetail() {
 
         //get the div "id="messageInputBox" and keep putting in innerHtml
         //怎麼重複利用訪者留言與插入>>createlement
-
 
         //這是要放進去的div
         let invisibleDiv = document.querySelector("#messageInputBoxCon");
@@ -135,6 +129,69 @@ function ClsActivityDetail() {
             window.alert("留言成功！");
         }
     }
+
+
+    // * ---------- 文字樣板 ----------
+    this.htmlActCard = (o) => {
+        return ` 
+    <div class="active_card_container">
+        <div class="active_card" >
+            <i class="fas fa-heart fa-lg active_card_heart"></i>
+            <div class="active_card_div">
+                <img src="${o.imgPath}" alt="" class="active_card_img">
+            </div>
+            <div class="active_card_info">
+                <p>${o.date}</p>
+                <p class="active_card_title">${o.title}</p>
+                <div class="active_card_location_div">
+                    <img src="img/929497.svg" class="active_card_location">
+                    <p>${o.local}</p>
+                </div>
+            </div>
+        </div>
+    </div>`;
+
+    }
+
+    const ActCard = document.querySelector("#activity_detail_see");
+
+    //AJAX
+    let ActCardData = [{
+            imgPath: "img/event6.png",
+            date: "2020/09/15",
+            title: "世界環境清潔日 - 相約海洋淨灘",
+            count: 100,
+            member: "王曉明",
+            local: "新金山海灘"
+        },
+        {
+            imgPath: "img/event3.jpg",
+            date: "2020/09/26",
+            title: "魚取漁囚 - 守護海洋行動體驗特展",
+            count: 99,
+            member: "洲仔於",
+            local: "布袋漁港"
+        },
+        {
+            imgPath: "img/event7.jpg",
+            date: "2020/09/06",
+            title: "臉部平權運動臺北國道馬拉松",
+            count: 500,
+            member: "時間管理大師",
+            local: "中山高速公路五股 - 汐止高架段"
+        }
+    ]
+
+
+    ActCardData.map(
+        (e, index) => {
+            ActCard.innerHTML += this.htmlActCard(e);
+        }
+    )
+
+
+
+
 
 }
 const ActivityDetail = new ClsActivityDetail();
