@@ -24,9 +24,11 @@
 }
 
 .CM_banner_searchbar_searchIcon {
-  width: 10px;
-  height: 10px;
-  margin: 0;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  margin: auto;
+  font-size: 20px;
 }
 
 .CM_banner_searchbar_input_container {
@@ -327,8 +329,8 @@
 .community_main_ul_timeline > .community_main_timeline_inverted {
   float: right;
   clear: right;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top: 70px;
+  margin-bottom: 70px;
 }
 
 .community_main_ul_timeline
