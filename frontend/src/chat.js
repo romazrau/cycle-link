@@ -79,23 +79,28 @@ function ClsChat() {
 
     const cahtMessageData = [{
             isMe: 0,
-            msg: "哈囉~"
+            msg: "哈囉~",
+            time: "16:35"
         },
         {
             isMe: 0,
-            msg: "你的狗勾好可愛"
+            msg: "你的狗勾好可愛",
+            time: "16:35"
         },
         {
             isMe: 0,
-            msg: "可以跟他交朋友嗎 <3"
+            msg: "可以跟他交朋友嗎 <3",
+            time: "16:35"
         },
         {
             isMe: 1,
-            msg: "嘿?"
+            msg: "嘿?",
+            time: "16:38"
         },
         {
             isMe: 0,
-            msg: "謝謝"
+            msg: "謝謝",
+            time: "16:39"
         },
     ];
 
@@ -103,7 +108,7 @@ function ClsChat() {
     const data2cahtMessage = (array, title) => {
         let result = `<div id="chatRommWith_${title}" class="chat_room_window"><img class="chat_window_close" src="./img/times-solid.svg" alt="X"><div id="chat_message_window_title" class="chat_window_title">${title}</div><div class="chat_message">`;
         array.map((e) => {
-            result += `<div class=${e.isMe ? "caht_Me" : "caht_notMe"}>${e.msg}</div>`;
+            result += `<div class=${e.isMe ? "caht_Me" : "caht_notMe"}>${e.msg}<div class="caht_arrow2"></div></div><div class="${e.isMe ? "caht_Me_time" : "caht_notMe_time"}">${e.time}</div>`;
         });
         result += `</div><div class="chat_input">
                     <textarea placeholder="想說什麼呢?" onfocus="this.placeholder=''" onblur="this.placeholder='想說什麼呢?'" row="2"></textarea>
@@ -166,7 +171,7 @@ function ClsChat() {
     const data2chatRobotMessage = array => {
         let result = ""
         array.map((e) => {
-            result += `<div class=${e.isMe ? "caht_Me" : "caht_notMe"}>${e.msg}</div>`;
+            result += `<div class=${e.isMe ? "caht_Me" : "caht_notMe"}>${e.msg}<div class="caht_arrow"></div></div>`;
         });
         return result;
     };
