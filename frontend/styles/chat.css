@@ -113,7 +113,18 @@
     flex-grow: 1;
 }
 
+.caht_Me_time {
+    font-size: 10px;
+    text-align: right;
+}
+
+.caht_notMe_time {
+    font-size: 10px;
+}
+
+
 .caht_notMe {
+    position: relative;
     padding: 0.2rem 0.2rem;
     margin-top: 0.2rem;
     border-radius: 0.5rem;
@@ -121,12 +132,59 @@
     align-self: flex-start;
 }
 
+.caht_notMe .caht_arrow {
+    position: absolute;
+    bottom: 7px;
+    left: -16px;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    border: solid 8px;
+    border-color: var(--lightblue-color) var(--white-color) var(--lightblue-color) var(--lightblue-color);
+}
+
+.caht_notMe .caht_arrow2 {
+    position: absolute;
+    bottom: 7px;
+    left: -16px;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    border: solid 8px;
+    border-color: var(--blue-color) var(--white-color) var(--blue-color) var(--blue-color);
+}
+
+
+
 .caht_Me {
+    position: relative;
     padding: 0.2rem 0.2rem;
     margin-top: 0.2rem;
     border-radius: 0.5rem;
     background-color: var(--white-color);
     align-self: flex-end;
+}
+
+.caht_Me .caht_arrow {
+    position: absolute;
+    top: 8px;
+    right: -16px;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    border: solid 8px;
+    border-color: var(--lightblue-color) var(--lightblue-color) var(--lightblue-color) var(--white-color);
+}
+
+.caht_Me .caht_arrow2 {
+    position: absolute;
+    top: 8px;
+    right: -16px;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    border: solid 8px;
+    border-color: var(--blue-color) var(--blue-color) var(--blue-color) var(--white-color);
 }
 
 
