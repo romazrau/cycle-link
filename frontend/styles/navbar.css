@@ -1,6 +1,6 @@
 .header {
   color: var(--blue-color); /* 顏色 */
-  background-color: var(--lightblue-color);
+  background-color:rgba(255,255,255,0.8);
   width: 100%;
   max-width: 100%;
 
@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: space-between;
 
-  box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.712);
+  /* box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.712); */
   transition: transform 0.3s;
 }
 
@@ -96,14 +96,17 @@
 /*menu樣式----------------------------------------*/
 .li_menutitle a {
   /* background: var(--lightblue-color); */
-  color: #ffffff;
+  /* color: #ffffff; */
+  color:#499584;
+  /* color:black; */
   display: inline-block; /* ? block   */
   box-sizing: border-box;
   height: 100%;
   /* font: bold 12px/20px sans-serif; */
-  padding: 1rem 2.5vw; /* 導覽連結(上右下左) 左右間距 與 撐滿header bar高 */
+  padding: 1rem 4vw; /* 導覽連結(上右下左) 左右間距 與 撐滿header bar高 */
   text-align: center;
   text-decoration: none;
+  text-shadow:3 3 3 gray;
 }
 
 /* *hover 會伸縮的底線區域 -------------------*/

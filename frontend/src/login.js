@@ -31,7 +31,7 @@ document.querySelector("#loginSubmit").addEventListener(
         // )
 
 
-        let show = `<i class="fas fa-bullhorn login_bullhorn"></i><div><p>哈哈松鼠</p><p>歡迎</p></div>`;
+        let show = `<i class="fas fa-bullhorn login_bullhorn"></i> <div><p>哈哈松鼠</p><p>歡迎</p></div>`;
         document.querySelector("#header_link_login").innerHTML = show;
         location.hash = "#personal-maneger";
 

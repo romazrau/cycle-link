@@ -3,32 +3,8 @@
  display: none;}
  */
 
-
 hr {
   border-top: 1px solid lightgrey;
-}
-
-.SeeMoreBtn {
-  border: 1px solid var(--blue-color);
-  border-radius: 10px;
-  width: 100%;
-  color: var(--blue-color);
-  font-size: 1rem;
-  margin-top: 25px;
-  padding: 1rem;
-}
-
-.SeeMoreBtnforUnderCard{
-  border: 1px solid var(--blue-color);
-  border-radius: 10px;
-  width: 90%;
-  color: var(--blue-color);
-  font-size: 1rem;
-  margin-top: 25px;
-  padding: 1rem;
-
-
-
 }
 
 .ShowMoreBtn {
@@ -36,6 +12,68 @@ hr {
   background-color: var(--white-color);
   border-radius: 10px;
   width: 100%;
+  color: var(--grey-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+  outline: none;
+  transition: all 0.3s;
+}
+.IconOpacity {
+  /* opacity: 50%; */
+}
+
+.ShowMoreBtn:hover {
+  border: 1px solid var(--white-color);
+  background-color: var(--grey-color);
+  border-radius: 10px;
+  width: 100%;
+  color: var(--white-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+}
+
+.ShowMoreBtn:active {
+  border: 1px solid var(--grey-color);
+  background-color: var(--white-color);
+  border-radius: 10px;
+  width: 100%;
+  color: var(--grey-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+  outline: none;
+}
+
+.SeeMoreBtnforUnderCard {
+  width: 90%;
+  border: 1px solid var(--grey-color);
+  border-radius: 10px;
+  color: var(--grey-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.SeeMoreBtnforUnderCard:hover {
+  border: 1px solid var(--white-color);
+  background-color: var(--grey-color);
+  border-radius: 10px;
+  width: 90%;
+  color: var(--white-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+}
+
+.SeeMoreBtnforUnderCard:active {
+  border: 1px solid var(--grey-color);
+  background-color: var(--white-color);
+  border-radius: 10px;
+  width: 90%;
   color: var(--grey-color);
   font-size: 1rem;
   margin-top: 25px;
@@ -132,8 +170,6 @@ hr {
   margin-left: 50px;
 }
 
-
-
 .Group_FontFamily a:link {
   color: black;
   text-decoration: none;
@@ -144,13 +180,10 @@ hr {
   color: black;
 }
 
-.GroupLinkFocus{
-  border-bottom:4px solid var(--blue-color);
+.GroupLinkFocus {
+  border-bottom: 4px solid var(--blue-color);
   color: var(--blue-color) !important;
 }
-
-
-
 
 .Icon20Color {
   opacity: 0.5;
@@ -167,7 +200,7 @@ hr {
   display: flex;
   flex-direction: column;
   /* align-items: center; */
-  justify-content:space-between;
+  justify-content: space-between;
   /* align-content: space-between; */
   /* padding-left: 1rem; */
   border-radius: 8px;
@@ -186,9 +219,30 @@ hr {
 /******************* TOP ******************/
 .MiddleNavBar {
   margin-bottom: 30px;
+  align-items: center;
 }
+
+.GroupNavBtn {
+  padding: 0.5rem 0.8rem;
+  transition: all 0.5s;
+  color: var(--grey-color);
+}
+
+.GroupNavBtn:hover {
+  /* border: 1px solid none; */
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+  background-color: var(--lightgrey-color);
+  color: gray;
+}
+
+.GroupNavBtn {
+  cursor: pointer;
+}
+
 .GrayBackGround {
   background-color: var(--lightgrey-color);
+  border-radius: 4px;
   padding-bottom: 2rem;
 }
 
@@ -196,8 +250,7 @@ hr {
   font-size: 1.2rem;
   font-family: monospace;
   justify-content: space-between;
-  /* padding-left: 50px; */
-  padding-right: 50px;
+  padding-right: 1rem;
 }
 
 .GroupTopMainPicDivForImg {
@@ -211,7 +264,7 @@ hr {
 }
 
 .GroupTopRight {
-  margin-left: 50px;
+  margin-left: 60px;
   position: relative;
 }
 
@@ -238,65 +291,64 @@ hr {
 .g {
   margin-top: 2rem;
 }
-.GroupDiveBtn{
-  color: var(--grey-color);
-  margin-right: 135px;
+.GroupDiveBtn {
+  padding-left: 50px;
 }
 
+.GroupDiveBtnText {
+  padding: 0 1rem;
+}
 
 /******************* MIDDLE ******************/
 
-
-
-.LO:hover{
-  border-left: 0.4rem solid var(--blue-color) ; 
+.LO:hover {
+  border-left: 0.4rem solid var(--blue-color);
   color: var(--blue-color) !important;
   padding-left: 0.5rem;
   /* margin-top: 0.8rem; */
 }
 
-
-.LO{
+.LO {
   border-left: 0.4rem solid var(--white-color);
-  
+
   padding-left: 0.5rem;
   /* margin-top: 0.8rem; */
-
 }
 
-.LC{
-  border-left: 0.4rem solid var(--blue-color) ; 
+.LC {
+  border-left: 0.4rem solid var(--blue-color);
   color: var(--blue-color) !important;
   padding-left: 0.5rem;
   /* margin-top: 0.8rem; */
 }
 
-
-
-
-.GroupLink > a{
+.GroupLink > a {
   display: inline-block;
   box-sizing: border-box;
   padding: 0.2rem 0;
-
-  
 }
 
-
-.GroupLink > a:hover{
+.GroupLink > a:hover {
   display: inline-block;
   box-sizing: border-box;
   /* padding: 0.2rem 0; */
-  border-bottom:4px solid var(--blue-color);
+  border-bottom: 4px solid var(--blue-color);
   color: var(--blue-color);
-  
 }
 
+.GroupRightInfoText {
+  /* text-align: center;
+  justify-content: center; */
+  align-items: center;
+}
 
+.GroupMemberPic {
+  margin-bottom: 1rem;
+}
 
-
-
-
+.GroupHolderName {
+  margin-right: 0.5rem;
+}
 
 .card {
   background-color: var(--white-color);
@@ -342,15 +394,22 @@ hr {
   margin-top: 25px;
   padding: 0.5rem 2rem;
   align-self: flex-end;
-  transition: all 0.3s ;
+  transition: all 0.3s;
 
   outline: none;
 }
 
-.GroupCardBtn:focus {outline:0;}
+.GroupCardBtn:focus {
+  outline: 0;
+}
+.ShowMoreBtn:focus {
+  outline: 0;
+}
+.SeeMoreBtnforUnderCard:focus {
+  outline: 0;
+}
 
-.GroupCardBtn:hover{
-
+.GroupCardBtn:hover {
   background-color: var(--blue-color);
   border: 1px solid var(--white-color);
   border-radius: 10px;
@@ -360,20 +419,13 @@ hr {
   margin-top: 25px;
   padding: 0.5rem 2rem;
   align-self: flex-end;
-  
 }
 
-.GroupCardBtn:active{
-  background-color:var(--white-color);
+.GroupCardBtn:active {
+  background-color: var(--white-color);
   border: 1px solid var(--blue-color);
   color: var(--blue-color);
 }
-
-
-
-
-
-
 
 .GroupRightInfoPhotoContainer {
   margin-top: 2rem;
@@ -388,6 +440,16 @@ hr {
   margin-top: 2rem;
 }
 
+.HashBtn {
+  background-color: var(--lightgrey-color);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+.GroupRightHash {
+  margin-top: 2rem;
+}
+
 .GroupEventBtnText {
   margin-top: 25px;
 }
@@ -399,7 +461,7 @@ hr {
 }
 
 .GroupBottomRight {
-  width: 40%;
+  width: 30%;
   /* margin-left: 1px */
   padding-left: 50px;
 }
@@ -433,7 +495,7 @@ hr {
 
 .BottomLeftInfoCard {
   width: 95%;
-  padding:1.2rem 0;
+  padding: 1.2rem 0;
 
   /* height: 100px; */
 
@@ -477,6 +539,17 @@ hr {
   margin-top: 1rem;
   border-radius: 10px;
   justify-content: space-between;
+  align-items: center;
+}
+
+.SearchBox {
+  background-color: var(--lightblue-color);
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .PhotoBox {
@@ -488,8 +561,23 @@ hr {
 }
 
 .LeaveMessage {
+  width: 75%;
+  height: 3rem;
+  background-color: var(--lightgrey-color);
+  border: 1px solid var(--grey-color);
+  border-radius: 4px;
+  color: var(--grey-color);
+}
+
+.LeaveMessageRight {
   width: 85%;
   height: 3rem;
+  background-color: var(--lightgrey-color);
+  /* border: 1px solid var(--grey-color); */
+  border-radius: 4px;
+  color: var(--grey-color);
+  border: none;
+  /* margin-left: 0.5rem; */
 }
 
 .FontSectionTitleRight {
@@ -564,9 +652,10 @@ hr {
 }
 
 .GroupMemberSearch {
-  /* padding: 1rem 2rem; */
+  padding-bottom: 1.5rem;
   font-size: 1rem;
   font-weight: bold;
+  border-bottom: 1px solid var(--lightgrey-color);
 }
 
 .GroupMemberBottomRightInfoCard {
@@ -597,6 +686,10 @@ hr {
   color: var(--grey-color);
 }
 
+.Size20IconOpacity {
+  opacity: 0.5;
+}
+
 .GroupMemberCardInfo {
   margin-left: 1rem;
 }
@@ -608,8 +701,12 @@ hr {
   width: 100%;
   box-sizing: border-box;
   display: inline-block;
-  margin-top: 1rem;
+  margin-top: 2rem;
   height: 3rem;
+}
+::placeholder {
+  color: var(--grey-color);
+  padding-left: 1rem;
 }
 
 .GroupEventMemberCard {
@@ -617,8 +714,8 @@ hr {
 }
 
 .GroupDiscussion {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   box-sizing: border-box;
 }
 
@@ -635,22 +732,33 @@ hr {
   padding: 1rem;
 }
 
-
-
-.group_margin_bottom{
+.group_margin_bottom {
   margin-bottom: 2rem;
 }
 
-
-.group_maneger_img{
+.group_maneger_img {
   height: 3rem;
 }
 
+.DiscussionLeft {
+  width: 60%;
+}
 
+.DiscussionRight {
+  width: 30%;
+  padding-left: 60px;
+}
 
+.GroupDiscussionTitle {
+  width: 100%;
+}
+
+.GroupSearchIcon {
+  margin: 0;
+}
 
 /* *photo flow  ----------------------------------------- */
-.photo_flow_container{
+.photo_flow_container {
   width: 100%;
 
   display: flex;
@@ -659,27 +767,25 @@ hr {
   padding-top: 2rem;
 }
 
-.photo_flow_col{
+.photo_flow_col {
   margin: 0 0.5rem;
   /* background-color: antiquewhite; */
   flex-grow: 1;
   flex-basis: 50vw;
 }
 
-.photo_flow_card{
+.photo_flow_card {
   position: relative;
   margin-bottom: 2rem;
 }
 
-
-.photo_flow_card_img{
+.photo_flow_card_img {
   border-radius: 5px;
   width: 100%;
 }
 
-
-.photo_flow_card_wrapper{
-  opacity:0;
+.photo_flow_card_wrapper {
+  opacity: 0;
   width: 100%;
   height: 100%;
   background-color: #00000017;
@@ -688,10 +794,10 @@ hr {
 }
 
 .photo_flow_card_wrapper:hover {
-  opacity:1;
+  opacity: 1;
 }
 
-.photo_flow_card_msg{
+.photo_flow_card_msg {
   position: absolute;
   top: 1rem;
   left: 1rem;
@@ -700,6 +806,27 @@ hr {
   background-color: #ffffff;
 }
 
+.GroupDiveBtn img {
+  opacity: 50%;
+}
 
+.Group_detail_Societies_img_div {
+  position: relative;
+  top: 3px;
+  left: 3px;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 50%;
+  /* border: 1px solid var(--lightgrey-color); */
+}
+
+.Group_detail_Societies_img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 /* 抓來的 */

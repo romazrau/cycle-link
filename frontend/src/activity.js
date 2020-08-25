@@ -57,7 +57,7 @@ function ClsActivity() {
 
 
     //日期
-    
+
 
 
 
@@ -119,7 +119,7 @@ function ClsActivity() {
         btndate.classList.add("search_hidden");
         btndatedetial.classList.remove("search_hidden");
     });
-    
+
     // 抓時間
     $(function () {
         //jQuery datepicker 設定限制日期最小最大 minDate maxDate hideIfNoPrevNext
@@ -145,7 +145,7 @@ function ClsActivity() {
             //或者有效的字符串('y'代表年, 'm'代表月, 'w'代表周, 'd'代表日, 例如：'+1m +7d')。
             maxDate: "+1m"
         });
-        
+
         $("#ac_date_end_from").datepicker({
             onSelect: function (dateText, inst) {
                 var dateAsString = dateText; //the first parameter of this function
@@ -168,24 +168,22 @@ function ClsActivity() {
             maxDate: "+1m"
 
         });
-        
-        
+
+
 
     });
     //抓取時間
-    function getstartdate(startdate)
-    {
+    function getstartdate(startdate) {
         var startdatetext = document.getElementById("search_date_text");
-        startdatetext.innerHTML ="起始日 <br>"+ startdate +'<br>';
-    }
-    
-    function getenddate(enddate)
-    {
-        var enddatetext = document.getElementById("search_date_text");
-        enddatetext.innerHTML += "結束日 <br>"+ enddate;
+        startdatetext.innerHTML = "起始日 <br>" + startdate + '<br>';
     }
 
-    function displaydate(){
+    function getenddate(enddate) {
+        var enddatetext = document.getElementById("search_date_text");
+        enddatetext.innerHTML += "結束日 <br>" + enddate;
+    }
+
+    function displaydate() {
         btndatedetial.classList.add("search_hidden");
         btndate.classList.remove("search_hidden");
     }
@@ -199,7 +197,7 @@ function ClsActivity() {
 
 
     //* ------------------------------------- 文字樣板 -------------------------------------
-    const htmlActCard = (o) => {
+    this.htmlActCard = (o) => {
         return ` 
     <div class="active_card_container">
         <div class="active_card" >
@@ -294,7 +292,7 @@ function ClsActivity() {
 
     ActCardData.map(
         (e, index) => {
-            ActCard.innerHTML += htmlActCard(e);
+            ActCard.innerHTML += this.htmlActCard(e);
         }
     )
 
@@ -345,7 +343,7 @@ function ClsActivity() {
 
     ActCardData2.map(
         (e, index) => {
-            ActCard2.innerHTML += htmlActCard(e);
+            ActCard2.innerHTML += this.htmlActCard(e);
         }
     )
 
@@ -384,7 +382,7 @@ function ClsActivity() {
 
     HisActData.map(
         (e, index) => {
-            HisAct.innerHTML += htmlActCard(e);
+            HisAct.innerHTML += this.htmlActCard(e);
         }
     )
 
