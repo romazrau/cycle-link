@@ -424,8 +424,12 @@
     /* height: 500px; */
 }
 
-.baritembox {
+.activefocus{
     background: var(--blue-color);
+}
+
+.baritembox {
+    
     padding: 20px;
     color: var(--lightgrey-color);
     width: 30%;
@@ -452,15 +456,15 @@
     color: var(--whitel-color);
 }
 
-.baritembox:hover {
-    transform: scale(1.1);
-    /* TEXT-DECORATION: none; */
+/* .baritembox:hover {
+    transform: scale(1.1); 
+    TEXT-DECORATION: none;
     background-color: var(--pink-color);
     background: linear-gradient(-35deg, transparent 45px, var(--pink-color) 0);
     background: linear-gradient(-145deg, transparent 45px, var(--pink-color) 0);
     z-index: 0;
     background-repeat: no-repeat;
-}
+} */
 
 .barcolor {
     width: 100%;
@@ -513,3 +517,23 @@
     color:#222;
   }  
 
+.activestyle{
+    background-color:pink !important;
+    z-index: 1000;
+    display: block;
+    /* background: linear-gradient(-35deg, transparent 45px, var(--pink-color) 0);
+    background: linear-gradient(-145deg, transparent 45px, var(--pink-color) 0); */
+}
+
+.btnpersonedit{
+    margin-left: 1rem;
+    /* padding-bottom:3rem; */
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border: 1px solid white;
+}
+
+.flex{
+    display: flex;
+}

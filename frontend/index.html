@@ -2134,7 +2134,7 @@
             </div>
             <div class="container">
                 <div class="bar-block">
-                    <a href="javascript:void(0)" class="bar-item button tablink "
+                    <a href="javascript:void(0)" class="bar-item button tablink activefocus "
                         onclick="PersonalManeger.openClass(event, 'personal-maneger-class4')">
                         <div class="baritembox">My Profile</div>
                     </a>
@@ -2143,15 +2143,15 @@
                         <div class="baritembox">My
                             Shop</div>
                     </a> -->
-                    <a href="javascript:void(0)" class="bar-item button tablink testbtn"
-                        onclick="PersonalManeger.openClass(event, 'personal-maneger-class1')">
+                    <a href="javascript:void(0)" class="bar-item button tablink testbtn activefocus"
+                        onclick="PersonalManeger.openClass(event, 'personal-maneger-class1')",>
                         <div class="baritembox">My Follow</div>
                     </a>
-                    <a href="javascript:void(0)" class="bar-item button tablink"
+                    <a href="javascript:void(0)" class="bar-item button tablink activefocus"
                         onclick="PersonalManeger.openClass(event, 'personal-maneger-class2')">
                         <div class="baritembox">My Event</div>
                     </a>
-                    <a href="javascript:void(0)" class="bar-item button tablink"
+                    <a href="javascript:void(0)" class="bar-item button tablink activefocus"
                         onclick="PersonalManeger.openClass(event, 'personal-maneger-class3')">
                         <div class="baritembox">My Community</div>
                     </a>
@@ -2224,7 +2224,11 @@
                                         <img src="./img/Activity2.jpg" class="event_img" alt="">
                                     </div>
                                     <div class="procontent_menu">
-                                        <p>Sunday, July 30,2020,10:30</p>
+                                        <div class="flex">
+                                            <p>Sunday, July 30,2020,10:30</p>
+                                            <button class="btnpersonedit">...</button>
+                                        </div>
+                                        
                                         <h3>潛水撿垃圾，愛海洋！</h3>
                                         <img src="" class="icon" alt=""><span>發起人</span><span>999</span>
                                     </div>
@@ -2358,7 +2362,10 @@
                                         <img src="img/product/3.jpg" class="event_img" alt="">
                                     </div>
                                     <div class="procontent_menu">
-                                        <p>Sunday, July 30,2020,10:30</p>
+                                        <div class="flex">
+                                            <p>Sunday, July 30,2020,10:30</p>
+                                            <button class="btnpersonedit">...</button>
+                                        </div>
                                         <h3>我們是一群熱愛環境的人</h3>
                                         <img src="" class="icon" alt=""><span>發起人</span><span>999</span>
                                     </div>
@@ -2398,7 +2405,8 @@
 
                 </div>
             </div>
-            <div class="div_FavorActivity">
+            //關注的活動註解
+            <!-- <div class="div_FavorActivity">
                 <div class="div_FavorActivity_Title">
                     <span class="span_FavorActivity_Title">關注的活動</span>
                 </div>
@@ -2419,7 +2427,7 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <!-- * create-activity  ****************      ****************       ****************   -->

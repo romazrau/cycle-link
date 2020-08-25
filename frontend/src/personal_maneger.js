@@ -12,9 +12,28 @@ function ClsPersonalManeger() {
             tablinks[i].classList.remove("grey");
         }
         document.getElementById(className).style.display = "block";
-        evt.currentTarget.classList.add("grey");
+        // evt.currentTarget.classList.add("grey");
+        evt.currentTarget.classList.add("activestyle");
+
     }
 
+    var btnactions = document.querySelectorAll(".activefocus");
+    console.log('btnactions',btnactions);
+    for(let i = 0 ;i<btnactions.length;i++)
+    {
+        
+        btnactions[i].addEventListener('click',function(){
+            // btnactions[i].classList.add("")
+            
+            btnactions.forEach(function(v){v.classList.remove("activestyle");})
+           
+            this.classList.add("activestyle");
+            console.log(this);
+            console.log( btnactions[i]);
+        })
+        
+    }
+    
 
     /*上傳頭像*/
     $('.input_pictureUpload').change(function () {
