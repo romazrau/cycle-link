@@ -872,7 +872,110 @@
 
         <!-- * log in   ****************      ****************       ****************   -->
         <div id='page_log-in' class='page page_signIn hide'>
-            <div class="page_signIn_left">
+            
+<div class="Login_container" id="Login_container">
+    <div class="Login_form-container Login_sign-up-container">
+        <form action="#">
+            <h1>Create Account</h1>
+            <div class="Login_social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>or use your email for registration</span>
+            <input type="text" placeholder="Name" />
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Password" />
+            <button>Sign Up</button>
+
+
+
+        </form>
+    </div>
+    <div class="Login_form-container Login_sign-in-container">
+        <form action="#">
+            <h1>Sign in</h1>
+            <div class="Login_social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>or use your account</span>
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Password" />
+            <div class="Login_CheckContainer">
+                <a href="">
+                    <div class="Login_CheckBox" id="Login_CheckBox"></div>
+                </a><span>我不是機器人</span>
+            </div>
+            <a href="#">Forgot your password?</a>
+
+            <button>Sign In</button>
+        </form>
+    </div>
+    <div class="Login_overlay-container">
+        <div class="Login_overlay">
+            <div class="Login_overlay-panel Login_overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>To keep connected with us please login with your personal info</p>
+                <button class="Login_ghost" id="Login_signIn">Sign In</button>
+            </div>
+            <div class="Login_overlay-panel Login_overlay-right">
+                <h1>Hello, Friend!</h1>
+                <p>Enter your personal details and start journey with us</p>
+                <button class="Login_ghost" id="Login_signUp">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="Login_footer">
+    <b> Follow us on </b>
+    <div class="Login_icons">
+        <a href="https://github.com/kvaibhav01" target="_blank" class="social"><i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/vaibhavkhulbe143/" target="_blank" class="social"><i
+                class="fab fa-instagram"></i></a>
+        <a href="https://medium.com/@vaibhavkhulbe" target="_blank" class="social"><i class="fab fa-medium"></i></a>
+        <a href="https://twitter.com/vaibhav_khulbe" target="_blank" class="social"><i
+                class="fab fa-twitter-square"></i></a>
+        <a href="https://linkedin.com/in/vaibhav-khulbe/" target="_blank" class="social"><i
+                class="fab fa-linkedin"></i></a>
+    </div>
+</div>
+<div class="Login_checkviewcontainer">
+        <a href="" class="Login_CloseLink">X</a>
+    <div class="Login_checkviewtitle">
+        <h2>請勾選出下面圖片含有路牌</h2>
+    </div>
+    <div class="Login_imgLine">
+        <div class="Login_checkimgbox"><img src="" alt=""></div>
+        <div class="Login_checkimgbox"><img src="" alt=""></div>
+        <div class="Login_checkimgbox"><img src="" alt=""></div>
+    </div>
+    <div class="Login_imgLine">
+        <div class="Login_checkimgbox"><img src="" alt=""></div>
+        <div class="Login_checkimgbox"><img src="" alt=""></div>
+        <div class="Login_checkimgbox"><img src="" alt=""></div>
+    </div>
+    <div class="Login_imgLine">
+        <div class="Login_checkimgbox"><img src="" alt=""></div>
+        <div class="Login_checkimgbox"><img src="" alt=""></div>
+        <div class="Login_checkimgbox"><img src="" alt=""></div>
+    </div>
+    <div class="Login_checkfooter"><input type="button" value="驗證" class="Login_answerBtn"></div>
+</div>
+
+
+<div class="Login_backgroundview Login_hide"></div>
+
+<script src="./src/login.js"></script>
+            
+
+
+
+
+            <!-- <div class="page_signIn_left">
                 <h1>歡迎回來</h1>
                 <p>Cycle - link</p>
             </div>
@@ -902,7 +1005,7 @@
                         <span>沒有帳號嗎?</span>&nbsp;&nbsp;<a id="switch2signUp" href="#sign-Up">加入會員</a>
                     </div>
                 </form>
-            </div>
+            </div> -->
         </div>
 
         <!-- * sign up  ****************      ****************       ****************   -->

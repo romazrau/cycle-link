@@ -23,6 +23,7 @@
 /*  其他 */
 @import "./chat.css";
 @import "./map.css";
+@import "./login.css";
 
 * {
   margin: 0px;
