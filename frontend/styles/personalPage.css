@@ -36,9 +36,11 @@
   /* margin: 60px 20px; */
   padding: 60px 0;
 }
+
 .personal_pro_file {
   margin: 20px 0px;
 }
+
 .personal_container ul {
   list-style: none;
   margin: 0;
@@ -56,11 +58,13 @@
   display: inline-block;
   margin-bottom: 10px;
 }
+
 .personal_file_middle {
   font-weight: 900;
   width: 40px;
   display: inline-block;
 }
+
 .personal_file_text {
   color: var(--grey-color);
 }
@@ -70,9 +74,11 @@
   justify-content: center;
   text-align: center;
 }
+
 .personal_section h2 {
   padding-top: 30px;
 }
+
 .personal_box {
   width: 280px;
   /* height: 280px; */
@@ -84,9 +90,12 @@
 
 .personal_box:hover {
   /* filter: contrast(1); */
-  transform: scale(1.2);
+  transform: scale(1.1);
   /* z-index:1 ; */
+  transition: all 0.5s;
+  cursor: pointer;
 }
+
 .personal_seccon img {
   width: 60px;
 }
@@ -100,6 +109,7 @@
   line-height: 25px;
   color: var(--green-color);
 }
+
 .personal_services_content p {
   line-height: 22px;
   font-size: 14px;
@@ -126,6 +136,7 @@
   display: flex;
   width: 100%;
 }
+
 .personal_baritembox {
   margin: 0 20px;
   width: 30%;
@@ -141,6 +152,7 @@
   background: var(--lightblue-color);
   color: var(--white-color);
 }
+
 .personal_eventw100 {
   width: 100%;
 }
@@ -162,7 +174,7 @@
   border-radius: 15px;
 }
 
-.personal_pro_file > ul {
+.personal_pro_file>ul {
   padding-left: 0px;
 }
 
