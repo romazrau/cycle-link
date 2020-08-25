@@ -462,3 +462,58 @@
   width: 100%;
   height: 100%;
 } */
+
+
+
+/* 分享功能 */
+
+#ac_share_bg {
+  position: absolute;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: black;
+  z-index: 200;
+  display: none;
+}
+
+#ac_share_bg_div {
+  position: absolute;
+  left: 35vw;
+  top: 30vh;
+  width: 25rem;
+  height: 15rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  display: none;
+  z-index: 201;
+}
+
+#ac_share_closeBtn {
+  width: 2rem;
+  height: 2rem;
+  border: 0px solid gray;
+  border-radius: 50%;
+  background-color: white;
+}
+
+#ac_share_closeBtn:hover {
+  cursor: pointer;
+}
+
+.ac_share_info {
+  display: grid;
+  justify-content: space-between;
+}
+
+.ac_share_info a {
+  color: var(--blue-color);
+}
+
+.ac_share_info a:hover {
+  color: var(--lightblue-color);
+}
