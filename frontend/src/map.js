@@ -5,18 +5,18 @@ const ActivityList =[
 {name:'環保潛水隊-隊員招募中',type:"淨海",lat:25.283227,  lng:121.525955,introduction:"資料淨海",src:"./img/tainan.jpg"},
 {name:'臉部平權運動臺北國道馬拉松',type:"路跑",lat:24.979212, lng:121.624832,introduction:"路跑123457777777sddddd",src:"./img/tainan.jpg"},
 {name:'世界環境清潔日 相約海洋淨灘',type:"淨海",lat:25.230442,lng: 121.645088,introduction:"資料淨海",src:"./img/tainan.jpg"},
-{name:'天母二手市集',type:"環境",lat:25.117735, lng: 121.528873,introduction:"資料",src:"./img/tainan.jpg"},
-{name:'鳥兒哪裡去?2020/8/22八里濕地野鳥觀察',type:"淨山",lat:25.116668,lng: 121.383476 ,introduction:"資料",src:"./img/tainan.jpg"},
-{name:'城市獵人-富陽生態公園夜觀',type:"淨山",lat:25.0151,lng:121.5593,introduction:"資料淨海",src:"./img/tainan.jpg"},
-{name:'荒野保護協會【2020工作假期】萬里工作日',type:"淨山",lat:25.178855,lng: 121.673241 ,introduction:"資料",src:"./img/tainan.jpg"},
-{name:'大風吹，吹什麼? 園藝寶貝交換活動',type:"環境",lat:24.161435,lng: 120.670738,introduction:"資料",src:"./img/tainan.jpg"},
-{name:'【愛海無距~誰是沙害者】~ 2020國際淨灘行動',type:"淨海",lat:24.175516,  lng:120.475388,introduction:"資料淨海",src:"./img/tainan.jpg"},
-{name:'2020筏子溪常態性淨溪',type:"淨海",lat:24.152464, lng: 120.621943,introduction:"資料淨海",src:"./img/tainan.jpg"},
-{name:'2020植樹',type:"淨山",lat:24.167682, lng: 120.755196,introduction:"資料",src:"./img/tainan.jpg"},
-{name:'PUMA環保愛地球 ',type:"環境",lat:24.193377, lng: 120.732193,introduction:"資料",src:"./img/tainan.jpg"},
-{name:'換換二手衣物換換愛',type:"環境",lat:24.17301, lng: 120.665932,introduction:"資料",src:"./img/tainan.jpg"},
-{name:'綠的手作坊-漂流木新生命',type:"淨海",lat:24.20309,  lng:120.618896,introduction:"資料",src:"./img/tainan.jpg"},
-{name:'偏鄉關懷，愛心捐物',type:"環境",lat:24.11126, lng: 120.642929,introduction:"資料淨海",src:"./img/tainan.jpg"}
+{name:'天母二手市集',type:"環境",lat:25.117735, lng: 121.528873,introduction:"天母二手市集",src:"./img/tainan.jpg"},
+{name:'鳥兒哪裡去?2020/8/22八里濕地野鳥觀察',type:"淨山",lat:25.116668,lng: 121.383476 ,introduction:"鳥兒哪裡去?2020/8/22八里濕地野鳥觀察",src:"./img/tainan.jpg"},
+{name:'城市獵人-富陽生態公園夜觀',type:"淨山",lat:25.0151,lng:121.5593,introduction:"城市獵人-富陽生態公園夜觀",src:"./img/tainan.jpg"},
+{name:'荒野保護協會【2020工作假期】萬里工作日',type:"淨山",lat:25.178855,lng: 121.673241 ,introduction:"荒野保護協會【2020工作假期】萬里工作日",src:"./img/tainan.jpg"},
+{name:'大風吹，吹什麼? 園藝寶貝交換活動',type:"環境",lat:24.161435,lng: 120.670738,introduction:"園藝寶貝交換活動",src:"./img/tainan.jpg"},
+{name:'【愛海無距~誰是沙害者】~ 2020國際淨灘行動',type:"淨海",lat:24.175516,  lng:120.475388,introduction:" 2020國際淨灘行動",src:"./img/tainan.jpg"},
+{name:'2020筏子溪常態性淨溪',type:"淨海",lat:24.152464, lng: 120.621943,introduction:"2020筏子溪常態性淨溪",src:"./img/tainan.jpg"},
+{name:'2020植樹',type:"淨山",lat:24.167682, lng: 120.755196,introduction:"2020植樹",src:"./img/tainan.jpg"},
+{name:'PUMA環保愛地球 ',type:"環境",lat:24.193377, lng: 120.732193,introduction:"PUMA環保愛地球",src:"./img/tainan.jpg"},
+{name:'換換二手衣物換換愛',type:"環境",lat:24.17301, lng: 120.665932,introduction:"換換二手衣物換換愛",src:"./img/tainan.jpg"},
+{name:'綠的手作坊-漂流木新生命',type:"淨海",lat:24.20309,  lng:120.618896,introduction:"綠的手作坊-漂流木新生命",src:"./img/tainan.jpg"},
+{name:'偏鄉關懷，愛心捐物',type:"環境",lat:24.11126, lng: 120.642929,introduction:"偏鄉關懷，愛心捐物",src:"./img/tainan.jpg"}
 
 
 ]
@@ -60,7 +60,7 @@ function MapLoad(){
  cleanMarker();
 // 設定初始經緯度座標
 
-map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng), 11);
+map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng), 15);
 
 L.marker([OriginalPlacelat,OriginalPlacelng], {icon: myIcon},{name:"目前位置"}).addTo(map);
 /**限定範圍 */
