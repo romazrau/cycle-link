@@ -18,7 +18,21 @@ function ClsActivity() {
     );
 
 
+    // * --------------- GO搜尋結果 ----------------
 
+    var activity_search_go = document.getElementById("activity_search_go");
+    var activity_card_ALL = document.getElementById("activity_card_ALL");
+    var communmity_main = document.querySelector(".communmity_main");
+
+    activity_search_go.onclick = function () {
+        activity_card_ALL.style.display = 'none';
+        communmity_main.style.display = 'block';
+    }
+
+
+
+
+    // * ---------------- 文字樣板 -----------------
 
     const htmlActSearch = (o) => {
         return ` 
