@@ -100,7 +100,7 @@
 .li_menutitle a {
   /* background: var(--lightblue-color); */
   /* color: #ffffff; */
-  color: #499584;
+  color: var(--blue-color);
   /* color:black; */
   display: inline-block;
   /* ? block   */
@@ -121,7 +121,7 @@
   bottom: 0.5rem;
   left: 2em;
   width: 0;
-  border-bottom: 2px solid var(--green-color);
+  border-bottom: 2px solid var(--blue-color);
 }
 
 .nav-underline:hover:before {
@@ -144,12 +144,14 @@
   }
 
   .navbar_menu>div {
-    background-color: var(--green-color);
+    background-color: var(--blue-color);
   }
+
   .nav-underline:before {
-      left: 8em;
+    left: 8em;
 
   }
+
   .nav-underline:hover:before {
     width: 80%;
   }
