@@ -119,12 +119,13 @@
   content: "";
   position: absolute;
   bottom: 0.5rem;
+  left: 2em;
   width: 0;
   border-bottom: 2px solid var(--green-color);
 }
 
 .nav-underline:hover:before {
-  width: 50%;
+  width: 65%;
 }
 
 .nav-underline:before {
@@ -145,7 +146,13 @@
   .navbar_menu>div {
     background-color: var(--green-color);
   }
+  .nav-underline:before {
+      left: 8em;
 
+  }
+  .nav-underline:hover:before {
+    width: 80%;
+  }
 
   .div_container_login {
     display: none;
