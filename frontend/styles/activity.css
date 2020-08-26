@@ -303,6 +303,7 @@
     width: 150px;
     height: 150px;
     background-color: rgb(103, 160, 197);
+    /* transition: width 2s ease-out 10s; */
 }
 
 .search_hidden {
