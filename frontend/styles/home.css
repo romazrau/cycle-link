@@ -44,6 +44,7 @@
   font-size: 72px;
   color: var(--white-color);
   text-align: right;
+  text-shadow: 0.05em 0.05em 0.1em rgb(83, 83, 83)
 }
 
 .home_top_text_wrapper {

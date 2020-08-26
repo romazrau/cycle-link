@@ -573,15 +573,17 @@
         </div>
 
         <!-- * Community  ****************      ****************       ****************   -->
-        <div id="community_navbar" class="page_navbar">
-            <div class="container page_navbar_row">
-                <div>CC</div>
-                <div>
-                    <button class="page_navbar_btn" onclick="location.hash = '#create-community'">創建社團</button>
+
+        <div id="page_community" class="page hide">
+            <div id="community_navbar" class="page_navbar">
+                <div class="container page_navbar_row">
+                    <div>CC</div>
+                    <div>
+                        <button class="page_navbar_btn" onclick="location.hash = '#create-community'">創建社團</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="page_community" class="page hide">
+
             <div class="community_main_container">
                 <div class="community_main_banner">
                     <div class="community_main_banner_searchbar">
@@ -616,7 +618,9 @@
                             </div>
                         </div>
                     </div>
-                    <img src="img/sam+x+lopez+creative+community.png" />
+                    <div class="community_main_topImg">
+                        <img src="img/ESM2-150ppp.jpg" />
+                    </div>
                 </div>
                 <div class="community_main_timeline">
                     <ul class="community_main_ul_timeline"></ul>
@@ -751,8 +755,7 @@
         <!-- * about us  ****************      ****************       ****************   -->
         <div id="page_about-us" class="page hide">
             <div class="aboutUs_backimgbox">
-                <img src="img/Duvar-ka-d-sahne-duvarlar-zel-3d-arka-plan-duvar-ka-tlar-Orman-manzara-trail-sunshin.jpg_q50.jpg"
-                    alt="">
+                <img src="img/7015.jpg" alt="">
             </div>
 
             <div class="aboutUs_box">
@@ -1337,13 +1340,16 @@
                             <img src="./img/times-solid.svg" width="20">
                         </button>
                         <div class="ac_share_info">
-                            <div>
-                                <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
-                                <a href="#"><i class="fab fa-instagram fa-2x"></i></a>
-                                <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
-                                <a href="#"><i class="fab fa-youtube fa-2x"></i></a>
+                            <div class="ac_share_info_icon">
+                                <a href="#"><i class="fab fa-facebook fa-3x"></i></a>
+                                <a href="#"><i class="fab fa-instagram fa-3x"></i></a>
+                                <a href="#"><i class="fab fa-twitter fa-3x"></i></a>
+                                <a href="#"><i class="fab fa-youtube fa-3x"></i></a>
                             </div>
-                            <input type="text" />
+                            <div class="ac_share_info_link">
+                                <input type="text" />
+                                <button>Copy</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1502,7 +1508,7 @@
                                     <div id="messageInputBoxCon"></div>
                                 </div>
                             </div>
-                            <h5 style="margin-top: 3rem;font-weight: bold;">為您推薦</h5>
+                            <h5 style="margin-top: 3rem;font-weight: bold;">為您推薦(*底下還沒修正)</h5>
                             <div id="activity_detail_see">
                             </div>
                         </div>
@@ -2854,8 +2860,9 @@
                                             <option value="">路跑</option>
                                         </select>
                                         <input type="text" class="create_active_ml create_active_full"
-                                            id="test_tag_input" value="" onblur="inputTag()" placeholder="此處輸入可輸入五個小標籤"
-                                            onfocus="this.placeholder=''" /><span id="create_active_please"></span>
+                                            id="create_active_tag_input" value="" onblur="inputTag()"
+                                            placeholder="此處輸入可輸入五個小標籤" onfocus="this.placeholder=''" /><span
+                                            id="create_active_please"></span>
                                     </div>
                                     <div id="test_a" style="display: flex;"></div>
                                 </div>

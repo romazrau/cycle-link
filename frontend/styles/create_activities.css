@@ -242,3 +242,23 @@
   align-self: center;
   width: 15%;
 }
+
+#create_active_tag {
+  background-color: var(--lightgrey-color);
+  border: 1px solid var(--blue-color);
+  margin: 1rem 0.8rem 0 0;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.8rem;
+}
+
+#create_active_tag button {
+  border: 0px;
+  border-radius: 0.5rem;
+  margin-left: 0.3rem;
+  color: var(--blue-color);
+  background-color: var(--lightgrey-color);
+}
+
+#create_active_tag button:hover {
+  cursor: pointer;
+}

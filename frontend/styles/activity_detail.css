@@ -485,9 +485,9 @@
   left: 35vw;
   top: 30vh;
   width: 25rem;
-  height: 15rem;
+  height: 13rem;
   padding: 1rem;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   background-color: white;
   display: none;
   z-index: 201;
@@ -506,8 +506,14 @@
 }
 
 .ac_share_info {
-  display: grid;
+  display: block;
   justify-content: space-between;
+}
+
+.ac_share_info_icon {
+  display: flex;
+  justify-content: space-around;
+  margin: 1.5rem 0;
 }
 
 .ac_share_info a {
@@ -516,4 +522,24 @@
 
 .ac_share_info a:hover {
   color: var(--lightblue-color);
+  transition: all 0.5s;
+  transform: scale(1.1);
+}
+
+.ac_share_info_link {
+  display: flex;
+  justify-content: center;
+}
+
+.ac_share_info_link button {
+  border: 0;
+  background-color: var(--blue-color);
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  margin-left: 0.8rem;
+  color: white;
+}
+
+.ac_share_info_link button:hover {
+  cursor: pointer;
 }
