@@ -8,9 +8,9 @@
     <!-- 外部引用資料 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-      crossorigin=""
-    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
     <!-- *bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -21,8 +21,9 @@
     <link rel="stylesheet" href="./styles/main.css">
 
     <!-- 行事曆 -->
-    <link rel="stylesheet" type="text/css" href="/fullcalendar/lib/main.css" rel="external nofollow">
-    <script src='/fullcalendar/lib/main.js'></script>
+    <link rel="stylesheet" type="text/css" href="./calendar/lib/main.css" rel="external nofollow">
+    <script src='./calendar/lib/main.js'></script>
+
 
     <title>小海龜</title>
 </head>
@@ -444,49 +445,49 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- * Community  ****************      ****************       ****************   -->
         <div id="page_community" class="page hide">
             <div class="community_main_container">
                 <div class="community_main_banner">
-                  <div class="community_main_banner_searchbar">
-                    <div class="CM_banner_searchbar_tag">
-                      <div class="CM_banner_searchbar_tag_item">
-                        <a href="#"><i class="fas fa-fire-alt"></i> 熱門社團</a>
-                      </div>
-                      <div class="CM_banner_searchbar_tag_item">
-                        <a href="#"><i class="far fa-compass"></i> 探索</a>
-                      </div>
+                    <div class="community_main_banner_searchbar">
+                        <div class="CM_banner_searchbar_tag">
+                            <div class="CM_banner_searchbar_tag_item">
+                                <a href="#"><i class="fas fa-fire-alt"></i> 熱門社團</a>
+                            </div>
+                            <div class="CM_banner_searchbar_tag_item">
+                                <a href="#"><i class="far fa-compass"></i> 探索</a>
+                            </div>
+                        </div>
+                        <div class="CM_banner_searchbar_input_container">
+                            <div class="CM_searchbar_category">
+                                <div class="CM_searchbar_catlinee CM_catlinee1"></div>
+                                <div class="CM_searchbar_catlinee CM_catlinee2"></div>
+                                <div class="CM_searchbar_catlinee CM_catlinee3"></div>
+                            </div>
+                            <div class="CM_banner_searchbar_input"><input type="text" /></div>
+                            <div class="CM_banner_searchbar_searchIcon">
+                                <a href="#"><i class="fas fa-search"></i></a>
+                            </div>
+                        </div>
+                        <div class="CM_appearCategory_item_container">
+                            <div class="CM_appearCategory_item">
+                                種樹社團
+                            </div>
+                            <div class="CM_appearCategory_item">
+                                種樹社團
+                            </div>
+                            <div class="CM_appearCategory_item">
+                                種樹社團
+                            </div>
+                        </div>
                     </div>
-                    <div class="CM_banner_searchbar_input_container">
-                      <div class="CM_searchbar_category">
-                        <div class="CM_searchbar_catlinee CM_catlinee1"></div>
-                        <div class="CM_searchbar_catlinee CM_catlinee2"></div>
-                        <div class="CM_searchbar_catlinee CM_catlinee3"></div>
-                      </div>
-                      <div class="CM_banner_searchbar_input"><input type="text" /></div>
-                      <div class="CM_banner_searchbar_searchIcon">
-                        <a href="#"><i class="fas fa-search"></i></a>
-                      </div>
-                    </div>
-                    <div class="CM_appearCategory_item_container">
-                      <div class="CM_appearCategory_item">
-                        種樹社團
-                      </div>
-                      <div class="CM_appearCategory_item">
-                        種樹社團
-                      </div>
-                      <div class="CM_appearCategory_item">
-                        種樹社團
-                      </div>
-                    </div>
-                  </div>
-                  <img src="img/sam+x+lopez+creative+community.png" />
+                    <img src="img/sam+x+lopez+creative+community.png" />
                 </div>
                 <div class="community_main_timeline">
-                  <ul class="community_main_ul_timeline"></ul>
+                    <ul class="community_main_ul_timeline"></ul>
                 </div>
-              </div>
+            </div>
             <!-- ///達達切的讚讚社團首頁就給活動用ㄅ
             <div id="community_navbar" class="page_navbar">
                 <div class="container page_navbar_row">
@@ -658,57 +659,49 @@
             <div class="map_container">
                 <div id="mapid"></div>
                 <div class="map_controllList">
-                  <div class="map_controllBar">
-                    <div class="map_controlltitle"><a href="">請選擇城市</a></div>
-                    <span id="map_cityspan">待選</span>
-                    <div class="map_citymenu">
-                      <a href="#" class="map_city">台北</a>
-                      <a href="#" class="map_city">台中</a>
-                      <a href="#" class="map_city">台南</a>
-                      <a href="#" class="map_city">高雄</a>
-                      <a href="#" class="map_city">桃園</a>
-                      <a href="#" class="map_city">宜蘭</a>
-                      
+                    <div class="map_controllBar">
+                        <div class="map_controlltitle"><a href="">請選擇城市</a></div>
+                        <span id="map_cityspan">待選</span>
+                        <div class="map_citymenu">
+                            <a href="#" class="map_city">台北</a>
+                            <a href="#" class="map_city">台中</a>
+                            <a href="#" class="map_city">台南</a>
+                            <a href="#" class="map_city">高雄</a>
+                            <a href="#" class="map_city">桃園</a>
+                            <a href="#" class="map_city">宜蘭</a>
+
+                        </div>
                     </div>
-                  </div>
-                  <div class="map_controllBar">
-                    <div class="map_controlltitle">設定距離</div>
-                    <input
-                      type="range"
-                      value="0"
-                      min="0"
-                      max="20"
-                      id="map_Setdistance"
-                    /><br />
-                    附近<label for="" id="Activitydistance"></label>
-                    <span>公里的活動</span>
-                  </div>
-                  <div class="map_controllBar">
-                    <div class="map_controlltitle">類別</div>
-                    <div class="map_typeBox">
-                      <div class="map_typeBtn"><a href="">淨海</a></div>
-                      <div class="map_typeBtn"><a href="">路跑</a></div>
-                      <div class="map_typeBtn"><a href="">環境</a></div>
+                    <div class="map_controllBar">
+                        <div class="map_controlltitle">設定距離</div>
+                        <input type="range" value="0" min="0" max="20" id="map_Setdistance" /><br />
+                        附近<label for="" id="Activitydistance"></label>
+                        <span>公里的活動</span>
                     </div>
-                  </div>
-                  <div class="map_introductionBox">
-                    
-                    <div class="map_controlltitle">簡介</div>
-                    <a href="#activity/detail"><img class="map_imgbox" src="" alt=""></a>
-                    <p id="map_activityintroduction"></p>
-          
-                  </div>
+                    <div class="map_controllBar">
+                        <div class="map_controlltitle">類別</div>
+                        <div class="map_typeBox">
+                            <div class="map_typeBtn"><a href="">淨海</a></div>
+                            <div class="map_typeBtn"><a href="">路跑</a></div>
+                            <div class="map_typeBtn"><a href="">環境</a></div>
+                        </div>
+                    </div>
+                    <div class="map_introductionBox">
+
+                        <div class="map_controlltitle">簡介</div>
+                        <a href="#activity/detail"><img class="map_imgbox" src="" alt=""></a>
+                        <p id="map_activityintroduction"></p>
+
+                    </div>
                 </div>
-          
-          
-          
-              </div>
-              <script
-                src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+
+
+
+            </div>
+            <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
                 integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-                crossorigin=""
-              ></script>
-              <script src="./src/map.js"></script>
+                crossorigin=""></script>
+            <script src="./src/map.js"></script>
 
 
 
@@ -872,105 +865,107 @@
 
         <!-- * log in   ****************      ****************       ****************   -->
         <div id='page_log-in' class='page page_signIn hide'>
-            
-<div class="Login_container" id="Login_container">
-    <div class="Login_form-container Login_sign-up-container">
-        <form action="#">
-            <h1>Create Account</h1>
-            <div class="Login_social-container">
-                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+
+            <div class="Login_container" id="Login_container">
+                <div class="Login_form-container Login_sign-up-container">
+                    <form action="#">
+                        <h1>Create Account</h1>
+                        <div class="Login_social-container">
+                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                        <span>or use your email for registration</span>
+                        <input type="text" placeholder="Name" />
+                        <input type="email" placeholder="Email" />
+                        <input type="password" placeholder="Password" />
+                        <button>Sign Up</button>
+
+
+
+                    </form>
+                </div>
+                <div class="Login_form-container Login_sign-in-container">
+                    <form action="#">
+                        <h1>Sign in</h1>
+                        <div class="Login_social-container">
+                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                        <span>or use your account</span>
+                        <input type="email" placeholder="Email" />
+                        <input type="password" placeholder="Password" />
+                        <div class="Login_CheckContainer">
+                            <a href="">
+                                <div class="Login_CheckBox" id="Login_CheckBox"></div>
+                            </a><span>我不是機器人</span>
+                        </div>
+                        <a href="#">Forgot your password?</a>
+
+                        <button id="loginSubmit">Sign In</button>
+                    </form>
+                </div>
+                <div class="Login_overlay-container">
+                    <div class="Login_overlay">
+                        <div class="Login_overlay-panel Login_overlay-left">
+                            <h1>Welcome Back!</h1>
+                            <p>To keep connected with us please login with your personal info</p>
+                            <button class="Login_ghost" id="Login_signIn">Sign In</button>
+                        </div>
+                        <div class="Login_overlay-panel Login_overlay-right">
+                            <h1>Hello, Friend!</h1>
+                            <p>Enter your personal details and start journey with us</p>
+                            <button class="Login_ghost" id="Login_signUp">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <span>or use your email for registration</span>
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <button>Sign Up</button>
 
-
-
-        </form>
-    </div>
-    <div class="Login_form-container Login_sign-in-container">
-        <form action="#">
-            <h1>Sign in</h1>
-            <div class="Login_social-container">
-                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            <div class="Login_footer">
+                <b> Follow us on </b>
+                <div class="Login_icons">
+                    <a href="https://github.com/kvaibhav01" target="_blank" class="social"><i
+                            class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/vaibhavkhulbe143/" target="_blank" class="social"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://medium.com/@vaibhavkhulbe" target="_blank" class="social"><i
+                            class="fab fa-medium"></i></a>
+                    <a href="https://twitter.com/vaibhav_khulbe" target="_blank" class="social"><i
+                            class="fab fa-twitter-square"></i></a>
+                    <a href="https://linkedin.com/in/vaibhav-khulbe/" target="_blank" class="social"><i
+                            class="fab fa-linkedin"></i></a>
+                </div>
             </div>
-            <span>or use your account</span>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <div class="Login_CheckContainer">
-                <a href="">
-                    <div class="Login_CheckBox" id="Login_CheckBox"></div>
-                </a><span>我不是機器人</span>
+            <div class="Login_checkviewcontainer">
+                <a href="" class="Login_CloseLink">X</a>
+                <div class="Login_checkviewtitle">
+                    <h2>請勾選出下面圖片含有路牌</h2>
+                </div>
+                <div class="Login_imgLine">
+                    <div class="Login_checkimgbox"><img src="" alt=""></div>
+                    <div class="Login_checkimgbox"><img src="" alt=""></div>
+                    <div class="Login_checkimgbox"><img src="" alt=""></div>
+                </div>
+                <div class="Login_imgLine">
+                    <div class="Login_checkimgbox"><img src="" alt=""></div>
+                    <div class="Login_checkimgbox"><img src="" alt=""></div>
+                    <div class="Login_checkimgbox"><img src="" alt=""></div>
+                </div>
+                <div class="Login_imgLine">
+                    <div class="Login_checkimgbox"><img src="" alt=""></div>
+                    <div class="Login_checkimgbox"><img src="" alt=""></div>
+                    <div class="Login_checkimgbox"><img src="" alt=""></div>
+                </div>
+                <div class="Login_checkfooter"><input type="button" value="驗證" class="Login_answerBtn"></div>
             </div>
-            <a href="#">Forgot your password?</a>
-
-            <button id="loginSubmit">Sign In</button>
-        </form>
-    </div>
-    <div class="Login_overlay-container">
-        <div class="Login_overlay">
-            <div class="Login_overlay-panel Login_overlay-left">
-                <h1>Welcome Back!</h1>
-                <p>To keep connected with us please login with your personal info</p>
-                <button class="Login_ghost" id="Login_signIn">Sign In</button>
-            </div>
-            <div class="Login_overlay-panel Login_overlay-right">
-                <h1>Hello, Friend!</h1>
-                <p>Enter your personal details and start journey with us</p>
-                <button class="Login_ghost" id="Login_signUp">Sign Up</button>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<div class="Login_footer">
-    <b> Follow us on </b>
-    <div class="Login_icons">
-        <a href="https://github.com/kvaibhav01" target="_blank" class="social"><i class="fab fa-github"></i></a>
-        <a href="https://www.instagram.com/vaibhavkhulbe143/" target="_blank" class="social"><i
-                class="fab fa-instagram"></i></a>
-        <a href="https://medium.com/@vaibhavkhulbe" target="_blank" class="social"><i class="fab fa-medium"></i></a>
-        <a href="https://twitter.com/vaibhav_khulbe" target="_blank" class="social"><i
-                class="fab fa-twitter-square"></i></a>
-        <a href="https://linkedin.com/in/vaibhav-khulbe/" target="_blank" class="social"><i
-                class="fab fa-linkedin"></i></a>
-    </div>
-</div>
-<div class="Login_checkviewcontainer">
-        <a href="" class="Login_CloseLink">X</a>
-    <div class="Login_checkviewtitle">
-        <h2>請勾選出下面圖片含有路牌</h2>
-    </div>
-    <div class="Login_imgLine">
-        <div class="Login_checkimgbox"><img src="" alt=""></div>
-        <div class="Login_checkimgbox"><img src="" alt=""></div>
-        <div class="Login_checkimgbox"><img src="" alt=""></div>
-    </div>
-    <div class="Login_imgLine">
-        <div class="Login_checkimgbox"><img src="" alt=""></div>
-        <div class="Login_checkimgbox"><img src="" alt=""></div>
-        <div class="Login_checkimgbox"><img src="" alt=""></div>
-    </div>
-    <div class="Login_imgLine">
-        <div class="Login_checkimgbox"><img src="" alt=""></div>
-        <div class="Login_checkimgbox"><img src="" alt=""></div>
-        <div class="Login_checkimgbox"><img src="" alt=""></div>
-    </div>
-    <div class="Login_checkfooter"><input type="button" value="驗證" class="Login_answerBtn"></div>
-</div>
 
 
-<div class="Login_backgroundview Login_hide"></div>
+            <div class="Login_backgroundview Login_hide"></div>
 
-<script src="./src/login.js"></script>
-            
+            <script src="./src/login.js"></script>
+
 
 
 
@@ -1590,30 +1585,37 @@
                             </div>
                         </div>
 
-                        <div class="GroupTopRight">
-                            <div class="GroupTopEventName">週末北海岸<br>水下攝影fit淨海</div>
-                            <!-- <div class="FlexContainer GroupTopRightEventInfoBox">
+                        <div class="GroupTopRight FlexContainer">
+                            <div class="info-text">
+                                <div class="GroupTopEventName">週末北海岸<br>水下攝影fit淨海</div>
+                                <!-- <div class="FlexContainer GroupTopRightEventInfoBox">
                     <div class="Size20IconMarginRight"><img src="./img/icon_gps.svg" width="20"></div>
                     <div>台北,台灣</div>
                 </div> -->
-                            <div class="FlexContainer GroupTopRightEventInfoBox">
-                                <div class="Size20IconMarginRight"><img src="./img/icon_group.svg" width="20"></div>
-                                <div>社團人數50人</div>
-                                <div>-</div>
-                                <div>私人社團</div>
-                                <div class="Size20IconMarginLeft"><img src="./img/icon_question.svg" width="20"></div>
+                                <div class="FlexContainer GroupTopRightEventInfoBox">
+                                    <div class="Size20IconMarginRight"><img src="./img/icon_group.svg" width="20"></div>
+                                    <div>社團人數50人</div>
+                                    <div>-</div>
+                                    <div>私人社團</div>
+                                    <div class="Size20IconMarginLeft"><img src="./img/icon_question.svg" width="20">
+                                    </div>
+                                </div>
+                                <div class="FlexContainer GroupTopRightEventInfoBox group_margin_bottom">
+                                    <div class="Size20IconMarginRight"><img src="./img/icon_user.svg" width="20"></div>
+                                    <div>社團管理員</div>
+                                    <div>郭安迪</div>
+                                </div>
                             </div>
-                            <div class="FlexContainer GroupTopRightEventInfoBox group_margin_bottom">
-                                <div class="Size20IconMarginRight"><img src="./img/icon_user.svg" width="20"></div>
-                                <div>社團管理員</div>
-                                <div>郭安迪</div>
-                            </div>
-                            <div class="FlexContainer GroupTopRightEventInfoBox GroupTopRightEventInfoBoxBottom">
-                                <div class="Boldtitle">Share:</div>
-                                <div class="Size20IconMarginLeft Size20IconMarginRight"><img
-                                        src="./img/icon_facebook.svg" width="20"></div>
-                                <div class="Size20IconMarginRight"><img src="./img/icon_twitter.svg" width="20"></div>
-                                <div class="Size20IconMarginRight"><img src="./img/icon_instagram.svg" width="20"></div>
+                            <div class="FlexContainer share-text">
+                                <div class="FlexContainer share-text-div">
+                                    <div class="Boldtitle">Share:</div>
+                                    <div class="Size20IconMarginLeft Size20IconMarginRight"><img
+                                            src="./img/icon_facebook.svg" width="20"></div>
+                                    <div class="Size20IconMarginRight"><img src="./img/icon_twitter.svg" width="20">
+                                    </div>
+                                    <div class="Size20IconMarginRight"><img src="./img/icon_instagram.svg" width="20">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1644,10 +1646,10 @@
 
                         </div>
 
-                        <div class="GroupDiveBtn FlexContainer GroupOvalBtn">
+                        <div class="GroupDiveBtn FlexContainer">
                             <div class="GroupNavBtn FlexContainer">
-                                <img src="./img/icon_user.svg" width="25px">
-                                <div class="GroupDiveBtnText">退出社團</div>
+                                <img src="./img/icon_setting.svg" width="25px">
+                                <div class="GroupDiveBtnText">我是社員</div>
                                 <!-- <img src="./img/icon_triangle_downside.svg" width="25px"> -->
                             </div>
                             <!-- <div class="GroupNavBtn FlexContainer">
@@ -1950,11 +1952,12 @@
                         <div class="GroupBottomMain GroupDetailPage hide" id="GroupDetailPage_Event">
                             <!-------------------------- switch bar ------------------------>
                             <div class="Calender FlexContainer">
-                                <button>活動列表</button><button>行事曆</button>
+                                <!-- <button class="btn-event-shift">活動列表</button><button
+                                    class="btn-event-shift">行事曆</button> -->
                             </div>
-                            <!----------------------- calender or event ----------------------->
+                            <!----------------------- calendar or event ----------------------->
                             <!-------------------------- event -------------------------->
-                            <div class="FlexContainer EventBottom">
+                            <div class="FlexContainer EventBottom hide">
 
                                 <!--------------- event left part  ------------------->
                                 <div class="EventBottomLeft ">
@@ -2127,6 +2130,8 @@
                                 </div>
 
                             </div>
+                            <!-------------------------- calendar -------------------------->
+                            <div class="calenderbody" id='calendar'></div>
 
 
 
@@ -2287,10 +2292,9 @@
                             </div>
 
                         </div>
-                        <!----------------------------------------////// 下層＿討論區 ////////---------------------------------------->
+                        <!----------------------------------------////// 下層＿文章 ////////---------------------------------------->
                         <div class="GroupBottomMain GroupDetailPage hide GroupDiscussion "
                             id="GroupDetailPage_Discussion">
-
 
 
                             <div class="FlexContainer GroupDiscussionTitle">
@@ -2370,7 +2374,12 @@
                         </div>
 
 
+                        <!-------------////文章發文////------------->
+                        <div class=“MessageBoxCover”>
+                            <div>
 
+                            </div>
+                        </div>
                         <!----------------------------------------////// 下層＿照片 ////////---------------------------------------->
                         <div class="GroupBottomMain GroupDetailPage hide GroupDiscussion" id="GroupDetailPage_Picture">
 
@@ -2400,6 +2409,7 @@
                             </div>
 
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -2461,7 +2471,7 @@
                             Shop</div>
                     </a> -->
                     <a href="javascript:void(0)" class="bar-item button tablink testbtn activefocus"
-                        onclick="PersonalManeger.openClass(event, 'personal-maneger-class1')",>
+                        onclick="PersonalManeger.openClass(event, 'personal-maneger-class1')" ,>
                         <div class="baritembox">My Follow</div>
                     </a>
                     <a href="javascript:void(0)" class="bar-item button tablink activefocus"
@@ -2545,7 +2555,7 @@
                                             <p>Sunday, July 30,2020,10:30</p>
                                             <button class="btnpersonedit">...</button>
                                         </div>
-                                        
+
                                         <h3>潛水撿垃圾，愛海洋！</h3>
                                         <img src="" class="icon" alt=""><span>發起人</span><span>999</span>
                                     </div>
