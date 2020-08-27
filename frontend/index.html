@@ -21,8 +21,9 @@
     <link rel="stylesheet" href="./styles/main.css">
 
     <!-- 行事曆 -->
-    <link rel="stylesheet" type="text/css" href="/fullcalendar/lib/main.css" rel="external nofollow">
-    <script src='/fullcalendar/lib/main.js'></script>
+    <link rel="stylesheet" type="text/css" href="./calendar/lib/main.css" rel="external nofollow">
+    <script src='./calendar/lib/main.js'></script>
+
 
     <title>小海龜</title>
 </head>
@@ -619,7 +620,7 @@
                         </div>
                     </div>
                     <div class="community_main_topImg">
-                        <img src="img/ESM2-150ppp.jpg" />
+                        <img src="img/sam+x+lopez+creative+community.png" />
                     </div>
                 </div>
                 <div class="community_main_timeline">
@@ -903,6 +904,7 @@
                     </div>
                 </div>
 
+
             </div>
             <!-- <div class="Login_footer">
                 <b> Follow us on </b>
@@ -919,6 +921,7 @@
                             class="fab fa-linkedin"></i></a>
                 </div>
             </div> -->
+
             <div class="Login_checkviewcontainer">
                 <a href="" class="Login_CloseLink">X</a>
                 <div class="Login_checkviewtitle">
@@ -943,6 +946,7 @@
             </div>
             <div class="Login_backgroundview Login_hide"></div>
             <script src="./src/login.js"></script>
+
 
             <!-- <div class="page_signIn_left">
                 <h1>歡迎回來</h1>
@@ -1574,30 +1578,37 @@
                             </div>
                         </div>
 
-                        <div class="GroupTopRight">
-                            <div class="GroupTopEventName">週末北海岸<br>水下攝影fit淨海</div>
-                            <!-- <div class="FlexContainer GroupTopRightEventInfoBox">
+                        <div class="GroupTopRight FlexContainer">
+                            <div class="info-text">
+                                <div class="GroupTopEventName">週末北海岸<br>水下攝影fit淨海</div>
+                                <!-- <div class="FlexContainer GroupTopRightEventInfoBox">
                     <div class="Size20IconMarginRight"><img src="./img/icon_gps.svg" width="20"></div>
                     <div>台北,台灣</div>
                 </div> -->
-                            <div class="FlexContainer GroupTopRightEventInfoBox">
-                                <div class="Size20IconMarginRight"><img src="./img/icon_group.svg" width="20"></div>
-                                <div>社團人數50人</div>
-                                <div>-</div>
-                                <div>私人社團</div>
-                                <div class="Size20IconMarginLeft"><img src="./img/icon_question.svg" width="20"></div>
+                                <div class="FlexContainer GroupTopRightEventInfoBox">
+                                    <div class="Size20IconMarginRight"><img src="./img/icon_group.svg" width="20"></div>
+                                    <div>社團人數50人</div>
+                                    <div>-</div>
+                                    <div>私人社團</div>
+                                    <div class="Size20IconMarginLeft"><img src="./img/icon_question.svg" width="20">
+                                    </div>
+                                </div>
+                                <div class="FlexContainer GroupTopRightEventInfoBox group_margin_bottom">
+                                    <div class="Size20IconMarginRight"><img src="./img/icon_user.svg" width="20"></div>
+                                    <div>社團管理員</div>
+                                    <div>郭安迪</div>
+                                </div>
                             </div>
-                            <div class="FlexContainer GroupTopRightEventInfoBox group_margin_bottom">
-                                <div class="Size20IconMarginRight"><img src="./img/icon_user.svg" width="20"></div>
-                                <div>社團管理員</div>
-                                <div>郭安迪</div>
-                            </div>
-                            <div class="FlexContainer GroupTopRightEventInfoBox GroupTopRightEventInfoBoxBottom">
-                                <div class="Boldtitle">Share:</div>
-                                <div class="Size20IconMarginLeft Size20IconMarginRight"><img
-                                        src="./img/icon_facebook.svg" width="20"></div>
-                                <div class="Size20IconMarginRight"><img src="./img/icon_twitter.svg" width="20"></div>
-                                <div class="Size20IconMarginRight"><img src="./img/icon_instagram.svg" width="20"></div>
+                            <div class="FlexContainer share-text">
+                                <div class="FlexContainer share-text-div">
+                                    <div class="Boldtitle">Share:</div>
+                                    <div class="Size20IconMarginLeft Size20IconMarginRight"><img
+                                            src="./img/icon_facebook.svg" width="20"></div>
+                                    <div class="Size20IconMarginRight"><img src="./img/icon_twitter.svg" width="20">
+                                    </div>
+                                    <div class="Size20IconMarginRight"><img src="./img/icon_instagram.svg" width="20">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1628,10 +1639,10 @@
 
                         </div>
 
-                        <div class="GroupDiveBtn FlexContainer GroupOvalBtn">
+                        <div class="GroupDiveBtn FlexContainer">
                             <div class="GroupNavBtn FlexContainer">
-                                <img src="./img/icon_user.svg" width="25px">
-                                <div class="GroupDiveBtnText">退出社團</div>
+                                <img src="./img/icon_setting.svg" width="25px">
+                                <div class="GroupDiveBtnText">我是社員</div>
                                 <!-- <img src="./img/icon_triangle_downside.svg" width="25px"> -->
                             </div>
                             <!-- <div class="GroupNavBtn FlexContainer">
@@ -1934,11 +1945,12 @@
                         <div class="GroupBottomMain GroupDetailPage hide" id="GroupDetailPage_Event">
                             <!-------------------------- switch bar ------------------------>
                             <div class="Calender FlexContainer">
-                                <button>活動列表</button><button>行事曆</button>
+                                <!-- <button class="btn-event-shift">活動列表</button><button
+                                    class="btn-event-shift">行事曆</button> -->
                             </div>
-                            <!----------------------- calender or event ----------------------->
+                            <!----------------------- calendar or event ----------------------->
                             <!-------------------------- event -------------------------->
-                            <div class="FlexContainer EventBottom">
+                            <div class="FlexContainer EventBottom hide">
 
                                 <!--------------- event left part  ------------------->
                                 <div class="EventBottomLeft ">
@@ -2111,6 +2123,8 @@
                                 </div>
 
                             </div>
+                            <!-------------------------- calendar -------------------------->
+                            <div class="calenderbody" id='calendar'></div>
 
 
 
@@ -2271,10 +2285,9 @@
                             </div>
 
                         </div>
-                        <!----------------------------------------////// 下層＿討論區 ////////---------------------------------------->
+                        <!----------------------------------------////// 下層＿文章 ////////---------------------------------------->
                         <div class="GroupBottomMain GroupDetailPage hide GroupDiscussion "
                             id="GroupDetailPage_Discussion">
-
 
 
                             <div class="FlexContainer GroupDiscussionTitle">
@@ -2354,7 +2367,12 @@
                         </div>
 
 
+                        <!-------------////文章發文////------------->
+                        <div class=“MessageBoxCover”>
+                            <div>
 
+                            </div>
+                        </div>
                         <!----------------------------------------////// 下層＿照片 ////////---------------------------------------->
                         <div class="GroupBottomMain GroupDetailPage hide GroupDiscussion" id="GroupDetailPage_Picture">
 
@@ -2384,6 +2402,7 @@
                             </div>
 
                         </div>
+
                     </div>
                 </div>
             </div>

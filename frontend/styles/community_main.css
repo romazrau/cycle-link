@@ -423,17 +423,17 @@
 
 /* 大圖div */
 .community_main_topImg {
-  position: relative;
-  width: 1800px;
+  /* position: relative; */
+  width: 100vw;
   height: 65vh;
   min-width: 1200px;
   overflow: hidden;
-  z-index: 0;
+  /* z-index: 0; */
 }
 
 .community_main_topImg img {
-  position: absolute;
-  width: 80%;
-  top: -20rem;
-  left: 30rem;
+  /* position: absolute; */
+  width: 100%;
+  /* top: -20rem; */
+  /* left: 30rem; */
 }
