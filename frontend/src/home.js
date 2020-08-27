@@ -25,7 +25,7 @@ function HomeBanner(data) {
     document.getElementById("home_top_event_p").innerHTML = data[postion].fTitle + "</br>" + data[postion].fTime;
     postion++;
   }
-  setInterval(scrollPic, 2000);
+  setInterval(scrollPic, 5000);
 }
 
 const Home = new HomeBanner(HomeBannerdata);

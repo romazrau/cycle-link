@@ -18,7 +18,21 @@ function ClsActivity() {
     );
 
 
+    // * --------------- GO搜尋結果 ----------------
 
+    var activity_search_go = document.getElementById("activity_search_go");
+    var activity_card_ALL = document.getElementById("activity_card_ALL");
+    var communmity_main = document.querySelector(".communmity_main");
+
+    activity_search_go.onclick = function () {
+        activity_card_ALL.style.display = 'none';
+        communmity_main.style.display = 'block';
+    }
+
+
+
+
+    // * ---------------- 文字樣板 -----------------
 
     const htmlActSearch = (o) => {
         return ` 
@@ -99,7 +113,8 @@ function ClsActivity() {
     var btncitydetial = document.getElementById("search_citydetial");
     btncity.addEventListener('click', function () {
         btncity.classList.add("search_hidden");
-        btncitydetial.classList.remove("search_hidden");
+        // btncitydetial.classList.remove("search_hidden");
+        $("#search_citydetial").fadeIn("5000");
     });
     var list = document.getElementsByTagName("li");
     var searchcitytext = "";
@@ -117,7 +132,8 @@ function ClsActivity() {
     var btndatedetial = document.getElementById("search_datedetial");
     btndate.addEventListener('click', function () {
         btndate.classList.add("search_hidden");
-        btndatedetial.classList.remove("search_hidden");
+        // btndatedetial.classList.remove("search_hidden");
+        $("#search_datedetial").fadeIn("5000");
     });
 
     // 抓時間

@@ -3,7 +3,7 @@ body {
 }
 
 .communmity_main {
-    display: flex;
+    display: none;
 }
 
 .communmity_container_left {
@@ -45,7 +45,7 @@ body {
     flex-grow: 1;
     max-width: 750px;
     padding: 1rem 3rem;
-
+    margin: 0 auto;
 }
 
 .communmity_search_head {

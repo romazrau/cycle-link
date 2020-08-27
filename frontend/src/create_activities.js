@@ -92,10 +92,10 @@ function inputTag() {
         document.getElementById("create_active_please").innerHTML = "標籤最多五個";
         return;
     }
-    const tagInput = $("#test_tag_input").val();
+    const tagInput = $("#create_active_tag_input").val();
 
     if (tagInput != "") {
-        const htmlTagInput = `<div id="test_tag">${tagInput}<button>x</button>`;
+        const htmlTagInput = `<div id="create_active_tag">${tagInput}<button>x</button>`;
         document.getElementById("test_a").innerHTML += htmlTagInput;
         create_active_tag_count++;
     } else {
@@ -103,7 +103,7 @@ function inputTag() {
         // alert("請輸入文字");
         return;
     }
-    $("#test_tag_input").val("");
+    $("#create_active_tag_input").val("");
 };
 
 // ----------- 圖片載入 -----------

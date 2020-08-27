@@ -189,8 +189,42 @@ function ClsActivityDetail() {
         }
     )
 
+    // --------------- 分享功能 ---------------
+
+    var ac_share_btn = document.getElementById("ac_share_btn");
+    var ac_share_bg = document.getElementById("ac_share_bg");
+    var ac_share_bg_div = document.getElementById("ac_share_bg_div");
+    var ac_share_closeBtn = document.getElementById("ac_share_closeBtn");
+
+    ac_share_btn.onclick = function () {
+        ac_share_bg.style.display = 'block';
+        ac_share_bg_div.style.display = 'block';
+    }
+
+    ac_share_closeBtn.onclick = function () {
+        ac_share_bg.style.display = 'none';
+        ac_share_bg_div.style.display = 'none';
+        ac_share_bg.preventDefault();
+    }
 
 
+
+
+    //     window.onload = function () {
+    //         var accc_zhezhao = document.getElementById("accc_zhezhao");
+    //         var accc_login = document.getElementById("accc_login");
+    //         var accc_bt = document.getElementById("accc_bt");
+    //         var accc_btclose = document.getElementById("accc_btclose");
+
+    //         accc_bt.onclick = function () {
+    //             accc_zhezhao.style.display = "block";
+    //             accc_login.style.display = "block";
+    //         }
+    //         accc_btclose.onclick = function () {
+    //             accc_zhezhao.style.display = "none";
+    //             accc_login.style.display = "none";
+    //         }
+    //     }
 
 
 }

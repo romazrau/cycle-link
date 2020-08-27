@@ -1,5 +1,4 @@
 .activity_top {
-    /* position: relative; */
     position: relative;
     display: flex;
     justify-content: center;
@@ -243,8 +242,8 @@
 
 .active_card_info {
     position: absolute;
-    bottom: -4rem;
-    left: 2.2rem;
+    bottom: -3rem;
+    left: 4.5rem;
     padding: 0.5rem 1rem;
     background-color: white;
     border-radius: 0.6rem;
@@ -303,6 +302,7 @@
     width: 150px;
     height: 150px;
     background-color: rgb(103, 160, 197);
+    /* transition: width 2s ease-out 10s; */
 }
 
 .search_hidden {
@@ -328,4 +328,8 @@
     list-style: none;
     /* text-align: center; */
     margin: 1rem 2.5rem 1rem 1rem;
+}
+
+#activity_card_ALL {
+    display: block;
 }
