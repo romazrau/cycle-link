@@ -3,6 +3,20 @@
  display: none;}
  */
 
+/* calendar */
+.calendarbody {
+  margin: 40px 10px;
+  padding: 0;
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+#calendar {
+  max-width: 1100px;
+  margin: 0 auto;
+  min-height: 800px;
+}
+
 hr {
   border-top: 1px solid lightgrey;
 }
@@ -216,10 +230,32 @@ hr {
   align-items: center;
 }
 
+.MessageBoxCover {
+  z-index: 2000;
+  background-color: #000000 0.3;
+  width: 100vw;
+  height: 100vh;
+  position:fixed;
+}
+
 /******************* TOP ******************/
 .MiddleNavBar {
   margin-bottom: 30px;
   align-items: center;
+  /* display: flex;
+  justify-content: space-between; */
+}
+
+.share-text {
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.btn-event-shift {
+  padding: 0.5rem 0.8rem;
+  transition: all 0.5s;
+  color: var(--grey-color);
+  border: none;
 }
 
 .GroupNavBtn {
@@ -261,11 +297,14 @@ hr {
 
 .GroupTopLeft {
   max-width: 60%;
+  box-sizing: border-box;
 }
 
 .GroupTopRight {
-  margin-left: 60px;
+  max-width: 40%;
   position: relative;
+  box-sizing: border-box;
+  padding-left: 60px;
 }
 
 .GroupTopEventName {
@@ -293,10 +332,16 @@ hr {
 }
 .GroupDiveBtn {
   padding-left: 50px;
+  width: 40%;
+  justify-content: flex-end;
 }
 
 .GroupDiveBtnText {
-  padding: 0 1rem;
+  padding: 0 0.5rem 0 1rem;
+}
+
+.share-text-div {
+  align-items: flex-end;
 }
 
 /******************* MIDDLE ******************/
@@ -436,6 +481,12 @@ hr {
 }
 
 /******************* BOTTOM ******************/
+
+.body-community-detail-discussion {
+  position: fixed;
+  background-color: #939393 0.5;
+}
+
 .EventBottom {
   margin-top: 2rem;
 }
@@ -486,7 +537,7 @@ hr {
 }
 
 .BottomRightSearchList {
-  width: 90%;
+  width: 100%;
   /* height:100px; 不要設高度才有顏色*/
   background-color: var(--white-color);
   border-radius: 8px;
@@ -521,8 +572,8 @@ hr {
   background-color: gray;
 }
 .GroupTopRightEventInfoBoxBottom {
-  position: absolute;
   bottom: 0px;
+  position: absolute;
 }
 
 .Photo {
@@ -535,7 +586,7 @@ hr {
 
 .MessageBox {
   background-color: var(--white-color);
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
   margin-top: 1rem;
   border-radius: 10px;
   justify-content: space-between;
@@ -543,7 +594,7 @@ hr {
 }
 
 .SearchBox {
-  background-color: var(--lightblue-color);
+  background-color: #e4e3e3;
   padding: 1rem;
   margin-top: 1rem;
   border-radius: 10px;
@@ -567,16 +618,18 @@ hr {
   border: 1px solid var(--grey-color);
   border-radius: 4px;
   color: var(--grey-color);
+  padding-left: 20px;
 }
 
 .LeaveMessageRight {
   width: 85%;
   height: 3rem;
-  background-color: var(--lightgrey-color);
+  background-color: var(--white-color);
   /* border: 1px solid var(--grey-color); */
   border-radius: 4px;
   color: var(--grey-color);
   border: none;
+  padding-left: 20px;
   /* margin-left: 0.5rem; */
 }
 
@@ -745,7 +798,7 @@ hr {
 }
 
 .DiscussionRight {
-  width: 30%;
+  width: 40%;
   padding-left: 60px;
 }
 

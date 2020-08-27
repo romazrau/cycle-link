@@ -1,6 +1,78 @@
 function ClsCommuntityDetail() {
 
-//轉換頁面
+
+
+    //calendar
+    const calenderRander = (array) => {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialDate: '2020-06-12',
+            editable: true,
+            selectable: true,
+            businessHours: true,
+            dayMaxEvents: true, // allow "more" link when too many events
+            events: [{
+                    title: 'All Day Event',
+                    start: '2020-06-01'
+                },
+                {
+                    title: 'Long Event',
+                    start: '2020-06-07',
+                    end: '2020-06-10'
+                },
+                {
+                    groupId: 999,
+                    title: 'Repeating Event',
+                    start: '2020-06-09T16:00:00'
+                },
+                {
+                    groupId: 999,
+                    title: 'Repeating Event',
+                    start: '2020-06-16T16:00:00'
+                },
+                {
+                    title: 'Conference',
+                    start: '2020-06-11',
+                    end: '2020-06-13'
+                },
+                {
+                    title: 'Meeting',
+                    start: '2020-06-12T10:30:00',
+                    end: '2020-06-12T12:30:00'
+                },
+                {
+                    title: 'Lunch',
+                    start: '2020-06-12T12:00:00'
+                },
+                {
+                    title: 'Meeting',
+                    start: '2020-06-12T14:30:00'
+                },
+                {
+                    title: 'Happy Hour',
+                    start: '2020-06-12T17:30:00'
+                },
+                {
+                    title: 'Dinner',
+                    start: '2020-06-12T20:00:00'
+                },
+                {
+                    title: 'Birthday Party',
+                    start: '2020-06-13T07:00:00'
+                },
+                {
+                    title: 'Click for Google',
+                    url: 'http://google.com/',
+                    start: '2020-06-28'
+                }
+            ]
+        });
+
+        calendar.render();
+    }
+
+    //轉換頁面
     const switchPage = function (id) {
 
         document.querySelectorAll(".GroupDetailPage").forEach(
@@ -11,15 +83,18 @@ function ClsCommuntityDetail() {
         )
 
         document.querySelector(`#${id}`).classList.remove("hide");
+        if (id === "GroupDetailPage_Event") {
+            calenderRander();
+        }
     }
 
-//nav bar 轉換
-    const switchFocusLink = function(el){
+    //nav bar 轉換
+    const switchFocusLink = function (el) {
         document.querySelectorAll(".GroupLink").forEach(
-            i =>{
+            i => {
                 i.children[0].classList.remove("GroupLinkFocus");
                 i.children[0].classList.add("a:visited");
-                
+
             }
         )
         // el.classList.remove("a:visited");
@@ -33,7 +108,7 @@ function ClsCommuntityDetail() {
 
 
 
-//click 事件綁定兩件事
+    //click 事件綁定兩件事
     nodeList.forEach(
         (i) => {
             i.addEventListener(
@@ -68,15 +143,15 @@ function ClsCommuntityDetail() {
     let rankingMemLink = document.querySelector("#rankingMember");
     // console.log(allMemLink,rankingMemLink);
 
-    allMemLink.addEventListener("click",function(){
+    allMemLink.addEventListener("click", function () {
         // console.log(1);
         document.querySelector(".allMember").classList.remove("hide");
         document.querySelector(".rankingMember").classList.add("hide");
 
     });
 
-    rankingMemLink.addEventListener("click",function(){
-    
+    rankingMemLink.addEventListener("click", function () {
+
         document.querySelector(".allMember").classList.add("hide");
         document.querySelector(".rankingMember").classList.remove("hide");
     });
@@ -85,33 +160,33 @@ function ClsCommuntityDetail() {
     //hover
     //社團活動左邊切換
 
-// function whenMouseOut(event){
-//     event.target.classList.remove("LC");
-//     event.target.classList.add("LO");
-// }
+    // function whenMouseOut(event){
+    //     event.target.classList.remove("LC");
+    //     event.target.classList.add("LO");
+    // }
 
 
     // console.log(document.querySelectorAll(".LO"));
     document.querySelectorAll(".LO").forEach(
-        i=>{
-           
-            
-    
+        i => {
+
+
+
             // i.addEventListener("mouseover",function(event){
             //     // console.log(112);
-             
+
             //     console.log(event.target.classList.remove("LO"));
             //     event.target.classList.add("LC");
             // })
 
             // i.addEventListener("mouseout",whenMouseOut)
 
-            i.addEventListener("click",function(event){
+            i.addEventListener("click", function (event) {
                 // console.log(i); <<< DOM element
-              
-                
+
+
                 document.querySelectorAll(".LO").forEach(
-                    i=>{
+                    i => {
                         i.classList.remove("LC");
                     }
                 )
@@ -120,11 +195,11 @@ function ClsCommuntityDetail() {
                 console.log(event.target)
                 event.target.classList.add("LC");
                 // i.removeEventListener("mouseout",whenMouseOut);
-                
+
             })
 
 
-        
+
 
         }
     )
@@ -316,15 +391,12 @@ function ClsCommuntityDetail() {
         }
     )
 
-    
-   
 
+    //文章發文
 
-    
+    document.querySelector("LeaveMessage").addEventListener('focus', function () {
 
-
-
-
+    })
 
 
 
