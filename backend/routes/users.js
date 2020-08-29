@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var session = require('express-session');
+var sessionKey = require('../src/sessionKey');
+var sendSafetyCode = require('../src/email/signUp');
 
 
 let accountSql =  require('../src/SQL/account');
@@ -28,6 +31,12 @@ router.post('/', function(req, res, next) {
 
   accountSql.login(account, password)
   .then((result)=>{
+
+    if(result.result){
+      req.session[sessionKey.SK_USER_DATA] = result;
+    }
+
+    console.log("user:",  req.session[sessionKey.SK_USER_DATA]);
     res.json(result);
   })
   .catch((err)=>{
@@ -35,6 +44,57 @@ router.post('/', function(req, res, next) {
   })
   
 });
+
+
+// is Login?
+router.get('/',(req, res)=>{
+  let result =  req.session[sessionKey.SK_USER_DATA] || { result:0, msg: "未登入" }
+  res.json(result)
+})
+
+
+// Log out
+router.get('/logout',(req, res)=>{
+  req.session[sessionKey.SK_USER_DATA] = undefined;
+
+  let result =  req.session[sessionKey.SK_USER_DATA] || { result:1, msg: "已登出" }
+  res.json(result)
+})
+
+
+
+// TODO Sign Up
+router.post('/signup', async (req, res)=>{
+  
+  
+  let result = await sendSafetyCode('adoro0920@gmail.com');
+  if(result.result){
+    req.session[sessionKey.SK_SIGNUP_SAFTY_CODE] = result.code;
+  }
+  
+  res.json(result)
+})
+
+
+// TODO is Sign Up safyty code correct 
+router.get('/signup/:code', async (req, res)=>{
+  
+  if( req.params.code == req.session[sessionKey.SK_SIGNUP_SAFTY_CODE] ){
+    
+    res.json({result:1, msg:"認證成功"});
+    return;
+  }
+  
+  res.json({result:0, msg:"認證碼不符"})
+})
+
+
+
+// TODO Forget Password send email
+
+
+
+
 
 
 

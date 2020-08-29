@@ -1,0 +1,4 @@
+module.exports = {
+    SK_USER_DATA: "SK_USER_DATA",
+    SK_SIGNUP_SAFTY_CODE: "SK_SIGNUP_SAFTY_CODE"
+}

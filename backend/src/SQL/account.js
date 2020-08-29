@@ -30,7 +30,7 @@ const test = async () => {
     }
 };
 
-
+//登入
 const login = async (account, password) => {
     try {
         // make sure that any items are correctly URL encoded in the connection string
@@ -42,7 +42,6 @@ const login = async (account, password) => {
         on M.fAccountTypeId = T.fId
         where fAccount = '${account}' AND fPassword = '${password}';`
         const result = await sql.query(sqlString);
-        console.dir(typeof result);
         console.dir(result);
 
         if( ! result.rowsAffected[0]) {
