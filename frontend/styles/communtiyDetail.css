@@ -235,7 +235,7 @@ hr {
   background-color: #000000 0.3;
   width: 100vw;
   height: 100vh;
-  position:fixed;
+  position: fixed;
 }
 
 /******************* TOP ******************/
@@ -262,6 +262,33 @@ hr {
   padding: 0.5rem 0.8rem;
   transition: all 0.5s;
   color: var(--grey-color);
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  /* border: 1px solid black; */
+  /* box-shadow: 0px 0px 20px 0.00001px #908888; */
+  padding: 1rem 2rem;
+  /* width: 200px; */
+  /* height: 100px; */
+  top: 3.9rem;
+  left: 0.1rem;
+  background-color: var(--grey-color);
+  color: white;
+  /* z-index: 100; */
+}
+
+.dropdown-triangle {
+  width: 0px;
+  height: 0px;
+  border-width: 15px;
+  left: 38%;
+  top: 2rem;
+  border-style: solid;
+  border-color: transparent transparent var(--grey-color) transparent;
+  position: absolute;
+  z-index: 100;
 }
 
 .GroupNavBtn:hover {
