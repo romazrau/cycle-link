@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+let myport = process.env.PORT || '3050';
 
 /**
  * Module dependencies.
@@ -12,7 +13,7 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3050');
+var port = normalizePort(myport);
 app.set('port', port);
 
 /**
@@ -87,4 +88,5 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+  console.log("Server is listen on " + myport)
 }

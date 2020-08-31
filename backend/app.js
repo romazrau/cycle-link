@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 
-//路由引入
+// *路由引入
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -35,7 +35,7 @@ app.use(session({
 }));
 
 
-//路由區
+// *路由區，把路由分給哪個檔案
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

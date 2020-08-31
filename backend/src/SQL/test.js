@@ -1,25 +1,38 @@
+//使用套件 mssql
 const sql = require('mssql');
 
+// *資料庫連結設定檔 大家都把 sa 的密碼改成 everybodycanuse 才能一直用喔
 const config = {
-    // user: 'sa',
-    // password: 'P@ssw0rd',
     user: 'sa',
     password: 'everybodycanuse',
     server: 'localhost', // You can use 'localhost\\instance' to connect to named instance
     database: 'SeaTurtleOnTheWay',
 }
  
-const h = async () => {
+// 設計 SQL指令方法
+const mySqlFunc = async () => {
     try {
         // make sure that any items are correctly URL encoded in the connection string
+        // 連接資料庫
         await sql.connect(config)
+        // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
         const result = await sql.query(`select * from Member.tAccountType`)
+        // 看一下回傳結果
         console.dir(result)
+        // 回傳結果
         return result;
+    // 錯誤處理
     } catch (err) {
         console.log(err);
         return err;
     }
 };
 
-module.exports = h;
+
+//直接測試用 func ， node src/SQL/test.js
+// 解除註解，並把匯出方法註解才能用喔
+// mySqlFunc();
+
+
+// *匯出方法 ， 多個方法包在{}裡， ex: {func1, func2}
+module.exports = mySqlFunc;
