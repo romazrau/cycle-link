@@ -8,6 +8,8 @@ var session = require('express-session');
 // *路由引入
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var postRouter = require('./routes/post');
+
 
 
 var app = express();
@@ -38,6 +40,7 @@ app.use(session({
 // *路由區，把路由分給哪個檔案
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/posts', postRouter);
 
 
 
