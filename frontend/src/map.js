@@ -48,11 +48,15 @@ function ClsMap(){
     var map = L.map('mapid');
     // 設定地圖來源
     var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    //範圍
-                                                /*minZoom: 初始 maxZoom:放大多少*/
+    //範圍                                          /*minZoom: 初始 maxZoom:放大多少*/
     var osm = new L.TileLayer(osmUrl, {minZoom: 7, maxZoom: 16});
     map.addLayer(osm);
+     L.control.scale().addTo(map);
+
+
     var popup = L.popup(); 
+    
+  
     
     map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng),7 );
     
@@ -63,7 +67,7 @@ function ClsMap(){
     
     map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng),11 );
     
-    L.marker([OriginalPlacelat,OriginalPlacelng], {icon: myIcon},{name:"目前位置"}).addTo(map);
+    L.marker([OriginalPlacelat,OriginalPlacelng], {icon: myIcon},{name:"目前位置"}).addTo(map).bindPopup("目前位置");
     /**限定範圍 */
      
     }
@@ -101,15 +105,33 @@ function ClsMap(){
       
      
       L.marker(e.latlng, {icon: myIcon}).addTo(map);
-    
-    
       OriginalPlacelat=e.latlng.lat;
       OriginalPlacelng=e.latlng.lng;
-     
+      
+      map_SearchNearbyActivity(ActivityList,e.latlng.lat,e.latlng.lng,document.getElementById('map_Setdistance').value)
+      
     }
+
+    function map_SearchNearbyActivity(arr,Placelat,Placelng,distance)
+    {
+      if(distance==0)
+        {
+          
+          return;
+        }
+      var NearbyActivity = arr.filter(function(item, index, array){
+        return map_Calcdistance(Placelat,Placelng,item.lat,item.lng)<=distance
+      })
+
+      console.log(NearbyActivity.length);
+      alert(`附近有${NearbyActivity.length}個活動!!!!`)
+    }
+    
+
+
+
+    
     map.on('click', onMapClick);
-    
-    
     
     
     
@@ -118,9 +140,9 @@ function ClsMap(){
     
     /*清除標記*/ 
     function cleanMarker(){
-      this.map.eachLayer((layer)=>{
+      map.eachLayer((layer)=>{
        if(layer instanceof L.Marker){
-           this.map.removeLayer(layer)
+           map.removeLayer(layer)
           }
           
        })
@@ -257,34 +279,40 @@ function ClsMap(){
       })
       resultList.forEach(function(item, index, array){
        
-        if(str=="淨海")
-        L.marker([item.lat,item.lng], {icon: SeaIcon},).addTo(map).bindPopup(item.name).addEventListener("click",function (event) {
-          
-          var marker=event.target;
-          var latlng = marker.getLatLng();
-          map_setInformation(latlng.lat,latlng.lng);
-          map.setView(new L.LatLng(latlng.lat,latlng.lng), 11)
-         
-        });
-    
-        if(str=="路跑")
-        L.marker([item.lat,item.lng], {icon: RunningIcon},).addTo(map).bindPopup(item.name).addEventListener("click",function (event) {
-          var marker=event.target;
-          var latlng = marker.getLatLng();
-          map_setInformation(latlng.lat,latlng.lng);
-          map.setView(new L.LatLng(latlng.lat,latlng.lng), 11)
-         
-        });
-        if(str=="環境")
-        L.marker([item.lat,item.lng], {icon: evIcon},).addTo(map).bindPopup(item.name).addEventListener("click",function (event) {  
-          var marker=event.target;
-          var latlng = marker.getLatLng();
-          map_setInformation(latlng.lat,latlng.lng);
-          map.setView(new L.LatLng(latlng.lat,latlng.lng), 11) 
-        });
+        switch(str){
+        case "淨海":
+          typeSearchShow(item,SeaIcon);
+          break;
+        case "路跑":
+          typeSearchShow(item,RunningIcon);
+          break;
+        case "環境":
+          typeSearchShow(item,evIcon);
+          break;
+        }
      })
+        
     }
-    
+
+    function typeSearchShow(obj,icontype){
+      L.marker([obj.lat,obj.lng], {icon: icontype},).addTo(map).bindPopup(obj.name).addEventListener("click",function (event) {  
+        var marker=event.target;
+        var latlng = marker.getLatLng();
+        map_setInformation(latlng.lat,latlng.lng);
+        map.setView(new L.LatLng(latlng.lat,latlng.lng), 11) 
+      }).on({
+        mouseover: function(e){
+            this.openPopup();
+        }, mouseout: function(e){
+            this.closePopup();
+        }   
+      });
+
+    }
+
+
+
+
     
     function map_setInformation(lat,lng)
     {
