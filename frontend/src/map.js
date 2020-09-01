@@ -394,7 +394,6 @@ function ClsMap(){
 // 每當 hash 變動的時候
 let MapPage;
 window.addEventListener("hashchange", () => {
-console.log("123")
 if (location.hash==="#map" && !MapPage)
   {
 
@@ -409,7 +408,6 @@ if (location.hash==="#map" && !MapPage)
 
 
   window.addEventListener("load", () => {
-    console.log("123")
 if (location.hash==="#map" && !MapPage)
   {
 

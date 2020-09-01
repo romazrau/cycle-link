@@ -1,0 +1,123 @@
+:root{
+    --green-color:#499854;
+    --blue-color:#31708E;
+    --lightblue-color:#8FC1E3;
+    --pink-color:#D9AAB7;
+    --lightgrey-color: #f1f1f1;
+    --grey-color:#979494;
+    --black-color:#000000;
+    --white-color:#FFFFFF;
+    /*使用方法 background-color: var(--black-color);*/
+}
+*{
+    margin:0;
+    padding: 0;
+}
+
+::-webkit-scrollbar {
+    /*隱藏滾輪*/
+    display: none;
+    }
+
+#map_cityspan{
+    background-color: var(--blue-color);
+    color:var(--white-color);
+    width: 100%;
+    display: block;
+
+}
+
+
+.map_container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    
+}
+#mapid{
+    width: 80vw;
+    height: 90vh;
+}
+
+.map_controllList{
+    position: fixed;
+    width: 20vw;
+    height: 100%;
+    top:5rem;
+    right:0;
+    z-index: 1000;
+    background-color: #fff;
+    background-color: var(--lightgrey-color);
+    text-align: center;
+
+}
+
+.map_controlltitle{
+    text-align: center;
+    font-size: large;
+    margin-bottom: 1rem;
+    line-height: 2.5rem;
+}
+
+
+
+
+/*城市選單*/
+.map_citymenu {
+    
+    display: none;
+    width:19rem;
+    height:150px;
+    overflow-y:auto;
+    position: fixed;
+    z-index: 2;
+}
+
+.map_citymenu a {
+    
+    background-color:var(--white-color);
+    color:black;
+    display:block;
+    
+    padding:12px;
+    text-decoration:none;
+}
+
+.map_citymenu a:hover {
+    background-color:var(--lightblue-color);
+}
+.map_controllBar
+{
+    
+    border-bottom: var(--grey-color) 1px solid;
+    width:100% ;
+}
+
+
+
+/*類別選單*/
+.map_typeBox{
+
+    display: flex;
+
+}
+
+.map_typeBtn{
+    width: 33%;
+    text-align: center;
+    background-color:var(--grey-color);
+    margin:0.05rem;
+    
+}
+
+
+.map_imgbox{
+    width: 86%;
+    height: auto;
+    
+}
+#map_activityintroduction{
+    margin:1rem 0.5rem 0 0.5rem;
+    line-height: 1.5rem;
+    color: var(--green-color);
+}
