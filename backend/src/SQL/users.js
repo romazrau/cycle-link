@@ -47,7 +47,7 @@ const login = async (account, password) => {
         if( ! result.rowsAffected[0]) {
             return {result:0, msg:"帳號或密碼錯誤"}
         }
-        return {result:1, msg:"登入成功", data:result.recordset};
+        return {result:1, msg:"登入成功", data:result.recordset[0]};
     } catch (err) {
         console.log(err);
         return {result:0, msg:"SQL 問題", data:result};

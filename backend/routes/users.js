@@ -3,9 +3,11 @@ var router = express.Router();
 var session = require('express-session');
 var sessionKey = require('../src/sessionKey');
 var sendSafetyCode = require('../src/email/signUp');
+// *from data 解析必備
+const multer  = require('multer');
+const upload = multer();
 
-
-let memberSql =  require('../src/SQL/member');
+let memberSql =  require('../src/SQL/users');
 
 
 
@@ -22,8 +24,9 @@ router.get('/testGuest', function(req, res, next) {
 });
 
 
-//POST Login
-router.post('/', function(req, res, next) {
+// *POST Login ， upload.array() => form data 解析用    
+router.post('/', upload.array(), function(req, res, next) {
+  console.log({reqbody:'body', data:req.body})
   let account = req.body.account;
   let password = req.body.password;
 

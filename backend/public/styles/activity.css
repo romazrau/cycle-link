@@ -1,0 +1,335 @@
+.activity_top {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    /* width: 100vw; */
+    /* height: 80vh; */
+    min-width: 1200px;
+}
+
+.activity_top img {
+    /* width: 100%;
+    height: 600px; */
+    width: 100%;
+}
+
+.activity_search_container {
+    position: absolute;
+    left: 8rem;
+    top: 15rem;
+}
+
+.active_main_search {
+    margin-bottom: 1rem;
+}
+
+.active_main_search input {
+    padding-left: 20px;
+    height: 60px;
+    width: 500px;
+    font-size: 30px;
+    border: 1px solid var(--lightgrey-color);
+    border-radius: 10px;
+}
+
+.active_main_search select {
+    position: absolute;
+    top: 2px;
+    left: 410px;
+    width: 80px;
+    height: 56px;
+    font-size: 28px;
+    color: gray;
+    border: 1px solid #ffffff;
+    outline: none;
+}
+
+
+/* *----- 進階搜尋區開始 ----- */
+#activity_advence_show {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-radius: 8%;
+    display: flex;
+}
+
+#activity_advence_show:hover {
+    background-color: #ffffff6b;
+
+}
+
+.activity_advence_t {
+    transition: all 0.5s;
+}
+
+.activity_advence_search_container {
+    max-width: 80vw;
+
+}
+
+.active_advance_search {
+    position: relative;
+    margin-left: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 1rem;
+    min-height: 3rem;
+    max-width: 500px;
+}
+
+.active_advance_search_tile {
+    flex-shrink: 0;
+    line-height: 100%;
+    margin-right: 0.5rem;
+}
+
+.active_advance_dateRange {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    min-width: 300px;
+}
+
+#active_advance_search_city {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.activity_search_city {
+    min-width: 5rem;
+}
+
+.active_advance_row {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* *----- 進階搜尋區結束 ----- */
+
+
+
+
+/* *----- 搜尋GO按鈕 ----- */
+
+.activity_top button {
+    position: absolute;
+    left: 40rem;
+    top: 15rem;
+    width: 80px;
+    height: 60px;
+    background-color: var(--blue-color);
+    border: 0px;
+    border-radius: 10px;
+    font-size: 36px;
+    color: white;
+    text-align: center;
+}
+
+.activity_top button {
+    cursor: pointer;
+}
+
+/* *------------------- */
+
+
+
+.activity_main {
+    margin: 1rem auto;
+    align-items: center;
+    max-width: 1200px;
+}
+
+.activity_main h3 {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.activity_event {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+
+/*
+
+@media (max-width: 1200px) {
+    .activity_event_card {
+        max-width: 40%;
+        width: 40%
+    }
+
+    ;
+}
+
+@media (max-width: 700px) {
+    .activity_event_card {
+        max-width: 80%;
+        width: 80%
+    }
+
+    ;
+}
+*/
+
+
+
+/* *----------- 發起活動按鈕 ------------ */
+
+.activity_create_btn {
+    display: flex;
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: var(--blue-color);
+    margin: 1rem auto 2rem auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.activity_create_btn a {
+    text-decoration: none;
+    color: white;
+}
+
+
+
+
+/* *----------- 卡片區 ------------ */
+
+.active_card {
+    max-width: 22rem;
+    position: relative;
+    border-radius: 0.6rem;
+    margin-bottom: 7rem;
+}
+
+.active_card:hover {
+    cursor: pointer;
+    transform: translate(0px, -5px);
+    transition: all 0.5s;
+}
+
+.active_card_div {
+    overflow: hidden;
+    height: 18rem;
+    border-radius: 0.6rem;
+    margin: 0 1rem;
+}
+
+.active_card_img {
+    width: 100%;
+    height: 100%;
+    background-color: #faebd7;
+    border-radius: 0.6rem;
+}
+
+
+
+.active_card_info {
+    position: absolute;
+    bottom: -3rem;
+    left: 4.5rem;
+    padding: 0.5rem 1rem;
+    background-color: white;
+    border-radius: 0.6rem;
+    width: 80%;
+    font-size: 14px;
+    /* -webkit-box-shadow: 0 0 15px rgb(0, 0, 0);
+    -moz-box-shadow: 0 0 15px rgb(0, 0, 0); */
+    box-shadow: 1px 1px 25px rgba(167, 167, 167, 0.384);
+    color: grey;
+}
+
+.active_card_info p {
+    margin: 0px;
+}
+
+.active_card_location_div {
+    display: flex;
+    align-items: center;
+    margin-top: 0.4rem;
+}
+
+.active_card_location {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.2rem;
+}
+
+.active_card_heart {
+    position: absolute;
+    right: 2rem;
+    top: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: white;
+}
+
+.active_card_heart:hover {
+    cursor: pointer;
+    color: var(--lightblue-color);
+    transition: all 0.6s;
+}
+
+.active_card_title {
+    border-bottom: 1px solid rgb(206, 206, 206);
+    padding-bottom: 0.4rem;
+    font-size: 16px;
+    color: rgb(46, 46, 46);
+}
+
+/* *--------------- 進階搜尋 進化版 ------------------ */
+.search_container {
+    display: flex;
+}
+
+.search_box {
+    width: 150px;
+    height: 150px;
+    background-color: rgb(103, 160, 197);
+    /* transition: width 2s ease-out 10s; */
+}
+
+.search_hidden {
+    display: none;
+}
+
+.search_citytext {
+    text-align: center;
+    line-height: 150px;
+}
+
+.search_city_detail {
+    background-color: rgb(95, 160, 111);
+    /* justify-content: center; */
+    text-align: center;
+}
+
+.search_city_detail ul {
+    display: inline-block;
+}
+
+.search_city_detail li {
+    list-style: none;
+    /* text-align: center; */
+    margin: 1rem 2.5rem 1rem 1rem;
+}
+
+#activity_card_ALL {
+    display: block;
+}

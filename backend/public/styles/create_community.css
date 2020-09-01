@@ -1,0 +1,243 @@
+/* ---------- 功能用 ---------- */
+/* .create_community_container {
+  display: flex;
+} */
+
+.create_community_flex {
+  display: flex;
+}
+
+.create_community_ml {
+  margin-left: 1rem;
+}
+
+.create_community_flex_end {
+  display: flex;
+  align-self: flex-end;
+}
+
+.create_community_full {
+  width: 100%;
+}
+
+/* ---------- 開始 ---------- */
+.create_community_title_div {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem 1rem 2rem;
+  text-decoration: none;
+  color: var(--grey-color);
+}
+
+.create_community_title_div:hover {
+  color: var(--lightblue-color);
+  transition: all 0.5s;
+}
+
+.create_community_container h2 {
+  margin-bottom: 2rem;
+  color: #3a3a3a;
+}
+
+.create_community_title_circle {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--lightblue-color);
+  color: honeydew;
+  margin: 0rem 0.5rem 0rem 1rem;
+  line-height: 2rem;
+}
+
+.create_community_title {
+  width: 20%;
+  min-width: 150px;
+  padding-top: 3rem;
+  text-align: center;
+}
+
+.create_community_basicInfo_container {
+  width: 80%;
+  /* min-width: 960px; */
+  background-color: rgb(245, 245, 245);
+}
+
+.create_community_basicInfo_container p {
+  color: var(--grey-color);
+}
+
+.create_community_basicInfo {
+  max-width: 720px;
+  padding: 3rem 0;
+  margin: 0rem auto;
+  background-color: rgb(245, 245, 245);
+}
+
+.create_community_basicInfo_div {
+  margin: 2rem 0rem;
+}
+
+.create_community_basicInfo_div2 {
+  border-radius: 0.5rem;
+  padding: 1rem 2rem 1rem 2rem;
+  background-color: white;
+}
+
+/* #ac_date_from,
+#ac_date_to {
+  border: 1px solid rgb(209, 209, 209);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  margin: 0rem 1rem;
+  padding: 0.5rem;
+  max-width: 110px;
+}
+
+#ac_date_from:hover,
+#ac_date_to:hover {
+  border: 1px solid var(--lightblue-color);
+  transition: all 0.5s;
+}
+
+#ac_date_from:focus,
+#ac_date_to:focus {
+  border: 1px solid var(--lightblue-color);
+  outline: none;
+} */
+
+.create_community_basicInfo_div2 select {
+  border: 1px solid rgb(209, 209, 209);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.create_community_basicInfo_div2 select:hover {
+  border: 1px solid var(--lightblue-color);
+  transition: all 0.5s;
+}
+
+.create_community_basicInfo_div2 select:focus {
+  border: 1px solid var(--lightblue-color);
+  outline: none;
+}
+
+.create_community_basicInfo_div p {
+  margin-bottom: 0.5rem;
+}
+
+.create_community_basicInfo_div2 input {
+  border: 0rem;
+  border-bottom: 1px solid rgb(209, 209, 209);
+  font-size: 18px;
+}
+
+.create_community_basicInfo_div2 input:hover {
+  border-bottom: 1px solid var(--lightblue-color);
+  transition: all 0.5s;
+}
+
+.create_community_basicInfo_div2 input:focus {
+  border-bottom: 1px solid var(--lightblue-color);
+  outline: none;
+}
+
+
+.create_community_basicInfo_div3 {
+  text-align: end;
+}
+
+.create_community_basicInfo_div2 textarea {
+  font-size: 20px;
+  border: 1px solid rgb(209, 209, 209);
+  resize: none;
+}
+
+.create_community_basicInfo_div2 textarea:hover {
+  border: 1px solid var(--lightblue-color);
+  transition: all 0.5s;
+}
+
+.create_community_basicInfo_div2 textarea:focus {
+  border: 1px solid var(--lightblue-color);
+  outline: none;
+}
+
+#create_community_btn_next,
+#create_community_btn_done {
+  padding: 0.8rem 1.5rem 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  border: 1px solid white;
+  background-color: var(--lightblue-color);
+  color: white;
+}
+
+#create_community_btn_next:hover,
+#create_community_btn_done:hover {
+  border: 1px solid rgb(209, 209, 209);
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+#create_community_btn_pre {
+  padding: 0.8rem 1.5rem 0.8rem 1.5rem;
+  margin-right: 1rem;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(209, 209, 209);
+  background-color: white;
+  color: var(--lightblue-color);
+}
+
+#create_community_btn_pre:hover {
+  border: 1px solid var(--lightblue-color);
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.cc_imgUpload_lbl {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(209, 209, 209);
+  background-color: white;
+  color: var(--lightblue-color);
+  margin-right: 1rem;
+}
+
+.cc_imgUpload_lbl:hover {
+  border: 1px solid var(--lightblue-color);
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.cc_imgUpload_div {
+  width: 70vh;
+}
+
+.cc_imgUpload_div img {
+  width: 100%;
+}
+
+
+.create_community_container button:hover {
+  cursor: pointer;
+  border: 1px solid var(--lightblue-color);
+  transition: all 0.5s;
+}
+
+.create_community_container button:focus {
+  border: 1px solid var(--lightblue-color);
+  outline: none;
+}
+
+.create_community_check {
+  min-width: 80px;
+  max-width: 80px;
+  text-align: center;
+  margin-right: 1rem;
+  margin-left: 0.3rem;
+  word-wrap: break-word;
+}

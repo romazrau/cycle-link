@@ -1,0 +1,115 @@
+@import "./var.css";
+/* *顏色變數 */
+/* page */
+@import "./navbar.css";
+@import "./notFound.css";
+@import "./loading.css";
+@import "./home.css";
+@import "./activity.css";
+@import "./activity_detail.css";
+@import "./news.css";
+@import "./news_detial.css";
+@import "./aboutUs.css";
+@import "./personalPage.css";
+@import "./personal_maneger.css";
+@import "./signInPage.css";
+@import "./signUpPage.css";
+@import "./footer.css";
+@import "./communmity.css";
+@import "./communtiyDetail.css";
+@import "./create_activities.css";
+@import "./create_community.css";
+@import "./community_main.css";
+/*  其他 */
+@import "./chat.css";
+@import "./map.css";
+@import "./login.css";
+
+* {
+  margin: 0px;
+  font-family: "Noto Sans TC", sans-serif;
+  text-decoration: none !important;
+}
+
+.page_container {
+  margin-top: 5rem;
+}
+
+.page_navbar {
+  color: #ffffff;
+  background-color: var(--lightblue-color);
+  box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.712);
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 3rem;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  transition: transform 0.3s;
+}
+
+.page_navbar_row {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page_navbar_btn {
+  color: #ffffff;
+  background-color: var(--blue-color);
+  border: none;
+  border-radius: 5px;
+
+  width: 6rem;
+  height: 2rem;
+}
+
+.page_navbar_btn:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 3px 0px #0000009f;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.page_navbar_btn:focus {
+  border: 0;
+  transform: translate(0px, 0px);
+  box-shadow: 0px 0px 0px 0px #000000;
+}
+
+/* *附加class 區------ */
+.widthAndHeight2Zero {
+  width: 0rem;
+  height: 0rem;
+}
+
+.transYsWidthTo0 {
+  transform-origin: top left;
+  transform: translateY(-5rem) scaleY(0);
+}
+
+.transYsWidthTo0Bottom {
+  transform-origin: bottom left;
+  transform: scaleY(0);
+}
+
+.upside_down {
+  transform: rotate(-180deg);
+}
+
+.hide {
+  display: none;
+}
+
+.focus {
+  background-color: rgba(0, 0, 0, 0.1);
+  /* 遮罩 */
+}
+
+.nowrap {
+  flex-wrap: nowrap;
+}
