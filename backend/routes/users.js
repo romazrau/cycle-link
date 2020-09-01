@@ -5,13 +5,13 @@ var sessionKey = require('../src/sessionKey');
 var sendSafetyCode = require('../src/email/signUp');
 
 
-let accountSql =  require('../src/SQL/account');
+let memberSql =  require('../src/SQL/member');
 
 
 
 /* GET users listing. */
 router.get('/testGuest', function(req, res, next) {
-  accountSql.test()
+  memberSql.test()
   .then((result)=>{
     res.json(result);
   })
@@ -29,7 +29,7 @@ router.post('/', function(req, res, next) {
 
   // res.json({ a:account, b:password});
 
-  accountSql.login(account, password)
+  memberSql.login(account, password)
   .then((result)=>{
 
     if(result.result){
