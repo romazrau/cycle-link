@@ -1,0 +1,539 @@
+/*  FavorActivity-------------------------------------------- */
+.div_FavorActivity{
+    /* width: 25%; */
+    position: fixed;
+    right: 0;
+    top: 10em;
+    
+}
+
+.div_FavorActivity_Title{
+    background-color: var(--lightblue-color);
+    border: 0.05rem var(--lightgrey-color) solid;
+}
+.div_FavorActivityList{
+    background-color: var(--white-color);
+    border: var(--lightgrey-color) 0.05rem solid;
+    height: 22rem;
+    display: none;
+}
+
+.div_FavorActivityBlock{
+    width: 40%;
+    border: black 1px solid;
+    height: 6rem;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    float: left;
+}
+.div_FavorActivityimg{
+    width: 100%;
+    
+}
+.div_FavorActivityimg img{
+    width: 100%;
+    height: auto;
+}
+.div_FavorActivityItems span{
+    color: var(--black-color);
+}
+
+
+
+/*切換*/
+
+/* body.Show{
+    
+} */
+.Show.div_FavorActivityList{
+    display: block;
+   
+}
+.Show.div_FavorActivity{
+    width: 25%;
+   
+}
+
+
+
+
+
+
+/* Itembox_Style--------------------------------------------- */
+.ItemContainer{
+    display: flex; 
+    flex-wrap: wrap;
+}
+.ItemContainer a{
+    display: flex;
+    color: black;
+}
+.ItemBox {
+    
+    width: 40%;
+    display: flex;
+    /* vertical-align: middle; */
+    margin: 1.2rem;
+    background-color: white;
+}   
+
+
+.procontent_imgbox {
+    width: 45%;
+    margin: 0.4rem;
+    
+    
+    height: 11rem;
+}
+
+.procontent_imgbox img {
+    width: 100%;
+    height: 100%;
+    margin:0.2rem;
+    
+}
+
+.procontent_menu {
+    width: 40%;
+    margin: 0.5rem;
+    float: right;
+}
+
+
+
+
+
+/* MyActivity-------------------------------------------- */
+.div_activity {
+    margin: 0.2rem 0.2rem 0.6rem 1rem;
+            width: 8rem;
+            height: 10rem;
+            border: var(--lightgrey-color) 0.05rem solid;
+            padding: 0.3rem;    
+            
+            float: left;
+}
+
+.div_activityimg {
+    width: 100%;
+    height: 5rem;
+
+}
+
+.div_activityimg img {
+    width: 100%;
+    height: 100%;
+    /* overflow: hidden;
+    ; */
+}
+
+.div_activitytitle {
+    color: var(--black-color);
+            font-weight: 700;
+}
+
+.div_activitymember a {
+    color: var(--blue-color);
+}
+
+.div_dataItem {
+    height: 3rem;
+}
+.span_activitystatus{
+    color: var(--pink-color);
+    font-weight: 700;
+}
+
+
+
+
+
+
+/* MyProfile-------------------------------------------- */
+.Memberfieldset{
+    border: 0px;
+}
+
+.dataContainer{
+    width: 33%;
+}
+.dataItem{
+    margin: 0.8rem;
+}
+
+.dataItem input{
+    float: right;
+    border: none;
+    width: 66%;
+}
+.dataItem textarea{
+    border: none;
+}
+.datawrap .dataContainer{
+    height: 600px;
+}
+
+
+
+
+
+/* ViewIA-------------------------------------------- */
+.div_IA_Title{
+    width:100%;
+    text-align: center;
+    background-color: var(--blue-color);
+ }
+ .div_IA_Title span{
+     font-size: 1.2rem;
+     color: var(--white-color);
+    
+ }
+
+.div_IA_Main{
+    display: flex;
+    position: relative;
+}
+
+.div_itemIA{
+    text-align: center;
+}
+
+
+/*------------------------左---------------------------*/
+.div_IA_left{
+    
+    width: 50%;
+    
+}
+
+.div_itemIA{
+    
+  margin: 0.8rem;
+}
+
+
+
+
+
+
+.div_IA_right{
+    background-color:var(--lightblue-color);
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30%;
+    text-align: center;
+}
+.div_PictureIA {
+    width: 80%;
+   
+}
+
+.img_PictureIA{
+    width: 100%;
+    height: auto;
+}
+.div_IA_MyActivityTitle{
+    width:100%;
+    text-align: center;
+    background-color: var(--blue-color);
+    color: var(--white-color);
+ }
+ .div_IA_MyActivityTitle span{
+     font-size: 1.2rem;
+ }
+
+
+
+
+
+
+
+/* ViewPOM-------------------------------------------- */
+.div_POM_Main{
+    display: flex;
+    position: relative;
+}
+
+    
+.div_itemPOM{
+    text-align: center;
+}
+
+/*------------------------左---------------------------*/
+.div_POM_left{
+    
+    width: 50%;
+    
+}
+
+.div_itemPOM{
+    
+  margin: 0.8rem;
+}
+
+
+
+
+
+
+.div_POM_right{
+    background-color:var(--lightblue-color);
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.div_PicturePOM {
+    width: 80%;
+   
+}
+.div_POM_right{
+    width: 30%;
+    text-align: center;
+}
+.img_PicturePOM {
+    width: 100%;
+    height: auto;
+}
+#showView3{
+    display: flex;
+}
+
+.div_POM_MyProductTitle{
+    width:100%;
+    text-align: center;
+    background-color: var(--blue-color);
+    color: var(--white-color);
+ }
+ .div_POM_MyProductTitle span{
+     font-size: 1.2rem;
+    
+ }
+
+
+
+/* memberpro-------------------------------------------- */
+#page_personal-maneger input{ width: 10rem;}
+#page_personal-maneger input:focus{
+    border: 0.1rem black solid;
+}
+
+.personal-maneger-header {
+    width: 1240px;
+    background-color: var(--lightgrey-color);
+    margin: auto;
+}
+
+.headerbox {
+    width: 100%;
+    display: flex;
+}
+
+.imgbox {
+    width: 45%;
+    display: flex;
+    border-right: 0.1rem solid #979494;
+}
+
+.imgbox img {
+    width: 10rem;
+    margin: 2rem;
+}
+
+.titlebox {
+    padding-top: 2rem;
+    padding-left: 2rem;
+}
+
+.titlebox h3 {
+    margin: 1rem 0;
+}
+
+.titlebox h4 {
+    margin: 1rem 0;
+}
+
+.titlebox span {
+    padding-right: 1rem;
+}
+
+.imgfile {
+    margin: 1rem 0;
+}
+
+.peoplefilebox {
+    width: 45%;
+    display: flex;
+}
+
+.peoplefilebox_right_items{
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+.peoplefilebox_left{
+    margin-top: 3rem;
+    margin-left: 8rem;
+}
+.peoplefilebox_left button{
+    margin-bottom: 2rem;
+    border: 0 solid transparent;
+    background-color: var(--white-color);
+    line-height: 3rem;
+    width: 7rem;
+}
+
+/* .icon_left {
+    margin: 0 10rem;
+}
+
+.iconbox {
+    margin-top: 2rem;
+    margin-left: 2rem;
+    display: flex;
+}
+
+.iconbox img {
+    width: 30px;
+    height: 30px;
+
+}
+
+.iconbox span {
+    justify-content: center;
+} 
+
+.peoplefile_img {
+    margin-right: 1rem;
+}
+
+.peoplefile_detail {
+    margin-top: 0.5rem;
+}*/
+
+#page_personal-maneger .container {
+    max-width: 1240px;
+    /* padding: 20px 0; */
+    margin: auto;
+    background-color: var(--lightgrey-color);
+}
+
+.bar-block {
+    margin: 10px 10px 5px 0;
+    display: flex;
+    width: 100%;
+    /* height: 500px; */
+}
+
+.activefocus{
+    background: var(--blue-color);
+}
+
+.baritembox {
+    
+    padding: 20px;
+    color: var(--lightgrey-color);
+    width: 30%;
+    /* border-radius: 0px 0px 0px 0px ; */
+    text-align: center;
+    transition: all 1s;
+    /* TODO: 顏色跟寬度就好 */
+
+}
+.bar-block a{
+    text-decoration: none;
+}
+.bar-item{
+    display: inline-block;
+    flex-grow: 1;
+}
+
+.baritembox{
+    width: 100%;
+    
+}
+.baritembox a {
+    
+    color: var(--whitel-color);
+}
+
+/* .baritembox:hover {
+    transform: scale(1.1); 
+    TEXT-DECORATION: none;
+    background-color: var(--pink-color);
+    background: linear-gradient(-35deg, transparent 45px, var(--pink-color) 0);
+    background: linear-gradient(-145deg, transparent 45px, var(--pink-color) 0);
+    z-index: 0;
+    background-repeat: no-repeat;
+} */
+
+.barcolor {
+    width: 100%;
+    background: var(--lightblue-color);
+    color: var(--whitle-color);
+}
+
+.procontent {
+    /* width: 70%;
+    margin: 20px 40px; */
+    border: 0.5rem solid var(--lightgrey-color);
+}
+/*------------商品-------------*/
+
+
+.grey {
+    color: var(--lightgrey-color);
+}
+
+
+.protitle {
+    background-color: var(--lightblue-color);
+    /* border: 0.5rem solid var(--lightgrey-color); */
+}
+
+.protitle h3 {
+    padding: 10px;
+    margin-bottom: 1rem;
+}
+
+
+  .btnstyle1{
+    background-color:black;
+    color:white;
+    font-size:0.8rem;
+    font-family:helvetica;
+    width: 4rem;
+  }
+  .btnstyle1:hover{
+    background-color:var(--lightgrey-color);
+    color:#222;
+    border: solid 0.15rem #222;
+
+  }
+  
+ 
+  
+  .btnstyle1:active{
+    background-color:white;
+    color:#222;
+  }  
+
+.activestyle{
+    background-color:pink !important;
+    z-index: 1000;
+    display: block;
+    /* background: linear-gradient(-35deg, transparent 45px, var(--pink-color) 0);
+    background: linear-gradient(-145deg, transparent 45px, var(--pink-color) 0); */
+}
+
+.btnpersonedit{
+    margin-left: 1rem;
+    /* padding-bottom:3rem; */
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border: 1px solid white;
+}
+
+.flex{
+    display: flex;
+}
