@@ -1,0 +1,128 @@
+.aboutUs_body {
+
+    background-color: var(--whitle-color);
+}
+
+.aboutUs_backimgbox {
+    /* height: 500px;
+    margin-bottom: 30px; */
+    /* position: relative; */
+    /* display: flex;
+    justify-content: center; */
+    /* margin-bottom: 2rem; */
+    overflow: hidden;
+    min-width: 1200px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.aboutUs_pd30 {
+    padding-left: 50px;
+    margin: 0 0 5rem 0;
+}
+
+.aboutUs_backimgbox img {
+    width: 100%;
+    /* height: 100%; */
+}
+
+.aboutUs_box {
+    width: 1200px;
+    text-align: left;
+    margin: auto;
+    /* background-color: white; */
+    padding-bottom: 5px;
+}
+
+.aboutUs_box h2 {
+    color: var(--blue-color);
+    font-weight: 700;
+    font-size: 40px;
+    padding: 10px;
+}
+
+.aboutUs_box span {
+    font-weight: 700;
+    padding: 10px;
+
+}
+
+.aboutUs_dflex {
+    display: flex;
+}
+
+.aboutUs_titlebox {
+    width: 280px;
+    margin-top: 20px;
+    padding: 10px 10px 20px 10px;
+    text-align: left;
+    border-right: 1px solid var(--black-color);
+}
+
+.aboutUs_titlebox h2 {
+    font-weight: 1000;
+    font-size: 40px;
+    color: var(--grey-color);
+    text-align: left;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+.aboutUs_titlebox p {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.aboutUs_wrapper {
+    width: 1200px;
+    text-align: center;
+    margin: auto;
+    background-color: var(--lightgrey-color);
+    /* background: linear-gradient( to left bottom ,transparent 50%,rgba(0,0,0,.4) 0 )no-repeat 100% 0 / 100px 100px ; */
+
+}
+
+.aboutUs_wrapper h2 {
+    padding: 15px 0;
+    font-weight: 700;
+}
+
+
+.aboutUs_dflex {
+    display: flex;
+    margin-bottom: 50px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+}
+
+.aboutUs_imgbox {
+    width: 200px;
+    height: auto;
+    margin: 0 60px;
+}
+
+.aboutUs_imgbox:hover {
+    transform: scale(1.2);
+}
+
+.aboutUs_imgbox img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.aboutUs_content {
+    width: 50%;
+    text-align: left;
+    /* display: inline-block; */
+    line-height: 20px;
+    margin: 0 40px;
+}
+
+.aboutUs_hr_style {
+    border: 1px var(--black-color) solid;
+}

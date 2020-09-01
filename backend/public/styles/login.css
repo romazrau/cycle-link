@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+/* 
+* {
+    margin:0;
+    padding:0;
+    
+} */
+
+.page_signIn * {
+    box-sizing: border-box;
+}
+
+.page_signIn {
+    font-family: 'Montserrat', sans-serif;
+    background: #f6f5f7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: -20px 0 50px;
+    margin-top: 20px;
+}
+
+.page_signIn h1 {
+    font-weight: bold;
+    margin: 0;
+}
+
+.page_signIn p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: .5px;
+    margin: 20px 0 30px;
+}
+
+.page_signIn span {
+    font-size: 12px;
+}
+
+.page_signIn a {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+}
+
+
+
+.page_signIn button {
+    border-radius: 20px;
+    border: 1px solid var(--blue-color);
+    background: var(--blue-color);
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+.page_signIn button:active {
+    transform: scale(.95);
+}
+
+.page_signIn button:focus {
+    outline: none;
+}
+
+.page_signIn button.Login_ghost {
+    background: transparent;
+    border-color: #fff;
+}
+
+
+
+
+
+
+
+
+
+.Login_container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .22);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+}
+
+.Login_form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all .6s ease-in-out;
+}
+
+.Login_form-container input {
+    background: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+}
+
+.Login_form-container form {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.Login_social-container {
+    margin: 20px 0;
+}
+
+.Login_social-container a {
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    height: 40px;
+    width: 40px;
+}
+
+.Login_overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform .6s ease-in-out;
+    z-index: 100;
+}
+
+.Login_overlay {
+    background: var(--blue-color);
+    background: linear-gradient(to right, var(--lightblue-color), var(--blue-color)) no-repeat 0 0 / cover;
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateY(0);
+    transition: transform .6s ease-in-out;
+}
+
+.Login_overlay-panel {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    height: 100%;
+    width: 50%;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform .6s ease-in-out;
+}
+
+.Login_overlay-right {
+    right: 0;
+    transform: translateY(0);
+}
+
+.Login_overlay-left {
+    transform: translateY(-20%);
+}
+
+
+.Login_sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.Login_sign-up-container {
+    left: 0;
+    width: 50%;
+    z-index: 1;
+    opacity: 0;
+}
+
+
+
+.Login_footer {
+    margin-top: 25px;
+    text-align: center;
+}
+
+
+.Login_icons {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    letter-spacing: 15px;
+    align-items: center;
+}
+
+
+/* Move signin to right */
+.Login_container.Login_right-panel-active .Login_sign-in-container {
+    transform: translateY(100%);
+}
+
+/* Move Login_overlay to left */
+.Login_container.Login_right-panel-active .Login_overlay-container {
+    transform: translateX(-100%);
+}
+
+/* Bring signup over signin */
+.Login_container.Login_right-panel-active .Login_sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+}
+
+/* Move Login_overlay back to right */
+.Login_container.Login_right-panel-active .Login_overlay {
+    transform: translateX(50%);
+}
+
+/* Bring back the text to center */
+.Login_container.Login_right-panel-active .Login_overlay-left {
+    transform: translateY(0);
+}
+
+/* Same effect for right */
+.Login_container.Login_right-panel-active .Login_overlay-right {
+    transform: translateY(20%);
+}
+
+/*認證區-----------*/
+/*勾選區*/
+.Login_CheckContainer {
+
+    display: flex;
+
+}
+
+.Login_CheckContainer span {
+
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+.Login_CheckBox {
+    background-color: #e9e2e2;
+    height: 1rem;
+    width: 1rem;
+
+}
+
+/*視窗-----------*/
+.Login_backgroundview {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.5;
+
+}
+
+/*圖片驗證容器*/
+.Login_checkviewcontainer {
+
+    display: none;
+    position: fixed;
+    top: 6rem;
+    left: 40rem;
+    z-index: 1000;
+    max-width: 30vw;
+    background-color: #e9e2e2;
+    border-radius: 1%;
+}
+
+.Login_imgLine {
+    display: flex;
+    justify-content: space-around;
+}
+
+.Login_checkimgbox {
+
+
+    margin-right: 0.1rem;
+    margin-bottom: 0.1rem;
+    height: auto;
+
+}
+
+.Login_checkimgbox img {
+    width: 100%;
+    height: auto;
+}
+
+.Login_checkviewtitle {
+    width: 100%;
+    background-color: #e9e2e2;
+}
+
+.Login_Show {
+    display: block;
+}
+
+/* .Login_select{
+    background-color: black;
+    opacity: 0.5;
+} */
+
+.Login_checkfooter {
+    float: right;
+}
+
+.Login_checkfooter input {
+    margin-right: 1rem;
+}

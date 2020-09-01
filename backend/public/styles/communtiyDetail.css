@@ -1,0 +1,912 @@
+/*******************共用 ******************/
+/* .Hiden{
+ display: none;}
+ */
+
+/* calendar */
+.calendarbody {
+  margin: 40px 10px;
+  padding: 0;
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+#calendar {
+  max-width: 1100px;
+  margin: 0 auto;
+  min-height: 800px;
+}
+
+hr {
+  border-top: 1px solid lightgrey;
+}
+
+.ShowMoreBtn {
+  border: 1px solid var(--grey-color);
+  background-color: var(--white-color);
+  border-radius: 10px;
+  width: 100%;
+  color: var(--grey-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+  outline: none;
+  transition: all 0.3s;
+}
+.IconOpacity {
+  /* opacity: 50%; */
+}
+
+.ShowMoreBtn:hover {
+  border: 1px solid var(--white-color);
+  background-color: var(--grey-color);
+  border-radius: 10px;
+  width: 100%;
+  color: var(--white-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+}
+
+.ShowMoreBtn:active {
+  border: 1px solid var(--grey-color);
+  background-color: var(--white-color);
+  border-radius: 10px;
+  width: 100%;
+  color: var(--grey-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+  outline: none;
+}
+
+.SeeMoreBtnforUnderCard {
+  width: 90%;
+  border: 1px solid var(--grey-color);
+  border-radius: 10px;
+  color: var(--grey-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.SeeMoreBtnforUnderCard:hover {
+  border: 1px solid var(--white-color);
+  background-color: var(--grey-color);
+  border-radius: 10px;
+  width: 90%;
+  color: var(--white-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+}
+
+.SeeMoreBtnforUnderCard:active {
+  border: 1px solid var(--grey-color);
+  background-color: var(--white-color);
+  border-radius: 10px;
+  width: 90%;
+  color: var(--grey-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+}
+
+.MarginLeft1rem {
+  margin-left: 1rem;
+}
+
+.GroupEnglishFont {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.Group_FontFamily {
+  font-family: monospace;
+  margin-top: 8rem;
+}
+
+.Group_reply {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 2rem;
+}
+
+.Group_FlexJustifyContentSB {
+  justify-content: space-between;
+}
+
+.FontSectionTitle {
+  font-family: monospace;
+  font-weight: 300;
+  font-size: 1.8rem;
+  margin-top: 50px;
+  justify-content: space-between;
+}
+.FontSectionText {
+  font-family: monospace;
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+  margin-top: 30px;
+}
+
+.ReadMoreLink {
+  font-size: 1rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 1.8rem;
+}
+
+.PositionRalative {
+  position: relative;
+}
+
+.DividedLine {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.Size20IconMarginRight {
+  margin-right: 10px;
+}
+
+.Size20IconMarginLeft {
+  margin-left: 10px;
+}
+
+.Container {
+  width: 75vw;
+  /* 置中 :上下0 左右auto*/
+  margin: 0 auto;
+}
+
+.FlexContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.DivForImg {
+  /* width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden; */
+}
+
+.GroupTopLeftW60 {
+  width: 60%;
+}
+
+.GroupTopRightW40 {
+  width: 40%;
+}
+
+.PaddingLeft50px {
+  margin-left: 50px;
+}
+
+.Group_FontFamily a:link {
+  color: black;
+  text-decoration: none;
+}
+
+/* 無法override a : visited*/
+.Group_FontFamily a:visited {
+  color: black;
+}
+
+.GroupLinkFocus {
+  border-bottom: 4px solid var(--blue-color);
+  color: var(--blue-color) !important;
+}
+
+.Icon20Color {
+  opacity: 0.5;
+}
+
+.SeeAll {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  color: var(--white-color);
+}
+
+.LeftSwitchCard {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: space-between;
+  /* align-content: space-between; */
+  /* padding-left: 1rem; */
+  border-radius: 8px;
+  font-size: 1rem;
+  /* margin-top: 2rem; */
+  height: 100px;
+}
+
+.GroupJustifyContentC {
+  justify-content: center;
+}
+.GroupAlignItemsC {
+  align-items: center;
+}
+
+.MessageBoxCover {
+  z-index: 2000;
+  background-color: #000000 0.3;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+}
+
+/******************* TOP ******************/
+.MiddleNavBar {
+  margin-bottom: 30px;
+  align-items: center;
+  /* display: flex;
+  justify-content: space-between; */
+}
+
+.share-text {
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.btn-event-shift {
+  padding: 0.5rem 0.8rem;
+  transition: all 0.5s;
+  color: var(--grey-color);
+  border: none;
+}
+
+.GroupNavBtn {
+  padding: 0.5rem 0.8rem;
+  transition: all 0.5s;
+  color: var(--grey-color);
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  /* border: 1px solid black; */
+  /* box-shadow: 0px 0px 20px 0.00001px #908888; */
+  padding: 1rem 2rem;
+  /* width: 200px; */
+  /* height: 100px; */
+  top: 3.9rem;
+  left: 0.1rem;
+  background-color: var(--grey-color);
+  color: white;
+  /* z-index: 100; */
+}
+
+.dropdown-triangle {
+  width: 0px;
+  height: 0px;
+  border-width: 15px;
+  left: 38%;
+  top: 2rem;
+  border-style: solid;
+  border-color: transparent transparent var(--grey-color) transparent;
+  position: absolute;
+  z-index: 100;
+}
+
+.GroupNavBtn:hover {
+  /* border: 1px solid none; */
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+  background-color: var(--lightgrey-color);
+  color: gray;
+}
+
+.GroupNavBtn {
+  cursor: pointer;
+}
+
+.GrayBackGround {
+  background-color: var(--lightgrey-color);
+  border-radius: 4px;
+  padding-bottom: 2rem;
+}
+
+.LinkBar {
+  font-size: 1.2rem;
+  font-family: monospace;
+  justify-content: space-between;
+  padding-right: 1rem;
+}
+
+.GroupTopMainPicDivForImg {
+  border-radius: 10px;
+  height: 300px;
+  overflow: hidden;
+}
+
+.GroupTopLeft {
+  max-width: 60%;
+  box-sizing: border-box;
+}
+
+.GroupTopRight {
+  max-width: 40%;
+  position: relative;
+  box-sizing: border-box;
+  padding-left: 60px;
+}
+
+.GroupTopEventName {
+  font-size: 2.5rem;
+  font-family: monospace;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.GroupTopRightEventInfoBox {
+  font-family: monospace;
+}
+
+.Boldtitle {
+  font-weight: bold;
+}
+
+.GroupBottomMainMember {
+  margin-top: 2rem;
+  /* 沒作用 */
+}
+
+.g {
+  margin-top: 2rem;
+}
+.GroupDiveBtn {
+  padding-left: 50px;
+  width: 40%;
+  justify-content: flex-end;
+}
+
+.GroupDiveBtnText {
+  padding: 0 0.5rem 0 1rem;
+}
+
+.share-text-div {
+  align-items: flex-end;
+}
+
+/******************* MIDDLE ******************/
+
+.LO:hover {
+  border-left: 0.4rem solid var(--blue-color);
+  color: var(--blue-color) !important;
+  padding-left: 0.5rem;
+  /* margin-top: 0.8rem; */
+}
+
+.LO {
+  border-left: 0.4rem solid var(--white-color);
+
+  padding-left: 0.5rem;
+  /* margin-top: 0.8rem; */
+}
+
+.LC {
+  border-left: 0.4rem solid var(--blue-color);
+  color: var(--blue-color) !important;
+  padding-left: 0.5rem;
+  /* margin-top: 0.8rem; */
+}
+
+.GroupLink > a {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0.2rem 0;
+}
+
+.GroupLink > a:hover {
+  display: inline-block;
+  box-sizing: border-box;
+  /* padding: 0.2rem 0; */
+  border-bottom: 4px solid var(--blue-color);
+  color: var(--blue-color);
+}
+
+.GroupRightInfoText {
+  /* text-align: center;
+  justify-content: center; */
+  align-items: center;
+}
+
+.GroupMemberPic {
+  margin-bottom: 1rem;
+}
+
+.GroupHolderName {
+  margin-right: 0.5rem;
+}
+
+.card {
+  background-color: var(--white-color);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.GroupBottomCardTime {
+  font-family: monospace;
+  font-size: 1.2rem;
+  color: var(--blue-color);
+}
+
+.GroupBottomCardEventName {
+  font-family: monospace;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.GroupBottomCardLocation {
+  font-family: monospace;
+  font-size: 1.2rem;
+  color: var(--grey-color);
+}
+
+.GroupBottomCardDD {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.GroupCardBtn {
+  background-color: var(--white-color);
+  border: 1px solid var(--blue-color);
+  border-radius: 10px;
+  padding: 10px 15px;
+  color: var(--blue-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 0.5rem 2rem;
+  align-self: flex-end;
+  transition: all 0.3s;
+
+  outline: none;
+}
+
+.GroupCardBtn:focus {
+  outline: 0;
+}
+.ShowMoreBtn:focus {
+  outline: 0;
+}
+.SeeMoreBtnforUnderCard:focus {
+  outline: 0;
+}
+
+.GroupCardBtn:hover {
+  background-color: var(--blue-color);
+  border: 1px solid var(--white-color);
+  border-radius: 10px;
+  padding: 10px 15px;
+  color: var(--white-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 0.5rem 2rem;
+  align-self: flex-end;
+}
+
+.GroupCardBtn:active {
+  background-color: var(--white-color);
+  border: 1px solid var(--blue-color);
+  color: var(--blue-color);
+}
+
+.GroupRightInfoPhotoContainer {
+  margin-top: 2rem;
+}
+
+.GoupRightInfoPhoto {
+  margin-right: 0.5rem;
+}
+
+/******************* BOTTOM ******************/
+
+.body-community-detail-discussion {
+  position: fixed;
+  background-color: #939393 0.5;
+}
+
+.EventBottom {
+  margin-top: 2rem;
+}
+
+.HashBtn {
+  background-color: var(--lightgrey-color);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+.GroupRightHash {
+  margin-top: 2rem;
+}
+
+.GroupEventBtnText {
+  margin-top: 25px;
+}
+
+.GroupBottomLeft {
+  max-width: 60%;
+  box-sizing: border-box;
+  padding-right: 0rem;
+}
+
+.GroupBottomRight {
+  width: 30%;
+  /* margin-left: 1px */
+  padding-left: 50px;
+}
+
+.EventBottomLeft {
+  width: 30%;
+}
+
+.MemberBottomLeft {
+  width: 30%;
+  box-sizing: border-box;
+  padding-right: 2rem;
+}
+.MemberBottomRight {
+  width: 70%;
+}
+
+.EventBottomRight {
+  width: 70%;
+  padding-left: 1rem;
+  box-sizing: border-box;
+}
+
+.BottomRightSearchList {
+  width: 100%;
+  /* height:100px; 不要設高度才有顏色*/
+  background-color: var(--white-color);
+  border-radius: 8px;
+  padding: 1rem 2rem;
+}
+
+.BottomLeftInfoCard {
+  width: 95%;
+  padding: 1.2rem 0;
+
+  /* height: 100px; */
+
+  /* margin: auto; */
+}
+
+.EventCardBottom {
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.BottomRightInfoCard {
+  width: 90%;
+  margin-bottom: 20px;
+  background-color: var(--white-color);
+  padding: 2rem 2rem;
+  /* height: 100px; */
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.DiscussionBottomInputBox {
+  background-color: gray;
+}
+.GroupTopRightEventInfoBoxBottom {
+  bottom: 0px;
+  position: absolute;
+}
+
+.Photo {
+  box-sizing: border-box;
+  border-radius: 10px;
+  /* margin: 5px; */
+  width: 33%;
+  /* 固定長寬 */
+}
+
+.MessageBox {
+  background-color: var(--white-color);
+  padding: 1rem 1rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.SearchBox {
+  background-color: #e4e3e3;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.PhotoBox {
+  margin-top: 30px;
+}
+
+.Photo {
+  margin: 2px 2px;
+}
+
+.LeaveMessage {
+  width: 75%;
+  height: 3rem;
+  background-color: var(--lightgrey-color);
+  border: 1px solid var(--grey-color);
+  border-radius: 4px;
+  color: var(--grey-color);
+  padding-left: 20px;
+}
+
+.LeaveMessageRight {
+  width: 85%;
+  height: 3rem;
+  background-color: var(--white-color);
+  /* border: 1px solid var(--grey-color); */
+  border-radius: 4px;
+  color: var(--grey-color);
+  border: none;
+  padding-left: 20px;
+  /* margin-left: 0.5rem; */
+}
+
+.FontSectionTitleRight {
+  font-family: monospace;
+  font-weight: 300;
+  font-size: 1.8rem;
+}
+
+.RightPartTopInfo {
+  align-items: center;
+}
+
+.SeeAllRight {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  color: var(--blue-color);
+}
+
+.FontSectionTitleMessage {
+  font-family: monospace;
+  font-weight: 300;
+  font-size: 1.8rem;
+  margin-top: 1rem;
+
+  justify-content: space-between;
+}
+
+.GroupMessageCardTime {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  margin-left: 1rem;
+  color: var(--grey-color);
+}
+
+.GroupMessageCardName {
+  font-size: 1.2rem;
+  margin-left: 1rem;
+}
+
+.GroupMessageCardNotion {
+  margin-left: 1rem;
+}
+
+.MessagePost {
+  padding: 1rem 2rem;
+}
+
+.GroupMessageCardText {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 1rem;
+}
+
+.GroupInfoNotion {
+  font-size: 1.5rem;
+}
+
+.Group_replyNumReplies {
+  margin-left: 0.5rem;
+}
+
+.GroupRight {
+  margin-top: 30px;
+}
+
+.GroupRightInfo {
+  margin-left: 15px;
+  font-size: 1rem;
+}
+
+.GroupRightInfoM {
+  font-size: 0.8rem;
+}
+
+.GroupMemberSearch {
+  padding-bottom: 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-bottom: 1px solid var(--lightgrey-color);
+}
+
+.GroupMemberBottomRightInfoCard {
+  width: 90%;
+  margin-bottom: 20px;
+  background-color: var(--white-color);
+  padding: 2rem 2rem;
+  /* height: 100px; */
+  border-radius: 8px;
+  display: flex;
+}
+
+.GroupMemberBottomRightMemberCard {
+  margin: 2rem 0;
+
+  background-color: var(--white-color);
+
+  /* height: 100px; */
+  border-radius: 8px;
+  display: flex;
+}
+
+.GroupMemberBottomRightInfoCardText {
+  margin-right: 1rem;
+}
+
+.GroupMemberSort {
+  color: var(--grey-color);
+}
+
+.Size20IconOpacity {
+  opacity: 0.5;
+}
+
+.GroupMemberCardInfo {
+  margin-left: 1rem;
+}
+
+.Rotate90 {
+  transform: rotate(90deg);
+}
+.GroupMemberSearchInput {
+  width: 100%;
+  box-sizing: border-box;
+  display: inline-block;
+  margin-top: 2rem;
+  height: 3rem;
+}
+::placeholder {
+  color: var(--grey-color);
+  padding-left: 1rem;
+}
+
+.GroupEventMemberCard {
+  margin-top: 2rem;
+}
+
+.GroupDiscussion {
+  /* display: flex; */
+  /* flex-direction: column; */
+  box-sizing: border-box;
+}
+
+.GroupMemberSeeAllBtn {
+  box-sizing: border-box;
+  text-align: center;
+  border: 1px solid var(--grey-color);
+
+  border-radius: 10px;
+  width: 100%;
+  color: var(--grey-color);
+  font-size: 1rem;
+  margin-top: 25px;
+  padding: 1rem;
+}
+
+.group_margin_bottom {
+  margin-bottom: 2rem;
+}
+
+.group_maneger_img {
+  height: 3rem;
+}
+
+.DiscussionLeft {
+  width: 60%;
+}
+
+.DiscussionRight {
+  width: 40%;
+  padding-left: 60px;
+}
+
+.GroupDiscussionTitle {
+  width: 100%;
+}
+
+.GroupSearchIcon {
+  margin: 0;
+}
+
+/* *photo flow  ----------------------------------------- */
+.photo_flow_container {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding-top: 2rem;
+}
+
+.photo_flow_col {
+  margin: 0 0.5rem;
+  /* background-color: antiquewhite; */
+  flex-grow: 1;
+  flex-basis: 50vw;
+}
+
+.photo_flow_card {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.photo_flow_card_img {
+  border-radius: 5px;
+  width: 100%;
+}
+
+.photo_flow_card_wrapper {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000017;
+  position: absolute;
+  top: 0;
+}
+
+.photo_flow_card_wrapper:hover {
+  opacity: 1;
+}
+
+.photo_flow_card_msg {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.5rem 0.5rem;
+  border-radius: 2rem;
+  background-color: #ffffff;
+}
+
+.GroupDiveBtn img {
+  opacity: 50%;
+}
+
+.Group_detail_Societies_img_div {
+  position: relative;
+  top: 3px;
+  left: 3px;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 50%;
+  /* border: 1px solid var(--lightgrey-color); */
+}
+
+.Group_detail_Societies_img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 抓來的 */

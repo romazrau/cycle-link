@@ -1,0 +1,158 @@
+@import "./var.css";
+
+
+.page_signUp {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 80vh;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #8fc1e32f;
+}
+
+
+.signUp_top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.signUp_top>p {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+
+
+.form_signUp {
+    width: 80vw;
+    max-width: 1000px;
+    box-sizing: border-box;
+    border-radius: 0;
+    padding: 1.5rem 2rem 1.5rem 2rem;
+    background-color: var(--lightgrey-color);
+    box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.form_signUp_left {
+    max-width: 400px;
+    flex-basis: auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_signUp_right {
+    max-width: 400px;
+    flex-basis: auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.signUp_inputBlock {
+    /* lab 、 input區塊 */
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+    width: 80%;
+}
+
+.signUp_inputBlock>input,
+.signUp_inputBlock>select,
+.signUp_bithday>select {
+    /* input、select區塊 */
+    margin-top: 0.5rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    border: 1px solid rgb(177, 177, 177);
+    border-radius: 3px;
+}
+
+.signUp_inputBlock>input:focus,
+.signUp_inputBlock>select:focus,
+.signUp_bithday>select:focus {
+    /* input、select區塊focus */
+    border-color: #0366d6;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(3, 102, 214, .3);
+}
+
+
+.signUp_bithday>select {
+    min-width: 3.5rem;
+}
+
+
+
+.signUp_submit {
+    padding-top: 0.7rem;
+    width: 80%;
+}
+
+.signUp_submit>input {
+    /* sign in 按鈕區塊  */
+    position: relative;
+    width: 100%;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    background-color: var(--lightblue-color);
+    border: 0;
+
+    transition: all 0.5s;
+}
+
+
+.signUp_submit>input:hover {
+    top: -1px;
+    left: -1px;
+    background-color: var(--blue-color);
+    color: var(--white-color);
+}
+
+
+.text_switch2signIn {
+    padding-top: 1.5rem;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.text_switch2signIn>a {
+    text-decoration: none;
+    color: blue;
+}
+
+.text_switch2signIn>a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+.login_bullhorn {
+    margin-right: 2rem;
+}
+
+#header_link_login {
+    display: flex;
+    align-items: center;
+}
+
+#header_link_login p {
+    margin: 0;
+}
