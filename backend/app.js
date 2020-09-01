@@ -13,7 +13,11 @@ const cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var postRouter = require('./routes/post');
+<<<<<<< HEAD
+var activeRouter = require('./routes/active');
+=======
 var mapRouter = require('./routes/map');
+>>>>>>> 4f0645f54f6b3310d49f7ebf19ff8c017f5c2892
 
 
 
@@ -63,7 +67,12 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postRouter);
+<<<<<<< HEAD
+app.use('/active',activeRouter);
+
+=======
 app.use('/map',mapRouter);
+>>>>>>> 4f0645f54f6b3310d49f7ebf19ff8c017f5c2892
 
 
 

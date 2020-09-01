@@ -113,7 +113,7 @@ function ClsActivity() {
     var btncitydetial = document.getElementById("search_citydetial");
     btncity.addEventListener('click', function () {
         btncity.classList.add("search_hidden");
-        // btncitydetial.classList.remove("search_hidden");
+        btncitydetial.classList.remove("search_hidden");
         $("#search_citydetial").fadeIn("5000");
     });
     var list = document.getElementsByTagName("li");
@@ -132,8 +132,8 @@ function ClsActivity() {
     var btndatedetial = document.getElementById("search_datedetial");
     btndate.addEventListener('click', function () {
         btndate.classList.add("search_hidden");
-        // btndatedetial.classList.remove("search_hidden");
         $("#search_datedetial").fadeIn("5000");
+        btndatedetial.classList.remove("search_hidden");
     });
 
     // 抓時間
@@ -182,7 +182,6 @@ function ClsActivity() {
             //  設置一個最大的可選日期。可以是Date對象，或者是數字（從今天算起，例如+7），
             //或者有效的字符串('y'代表年, 'm'代表月, 'w'代表周, 'd'代表日, 例如：'+1m +7d')。
             maxDate: "+1m"
-
         });
 
 
