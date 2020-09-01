@@ -8,8 +8,11 @@ const cors = require('cors');
 
 
 // *路由引入
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var postRouter = require('./routes/post');
+var mapRouter = require('./routes/map');
+
 
 
 const app = express();
@@ -55,6 +58,8 @@ app.use(session({
 // *路由區，把路由分給哪個檔案
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/posts', postRouter);
+app.use('/map',mapRouter);
 
 
 
