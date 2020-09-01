@@ -1,16 +1,17 @@
-const rootURL = "https://localhost:44398/";
+const rootURL = "http://localhost:3050";
 
 
 const serverURL = {
     root: rootURL,
-    login: `${rootURL}Account/Login`
+    login: `${rootURL}/users/`
 };
 
-document.cookie = "test1=requestHadThis";
+
 
 const checkLogin = () =>
     fetch(serverURL.login , {
         // 攜帶身分認證
+        method: 'GET',
         cache: 'no-cache',
         credentials: 'include',
         mode: 'cors', 

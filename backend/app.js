@@ -1,19 +1,25 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var session = require('express-session');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const session = require('express-session');
+const cors = require('cors');
+
 
 // *路由引入
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var postRouter = require('./routes/post');
+<<<<<<< HEAD
 var activeRouter = require('./routes/active');
+=======
+var mapRouter = require('./routes/map');
+>>>>>>> 4f0645f54f6b3310d49f7ebf19ff8c017f5c2892
 
 
 
-var app = express();
+const app = express();
 
 
 
@@ -36,14 +42,33 @@ app.use(session({
     maxAge: 1000 * 60 * 30, // 設定 session 的有效時間，單位毫秒
   },
 }));
+// cors
+// const whitelist = ['http://127.0.0.1:5501/', 'http://127.0.0.1:5500/', undefined];
+// const corsOptions = {
+//   credentials: true,
+//   origin: function (origin, callback){
+//     console.log('origin: '+origin);
+//     if(whitelist.indexOf(origin) !== -1){
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'))
+//     }
+//   }
+// }
+// app.use(cors(corsOptions));
+
 
 
 // *路由區，把路由分給哪個檔案
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postRouter);
+<<<<<<< HEAD
 app.use('/active',activeRouter);
 
+=======
+app.use('/map',mapRouter);
+>>>>>>> 4f0645f54f6b3310d49f7ebf19ff8c017f5c2892
 
 
 
