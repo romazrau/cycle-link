@@ -130,5 +130,5 @@ function ClsPersonalPage(){
 
 //預設testbtn 這個class頁面一加載後執行click();的動作。也就是點擊了testbtn有這個class的按鈕來執行上方寫的function 
 const PersonalPage = new ClsPersonalPage();
-var mybtn = document.getElementsByClassName("personal_testbtn")[0];
-    mybtn.click();
+// var mybtn = document.getElementsByClassName("personal_testbtn")[0];
+//     mybtn.click();
