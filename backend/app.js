@@ -9,7 +9,7 @@ var session = require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var postRouter = require('./routes/post');
-
+var activityDetailRouter = require('./routes/activity_detail');
 
 
 var app = express();
@@ -23,13 +23,15 @@ app.set('view engine', 'jade');
 //middleware
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //session
 app.use(session({
   secret: 'DayDayLuLuDaDaMiMiJJTenTen', // 對session id 相關的cookie 進行簽名
-  resave: true,      // 沒變更內容是否強制回存
+  resave: true, // 沒變更內容是否強制回存
   saveUninitialized: false, // 是否儲存未初始化的會話
   cookie: {
     maxAge: 1000 * 60 * 30, // 設定 session 的有效時間，單位毫秒
@@ -41,7 +43,7 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postRouter);
-
+app.use('/activityDetail', activityDetailRouter);
 
 
 
