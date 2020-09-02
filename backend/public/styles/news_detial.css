@@ -1,0 +1,83 @@
+
+.newsDe_main {
+    margin: 0px auto;
+    padding-top: 2rem;
+    width: 45%;
+}
+.newsDe_writer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.newsDe_writer_info_left {
+    padding-top: 2rem;
+    position: absolute;
+    left: 5rem;
+    height: 30rem;
+    width: 13rem;
+}
+.newsDe_writer_info_left i{
+    margin-top: 3rem;
+    margin-right: 0.5rem;
+}
+.newsDe_writer_info_left_span{
+    color: gray;
+}
+.newsDe_writer_info{
+    display: flex;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+.newsDe_writer_info a{
+    text-decoration: none;
+    color: black;
+}
+.newsDe_writer_info span{
+    color: gray;
+    font-size: 14px;
+}
+.newsDe_writer_info img{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--lightblue-color);
+    padding: 3px;
+    margin-right: 1rem;
+}
+.newsDe_main figure img{
+    width: 100%;
+}
+.newsDe_main figcaption{
+    text-align: center;
+    margin-bottom: 1rem;
+    color: gray;
+}
+.newsDe_main h1{
+    margin-bottom: 1rem;
+}
+.newsDe_main h2{
+    color: gray;
+    margin-bottom: 2rem;
+}
+.newsDe_main p{  
+    margin-bottom: 2rem;
+    line-height: 2rem;
+    /* text-align: justify; */
+    font-size: 22px;
+}
+.newsDe_tag{
+    margin-bottom: 10rem;
+}
+.newsDe_tag li{
+    float: left;
+    margin-right: 1rem;
+    padding: 0.5rem;
+    background-color: var(--lightgrey-color);
+    list-style-type: none;
+}
+.newsDe_tag a{
+    text-decoration: none;
+    color: gray;
+}
+
+

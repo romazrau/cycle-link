@@ -13,6 +13,7 @@ router.get('/', async function(req, res, next) {
     let result = await Sql.postlist();
     // 物件用json格式回傳
     // 可以整理一下，刪掉不必要的資料再回傳
+    console.dir(result.recordset)
     res.json(result);
 
   }catch(err){
@@ -28,7 +29,6 @@ router.get('/:id', async function(req, res, next) {
     // 物件用json格式回傳
     // 可以整理一下，刪掉不必要的資料再回傳
     res.json(result);
-
   }catch(err){
     res.send(err);
   } 

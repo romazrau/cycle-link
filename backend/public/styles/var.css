@@ -1,0 +1,12 @@
+:root{
+    --green-color:#499854;
+    --blue-color:#31708E;
+    --lightblue-color:#8FC1E3;
+    --pink-color:#D9AAB7;
+    --lightgrey-color: #f1f1f1;
+    --grey-color:#979494;
+    --black-color:#000000;
+    --white-color:#FFFFFF;
+    /*使用方法 background-color: var(--black-color);*/
+}
+

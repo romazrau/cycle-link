@@ -3,6 +3,8 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const bodyParser = require("body-parser");
+
 const session = require("express-session");
 const cors = require("cors");
 
@@ -10,8 +12,9 @@ const cors = require("cors");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var postRouter = require("./routes/post");
+var activityDetailRouter = require("./routes/activity_detail");
 var mapRouter = require("./routes/map");
-var articleRouter = require("./routes/article");
+var activeRouter = require("./routes/active");
 
 const app = express();
 
@@ -22,9 +25,19 @@ app.set("view engine", "jade");
 //middleware
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(
+  express.urlencoded({
+    extended: false,
+  })
+);
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+  })
+);
+app.use(bodyParser.json());
 //session
 app.use(
   session({
@@ -55,8 +68,9 @@ app.use(
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/posts", postRouter);
+app.use("/activityDetail", activityDetailRouter);
 app.use("/map", mapRouter);
-app.use("/article", articleRouter);
+app.use("/active", activeRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
