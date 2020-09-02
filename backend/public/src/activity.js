@@ -1,3 +1,5 @@
+import { serverURL } from "./api.js";
+
 function ClsActivity() {
 
     // *second nav bar
@@ -36,28 +38,67 @@ function ClsActivity() {
 
     const htmlActSearch = (o) => {
         return ` 
-        <option value="clearsea">${o.tag}</option>`;
+        <option value="clearsea">${o.flabel}</option>`;
     }
     const ActSearch = document.querySelector("#activity_option");
 
 
-    let ActSearchData = [{
-            tag: "淨海"
-        },
-        {
-            tag: "淨山"
-        },
-        {
-            tag: "路跑"
-        },
-    ]
+    
 
-    ActSearchData.map(
-        (e, index) => {
-            ActSearch.innerHTML += htmlActSearch(e);
+
+
+
+    // let ActSearchData = [{
+    //     tag: "淨海"
+    // },
+    // {
+    //     tag: "淨山"
+    // },
+    // {
+    //     tag: "路跑"
+    // },
+    // ]
+
+    display_active_main_level(o)
+    {
+        o.map(
+            (e, index) => {
+                ActSearch.innerHTML += htmlActSearch(e);
+            }
+        )
+    }
+    
+
+    const activemainlevelAwait = async () => {
+        try {
+            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+            // *用變數接 fetch 結果 ，要用await等。
+            let response = await fetch(serverURL.activemainlevel, {
+                method: "GET", // http request method 
+                headers: { // http headers
+                    'Content-Type': 'application/json' // 請求的資料類型
+                },
+                // 以下跟身分認證有關，後端要使用session 要帶這幾項
+                cache: 'no-cache',
+                credentials: 'include',
+            });
+            // 用變數接 fetch結果的資料內容， 要用await等。
+            let result = await response.json();
+            console.group("active await");
+            console.log("active awai: ", result.msg);
+            console.log(result.data);
+            console.groupEnd("active await");
+            display_active_main_level(result.data);
+            // *用 result  do something ...
+
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+
         }
-    )
+    }
 
+    activemainlevelAwait();
 
     //*進階搜尋區 ---------------------------------------------------------
     //show
@@ -208,25 +249,20 @@ function ClsActivity() {
 
 
 
-
-
-
-
-    //* ------------------------------------- 文字樣板 -------------------------------------
-    this.htmlActCard = (o) => {
+    const htmlActCard = (o) => {
         return ` 
     <div class="active_card_container">
         <div class="active_card" >
             <i class="fas fa-heart fa-lg active_card_heart"></i>
             <div class="active_card_div">
-                <img src="${o.imgPath}" alt="" class="active_card_img">
+                <img src="${o.fImgPath}" alt="" class="active_card_img">
             </div>
             <div class="active_card_info">
-                <p>${o.date}</p>
-                <p class="active_card_title">${o.title}</p>
+                <p>${o.fActivityDate}</p>
+                <p class="active_card_title">${o.fActName}</p>
                 <div class="active_card_location_div">
                     <img src="img/929497.svg" class="active_card_location">
-                    <p>${o.local}</p>
+                    <p>${o.fActLocation}</p>
                 </div>
             </div>
         </div>
@@ -235,8 +271,62 @@ function ClsActivity() {
     }
 
 
+    //ActCardData
+    //* ------------------------------------- 文字樣板 -------------------------------------
+    const display_active = (o) => {
 
-    // const htmlActCard = (o) => {
+        // for(let i=0;i<o.length;i++)
+        // {
+        //     ActCard.innerHTML +=this.htmlActCard(o[i]);
+        // }
+        console.group("display_active map");
+        o.map(
+            (e, index) => {
+                console.log(e);
+
+                // console.log(e);
+                ActCard.innerHTML += htmlActCard(e);
+            }
+        )
+        console.groupEnd("display_active map");
+
+    }
+
+
+
+    const activeAwait = async () => {
+        try {
+            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+            // *用變數接 fetch 結果 ，要用await等。
+            let response = await fetch(serverURL.active, {
+                method: "GET", // http request method 
+                headers: { // http headers
+                    'Content-Type': 'application/json' // 請求的資料類型
+                },
+                // 以下跟身分認證有關，後端要使用session 要帶這幾項
+                cache: 'no-cache',
+                credentials: 'include',
+            });
+            // 用變數接 fetch結果的資料內容， 要用await等。
+            let result = await response.json();
+            console.group("active await");
+            console.log("active awai: ", result.msg);
+            console.log(result.data);
+            console.groupEnd("active await");
+            display_active(result.data);
+            // *用 result  do something ...
+
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+
+        }
+    }
+
+    activeAwait();
+
+
+    // const htmlActCard= (o) => {
     //     return ` 
     // <div id="ActCard" class="activity_event_card">
     // <img src="${o.imgPath}" class="activity_event_img" alt="">
@@ -254,63 +344,59 @@ function ClsActivity() {
     const ActCard = document.querySelector("#activity_event_top");
 
     //AJAX
-    let ActCardData = [{
-            imgPath: "img/event5.jpg",
-            date: "2020/08/09",
-            title: "國家地理路跑 - 世界地球日50週年",
-            count: 999,
-            member: "林志引",
-            local: "大佳河濱公園"
-        },
-        {
-            imgPath: "img/event6.png",
-            date: "2020/09/15",
-            title: "世界環境清潔日 - 相約海洋淨灘",
-            count: 100,
-            member: "王曉明",
-            local: "新金山海灘"
-        },
-        {
-            imgPath: "img/event3.jpg",
-            date: "2020/09/26",
-            title: "魚取漁囚 - 守護海洋行動體驗特展",
-            count: 99,
-            member: "洲仔於",
-            local: "布袋漁港"
-        },
-        {
-            imgPath: "img/event7.jpg",
-            date: "2020/09/06",
-            title: "臉部平權運動臺北國道馬拉松",
-            count: 500,
-            member: "時間管理大師",
-            local: "中山高速公路五股 - 汐止高架段"
-        },
-        {
-            imgPath: "img/event12.png",
-            date: "2020/10/03",
-            title: "環保潛水隊-隊員招募中",
-            count: 500,
-            member: "時間管理大師",
-            local: "東北角 - 龍洞"
-        },
-        {
-            imgPath: "img/event8.png",
-            date: "2020/11/04",
-            title: "PUMA - 螢光夜跑",
-            count: 500,
-            member: "時間管理大師",
-            local: "大佳河濱公園"
-        }
 
-    ]
+    //     imgPath: "img/event5.jpg",
+    //     date: "2020/08/09",
+    //     title: "國家地理路跑 - 世界地球日50週年",
+    //     count: 999,
+    //     member: "林志引",
+    //     local: "大佳河濱公園"
+    // },
+    // {
+    //     imgPath: "img/event6.png",
+    //     date: "2020/09/15",
+    //     title: "世界環境清潔日 - 相約海洋淨灘",
+    //     count: 100,
+    //     member: "王曉明",
+    //     local: "新金山海灘"
+    // },
+    // {
+    //     imgPath: "img/event3.jpg",
+    //     date: "2020/09/26",
+    //     title: "魚取漁囚 - 守護海洋行動體驗特展",
+    //     count: 99,
+    //     member: "洲仔於",
+    //     local: "布袋漁港"
+    // },
+    // {
+    //     imgPath: "img/event7.jpg",
+    //     date: "2020/09/06",
+    //     title: "臉部平權運動臺北國道馬拉松",
+    //     count: 500,
+    //     member: "時間管理大師",
+    //     local: "中山高速公路五股 - 汐止高架段"
+    // },
+    // {
+    //     imgPath: "img/event12.png",
+    //     date: "2020/10/03",
+    //     title: "環保潛水隊-隊員招募中",
+    //     count: 500,
+    //     member: "時間管理大師",
+    //     local: "東北角 - 龍洞"
+    // },
+    // {
+    //     imgPath: "img/event8.png",
+    //     date: "2020/11/04",
+    //     title: "PUMA - 螢光夜跑",
+    //     count: 500,
+    //     member: "時間管理大師",
+    //     local: "大佳河濱公園"
+    // }
 
 
-    ActCardData.map(
-        (e, index) => {
-            ActCard.innerHTML += this.htmlActCard(e);
-        }
-    )
+
+
+
 
 
     //------------------------------------------------------
@@ -330,36 +416,36 @@ function ClsActivity() {
 
     //AJAX
     let ActCardData2 = [{
-            imgPath: "img/event9.jpg",
-            date: "2020/11/19",
-            title: "城市獵人 - 生態公園夜觀",
-            count: 999,
-            member: "彌勒佛",
-            local: "玉山國家公園"
-        },
-        {
-            imgPath: "img/event10.jpg",
-            date: "2020/08/20",
-            title: "綠的手作坊 - 漂流木新生命",
-            count: 999,
-            member: "彌勒佛",
-            local: "紅樹林"
-        },
-        {
-            imgPath: "img/event11.png",
-            date: "2020/10/16",
-            title: "海洋危機，拯救機會",
-            count: 999,
-            member: "彌勒佛",
-            local: "烏石港"
-        }
+        imgPath: "img/event9.jpg",
+        date: "2020/11/19",
+        title: "城市獵人 - 生態公園夜觀",
+        count: 999,
+        member: "彌勒佛",
+        local: "玉山國家公園"
+    },
+    {
+        imgPath: "img/event10.jpg",
+        date: "2020/08/20",
+        title: "綠的手作坊 - 漂流木新生命",
+        count: 999,
+        member: "彌勒佛",
+        local: "紅樹林"
+    },
+    {
+        imgPath: "img/event11.png",
+        date: "2020/10/16",
+        title: "海洋危機，拯救機會",
+        count: 999,
+        member: "彌勒佛",
+        local: "烏石港"
+    }
 
     ]
 
 
     ActCardData2.map(
         (e, index) => {
-            ActCard2.innerHTML += this.htmlActCard(e);
+            ActCard2.innerHTML += htmlActCard(e);
         }
     )
 
@@ -371,34 +457,34 @@ function ClsActivity() {
     const HisAct = document.querySelector("#activity_event_history")
 
     let HisActData = [{
-            imgPath: "img/event2.jpg",
-            date: "2020/09/26",
-            title: "螢光夜跑",
-            count: 100,
-            member: "王曉明",
-            local: "新北大道"
-        },
-        {
-            imgPath: "img/event3.jpg",
-            date: "2020/09/26",
-            title: "潛水撿垃圾，愛海洋！",
-            count: 99,
-            member: "洲仔於",
-            local: "布袋漁港"
-        },
-        {
-            imgPath: "img/event4.jpg",
-            date: "2020/09/26",
-            title: "飢餓三十！",
-            count: 500,
-            member: "時間管理大師",
-            local: "桃園"
-        }
+        imgPath: "img/event2.jpg",
+        date: "2020/09/26",
+        title: "螢光夜跑",
+        count: 100,
+        member: "王曉明",
+        local: "新北大道"
+    },
+    {
+        imgPath: "img/event3.jpg",
+        date: "2020/09/26",
+        title: "潛水撿垃圾，愛海洋！",
+        count: 99,
+        member: "洲仔於",
+        local: "布袋漁港"
+    },
+    {
+        imgPath: "img/event4.jpg",
+        date: "2020/09/26",
+        title: "飢餓三十！",
+        count: 500,
+        member: "時間管理大師",
+        local: "桃園"
+    }
     ]
 
     HisActData.map(
         (e, index) => {
-            HisAct.innerHTML += this.htmlActCard(e);
+            HisAct.innerHTML += htmlActCard(e);
         }
     )
 
@@ -415,6 +501,9 @@ function ClsActivity() {
             )
         }
     )
+
+
 }
 
 const Activity = new ClsActivity();
+

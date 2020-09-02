@@ -6,7 +6,8 @@ const serverURL = {
     login: `${rootURL}/users/`,
     test: `${rootURL}/test/`,
     postslist: `${rootURL}/posts/`,
-
+    active : `${rootURL}/active/`,
+    activemainlevel:`${rootURL}/active/searchmainlevel/`
 };
 
 
@@ -79,7 +80,7 @@ const postlist = async () => {
 
     }
 }
-postlist()
+// postlist()
 
 
 const postByid = async (id) => {
@@ -99,7 +100,7 @@ const postByid = async (id) => {
 
     }
 }
-postByid(1)
+// postByid(1)
 
 
 
