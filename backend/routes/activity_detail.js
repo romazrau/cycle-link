@@ -1,6 +1,8 @@
 // 套件引用
 var express = require('express');
 var router = express.Router();
+var session = require('express-session');
+var sessionKey = require('../src/sessionKey');
 // *檔案引用
 let Sql = require('../src/SQL/activity_detail');
 
@@ -13,6 +15,7 @@ router.get('/', async function (req, res, next) {
         let result = await Sql.ActDetail();
         // 物件用json格式回傳
         // 可以整理一下，刪掉不必要的資料再回傳
+        console.log(req.session[sessionKey.SK_USER_DATA]);
         res.json(result);
 
     } catch (err) {
