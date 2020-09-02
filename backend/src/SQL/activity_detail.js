@@ -16,12 +16,46 @@ const ActDetail = async () => {
         // 連接資料庫
         await sql.connect(config)
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
+        let sqlStr = `
+            select a.*
+            from Activity.tActivity as a 
+            `
+        const result = await sql.query(sqlStr)
+        // 看一下回傳結果
+        // console.dir(result)
+        console.dir(result.recordset)
+        console.dir(result.rowsAffected[0])
+        // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+        // 錯誤處理
+    } catch (err) {
+        console.log(err);
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
+    }
+};
+
+
+
+const ActDetailById = async (fid) => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        // 連接資料庫
+        await sql.connect(config)
+        // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
         let sqlStr = `WITH act as (
             select a.*, m.fName as MemberName, m.fPhotoPath
             from Activity.tActivity as a 
             LEFT JOIN Member.tMember as m
             on a.fMemberId = m.fId
-            where a.fid = 1
+            where a.fid = ${fid}
             ),
             act2 as (
             select act.*, am.fLabelName as ActCategory
@@ -69,47 +103,91 @@ const ActDetail = async () => {
 
 
 
-// const TagById = async (fid) => {
-//     try {
-//         // make sure that any items are correctly URL encoded in the connection string
-//         // 連接資料庫
-//         await sql.connect(config)
-//         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
-//         let sqlStr = `select  *
-//         from  Activity.tActivityHadLabel                         
-//         WHERE  Activity.tActivityHadLabel.fActivityId  = ${fid}; `
-//         const result = await sql.query(sqlStr)
-//         // 看一下回傳結果
-//         // console.dir(result)
-//         console.dir(result.recordset)
-//         console.dir(result.rowsAffected[0])
-//         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
-//         return {
-//             result: 1,
-//             msg: "請求成功",
-//             data: result.recordset
-//         };
-//         // 錯誤處理
-//     } catch (err) {
-//         console.log(err);
-//         return {
-//             result: 0,
-//             msg: "SQL 錯誤",
-//             data: err
-//         };
-//     }
-// };
+const TagById = async (fid) => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        // 連接資料庫
+        await sql.connect(config)
+        // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
+        let sqlStr = `select  lb.*,tActivityLabel.fLabelName
+        from  Activity.tActivityHadLabel as lb
+        LEFT JOIN Activity.tActivityLabel
+        on lb.fActivityLabelId = tActivityLabel.fId
+        WHERE  fActivityId  = ${fid}`
+        const result = await sql.query(sqlStr)
+        // 看一下回傳結果
+        // console.dir(result)
+        console.dir(result.recordset)
+        console.dir(result.rowsAffected[0])
+        // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+        // 錯誤處理
+    } catch (err) {
+        console.log(err);
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
+    }
+};
+
+const JoinById = async (fid) => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        // 連接資料庫
+        await sql.connect(config)
+        // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
+        let sqlStr = `WITH joinList as (
+            select jl.*,tMember.fName
+            from Activity.tJoinList as jl
+            LEFT JOIN Member.tMember
+            on jl.fMemberId = tMember.fId
+            WHERE fActivityId = ${fid})
+            select joinList.*, tJoinType.fJoinName
+            from joinList
+            LEFT JOIN Activity.tJoinType
+            on joinList.fJoinTypeId = tJoinType.fId`
+        const result = await sql.query(sqlStr)
+        // 看一下回傳結果
+        // console.dir(result)
+        console.dir(result.recordset)
+        console.dir(result.rowsAffected[0])
+        // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+        // 錯誤處理
+    } catch (err) {
+        console.log(err);
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
+    }
+};
 
 
 
 
 //直接測試用 func ， node src/SQL/test.js
 // 解除註解，並把匯出方法註解才能用喔
-// ActDetail();
+// ActDetail(2);
 // TagById(1);
+// JoinById(1);
 
 
 // *匯出方法 ， 多個方法包在{}裡， ex: {func1, func2}
 module.exports = {
-    ActDetail
+    ActDetail,
+    ActDetailById,
+    TagById,
+    JoinById
 };
