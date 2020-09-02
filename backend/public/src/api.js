@@ -8,7 +8,8 @@ const serverURL = {
     postslist: `${rootURL}/posts/`,
     active : `${rootURL}/active/`,
     activemainlevel:`${rootURL}/active/searchmainlevel/`,
-    actDetail: `${rootURL}/activityDetail/`
+    actDetail: `${rootURL}/activityDetail/`,
+    maps:`${rootURL}/map/`
 };
 
 
