@@ -151,7 +151,7 @@
                     </div>
                     <div class="home_recent_activities">
                         <h2>近期活動</h2>
-                        <div class="home_recent_activity_item">
+                        <!-- <div class="home_recent_activity_item">
                             <div class="home_recent_activity_item_img">
                                 <img src="./img/home02.jpg"></div>
                             <div class="home_recent_activity_item_content">
@@ -176,11 +176,11 @@
                                     <button>立即參加</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="home_show_activities_wrapper">
-                    <div class="home_showAct_left">
+                    <!-- <div class="home_showAct_left">
                         <div class="home_left_top">
                             <img src="./img/home04.JPG" class="home_left_top">
                         </div>
@@ -204,7 +204,7 @@
                             </div>
                             <div class="home_right_sm"><img src="./img/home07.jpg"></div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <section class="home_go2community">
@@ -1310,11 +1310,11 @@
             <div class="activity_detail_container">
                 <!--------------------------- 活動標題和發起者 --------------------------->
                 <div class="activity_detail_info_all activity_detail_flex">
-                    <div>
-                        <h2>2020 國家地理路跑 - 世界地球日 50 週年</h2>
+                    <div class="activity_detail_titlebox">
+                        <h2></h2>
                         <div class="activity_detail_info">
-                            <div class="activity_detail_flex">
-                                <div class="activity_detail_info_img_circle" onclick="location.hash='#personal-page/1'">
+                            <div class="activity_detail_initiatorbox activity_detail_flex">
+                                <!-- <div class="activity_detail_info_img_circle" onclick="location.hash='#personal-page/1'">
                                     <div class="activity_detail_info_img_div">
                                         <img src="./img/c1.jpeg" class="activity_detail_info_img">
                                     </div>
@@ -1325,16 +1325,11 @@
                                         <a href="#">蘇菲唐納</a>
                                         <img src="./img/tick.svg" alt="tickIcon" class="activity_detail_info_status">
                                     </div>
-                                </div>
-
+                                </div> -->
                             </div>
                         </div>
                     </div>
                     <div class="activity_detail_info_share activity_detail_flex">
-                        <!-- <div class="activity_detail_right_top" style="margin-right: 1rem;">
-                            <button>參加</button>
-                            <img src="img/icon1.svg" alt="" class="activity_detail_right_love">
-                        </div> -->
                         <button style="margin-right: 1rem;"><img src="img/edit-regular.svg" width="20"></button>
                         <button id="ac_share_btn"><img src="img/share.svg" width="20"></button>
                     </div>
@@ -1363,10 +1358,10 @@
                     <div class="activity_detail_text_all">
                         <div class="activity_detail_text_left">
                             <div class="activity_detail_text_left_img">
-                                <img src="img/event12.jpg" alt="">
+                                <img class="activity_detail_leftImg" src="" alt="">
                             </div>
-                            <div class="activity_detail_flex">
-                                <div class="activity_detail_bigTag">
+                            <div class="activity_detail_TagBox activity_detail_flex">
+                                <div class="activity_detail_bigTag ">
                                     <a href="#">路跑</a>
                                 </div>
                                 <div class="activity_detail_tag">
@@ -1382,7 +1377,7 @@
                             <div class="activity_detail_text_detail">
                                 <h5>Detail</h5>
                                 <p>
-                                    (Chinese level requirement: A1 level up)
+                                    <!-- (Chinese level requirement: A1 level up)
                                     <br>
                                     Taiwanese love singing karaoke so much. KTV in Taiwan is a night out that you won’t
                                     want
@@ -1418,7 +1413,7 @@
                                     for
                                     any
                                     reason
-                                    and to take and use photos or videos for an unlimited period of time.
+                                    and to take and use photos or videos for an unlimited period of time. -->
                                 </p>
                             </div>
                             <div class="activity_detail_participant_all">
@@ -3282,7 +3277,7 @@
     <script src="./src/personalPage.js"></script>
     <script src="./src/personal_maneger.js"></script>
     <script src="./src/aboutUs.js"></script>
-    <script src="./src/activity_detail.js"></script>
+    <script type="module" src="./src/activity_detail.js"></script>
     <script src="./src/community_main.js"></script>
     <script src="./src/community.js"></script>
     <script src="./src/community_detail.js"></script>

@@ -7,7 +7,8 @@ const serverURL = {
     test: `${rootURL}/test/`,
     postslist: `${rootURL}/posts/`,
     active : `${rootURL}/active/`,
-    activemainlevel:`${rootURL}/active/searchmainlevel/`
+    activemainlevel:`${rootURL}/active/searchmainlevel/`,
+    actDetail: `${rootURL}/activityDetail/`
 };
 
 

@@ -1,6 +1,53 @@
+import {
+    serverURL
+} from "./api.js"
+
+
 //用class包起來
 
 function ClsActivityDetail() {
+
+    // ajax
+    const actDetail = async () => {
+        try {
+            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+            // *用變數接 fetch 結果 ，要用await等。
+            let response = await fetch(serverURL.actDetail);
+            // 用變數接 fetch結果的資料內容， 要用await等。
+            let result = await response.json();
+            console.log("actDetail await");
+            console.log(result);
+            // *用 result  do something ...
+
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+        }
+    }
+    actDetail()
+
+    const actDetailTag = async () => {
+        try {
+            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+            // *用變數接 fetch 結果 ，要用await等。
+            let response = await fetch(serverURL.actDetailTag);
+            // 用變數接 fetch結果的資料內容， 要用await等。
+            let result = await response.json();
+            console.log("actDetailTag await");
+            console.log(result);
+            // *用 result  do something ...
+
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+        }
+    }
+    actDetailTag()
+
+
+
+
+    // -------------- 固定右側資訊 --------------
     function boxMove2(y) {
         // console.log(y);
         box = document.querySelector('.activity_detail_right')
@@ -131,7 +178,7 @@ function ClsActivityDetail() {
     }
 
 
-    // * ---------- 文字樣板 ----------
+    // * -------------------------------- 文字樣板 ----------------------------------------
     this.htmlActCard = (o) => {
         return ` 
     <div class="active_card_container">
@@ -188,6 +235,103 @@ function ClsActivityDetail() {
             ActCard.innerHTML += this.htmlActCard(e);
         }
     )
+    //---------------top_發起人-------------------
+
+    const activity_detail_initiatorbox = document.querySelector(".activity_detail_initiatorbox")
+    let activity_detail_initiatorData = {
+        fId: 1,
+        fPhotoPath: "./img/c1.jpeg",
+        fName: "蘇菲唐納"
+    }
+
+    const activity_detail_initiatorCard = (o) => {
+
+        return ` 
+            <div class="activity_detail_info_img_circle" onclick="location.hash='#personal-page/${o.fId}'">
+                <div class="activity_detail_info_img_div">
+                    <img src=${o.fPhotoPath} class="activity_detail_info_img">
+                </div>
+            </div>
+            <div class="activity_detail_info_name">
+                <p class="activity_detail_info_name_H">Hosted By</p>
+                <div class=" activity_detail_flex">
+                    <a href="#">${o.fName}</a>
+                    <img src="./img/tick.svg" alt="tickIcon" class="activity_detail_info_status">
+                </div>
+            </div>`;
+    }
+    activity_detail_initiatorbox.innerHTML += activity_detail_initiatorCard(activity_detail_initiatorData);
+
+
+    //---------------------活動匯入---------------------
+
+    const activity_detail_AllData = {
+        fActName: '2020 國家地理路跑 - 世界地球日 50 週年',
+        //h2
+        fImgPath: 'img/event12.jpg',
+        // fLabelName:["路跑","#2020","#國家地理","#就差你一個"]   需要更改!!!!!
+        content: `  (Chinese level requirement: A1 level up)
+            <br>
+            Taiwanese love singing karaoke so much. KTV in Taiwan is a night out that you won’t
+            want
+            to
+            miss!
+            Everyone should try it at least once.
+            <br>
+            Come to this workshop, you can learn sentences and popular words commonly spoken,
+            then
+            integrate
+            into Taiwanese life!
+            <br>
+            <br>
+            📆 Date: 28 August<br>
+            🕘 Time: 19:30-21:30 on Friday<br>
+            📍Location: ShuoHao Language Center<br>
+            💁🏻‍♀‍ 4 people for the minimum<br>
+            💲Tuition fee: 400 NTD. (Pay the tuition in advance.)<br>
+            <br>
+            Application here ：https://forms.gle/JWHYuZvY17LGvNxH9
+            <br>
+            Location: 台北市大安區復興南路二段 82 號<br>
+            8F., No. 82, Sec. 2, Fuxing S. Rd., Da’an Dist., Taipei City 106, Taiwan (R.O.C.)
+            <br>
+            <br>
+            Phone:[masked]<br>
+            FB: https://www.facebook.com/SHLanguageCenter/<br>
+            Time: 19:30-21:30pm (2hrs)
+            <br>
+            <br>
+            主辦單位保有隨時修改及終止本活動之權利。於所辦任何活動上所拍攝之照片影片均有權永久使用於主辦單位之所有活動頁面及網頁。
+            When attending this event organizers reserve the right to refuse service to anyone
+            for
+            any
+            reason
+            and to take and use photos or videos for an unlimited period of time.`,
+
+    }
+
+    document.querySelector(".activity_detail_titlebox h2").innerHTML = activity_detail_AllData.fActName;
+    document.querySelector(".activity_detail_leftImg").src = activity_detail_AllData.fImgPath;
+    document.querySelector(".activity_detail_text_detail").innerHTML = activity_detail_AllData.content;
+    document.querySelector(".activity_detail_bigTag a").innerHTML = activity_detail_AllData.fLabelName[0];
+
+
+
+
+    // activity_detail_Tag(activity_detail_AllData.fLabelName)
+    // document.querySelector(".activity_detail_TagBox").innerHTML=activity_detail_Tag(activity_detail_AllData)
+
+
+
+
+
+
+
+
+
+
+
+
 
     // --------------- 分享功能 ---------------
 

@@ -1,13 +1,13 @@
 var express = require("express");
 var router = express.Router();
 
-let articleSql = require("../src/SQL/article");
+let articleSql = require("../src/SQL/article.js");
 
 // router.get("/", function (req, res, next) {
 //   res.render("index", { title: "Express" });
 // });
 
-router.get("/article", async function (req, res, next) {
+router.get("/", async function (req, res, next) {
   try {
     let result = await articleSql.articlelist();
     res.json(result);
