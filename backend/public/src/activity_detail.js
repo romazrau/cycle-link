@@ -27,7 +27,7 @@ function ClsActivityDetail() {
     actDetail()
 
 
-    // -------------- 固定右側資訊 --------------
+    // * -------------- 固定右側資訊 -------------- //
     function boxMove2(y) {
         // console.log(y);
         box = document.querySelector('.activity_detail_right')
@@ -158,7 +158,7 @@ function ClsActivityDetail() {
     }
 
 
-    // * -------------------------------- 文字樣板 ----------------------------------------
+    // * -------------------------------- 為您推薦 文字樣板 -------------------------------- //
     this.htmlActCard = (o) => {
         return ` 
     <div class="active_card_container">
@@ -215,9 +215,12 @@ function ClsActivityDetail() {
             ActCard.innerHTML += this.htmlActCard(e);
         }
     )
-    //---------------top_發起人-------------------
+
+
+    // * -------------------------------- 發起人 文字樣板 -------------------------------- //
 
     const activity_detail_initiatorbox = document.querySelector(".activity_detail_initiatorbox")
+
     let activity_detail_initiatorData = {
         fId: 1,
         fPhotoPath: "./img/c1.jpeg",
@@ -240,16 +243,15 @@ function ClsActivityDetail() {
                 </div>
             </div>`;
     }
+
     activity_detail_initiatorbox.innerHTML += activity_detail_initiatorCard(activity_detail_initiatorData);
 
 
-    //---------------------活動匯入---------------------
+    // * -------------------------------- 活動內容 文字樣板 -------------------------------- //
 
     const activity_detail_AllData = {
         fActName: '2020 國家地理路跑 - 世界地球日 50 週年',
-        //h2
         fImgPath: 'img/event12.jpg',
-        // fLabelName:["路跑","#2020","#國家地理","#就差你一個"]   需要更改!!!!!
         content: `  (Chinese level requirement: A1 level up)
             <br>
             Taiwanese love singing karaoke so much. KTV in Taiwan is a night out that you won’t
@@ -293,27 +295,143 @@ function ClsActivityDetail() {
     document.querySelector(".activity_detail_titlebox h2").innerHTML = activity_detail_AllData.fActName;
     document.querySelector(".activity_detail_leftImg").src = activity_detail_AllData.fImgPath;
     document.querySelector(".activity_detail_text_detail").innerHTML = activity_detail_AllData.content;
-    // document.querySelector(".activity_detail_bigTag a").innerHTML = activity_detail_AllData.fLabelName[0];
 
 
+    // * -------------------------------- 活動分類 文字樣板 -------------------------------- //
+    const activity_detail_bigTagData = {
+        fActType: '路跑'
+    }
+    document.querySelector(".activity_detail_bigTag a").innerHTML = activity_detail_bigTagData.fActType;
+
+    // * -------------------------------- 活動標籤 文字樣板 -------------------------------- //
+    const activity_detail_TagBox = document.querySelector(".activity_detail_TagBox");
+
+    const activity_detail_tag = (o) => {
+        return `<div class="activity_detail_tag">
+                    <a href="#">${o.fTag}</a>
+                </div>`
+    }
+
+    const activity_detail_tagData = [{
+            fTag: '#2020'
+        },
+        {
+            fTag: '#國家地理'
+        },
+        {
+            fTag: '#就差你一個'
+        }
+    ]
+
+    activity_detail_tagData.map(
+        (e, index) => {
+            activity_detail_TagBox.innerHTML += activity_detail_tag(e);
+        }
+    )
+
+    // * -------------------------------- 活動參與 文字樣板 -------------------------------- //
+    const activity_detail_participant_flex = document.querySelector(".activity_detail_participant_flex");
+
+    const activity_detail_participant = (o) => {
+        return `<div class="activity_detail_participant">
+    <div class="activity_detail_info_img_circle">
+        <div class="activity_detail_info_img_div">
+            <img src=${o.fImg} class="activity_detail_info_img">
+        </div>
+    </div>
+    <p>${o.fName}</p>
+    <span>${o.fType}</span>
+</div>`
+    }
+
+    const activity_detail_participantData = [{
+        fName: '蘇菲唐納',
+        fImg: './img/c1.jpeg',
+        fType: 'Organizer'
+    }, {
+        fName: 'Wwill354',
+        fImg: './img/id3.jpg',
+        fType: 'Member'
+    }, {
+        fName: '奔跑8boy',
+        fImg: './img/home08.jpg',
+        fType: 'Member'
+    }, {
+        fName: 'aa5568',
+        fImg: './img/id1.jpg',
+        fType: 'Member'
+    }]
+
+    activity_detail_participantData.map(
+        (e, index) => {
+            activity_detail_participant_flex.innerHTML += activity_detail_participant(e);
+        }
+    )
+    // * -------------------------------- 活動所屬社團 文字樣板 -------------------------------- //
+    const actDetailSocieties = document.querySelector(".activity_detail_Societies");
+
+    const actDetailSocietiesALL = (o) => {
+        return `<div class="activity_detail_Societies_img_circle" style="margin-left: 1rem;">
+                    <div class="activity_detail_Societies_img_div">
+                        <img src=${o.fImg} class="activity_detail_Societies_img">
+                    </div>
+                </div>
+                <div class="activity_detail_Societies_info">
+                    <p>${o.fName}</p>
+                    <a href="">see more events</a>
+                </div>
+                <img src="img/right.svg" alt="" width="20vw">`
+    };
+
+    const actDetailSocietiesData = {
+        fName: '北台灣撿垃圾社團',
+        fImg: './img/item5.JPG'
+    };
+
+    actDetailSocieties.innerHTML += actDetailSocietiesALL(actDetailSocietiesData);
 
 
-    // activity_detail_Tag(activity_detail_AllData.fLabelName)
-    // document.querySelector(".activity_detail_TagBox").innerHTML=activity_detail_Tag(activity_detail_AllData)
+    // * -------------------------------- 活動右側 文字樣板 -------------------------------- //
+    const actDetailRightInfo = document.querySelector(".activity_detail_right_info");
 
+    const actDetailRightInfoALL = (o) => {
+        return `
+    <div class="">
+        <img src="img/860755.svg" alt="" class="activity_detail_right_icon">
+        <p>${o.fTime}</p>
+    </div>
+    <div class="">
+        <img src="img/929497.svg" alt="" class="activity_detail_right_icon">
+        <p>${o.fLocal}</p>
+    </div>
+    <div class="">
+        <img src="img/certificate-solid.svg" alt="" class="activity_detail_right_icon">
+         <p>${o.fStatus}</p>
+    </div>
+    <div class="">
+         <img src="img/coin.png" alt="" class="activity_detail_right_icon">
+         <p>${o.fCoin}</p>
+    </div>
+    <div class="activity_detail_right_map">
+        <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.8021294706664!2d121.53890655092397!3d25.074694842733358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ac0099201ca3%3A0xe5164eddb6bbeab1!2z5aSn5L2z5rKz5r-x5YWs5ZyS!5e0!3m2!1szh-TW!2stw!4v1598202965298!5m2!1szh-TW!2stw"
+        width="100%" height="250" frameborder="0" style="border:0;"
+        allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div>
+    
+    `
+    }
 
+    const actDetailRightInfoData = {
+        fTime: '2020/08/30 (日)<br>06:30 to 08:30',
+        fLocal: '大佳河濱公園',
+        fStatus: '舉辦中',
+        fCoin: '1000'
+    }
 
+    actDetailRightInfo.innerHTML = actDetailRightInfoALL(actDetailRightInfoData);
 
-
-
-
-
-
-
-
-
-
-    // --------------- 分享功能 ---------------
+    // * -------------------------------- 分享功能 -------------------------------- //
 
     var ac_share_btn = document.getElementById("ac_share_btn");
     var ac_share_bg = document.getElementById("ac_share_bg");

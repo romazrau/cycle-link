@@ -85,10 +85,10 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-            console.group("active await");
+            // console.group("active await");
             console.log("active awai: ", result.msg);
             console.log(result.data);
-            console.groupEnd("active await");
+            // console.groupEnd("active await");
             display_active_main_level(result.data);
             // *用 result  do something ...
 
@@ -280,16 +280,14 @@ function ClsActivity() {
         // {
         //     ActCard.innerHTML +=this.htmlActCard(o[i]);
         // }
-        console.group("display_active map");
+        // console.group("display_active map");
         o.map(
             (e, index) => {
-                console.log(e);
-
                 // console.log(e);
                 ActCard.innerHTML += htmlActCard(e);
             }
         )
-        console.groupEnd("display_active map");
+        // console.groupEnd("display_active map");
 
     }
 
@@ -310,10 +308,10 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-            console.group("active await");
-            console.log("active awai: ", result.msg);
-            console.log(result.data);
-            console.groupEnd("active await");
+            // console.group("active await");
+            // console.log("active awai: ", result.msg);
+            // console.log(result.data);
+            // console.groupEnd("active await");
             display_active(result.data);
             // *用 result  do something ...
 
