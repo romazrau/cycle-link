@@ -1,4 +1,6 @@
-import { serverURL } from "./api.js";
+import {
+    serverURL
+} from "./api.js";
 
 function ClsActivity() {
 
@@ -43,7 +45,7 @@ function ClsActivity() {
     const ActSearch = document.querySelector("#activity_option");
 
 
-    
+
 
 
 
@@ -59,15 +61,14 @@ function ClsActivity() {
     // },
     // ]
 
-    display_active_main_level(o)
-    {
+    function display_active_main_level(o) {
         o.map(
             (e, index) => {
                 ActSearch.innerHTML += htmlActSearch(e);
             }
         )
-    }
-    
+    };
+
 
     const activemainlevelAwait = async () => {
         try {
@@ -98,7 +99,7 @@ function ClsActivity() {
         }
     }
 
-    activemainlevelAwait();
+    // activemainlevelAwait();
 
     //*進階搜尋區 ---------------------------------------------------------
     //show
@@ -416,29 +417,29 @@ function ClsActivity() {
 
     //AJAX
     let ActCardData2 = [{
-        imgPath: "img/event9.jpg",
-        date: "2020/11/19",
-        title: "城市獵人 - 生態公園夜觀",
-        count: 999,
-        member: "彌勒佛",
-        local: "玉山國家公園"
-    },
-    {
-        imgPath: "img/event10.jpg",
-        date: "2020/08/20",
-        title: "綠的手作坊 - 漂流木新生命",
-        count: 999,
-        member: "彌勒佛",
-        local: "紅樹林"
-    },
-    {
-        imgPath: "img/event11.png",
-        date: "2020/10/16",
-        title: "海洋危機，拯救機會",
-        count: 999,
-        member: "彌勒佛",
-        local: "烏石港"
-    }
+            imgPath: "img/event9.jpg",
+            date: "2020/11/19",
+            title: "城市獵人 - 生態公園夜觀",
+            count: 999,
+            member: "彌勒佛",
+            local: "玉山國家公園"
+        },
+        {
+            imgPath: "img/event10.jpg",
+            date: "2020/08/20",
+            title: "綠的手作坊 - 漂流木新生命",
+            count: 999,
+            member: "彌勒佛",
+            local: "紅樹林"
+        },
+        {
+            imgPath: "img/event11.png",
+            date: "2020/10/16",
+            title: "海洋危機，拯救機會",
+            count: 999,
+            member: "彌勒佛",
+            local: "烏石港"
+        }
 
     ]
 
@@ -457,29 +458,29 @@ function ClsActivity() {
     const HisAct = document.querySelector("#activity_event_history")
 
     let HisActData = [{
-        imgPath: "img/event2.jpg",
-        date: "2020/09/26",
-        title: "螢光夜跑",
-        count: 100,
-        member: "王曉明",
-        local: "新北大道"
-    },
-    {
-        imgPath: "img/event3.jpg",
-        date: "2020/09/26",
-        title: "潛水撿垃圾，愛海洋！",
-        count: 99,
-        member: "洲仔於",
-        local: "布袋漁港"
-    },
-    {
-        imgPath: "img/event4.jpg",
-        date: "2020/09/26",
-        title: "飢餓三十！",
-        count: 500,
-        member: "時間管理大師",
-        local: "桃園"
-    }
+            imgPath: "img/event2.jpg",
+            date: "2020/09/26",
+            title: "螢光夜跑",
+            count: 100,
+            member: "王曉明",
+            local: "新北大道"
+        },
+        {
+            imgPath: "img/event3.jpg",
+            date: "2020/09/26",
+            title: "潛水撿垃圾，愛海洋！",
+            count: 99,
+            member: "洲仔於",
+            local: "布袋漁港"
+        },
+        {
+            imgPath: "img/event4.jpg",
+            date: "2020/09/26",
+            title: "飢餓三十！",
+            count: 500,
+            member: "時間管理大師",
+            local: "桃園"
+        }
     ]
 
     HisActData.map(
@@ -506,4 +507,3 @@ function ClsActivity() {
 }
 
 const Activity = new ClsActivity();
-

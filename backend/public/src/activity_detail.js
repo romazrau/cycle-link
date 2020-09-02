@@ -15,8 +15,8 @@ function ClsActivityDetail() {
             let response = await fetch(serverURL.actDetail);
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-            console.log("actDetail await");
-            console.log(result);
+            // console.log("actDetail await");
+            // console.log(result);
             // *用 result  do something ...
 
         } catch (err) {
@@ -25,26 +25,6 @@ function ClsActivityDetail() {
         }
     }
     actDetail()
-
-    const actDetailTag = async () => {
-        try {
-            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
-            // *用變數接 fetch 結果 ，要用await等。
-            let response = await fetch(serverURL.actDetailTag);
-            // 用變數接 fetch結果的資料內容， 要用await等。
-            let result = await response.json();
-            console.log("actDetailTag await");
-            console.log(result);
-            // *用 result  do something ...
-
-        } catch (err) {
-            console.log(err);
-            // 錯誤處理
-        }
-    }
-    actDetailTag()
-
-
 
 
     // -------------- 固定右側資訊 --------------
@@ -313,7 +293,7 @@ function ClsActivityDetail() {
     document.querySelector(".activity_detail_titlebox h2").innerHTML = activity_detail_AllData.fActName;
     document.querySelector(".activity_detail_leftImg").src = activity_detail_AllData.fImgPath;
     document.querySelector(".activity_detail_text_detail").innerHTML = activity_detail_AllData.content;
-    document.querySelector(".activity_detail_bigTag a").innerHTML = activity_detail_AllData.fLabelName[0];
+    // document.querySelector(".activity_detail_bigTag a").innerHTML = activity_detail_AllData.fLabelName[0];
 
 
 

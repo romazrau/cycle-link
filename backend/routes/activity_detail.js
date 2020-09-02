@@ -45,18 +45,18 @@ router.get('/:id', async function (req, res, next) {
     }
 });
 
-router.get('/tagById/:id', async function (req, res, next) {
-    try {
-        // *用 await 等待資料庫回應
-        let result = await Sql.TagById(req.params.id);
-        // 物件用json格式回傳
-        // 可以整理一下，刪掉不必要的資料再回傳
-        res.json(result);
+// router.get('/tagById/:id', async function (req, res, next) {
+//     try {
+//         // *用 await 等待資料庫回應
+//         let result = await Sql.TagById(req.params.id);
+//         // 物件用json格式回傳
+//         // 可以整理一下，刪掉不必要的資料再回傳
+//         res.json(result);
 
-    } catch (err) {
-        res.send(err);
-    }
-});
+//     } catch (err) {
+//         res.send(err);
+//     }
+// });
 
 
 router.get('/joinById/:id', async function (req, res, next) {

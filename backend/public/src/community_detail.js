@@ -394,9 +394,9 @@ function ClsCommuntityDetail() {
 
     //文章發文
 
-    document.querySelector("LeaveMessage").addEventListener('focus', function () {
+    // document.querySelector("LeaveMessage").addEventListener('focus', function () {
 
-    })
+    // })
 
 
 
