@@ -15,6 +15,7 @@ var usersRouter = require('./routes/users');
 var postRouter = require('./routes/post');
 var mapRouter = require('./routes/map');
 var activeRouter = require('./routes/active');
+var communityRouter = require('./routes/community');
 
 
 
@@ -66,6 +67,7 @@ app.use('/users', usersRouter);
 app.use('/posts', postRouter);
 app.use('/map',mapRouter);
 app.use('/active',activeRouter);
+app.use('/community',communityRouter);
 
 
 
