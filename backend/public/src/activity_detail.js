@@ -234,20 +234,19 @@ function ClsActivityDetail() {
         (e, index) => {
             ActCard.innerHTML += this.htmlActCard(e);
         }
-         )
-        //---------------top_發起人-------------------
+    )
+    //---------------top_發起人-------------------
 
-        const activity_detail_initiatorbox =document.querySelector(".activity_detail_initiatorbox")
-        let activity_detail_initiatorData=
-       {
-            fId:1,
-           fPhotoPath:"./img/c1.jpeg",
-           fName:"蘇菲唐納"
-        }
+    const activity_detail_initiatorbox = document.querySelector(".activity_detail_initiatorbox")
+    let activity_detail_initiatorData = {
+        fId: 1,
+        fPhotoPath: "./img/c1.jpeg",
+        fName: "蘇菲唐納"
+    }
 
-       const activity_detail_initiatorCard = (o) => {
-           
-            return ` 
+    const activity_detail_initiatorCard = (o) => {
+
+        return ` 
             <div class="activity_detail_info_img_circle" onclick="location.hash='#personal-page/${o.fId}'">
                 <div class="activity_detail_info_img_div">
                     <img src=${o.fPhotoPath} class="activity_detail_info_img">
@@ -260,19 +259,18 @@ function ClsActivityDetail() {
                     <img src="./img/tick.svg" alt="tickIcon" class="activity_detail_info_status">
                 </div>
             </div>`;
-        }
-        activity_detail_initiatorbox.innerHTML+=activity_detail_initiatorCard(activity_detail_initiatorData);
-       
+    }
+    activity_detail_initiatorbox.innerHTML += activity_detail_initiatorCard(activity_detail_initiatorData);
 
-        //---------------------活動匯入---------------------
 
-        const activity_detail_AllData=
-        {
-            fActName:'2020 國家地理路跑 - 世界地球日 50 週年',
-            //h2
-            fImgPath:'img/event12.jpg',
-            // fLabelName:["路跑","#2020","#國家地理","#就差你一個"]   需要更改!!!!!
-            content:`  (Chinese level requirement: A1 level up)
+    //---------------------活動匯入---------------------
+
+    const activity_detail_AllData = {
+        fActName: '2020 國家地理路跑 - 世界地球日 50 週年',
+        //h2
+        fImgPath: 'img/event12.jpg',
+        // fLabelName:["路跑","#2020","#國家地理","#就差你一個"]   需要更改!!!!!
+        content: `  (Chinese level requirement: A1 level up)
             <br>
             Taiwanese love singing karaoke so much. KTV in Taiwan is a night out that you won’t
             want
@@ -309,22 +307,21 @@ function ClsActivityDetail() {
             any
             reason
             and to take and use photos or videos for an unlimited period of time.`,
-            
-        }
-        
-        document.querySelector(".activity_detail_titlebox h2").innerHTML=activity_detail_AllData.fActName;
-        document.querySelector(".activity_detail_leftImg").src=activity_detail_AllData.fImgPath;
-        document.querySelector(".activity_detail_text_detail").innerHTML=activity_detail_AllData.content;
-        document.querySelector(".activity_detail_bigTag a").innerHTML=activity_detail_AllData.fLabelName[0];
-        
-        
-        document.querySelector(".activity_detail_tag").innerHTML+=
-       
-       
-        // activity_detail_Tag(activity_detail_AllData.fLabelName)
-        // document.querySelector(".activity_detail_TagBox").innerHTML=activity_detail_Tag(activity_detail_AllData)
 
-            
+    }
+
+    document.querySelector(".activity_detail_titlebox h2").innerHTML = activity_detail_AllData.fActName;
+    document.querySelector(".activity_detail_leftImg").src = activity_detail_AllData.fImgPath;
+    document.querySelector(".activity_detail_text_detail").innerHTML = activity_detail_AllData.content;
+    document.querySelector(".activity_detail_bigTag a").innerHTML = activity_detail_AllData.fLabelName[0];
+
+
+
+
+    // activity_detail_Tag(activity_detail_AllData.fLabelName)
+    // document.querySelector(".activity_detail_TagBox").innerHTML=activity_detail_Tag(activity_detail_AllData)
+
+
 
 
 
