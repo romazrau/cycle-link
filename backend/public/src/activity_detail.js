@@ -1,6 +1,53 @@
+import {
+    serverURL
+} from "./api.js"
+
+
 //用class包起來
 
 function ClsActivityDetail() {
+
+    // ajax
+    const actDetail = async () => {
+        try {
+            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+            // *用變數接 fetch 結果 ，要用await等。
+            let response = await fetch(serverURL.actDetail);
+            // 用變數接 fetch結果的資料內容， 要用await等。
+            let result = await response.json();
+            console.log("actDetail await");
+            console.log(result);
+            // *用 result  do something ...
+
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+        }
+    }
+    actDetail()
+
+    const actDetailTag = async () => {
+        try {
+            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+            // *用變數接 fetch 結果 ，要用await等。
+            let response = await fetch(serverURL.actDetailTag);
+            // 用變數接 fetch結果的資料內容， 要用await等。
+            let result = await response.json();
+            console.log("actDetailTag await");
+            console.log(result);
+            // *用 result  do something ...
+
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+        }
+    }
+    actDetailTag()
+
+
+
+
+    // -------------- 固定右側資訊 --------------
     function boxMove2(y) {
         // console.log(y);
         box = document.querySelector('.activity_detail_right')
