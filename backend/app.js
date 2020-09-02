@@ -1,53 +1,54 @@
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const bodyParser = require('body-parser');
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const bodyParser = require("body-parser");
 
-const session = require('express-session');
-const cors = require('cors');
-
+const session = require("express-session");
+const cors = require("cors");
 
 // *路由引入
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var postRouter = require('./routes/post');
-var activityDetailRouter = require('./routes/activity_detail');
-var mapRouter = require('./routes/map');
-var activeRouter = require('./routes/active');
-
-
+var indexRouter = require("./routes/index");
+var usersRouter = require("./routes/users");
+var postRouter = require("./routes/post");
+var activityDetailRouter = require("./routes/activity_detail");
+var mapRouter = require("./routes/map");
+var activeRouter = require("./routes/active");
 
 const app = express();
 
-
-
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "jade");
 
 //middleware
-app.use(logger('dev'));
+app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({
-  extended: false
-}));
+app.use(
+  express.urlencoded({
+    extended: false,
+  })
+);
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+  })
+);
 app.use(bodyParser.json());
 //session
-app.use(session({
-  secret: 'DayDayLuLuDaDaMiMiJJTenTen', // 對session id 相關的cookie 進行簽名
-  resave: true, // 沒變更內容是否強制回存
-  saveUninitialized: false, // 是否儲存未初始化的會話
-  cookie: {
-    maxAge: 1000 * 60 * 30, // 設定 session 的有效時間，單位毫秒
-  },
-}));
+app.use(
+  session({
+    secret: "DayDayLuLuDaDaMiMiJJTenTen", // 對session id 相關的cookie 進行簽名
+    resave: true, // 沒變更內容是否強制回存
+    saveUninitialized: false, // 是否儲存未初始化的會話
+    cookie: {
+      maxAge: 1000 * 60 * 30, // 設定 session 的有效時間，單位毫秒
+    },
+  })
+);
 // cors
 // const whitelist = ['http://127.0.0.1:5501/', 'http://127.0.0.1:5500/', undefined];
 // const corsOptions = {
@@ -63,22 +64,13 @@ app.use(session({
 // }
 // app.use(cors(corsOptions));
 
-
-
 // *路由區，把路由分給哪個檔案
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/posts', postRouter);
-app.use('/activityDetail', activityDetailRouter);
-app.use('/map', mapRouter);
-app.use('/active', activeRouter);
-
-
-
-
-
-
-
+app.use("/", indexRouter);
+app.use("/users", usersRouter);
+app.use("/posts", postRouter);
+app.use("/activityDetail", activityDetailRouter);
+app.use("/map", mapRouter);
+app.use("/active", activeRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -89,11 +81,11 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render("error");
 });
 
 module.exports = app;
