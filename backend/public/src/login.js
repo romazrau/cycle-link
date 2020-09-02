@@ -13,7 +13,11 @@ document.querySelector("#loginSubmit").addEventListener(
         fetch(serverURL.login, {
             method: "POST",
             body: formData,
-            credentials: 'include'
+            credentials: 'include',
+            cache: 'no-cache',
+            credentials: 'include',
+            mode: 'cors',
+            referrer: "client",
         }).then(
             (res) => res.text()
         ).then(
