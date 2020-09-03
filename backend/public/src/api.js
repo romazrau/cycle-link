@@ -6,10 +6,10 @@ const serverURL = {
     login: `${rootURL}/users/`,
     test: `${rootURL}/test/`,
     postslist: `${rootURL}/posts/`,
-    active : `${rootURL}/active/`,
-    activemainlevel:`${rootURL}/active/searchmainlevel/`,
+    active: `${rootURL}/active/`,
+    activemainlevel: `${rootURL}/active/searchmainlevel/`,
     actDetail: `${rootURL}/activityDetail/`,
-    maps:`${rootURL}/map/`
+    maps: `${rootURL}/map/`
 };
 
 
@@ -122,11 +122,11 @@ const checkLogin = () => (
             'Content-Type': 'application/json'
         }
     })
-    .then(
-        (res) => res.text()
-    ).then(
-        resStr => JSON.parse(resStr)
-    )
+        .then(
+            (res) => res.text()
+        ).then(
+            resStr => JSON.parse(resStr)
+        )
 )
 
 
