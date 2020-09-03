@@ -73,7 +73,7 @@ app.use("/posts", postRouter);
 app.use("/activityDetail", activityDetailRouter);
 app.use("/map", mapRouter);
 app.use("/active", activeRouter);
-app.use('/community',communityRouter);
+app.use('/community', communityRouter);
 
 
 // catch 404 and forward to error handler
