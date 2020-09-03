@@ -13,22 +13,26 @@ const articlelist = async () => {
     // 連接資料庫
     await sql.connect(config);
     // *丟SQL 指令並儲存結果，SQL指令先去SQL server測試成功再貼在這裡喔
-    let str = `WITH PostMember AS(select p.*, m.fName
+    let str = `WITH PostMember AS(select p.*, m.fName as PostMemberName
       from Community.tPost as p
       left join Member.tMember as m
       on p.fMemberId=m.fId)
-      , PostCommunity AS(select p.fId, c.fName as communityname
+      
+      , PostCommunity AS(select p.fId, c.fName as CommunityName
       from Community.tPost as p
       left join Community.tCommunity as c
       on p.fCommunityId=c.fId)
-      , PostDetail AS(select pm.*,pc.communityname
+      
+      , PostDetail AS(select pm.*,pc.CommunityName
       from PostMember as pm
       left join PostCommunity as pc
       on pm.fId=pc.fId)
-      , ReplyDetail AS(select r.*,m.fName
+      
+      , ReplyDetail AS(select r.*,m.fName as ReplyMemberName
       from Community.tReply as r
       left join Member.tMember as m
       on r.fReplyMemberId=m.fId)
+      
       select *
       from PostDetail as pd
       left join ReplyDetail as rd
