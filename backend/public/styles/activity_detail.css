@@ -334,10 +334,10 @@
 /* *瀏覽 */
 #activity_detail_see {
   display: flex;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
   align-content: stretch;
   justify-content: space-around;
-  /* max-width: 600px; */
+  /* max-width: 800px; */
   margin: 3rem auto;
 }
 

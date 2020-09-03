@@ -15,8 +15,8 @@ var postRouter = require("./routes/post");
 var activityDetailRouter = require("./routes/activity_detail");
 var mapRouter = require("./routes/map");
 var activeRouter = require("./routes/active");
-var communityRouter = require('./routes/community');
-
+var articleRouter = require("./routes/article");
+var communityRouter = require("./routes/community");
 
 const app = express();
 
@@ -73,8 +73,8 @@ app.use("/posts", postRouter);
 app.use("/activityDetail", activityDetailRouter);
 app.use("/map", mapRouter);
 app.use("/active", activeRouter);
-app.use('/community', communityRouter);
-
+app.use("/article", articleRouter);
+app.use("/community", communityRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
