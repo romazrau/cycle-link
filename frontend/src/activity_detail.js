@@ -146,16 +146,17 @@ function ClsActivityDetail() {
     const display_actDetail = (o) => {
         o.map(
             (e, index) => {
-                activity_detail_initiatorbox.innerHTML += activity_detail_initiatorCard(e);
-                activity_detail_leftImg.innerHTML += actDetail_img(e);
-                activity_detail_text_detail.innerHTML += actDetail_textDetail(e);
-                activity_detail_bigTag.innerHTML += actDetail_bigTag(e);
+                activity_detail_initiatorbox.innerHTML = activity_detail_initiatorCard(e);
+                activity_detail_leftImg.innerHTML = actDetail_img(e);
+                activity_detail_text_detail.innerHTML = actDetail_textDetail(e);
+                activity_detail_bigTag.innerHTML = actDetail_bigTag(e);
                 actDetailRightInfo.innerHTML = actDetailRightInfoALL(e);
             }
         )
     }
 
     const display_actDetailTag = (o) => {
+        activity_detail_TagBox.innerHTML = "";
         o.map(
             (e, index) => {
                 activity_detail_TagBox.innerHTML += activity_detail_tag(e);
@@ -166,7 +167,7 @@ function ClsActivityDetail() {
     const display_actDetailJoin = (o) => {
         o.map(
             (e, index) => {
-                activity_detail_participant_All.innerHTML += activity_detail_participant(e);
+                activity_detail_participant_All.innerHTML = activity_detail_participant(e);
             }
         )
     }
@@ -204,7 +205,7 @@ function ClsActivityDetail() {
         }
     }
 
-    actDetail(1);
+
 
 
 
@@ -455,6 +456,7 @@ function ClsActivityDetail() {
         ac_share_bg.preventDefault();
     }
 
+    this.actDetail = actDetail;
 
 
 }
@@ -463,28 +465,17 @@ const ActivityDetail = new ClsActivityDetail();
 
 
 
-let actDetailArr = location.hash.split('/');
-let actDetailId = actDetailArr[2];
-console.log(actDetailId);
-console.log(location.hash);
-let actDetailpage;
-window.addEventListener("hashchange", () => {
-    if (location.hash === "#activity/detail" && !actDetailpage) {
-        //  actDetail(actDetailId);
-        actDetailpage = new ClsActivityDetail();
+const actDetailChangeHash = () => {
+    let actDetailArr = location.hash.split('/');
+    let actDetailId = actDetailArr[2];
+    if (location.hash.includes("#activity/detail")) {
+        ActivityDetail.actDetail(actDetailId)
     }
-});
+}
 
 
-
-window.addEventListener("load", async () => {
-    if (location.hash === "#activity/detail" && !actDetailpage) {
-        await actDetail(actDetailId);
-        console.log(actDetail(actDetailId));
-        actDetailpage = new ClsActivityDetail();
-
-    }
-});
+window.addEventListener("hashchange", actDetailChangeHash);
+window.addEventListener("load", actDetailChangeHash);
 
 
 // function ActivityChangeStatus() {

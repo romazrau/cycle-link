@@ -252,7 +252,7 @@ function ClsActivity() {
 
 
     const htmlActCard = (o) => {
-        return ` <a href="#activity/detail/1">
+        return ` <a href="#activity/detail/${o.fId}">
     <div class="active_card_container">
         <div class="active_card" >
             <i class="fas fa-heart fa-lg active_card_heart"></i>
