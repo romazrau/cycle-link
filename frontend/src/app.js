@@ -1,6 +1,8 @@
 // *此檔案是babel 、 webpack 進入點
 //引入
-import { checkLogin } from "./api.js";
+import {
+    checkLogin
+} from "./api.js";
 
 checkLogin()
     .then((res) => {
@@ -15,8 +17,11 @@ checkLogin()
 
 
 const logg = async () => {
-    let response = await fetch('http://localhost:3050/login', { method: "POST" });
+    let response = await fetch('http://localhost:3050/login', {
+        method: "POST"
+    });
     let result = await response.json();
+    console.group("JWT")
     console.log(result);
     console.log(result.data.token);
 
@@ -26,8 +31,8 @@ const logg = async () => {
         }
     })
     let result2 = await response2.text();
-    console.log(result2);
-
+    console.error(result2);
+    console.groupEnd("JWT")
 
 }
 logg();

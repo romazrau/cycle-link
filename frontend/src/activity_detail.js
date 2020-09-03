@@ -203,7 +203,10 @@ function ClsActivityDetail() {
             // 錯誤處理
         }
     }
+
     actDetail(1);
+
+
 
 
     //  -------------------------------- 活動參與 文字樣板 -------------------------------- //
@@ -244,7 +247,7 @@ function ClsActivityDetail() {
     //         activity_detail_participant_flex.innerHTML += activity_detail_participant(e);
     //     }
     // )
-    // * -------------------------------- 活動所屬社團 文字樣板 -------------------------------- //
+    // * TODO:-------------------------------- 活動所屬社團 文字樣板 -------------------------------- //
     const actDetailSocieties = document.querySelector(".activity_detail_Societies");
 
     const actDetailSocietiesALL = (o) => {
@@ -268,7 +271,7 @@ function ClsActivityDetail() {
     actDetailSocieties.innerHTML += actDetailSocietiesALL(actDetailSocietiesData);
 
 
-    // * -------------------------------- 為您推薦 文字樣板 -------------------------------- //
+    // * TODO: -------------------------------- 為您推薦 文字樣板 -------------------------------- //
     this.htmlActCard = (o) => {
         return ` 
     <div class="active_card_container">
@@ -456,6 +459,33 @@ function ClsActivityDetail() {
 
 }
 const ActivityDetail = new ClsActivityDetail();
+
+
+
+
+let actDetailArr = location.hash.split('/');
+let actDetailId = actDetailArr[2];
+console.log(actDetailId);
+console.log(location.hash);
+let actDetailpage;
+window.addEventListener("hashchange", () => {
+    if (location.hash === "#activity/detail" && !actDetailpage) {
+        //  actDetail(actDetailId);
+        actDetailpage = new ClsActivityDetail();
+    }
+});
+
+
+
+window.addEventListener("load", async () => {
+    if (location.hash === "#activity/detail" && !actDetailpage) {
+        await actDetail(actDetailId);
+        console.log(actDetail(actDetailId));
+        actDetailpage = new ClsActivityDetail();
+
+    }
+});
+
 
 // function ActivityChangeStatus() {
 //     //  if 以登入 執行下列

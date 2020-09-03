@@ -100,7 +100,7 @@ function ClsActivity() {
         }
     }
 
-     activemainlevelAwait();
+    activemainlevelAwait();
 
     //*進階搜尋區 ---------------------------------------------------------
     //show
@@ -252,7 +252,7 @@ function ClsActivity() {
 
 
     const htmlActCard = (o) => {
-        return ` 
+        return ` <a href="#activity/detail/1">
     <div class="active_card_container">
         <div class="active_card" >
             <i class="fas fa-heart fa-lg active_card_heart"></i>
@@ -268,7 +268,7 @@ function ClsActivity() {
                 </div>
             </div>
         </div>
-    </div>`;
+    </div></a>`;
 
     }
 
@@ -277,7 +277,7 @@ function ClsActivity() {
     //* ------------------------------------- 文字樣板 -------------------------------------
     const display_active = (o) => {
 
-        
+
         o.map(
             (e, index) => {
                 // console.log(e);
