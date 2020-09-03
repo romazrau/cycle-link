@@ -306,8 +306,7 @@
 }
 
 .search_hidden {
-    display: none !important;
-    
+    display: none;
 }
 
 .search_citytext {
