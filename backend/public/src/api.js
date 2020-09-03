@@ -6,6 +6,10 @@ const serverURL = {
   test: `${rootURL}/test/`,
   postslist: `${rootURL}/posts/`,
   article: `${rootURL}/article/`,
+  active: `${rootURL}/active/`,
+  activemainlevel: `${rootURL}/active/searchmainlevel/`,
+  actDetail: `${rootURL}/activityDetail/`,
+  maps: `${rootURL}/map/`,
 };
 
 // 不使用 async await寫法
@@ -72,7 +76,7 @@ const postlist = async () => {
     // 錯誤處理
   }
 };
-// postlist();
+// postlist()
 
 const postByid = async (id) => {
   try {
@@ -89,7 +93,7 @@ const postByid = async (id) => {
     // 錯誤處理
   }
 };
-// postByid(1);
+// postByid(1)
 
 const checkLogin = () =>
   fetch(serverURL.login, {

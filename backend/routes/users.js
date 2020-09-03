@@ -1,14 +1,17 @@
-var express = require('express');
-var router = express.Router();
-var session = require('express-session');
-var sessionKey = require('../src/sessionKey');
-var sendSafetyCode = require('../src/email/signUp');
+const express = require('express');
+const router = express.Router();
+// session
+const session = require('express-session');
+const sessionKey = require('../src/sessionKey');
 // *from data 解析必備
 const multer  = require('multer');
 const upload = multer();
+// JWT
+const jsonwebtoken = require('jsonwebtoken');
 
-let memberSql =  require('../src/SQL/users');
-
+// src 資源
+const memberSql =  require('../src/SQL/users');
+const sendSafetyCode = require('../src/email/signUp');
 
 
 /* GET users listing. */
@@ -26,23 +29,34 @@ router.get('/testGuest', function(req, res, next) {
 
 // *POST Login ， upload.array() => form data 解析用    
 router.post('/', upload.array(), function(req, res, next) {
-  console.log({reqbody:'body', data:req.body})
   let account = req.body.account;
   let password = req.body.password;
 
-  // res.json({ a:account, b:password});
+  console.log({ a:account, b:password});
+  let token;
 
   memberSql.login(account, password)
   .then((result)=>{
 
     if(result.result){
       req.session[sessionKey.SK_USER_DATA] = result;
+      token = 'Bearer ' + jsonwebtoken.sign(
+        {
+          ...result.data
+        },
+        "DayDayLuLuDaDaMiMiJJTenTen",
+        {
+          expiresIn: 3600 * 24 * 3
+        },
+        { algorithm: 'HS256'}
+      )
     }
 
     console.log("user:",  req.session[sessionKey.SK_USER_DATA]);
-    res.json(result);
+    res.json({...result, token:token });
   })
   .catch((err)=>{
+    console.log(err);
     res.send(err);
   })
   

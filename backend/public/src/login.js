@@ -1,6 +1,5 @@
-import {
-    serverURL
-} from "./api.js"
+import { serverURL } from "./api.js";
+import { response } from "express";
 
 
 document.querySelector("#loginSubmit").addEventListener(
@@ -38,6 +37,11 @@ document.querySelector("#loginSubmit").addEventListener(
 
     }
 )
+
+
+
+
+
 
 
 const signUpButton = document.getElementById('Login_signUp');

@@ -16,7 +16,7 @@ const activesql = async () => {
         // 連接資料庫
         await sql.connect(config)
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
-        let sqlStr = `select top(5)* from Activity.tActivity`
+        let sqlStr = `select top(6)* from Activity.tActivity`
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
         console.dir(result)
@@ -36,7 +36,7 @@ const activemainlevelsql = async () => {
         // 連接資料庫
         await sql.connect(config)
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
-        let sqlStr = `select top(5) * from Activity.tActivityMainLabel`
+        let sqlStr = `select  * from Activity.tActivityMainLabel`
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
         console.dir(result)
