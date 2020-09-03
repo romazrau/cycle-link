@@ -64,7 +64,7 @@ router.post('/', upload.array(), function(req, res, next) {
 
 
 // is Login?
-router.get('/',(req, res)=>{
+router.get('/', (req, res)=>{
   let result =  req.session[sessionKey.SK_USER_DATA] || { result:0, msg: "未登入" }
   res.json(result)
 })

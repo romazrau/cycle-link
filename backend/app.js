@@ -54,19 +54,19 @@ app.use(
   })
 );
 // cors
-// const whitelist = ['http://127.0.0.1:5501/', 'http://127.0.0.1:5500/', undefined];
-// const corsOptions = {
-//   credentials: true,
-//   origin: function (origin, callback){
-//     console.log('origin: '+origin);
-//     if(whitelist.indexOf(origin) !== -1){
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Not allowed by CORS'))
-//     }
-//   }
-// }
-// app.use(cors(corsOptions));
+const whitelist = ['http://127.0.0.1:5501', 'http://127.0.0.1:5500', 'http://127.0.0.1:5502', undefined];
+const corsOptions = {
+  credentials: true,
+  origin: function (origin, callback){
+    console.log('origin: '+origin);
+    if(whitelist.indexOf(origin) !== -1){
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+app.use(cors(corsOptions));
 // jwt
 app.use(jwt({
   secret: "DayDayLuLuDaDaMiMiJJTenTen",  // 签名的密钥 或 PublicKey
