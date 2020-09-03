@@ -6,10 +6,11 @@ const serverURL = {
     login: `${rootURL}/users/`,
     test: `${rootURL}/test/`,
     postslist: `${rootURL}/posts/`,
-    active : `${rootURL}/active/`,
-    activemainlevel:`${rootURL}/active/searchmainlevel/`,
+    active: `${rootURL}/active/`,
+    activemainlevel: `${rootURL}/active/searchmainlevel/`,
     actDetail: `${rootURL}/activityDetail/`,
-    maps:`${rootURL}/map/`
+    actDetailJoin: `${rootURL}/activityDetail/joinById/1`,
+    maps: `${rootURL}/map/`
 };
 
 

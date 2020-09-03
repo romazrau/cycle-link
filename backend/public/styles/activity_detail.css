@@ -248,7 +248,8 @@
 
 .activity_detail_participant_flex {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
 }
 
 .activity_detail_participant {
@@ -259,7 +260,7 @@
   height: 10rem;
   border-radius: 1rem;
   background-color: white;
-  margin-top: 1rem;
+  margin: 1rem 1.3rem 0 0;
 }
 
 .activity_detail_participant:hover {

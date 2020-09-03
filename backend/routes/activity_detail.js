@@ -29,14 +29,18 @@ router.get('/:id', async function (req, res, next) {
         // *用 await 等待資料庫回應
         let result = await Sql.ActDetailById(req.params.id);
 
+        // res.json(result);
         let result2 = await Sql.TagById(req.params.id);
+
+        let result3 = await Sql.JoinById(req.params.id);
         // 物件用json格式回傳
         // 可以整理一下，刪掉不必要的資料再回傳
         res.json({
             result: 1,
             data: {
                 detail: result.data,
-                tag: result2.data
+                tag: result2.data,
+                join: result3.data
             }
         });
 
@@ -59,18 +63,18 @@ router.get('/:id', async function (req, res, next) {
 // });
 
 
-router.get('/joinById/:id', async function (req, res, next) {
-    try {
-        // *用 await 等待資料庫回應
-        let result = await Sql.JoinById(req.params.id);
-        // 物件用json格式回傳
-        // 可以整理一下，刪掉不必要的資料再回傳
-        res.json(result);
+// router.get('/joinById/:id', async function (req, res, next) {
+//     try {
+//         // *用 await 等待資料庫回應
+//         let result = await Sql.JoinById(req.params.id);
+//         // 物件用json格式回傳
+//         // 可以整理一下，刪掉不必要的資料再回傳
+//         res.json(result);
 
-    } catch (err) {
-        res.send(err);
-    }
-});
+//     } catch (err) {
+//         res.send(err);
+//     }
+// });
 
 
 // 匯出方法
