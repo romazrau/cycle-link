@@ -40,29 +40,7 @@ function map_GetActivityList(o){
 
 
  function  ClsMap(){
-  console.log(ActivityList);
-  // const ActivityList =[
-  //   {name:'2020國家地理路跑-世界地球日50週年',type:"路跑",lat:25.071874,lng: 121.5802,introduction:"路跑123457777777sddddd",src:"./img/tainan.jpg"},
-  //   {name:'魚取漁囚 - 守護海洋行動體驗特展',type:"淨海",lat:25.007839,lng:121.494713,introduction:"資料淨海",src:"./img/tainan.jpg"},
-  //   {name:'Plogging淨街慢跑-迪化街',type:"路跑",lat:25.133756, lng:121.36425,introduction:"路跑123457777777sddddd",src:"./img/tainan.jpg"},
-  //   {name:'環保潛水隊-隊員招募中',type:"淨海",lat:25.283227,  lng:121.525955,introduction:"資料淨海",src:"./img/tainan.jpg"},
-  //   {name:'臉部平權運動臺北國道馬拉松',type:"路跑",lat:24.979212, lng:121.624832,introduction:"路跑123457777777sddddd",src:"./img/tainan.jpg"},
-  //   {name:'世界環境清潔日 相約海洋淨灘',type:"淨海",lat:25.230442,lng: 121.645088,introduction:"資料淨海",src:"./img/tainan.jpg"},
-  //   {name:'天母二手市集',type:"環境",lat:25.117735, lng: 121.528873,introduction:"天母二手市集",src:"./img/tainan.jpg"},
-  //   {name:'鳥兒哪裡去?2020/8/22八里濕地野鳥觀察',type:"淨山",lat:25.116668,lng: 121.383476 ,introduction:"鳥兒哪裡去?2020/8/22八里濕地野鳥觀察",src:"./img/tainan.jpg"},
-  //   {name:'城市獵人-富陽生態公園夜觀',type:"淨山",lat:25.0151,lng:121.5593,introduction:"城市獵人-富陽生態公園夜觀",src:"./img/tainan.jpg"},
-  //   {name:'荒野保護協會【2020工作假期】萬里工作日',type:"淨山",lat:25.178855,lng: 121.673241 ,introduction:"荒野保護協會【2020工作假期】萬里工作日",src:"./img/tainan.jpg"},
-  //   {name:'大風吹，吹什麼? 園藝寶貝交換活動',type:"環境",lat:24.161435,lng: 120.670738,introduction:"園藝寶貝交換活動",src:"./img/tainan.jpg"},
-  //   {name:'【愛海無距~誰是沙害者】~ 2020國際淨灘行動',type:"淨海",lat:24.175516,  lng:120.475388,introduction:" 2020國際淨灘行動",src:"./img/tainan.jpg"},
-  //   {name:'2020筏子溪常態性淨溪',type:"淨海",lat:24.152464, lng: 120.621943,introduction:"2020筏子溪常態性淨溪",src:"./img/tainan.jpg"},
-  //   {name:'2020植樹',type:"淨山",lat:24.167682, lng: 120.755196,introduction:"2020植樹",src:"./img/tainan.jpg"},
-  //   {name:'PUMA環保愛地球 ',type:"環境",lat:24.193377, lng: 120.732193,introduction:"PUMA環保愛地球",src:"./img/tainan.jpg"},
-  //   {name:'換換二手衣物換換愛',type:"環境",lat:24.17301, lng: 120.665932,introduction:"換換二手衣物換換愛",src:"./img/tainan.jpg"},
-  //   {name:'綠的手作坊-漂流木新生命',type:"淨海",lat:24.20309,  lng:120.618896,introduction:"綠的手作坊-漂流木新生命",src:"./img/tainan.jpg"},
-  //   {name:'偏鄉關懷，愛心捐物',type:"環境",lat:24.11126, lng: 120.642929,introduction:"偏鄉關懷，愛心捐物",src:"./img/tainan.jpg"}
-    
-    
-  //   ]
+ 
     
     const CityList =[
     {name:'台北',lat:25.024018,lng:121.524239,introduction:"台灣的首都位於台北，這個充滿現代感的城市融合了日本殖民時期遺留的街巷、繁忙的購物商街及當代風格的建築。",src:"./img/tapei.jpg"},
@@ -225,7 +203,7 @@ function map_GetActivityList(o){
     document.getElementById("map_Setdistance").addEventListener("input",map_ChangeDistance)
     
     
-    var map_InputDistance=document.getElementById("map_Setdistance").value;
+    
     
     
     
@@ -233,7 +211,7 @@ function map_GetActivityList(o){
       cleanMarker();
       L.marker([ OriginalPlacelat, OriginalPlacelng], {icon: myIcon},{title:"現在位置"}).addTo(map);
       
-    val=document.getElementById("map_Setdistance").value;
+    let val=document.getElementById("map_Setdistance").value;
     document.getElementById("Activitydistance").innerHTML=val;
     
     map_NearbyMarkShow(val,ActivityList);
@@ -399,11 +377,11 @@ function map_GetActivityList(o){
       return d*Math.PI/180.0
     }
     function map_Calcdistance(lat1, lng1, lat2,lng2){
-      radLat1 = rad(lat1);
-      radLat2 = rad(lat2);
-      a=radLat1-radLat2;
-      b= rad(lng1)-rad(lng2);
-      s=2*Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2)+Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2)));
+      let radLat1 = rad(lat1);
+      let radLat2 = rad(lat2);
+      let a=radLat1-radLat2;
+      let b= rad(lng1)-rad(lng2);
+      let s=2*Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2)+Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2)));
       s=s*EARTH_RADIUS;
       s=Math.round(s*10000)/10000;
       return s;

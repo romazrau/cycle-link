@@ -51,14 +51,54 @@ router.get('/communityManager/:id', async function (req, res, next) {
 router.get('/communityById_communityMember/:id', async function (req, res, next) {
     try {
         let result = await Sql.communityById_communityMember(req.params.id);
+        // params 是post解決querystring
+        // console.log(req.params);
 
         //顯示在頁面上 
         res.json(result);
-    } catch (err) { 
+    } catch (err) {
         res.send(err);
     }
 });
 
+router.get('/communityByString/:str', async function (req, res, next) {
+    try {
+        console.error(req.params.str);
+        let result = await Sql.communityByString(req.params.str);
+
+        //顯示在頁面上 
+        res.json(result);
+    } catch (err) {
+        res.send(err);
+    }
+});
+
+
+//TODO 新增社團
+//body:[{"communityName":value,"communityStatus":value,"communityPicture":value,"communityInfo":value}]
+//把物件屬性拆開當參數去SQL function
+//創立時間在這邊寫進去
+router.get('/communityCreate', async function (req, res, next) {
+    try {
+        console.log(req.body);
+
+        //TODO 時間字串
+        let dateObj = Date();
+
+        let communityName = req.body.communityName;
+        let communityStatus = req.body.communityStatus;
+        let communityPicture = req.body.communityPicture;
+        let communityInfo = req.body.communityInfo;
+        let communityCreatTime = dateObj;
+        let result = await Sql.communityCreate(communityName, communityStatus, communityPicture, communityInfo, communityCreatTime);
+
+
+        //顯示在頁面上 
+        res.json(result);
+    } catch (err) {
+        res.send(err);
+    }
+});
 
 
 
