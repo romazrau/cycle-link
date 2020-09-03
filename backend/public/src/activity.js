@@ -39,8 +39,9 @@ function ClsActivity() {
     // * ---------------- 文字樣板 -----------------
 
     const htmlActSearch = (o) => {
+        console.log(o);
         return ` 
-        <option value="clearsea">${o.flabel}</option>`;
+        <option value="clearsea">${o.fLabelName}</option>`;
     }
     const ActSearch = document.querySelector("#activity_option");
 
@@ -61,7 +62,7 @@ function ClsActivity() {
     // },
     // ]
 
-    function display_active_main_level(o) {
+    const display_active_main_level = (o) => {
         o.map(
             (e, index) => {
                 ActSearch.innerHTML += htmlActSearch(e);
@@ -99,7 +100,7 @@ function ClsActivity() {
         }
     }
 
-    // activemainlevelAwait();
+     activemainlevelAwait();
 
     //*進階搜尋區 ---------------------------------------------------------
     //show
@@ -276,11 +277,7 @@ function ClsActivity() {
     //* ------------------------------------- 文字樣板 -------------------------------------
     const display_active = (o) => {
 
-        // for(let i=0;i<o.length;i++)
-        // {
-        //     ActCard.innerHTML +=this.htmlActCard(o[i]);
-        // }
-        // console.group("display_active map");
+        
         o.map(
             (e, index) => {
                 // console.log(e);
