@@ -4,7 +4,9 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
-
+// 特殊套件
+const jsonwebtoken = require('jsonwebtoken');
+const jwt = require('express-jwt');
 const session = require("express-session");
 const cors = require("cors");
 
@@ -52,19 +54,61 @@ app.use(
   })
 );
 // cors
-// const whitelist = ['http://127.0.0.1:5501/', 'http://127.0.0.1:5500/', undefined];
-// const corsOptions = {
-//   credentials: true,
-//   origin: function (origin, callback){
-//     console.log('origin: '+origin);
-//     if(whitelist.indexOf(origin) !== -1){
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Not allowed by CORS'))
-//     }
-//   }
-// }
-// app.use(cors(corsOptions));
+const whitelist = ['http://127.0.0.1:5501', 'http://127.0.0.1:5500', 'http://127.0.0.1:5502', undefined];
+const corsOptions = {
+  credentials: true,
+  origin: function (origin, callback) {
+    console.log('origin: ' + origin);
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+app.use(cors(corsOptions));
+// jwt
+app.use(jwt({
+  secret: "DayDayLuLuDaDaMiMiJJTenTen", // 签名的密钥 或 PublicKey
+  algorithms: ['HS256'],
+  credentialsRequired: false
+}))
+
+
+app.post('/login', function (req, res) {
+  // 注意默认情况 Token 必须以 Bearer+空格 开头
+  const token = 'Bearer ' + jsonwebtoken.sign({
+      admin: 'admin',
+      tente: "eeeeee"
+    },
+    "DayDayLuLuDaDaMiMiJJTenTen", {
+      expiresIn: 3600 * 24 * 3,
+    }, {
+      algorithm: 'HS256'
+    }
+  )
+  res.json({
+    status: 'ok',
+    data: {
+      token: token
+    }
+  })
+})
+
+
+
+
+app.get('/protected', function (req, res) {
+  console.log(req.user);
+
+  if (!req.user.admin)
+    return res.sendStatus(401)
+  res.json(req.user)
+})
+
+
+
+
 
 // *路由區，把路由分給哪個檔案
 app.use("/", indexRouter);

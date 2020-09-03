@@ -42,7 +42,7 @@ const login = async (account, password) => {
         on M.fAccountTypeId = T.fId
         where fAccount = '${account}' AND fPassword = '${password}';`
         const result = await sql.query(sqlString);
-        console.dir(result);
+        // console.dir(result);
 
         if( ! result.rowsAffected[0]) {
             return {result:0, msg:"帳號或密碼錯誤"}

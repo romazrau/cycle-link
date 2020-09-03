@@ -143,7 +143,7 @@ const JoinById = async (fid) => {
         await sql.connect(config)
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
         let sqlStr = `WITH joinList as (
-            select jl.*,tMember.fName
+            select top(4) jl.*,tMember.fName
             from Activity.tJoinList as jl
             LEFT JOIN Member.tMember
             on jl.fMemberId = tMember.fId

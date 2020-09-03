@@ -248,7 +248,8 @@
 
 .activity_detail_participant_flex {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
 }
 
 .activity_detail_participant {
@@ -259,7 +260,7 @@
   height: 10rem;
   border-radius: 1rem;
   background-color: white;
-  margin-top: 1rem;
+  margin: 1rem 1.3rem 0 0;
 }
 
 .activity_detail_participant:hover {
@@ -334,10 +335,10 @@
 /* *瀏覽 */
 #activity_detail_see {
   display: flex;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
   align-content: stretch;
   justify-content: space-around;
-  /* max-width: 600px; */
+  /* max-width: 800px; */
   margin: 3rem auto;
 }
 
