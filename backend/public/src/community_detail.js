@@ -1,5 +1,9 @@
 function ClsCommuntityDetail() {
 
+    
+
+
+
 
 
     //calendar

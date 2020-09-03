@@ -13,25 +13,51 @@ router.get('/', async function (req, res, next) {
     try {
         // *用 await 等待資料庫回應
         let result = await Sql.communityList();
+
         // 物件用json格式回傳
         // 可以整理一下，刪掉不必要的資料再回傳
         res.json(result);
+
 
     } catch (err) {
         res.send(err);
     }
 });
 
-
+// 此路由/:id Restful.API
 router.get('/:id', async function (req, res, next) {
     try {
-        let result = await Sql.communityById( req.params.id );
+        let result = await Sql.communityById_communityDetail(req.params.id);
+
         //顯示在頁面上 
         res.json(result);
     } catch (err) {
         res.send(err);
     }
-})
+});
+
+// 此路由開始不依照Restful.API
+router.get('/communityManager/:id', async function (req, res, next) {
+    try {
+        let result = await Sql.communityById_communityManager(req.params.id);
+
+        //顯示在頁面上 
+        res.json(result);
+    } catch (err) {
+        res.send(err);
+    }
+});
+
+router.get('/communityById_communityMember/:id', async function (req, res, next) {
+    try {
+        let result = await Sql.communityById_communityMember(req.params.id);
+
+        //顯示在頁面上 
+        res.json(result);
+    } catch (err) { 
+        res.send(err);
+    }
+});
 
 
 

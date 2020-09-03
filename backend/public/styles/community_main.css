@@ -94,6 +94,8 @@
   transition: width 0.2s ease 0.1s;
 }
 
+/*
+社團類別選項刪除
 .CM_appearCategory_item_container {
   display: flex;
 }
@@ -106,7 +108,7 @@
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.212);
-}
+} */
 
 .community_main_container {
   width: 100%;
@@ -186,6 +188,12 @@
 
 .communityName_span {
   cursor: pointer;
+  color: white;
+  padding: 2px 8px;
+  margin-right: 5px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background-color: var(--blue-color);
 }
 
 .CM_timeline_body > p {
@@ -213,7 +221,11 @@
 }
 
 .CM_timeline_footer i {
-  margin-right: 15px;
+  margin-right: 5px;
+}
+
+.CM_timeline_footer span {
+  margin-right: 5px;
 }
 
 .community_main_ul_timeline {

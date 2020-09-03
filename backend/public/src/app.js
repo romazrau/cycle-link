@@ -14,3 +14,20 @@ checkLogin()
 
 
 
+const logg = async () => {
+    let response = await fetch('http://localhost:3050/login', { method: "POST" });
+    let result = await response.json();
+    console.log(result);
+    console.log(result.data.token);
+
+    let response2 = await fetch('http://localhost:3050/protected', {
+        headers: {
+            "Authorization": result.data.token
+        }
+    })
+    let result2 = await response2.text();
+    console.log(result2);
+
+
+}
+logg();
