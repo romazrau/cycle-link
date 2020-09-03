@@ -16,8 +16,6 @@ function ClsActivityDetail() {
     var last_known_scroll_position = 0;
     var ticking = false;
 
-
-
     window.addEventListener('scroll', function (e) {
         last_known_scroll_position = window.scrollY - 150;
         if (window.scrollY > 150) {
@@ -31,8 +29,7 @@ function ClsActivityDetail() {
         }
     });
 
-
-    // * **************************** 文字樣板 **************************** //
+    // * ********************************** 文字樣板 ********************************** //
 
     const activity_detail_initiatorbox = document.querySelector(".activity_detail_titlebox");
     const activity_detail_leftImg = document.querySelector(".activity_detail_text_left_img");
@@ -41,7 +38,7 @@ function ClsActivityDetail() {
     const activity_detail_TagBox = document.querySelector(".activity_detail_TagBox");
     const actDetailRightInfo = document.querySelector(".activity_detail_right_info");
     const activity_detail_participant_All = document.querySelector(".activity_detail_participant_flex");
-
+    const actDetailSocieties = document.querySelector(".activity_detail_Societies");
 
     // * ---------------- 發起人 文字樣板 ---------------- //
 
@@ -103,7 +100,7 @@ function ClsActivityDetail() {
         return `<div class="activity_detail_participant">
     <div class="activity_detail_info_img_circle">
         <div class="activity_detail_info_img_div">
-            <img src="./img/c1.jpeg" class="activity_detail_info_img">
+            <img src=${o.fPhotoPath} class="activity_detail_info_img">
         </div>
     </div>
     <p>${o.fName}</p>
@@ -111,24 +108,39 @@ function ClsActivityDetail() {
 </div>`
     }
 
+    //  TODO: 如果沒有隸屬社團應該不顯示
+    // * ---------------- 活動隸屬社團 文字樣板 ---------------- //
+
+    const actDetailSocietiesALL = (o) => {
+        return `<div class="activity_detail_Societies_img_circle" style="margin-left: 1rem;">
+                    <div class="activity_detail_Societies_img_div">
+                        <img src="./img/item5.JPG" class="activity_detail_Societies_img">
+                    </div>
+                </div>
+                <div class="activity_detail_Societies_info">
+                    <p>${o.CommuntyName}</p>
+                    <a href="">see more events</a>
+                </div>
+                <img src="img/right.svg" alt="" width="20vw">`
+    };
 
     // * ---------------- 活動右側內容 文字樣板 ---------------- //
 
     const actDetailRightInfoALL = (o) => {
         return `
-    <div class="">
+    <div>
         <img src="img/860755.svg" alt="" class="activity_detail_right_icon">
         <p>${o.fActivityDate}<br>${o.fActivityEndDate}</p>
     </div>
-    <div class="">
+    <div>
         <img src="img/929497.svg" alt="" class="activity_detail_right_icon">
         <p>${o.fActLocation}</p>
     </div>
-    <div class="">
+    <div>
         <img src="img/certificate-solid.svg" alt="" class="activity_detail_right_icon">
          <p>${o.ActStatus}</p>
     </div>
-    <div class="">
+    <div>
          <img src="img/coin.png" alt="" class="activity_detail_right_icon">
          <p>1000</p>
     </div>
@@ -151,6 +163,7 @@ function ClsActivityDetail() {
                 activity_detail_text_detail.innerHTML = actDetail_textDetail(e);
                 activity_detail_bigTag.innerHTML = actDetail_bigTag(e);
                 actDetailRightInfo.innerHTML = actDetailRightInfoALL(e);
+                actDetailSocieties.innerHTML = actDetailSocietiesALL(e);
             }
         )
     }
@@ -165,15 +178,16 @@ function ClsActivityDetail() {
     }
 
     const display_actDetailJoin = (o) => {
+        activity_detail_participant_All.innerHTML = "";
         o.map(
             (e, index) => {
-                activity_detail_participant_All.innerHTML = activity_detail_participant(e);
+                activity_detail_participant_All.innerHTML += activity_detail_participant(e);
             }
         )
     }
 
 
-    //! src api actDetail: `${rootURL}/activityDetail/1`, 有給 1 才跑出資料, 如何不輸入 1 叫出 1 ???
+
 
     // * ---------------- actDetail ajax ---------------- //
 
@@ -208,71 +222,7 @@ function ClsActivityDetail() {
 
 
 
-
-
-    //  -------------------------------- 活動參與 文字樣板 -------------------------------- //
-    // const activity_detail_participant_flex = document.querySelector(".activity_detail_participant_flex");
-
-    //     const activity_detail_participant = (o) => {
-    //         return `<div class="activity_detail_participant">
-    //     <div class="activity_detail_info_img_circle">
-    //         <div class="activity_detail_info_img_div">
-    //             <img src=${o.fImg} class="activity_detail_info_img">
-    //         </div>
-    //     </div>
-    //     <p>${o.fName}</p>
-    //     <span>${o.fType}</span>
-    // </div>`
-    //     }
-
-    // const activity_detail_participantData = [{
-    //     fName: '蘇菲唐納',
-    //     fImg: './img/c1.jpeg',
-    //     fType: 'Organizer'
-    // }, {
-    //     fName: 'Wwill354',
-    //     fImg: './img/id3.jpg',
-    //     fType: 'Member'
-    // }, {
-    //     fName: '奔跑8boy',
-    //     fImg: './img/home08.jpg',
-    //     fType: 'Member'
-    // }, {
-    //     fName: 'aa5568',
-    //     fImg: './img/id1.jpg',
-    //     fType: 'Member'
-    // }]
-
-    // activity_detail_participantData.map(
-    //     (e, index) => {
-    //         activity_detail_participant_flex.innerHTML += activity_detail_participant(e);
-    //     }
-    // )
-    // * TODO:-------------------------------- 活動所屬社團 文字樣板 -------------------------------- //
-    const actDetailSocieties = document.querySelector(".activity_detail_Societies");
-
-    const actDetailSocietiesALL = (o) => {
-        return `<div class="activity_detail_Societies_img_circle" style="margin-left: 1rem;">
-                    <div class="activity_detail_Societies_img_div">
-                        <img src=${o.fImg} class="activity_detail_Societies_img">
-                    </div>
-                </div>
-                <div class="activity_detail_Societies_info">
-                    <p>${o.fName}</p>
-                    <a href="">see more events</a>
-                </div>
-                <img src="img/right.svg" alt="" width="20vw">`
-    };
-
-    const actDetailSocietiesData = {
-        fName: '北台灣撿垃圾社團',
-        fImg: './img/item5.JPG'
-    };
-
-    actDetailSocieties.innerHTML += actDetailSocietiesALL(actDetailSocietiesData);
-
-
-    // * TODO: -------------------------------- 為您推薦 文字樣板 -------------------------------- //
+    //  TODO: -------------------------------- 為您推薦 文字樣板 -------------------------------- //
     this.htmlActCard = (o) => {
         return ` 
     <div class="active_card_container">
@@ -296,7 +246,6 @@ function ClsActivityDetail() {
 
     const ActCard = document.querySelector("#activity_detail_see");
 
-    //AJAX
     let ActCardData = [{
             imgPath: "img/event6.png",
             date: "2020/09/15",
@@ -323,7 +272,6 @@ function ClsActivityDetail() {
         }
     ]
 
-
     ActCardData.map(
         (e, index) => {
             ActCard.innerHTML += this.htmlActCard(e);
@@ -332,10 +280,9 @@ function ClsActivityDetail() {
 
 
     // * -------------------------------- 留言區 -------------------------------- //
-    //ONMOUSEOVER
     //get the btn element by id 
     let btnMessage = document.querySelector("#btnMessage");
-    btnMessage.addEventListener("mouseout", getClsChangeback);
+    // btnMessage.addEventListener("mouseout", getClsChangeback);
 
     function getClsChangeback() {
         btnMessage.className = "massageTopButton";
@@ -345,21 +292,11 @@ function ClsActivityDetail() {
     //btn element binding with click 
     btnMessage.addEventListener("click", showMessagebox);
 
-
-
-
     function showMessagebox() {
-        //change the btn background
         getClsChangeback();
-
-        //get the div "id="messageInputBox" and keep putting in innerHtml
-        //怎麼重複利用訪者留言與插入>>createlement
-
-        //這是要放進去的div
         let invisibleDiv = document.querySelector("#messageInputBoxCon");
 
         //createElement 訪者留言
-
         //創一個div
         let divOfMassage = document.createElement("div");
         divOfMassage.innerHTML =
@@ -378,36 +315,16 @@ function ClsActivityDetail() {
         //這是留言方格
         document.querySelector("#messageInputBox").focus();
         getBtnSentChange();
-
         //call確認按鈕做事件綁定（包含把留言顯示）
         sentMassage();
-
     }
-
-
-
 
     //留言確定按鈕ONCLICK MOUSEOVER MOUSEOUT
     function getBtnSentChange() {
-
-
         let btnSent = document.querySelector("#btnMessageSent");
-
-        //     btnSent.addEventListener("mouseover", btnSentClsChange);
-        //     btnSent.addEventListener("mouseout", btnSentClsChangeBack);
-
-        //     function btnSentClsChange() {
-        //         btnSent.className = "btnMessageSent2";
-        //     }
-
-        //     function btnSentClsChangeBack() {
-        //         btnSent.className = "btnMessageSent";
-        //     }
     }
     //確認按鈕做事件綁定
     function sentMassage() {
-
-
         //這是留言方格
         let invisibleDiv = document.querySelector("#messageInputBoxCon");
         //新增一個div
@@ -425,12 +342,6 @@ function ClsActivityDetail() {
             massageInputDiv.classList.add("inputAft");
             //刪除input tag(會再新增留言加進去以免被複寫)
             document.querySelector('.divForInput').remove();
-
-            //!!把divForInput innderHtml置換成 留言<div>
-            //!!!!!!!!!divForInput會抓到上一個留言的divForInput
-            // document.querySelector(".divForInput").innerHTML=`<div class="inputAft">${inputMassage}</div>`;
-
-
             window.alert("留言成功！");
         }
     }
@@ -455,15 +366,17 @@ function ClsActivityDetail() {
         ac_share_bg_div.style.display = 'none';
         ac_share_bg.preventDefault();
     }
-
     this.actDetail = actDetail;
-
-
 }
 const ActivityDetail = new ClsActivityDetail();
 
 
 
+
+//? src api actDetail: `${rootURL}/activityDetail/1`, 有給 1 才跑出資料, 如何不輸入 1 叫出 1 ???
+//* 利用 hash , 如下
+
+// * -------------------------------- hash -------------------------------- //
 
 const actDetailChangeHash = () => {
     let actDetailArr = location.hash.split('/');
@@ -476,15 +389,3 @@ const actDetailChangeHash = () => {
 
 window.addEventListener("hashchange", actDetailChangeHash);
 window.addEventListener("load", actDetailChangeHash);
-
-
-// function ActivityChangeStatus() {
-//     //  if 以登入 執行下列
-//     let btn = document.getElementById("rightPartTop_button");
-//     btn.disabled = true;
-//     btn.style.backgroundColor = "#979494";
-//     btn.style.color = "#D9AAB7";
-//     btn.innerHTML = "審核中";
-
-//     //else{加入會員}
-// }

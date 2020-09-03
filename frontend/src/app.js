@@ -21,9 +21,9 @@ const logg = async () => {
         method: "POST"
     });
     let result = await response.json();
-    console.group("JWT")
-    console.log(result);
-    console.log(result.data.token);
+    // console.group("JWT")
+    // console.log(result);
+    // console.log(result.data.token);
 
     let response2 = await fetch('http://localhost:3050/protected', {
         headers: {
@@ -31,8 +31,8 @@ const logg = async () => {
         }
     })
     let result2 = await response2.text();
-    console.error(result2);
-    console.groupEnd("JWT")
+    // console.error(result2);
+    // console.groupEnd("JWT")
 
 }
 logg();
