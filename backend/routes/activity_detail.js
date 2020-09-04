@@ -27,20 +27,20 @@ router.get('/', async function (req, res, next) {
 router.get('/:id', async function (req, res, next) {
     try {
         // *用 await 等待資料庫回應
-        let result = await Sql.ActDetailById(req.params.id);
-
+        let ActDetailById = await Sql.ActDetailById(req.params.id);
+        let TagById = await Sql.TagById(req.params.id);
+        let JoinById = await Sql.JoinById(req.params.id);
+        let JoinCount = await Sql.JoinCount(req.params.id);
         // res.json(result);
-        let result2 = await Sql.TagById(req.params.id);
-
-        let result3 = await Sql.JoinById(req.params.id);
         // 物件用json格式回傳
         // 可以整理一下，刪掉不必要的資料再回傳
         res.json({
             result: 1,
             data: {
-                detail: result.data,
-                tag: result2.data,
-                join: result3.data
+                detail: ActDetailById.data,
+                tag: TagById.data,
+                join: JoinById.data,
+                joinCount: JoinCount.data
             }
         });
 
