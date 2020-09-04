@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 // session
 const session = require('express-session');
-const sessionKey = require('../src/sessionKey');``
+const sessionKey = require('../src/sessionKey'); ``
 // JWT
 const jsonwebtoken = require('jsonwebtoken');
 
@@ -25,7 +25,7 @@ router.get('/testGuest', function (req, res, next) {
 
 
 // *POST Login ， upload.array() => form data 解析用    
-router.post('/', function(req, res, next) {
+router.post('/', function (req, res, next) {
   let account = req.body.account;
   let password = req.body.password;
 
@@ -33,56 +33,56 @@ router.post('/', function(req, res, next) {
   let token;
 
   memberSql.login(account, password)
-  .then((result)=>{
+    .then((result) => {
 
-    if(result.result){
-      token = 'Bearer ' + jsonwebtoken.sign(
-        {
-          ...result.data
-        },
-        "DayDayLuLuDaDaMiMiJJTenTen",
-        {
-          expiresIn: 3600 * 24 * 3
-        },
-        { algorithm: 'HS256'}
-      )
-    }
+      if (result.result) {
+        token = 'Bearer ' + jsonwebtoken.sign(
+          {
+            ...result.data
+          },
+          "DayDayLuLuDaDaMiMiJJTenTen",
+          {
+            expiresIn: 3600 * 24 * 3
+          },
+          { algorithm: 'HS256' }
+        )
+      }
 
-    console.log("user:",  result);
-    res.json({...result, token:token });
-  })
-  .catch((err)=>{
-    console.log(err);
-    res.send(err);
-  })
-  
+      console.log("user:", result);
+      res.json({ ...result, token: token });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    })
+
 });
 
 
 // is Login?
-router.get('/', (req, res)=>{
-  let result =  req.user ?  {result:1, msg:"認證成功", data: req.user} : { result:0, msg: "未登入" };
+router.get('/', (req, res) => {
+  let result = req.user ? { result: 1, msg: "認證成功", data: req.user } : { result: 0, msg: "未登入" };
   res.json(result)
 })
 
 
 // Log out
-router.get('/logout',(req, res)=>{
-  let result =  req.user ? {result:0, msg:"登出失敗", data: req.user} :  { result:1, msg: "已登出" } ; 
+router.get('/logout', (req, res) => {
+  let result = req.user ? { result: 0, msg: "登出失敗", data: req.user } : { result: 1, msg: "已登出" };
   res.json(result)
 })
 
 
 
 // TODO Sign Up
-router.post('/signup', async (req, res)=>{
+router.post('/signup', async (req, res) => {
 
-  
+
 
 
   req.session[sessionKey.SK_USER_DATA] = req.body;
-  
-  
+
+
   let result = await sendSafetyCode('adoro0920@gmail.com');
   if (result.result) {
     req.session[sessionKey.SK_SIGNUP_SAFTY_CODE] = result.code;
