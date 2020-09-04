@@ -74,7 +74,7 @@ const ActDetailById = async (fid) => {
             LEFT JOIN Activity.tAttestType as Actlv
             on act3.fActAttestId = Actlv.fId
             )
-            select act4.*, Com.fName as CommuntyName
+            select act4.*, Com.fName as CommuntyName, Com.fImgPath as CommuntyImgPath
             from act4
             LEFT JOIN Community.tCommunity as Com
             on act4.fCommunityId = Com.fId;
@@ -212,6 +212,7 @@ const JoinCount = async (fid) => {
 //直接測試用 func ， node src/SQL/test.js
 // 解除註解，並把匯出方法註解才能用喔
 // ActDetail(2);
+// ActDetailById(1);
 // TagById(1);
 // JoinById(1);
 // JoinCount(1);

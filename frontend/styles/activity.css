@@ -241,6 +241,7 @@
     height: 100%;
     background-color: #faebd7;
     border-radius: 0.6rem;
+    object-fit: cover;
 }
 
 

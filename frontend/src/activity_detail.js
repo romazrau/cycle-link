@@ -116,13 +116,12 @@ function ClsActivityDetail() {
 </div>`
     }
 
-    //  TODO: 如果沒有隸屬社團應該不顯示
     // * ---------------- 活動隸屬社團 文字樣板 ---------------- //
 
     const actDetailSocietiesALL = (o) => {
         return `<div class="activity_detail_Societies_img_circle" style="margin-left: 1rem;">
                     <div class="activity_detail_Societies_img_div">
-                        <img src="./img/item5.JPG" class="activity_detail_Societies_img">
+                        <img src=${o.CommuntyImgPath} class="activity_detail_Societies_img">
                     </div>
                 </div>
                 <div class="activity_detail_Societies_info">
