@@ -44,6 +44,11 @@
     color: gray;
     border: 1px solid #ffffff;
     outline: none;
+
+}
+
+#activity_option option {
+    text-align: right;
 }
 
 

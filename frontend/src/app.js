@@ -4,16 +4,18 @@ import {
     checkLogin
 } from "./api.js";
 
-console.log( "%cCycle link token: "+ localStorage.getItem("Cycle link token"), "color:purple");
+// console.log( "%cCycle link token: "+ localStorage.getItem("Cycle link token"), "color:purple");
 checkLogin()
     .then((res) => {
         console.log(res);
         if (res.result == "1") {
             let show = `<i class="fas fa-bullhorn login_bullhorn"></i> <div><p>${res.data.fName}</p><p>歡迎</p></div>`;
             document.querySelector("#header_link_login").innerHTML = show;
+
+            window.localStorage.setItem("Cycle link token", res.token);
         }
     })
-    .catch(err => console.log(err));
+    .catch( (err) => {console.log(err)});
 
 
 
@@ -36,4 +38,4 @@ const logg = async () => {
     // console.groupEnd("JWT")
 
 }
-logg();
+// logg();

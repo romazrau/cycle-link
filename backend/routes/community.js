@@ -4,11 +4,12 @@ var router = express.Router();
 // *檔案引用
 let Sql = require('../src/SQL/community');
 const { clearScreenDown } = require('readline');
+const { strictEqual } = require('assert');
 
 
 
 
-
+//查詢所有社團
 // *測試SQL 語法    注意這裡要 async function，才有非同步效果
 router.get('/', async function (req, res, next) {
     try {
@@ -21,10 +22,11 @@ router.get('/', async function (req, res, next) {
 
 
     } catch (err) {
-        res.send(err);
+        res.send({ result: 0, msg: "路由錯誤", data: err });
     }
 });
 
+//查詢社團by社團id
 // 此路由/:id Restful.API
 router.get('/:id', async function (req, res, next) {
     try {
@@ -33,10 +35,11 @@ router.get('/:id', async function (req, res, next) {
         //顯示在頁面上 
         res.json(result);
     } catch (err) {
-        res.send(err);
+        res.send({ result: 0, msg: "路由錯誤", data: err });
     }
 });
 
+//查詢社團管理員byId
 // 此路由開始不依照Restful.API
 router.get('/communityManager/:id', async function (req, res, next) {
     try {
@@ -45,10 +48,12 @@ router.get('/communityManager/:id', async function (req, res, next) {
         //顯示在頁面上 
         res.json(result);
     } catch (err) {
-        res.send(err);
+        res.send({ result: 0, msg: "路由錯誤", data: err });
     }
 });
 
+
+//查詢社團成員byId
 router.get('/communityById_communityMember/:id', async function (req, res, next) {
     try {
         let result = await Sql.communityById_communityMember(req.params.id);
@@ -58,10 +63,11 @@ router.get('/communityById_communityMember/:id', async function (req, res, next)
         //顯示在頁面上 
         res.json(result);
     } catch (err) {
-        res.send(err);
+        res.send({ result: 0, msg: "路由錯誤", data: err });
     }
 });
 
+//查詢社團by社團名字
 router.get('/communityByString/:str', async function (req, res, next) {
     try {
         console.error(req.params.str);
@@ -70,13 +76,14 @@ router.get('/communityByString/:str', async function (req, res, next) {
         //顯示在頁面上 
         res.json(result);
     } catch (err) {
-        res.send(err);
+        res.send({ result: 0, msg: "路由錯誤", data: err });
     }
 });
 
 
-//TODO 新增社團
-//body:[{"fName":value,"fStatusId":value,"fImgPath":value,"fInfo":value}]
+//新增社團
+//!body:[{"fName":value,"fStatusId":value,"fImgPath":value,"fInfo":value}]
+//!fSatusId 在前端處理傳回為數字
 //把物件屬性拆開當參數去SQL function
 //創立時間在這邊寫進去
 //restful.API 風格
@@ -84,12 +91,18 @@ router.post('/', async function (req, res, next) {
     try {
         console.log(req.body);
 
-        //TODO 時間字串
-        let dateObj = new Date();
+
+
         //es6 物件解構
         let { fName, fStatusId, fImgPath, fInfo } = req.body
-        console.log(req.body);
+
+
+
+
+        //時間"物件"
+        let dateObj = new Date();
         let fDate = dateObj.toLocaleDateString();
+
         console.log("creat time " + fDate);
         let result = await Sql.communityCreate(fName, fStatusId, fImgPath, fInfo, fDate);
 
@@ -97,10 +110,27 @@ router.post('/', async function (req, res, next) {
         //顯示在頁面上 
         res.json(result);
     } catch (err) {
-        res.send(err);
+        res.send({ result: 0, msg: "路由錯誤", data: err });
     }
 });
 
+
+//刪除社團
+// 此路由/:id Restful.API
+//binding 方法,req,res是路由router方法給的
+router.delete('/:id', async function (req, res, next) {
+
+    try {
+
+        let result = await Sql.communityDelet(req.params.id);
+        res.json(result);
+
+
+    } catch (err) {
+        res.send({ result: 0, msg: "路由錯誤", data: err });
+    }
+
+})
 
 
 
