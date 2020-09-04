@@ -40,7 +40,7 @@ const communityList = async () => {
 };
 
 
-//**使用者文字條件查詢社團
+//**社團名稱(可部分)查詢社團
 const communityByString = async (fName) => {
     try {
         // 連接資料庫
@@ -95,11 +95,24 @@ const communityByString = async (fName) => {
 };
 
 
+//TODO
+// //**會員Id查詢社團(ex.會員頁面用)
+// const communityByMemberId = async (fMemberId) => {
+//     try {
+//         await sql.connect(config)
+
+//         let sqlStr = ``
 
 
+//         return { result: 1, msg: "請求成功", data: }
+//     }
+//     catch (err) {
+//         return { result: 0, msg: "SQL錯誤", data: err };
+//     }
+// }
 
 
-//** 使用者CLICK(id)查詢特定社團
+//** 社團Id查詢社團
 //(傳給特定路由去使用)
 const communityById_communityDetail = async (fid) => {
     try {
@@ -159,7 +172,7 @@ const communityById_communityDetail = async (fid) => {
 };
 
 
-
+//**社團id查詢社團管理員
 const communityById_communityManager = async (fid) => {
     try {
         // 連接資料庫
@@ -212,7 +225,7 @@ const communityById_communityManager = async (fid) => {
     }
 };
 
-
+//**社團id查詢社員
 const communityById_communityMember = async (fid) => {
     try {
         // 連接資料庫
@@ -256,9 +269,11 @@ const communityById_communityMember = async (fid) => {
 
 
 
+
+
+
 //**新增社團
 //驗證社團名稱 : 不可為空值 / 不可重複
-
 const communityCreate = async (fName, fStatusId, fImgPath, fInfo, fDate) => {
     try {
         await sql.connect(config)
@@ -303,15 +318,34 @@ const communityCreate = async (fName, fStatusId, fImgPath, fInfo, fDate) => {
 };
 
 
-//TODO 修改特定社團
+//TODO 
+// //**修改社團
+// //!多切一個社團編輯頁面
+// const communityModified = async (fId) => {
+//     try {
+//         await sql.connect(config)
+
+//     }
+//     catch (erro) {
+//         return { result: 0, msg: "SQL錯誤", data: err }
+//     }
+// }
+// //修改:
+// //修改社團照片
+// //修改社團名稱
+// //修改社團狀態
+// //增加社團管理員
+// //刪除社團管理員
+// //修改社團關於我們
+// //刪除社團成員
+// //增加社團成員
 
 
 
-//TODO 刪除社團:用fId設定fStatus停權
+
+//**刪除社團:用fId設定fStatus停權
 //!會員頁面按解散社團
-//如果有把fId設定fStatus停權
-
-
+//把fId設定fStatus停權
 const communityDelet = async (fId) => {
     try {
 
