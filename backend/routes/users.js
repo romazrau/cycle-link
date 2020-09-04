@@ -7,20 +7,20 @@ const sessionKey = require('../src/sessionKey');``
 const jsonwebtoken = require('jsonwebtoken');
 
 // src 資源
-const memberSql =  require('../src/SQL/users');
+const memberSql = require('../src/SQL/users');
 const sendSafetyCode = require('../src/email/signUp');
 
 
 /* GET users listing. */
-router.get('/testGuest', function(req, res, next) {
+router.get('/testGuest', function (req, res, next) {
   memberSql.test()
-  .then((result)=>{
-    res.json(result);
-  })
-  .catch((err)=>{
-    res.send(err);
-  })
-  
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.send(err);
+    })
+
 });
 
 
@@ -29,7 +29,7 @@ router.post('/', function(req, res, next) {
   let account = req.body.account;
   let password = req.body.password;
 
-  console.log({ a:account, b:password});
+  console.log({ a: account, b: password });
   let token;
 
   memberSql.login(account, password)
@@ -84,24 +84,24 @@ router.post('/signup', async (req, res)=>{
   
   
   let result = await sendSafetyCode('adoro0920@gmail.com');
-  if(result.result){
+  if (result.result) {
     req.session[sessionKey.SK_SIGNUP_SAFTY_CODE] = result.code;
   }
-  
+
   res.json(result)
 })
 
 
 // TODO is Sign Up safyty code correct 
-router.get('/signup/:code', async (req, res)=>{
-  
-  if( req.params.code == req.session[sessionKey.SK_SIGNUP_SAFTY_CODE] ){
-    
-    res.json({result:1, msg:"認證成功"});
+router.get('/signup/:code', async (req, res) => {
+
+  if (req.params.code == req.session[sessionKey.SK_SIGNUP_SAFTY_CODE]) {
+
+    res.json({ result: 1, msg: "認證成功" });
     return;
   }
-  
-  res.json({result:0, msg:"認證碼不符"})
+
+  res.json({ result: 0, msg: "認證碼不符" })
 })
 
 

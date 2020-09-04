@@ -1,6 +1,8 @@
 // *此檔案是babel 、 webpack 進入點
 //引入
-import { checkLogin } from "./api.js";
+import {
+    checkLogin
+} from "./api.js";
 
 console.log( "%cCycle link token: "+ localStorage.getItem("Cycle link token"), "color:purple");
 checkLogin()
@@ -16,10 +18,13 @@ checkLogin()
 
 
 const logg = async () => {
-    let response = await fetch('http://localhost:3050/login', { method: "POST" });
+    let response = await fetch('http://localhost:3050/login', {
+        method: "POST"
+    });
     let result = await response.json();
-    console.log(result);
-    console.log(result.data.token);
+    // console.group("JWT")
+    // console.log(result);
+    // console.log(result.data.token);
 
     let response2 = await fetch('http://localhost:3050/protected', {
         headers: {
@@ -27,8 +32,8 @@ const logg = async () => {
         }
     })
     let result2 = await response2.text();
-    console.log(result2);
-
+    // console.error(result2);
+    // console.groupEnd("JWT")
 
 }
 logg();

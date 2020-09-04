@@ -1,4 +1,6 @@
-import { serverURL } from "./api.js";
+import {
+  serverURL
+} from "./api.js";
 
 function ClsCommunityMain() {
   // *second nav bar
@@ -70,8 +72,8 @@ function ClsCommunityMain() {
     try {
       let response = await fetch(serverURL.article);
       let result = await response.json();
-      console.log("a_test await");
-      console.log(result);
+      // console.log("a_test await");
+      // console.log(result);
     } catch (err) {
       console.log(err);
     }
@@ -88,15 +90,13 @@ function ClsCommunityMain() {
   };
 
   //POST假資料
-  let CommunityMainFakeData = [
-    {
+  let CommunityMainFakeData = [{
       communityName: "種樹社團",
       communityIconPath: "img/sprout.png",
       userImgPath: "img/user01.jpg",
       userName: "新垣結衣",
       postTimeAgo: "1小時前",
-      postContent:
-        "好久沒有見到大家了！這次的活動是種台灣原生種牛樟樹的樹苗，讓原生樹種適地適木、複層造林，不僅種下在地居民的健康，也讓野生動物有長長久久的棲息地。",
+      postContent: "好久沒有見到大家了！這次的活動是種台灣原生種牛樟樹的樹苗，讓原生樹種適地適木、複層造林，不僅種下在地居民的健康，也讓野生動物有長長久久的棲息地。",
       postImgPath: "<img src='img/user01_post.jpg' />",
       likeCount: 43,
       replyCount: 3,
@@ -108,8 +108,7 @@ function ClsCommunityMain() {
       userImgPath: "img/user02.jpg",
       userName: "鞋貓劍客",
       postTimeAgo: "2小時前",
-      postContent:
-        "周末的市集超好玩！寶寶用不到的東西都清出去了，而且總算見到@王威比本尊，爽拉！",
+      postContent: "周末的市集超好玩！寶寶用不到的東西都清出去了，而且總算見到@王威比本尊，爽拉！",
       postImgPath: "<img src='img/user02_post.jpg' />",
       likeCount: 13,
       replyCount: 1,

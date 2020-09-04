@@ -61,9 +61,9 @@ app.use(
 const whitelist = ['http://127.0.0.1:5501', 'http://127.0.0.1:5500', 'http://127.0.0.1:5502', undefined];
 const corsOptions = {
   credentials: true,
-  origin: function (origin, callback){
-    console.log('origin: '+origin);
-    if(whitelist.indexOf(origin) !== -1){
+  origin: function (origin, callback) {
+    console.log('origin: ' + origin);
+    if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'))
@@ -73,7 +73,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 // jwt
 app.use(jwt({
-  secret: "DayDayLuLuDaDaMiMiJJTenTen",  // 签名的密钥 或 PublicKey
+  secret: "DayDayLuLuDaDaMiMiJJTenTen", // 签名的密钥 或 PublicKey
   algorithms: ['HS256'],
   credentialsRequired: false
 }))
@@ -81,19 +81,21 @@ app.use(jwt({
 
 app.post('/login', function (req, res) {
   // 注意默认情况 Token 必须以 Bearer+空格 开头
-  const token = 'Bearer ' + jsonwebtoken.sign(
-    {
-      admin: 'admin'
+  const token = 'Bearer ' + jsonwebtoken.sign({
+      admin: 'admin',
+      tente: "eeeeee"
     },
-    "DayDayLuLuDaDaMiMiJJTenTen",
-    {
-      expiresIn: 3600 * 24 * 3
-    },
-    { algorithm: 'HS256'}
+    "DayDayLuLuDaDaMiMiJJTenTen", {
+      expiresIn: 3600 * 24 * 3,
+    }, {
+      algorithm: 'HS256'
+    }
   )
   res.json({
     status: 'ok',
-    data: { token: token }
+    data: {
+      token: token
+    }
   })
 })
 

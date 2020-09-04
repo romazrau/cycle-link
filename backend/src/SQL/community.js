@@ -9,10 +9,11 @@ const config = {
     database: 'SeaTurtleOnTheWay',
 }
 
+//"後端路由"透過Function對資料庫下的指令:CRUD增刪查改
+//後端路由的變化影響SQL function參數的接收
 
 
-
-//TODO 查詢所有社團
+//**查詢所有社團
 const communityList = async () => {
     try {
         // make sure that any items are correctly URL encoded in the connection string
@@ -23,6 +24,10 @@ const communityList = async () => {
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
         console.dir(result)
+
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "查無結果" }
+        }
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
         return { result: 1, msg: "請求成功", data: result.recordset };
         // 錯誤處理
@@ -33,11 +38,66 @@ const communityList = async () => {
 };
 
 
-//TODO 進階查詢社團
+//**使用者文字條件查詢社團
+const communityByString = async (fName) => {
+    try {
+        // 連接資料庫
+        await sql.connect(config)
+
+        let sqlStr = `
+        with 
+        Community as
+        (
+        select C.fId,
+               C.fImgPath,
+               C.fName,
+               C.fInfo,
+               S.fId as fStatusId,
+               S.fName as fSatusName
+        from Community.tCommunity as C
+        LEFT JOIN Community.tStatus as S
+        ON C.fStatusId = S.fId 
+        WHERE  C.fName like  '%${fName}%'
+        ),
+        
+        MemberList as
+        (
+        select MemberList.fCommunityId, COUNT(MemberList.fMemberId) as 'totalNumber'
+        from Community.tMemberList as MemberList
+        GROUP BY MemberList.fCommunityId
+        )
+        
+        select Community.*, MemberList.totalNumber
+        
+        from Community as Community
+        left join MemberList as MemberList
+         on Community.fId = MemberList.fCommunityId;`;
 
 
 
-//TODO 查詢特定社團
+
+
+        const result = await sql.query(sqlStr);
+
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "查無結果" }
+        }
+        return { result: 1, msg: "請求成功", data: result.recordset };
+
+    }
+    catch (err) {
+        console.log(err);
+        return { result: 0, msg: "SQL 錯誤", data: err };
+
+    }
+};
+
+
+
+
+
+
+//** 使用者CLICK(id)查詢特定社團
 //(傳給特定路由去使用)
 const communityById_communityDetail = async (fid) => {
     try {
@@ -81,8 +141,12 @@ const communityById_communityDetail = async (fid) => {
 
 
         console.log(result);
+
+        //如果沒撈到資料的錯誤處理
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "查無結果" }
+        }
         // 看一下回傳結果
-        console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
         return { result: 1, msg: "請求成功", data: result.recordset };
         // 錯誤處理
@@ -122,7 +186,12 @@ const communityById_communityManager = async (fid) => {
         on v_getCommunitytAccessRight.fMemberId = MembertMember.fId
         `;
 
+
         const result = await sql.query(sqlStr)
+        //如果沒撈到資料的錯誤處理
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "查無結果" }
+        }
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
         return { result: 1, msg: "請求成功", data: result.recordset };
     } catch (err) {
@@ -149,6 +218,10 @@ const communityById_communityMember = async (fid) => {
 
         const result = await sql.query(sqlStr)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
+        //如果沒撈到資料的錯誤處理
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "查無結果" }
+        }
         return { result: 1, msg: "請求成功", data: result.recordset };
 
     } catch (err) {
@@ -158,7 +231,28 @@ const communityById_communityMember = async (fid) => {
 
 };
 
-//TODO 新增特定社團
+//TODO 新增社團
+const communityCreate = async (fName, fStatusId, fImgPath, fInfo, fDate) => {
+    try {
+        await sql.connect(config)
+        let sqlStr = `
+        INSERT INTO Community.tCommunity( fName,fStatusId,fImgPath,fInfo,fDate)  
+             VALUES ( '${fName}','${fStatusId}','${fImgPath}','${fInfo}','${fDate}');`;
+
+
+        const result = await sql.query(sqlStr);
+
+
+
+        return { result: 1, msg: "請求成功" }
+    } catch (err) {
+        console.log(err);
+        return { result: 0, msg: "SQL錯誤", data: err }
+    }
+
+
+};
+
 
 //TODO 修改特定社團
 
@@ -177,4 +271,4 @@ const communityById_communityMember = async (fid) => {
 
 // *匯出方法 ， 多個方法包在{}裡， ex: {func1, func2}
 //{es6寫法communityList:communityList}
-module.exports = { communityList, communityById_communityDetail, communityById_communityManager, communityById_communityMember };
+module.exports = { communityList, communityById_communityDetail, communityById_communityManager, communityById_communityMember, communityByString, communityCreate };

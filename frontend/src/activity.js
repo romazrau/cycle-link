@@ -39,7 +39,7 @@ function ClsActivity() {
     // * ---------------- 文字樣板 -----------------
 
     const htmlActSearch = (o) => {
-        console.log(o);
+        // console.log(o);
         return ` 
         <option value="clearsea">${o.fLabelName}</option>`;
     }
@@ -87,8 +87,8 @@ function ClsActivity() {
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
             // console.group("active await");
-            console.log("active awai: ", result.msg);
-            console.log(result.data);
+            // console.log("active awai: ", result.msg);
+            // console.log(result.data);
             // console.groupEnd("active await");
             display_active_main_level(result.data);
             // *用 result  do something ...
@@ -100,7 +100,7 @@ function ClsActivity() {
         }
     }
 
-     activemainlevelAwait();
+    activemainlevelAwait();
 
     //*進階搜尋區 ---------------------------------------------------------
     //show
@@ -252,7 +252,7 @@ function ClsActivity() {
 
 
     const htmlActCard = (o) => {
-        return ` 
+        return ` <a href="#activity/detail/${o.fId}">
     <div class="active_card_container">
         <div class="active_card" >
             <i class="fas fa-heart fa-lg active_card_heart"></i>
@@ -268,7 +268,7 @@ function ClsActivity() {
                 </div>
             </div>
         </div>
-    </div>`;
+    </div></a>`;
 
     }
 
@@ -277,7 +277,7 @@ function ClsActivity() {
     //* ------------------------------------- 文字樣板 -------------------------------------
     const display_active = (o) => {
 
-        
+
         o.map(
             (e, index) => {
                 // console.log(e);
