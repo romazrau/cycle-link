@@ -44,41 +44,101 @@ const login = async (account, password) => {
         const result = await sql.query(sqlString);
         // console.dir(result);
 
-        if( ! result.rowsAffected[0]) {
-            return {result:0, msg:"帳號或密碼錯誤"}
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "帳號或密碼錯誤" }
         }
-        return {result:1, msg:"登入成功", data:result.recordset[0]};
+        return { result: 1, msg: "登入成功", data: result.recordset[0] };
     } catch (err) {
         console.log(err);
-        return {result:0, msg:"SQL 問題", data:result};
+        return { result: 0, msg: "SQL 問題", data: result };
     }
 };
 
-const isMemberExist = async (account) => {
+
+// 搜尋 member
+const memberList = async () => {
     try {
         // make sure that any items are correctly URL encoded in the connection string
         await sql.connect(config)
         const sqlString = `
-        select M.fId, M.fName , T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority'
+        select M.fId, M.fName ,M.fName, M.fCity, M.fCoins , T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority' , M.fIntroduction, M.fPhotoPath, M.fLastTime
         from Member.tMember as M
         LEFT join Member.tAccountType as T
-        on M.fAccountTypeId = T.fId
-        where fAccount = '${account}';`
+        on M.fAccountTypeId = T.fId;`;
         const result = await sql.query(sqlString);
         // console.dir(result);
 
-        if( ! result.rowsAffected[0]) {
-            return {result:0, msg:"帳號或密碼錯誤"}
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "查無結果" }
         }
-        return {result:1, msg:"登入成功", data:result.recordset[0]};
+        return { result: 1, msg: "查詢成功", data: result.recordset[0] };
     } catch (err) {
         console.log(err);
-        return {result:0, msg:"SQL 問題", data:result};
+        return { result: 0, msg: "SQL 問題", data: result };
+    }
+};
+
+
+// 搜尋 member
+const memberById = async (id) => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        await sql.connect(config)
+        const sqlString = `
+        select M.fId ,M.fName, M.fCity, M.fCoins , T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority' , M.fIntroduction, M.fPhotoPath, M.fLastTime
+        from Member.tMember as M
+        LEFT join Member.tAccountType as T
+        on M.fAccountTypeId = T.fId
+        where M.fId = '${id}';`
+        const result = await sql.query(sqlString);
+        // console.dir(result);
+
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "查無結果" }
+        }
+        return { result: 1, msg: "查詢成功", data: result.recordset[0] };
+    } catch (err) {
+        console.log(err);
+        return { result: 0, msg: "SQL 問題" };
     }
 };
 
 
 
+const changeDetail = async (id, memberObj) => {
+    try {  
+        delete memberObj.fId;                     //屬性中 fid 刪除，避免接下來的迴圈寫入ID
+
+        let objKeyArr = Object.keys(memberObj);  // [fBirthdate,  fAddress]
+        let setArr = objKeyArr.map((item) => 
+            `${item} = '${memberObj[item]}'`    // ex: fBirthdate = '2000/02/20'                                             
+        )                                       // [fBirthdate = '2000/02/20', fAddress = '復興南路一段390號2樓']
+        let setStr = setArr.join(', ');         // "fBirthdate = '2000/02/20', fAddress = '復興南路一段390號2樓'"
+        console.log("Set 連接字串: " + setStr);
+
+        await sql.connect(config);
+        const sqlString = `
+        --updata
+        UPDATE Member.tMember 
+        SET ${setStr}
+        WHERE fId = ${id}  ;       
+        `;
+        const result = await sql.query(sqlString);
+        // console.dir(result);
+
+        return {result:1, msg:"更改成功"};
+    } catch (err) {
+        console.log(err);
+        return { result: 0, msg: "SQL 問題", data: err };
+    }
+};
+// changeDetail(10, {
+//     fBirthdate: '2000/02/20',
+//     fMail:'cycle2link@gmail.com',
+//     fAddress: '復興南路一段390號2樓',
+// })
 
 
-module.exports = {test, login};
+
+
+module.exports = {test, login, changeDetail, memberById ,memberList};
