@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 // *檔案引用
 let Sql = require('../src/SQL/community');
+const { clearScreenDown } = require('readline');
 
 
 
@@ -75,22 +76,22 @@ router.get('/communityByString/:str', async function (req, res, next) {
 
 
 //TODO 新增社團
-//body:[{"communityName":value,"communityStatus":value,"communityPicture":value,"communityInfo":value}]
+//body:[{"fName":value,"fStatusId":value,"fImgPath":value,"fInfo":value}]
 //把物件屬性拆開當參數去SQL function
 //創立時間在這邊寫進去
-router.get('/communityCreate', async function (req, res, next) {
+//restful.API 風格
+router.post('/', async function (req, res, next) {
     try {
         console.log(req.body);
 
         //TODO 時間字串
-        let dateObj = Date();
-
-        let communityName = req.body.communityName;
-        let communityStatus = req.body.communityStatus;
-        let communityPicture = req.body.communityPicture;
-        let communityInfo = req.body.communityInfo;
-        let communityCreatTime = dateObj;
-        let result = await Sql.communityCreate(communityName, communityStatus, communityPicture, communityInfo, communityCreatTime);
+        let dateObj = new Date();
+        //es6 物件解構
+        let { fName, fStatusId, fImgPath, fInfo } = req.body
+        console.log(req.body);
+        let fDate = dateObj.toLocaleDateString();
+        console.log("creat time " + fDate);
+        let result = await Sql.communityCreate(fName, fStatusId, fImgPath, fInfo, fDate);
 
 
         //顯示在頁面上 

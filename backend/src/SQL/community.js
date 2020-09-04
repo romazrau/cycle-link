@@ -232,24 +232,27 @@ const communityById_communityMember = async (fid) => {
 };
 
 //TODO 新增社團
-const communityCreate = async (communityName, communityStatus, communityPicture, communityInfo, communityCreatTime) => {
+const communityCreate = async (fName, fStatusId, fImgPath, fInfo, fDate) => {
     try {
         await sql.connect(config)
         let sqlStr = `
         INSERT INTO Community.tCommunity( fName,fStatusId,fImgPath,fInfo,fDate)  
-             VALUES ( '${communityName}','1','${communityPicture}','${communityInfo}','${communityCreatTime}')`
+             VALUES ( '${fName}','${fStatusId}','${fImgPath}','${fInfo}','${fDate}');`;
 
 
-        if (!result.rowsAffected[0]) {
-            return { result: 0, msg: "查無結果" }
-        }
-        return { result: 1, msg: "請求成功", data: result.recordset }
+        const result = await sql.query(sqlStr);
+
+
+
+        return { result: 1, msg: "請求成功" }
     } catch (err) {
+        console.log(err);
         return { result: 0, msg: "SQL錯誤", data: err }
     }
 
 
 };
+
 
 //TODO 修改特定社團
 
