@@ -54,6 +54,30 @@ const login = async (account, password) => {
     }
 };
 
+const isMemberExist = async (account) => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        await sql.connect(config)
+        const sqlString = `
+        select M.fId, M.fName , T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority'
+        from Member.tMember as M
+        LEFT join Member.tAccountType as T
+        on M.fAccountTypeId = T.fId
+        where fAccount = '${account}';`
+        const result = await sql.query(sqlString);
+        // console.dir(result);
+
+        if( ! result.rowsAffected[0]) {
+            return {result:0, msg:"帳號或密碼錯誤"}
+        }
+        return {result:1, msg:"登入成功", data:result.recordset[0]};
+    } catch (err) {
+        console.log(err);
+        return {result:0, msg:"SQL 問題", data:result};
+    }
+};
+
+
 
 
 

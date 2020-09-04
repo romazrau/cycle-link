@@ -28,6 +28,8 @@ document.querySelector("#loginSubmit").addEventListener(
                     let show = `<i class="fas fa-bullhorn login_bullhorn"></i> <div><p>${resData.data.fName}</p><p>歡迎</p></div>`;
                     document.querySelector("#header_link_login").innerHTML = show;
                     location.hash = "#personal-maneger";
+
+                    window.localStorage.setItem("Cycle link token", resData.token);
                 }
             }
 

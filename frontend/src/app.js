@@ -2,6 +2,7 @@
 //引入
 import { checkLogin } from "./api.js";
 
+console.log( "%cCycle link token: "+ localStorage.getItem("Cycle link token"), "color:purple");
 checkLogin()
     .then((res) => {
         console.log(res);
