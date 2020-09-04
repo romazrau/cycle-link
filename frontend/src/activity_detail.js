@@ -38,6 +38,7 @@ function ClsActivityDetail() {
     const activity_detail_TagBox = document.querySelector(".activity_detail_TagBox");
     const actDetailRightInfo = document.querySelector(".activity_detail_right_info");
     const activity_detail_participant_All = document.querySelector(".activity_detail_participant_flex");
+    const activity_detail_participant_count = document.querySelector("#activity_detail_participant_count")
     const actDetailSocieties = document.querySelector(".activity_detail_Societies");
 
     // * ---------------- 發起人 文字樣板 ---------------- //
@@ -92,6 +93,13 @@ function ClsActivityDetail() {
         return `<div class="activity_detail_tag">
                     <a href="#">${o.fLabelName}</a>
                 </div>`
+    }
+    // * ---------------- 活動參與者數量 文字樣板 ---------------- //
+
+    const actDetail_participant_count = (o) => {
+        return `<h5 id="activity_detail_participant_count">活動參與者(${o.JoinCount})</h5>
+        <a href="#">See All</a>
+        `
     }
 
     // * ---------------- 活動參與者 文字樣板 ---------------- //
@@ -156,6 +164,8 @@ function ClsActivityDetail() {
     // * ---------------- 文字樣板 資料匯入 ---------------- //
 
     const display_actDetail = (o) => {
+        actDetailSocieties.innerHTML = "";
+
         o.map(
             (e, index) => {
                 activity_detail_initiatorbox.innerHTML = activity_detail_initiatorCard(e);
@@ -163,7 +173,14 @@ function ClsActivityDetail() {
                 activity_detail_text_detail.innerHTML = actDetail_textDetail(e);
                 activity_detail_bigTag.innerHTML = actDetail_bigTag(e);
                 actDetailRightInfo.innerHTML = actDetailRightInfoALL(e);
-                actDetailSocieties.innerHTML = actDetailSocietiesALL(e);
+
+                if (e.CommuntyName !== null) {
+                    actDetailSocieties.innerHTML = actDetailSocietiesALL(e);
+                    actDetailSocieties.style.display = "flex";
+                } else {
+                    actDetailSocieties.style.display = "none";
+                }
+
             }
         )
     }
@@ -186,6 +203,14 @@ function ClsActivityDetail() {
         )
     }
 
+    const display_actDetailJoinCount = (o) => {
+        activity_detail_participant_count.innerHTML = "";
+        o.map(
+            (e, index) => {
+                activity_detail_participant_count.innerHTML = actDetail_participant_count(e);
+            }
+        )
+    }
 
 
 
@@ -213,6 +238,7 @@ function ClsActivityDetail() {
             display_actDetail(result.data.detail);
             display_actDetailTag(result.data.tag);
             display_actDetailJoin(result.data.join);
+            display_actDetailJoinCount(result.data.joinCount);
         } catch (err) {
             console.log(err);
             // 錯誤處理
