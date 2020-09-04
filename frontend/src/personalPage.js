@@ -43,8 +43,7 @@ function ClsPersonalPage(){
         personalpage_information.innerHTML=htmlPerCard(data[0]);
         personal_community.innerHTML="";
         data.map(function(e,index){
-           console.log(e)
-           console.log(personal_community);
+           
             personal_community.innerHTML+=htmlPerCommunityCard(e);
         })
         personal_imgbox.innerHTML=htmlPerImgCard(data[0])
@@ -219,7 +218,7 @@ const htmlPerCard = o =>
 
    const htmlPerCommunityCard = o =>
    {    
-       console.log(o.fImgPath)
+      
         return `<div class="personal_detail_Societies_img_circle">
                 <a href="#community/detail/${o.fCommunityId}">
                     <div class="personal_detail_Societies_img_div">
@@ -236,7 +235,6 @@ const htmlPerCard = o =>
 
     const htmlPerImgCard = o =>
    {    
-       console.log(o.fPhotoPath)
         return `
              <img src="${o.fPhotoPath}" alt="">
             `
@@ -254,7 +252,7 @@ const PersonalPage = new ClsPersonalPage();
 // * -------------------------------- hash -------------------------------- //
 
 const personalChangeHash = () => {
-    console.log(location.hash);
+
     let  personalArr = location.hash.split('/');
     let personalId = personalArr[1];
     

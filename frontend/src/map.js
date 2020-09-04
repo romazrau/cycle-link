@@ -31,8 +31,7 @@ var ActivityList;
 function map_GetActivityList(o){
 
   ActivityList =o;
-  console.log("func");
-  console.log(ActivityList);
+ 
 }
 
 
@@ -316,9 +315,10 @@ function map_GetActivityList(o){
         {
           if( ActivityList[i].fCoordinateX==lat &&ActivityList[i].fCoordinateY==lng )
           {
-            console.log(ActivityList[i].fIntroduction);
+          
             document.getElementById("map_activityintroduction").innerHTML=ActivityList[i].fIntroduction;
             document.querySelector(".map_imgbox").src=ActivityList[i].fImgPath;
+            document.querySelector(".map_link").href=`#activity/detail/${ActivityList[i].fId}`
     
           }
         }
@@ -402,7 +402,7 @@ if (location.hash==="#map" && !MapPage)
       await MapActivityAwait();
       MapPage = new ClsMap();
      
-      console.log(MapPage)
+ 
 
     }, 500)
     
@@ -417,7 +417,7 @@ if (location.hash==="#map" && !MapPage)
     setTimeout(async()=>{
       await MapActivityAwait();
       MapPage = new ClsMap();
-      console.log(MapPage)
+     
 
     }, 300)
     
