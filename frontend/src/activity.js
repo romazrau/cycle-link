@@ -27,40 +27,54 @@ function ClsActivity() {
     var activity_search_go = document.getElementById("activity_search_go");
     var activity_card_ALL = document.getElementById("activity_card_ALL");
     var communmity_main = document.querySelector(".communmity_main");
+    var activity_option  = document.getElementById("activity_option");
+    var searchtext =  document.getElementById("search_txt");
 
-    activity_search_go.onclick = function () {
+    activity_search_go.addEventListener('click',function () {
+        var typeId = activity_option.value;
+        var searchtxt = searchtext.value;
         activity_card_ALL.style.display = 'none';
         communmity_main.style.display = 'block';
+        activeSearchGoAwait(typeId,searchtxt);
+        
+        
+    })
+    
+    const htmlActSearchgo = (o) =>{
+        return `
+                        <div communmity_shadow >
+                            <div class="communmity_container_middle_content ">
+                                <div class="communmity_container_middle_content_imgbox">
+                                        ${o.fImgPath}
+                                </div>
+                                <div class="communmity_container_middle_content_title">
+                                    <span>
+                                        ${o.fActivityDate}
+                                    </span>
+                                    <h3>${o.fActName}</h3>
+                                    <p>free</p>
+                                </div>
+                                <div class="communmity_container_middle_content_icon">
+                                    <div class="communmity_icon_box">
+                                        <span><button><img src="./img/share.svg" alt=""></button></span>
+                                        <span><button><img src="./img/like.svg" alt=""></button></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        `
     }
 
-
-
+    
 
     // * ---------------- 文字樣板 -----------------
 
     const htmlActSearch = (o) => {
-        // console.log(o);
         return ` 
-        <option value="clearsea">${o.fLabelName}</option>`;
+        <option value="${o.fId}">${o.fLabelName}</option>`;
     }
     const ActSearch = document.querySelector("#activity_option");
 
-
-
-
-
-
-
-    // let ActSearchData = [{
-    //     tag: "淨海"
-    // },
-    // {
-    //     tag: "淨山"
-    // },
-    // {
-    //     tag: "路跑"
-    // },
-    // ]
 
     const display_active_main_level = (o) => {
         o.map(
@@ -69,8 +83,14 @@ function ClsActivity() {
             }
         )
     };
-
-
+    const ActSearchGo_result = document.querySelector(".communmity_container_middle");
+    const display_search_go = (o) =>{
+        ActSearchGo_result.innerHTML = "";
+        o.map((e,index)=>{
+            
+            ActSearchGo_result.innerHTML += htmlActSearchgo(e);
+        })
+    }
     const activemainlevelAwait = async () => {
         try {
             // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
@@ -86,10 +106,7 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-            // console.group("active await");
-            // console.log("active awai: ", result.msg);
-            // console.log(result.data);
-            // console.groupEnd("active await");
+            
             display_active_main_level(result.data);
             // *用 result  do something ...
 
@@ -101,6 +118,39 @@ function ClsActivity() {
     }
 
     activemainlevelAwait();
+
+
+
+    const activeSearchGoAwait = async (id,text) => {
+        try {
+            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  ),
+            // *用變數接 fetch 結果 ，要用await等。
+            let response = await fetch(`${serverURL.active}/${id}/${text}`, {
+                method: "GET", // http request method 
+                headers: { // http headers
+                    'Content-Type': 'application/json' // 請求的資料類型
+                },
+                // 以下跟身分認證有關，後端要使用session 要帶這幾項
+                cache: 'no-cache',
+                credentials: 'include',
+            });
+            // 用變數接 fetch結果的資料內容， 要用await等。
+            let result = await response.json();
+           console.log(result);
+           display_search_go(result.data);
+            // *用 result  do something ...
+
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+
+        }
+    }
+
+    
+
+
+
 
     //*進階搜尋區 ---------------------------------------------------------
     //show
@@ -116,7 +166,15 @@ function ClsActivity() {
     //日期
 
 
-
+    //防止冒泡
+    const stopdate = document.querySelectorAll(".ui-state-default");
+    for(var i =0;i<stopdate.length;i++)
+    {
+        stopdate[i].addEventListener("click",function(){
+            console.log("WTF");
+            event.preventDefault();
+        })
+    }
 
     //舉辦縣市
     const activityCityData = [
@@ -156,7 +214,7 @@ function ClsActivity() {
     var btncitydetial = document.getElementById("search_citydetial");
     btncity.addEventListener('click', function () {
         btncity.classList.add("search_hidden");
-        // btncitydetial.classList.remove("search_hidden");
+        btncitydetial.classList.remove("search_hidden");
         $("#search_citydetial").fadeIn("5000");
     });
     var list = document.getElementsByTagName("li");
@@ -175,7 +233,7 @@ function ClsActivity() {
     var btndatedetial = document.getElementById("search_datedetial");
     btndate.addEventListener('click', function () {
         btndate.classList.add("search_hidden");
-        // btndatedetial.classList.remove("search_hidden");
+        btndatedetial.classList.remove("search_hidden");
         $("#search_datedetial").fadeIn("5000");
     });
 
@@ -188,7 +246,7 @@ function ClsActivity() {
                 var dateAsObject = $(this).datepicker('getDate'); //the getDate method
                 getstartdate(dateAsString);
                 // startdate(dateAsString);
-                startdate = dateText;
+                var startdate = dateText;
             },
             //顯示上個月日期 及下個月日期 ，但是不可選的。
             //default:false
@@ -250,7 +308,7 @@ function ClsActivity() {
 
 
 
-
+  // 活動樣板
     const htmlActCard = (o) => {
         return ` <a href="#activity/detail/${o.fId}">
     <div class="active_card_container">
@@ -269,7 +327,6 @@ function ClsActivity() {
             </div>
         </div>
     </div></a>`;
-
     }
 
 
@@ -322,79 +379,16 @@ function ClsActivity() {
     activeAwait();
 
 
-    // const htmlActCard= (o) => {
-    //     return ` 
-    // <div id="ActCard" class="activity_event_card">
-    // <img src="${o.imgPath}" class="activity_event_img" alt="">
-    // <p>${o.date}</p>
-    // <h3>${o.title}</h3>
-    // <div class="activity_event_card_icons">
-    // <div>
-    // <img src="img/icon_gps.svg" class="activity_icon" alt=""><span>${o.local}</span>
-    // </div>
-    // </div>
-    // </div>`;
 
-    // }
+
+
+    
 
     const ActCard = document.querySelector("#activity_event_top");
 
     //AJAX
 
-    //     imgPath: "img/event5.jpg",
-    //     date: "2020/08/09",
-    //     title: "國家地理路跑 - 世界地球日50週年",
-    //     count: 999,
-    //     member: "林志引",
-    //     local: "大佳河濱公園"
-    // },
-    // {
-    //     imgPath: "img/event6.png",
-    //     date: "2020/09/15",
-    //     title: "世界環境清潔日 - 相約海洋淨灘",
-    //     count: 100,
-    //     member: "王曉明",
-    //     local: "新金山海灘"
-    // },
-    // {
-    //     imgPath: "img/event3.jpg",
-    //     date: "2020/09/26",
-    //     title: "魚取漁囚 - 守護海洋行動體驗特展",
-    //     count: 99,
-    //     member: "洲仔於",
-    //     local: "布袋漁港"
-    // },
-    // {
-    //     imgPath: "img/event7.jpg",
-    //     date: "2020/09/06",
-    //     title: "臉部平權運動臺北國道馬拉松",
-    //     count: 500,
-    //     member: "時間管理大師",
-    //     local: "中山高速公路五股 - 汐止高架段"
-    // },
-    // {
-    //     imgPath: "img/event12.png",
-    //     date: "2020/10/03",
-    //     title: "環保潛水隊-隊員招募中",
-    //     count: 500,
-    //     member: "時間管理大師",
-    //     local: "東北角 - 龍洞"
-    // },
-    // {
-    //     imgPath: "img/event8.png",
-    //     date: "2020/11/04",
-    //     title: "PUMA - 螢光夜跑",
-    //     count: 500,
-    //     member: "時間管理大師",
-    //     local: "大佳河濱公園"
-    // }
-
-
-
-
-
-
-
+   
     //------------------------------------------------------
 
     // const htmlActCard2 = (o) => {
