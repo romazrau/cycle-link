@@ -22,7 +22,7 @@ var mapRouter = require("./routes/map");
 var activeRouter = require("./routes/active");
 var articleRouter = require("./routes/article");
 var communityRouter = require("./routes/community");
-
+var personalPageRouter = require("./routes/personalPage");
 const app = express();
 
 // view engine setup
@@ -123,6 +123,11 @@ app.use("/map", mapRouter);
 app.use("/active", activeRouter);
 app.use("/article", articleRouter);
 app.use("/community", communityRouter);
+app.use("/personalPage",personalPageRouter)
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

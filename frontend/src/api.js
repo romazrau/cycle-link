@@ -10,7 +10,8 @@ const serverURL = {
     activemainlevel: `${rootURL}/active/searchmainlevel/`,
     actDetail: `${rootURL}/activityDetail/`,
     actsearchdetail:`${rootURL}/activity/searchdetail/`,
-    maps: `${rootURL}/map/`
+    maps: `${rootURL}/map/`,
+    personalPages: `${rootURL}/personalPage/`,
 };
 
 
