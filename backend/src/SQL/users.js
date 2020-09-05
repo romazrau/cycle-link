@@ -79,6 +79,8 @@ const memberList = async () => {
 };
 
 
+
+
 // 搜尋 member
 const memberById = async (id) => {
     try {
@@ -105,12 +107,41 @@ const memberById = async (id) => {
 
 
 
+
+
+
+
+
+// 搜尋 member by account
+const memberByAccount = async (account) => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        await sql.connect(config)
+        const sqlString = `
+        select M.fId ,M.fName, M.fAccount
+        from Member.tMember as M
+        where M.fAccount = '${account}';`
+        const result = await sql.query(sqlString);
+        // console.dir(result);
+
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "查無結果" }
+        }
+        return { result: 1, msg: "查詢成功", data: result.recordset[0] };
+    } catch (err) {
+        console.log(err);
+        return { result: 0, msg: "SQL 問題" };
+    }
+};
+
+
+
 const changeDetail = async (id, memberObj) => {
-    try {  
+    try {
         delete memberObj.fId;                     //屬性中 fid 刪除，避免接下來的迴圈寫入ID
 
         let objKeyArr = Object.keys(memberObj);  // [fBirthdate,  fAddress]
-        let setArr = objKeyArr.map((item) => 
+        let setArr = objKeyArr.map((item) =>
             `${item} = '${memberObj[item]}'`    // ex: fBirthdate = '2000/02/20'                                             
         )                                       // [fBirthdate = '2000/02/20', fAddress = '復興南路一段390號2樓']
         let setStr = setArr.join(', ');         // "fBirthdate = '2000/02/20', fAddress = '復興南路一段390號2樓'"
@@ -126,7 +157,7 @@ const changeDetail = async (id, memberObj) => {
         const result = await sql.query(sqlString);
         // console.dir(result);
 
-        return {result:1, msg:"更改成功"};
+        return { result: 1, msg: "更改成功" };
     } catch (err) {
         console.log(err);
         return { result: 0, msg: "SQL 問題", data: err };
@@ -139,6 +170,33 @@ const changeDetail = async (id, memberObj) => {
 // })
 
 
+// create member 
+const createMember = async (fAccount, fPassword, fName, fBirthdate, fMail,
+    fAddress, fCity, fCeilphoneNumber,
+    fPhotoPath, fIntroduction) => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        await sql.connect(config)
+        const sqlString = `
+        INSERT INTO Member.tMember
+	    ( fAccount, fPassword, fName, fBirthdate, fMail,
+	    fAddress, fCity, fCeilphoneNumber,
+	    fPhotoPath, fIntroduction )
+        VALUES
+	    ('${fAccount}', '${fPassword}', '${fName}', '${fBirthdate}', '${fMail}',
+		'${fAddress}', '${fCity}', ${fCeilphoneNumber}, 
+		'${fPhotoPath}', '${fIntroduction}');`
+        const result = await sql.query(sqlString);
+        // console.dir(result);
+        console.log(result);
+
+        return { result: 1, msg: "新增成功", data: result.rowsAffected };
+    } catch (err) {
+        console.log(err);
+        return { result: 0, msg: "SQL 問題" };
+    }
+};
 
 
-module.exports = {test, login, changeDetail, memberById ,memberList};
+
+module.exports = { test, login, changeDetail, memberById, memberList, memberByAccount, createMember };
