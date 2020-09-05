@@ -17,26 +17,28 @@ const articlelist = async () => {
       from Community.tPost as p
       left join Member.tMember as m
       on p.fMemberId=m.fId)
-      
       , PostCommunity AS(select p.fId as PostId, c.fId as CommunityId, c.fName as CommunityName, c.fImgPath as CommunityImgPath
       from Community.tPost as p
       left join Community.tCommunity as c
       on p.fCommunityId=c.fId)
-      
+      , PostReplyCount AS(select r.fPostId, count(r.fId) as HowMuchReply
+      from Community.tReply as r   
+      group by r.fPostId)
+      , PostLikeCount AS(select l.fPostId, count(l.fId) as HowMuchLike
+      from Community.tLike as l  
+      group by l.fPostId)
       , PostDetail AS(select pm.*, pc.CommunityId, pc.CommunityName, pc.CommunityImgPath
       from PostMember as pm
       left join PostCommunity as pc
       on pm.PostId=pc.PostId)
-      
-      , ReplyDetail AS(select r.*,m.fName as ReplyMemberName, m.fPhotoPath as ReplyMemberImg
-      from Community.tReply as r
-      left join Member.tMember as m
-      on r.fReplyMemberId=m.fId)
-      
+      , ReplyAndLike AS(select l.*, r.HowMuchReply
+      from PostLikeCount as l
+      left join PostReplyCount as r
+      on l.fPostId = r.fPostId)
       select *
       from PostDetail as pd
-      left join ReplyDetail as rd
-      on pd.PostId=rd.fPostId`;
+      left join ReplyAndLike as ral
+      on pd.PostId = ral.fPostId`;
     const result = await sql.query(str);
     // 看一下回傳結果
     // console.dir(result);
@@ -50,4 +52,30 @@ const articlelist = async () => {
   }
 };
 // articlelist();
-module.exports = { articlelist };
+
+const replylist = async () => {
+  try {
+    console.dir("123");
+    await sql.connect(config);
+    let str = `
+    select r.*, m.fName as ReplyMemberName
+    from Community.tReply as r
+    left join Member.tMember as m
+    on r.fReplyMemberId=m.fId
+    `;
+    const result = await sql.query(str);
+    // console.dir(result);
+    console.dir(result.recordset);
+    console.dir(result.rowsAffected[0]);
+    return {
+      result: 1,
+      msg: "請求成功",
+      data: result.recordset,
+    };
+  } catch (err) {
+    return { result: 0, msg: "SQL錯誤", data: err };
+  }
+};
+// replylist();
+
+module.exports = { articlelist, replylist };
