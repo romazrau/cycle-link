@@ -17,7 +17,7 @@ function ClsCommunityMain() {
   var CM_appearCategory_item_flag = true;
   $(".CM_appearCategory_item").hide();
   $(".CM_searchbar_category").on("click", function () {
-    console.log("hi");
+    // console.log("hi");
     if (CM_appearCategory_item_flag) {
       $(".CM_appearCategory_item").show();
       CM_appearCategory_item_flag = false;
@@ -30,36 +30,41 @@ function ClsCommunityMain() {
   //文字樣板
   const htmlCommunityMainPost = (x) => {
     return `
-      <li ${x.isRight}>
+      <li class='community_main_timeline_basic'${x.isRight}>
       <div class="community_main_groupIcon">
-        <a href="#community/${x.CommunityId}" title="${x.CommunityName}" class="CM_groupIcon_wrap">
+        <a href="#community/${x.CommunityId}" title="${
+      x.CommunityName
+    }" class="CM_groupIcon_wrap">
           <img class="CM_groupIcon_img" src="${x.CommunityImgPath}" />
         </a>
       </div>
       <div class="community_main_timeline_panel">
         <div class="CM_timeline_heading">
+        <div class="CM_timeline_heading_img_circle_border">
           <div class="CM_timeline_heading_img_container">
             <img class="CM_timeline_heading_img" src="${x.MemberImgPath}" />
-          </div>
+          </div> </div>
           <div class="CM_timeline_heading_userinfo">
              <a href="#community/${x.MemberId}"><p>${x.PostMemberName}</p></a>
              <a href="#community/${x.CommunityId}">
              <span class="communityName_span">${x.CommunityName}</span>
              </a>
-             <a href="#community/post/${x.PostId}"><span>${x.PostTime}</span></a>
+             <a href="#community/post/${x.PostId}"><span>${
+      x.fPostTime
+    }</span></a>
           </div>
         </div>
         <div class="CM_timeline_body">
-          <p>
-          ${x.PostContent}
-          </p>
+          <p>${x.PostContent}</p>
           <div class="CM_timeline_body_img">
           <img src='${x.PostImg}' />
           </div>
         </div>
         <div class="CM_timeline_footer">
-          <i class="far fa-heart changebyclick"></i><span>${x.likeCount}</span>
-          <i class="far fa-comments"></i><span>${x.replyCount}</span>
+          <i class="far fa-heart changebyclick"></i><span>${
+            x.HowMuchLike === null ? "" : HowMuchLike
+          }</span>
+          <i class="far fa-comments"></i><span>${x.HowMuchReply || ""}</span>
         </div>
         <div class="replyContainer"></div>
       </div>
@@ -68,21 +73,17 @@ function ClsCommunityMain() {
 
   //字串樣板匯入
   const CMpost = document.querySelector(".community_main_ul_timeline");
-  // CommunityMainFakeData.map((e, index) => {
-  //   CMpost.innerHTML += htmlCommunityMainPost(e);
-  // });
   const display_postDetail = (o) => {
     o.map((e, index) => {
-      console.log("123");
       CMpost.innerHTML += htmlCommunityMainPost(e);
     });
   };
 
+  //撈資料撈到啦
   const getCommunityPost = async () => {
     try {
-      let response = await fetch(serverURL.article);
+      let response = await fetch(serverURL.articlepost);
       let result = await response.json();
-      // console.log("a_test await");
       // console.log(result);
       display_postDetail(result.data);
     } catch (err) {
@@ -91,17 +92,29 @@ function ClsCommunityMain() {
   };
   getCommunityPost();
 
+  const getCommunityReply = async () => {
+    try {
+      let response = await fetch(serverURL.articlereply);
+      let result = await response.json();
+      // console.log(result);
+      display_postDetail(result.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  getCommunityReply();
+
   //點擊愛心，字串樣板輸入完後，才可以寫icon動態
   var click123 = false;
   $(".changebyclick").click(function () {
     if (click123 == false) {
       $(".changebyclick").removeClass("far").addClass("fas");
-      console.log("abb");
+      console.log("愛心被點了");
       click123 = true;
     } else {
       $(".changebyclick").removeClass("fas").addClass("far");
       click123 = false;
-      console.log("ddddb");
+      console.log("愛心又被點了");
     }
   });
 
@@ -112,7 +125,17 @@ function ClsCommunityMain() {
     });
   });
 
-  //TODO留言區尚未進行
+  //TODO postime判斷距離現在時間
+  //TODO 新增喜歡
+  //TODO 刪除喜歡
+  //TODO 新增留言
+  //TODO 刪除留言
+  //TODO 新增文章
+  //TODO 編輯文章
+  //TODO 刪除文章
+  //TODO 照片如果有很多張怎ㄇ半
+  //TODO 留言區尚未進行
+
   const htmlCommunityMainReply = (x) => {
     return `
       <div class="replyitem">
