@@ -2,46 +2,46 @@
 function ClsRouter() {
 
     // navbar link focus switch
-    const changeNavbarFocusByHash = (hashTitle) => {  //focus對應的navbar link用
+    const changeNavbarFocusByHash = (hashTitle) => { //focus對應的navbar link用
         // console.log("page id:", hash);
         let navlinkList = document.querySelectorAll('.header_nav');
-        navlinkList.forEach((e) => {    //先全部移除focus
+        navlinkList.forEach((e) => { //先全部移除focus
             e.classList.remove("focus");
         })
 
         let targetNav = document.querySelector(`#navbar_${hashTitle}`)
-        if (targetNav) {  //確定這個nav存在，才套色
+        if (targetNav) { //確定這個nav存在，才套色
             targetNav.classList.add('focus');
         }
     }
 
     //page switch
-    this.changePageByHash = (hash) => {   //切換頁面用  #.../../..
+    this.changePageByHash = (hash) => { //切換頁面用  #.../../..
         try {
             //處理hash字串  #../../..
-            let hashSplitArray = hash.split('/');   //[#.. , .. , ..]  
+            let hashSplitArray = hash.split('/'); //[#.. , .. , ..]  
             // console.log("hash: ", hashSplitArray);
-            let hashTitle = hashSplitArray[0];   // #..
-            hashTitle = hashTitle.substr(1);    //去掉#
+            let hashTitle = hashSplitArray[0]; // #..
+            hashTitle = hashTitle.substr(1); //去掉#
 
             //特殊路徑處理
-            hashTitle = hashTitle ? hashTitle : "home";  //沒有等於開啟home
+            hashTitle = hashTitle ? hashTitle : "home"; //沒有等於開啟home
 
             //關閉所有頁面
             const pages = document.querySelectorAll('.page');
             // console.log(pages);
-            pages.forEach((e) => {      //去掉focus class
+            pages.forEach((e) => { //去掉focus class
                 e.classList.add('hide');
             })
 
-            switch (hashTitle) {   //路由判斷
+            switch (hashTitle) { //路由判斷
                 case "home":
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
 
 
                 case "activity":
-                    if (hashSplitArray[1] == "detail") {  //開啟活動頁面
+                    if (hashSplitArray[1] == "detail") { //開啟活動頁面
                         document.querySelector('#page_activity-detail').classList.remove("hide");
                         break;
                     }
@@ -51,7 +51,7 @@ function ClsRouter() {
                     break;
 
                 case "community":
-                    if (hashSplitArray[1] == "detail") {  //開啟活動頁面
+                    if (hashSplitArray[1] == "detail") { //開啟活動頁面
                         document.querySelector('#page_community-detail').classList.remove("hide");
                         break;
                     }
@@ -78,14 +78,14 @@ function ClsRouter() {
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
 
-                // 沒有navbar 區
+                    // 沒有navbar 區
                 case "sign-Up":
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
 
                 case "personal-maneger":
-                        document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
-                        break;
+                    document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
+                    break;
 
 
                 case "personal-page":
@@ -106,7 +106,7 @@ function ClsRouter() {
                     document.querySelector('#page_PAGE-NOT-FOUND').classList.remove('hide');
             }
 
-            changeNavbarFocusByHash(hashTitle);  //改變navbar focus狀態 
+            changeNavbarFocusByHash(hashTitle); //改變navbar focus狀態 
             window.scrollTo(0, 0);
 
         } catch (e) {
