@@ -1,5 +1,9 @@
 function ClsCommuntityDetail() {
 
+    
+
+
+
 
 
     //calendar
@@ -13,59 +17,59 @@ function ClsCommuntityDetail() {
             businessHours: true,
             dayMaxEvents: true, // allow "more" link when too many events
             events: [{
-                    title: 'All Day Event',
-                    start: '2020-06-01'
-                },
-                {
-                    title: 'Long Event',
-                    start: '2020-06-07',
-                    end: '2020-06-10'
-                },
-                {
-                    groupId: 999,
-                    title: 'Repeating Event',
-                    start: '2020-06-09T16:00:00'
-                },
-                {
-                    groupId: 999,
-                    title: 'Repeating Event',
-                    start: '2020-06-16T16:00:00'
-                },
-                {
-                    title: 'Conference',
-                    start: '2020-06-11',
-                    end: '2020-06-13'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2020-06-12T10:30:00',
-                    end: '2020-06-12T12:30:00'
-                },
-                {
-                    title: 'Lunch',
-                    start: '2020-06-12T12:00:00'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2020-06-12T14:30:00'
-                },
-                {
-                    title: 'Happy Hour',
-                    start: '2020-06-12T17:30:00'
-                },
-                {
-                    title: 'Dinner',
-                    start: '2020-06-12T20:00:00'
-                },
-                {
-                    title: 'Birthday Party',
-                    start: '2020-06-13T07:00:00'
-                },
-                {
-                    title: 'Click for Google',
-                    url: 'http://google.com/',
-                    start: '2020-06-28'
-                }
+                title: 'All Day Event',
+                start: '2020-06-01'
+            },
+            {
+                title: 'Long Event',
+                start: '2020-06-07',
+                end: '2020-06-10'
+            },
+            {
+                groupId: 999,
+                title: 'Repeating Event',
+                start: '2020-06-09T16:00:00'
+            },
+            {
+                groupId: 999,
+                title: 'Repeating Event',
+                start: '2020-06-16T16:00:00'
+            },
+            {
+                title: 'Conference',
+                start: '2020-06-11',
+                end: '2020-06-13'
+            },
+            {
+                title: 'Meeting',
+                start: '2020-06-12T10:30:00',
+                end: '2020-06-12T12:30:00'
+            },
+            {
+                title: 'Lunch',
+                start: '2020-06-12T12:00:00'
+            },
+            {
+                title: 'Meeting',
+                start: '2020-06-12T14:30:00'
+            },
+            {
+                title: 'Happy Hour',
+                start: '2020-06-12T17:30:00'
+            },
+            {
+                title: 'Dinner',
+                start: '2020-06-12T20:00:00'
+            },
+            {
+                title: 'Birthday Party',
+                start: '2020-06-13T07:00:00'
+            },
+            {
+                title: 'Click for Google',
+                url: 'http://google.com/',
+                start: '2020-06-28'
+            }
             ]
         });
 
@@ -214,125 +218,125 @@ function ClsCommuntityDetail() {
     // *照片牆---------------------------------------------
     //假資料
     let photoFlowData = [{
-            id: 1,
-            msg: "春吶善後",
-            src: "01.jpg"
-        },
-        {
-            id: 1,
-            msg: "社員交流",
-            src: "02.jpg"
-        },
-        {
-            id: 1,
-            msg: "市集",
-            src: "03.jpg"
-        },
-        {
-            id: 1,
-            msg: "朔溪",
-            src: "04.jpg"
-        },
-        {
-            id: 1,
-            msg: "嘉南平原",
-            src: "05.jpg"
-        },
-        {
-            id: 1,
-            msg: "杉林溪",
-            src: "06.jpg"
-        },
-        {
-            id: 1,
-            msg: "聚餐",
-            src: "07.jpg"
-        },
-        {
-            id: 1,
-            msg: "談笑風生",
-            src: "08.jpg"
-        },
-        {
-            id: 1,
-            msg: "彩虹勝利趴",
-            src: "09.jpg"
-        },
-        {
-            id: 1,
-            msg: "大稻埕煙火",
-            src: "10.jpg"
-        },
-        {
-            id: 1,
-            msg: "喝酒囉",
-            src: "11.jpg"
-        },
-        {
-            id: 1,
-            msg: "最後的中餐",
-            src: "12.jpg"
-        },
-        {
-            id: 1,
-            msg: "中二病",
-            src: "13.jpg"
-        },
-        {
-            id: 1,
-            msg: "海洋圍觀",
-            src: "14.jpg"
-        },
-        {
-            id: 1,
-            msg: "哈哈哈",
-            src: "01.jpg"
-        },
-        {
-            id: 1,
-            msg: "哈哈哈",
-            src: "06.jpg"
-        },
-        {
-            id: 1,
-            msg: "哈哈哈",
-            src: "01.jpg"
-        },
-        {
-            id: 1,
-            msg: "哈哈哈",
-            src: "02.jpg"
-        },
-        {
-            id: 1,
-            msg: "哈哈哈",
-            src: "03.jpg"
-        },
-        {
-            id: 1,
-            msg: "哈哈哈",
-            src: "04.jpg"
-        },
-        {
-            id: 1,
-            msg: "哈哈哈",
-            src: "02.jpg"
-        },
-        {
-            id: 1,
-            msg: "哈哈哈",
-            src: "06.jpg"
-        },
-        {
-            id: 1,
-            msg: "哈哈哈",
-            src: "01.jpg"
-        },
-        {
-            id: 1,
-            msg: "哈哈哈",
-            src: "02.jpg"
-        },
+        id: 1,
+        msg: "春吶善後",
+        src: "01.jpg"
+    },
+    {
+        id: 1,
+        msg: "社員交流",
+        src: "02.jpg"
+    },
+    {
+        id: 1,
+        msg: "市集",
+        src: "03.jpg"
+    },
+    {
+        id: 1,
+        msg: "朔溪",
+        src: "04.jpg"
+    },
+    {
+        id: 1,
+        msg: "嘉南平原",
+        src: "05.jpg"
+    },
+    {
+        id: 1,
+        msg: "杉林溪",
+        src: "06.jpg"
+    },
+    {
+        id: 1,
+        msg: "聚餐",
+        src: "07.jpg"
+    },
+    {
+        id: 1,
+        msg: "談笑風生",
+        src: "08.jpg"
+    },
+    {
+        id: 1,
+        msg: "彩虹勝利趴",
+        src: "09.jpg"
+    },
+    {
+        id: 1,
+        msg: "大稻埕煙火",
+        src: "10.jpg"
+    },
+    {
+        id: 1,
+        msg: "喝酒囉",
+        src: "11.jpg"
+    },
+    {
+        id: 1,
+        msg: "最後的中餐",
+        src: "12.jpg"
+    },
+    {
+        id: 1,
+        msg: "中二病",
+        src: "13.jpg"
+    },
+    {
+        id: 1,
+        msg: "海洋圍觀",
+        src: "14.jpg"
+    },
+    {
+        id: 1,
+        msg: "哈哈哈",
+        src: "01.jpg"
+    },
+    {
+        id: 1,
+        msg: "哈哈哈",
+        src: "06.jpg"
+    },
+    {
+        id: 1,
+        msg: "哈哈哈",
+        src: "01.jpg"
+    },
+    {
+        id: 1,
+        msg: "哈哈哈",
+        src: "02.jpg"
+    },
+    {
+        id: 1,
+        msg: "哈哈哈",
+        src: "03.jpg"
+    },
+    {
+        id: 1,
+        msg: "哈哈哈",
+        src: "04.jpg"
+    },
+    {
+        id: 1,
+        msg: "哈哈哈",
+        src: "02.jpg"
+    },
+    {
+        id: 1,
+        msg: "哈哈哈",
+        src: "06.jpg"
+    },
+    {
+        id: 1,
+        msg: "哈哈哈",
+        src: "01.jpg"
+    },
+    {
+        id: 1,
+        msg: "哈哈哈",
+        src: "02.jpg"
+    },
     ]
 
     //有幾條col
@@ -394,9 +398,9 @@ function ClsCommuntityDetail() {
 
     //文章發文
 
-    document.querySelector("LeaveMessage").addEventListener('focus', function () {
+    // document.querySelector("LeaveMessage").addEventListener('focus', function () {
 
-    })
+    // })
 
 
 

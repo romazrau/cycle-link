@@ -6,6 +6,11 @@ const serverURL = {
     root: rootURL,
     login: `${rootURL}/users/`,
     test: `${rootURL}/test/`,
+    postslist: `${rootURL}/posts/`,
+    active: `${rootURL}/active/`,
+    activemainlevel: `${rootURL}/active/searchmainlevel/`,
+    actDetail: `${rootURL}/activityDetail/`,
+    maps: `${rootURL}/map/`
 };
 
 
@@ -28,7 +33,7 @@ const test = () => {
         })
 
 }
-test()
+//test()
 
 
 // *使用 async await寫法 ， 這裡有 async
@@ -57,7 +62,50 @@ const testAwait = async () => {
 
     }
 }
-testAwait()
+//testAwait()
+
+
+
+const postlist = async () => {
+    try {
+        // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+        // *用變數接 fetch 結果 ，要用await等。
+        let response = await fetch(serverURL.postslist);
+        // 用變數接 fetch結果的資料內容， 要用await等。
+        let result = await response.json();
+        console.log("post await");
+        console.log(result);
+        // *用 result  do something ...
+
+    } catch (err) {
+        console.log(err);
+        // 錯誤處理
+
+    }
+}
+// postlist()
+
+
+const postByid = async (id) => {
+    try {
+        // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+        // *用變數接 fetch 結果 ，要用await等。
+        let response = await fetch(serverURL.postslist + id);
+        // 用變數接 fetch結果的資料內容， 要用await等。
+        let result = await response.json();
+        console.log("post by id await");
+        console.log(result);
+        // *用 result  do something ...
+
+    } catch (err) {
+        console.log(err);
+        // 錯誤處理
+
+    }
+}
+// postByid(1)
+
+
 
 
 

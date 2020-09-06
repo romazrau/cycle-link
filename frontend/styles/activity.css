@@ -37,13 +37,18 @@
 .active_main_search select {
     position: absolute;
     top: 2px;
-    left: 410px;
-    width: 80px;
+    left: 350px;
+    width: 140px;
     height: 56px;
     font-size: 28px;
     color: gray;
     border: 1px solid #ffffff;
     outline: none;
+
+}
+
+#activity_option option {
+    text-align: right;
 }
 
 
@@ -212,7 +217,7 @@
 /* *----------- 卡片區 ------------ */
 
 .active_card {
-    max-width: 22rem;
+    max-width: 21.5rem;
     position: relative;
     border-radius: 0.6rem;
     margin-bottom: 7rem;
@@ -236,6 +241,7 @@
     height: 100%;
     background-color: #faebd7;
     border-radius: 0.6rem;
+    object-fit: cover;
 }
 
 
@@ -306,8 +312,7 @@
 }
 
 .search_hidden {
-    display: none !important;
-    
+    display: none;
 }
 
 .search_citytext {

@@ -151,7 +151,7 @@
                     </div>
                     <div class="home_recent_activities">
                         <h2>近期活動</h2>
-                        <div class="home_recent_activity_item">
+                        <!-- <div class="home_recent_activity_item">
                             <div class="home_recent_activity_item_img">
                                 <img src="./img/home02.jpg"></div>
                             <div class="home_recent_activity_item_content">
@@ -176,11 +176,11 @@
                                     <button>立即參加</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="home_show_activities_wrapper">
-                    <div class="home_showAct_left">
+                    <!-- <div class="home_showAct_left">
                         <div class="home_left_top">
                             <img src="./img/home04.JPG" class="home_left_top">
                         </div>
@@ -204,7 +204,7 @@
                             </div>
                             <div class="home_right_sm"><img src="./img/home07.jpg"></div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <section class="home_go2community">
@@ -607,7 +607,8 @@
                                 <a href="#"><i class="fas fa-search"></i></a>
                             </div>
                         </div>
-                        <div class="CM_appearCategory_item_container">
+                        <!--社團類別選項刪除 
+                            <div class="CM_appearCategory_item_container">
                             <div class="CM_appearCategory_item">
                                 種樹社團
                             </div>
@@ -617,7 +618,7 @@
                             <div class="CM_appearCategory_item">
                                 種樹社團
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="community_main_topImg">
                         <img src="img/mountain(衰熊版).svg" />
@@ -668,15 +669,15 @@
                     <div class="map_controllBar">
                         <div class="map_controlltitle">類別</div>
                         <div class="map_typeBox">
-                            <div class="map_typeBtn"><a href="">淨海</a></div>
-                            <div class="map_typeBtn"><a href="">路跑</a></div>
-                            <div class="map_typeBtn"><a href="">環境</a></div>
+                            <div class="map_typeBtn"><a href="">志工活動</a></div>
+                            <div class="map_typeBtn"><a href="">環境清潔</a></div>
+                            <div class="map_typeBtn"><a href="">運動</a></div>
                         </div>
                     </div>
                     <div class="map_introductionBox">
 
                         <div class="map_controlltitle">簡介</div>
-                        <a href="#activity/detail"><img class="map_imgbox" src="" alt=""></a>
+                        <a class="map_link" href="#activity/detail"><img class="map_imgbox" src="" alt=""></a>
                         <p id="map_activityintroduction"></p>
 
                     </div>
@@ -869,7 +870,7 @@
                     </form>
                 </div>
                 <div class="Login_form-container Login_sign-in-container">
-                    <form action="#">
+                    <form action="#" id="form_signIn">
                         <h1>Sign in</h1>
                         <div class="Login_social-container">
                             <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -877,8 +878,8 @@
                             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                         <span>or use your account</span>
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
+                        <input name="fAccount" type="text" placeholder="Email" />
+                        <input name="fPassword" type="password" placeholder="Password" />
                         <div class="Login_CheckContainer">
                             <a href="">
                                 <div class="Login_CheckBox" id="Login_CheckBox"></div>
@@ -1092,24 +1093,21 @@
 
             <div class="personal_container">
                 <div class="personal_imgbox">
-                    <img src="img/id1.jpg" alt="">
+                    <!-- <img src="img/id1.jpg" alt=""> -->
                 </div>
                 <div class="personal_wrapper">
-                    <div>
-                        <h3>小咪 aa5568</h3>
+                    <div class="personal_information">
+                      <!-- <div class="">
+                         <h3>小咪 aa5568</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, dolorum eaque quasi
                             aliquid
                             incidunt nostrum veniam itaque molestias, velit tempore harum amet deleniti facere
                             reprehenderit
-                            nihil quisquam voluptate architecto dignissimos!</p>
+                            nihil quisquam voluptate architecto dignissimos!</p> 
                     </div>
                     <div class="personal_pro_file">
                         <ul>
-                            <!-- <li>
-                                <span class="personal_file_title">名稱</span>
-                                <span class="personal_file_middle">:</span>
-                                <span class="personal_file_text">aa5568</span>
-                            </li> -->
+                            
                             <li>
                                 <span class="personal_file_title">加入時間</span>
                                 <span class="personal_file_middle">:</span>
@@ -1130,28 +1128,28 @@
                                 <span class="personal_file_middle">:</span>
                                 <span class="personal_file_text"></span>
                             </li>
-                        </ul>
-                        <div class="personal_Flex">
-                            <div class="personal_detail_Societies_img_circle">
-                                <div class="personal_detail_Societies_img_div">
-                                    <img src="./img/item5.JPG" class="personal_detail_Societies_img">
-                                </div>
-                            </div>
-                            <div class="personal_detail_Societies_img_circle">
-                                <div class="personal_detail_Societies_img_div">
-                                    <img src="./img/home07.jpg" class="personal_detail_Societies_img">
-                                </div>
-                            </div>
-                            <div class="personal_detail_Societies_img_circle">
-                                <div class="personal_detail_Societies_img_div">
-                                    <img src="./img/home02.jpg" class="personal_detail_Societies_img">
-                                </div>
-                            </div>
-                        </div>
+                        </ul>-->
                     </div>
-
-
+                    <div class="personal_Flex">
+                        
+                                <!-- <div class="personal_detail_Societies_img_circle">
+                                    <div class="personal_detail_Societies_img_div">
+                                        <img src="./img/item5.JPG" class="personal_detail_Societies_img">
+                                    </div>
+                                </div>
+                                <div class="personal_detail_Societies_img_circle">
+                                    <div class="personal_detail_Societies_img_div">
+                                        <img src="./img/home07.jpg" class="personal_detail_Societies_img">
+                                    </div>
+                                </div>
+                                <div class="personal_detail_Societies_img_circle">
+                                    <div class="personal_detail_Societies_img_div">
+                                        <img src="./img/home02.jpg" class="personal_detail_Societies_img">
+                                    </div>
+                                </div> -->
+                    </div>
                 </div>
+                
             </div>
 
             <section class="personal_section">
@@ -1310,31 +1308,10 @@
             <div class="activity_detail_container">
                 <!--------------------------- 活動標題和發起者 --------------------------->
                 <div class="activity_detail_info_all activity_detail_flex">
-                    <div>
-                        <h2>2020 國家地理路跑 - 世界地球日 50 週年</h2>
-                        <div class="activity_detail_info">
-                            <div class="activity_detail_flex">
-                                <div class="activity_detail_info_img_circle" onclick="location.hash='#personal-page/1'">
-                                    <div class="activity_detail_info_img_div">
-                                        <img src="./img/c1.jpeg" class="activity_detail_info_img">
-                                    </div>
-                                </div>
-                                <div class="activity_detail_info_name">
-                                    <p class="activity_detail_info_name_H">Hosted By</p>
-                                    <div class=" activity_detail_flex">
-                                        <a href="#">蘇菲唐納</a>
-                                        <img src="./img/tick.svg" alt="tickIcon" class="activity_detail_info_status">
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                    <div class="activity_detail_titlebox">
+                        <!-- 活動發起者 -->
                     </div>
                     <div class="activity_detail_info_share activity_detail_flex">
-                        <!-- <div class="activity_detail_right_top" style="margin-right: 1rem;">
-                            <button>參加</button>
-                            <img src="img/icon1.svg" alt="" class="activity_detail_right_love">
-                        </div> -->
                         <button style="margin-right: 1rem;"><img src="img/edit-regular.svg" width="20"></button>
                         <button id="ac_share_btn"><img src="img/share.svg" width="20"></button>
                     </div>
@@ -1363,63 +1340,19 @@
                     <div class="activity_detail_text_all">
                         <div class="activity_detail_text_left">
                             <div class="activity_detail_text_left_img">
-                                <img src="img/event12.jpg" alt="">
+                                <!-- <img class="activity_detail_leftImg" src="" alt=""> -->
                             </div>
                             <div class="activity_detail_flex">
                                 <div class="activity_detail_bigTag">
-                                    <a href="#">路跑</a>
+                                    <!-- 活動分類 -->
                                 </div>
-                                <div class="activity_detail_tag">
-                                    <a href="#">#2020</a>
-                                </div>
-                                <div class="activity_detail_tag">
-                                    <a href="#">#國家地理</a>
-                                </div>
-                                <div class="activity_detail_tag">
-                                    <a href="#">#就差你一個</a>
+                                <div class="activity_detail_TagBox activity_detail_flex">
+                                    <!-- 活動標籤 -->
                                 </div>
                             </div>
+                            <h5 style="margin-top: 1rem;font-weight: bold;">Detail</h5>
                             <div class="activity_detail_text_detail">
-                                <h5>Detail</h5>
-                                <p>
-                                    (Chinese level requirement: A1 level up)
-                                    <br>
-                                    Taiwanese love singing karaoke so much. KTV in Taiwan is a night out that you won’t
-                                    want
-                                    to
-                                    miss!
-                                    Everyone should try it at least once.
-                                    <br>
-                                    Come to this workshop, you can learn sentences and popular words commonly spoken,
-                                    then
-                                    integrate
-                                    into Taiwanese life!
-                                    <br>
-                                    <br>
-                                    📆 Date: 28 August<br>
-                                    🕘 Time: 19:30-21:30 on Friday<br>
-                                    📍Location: ShuoHao Language Center<br>
-                                    💁🏻‍♀‍ 4 people for the minimum<br>
-                                    💲Tuition fee: 400 NTD. (Pay the tuition in advance.)<br>
-                                    <br>
-                                    Application here ：https://forms.gle/JWHYuZvY17LGvNxH9
-                                    <br>
-                                    Location: 台北市大安區復興南路二段 82 號<br>
-                                    8F., No. 82, Sec. 2, Fuxing S. Rd., Da’an Dist., Taipei City 106, Taiwan (R.O.C.)
-                                    <br>
-                                    <br>
-                                    Phone:[masked]<br>
-                                    FB: https://www.facebook.com/SHLanguageCenter/<br>
-                                    Time: 19:30-21:30pm (2hrs)
-                                    <br>
-                                    <br>
-                                    主辦單位保有隨時修改及終止本活動之權利。於所辦任何活動上所拍攝之照片影片均有權永久使用於主辦單位之所有活動頁面及網頁。
-                                    When attending this event organizers reserve the right to refuse service to anyone
-                                    for
-                                    any
-                                    reason
-                                    and to take and use photos or videos for an unlimited period of time.
-                                </p>
+                                <!-- 活動內文 -->
                             </div>
                             <div class="activity_detail_participant_all">
                                 <div class="activity_detail_flex" style="justify-content: space-between;">
@@ -1427,59 +1360,12 @@
                                     <a href="#">See All</a>
                                 </div>
                                 <div class="activity_detail_participant_flex">
-                                    <div class="activity_detail_participant">
-                                        <div class="activity_detail_info_img_circle">
-                                            <div class="activity_detail_info_img_div">
-                                                <img src="./img/c1.jpeg" class="activity_detail_info_img">
-                                            </div>
-                                        </div>
-                                        <div class="activity_detail_flex">
-                                            <p>蘇菲唐納</p><img src="./img/tick.svg" alt="tickIcon"
-                                                class="activity_detail_info_status">
-                                        </div>
-                                        <span>Organizer</span>
-                                    </div>
-                                    <div class="activity_detail_participant">
-                                        <div class="activity_detail_info_img_circle">
-                                            <div class="activity_detail_info_img_div">
-                                                <img src="./img/id3.jpg" class="activity_detail_info_img">
-                                            </div>
-                                        </div>
-                                        <p>Wwill354</p>
-                                        <span>Member</span>
-                                    </div>
-                                    <div class="activity_detail_participant">
-                                        <div class="activity_detail_info_img_circle">
-                                            <div class="activity_detail_info_img_div">
-                                                <img src="./img/home08.jpg" class="activity_detail_info_img">
-                                            </div>
-                                        </div>
-                                        <p>奔跑8boy</p>
-                                        <span>Member</span>
-                                    </div>
-                                    <div class="activity_detail_participant">
-                                        <div class="activity_detail_info_img_circle">
-                                            <div class="activity_detail_info_img_div">
-                                                <img src="./img/id1.jpg" class="activity_detail_info_img">
-                                            </div>
-                                        </div>
-                                        <p>aa5568</p>
-                                        <span>Member</span>
-                                    </div>
+                                    <!-- 活動參與者 -->
                                 </div>
 
                             </div>
                             <div class="activity_detail_Societies">
-                                <div class="activity_detail_Societies_img_circle" style="margin-left: 1rem;">
-                                    <div class="activity_detail_Societies_img_div">
-                                        <img src="./img/item5.JPG" class="activity_detail_Societies_img">
-                                    </div>
-                                </div>
-                                <div class="activity_detail_Societies_info">
-                                    <p>北台灣撿垃圾社團</p>
-                                    <a href="">see more events</a>
-                                </div>
-                                <img src="img/right.svg" alt="" width="20vw">
+                                <!-- 活動隸屬社團 -->
                             </div>
                             <!-- 留言區 -->
                             <div class="massage">
@@ -1512,7 +1398,7 @@
                                     <div id="messageInputBoxCon"></div>
                                 </div>
                             </div>
-                            <h5 style="margin-top: 3rem;font-weight: bold;">為您推薦(*底下還沒修正)</h5>
+                            <h5 style="margin-top: 3rem;font-weight: bold;">為您推薦</h5>
                             <div id="activity_detail_see">
                             </div>
                         </div>
@@ -1525,38 +1411,13 @@
                                     <a href=""><img src="img/icon1.svg" alt="" class="activity_detail_right_love"></a>
                                 </div>
                                 <div class="activity_detail_right_info">
-                                    <div class="">
-                                        <img src="img/860755.svg" alt="" class="activity_detail_right_icon">
-                                        <p>2020/08/30 (日)<br>06:30 to 08:30</p>
-                                    </div>
-                                    <div class="">
-                                        <img src="img/929497.svg" alt="" class="activity_detail_right_icon">
-                                        <p>大佳河濱公園</p>
-                                    </div>
-                                    <div class="">
-                                        <img src="img/certificate-solid.svg" alt="" class="activity_detail_right_icon">
-                                        <p>舉辦中</p>
-                                    </div>
-                                    <div class="">
-                                        <img src="img/coin.png" alt="" class="activity_detail_right_icon">
-                                        <p>2000</p>
-                                    </div>
-                                    <div class="activity_detail_right_map">
-                                        <iframe
-                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.8021294706664!2d121.53890655092397!3d25.074694842733358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ac0099201ca3%3A0xe5164eddb6bbeab1!2z5aSn5L2z5rKz5r-x5YWs5ZyS!5e0!3m2!1szh-TW!2stw!4v1598202965298!5m2!1szh-TW!2stw"
-                                            width="100%" height="250" frameborder="0" style="border:0;"
-                                            allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                                        <!-- <img src="img/map01.png" alt="" class="activity_detail_right_map"> -->
-                                    </div>
+                                    <!-- 活動右側內容 -->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
         </div>
 
 
@@ -2601,7 +2462,7 @@
                             <div class="ItemBox ">
                                 <a href="">
                                     <div class="procontent_imgbox">
-                                        <img src="img/product/1.jpg" class="event_img" alt="">
+                                        <img src="img/images3.jpg" class="event_img" alt="">
                                     </div>
                                     <div class="procontent_menu">
                                         <p>Sunday, July 30,2020,10:30</p>
@@ -2660,7 +2521,7 @@
                             <div class="ItemBox ">
                                 <a href="">
                                     <div class="procontent_imgbox">
-                                        <img src="img/product/3.jpg" class="event_img" alt="">
+                                        <img src="img/event06.jpg" class="event_img" alt="">
                                     </div>
                                     <div class="procontent_menu">
                                         <p>Sunday, July 30,2020,10:30</p>
@@ -2672,7 +2533,7 @@
                             <div class="ItemBox ">
                                 <a href="">
                                     <div class="procontent_imgbox">
-                                        <img src="img/product/3.jpg" class="event_img" alt="">
+                                        <img src="img/event06.jpg" class="event_img" alt="">
                                     </div>
                                     <div class="procontent_menu">
                                         <p>Sunday, July 30,2020,10:30</p>
@@ -2689,7 +2550,7 @@
                             <div class="ItemBox ">
                                 <a href="">
                                     <div class="procontent_imgbox">
-                                        <img src="img/product/3.jpg" class="event_img" alt="">
+                                        <img src="img/event06.jpg" class="event_img" alt="">
                                     </div>
                                     <div class="procontent_menu">
                                         <div class="flex">
@@ -3272,9 +3133,10 @@
 
     <!-- *內部引用 -->
     <script type="module" src="./src/app.js"></script>
+    <script type="module" src="./src/map.js"></script>
     <script src='./src/router.js'></script>
     <!-- page -->
-    <script src="./src/activity.js"></script>
+    <script type="module" src="./src/activity.js"></script>
     <script src="./src/home.js"></script>
     <script type="module" src="./src/login.js"></script>
     <script src="./src/singUp.js"></script>
@@ -3283,11 +3145,14 @@
     <script src="./src/personal_maneger.js"></script>
     <script src="./src/aboutUs.js"></script>
     <script src="./src/activity_detail.js"></script>
+    <script type="module" src="./src/community_main.js"></script>
+    <script type="module" src="./src/activity_detail.js"></script>
     <script src="./src/community_main.js"></script>
     <script src="./src/community.js"></script>
     <script src="./src/community_detail.js"></script>
     <script src="./src/create_activities.js"></script>
     <script src="./src/create_community.js"></script>
+    <script type="module" src="./src/personalPage.js"></script>
     <!-- 其他 -->
     <script src="./src/navbar.js"></script>
     <script src="./src/chat.js"></script>

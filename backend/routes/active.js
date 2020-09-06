@@ -1,3 +1,5 @@
+
+
 // 套件引用
 var express = require('express');
 var router = express.Router();
@@ -33,10 +35,10 @@ router.get('/searchmainlevel', async function(req, res, next) {
   } 
 });
 //大標搜尋鈕
-router.get('/:id', async function(req, res, next) {
+router.get('/:id/:text', async function(req, res, next) {
   try{
     // *用 await 等待資料庫回應
-    let resultgosearch = await activesql.activegosearchsql( req.params.id );
+    let resultgosearch = await activesql.activegosearchsql( req.params.id , req.params.text);
     // 物件用json格式回傳
     // 可以整理一下，刪掉不必要的資料再回傳
     res.json(resultgosearch);

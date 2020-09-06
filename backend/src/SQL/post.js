@@ -8,7 +8,7 @@ const config = {
     server: 'localhost', // You can use 'localhost\\instance' to connect to named instance
     database: 'SeaTurtleOnTheWay',
 }
- 
+
 // 設計 SQL指令方法
 const postlist = async () => {
     try {
@@ -23,11 +23,19 @@ const postlist = async () => {
         console.dir(result.recordset)
         console.dir(result.rowsAffected[0])
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
-        return {result:1, msg:"請求成功", data:result.recordset};
-    // 錯誤處理
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+        // 錯誤處理
     } catch (err) {
         console.log(err);
-        return {result:0, msg:"SQL 錯誤", data:err};
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
     }
 };
 
@@ -47,11 +55,19 @@ const postById = async (fid) => {
         console.dir(result.recordset)
         console.dir(result.rowsAffected[0])
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
-        return {result:1, msg:"請求成功", data:result.recordset};
-    // 錯誤處理
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+        // 錯誤處理
     } catch (err) {
         console.log(err);
-        return {result:0, msg:"SQL 錯誤", data:err};
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
     }
 };
 
@@ -59,8 +75,11 @@ const postById = async (fid) => {
 //直接測試用 func ， node src/SQL/test.js
 // 解除註解，並把匯出方法註解才能用喔
 // postlist();
-// postById(10);
+// postById(1);
 
 
 // *匯出方法 ， 多個方法包在{}裡， ex: {func1, func2}
-module.exports = { postlist,  postById  };
+module.exports = {
+    postlist,
+    postById
+};

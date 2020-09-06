@@ -1,26 +1,45 @@
-function ClsMap(){
-  const ActivityList =[
-    {name:'2020國家地理路跑-世界地球日50週年',type:"路跑",lat:25.071874,lng: 121.5802,introduction:"路跑123457777777sddddd",src:"./img/tainan.jpg"},
-    {name:'魚取漁囚 - 守護海洋行動體驗特展',type:"淨海",lat:25.007839,lng:121.494713,introduction:"資料淨海",src:"./img/tainan.jpg"},
-    {name:'Plogging淨街慢跑-迪化街',type:"路跑",lat:25.133756, lng:121.36425,introduction:"路跑123457777777sddddd",src:"./img/tainan.jpg"},
-    {name:'環保潛水隊-隊員招募中',type:"淨海",lat:25.283227,  lng:121.525955,introduction:"資料淨海",src:"./img/tainan.jpg"},
-    {name:'臉部平權運動臺北國道馬拉松',type:"路跑",lat:24.979212, lng:121.624832,introduction:"路跑123457777777sddddd",src:"./img/tainan.jpg"},
-    {name:'世界環境清潔日 相約海洋淨灘',type:"淨海",lat:25.230442,lng: 121.645088,introduction:"資料淨海",src:"./img/tainan.jpg"},
-    {name:'天母二手市集',type:"環境",lat:25.117735, lng: 121.528873,introduction:"天母二手市集",src:"./img/tainan.jpg"},
-    {name:'鳥兒哪裡去?2020/8/22八里濕地野鳥觀察',type:"淨山",lat:25.116668,lng: 121.383476 ,introduction:"鳥兒哪裡去?2020/8/22八里濕地野鳥觀察",src:"./img/tainan.jpg"},
-    {name:'城市獵人-富陽生態公園夜觀',type:"淨山",lat:25.0151,lng:121.5593,introduction:"城市獵人-富陽生態公園夜觀",src:"./img/tainan.jpg"},
-    {name:'荒野保護協會【2020工作假期】萬里工作日',type:"淨山",lat:25.178855,lng: 121.673241 ,introduction:"荒野保護協會【2020工作假期】萬里工作日",src:"./img/tainan.jpg"},
-    {name:'大風吹，吹什麼? 園藝寶貝交換活動',type:"環境",lat:24.161435,lng: 120.670738,introduction:"園藝寶貝交換活動",src:"./img/tainan.jpg"},
-    {name:'【愛海無距~誰是沙害者】~ 2020國際淨灘行動',type:"淨海",lat:24.175516,  lng:120.475388,introduction:" 2020國際淨灘行動",src:"./img/tainan.jpg"},
-    {name:'2020筏子溪常態性淨溪',type:"淨海",lat:24.152464, lng: 120.621943,introduction:"2020筏子溪常態性淨溪",src:"./img/tainan.jpg"},
-    {name:'2020植樹',type:"淨山",lat:24.167682, lng: 120.755196,introduction:"2020植樹",src:"./img/tainan.jpg"},
-    {name:'PUMA環保愛地球 ',type:"環境",lat:24.193377, lng: 120.732193,introduction:"PUMA環保愛地球",src:"./img/tainan.jpg"},
-    {name:'換換二手衣物換換愛',type:"環境",lat:24.17301, lng: 120.665932,introduction:"換換二手衣物換換愛",src:"./img/tainan.jpg"},
-    {name:'綠的手作坊-漂流木新生命',type:"淨海",lat:24.20309,  lng:120.618896,introduction:"綠的手作坊-漂流木新生命",src:"./img/tainan.jpg"},
-    {name:'偏鄉關懷，愛心捐物',type:"環境",lat:24.11126, lng: 120.642929,introduction:"偏鄉關懷，愛心捐物",src:"./img/tainan.jpg"}
-    
-    
-    ]
+import { serverURL } from "./api.js";
+
+const MapActivityAwait = async () => {
+  try {
+      // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+      // *用變數接 fetch 結果 ，要用await等。
+      let response = await fetch(serverURL.maps, {
+          method: "GET", // http request method 
+          headers: { // http headers
+              'Content-Type': 'application/json' // 請求的資料類型
+          },
+          // 以下跟身分認證有關，後端要使用session 要帶這幾項
+          cache: 'no-cache',
+          credentials: 'include',
+      });
+      // 用變數接 fetch結果的資料內容， 要用await等。
+      let result = await response.json();
+      
+      map_GetActivityList(result.data);
+      // *用 result  do something ...
+
+  } catch (err) {
+      console.log(err);
+      // 錯誤處理
+
+  }
+}
+var ActivityList;
+// MapActivityAwait();
+
+function map_GetActivityList(o){
+
+  ActivityList =o;
+ 
+}
+
+
+
+
+
+ function  ClsMap(){
+ 
     
     const CityList =[
     {name:'台北',lat:25.024018,lng:121.524239,introduction:"台灣的首都位於台北，這個充滿現代感的城市融合了日本殖民時期遺留的街巷、繁忙的購物商街及當代風格的建築。",src:"./img/tapei.jpg"},
@@ -48,15 +67,11 @@ function ClsMap(){
     var map = L.map('mapid');
     // 設定地圖來源
     var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    //範圍                                          /*minZoom: 初始 maxZoom:放大多少*/
+    //範圍
+                                                /*minZoom: 初始 maxZoom:放大多少*/
     var osm = new L.TileLayer(osmUrl, {minZoom: 7, maxZoom: 16});
     map.addLayer(osm);
-     L.control.scale().addTo(map);
-
-
     var popup = L.popup(); 
-    
-  
     
     map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng),7 );
     
@@ -67,7 +82,7 @@ function ClsMap(){
     
     map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng),11 );
     
-    L.marker([OriginalPlacelat,OriginalPlacelng], {icon: myIcon},{name:"目前位置"}).addTo(map).bindPopup("目前位置");
+    L.marker([OriginalPlacelat,OriginalPlacelng], {icon: myIcon},{name:"目前位置"}).addTo(map);
     /**限定範圍 */
      
     }
@@ -105,33 +120,15 @@ function ClsMap(){
       
      
       L.marker(e.latlng, {icon: myIcon}).addTo(map);
+    
+    
       OriginalPlacelat=e.latlng.lat;
       OriginalPlacelng=e.latlng.lng;
-      
-      map_SearchNearbyActivity(ActivityList,e.latlng.lat,e.latlng.lng,document.getElementById('map_Setdistance').value)
-      
+     
     }
-
-    function map_SearchNearbyActivity(arr,Placelat,Placelng,distance)
-    {
-      if(distance==0)
-        {
-          
-          return;
-        }
-      var NearbyActivity = arr.filter(function(item, index, array){
-        return map_Calcdistance(Placelat,Placelng,item.lat,item.lng)<=distance
-      })
-
-      console.log(NearbyActivity.length);
-      alert(`附近有${NearbyActivity.length}個活動!!!!`)
-    }
-    
-
-
-
-    
     map.on('click', onMapClick);
+    
+    
     
     
     
@@ -189,6 +186,7 @@ function ClsMap(){
                     
                     OriginalPlacelat=CityList[j].lat;
                     OriginalPlacelng=CityList[j].lng;
+                    
                     document.getElementById("map_activityintroduction").innerHTML=CityList[j].introduction;
                     document.querySelector(".map_imgbox").src=CityList[j].src;
                 }
@@ -204,14 +202,15 @@ function ClsMap(){
     document.getElementById("map_Setdistance").addEventListener("input",map_ChangeDistance)
     
     
-    var map_InputDistance=document.getElementById("map_Setdistance").value;
+    
     
     
     
     function map_ChangeDistance(){
       cleanMarker();
       L.marker([ OriginalPlacelat, OriginalPlacelng], {icon: myIcon},{title:"現在位置"}).addTo(map);
-    val=document.getElementById("map_Setdistance").value
+      
+    let val=document.getElementById("map_Setdistance").value;
     document.getElementById("Activitydistance").innerHTML=val;
     
     map_NearbyMarkShow(val,ActivityList);
@@ -222,12 +221,12 @@ function ClsMap(){
       cleanMarker();
       L.marker([OriginalPlacelat,OriginalPlacelng], {icon: myIcon},{name:"目前位置"}).addTo(map);
     var NearbyActivityList=arr.filter(function(item, index, array){
-       return map_Calcdistance(item.lat,item.lng,OriginalPlacelat,OriginalPlacelng)<val;
+       return map_Calcdistance(item.fCoordinateX,item.fCoordinateY,OriginalPlacelat,OriginalPlacelng)<val;
     })
     
     NearbyActivityList.forEach(function(item, index, array){
        
-      L.marker([item.lat,item.lng], {icon: ActivityIcon}).addTo(map).bindPopup(item.name).addEventListener("click",function (event) {
+      L.marker([item.fCoordinateX,item.fCoordinateY], {icon: ActivityIcon}).addTo(map).bindPopup(item.fActName).addEventListener("click",function (event) {
         var marker=event.target;
         var latlng = marker.getLatLng();
         map_setInformation(latlng.lat,latlng.lng);
@@ -273,55 +272,53 @@ function ClsMap(){
       L.marker([OriginalPlacelat,OriginalPlacelng], {icon: myIcon},{name:"目前位置"}).addTo(map);
       var resultList=arr.filter(function(item, index, array){
         
-          return item.type==str ;
+          return item.fLabelName==str ;
           ;
        
       })
       resultList.forEach(function(item, index, array){
        
-        switch(str){
-        case "淨海":
-          typeSearchShow(item,SeaIcon);
-          break;
-        case "路跑":
-          typeSearchShow(item,RunningIcon);
-          break;
-        case "環境":
-          typeSearchShow(item,evIcon);
-          break;
-        }
+        if(str=="志工活動")
+        L.marker([item.fCoordinateX,item.fCoordinateY], {icon: SeaIcon},).addTo(map).bindPopup(item.fActName).addEventListener("click",function (event) {
+          
+          var marker=event.target;
+          var latlng = marker.getLatLng();
+          map_setInformation(latlng.lat,latlng.lng);
+          map.setView(new L.LatLng(latlng.lat,latlng.lng), 11)
+         
+        });
+    
+        if(str=="環境清潔")
+        L.marker([item.fCoordinateX,item.fCoordinateY], {icon: RunningIcon},).addTo(map).bindPopup(item.fActName).addEventListener("click",function (event) {
+          var marker=event.target;
+          var latlng = marker.getLatLng();
+          map_setInformation(latlng.lat,latlng.lng);
+          map.setView(new L.LatLng(latlng.lat,latlng.lng), 11)
+         
+        });
+        if(str=="運動")
+        L.marker([item.fCoordinateX,item.fCoordinateY], {icon: evIcon},).addTo(map).bindPopup(item.fActName).addEventListener("click",function (event) {  
+          var marker=event.target;
+          
+          var latlng = marker.getLatLng();
+         
+          map_setInformation(latlng.lat,latlng.lng);
+          map.setView(new L.LatLng(latlng.lat,latlng.lng), 11) 
+        });
      })
-        
     }
-
-    function typeSearchShow(obj,icontype){
-      L.marker([obj.lat,obj.lng], {icon: icontype},).addTo(map).bindPopup(obj.name).addEventListener("click",function (event) {  
-        var marker=event.target;
-        var latlng = marker.getLatLng();
-        map_setInformation(latlng.lat,latlng.lng);
-        map.setView(new L.LatLng(latlng.lat,latlng.lng), 11) 
-      }).on({
-        mouseover: function(e){
-            this.openPopup();
-        }, mouseout: function(e){
-            this.closePopup();
-        }   
-      });
-
-    }
-
-
-
-
+    
     
     function map_setInformation(lat,lng)
     {
         for(let i=0;i<ActivityList.length;i++)
         {
-          if( ActivityList[i].lat==lat &&ActivityList[i].lng==lng )
+          if( ActivityList[i].fCoordinateX==lat &&ActivityList[i].fCoordinateY==lng )
           {
-            document.getElementById("map_activityintroduction").innerHTML=ActivityList[i].introduction;
-            document.querySelector(".map_imgbox").src=ActivityList[i].src;
+          
+            document.getElementById("map_activityintroduction").innerHTML=ActivityList[i].fIntroduction;
+            document.querySelector(".map_imgbox").src=ActivityList[i].fImgPath;
+            document.querySelector(".map_link").href=`#activity/detail/${ActivityList[i].fId}`
     
           }
         }
@@ -374,34 +371,40 @@ function ClsMap(){
     
     
     //距離公式
-    EARTH_RADIUS = 6378.137;
+    const EARTH_RADIUS = 6378.137;
     
     function rad(d){
       return d*Math.PI/180.0
     }
     function map_Calcdistance(lat1, lng1, lat2,lng2){
-      radLat1 = rad(lat1);
-      radLat2 = rad(lat2);
-      a=radLat1-radLat2;
-      b= rad(lng1)-rad(lng2);
-      s=2*Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2)+Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2)));
+      let radLat1 = rad(lat1);
+      let radLat2 = rad(lat2);
+      let a=radLat1-radLat2;
+      let b= rad(lng1)-rad(lng2);
+      let s=2*Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2)+Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2)));
       s=s*EARTH_RADIUS;
       s=Math.round(s*10000)/10000;
       return s;
     
     }
 }    
+
+
+
+
 // 每當 hash 變動的時候
 let MapPage;
 window.addEventListener("hashchange", () => {
 if (location.hash==="#map" && !MapPage)
   {
 
-    setTimeout(()=>{
+    setTimeout(async()=>{
+      await MapActivityAwait();
       MapPage = new ClsMap();
-      console.log(MapPage)
+     
+ 
 
-    }, 300)
+    }, 500)
     
   }
   });
@@ -411,9 +414,10 @@ if (location.hash==="#map" && !MapPage)
 if (location.hash==="#map" && !MapPage)
   {
 
-    setTimeout(()=>{
+    setTimeout(async()=>{
+      await MapActivityAwait();
       MapPage = new ClsMap();
-      console.log(MapPage)
+     
 
     }, 300)
     

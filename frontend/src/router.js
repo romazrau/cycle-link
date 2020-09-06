@@ -20,7 +20,7 @@ function ClsRouter() {
         try {
             //處理hash字串  #../../..
             let hashSplitArray = hash.split('/');   //[#.. , .. , ..]  
-            console.log("hash: ", hashSplitArray);
+            // console.log("hash: ", hashSplitArray);
             let hashTitle = hashSplitArray[0];   // #..
             hashTitle = hashTitle.substr(1);    //去掉#
 
