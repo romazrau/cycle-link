@@ -47,6 +47,12 @@
   text-align: right;
   text-shadow: 0.05em 0.05em 0.1em rgb(83, 83, 83)
 }
+#home_top_event_p2
+{
+  position: relative;
+  top: 20rem;
+  right: -21rem;
+}
 
 .home_top_text_wrapper {
   width: 100%;

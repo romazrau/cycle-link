@@ -17,17 +17,22 @@ const GetHomePageBannerActivity = async () => {
       });
       // 用變數接 fetch結果的資料內容， 要用await等。
       let result = await response.json();
-      let banner =result.data.banner
-      let recent =result.data.recent
-      console.log("data:",result)
+      let banner =result.data.banner;
+      let recent =result.data.recent;
+      let imgs =result.data.imgs;
       
+      home_picturesbox.innerHTML=home_picturesItem(imgs)
 
       const Home = new HomeBanner(banner);
       // display_information(data);
       
-      document.querySelector(".home_top_event").innerHTML = `<img src="${banner[0].fImgPath}" id="A1">
-        <p id="home_top_event_p">${banner[0].fActName+"</br>"+banner[0].fActivityDate}</p>`
-
+      document.querySelector(".home_top_event").innerHTML = 
+      `<img src="${banner[0].fImgPath}" id="A1">
+        <p id="home_top_event_p">${banner[0].fActName}</p></br>
+        <p id="home_top_event_p2">${banner[0].fActivityDate}</p>`
+     
+          
+        
      
         recent.map(
         (e, index) => {
@@ -35,7 +40,7 @@ const GetHomePageBannerActivity = async () => {
         }
       )
 
-
+        
 
 
   } catch (err) {
@@ -57,56 +62,56 @@ GetHomePageBannerActivity();
 
 
 
-// let HomeBannerdata = [{
-//     fImgPath: "img/home_topEvent_02.jpg",
-//     fActName: "世界環境清潔日",
-//     fActivityDate: "2 天 08 : 28 : 06",
-
-//   },
-//   {
-//     fImgPath: "img/home_topEvent_01.jpg",
-//     fActName: "保護海龜",
-//     fActivityDate: "4 天 01 : 22 : 06",
-
-//   },
-//   {
-//     fImgPath: "img/home_topEvent_02.jpg",
-//     fActName: "世界環境清潔日2",
-//     fActivityDate: "2 天 08 : 28 : 06",
-
-//   }
-
-
-// ]
-
 
 function HomeBanner(data) {
   let postion = 0;
   
-  
+  var timearr=[]
+  for(let i=0;i<data.length;i++)
+  {
+    timearr.push(data[i].fActivityDate)
+  }
+  console.log("timearr:",timearr);
 
   function scrollPic() {
     if (postion > data.length - 1) {
       postion = 0;
 
     }
-    
+    getBannerTime(postion,timearr)
      
     document.getElementById("A1").src =`${data[postion].fImgPath}`;
-    document.getElementById("home_top_event_p").innerHTML = data[postion].fActName + "</br>" + data[postion].fActivityDate;
+    document.getElementById("home_top_event_p").innerHTML = data[postion].fActName ;
+
+
+    // getBannerTime(postion);
     postion++;
   }
   setInterval(scrollPic, 5000);
+  
 }
 
 
 
-// getBannerTime(t)
-// {
+function getBannerTime(t,arr)
+{
+  if(Interval!=null)
+    clearInterval(Interval);
+    
+  var Interval=setInterval(function(){
+  let time = new Date();
+  let nowTime = time.getTime()
+  let endTime = Date.parse(arr[t]);//"字串時間"
+  let offsetTime = (endTime - nowTime) / 1000; // ** 以秒為單位
 
+  let sec = parseInt(offsetTime % 60); // 秒
+  let min = parseInt((offsetTime / 60) % 60); // 分 ex: 90秒
+  let hr = parseInt(offsetTime / 60 / 60)%60; // 時
+  let day = parseInt((offsetTime / 60 / 60)%24)
+  document.getElementById("home_top_event_p2").innerHTML =day+" 天 "+hr+" 時 "+min+" 分 "+sec+" 秒 "
+},1000)
 
-
-// }
+}
 
 
 
@@ -131,19 +136,7 @@ const home_recent_activities = (o) => {
   </div>`
 }
 
-let home_recent_activities_data = [
-  {
-  fImgPath:"./img/home02.jpg",
-  fActName:"世界環境日",
-  fActivityDate:"2020/08/20 14:00"
-  },
-  {
-    fImgPath:"./img/home03.jpg",
-  fActName:"大安區丹堤讀書會",
-  fActivityDate:"2020/08/20 19:00"
 
-  }
-]
 
 
 
@@ -152,55 +145,41 @@ const recent_activities = document.querySelector(".home_recent_activities");
 
 //------------------------------圖片---------------------------
 const home_picturesbox=document.querySelector(".home_show_activities_wrapper")
-let  home_picturesdata = [
-  {
-    fImgPath:"./img/home04.JPG"
-},{
-  fImgPath:"./img/home05.JPG"
-},{
-  fImgPath:"./img/home06.JPG"
-},{
-  fImgPath:"./img/home07.JPG"
-},{
-  fImgPath:"./img/home08.JPG"
-},{
-  fImgPath:"./img/home08.JPG"
-},{
-  fImgPath:"./img/home07.JPG"
-}
-]
+
 
 const home_picturesItem =(o)=>{
 
  return `
  <div class="home_showAct_left">
                         <div class="home_left_top">
-                            <img src=${o[0].fImgPath} class="home_left_top">
+                        <a href="#activity/detail/${o[0].fId}"><img src=${o[0].fImgPath} class="home_left_top"></a>
                         </div>
                         <div class="home_left_bottom">
                             <div class="home_left_bottom_item1">
-                                <img src=${o[1].fImgPath}>
+                            <a href="#activity/detail/${o[1].fId}"><img src=${o[1].fImgPath}></a>
                             </div>
                             <div class="home_left_bottom_item2">
-                                <img src=${o[2].fImgPath}>
+                            <a href="#activity/detail/${o[2].fId}"><img src=${o[2].fImgPath}></a>
                             </div>
                         </div>
                     </div>
                     <div class="home_showAct_right">
                         <div class="home_right_left">
-                            <div class="home_right_sm"><img src=${o[3].fImgPath}></div>
-                            <div class="home_right_lg"><img src=${o[4].fImgPath}></div>
+                        <a href="#activity/detail/${o[3].fId}"><div class="home_right_sm"><img src=${o[3].fImgPath}></a>
+                        </div>
+                        <a href="#activity/detail/${o[4].fId}"><div class="home_right_lg"><img src=${o[4].fImgPath}></a></div>
                         </div>
                         <div class="home_right_right">
                             <div class="home_right_lg">
-                                <img src=${o[5].fImgPath}>
+                            <a href="#activity/detail/${o[5].fId}"><img src=${o[5].fImgPath}></a>
                             </div>
-                            <div class="home_right_sm"><img src=${o[6].fImgPath}></div>
+                            <div class="home_right_sm">
+                            <a href="#activity/detail/${o[6].fId}"><img src=${o[6].fImgPath}></a></div>
                         </div>
                     </div>`
 }
 
-home_picturesbox.innerHTML=home_picturesItem(home_picturesdata)
+
 
 
   
