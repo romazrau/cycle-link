@@ -151,9 +151,10 @@
                     </div>
                     <div class="home_recent_activities">
                         <h2>近期活動</h2>
-                        <!-- <div class="home_recent_activity_item">
+                    <!-- <div class="home_recent_activity_item">
                             <div class="home_recent_activity_item_img">
-                                <img src="./img/home02.jpg"></div>
+                                <img src="./img/home02.jpg">
+                            </div>
                             <div class="home_recent_activity_item_content">
                                 <a href="#activity/detail">世界環境日</a>
                                 <p>2020/08/20 14:00</p>
@@ -1097,7 +1098,7 @@
                 </div>
                 <div class="personal_wrapper">
                     <div class="personal_information">
-                      <!-- <div class="">
+                        <!-- <div class="">
                          <h3>小咪 aa5568</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, dolorum eaque quasi
                             aliquid
@@ -1131,8 +1132,8 @@
                         </ul>-->
                     </div>
                     <div class="personal_Flex">
-                        
-                                <!-- <div class="personal_detail_Societies_img_circle">
+
+                        <!-- <div class="personal_detail_Societies_img_circle">
                                     <div class="personal_detail_Societies_img_div">
                                         <img src="./img/item5.JPG" class="personal_detail_Societies_img">
                                     </div>
@@ -1149,7 +1150,7 @@
                                 </div> -->
                     </div>
                 </div>
-                
+
             </div>
 
             <section class="personal_section">
@@ -1424,6 +1425,27 @@
         <!-- * community-detail  ****************      ****************       ****************   -->
         <div id="page_community-detail" class="page hide">
 
+
+            <div class="pop_container">
+                <div class="pop_box">
+                    <div class="pop_title_line">
+                        title
+                    </div>
+                    <div class="pop_main">
+                        main
+                    </div>
+                    <div class="pop_button">
+                        <button>OK</button>
+                        <button>not sOK</button>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
             <div class="Group_FontFamily">
 
                 <!-- 寬度父容器是 vw:75 -->
@@ -1433,33 +1455,44 @@
                     <!-- 最上層 -->
                     <div class="GroupTopMainInfo FlexContainer">
                         <!--GroupTopLeft max-width:50%; -->
-                        <div class="GroupTopLeft">
+                        <div class="GroupTopLeft ">
                             <div class="GroupTopMainPicDivForImg">
                                 <img src="./img/水下攝影與淨海.jpg" alt="cover pic of diving" width="100%">
+                                <img class="GroupImgSeeMoreIcon" src="./img/icon_seemore.svg" width="25px">
+
+                                <div class="dropdown-triangle"></div>
+                                <div class="dropdown">編輯照片</div>
+
                             </div>
                         </div>
 
                         <div class="GroupTopRight FlexContainer">
-                            <div class="info-text">
-                                <div class="GroupTopEventName">週末北海岸<br>水下攝影fit淨海</div>
-                                <!-- <div class="FlexContainer GroupTopRightEventInfoBox">
+
+                            <div class="GroupTopEventName">
+                                <pre>週末北海岸
+水下攝影fit淨海</pre>
+                                <img class="GroupTopRightImgIcon" src="./img/icon_seemore.svg" width="25px">
+                                <div class="dropdown-triangleR"></div>
+                                <div class="dropdownR">編輯名稱</div>
+                            </div>
+                            <!-- <div class="FlexContainer GroupTopRightEventInfoBox">
                     <div class="Size20IconMarginRight"><img src="./img/icon_gps.svg" width="20"></div>
                     <div>台北,台灣</div>
                 </div> -->
-                                <div class="FlexContainer GroupTopRightEventInfoBox">
-                                    <div class="Size20IconMarginRight"><img src="./img/icon_group.svg" width="20"></div>
-                                    <div>社團人數50人</div>
-                                    <div>-</div>
-                                    <div>私人社團</div>
-                                    <div class="Size20IconMarginLeft"><img src="./img/icon_question.svg" width="20">
-                                    </div>
-                                </div>
-                                <div class="FlexContainer GroupTopRightEventInfoBox group_margin_bottom">
-                                    <div class="Size20IconMarginRight"><img src="./img/icon_user.svg" width="20"></div>
-                                    <div>社團管理員</div>
-                                    <div>郭安迪</div>
+                            <div class="FlexContainer GroupTopRightEventInfoBox">
+                                <div class="Size20IconMarginRight"><img src="./img/icon_group.svg" width="20"></div>
+                                <div>社團人數50人</div>
+                                <div>-</div>
+                                <div>私人社團</div>
+                                <div class="Size20IconMarginLeft"><img src="./img/icon_question.svg" width="20">
                                 </div>
                             </div>
+                            <div class="FlexContainer GroupTopRightEventInfoBox group_margin_bottom">
+                                <div class="Size20IconMarginRight"><img src="./img/icon_user.svg" width="20"></div>
+                                <div>社團管理員</div>
+                                <div>郭安迪</div>
+                            </div>
+
                             <div class="FlexContainer share-text">
                                 <div class="FlexContainer share-text-div">
                                     <div class="Boldtitle">Share:</div>
@@ -1501,19 +1534,19 @@
                         </div>
 
                         <div class="GroupDiveBtn FlexContainer">
-                            <div class="GroupNavBtn FlexContainer">
+                            <div class=" FlexContainer">
                                 <img src="./img/icon_setting.svg" width="25px">
 
                                 <div class="GroupDiveBtnText">&nbsp&nbsp管理員</div>
-                                <div class="GroupDiveBtnText hide">我是社員</div>
+                                <div class="GroupNavBtn GroupDiveBtnText hide">我是社員</div>
                                 <!-- <img src="./img/icon_triangle_downside.svg" width="25px"> -->
-                                <div class="dropdown-triangle"></div>
+                                <div class="dropdown-triangle hide"></div>
                                 <div class="dropdown hide">
                                     <div>退出社團</div>
                                 </div>
-                                <div class="dropdown">
+                                <!-- <div class="dropdown">
                                     <div>編輯社團</div>
-                                </div>
+                                </div> -->
 
                             </div>
 
@@ -1536,7 +1569,15 @@
                             <!----------------------------------下層左----------------------------------->
                             <div class="GroupBottomLeft">
                                 <!---------------------下層關於我---------------------->
-                                <div class="GroupAboutUs FontSectionTitle">關於我們</div>
+                                <div class="FlexContainer Group_FlexJustifyContentSB">
+                                    <div class="FontSectionTitle">關於我們</div>
+                                    <div class="GroupAboutUsDivImg">
+                                        <img class="GroupAboutUsImg " src="/img/icon_seemore.svg" width="25px">
+
+
+                                    </div>
+
+                                </div>
                                 <div class="FontSectionText">當您已完成潛水課程，成為一位合格的潛水員後，當然水世界潛水會為您安排接續探索水下風光的活動！
                                     剛結訓的學員基本上對台灣海域不熟悉、也不知道該從哪裡開始玩起，也擔心沒人準備後勤作業，也沒有同伴一起分享。
                                     水世界潛水俱樂部可以帶領喜愛潛水的同好，更重要的就是可以找到志同道合的潛友成為彼此的潛伴，一同下水遊覽美麗的海底世界；「水世界潛水俱樂部」是由專業導潛、資深教練、資深潛友、潛水新手聚集而成的團體，帶您體驗大自然。
@@ -1754,7 +1795,10 @@
 
                             <!----------------------------------下層右----------------------------------->
                             <div class="GroupBottomRight">
-                                <div class="FontSectionTitle">社團管理員</div>
+                                <div class="FlexContainer Group_FlexJustifyContentSB">
+                                    <div class="FontSectionTitle">社團管理員</div>
+                                    <img class="GroupBottomRightSetImg" src="/img/icon_seemore.svg" width="25px">
+                                </div>
                                 <div class="FlexContainer GroupRight">
                                     <div class="activity_detail_info_img_circle">
                                         <div class="activity_detail_info_img_div">
@@ -1770,10 +1814,13 @@
                                     </div>
                                 </div>
                                 <div class="FlexContainer RightPartTopInfo Group_FlexJustifyContentSB ">
+
                                     <div class="FlexContainer">
                                         <div class="GroupComingEvent FontSectionTitle">社團成員</div>
                                         <div class="FontSectionTitle">(4)</div>
                                     </div>
+                                    <img class="GroupComingEventImg" src="/img/icon_seemore.svg" width="25px">
+
                                     <!-- <a href="#" class="SeeAllRight FontSectionTitle">see all</a> -->
                                 </div>
                                 <div class="FlexContainer GroupRightInfoPhotoContainer
@@ -3153,6 +3200,7 @@
     <script src="./src/create_activities.js"></script>
     <script src="./src/create_community.js"></script>
     <script type="module" src="./src/personalPage.js"></script>
+    <script type="module" src="./src/home.js"></script>
     <!-- 其他 -->
     <script src="./src/navbar.js"></script>
     <script src="./src/chat.js"></script>
