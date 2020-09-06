@@ -13,16 +13,18 @@ let homesql =  require('../src/SQL/home');
 router.get('/', async function(req, res, next) {
   try{
     // *用 await 等待資料庫回應
-    let result = await homesql.HomePageActivity();
-    let result2 =await homesql.HomePagerecentActivity();
+    let ban = await homesql.HomePageActivity();
+    let recentActivity =await homesql.HomePagerecentActivity();
+    let img=await homesql.HomePageActivityImg();
     // 物件用json格式回傳
     // 可以整理一下，刪掉不必要的資料再回傳
     res.json({
             result:1,
             data:{
-                banner: result.data,
-                recent: result2.data,
-            },
+                banner: ban.data,
+                recent: recentActivity.data,
+                imgs:img.data
+              },
         });
   }catch(err){
     res.send(err);
