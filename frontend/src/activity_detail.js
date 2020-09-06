@@ -149,7 +149,7 @@ function ClsActivityDetail() {
     </div>
     <div>
          <img src="img/coin.png" alt="" class="activity_detail_right_icon">
-         <p>1000</p>
+         <p>${o.fPayCoin}</p>
     </div>
     <div class="activity_detail_right_map">
         <iframe
@@ -157,6 +157,8 @@ function ClsActivityDetail() {
         width="100%" height="250" frameborder="0" style="border:0;"
         allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
     </div>
+    <p>x:${o.fCoordinateX}</p>
+    <p>y:${o.fCoordinateY}</p>
     `
     }
 
@@ -410,7 +412,6 @@ const actDetailChangeHash = () => {
         ActivityDetail.actDetail(actDetailId)
     }
 }
-
 
 window.addEventListener("hashchange", actDetailChangeHash);
 window.addEventListener("load", actDetailChangeHash);
