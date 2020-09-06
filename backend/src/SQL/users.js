@@ -136,6 +136,32 @@ const memberByAccount = async (account) => {
 
 
 
+
+
+// 搜尋 member by account & email
+const memberByAccountAndEmail = async (account, email) => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        await sql.connect(config)
+        const sqlString = `
+        select M.fId ,M.fName, M.fAccount
+        from Member.tMember as M
+        where M.fAccount = '${account}' AND M.fMail = '${email}' ;`
+        const result = await sql.query(sqlString);
+        // console.dir(result);
+
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "帳號或信箱不符" }
+        }
+        return { result: 1, msg: "查詢成功", data: result.recordset[0] };
+    } catch (err) {
+        console.log(err);
+        return { result: 0, msg: "SQL 問題" };
+    }
+};
+
+
+
 const changeDetail = async (id, memberObj) => {
     try {
         delete memberObj.fId;                     //屬性中 fid 刪除，避免接下來的迴圈寫入ID
@@ -170,6 +196,27 @@ const changeDetail = async (id, memberObj) => {
 // })
 
 
+const changePassword = async (id, password) => {
+    try {
+        await sql.connect(config);
+        const sqlString = `
+        --updata
+        UPDATE Member.tMember 
+        SET fPassword = '${password}'
+        WHERE fId = ${id}  ;       
+        `;
+        const result = await sql.query(sqlString);
+        // console.dir(result);
+
+        return { result: 1, msg: "更改成功" };
+    } catch (err) {
+        console.log(err);
+        return { result: 0, msg: "SQL 問題", data: err };
+    }
+};
+
+
+
 // create member 
 const createMember = async (fAccount, fPassword, fName, fBirthdate, fMail,
     fAddress, fCity, fCeilphoneNumber,
@@ -199,4 +246,4 @@ const createMember = async (fAccount, fPassword, fName, fBirthdate, fMail,
 
 
 
-module.exports = { test, login, changeDetail, memberById, memberList, memberByAccount, createMember };
+module.exports = { test, login, changeDetail, memberById, memberList, memberByAccount, memberByAccountAndEmail, createMember, changePassword };
