@@ -11,6 +11,20 @@
     z-index: 1050;
 }
 
+.upTop {
+    position: fixed;
+    right: 1rem;
+    bottom: 6rem;
+    z-index: 1000;
+    color: gray;
+}
+
+.upTop:hover {
+    cursor: pointer;
+    transform: scale(1.2, 1.2);
+    transition: all 0.5s;
+    color: var(--blue-color);
+}
 
 /* *以下icon */
 .chat_icon_container {

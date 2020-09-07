@@ -49,7 +49,7 @@ function ClsActivityDetail() {
             <h2>${o.fActName}</h2>
         <div class="activity_detail_info">
         <div class="activity_detail_initiatorbox activity_detail_flex">
-            <div class="activity_detail_info_img_circle" onclick="location.hash='#personal-page/${o.fMemberId}">
+            <div class="activity_detail_info_img_circle" onclick="location.hash='#personal-page/${o.fMemberId}'">
                 <div class="activity_detail_info_img_div">
                     <img src=${o.fPhotoPath} class="activity_detail_info_img">
                 </div>
@@ -57,7 +57,7 @@ function ClsActivityDetail() {
             <div class="activity_detail_info_name">
                 <p class="activity_detail_info_name_H">Hosted By</p>
                 <div class=" activity_detail_flex">
-                    <a href="#">${o.MemberName}</a>
+                    <a href="#personal-page/${o.fMemberId}">${o.MemberName}</a>
                     <img src="./img/tick.svg" alt="tickIcon" class="activity_detail_info_status">
                 </div>
             </div>
@@ -105,7 +105,7 @@ function ClsActivityDetail() {
     // * ---------------- 活動參與者 文字樣板 ---------------- //
 
     const activity_detail_participant = (o) => {
-        return `<div class="activity_detail_participant">
+        return `<div class="activity_detail_participant" onclick="location.hash='#personal-page/${o.fMemberId}'">
     <div class="activity_detail_info_img_circle">
         <div class="activity_detail_info_img_div">
             <img src=${o.fPhotoPath} class="activity_detail_info_img">
@@ -119,16 +119,18 @@ function ClsActivityDetail() {
     // * ---------------- 活動隸屬社團 文字樣板 ---------------- //
 
     const actDetailSocietiesALL = (o) => {
-        return `<div class="activity_detail_Societies_img_circle" style="margin-left: 1rem;">
+        return `<a href="#community/detail/${o.fCommunityId}" class="activity_detail_Societies_a">
+                <div class="activity_detail_Societies_img_circle" style="margin-left: 1rem;">
                     <div class="activity_detail_Societies_img_div">
                         <img src=${o.CommuntyImgPath} class="activity_detail_Societies_img">
                     </div>
                 </div>
                 <div class="activity_detail_Societies_info">
                     <p>${o.CommuntyName}</p>
-                    <a href="">see more events</a>
+                    <p>see more events</p>
                 </div>
-                <img src="img/right.svg" alt="" width="20vw">`
+                <img src="img/right.svg" alt="" width="20vw">
+                </a>`
     };
 
     // * ---------------- 活動右側內容 文字樣板 ---------------- //
@@ -149,7 +151,7 @@ function ClsActivityDetail() {
     </div>
     <div>
          <img src="img/coin.png" alt="" class="activity_detail_right_icon">
-         <p>1000</p>
+         <p>${o.fPayCoin}</p>
     </div>
     <div class="activity_detail_right_map">
         <iframe
@@ -157,6 +159,8 @@ function ClsActivityDetail() {
         width="100%" height="250" frameborder="0" style="border:0;"
         allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
     </div>
+    <p>x:${o.fCoordinateX}</p>
+    <p>y:${o.fCoordinateY}</p>
     `
     }
 
@@ -410,7 +414,6 @@ const actDetailChangeHash = () => {
         ActivityDetail.actDetail(actDetailId)
     }
 }
-
 
 window.addEventListener("hashchange", actDetailChangeHash);
 window.addEventListener("load", actDetailChangeHash);

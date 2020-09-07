@@ -49,6 +49,43 @@ router.get('/:id', async function (req, res, next) {
     }
 });
 
+
+
+//* ----------------------- 新增活動 ----------------------- //
+router.post('/', async function (req, res, next) {
+    try {
+        console.log(req.body);
+        let {
+            fActName,
+            fCreatDate,
+            fActivityDate,
+            fActivityEndDate,
+            fMemberId,
+            fIntroduction,
+            fImgPath,
+            fActLabelId,
+            fMaxLimit,
+            fMinLimit,
+            fActAttestId,
+            fActTypeId,
+            fActLocation
+        } = req.body
+
+        let result = await Sql.creatAct(fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation);
+        res.json(result);
+    } catch (err) {
+        res.send(err);
+    }
+})
+
+
+
+
+
+
+
+
+
 // router.get('/tagById/:id', async function (req, res, next) {
 //     try {
 //         // *用 await 等待資料庫回應

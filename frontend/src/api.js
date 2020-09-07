@@ -12,60 +12,56 @@ const serverURL = {
     actsearchdetail:`${rootURL}/activity/searchdetail/`,
     maps: `${rootURL}/map/`,
     personalPages: `${rootURL}/personalPage/`,
-    activeseen:`${rootURL}/active/activeseen`
+    activeseen:`${rootURL}/active/activeseen`,
+    articlepost: `${rootURL}/article/post`,
+    articlereply: `${rootURL}/article/reply`,
+    homePages:`${rootURL}/home/`,
 };
 
-
-
-
-
 const postlist = async () => {
-    try {
-        // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
-        // *用變數接 fetch 結果 ，要用await等。
-        let response = await fetch(serverURL.postslist);
-        // 用變數接 fetch結果的資料內容， 要用await等。
-        let result = await response.json();
-        console.log("post await");
-        console.log(result);
-        // *用 result  do something ...
-    } catch (err) {
-        console.log(err);
-        // 錯誤處理
-    }
+  try {
+    // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+    // *用變數接 fetch 結果 ，要用await等。
+    let response = await fetch(serverURL.postslist);
+    // 用變數接 fetch結果的資料內容， 要用await等。
+    let result = await response.json();
+    console.log("post await");
+    console.log(result);
+    // *用 result  do something ...
+  } catch (err) {
+    console.log(err);
+    // 錯誤處理
+  }
 };
 // postlist()
 
 const postByid = async (id) => {
-    try {
-        // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
-        // *用變數接 fetch 結果 ，要用await等。
-        let response = await fetch(serverURL.postslist + id);
-        // 用變數接 fetch結果的資料內容， 要用await等。
-        let result = await response.json();
-        console.log("post by id await");
-        console.log(result);
-        // *用 result  do something ...
-    } catch (err) {
-        console.log(err);
-        // 錯誤處理
-    }
+  try {
+    // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+    // *用變數接 fetch 結果 ，要用await等。
+    let response = await fetch(serverURL.postslist + id);
+    // 用變數接 fetch結果的資料內容， 要用await等。
+    let result = await response.json();
+    console.log("post by id await");
+    console.log(result);
+    // *用 result  do something ...
+  } catch (err) {
+    console.log(err);
+    // 錯誤處理
+  }
 };
 // postByid(1)
 
 const checkLogin = () =>
-    fetch(serverURL.login, {
-        method: "GET",
-        cache: "no-cache",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": localStorage.getItem("Cycle link token")
-        },
-    })
+  fetch(serverURL.login, {
+    method: "GET",
+    cache: "no-cache",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: localStorage.getItem("Cycle link token"),
+    },
+  })
     .then((res) => res.text())
     .then((resStr) => JSON.parse(resStr));
 
-export {
-    serverURL,
-    checkLogin
-};
+export { serverURL, checkLogin };
