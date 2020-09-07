@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt');
 // session
 const session = require('express-session');
 const sessionKey = require('../src/sessionKey'); ``
@@ -9,6 +10,9 @@ const jsonwebtoken = require('jsonwebtoken');
 // src 資源
 const memberSql = require('../src/SQL/users');
 const sendSafetyCode = require('../src/email/signUp');
+
+//
+const saltRounds = 10;
 
 
 /* GET users listing. */
@@ -49,36 +53,42 @@ const reflashToken = async (id) => {
 
 
 // *POST Login ， upload.array() => form data 解析用    
-router.post('/login', function (req, res, next) {
-  let account = req.body.fAccount;
-  let password = req.body.fPassword;
+router.post('/login', async function (req, res, next) {
+  try {
 
-  console.log({ a: account, b: password });
-  let token;
+    let account = req.body.fAccount;
+    let password = req.body.fPassword;
 
-  memberSql.login(account, password)
-    .then((result) => {
+    console.log({ a: account, b: password });
+    let token;
 
-      if (result.result) {
-        token = 'Bearer ' + jsonwebtoken.sign(
-          {
-            ...result.data
-          },
-          "DayDayLuLuDaDaMiMiJJTenTen",
-          {
-            expiresIn: 3600 * 24 * 3
-          },
-          { algorithm: 'HS256' }
-        )
+    let result = await memberSql.login(account, password);
+    if (result.result) {
+
+      let isTure = await bcrypt.compare(password, result.data.fPassword);
+      if (!isTure) {
+        res.send({ result: 0, msg: "密碼錯誤" });
       }
 
-      console.log("user:", result);
-      res.json({ ...result, token: token });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.send({ result: 0, msg: "路由錯誤", data: err });
-    })
+
+      token = 'Bearer ' + jsonwebtoken.sign(
+        {
+          ...result.data
+        },
+        "DayDayLuLuDaDaMiMiJJTenTen",
+        {
+          expiresIn: 3600 * 24 * 3
+        },
+        { algorithm: 'HS256' }
+      )
+    }
+    console.log("user:", result);
+    res.json({ ...result, token: token });
+  }
+  catch (err) {
+    console.log(err);
+    res.send({ result: 0, msg: "路由錯誤", data: err });
+  }
 
 });
 
@@ -169,8 +179,49 @@ router.get('/signup/:code', async (req, res) => {
 
 
 
+// 搜尋列表
+router.get('/', async function (req, res, next) {
+  try {
+    let result = await memberSql.memberList();
+
+    res.json(result);
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
+});
 
 
+
+// 搜尋特定id
+router.get('/:id', async function (req, res, next) {
+  try {
+    // *用 await 等待資料庫回應
+    let result = await memberSql.memberById(req.params.id);
+    // 物件用json格式回傳
+    // 可以整理一下，刪掉不必要的資料再回傳
+    res.json(result);
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
+});
+
+
+
+// 搜尋 by name or account
+router.get('/searchByAccountOrName/:str', async function (req, res, next) {
+  try {
+    // *用 await 等待資料庫回應
+    let result = await memberSql.memberByNameOrAccount(req.params.str);
+    // 物件用json格式回傳
+    // 可以整理一下，刪掉不必要的資料再回傳
+    res.json(result);
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
+});
 
 
 

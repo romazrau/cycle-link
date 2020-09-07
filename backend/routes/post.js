@@ -17,6 +17,7 @@ router.get('/', async function(req, res, next) {
     res.json(result);
 
   }catch(err){
+    console.log(err);
     res.send(err);
   } 
 });
@@ -30,6 +31,7 @@ router.get('/:id', async function(req, res, next) {
     // 可以整理一下，刪掉不必要的資料再回傳
     res.json(result);
   }catch(err){
+    console.log(err);
     res.send(err);
   } 
 });
