@@ -8,6 +8,12 @@ const config = {
     password: 'everybodycanuse',
     server: 'localhost', // You can use 'localhost\\instance' to connect to named instance
     database: 'SeaTurtleOnTheWay',
+
+    options: {
+        enableArithAbort: true,
+        encrypt: true
+    },
+    port: 1433,
 }
 
 //"後端路由"透過Function對資料庫下的指令:CRUD增刪查改

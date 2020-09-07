@@ -1,6 +1,6 @@
 //使用套件 mssql
 const sql = require('mssql');
-const bcrypt = require('bcrypt'); 
+const bcrypt = require('bcrypt');
 
 
 // *資料庫連結設定檔 大家都把 sa 的密碼改成 everybodycanuse 才能一直用喔
@@ -9,8 +9,14 @@ const config = {
     password: 'everybodycanuse',
     server: 'localhost', // You can use 'localhost\\instance' to connect to named instance
     database: 'SeaTurtleOnTheWay',
+
+    options: {
+        enableArithAbort: true,
+        encrypt: true
+    },
+    port: 1433,
 }
- 
+
 // 設計 SQL指令方法
 const mySqlFunc = async () => {
     try {
@@ -23,11 +29,11 @@ const mySqlFunc = async () => {
         // 看一下回傳結果
         console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
-        return {result:1, msg:"請求成功", data:result.recordset};
-    // 錯誤處理
+        return { result: 1, msg: "請求成功", data: result.recordset };
+        // 錯誤處理
     } catch (err) {
         console.log(err);
-        return {result:0, msg:"SQL 錯誤", data:err};
+        return { result: 0, msg: "SQL 錯誤", data: err };
     }
 };
 
