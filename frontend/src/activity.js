@@ -26,7 +26,7 @@ function ClsActivity() {
 
     var activity_search_go = document.getElementById("activity_search_go");
     var activity_card_ALL = document.getElementById("activity_card_ALL");
-    var communmity_main = document.querySelector(".communmity_main");
+    var activity_main = document.querySelector(".activity_main");
     var activity_option  = document.getElementById("activity_option");
     var searchtext =  document.getElementById("search_txt");
 
@@ -34,36 +34,13 @@ function ClsActivity() {
         var typeId = activity_option.value;
         var searchtxt = searchtext.value;
         activity_card_ALL.style.display = 'none';
-        communmity_main.style.display = 'block';
+        activity_main.style.display = 'block';
         activeSearchGoAwait(typeId,searchtxt);
         
         
     })
     
-    const htmlActSearchgo = (o) =>{
-        return `
-                        <div communmity_shadow >
-                            <div class="communmity_container_middle_content ">
-                                <div class="communmity_container_middle_content_imgbox">
-                                        ${o.fImgPath}
-                                </div>
-                                <div class="communmity_container_middle_content_title">
-                                    <span>
-                                        ${o.fActivityDate}
-                                    </span>
-                                    <h3>${o.fActName}</h3>
-                                    <p>free</p>
-                                </div>
-                                <div class="communmity_container_middle_content_icon">
-                                    <div class="communmity_icon_box">
-                                        <span><button><img src="./img/share.svg" alt=""></button></span>
-                                        <span><button><img src="./img/like.svg" alt=""></button></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-        `
-    }
+    
 
     
 
@@ -76,6 +53,8 @@ function ClsActivity() {
     const ActSearch = document.querySelector("#activity_option");
 
 
+   
+
     const display_active_main_level = (o) => {
         o.map(
             (e, index) => {
@@ -83,14 +62,7 @@ function ClsActivity() {
             }
         )
     };
-    const ActSearchGo_result = document.querySelector(".communmity_container_middle");
-    const display_search_go = (o) =>{
-        ActSearchGo_result.innerHTML = "";
-        o.map((e,index)=>{
-            
-            ActSearchGo_result.innerHTML += htmlActSearchgo(e);
-        })
-    }
+    
     const activemainlevelAwait = async () => {
         try {
             // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
@@ -136,7 +108,6 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-           console.log(result);
            display_search_go(result.data);
             // *用 result  do something ...
 
@@ -214,8 +185,12 @@ function ClsActivity() {
     var btncitydetial = document.getElementById("search_citydetial");
     btncity.addEventListener('click', function () {
         btncity.classList.add("search_hidden");
-        btncitydetial.classList.remove("search_hidden");
-        $("#search_citydetial").fadeIn("5000");
+        $("#search_citydetial").fadeIn("5000")
+                btncitydetial.classList.remove("search_hidden");
+        ;
+        
+        // btncitydetial.classList.add("search_hidden");
+        
     });
     var list = document.getElementsByTagName("li");
     var searchcitytext = "";
@@ -223,6 +198,7 @@ function ClsActivity() {
     for (var i = 0; i < list.length; i++) {
         list[i].addEventListener('click', function () {
             // searchcitytext = this.innerHTML;
+            $("#search_citydetial").fadeOut("5000");
             btncitydetial.classList.add("search_hidden");
             btncity.classList.remove("search_hidden");
             btncitytext.innerHTML = this.innerHTML;
@@ -233,8 +209,9 @@ function ClsActivity() {
     var btndatedetial = document.getElementById("search_datedetial");
     btndate.addEventListener('click', function () {
         btndate.classList.add("search_hidden");
-        btndatedetial.classList.remove("search_hidden");
+        
         $("#search_datedetial").fadeIn("5000");
+        btndatedetial.classList.remove("search_hidden");
     });
 
     // 抓時間
@@ -301,6 +278,7 @@ function ClsActivity() {
     }
 
     function displaydate() {
+        $("#search_datedetial").fadeOut("5000");
         btndatedetial.classList.add("search_hidden");
         btndate.classList.remove("search_hidden");
     }
@@ -329,12 +307,35 @@ function ClsActivity() {
     </div></a>`;
     }
 
+    // 搜尋結果
+    //todo 圖片路徑 目前是寫死的 如有更新後需更改為動態
+    const htmlActSearchgo = (o) =>{
+        return `
+        <a href="#activity/detail/${o.fId}">
+        <div class="active_card_container">
+            <div class="active_card" >
+                <i class="fas fa-heart fa-lg active_card_heart"></i>
+                <div class="active_card_div">
+                    <img src="img/event6.png" alt="" class="active_card_img">
+                </div>
+                <div class="active_card_info">
+                    <p>${o.fActivityDate}</p>
+                    <p class="active_card_title">${o.fActName}</p>
+                    <div class="active_card_location_div">
+                        <img src="img/929497.svg" class="active_card_location">
+                        <p>${o.fActLocation}</p>
+                    </div>
+                </div>
+            </div>
+        </div></a>
+                        
+        `
+    }
 
     //ActCardData
     //* ------------------------------------- 文字樣板 -------------------------------------
     const display_active = (o) => {
-
-
+        
         o.map(
             (e, index) => {
                 // console.log(e);
@@ -344,8 +345,24 @@ function ClsActivity() {
         // console.groupEnd("display_active map");
 
     }
+    const ActSeen = document.getElementById("activity_event_history")
 
+    const display_active_seen = (o) =>{
+        o.map((e,index)=>{
+            ActSeen.innerHTML += htmlActCard(e);
+        })
+    }
 
+    const ActSearchresult = document.getElementById("activesearchresult");
+    
+    
+    const display_search_go = (o) =>{
+        ActSearchresult.innerHTML = "";
+        o.map((e,index)=>{
+            
+            ActSearchresult.innerHTML += htmlActSearchgo(e);
+        })
+    }
 
     const activeAwait = async () => {
         try {
@@ -362,10 +379,7 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-            // console.group("active await");
-            // console.log("active awai: ", result.msg);
-            // console.log(result.data);
-            // console.groupEnd("active await");
+            
             display_active(result.data);
             // *用 result  do something ...
 
@@ -378,7 +392,35 @@ function ClsActivity() {
 
     activeAwait();
 
+    // 瀏覽過的活動
+    const activeseenAwait = async () => {
+        try {
+            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+            // *用變數接 fetch 結果 ，要用await等。
+            let response = await fetch(serverURL.activeseen, {
+                method: "GET", // http request method 
+                headers: { // http headers
+                    'Content-Type': 'application/json' // 請求的資料類型
+                },
+                // 以下跟身分認證有關，後端要使用session 要帶這幾項
+                cache: 'no-cache',
+                credentials: 'include',
+            });
+            // 用變數接 fetch結果的資料內容， 要用await等。
+            let result = await response.json();
+            console.log("rrr",result)
+            //文字樣板
+            display_active_seen(result.data);
+            // *用 result  do something ...
 
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+
+        }
+    }
+
+    activeseenAwait();
 
 
 
@@ -444,40 +486,41 @@ function ClsActivity() {
 
 
 
-    const HisAct = document.querySelector("#activity_event_history")
+    // const HisAct = document.querySelector("#activity_event_history")
 
-    let HisActData = [{
-            imgPath: "img/event2.jpg",
-            date: "2020/09/26",
-            title: "螢光夜跑",
-            count: 100,
-            member: "王曉明",
-            local: "新北大道"
-        },
-        {
-            imgPath: "img/event3.jpg",
-            date: "2020/09/26",
-            title: "潛水撿垃圾，愛海洋！",
-            count: 99,
-            member: "洲仔於",
-            local: "布袋漁港"
-        },
-        {
-            imgPath: "img/event4.jpg",
-            date: "2020/09/26",
-            title: "飢餓三十！",
-            count: 500,
-            member: "時間管理大師",
-            local: "桃園"
-        }
-    ]
+    // let HisActData = [{
+    //         imgPath: "img/event2.jpg",
+    //         date: "2020/09/26",
+    //         title: "螢光夜跑",
+    //         count: 100,
+    //         member: "王曉明",
+    //         local: "新北大道"
+    //     },
+    //     {
+    //         imgPath: "img/event3.jpg",
+    //         date: "2020/09/26",
+    //         title: "潛水撿垃圾，愛海洋！",
+    //         count: 99,
+    //         member: "洲仔於",
+    //         local: "布袋漁港"
+    //     },
+    //     {
+    //         imgPath: "img/event4.jpg",
+    //         date: "2020/09/26",
+    //         title: "飢餓三十！",
+    //         count: 500,
+    //         member: "時間管理大師",
+    //         local: "桃園"
+    //     }
+    // ]
 
-    HisActData.map(
-        (e, index) => {
-            HisAct.innerHTML += htmlActCard(e);
-        }
-    )
+    // HisActData.map(
+    //     (e, index) => {
+    //         HisAct.innerHTML += htmlActCard(e);
+    //     }
+    // )
 
+        
 
     // 跳轉 #activity/detail
 

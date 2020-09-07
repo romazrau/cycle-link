@@ -1,5 +1,7 @@
 //使用套件 mssql
 const sql = require('mssql');
+const bcrypt = require('bcrypt'); 
+
 
 // *資料庫連結設定檔 大家都把 sa 的密碼改成 everybodycanuse 才能一直用喔
 const config = {
@@ -37,3 +39,19 @@ const mySqlFunc = async () => {
 
 // *匯出方法 ， 多個方法包在{}裡， ex: {func1, func2}
 module.exports = mySqlFunc;
+
+
+
+// const saltRounds = 10;
+// (async ()=>{
+//     let password = 'web123456';
+//     let pas = await bcrypt.hash(`web123456`, saltRounds);
+//     let isTure = await bcrypt.compare(password, pas);
+
+//     console.log(pas);
+//     console.log(isTure);
+// })();
+
+
+
+// node src/SQL/test.js

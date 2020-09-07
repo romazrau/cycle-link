@@ -222,7 +222,7 @@ const htmlPerCard = o =>
         return `<div class="personal_detail_Societies_img_circle">
                 <a href="#community/detail/${o.fCommunityId}">
                     <div class="personal_detail_Societies_img_div">
-                        <img src="./img/${o.fImgPath}" class="personal_detail_Societies_img">
+                        <img src="${o.fImgPath}" class="personal_detail_Societies_img">
                     </div>
                     </a>
                 </div>

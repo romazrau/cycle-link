@@ -1,6 +1,7 @@
 const rootURL = "http://localhost:3050";
 
 
+//物件管理大家的api
 const serverURL = {
     root: rootURL,
     login: `${rootURL}/users/`,
@@ -9,6 +10,7 @@ const serverURL = {
     active: `${rootURL}/active/`,
     activemainlevel: `${rootURL}/active/searchmainlevel/`,
     actDetail: `${rootURL}/activityDetail/`,
+    activeseen:`${rootURL}/active/activeseen`,
     maps: `${rootURL}/map/`
 };
 
@@ -122,11 +124,11 @@ const checkLogin = () => (
             'Content-Type': 'application/json'
         }
     })
-        .then(
-            (res) => res.text()
-        ).then(
-            resStr => JSON.parse(resStr)
-        )
+    .then(
+        (res) => res.text()
+    ).then(
+        resStr => JSON.parse(resStr)
+    )
 )
 
 

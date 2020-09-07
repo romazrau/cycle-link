@@ -286,18 +286,33 @@
   background-color: white;
 }
 
+.activity_detail_Societies_a {
+  display: flex;
+  align-items: center;
+  color: gray;
+}
+
+.activity_detail_Societies_a:hover {
+  color: var(--blue-color);
+  transition: all 0.5s;
+}
+
+.activity_detail_Societies_a p:first-child {
+  color: black;
+}
+
 .activity_detail_Societies_info {
   margin: 0 1rem;
 }
 
-.activity_detail_Societies_info a {
+/* .activity_detail_Societies_info a {
   color: grey;
-}
+} */
 
-.activity_detail_Societies_info a:hover {
+/* .activity_detail_Societies_info a:hover {
   color: var(--blue-color);
-  transition: all 0.5s;
-}
+
+} */
 
 .activity_detail_Societies_img_circle {
   position: relative;

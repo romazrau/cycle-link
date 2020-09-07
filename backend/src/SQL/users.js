@@ -31,16 +31,16 @@ const test = async () => {
 };
 
 //登入
-const login = async (account, password) => {
+const login = async (account) => {
     try {
         // make sure that any items are correctly URL encoded in the connection string
         await sql.connect(config)
         const sqlString = `
-        select M.fId, M.fName , T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority'
+        select M.fId, M.fName , M.fPassword, T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority'
         from Member.tMember as M
         LEFT join Member.tAccountType as T
         on M.fAccountTypeId = T.fId
-        where fAccount = '${account}' AND fPassword = '${password}';`
+        where fAccount = '${account}';`
         const result = await sql.query(sqlString);
         // console.dir(result);
 
@@ -61,7 +61,7 @@ const memberList = async () => {
         // make sure that any items are correctly URL encoded in the connection string
         await sql.connect(config)
         const sqlString = `
-        select M.fId, M.fName ,M.fName, M.fCity, M.fCoins , T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority' , M.fIntroduction, M.fPhotoPath, M.fLastTime
+        select M.fId,M.fAccount, M.fName , M.fCity, M.fCoins , T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority' , M.fIntroduction, M.fPhotoPath, M.fLastTime
         from Member.tMember as M
         LEFT join Member.tAccountType as T
         on M.fAccountTypeId = T.fId;`;
@@ -71,7 +71,7 @@ const memberList = async () => {
         if (!result.rowsAffected[0]) {
             return { result: 0, msg: "查無結果" }
         }
-        return { result: 1, msg: "查詢成功", data: result.recordset[0] };
+        return { result: 1, msg: "查詢成功", data: result.recordset };
     } catch (err) {
         console.log(err);
         return { result: 0, msg: "SQL 問題", data: result };
@@ -87,7 +87,7 @@ const memberById = async (id) => {
         // make sure that any items are correctly URL encoded in the connection string
         await sql.connect(config)
         const sqlString = `
-        select M.fId ,M.fName, M.fCity, M.fCoins , T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority' , M.fIntroduction, M.fPhotoPath, M.fLastTime
+        select M.fId ,M.fAccount, M.fName, M.fCity, M.fCoins , T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority' , M.fIntroduction, M.fPhotoPath, M.fLastTime
         from Member.tMember as M
         LEFT join Member.tAccountType as T
         on M.fAccountTypeId = T.fId
@@ -98,12 +98,39 @@ const memberById = async (id) => {
         if (!result.rowsAffected[0]) {
             return { result: 0, msg: "查無結果" }
         }
-        return { result: 1, msg: "查詢成功", data: result.recordset[0] };
+        return { result: 1, msg: "查詢成功", data: result.recordset[0]};
     } catch (err) {
         console.log(err);
         return { result: 0, msg: "SQL 問題" };
     }
 };
+
+
+// 搜尋 member
+const memberByNameOrAccount = async (str) => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        await sql.connect(config)
+        const sqlString = `
+        select M.fId ,M.fAccount, M.fName, M.fCity, M.fCoins , T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority', M.fPhotoPath, M.fLastTime
+        from Member.tMember as M
+        LEFT join Member.tAccountType as T
+        on M.fAccountTypeId = T.fId
+        where M.fAccount like '%${str}%' or M.fName like '%${str}%';`
+        const result = await sql.query(sqlString);
+        // console.dir(result);
+
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "查無結果" }
+        }
+        return { result: 1, msg: "查詢成功", data: result.recordset };
+    } catch (err) {
+        console.log(err);
+        return { result: 0, msg: "SQL 問題" };
+    }
+};
+
+
 
 
 
@@ -126,6 +153,32 @@ const memberByAccount = async (account) => {
 
         if (!result.rowsAffected[0]) {
             return { result: 0, msg: "查無結果" }
+        }
+        return { result: 1, msg: "查詢成功", data: result.recordset[0] };
+    } catch (err) {
+        console.log(err);
+        return { result: 0, msg: "SQL 問題" };
+    }
+};
+
+
+
+
+
+// 搜尋 member by account & email
+const memberByAccountAndEmail = async (account, email) => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        await sql.connect(config)
+        const sqlString = `
+        select M.fId ,M.fName, M.fAccount
+        from Member.tMember as M
+        where M.fAccount = '${account}' AND M.fMail = '${email}' ;`
+        const result = await sql.query(sqlString);
+        // console.dir(result);
+
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "帳號或信箱不符" }
         }
         return { result: 1, msg: "查詢成功", data: result.recordset[0] };
     } catch (err) {
@@ -170,6 +223,27 @@ const changeDetail = async (id, memberObj) => {
 // })
 
 
+const changePassword = async (id, password) => {
+    try {
+        await sql.connect(config);
+        const sqlString = `
+        --updata
+        UPDATE Member.tMember 
+        SET fPassword = '${password}'
+        WHERE fId = ${id}  ;       
+        `;
+        const result = await sql.query(sqlString);
+        // console.dir(result);
+
+        return { result: 1, msg: "更改成功" };
+    } catch (err) {
+        console.log(err);
+        return { result: 0, msg: "SQL 問題", data: err };
+    }
+};
+
+
+
 // create member 
 const createMember = async (fAccount, fPassword, fName, fBirthdate, fMail,
     fAddress, fCity, fCeilphoneNumber,
@@ -199,4 +273,4 @@ const createMember = async (fAccount, fPassword, fName, fBirthdate, fMail,
 
 
 
-module.exports = { test, login, changeDetail, memberById, memberList, memberByAccount, createMember };
+module.exports = { test, login, changeDetail, memberById, memberList, memberByNameOrAccount, memberByAccount, memberByAccountAndEmail, createMember, changePassword };
