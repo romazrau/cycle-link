@@ -17,6 +17,8 @@ const serverURL = {
   articlereply: `${rootURL}/article/reply`,
   articlesearch: `${rootURL}/article/search`,
   homePages: `${rootURL}/home/`,
+  community: `${rootURL}/community/`,
+  communityManager: `${rootURL}/community/communityManager/`
 };
 
 const postlist = async () => {

@@ -1,3 +1,5 @@
+import { serverURL } from "./api.js";
+
 function ClsCommuntityDetail() {
 
 
@@ -410,20 +412,81 @@ function ClsCommuntityDetail() {
 
 
 
-    // Ajax
+    // ----------------------------------------------Ajax----------------------------------------------------//
+    //開啟特定社團頁面(社團id)
     const renderPage = async (id) => {
+        try {
 
-        let response = await fetch("")
+            let response = await fetch(serverURL.community + id, {
+                method: "GET", // http request method
+                headers: {           // *攜帶 http request headers 
+                    "Content-Type": "application/json",
+                    // "Authorization": localStorage.getItem("Cycle link token"),  // *這個屬性帶 JWT
+                },
+                // 以下跟身分認證有關，後端要使用session 要帶這幾項
+                cache: "no-cache",
+                credentials: "include",
+            });
+            let result = await response.json();
+            // //for debug
+            // console.log("%c +++++++++++++", "color: green");
+            // console.log(result);
+            // console.log(result.data[0].fImgPath);
+            if (!result.result) {
+                //# >>> 前端路由導向
+                window.location.hash = "#community";
+                return;
+            }
+
+
+            // TODO 
+            document.querySelector("#CommunityPic").src = result.data[0].fImgPath;
+            document.querySelector("#CommunityName").innerHTML = result.data[0].fName;
+            document.querySelector("#CommunityNumberOfPeople").innerHTML = result.data[0].totalNumber;
+            document.querySelector("#CommunityStatus").innerHTML = result.data[0].fSatusName;
+            document.querySelector("#CommunityAboutUs").innerHTML = result.data[0].fInfo;
 
 
 
+        }
+        catch (err) {
+            console.log(err);
+        }
 
     }
 
 
+    const renderPageMember = async (id) => {
+        try {
+            let response = await fetch(serverURL.communityManager + id, {
+                method: "GET", // http request method
+                headers: {
+                    // http headers
+                    "Content-Type": "application/json", // 請求的資料類型
+                },
+                // 以下跟身分認證有關，後端要使用session 要帶這幾項
+                cache: "no-cache",
+                credentials: "include",
+            });
+
+            let result = await response.json();
+            document.querySelector("#CommunityManager").innerHTML = result.data[0].fName;
 
 
-    this.render = renderPage;
+
+        }
+        catch (err) {
+
+
+            console.log(err);
+        }
+
+    }
+
+
+    //this 指的是 ClsCommuntityDetail
+    this.renderMainCommunityInfo = renderPage;
+    this.renderMemberListInfo = renderPageMember;
 
 }
 const CommuntityDetail = new ClsCommuntityDetail();
@@ -431,10 +494,15 @@ const CommuntityDetail = new ClsCommuntityDetail();
 //* 利用 hash , 如下
 // * -------------------------------- hash -------------------------------- //
 const communityDetailChangeHash = () => {
-    let actDetailArr = location.hash.split('/');   // #community/detail/3  -> [ #community, detail, 3 ]
+
+    //Window物件方法偵測URL改變 執行rederPage function
+    let actDetailArr = window.location.hash.split('/');   // #community/detail/3  -> [ #community, detail, 3 ]
     let actDetailId = actDetailArr[2];
     if (location.hash.includes("#community/detail/")) {
-        CommuntityDetail.render(actDetailId);
+        CommuntityDetail.renderMainCommunityInfo(actDetailId);
+        CommuntityDetail.renderMemberListInfo(actDetailId);
+
+
     }
 }
 
