@@ -29,6 +29,7 @@ document.querySelector("#loginSubmit").addEventListener(
                 location.hash = "#personal-maneger";
 
                 window.localStorage.setItem("Cycle link token", result.token);   // *存前端來的 JWT 進 localStorage 裡
+                window.localStorage.setItem("Cycle link user data", result.data.fName);  
             }
         } catch (ex) {
             console.log(ex);
