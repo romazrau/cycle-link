@@ -13,7 +13,7 @@ const sendSafetyCode = require('../src/email/signUp');
 const sendNewPassword = require('../src/email/forgetPassword');
 
 
-//
+// bcrypt 雜湊亂碼產生器
 const saltRounds = 10;
 
 
@@ -154,12 +154,10 @@ router.put('/password', async (req, res) => {
       res.json({ result: 0, msg: "token 遺失" });
     }
 
-    // TODO 密碼雜湊
-    let password = req.body.fPassword;
-
+    // 密碼雜湊
+    let password = await bcrypt.hash(req.body.fPassword, saltRounds);
 
     let result = await memberSql.changePassword(req.user.fId, password);
-
 
     res.json({ ...result });
   } catch (ex) {
@@ -175,7 +173,7 @@ router.put('/password', async (req, res) => {
 router.post('/signup', async (req, res) => {
   try {
 
-    const { fAccount, fPassword, fName, fBirthdate, fMail,
+    let { fAccount, fPassword, fName, fBirthdate, fMail,
       fAddress, fCity, fCeilphoneNumber,
       fIntroduction } = req.body;
 
@@ -192,8 +190,9 @@ router.post('/signup', async (req, res) => {
       return;
     }
 
-    // TODO 密碼處理
-
+    // 密碼雜湊
+    let password = await bcrypt.hash(fPassword, saltRounds);
+    fPassword = password;
 
     // TODO 接收img
     let fPhotoPath = "";
@@ -250,7 +249,7 @@ router.get('/signup/:code', async (req, res) => {
 
 
 
-// TODO Forget Password & send email 
+// Forget Password & send email 
 router.post('/Forget/Password', async (req, res) => {
   try{
     let account = req.body.fAccount;
@@ -269,7 +268,7 @@ router.post('/Forget/Password', async (req, res) => {
     }
 
     // TODO 密碼加密
-    let password = send.code
+    let password = await bcrypt.hash(send.code, saltRounds)
     
     let result = await memberSql.changePassword(check.data.fId, password);
     if (!result.result) {

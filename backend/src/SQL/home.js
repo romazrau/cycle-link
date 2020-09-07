@@ -101,7 +101,7 @@ const HomePageActivityImg = async (id) => {
 
 //先測試!!!!用 func (terminal>node src/SQL/test.js)
 // 解除註解，並把匯出方法註解才能用喔
-HomePageActivityImg();
+// HomePageActivityImg();
 
 
 // *匯出方法 ， 多個方法包在{}裡， ex: {func1, func2}
