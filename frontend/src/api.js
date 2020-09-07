@@ -12,6 +12,7 @@ const serverURL = {
     actsearchdetail:`${rootURL}/activity/searchdetail/`,
     maps: `${rootURL}/map/`,
     personalPages: `${rootURL}/personalPage/`,
+    activeseen:`${rootURL}/active/activeseen`
 };
 
 
