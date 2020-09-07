@@ -17,7 +17,7 @@ const map_GetAllActivity = async (account, password) => {
         // make sure that any items are correctly URL encoded in the connection string
         await sql.connect(config)
         const sqlString = `
-        select fActName,ML.fLabelName,fIntroduction ,fCoordinateX,fCoordinateY,fImgPath
+        select a.fId,fActName,ML.fLabelName,fIntroduction ,fCoordinateX,fCoordinateY,fImgPath
         from Activity.tActivity as a
         left join Activity.tActivityMainLabel as ML
         on ML.fId=a.fActLabelId

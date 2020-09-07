@@ -239,6 +239,52 @@ hr {
 }
 
 /******************* TOP ******************/
+
+.GroupImgSeeMoreIcon {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  opacity: 50%;
+}
+
+.GroupImgSeeMoreIcon:hover {
+  opacity: 100%;
+}
+
+.GroupComingEventImg {
+  margin-top: 50px;
+  opacity: 50%;
+}
+
+.GroupComingEventImg:hover {
+  opacity: 100%;
+}
+
+.GroupBottomRightSetImg {
+  margin-top: 50px;
+  opacity: 50%;
+}
+
+.GroupBottomRightSetImg:hover {
+  opacity: 100%;
+}
+
+.GroupAboutUsDivImg {
+  position: relative;
+}
+
+.GroupAboutUsImg {
+  margin-top: 50px;
+  /* margin-right: 10px; */
+  opacity: 50%;
+  /* transform: rotate(90deg); */
+  /* position:absolute; */
+}
+
+.GroupAboutUsImg:hover {
+  opacity: 100%;
+}
+
 .MiddleNavBar {
   margin-bottom: 30px;
   align-items: center;
@@ -272,19 +318,111 @@ hr {
   padding: 1rem 2rem;
   /* width: 200px; */
   /* height: 100px; */
-  top: 3.9rem;
-  left: 0.1rem;
+  top: 50px;
+  right: -30px;
   background-color: var(--grey-color);
   color: white;
+  font-size: 16px;
+  cursor: pointer;
+
   /* z-index: 100; */
 }
 
 .dropdown-triangle {
+  pointer-events: none;
   width: 0px;
   height: 0px;
   border-width: 15px;
-  left: 38%;
-  top: 2rem;
+  right: 18px;
+  top: 20px;
+  border-style: solid;
+  border-color: transparent transparent var(--grey-color) transparent;
+  position: absolute;
+  z-index: 100;
+}
+
+.dropdownR {
+  position: absolute;
+  /* border: 1px solid black; */
+  /* box-shadow: 0px 0px 20px 0.00001px #908888; */
+  padding: 1rem 2rem;
+  /* width: 200px; */
+  /* height: 100px; */
+  top: 50px;
+  right: -50px;
+  background-color: var(--grey-color);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+
+  /* z-index: 100; */
+}
+
+.dropdown-triangleR {
+  pointer-events: none;
+  width: 0px;
+  height: 0px;
+  border-width: 15px;
+  right: -2px;
+  top: 20px;
+  border-style: solid;
+  border-color: transparent transparent var(--grey-color) transparent;
+  position: absolute;
+  z-index: 100;
+}
+
+.dropdownD {
+  position: absolute;
+  /* border: 1px solid black; */
+  /* box-shadow: 0px 0px 20px 0.00001px #908888; */
+  padding: 1rem 2rem;
+  /* width: 200px; */
+  /* height: 100px; */
+  top: 90px;
+  right: -35px;
+  background-color: var(--grey-color);
+  color: white;
+  font-size: 16px;
+  
+  /* z-index: 100; */
+}
+
+.dropdown-triangleD {
+      pointer-events: none;
+  width: 0px;
+  height: 0px;
+  border-width: 15px;
+  right: -2px;
+  top: 60px;
+  border-style: solid;
+  border-color: transparent transparent var(--grey-color) transparent;
+  position: absolute;
+  z-index: 100;
+}
+
+.dropdownDR {
+  position: absolute;
+  /* border: 1px solid black; */
+  /* box-shadow: 0px 0px 20px 0.00001px #908888; */
+  padding: 1rem 2rem;
+  /* width: 200px; */
+  /* height: 100px; */
+  top: 93px;
+  right: -70px;
+  background-color: var(--grey-color);
+  color: white;
+  font-size: 16px;
+  
+  z-index: 1000;
+}
+
+.dropdown-triangleDR {
+      pointer-events: none;
+  width: 0px;
+  height: 0px;
+  border-width: 15px;
+  right: -2px;
+  top: 63px;
   border-style: solid;
   border-color: transparent transparent var(--grey-color) transparent;
   position: absolute;
@@ -292,7 +430,7 @@ hr {
 }
 
 .GroupNavBtn:hover {
-  /* border: 1px solid none; */
+  border: 1px solid none;
   padding: 0.5rem 0.8rem;
   border-radius: 4px;
   background-color: var(--lightgrey-color);
@@ -323,6 +461,7 @@ hr {
 }
 
 .GroupTopLeft {
+  position: relative;
   max-width: 60%;
   box-sizing: border-box;
 }
@@ -334,11 +473,24 @@ hr {
   padding-left: 60px;
 }
 
+.GroupTopRightImgIcon {
+  position: absolute;
+  opacity: 50%;
+  top: 10px;
+  right: 0;
+}
+
+.GroupTopRightImgIcon:hover {
+  opacity: 100%;
+}
+
 .GroupTopEventName {
+  width: 100%;
   font-size: 2.5rem;
   font-family: monospace;
   font-weight: bold;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .GroupTopRightEventInfoBox {
@@ -365,13 +517,28 @@ hr {
 
 .GroupDiveBtnText {
   padding: 0 0.5rem 0 1rem;
+  color: grey;
 }
 
 .share-text-div {
   align-items: flex-end;
 }
 
+
+
+
+
+
+
+
 /******************* MIDDLE ******************/
+
+.dropdown-relative-container{
+  position: relative;
+}
+
+
+
 
 .LO:hover {
   border-left: 0.4rem solid var(--blue-color);
@@ -910,3 +1077,24 @@ hr {
 }
 
 /* 抓來的 */
+
+
+
+
+.pop_container{
+  position: fixed;
+  z-index: 2000;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.164);
+  
+}
+
+.pop_box{
+  width: 400px;
+  height: 300px;
+  background-color: white;
+  margin:10% 37%;
+
+
+}

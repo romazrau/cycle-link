@@ -1,4 +1,14 @@
 function ClsChat() {
+
+    $(document).ready(function () {
+        $(".upTop").click(function () {
+            $("html,body").animate({
+                scrollTop: $("body").offset().top - 120
+            }, 900);
+        });
+    });
+
+
     // *圖片開關
     const chatIconContainer = document.querySelector(".chat_icon_container");
     const chatMainIcon = document.querySelector(".chat_icon_main");

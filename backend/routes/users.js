@@ -10,6 +10,8 @@ const jsonwebtoken = require('jsonwebtoken');
 // src 資源
 const memberSql = require('../src/SQL/users');
 const sendSafetyCode = require('../src/email/signUp');
+const sendNewPassword = require('../src/email/forgetPassword');
+
 
 //
 const saltRounds = 10;
@@ -117,65 +119,172 @@ router.get('/logout', (req, res) => {
 
 
 
-// TODO Change Member Detail
+// Change Member Detail
 router.put('/', async (req, res) => {
-
-  if (!req.user) {
-    res.json({ result: 0, msg: "token 遺失" });
-  }
-
-
-  console.dir(req.body);
-  let result = await memberSql.changeDetail(req.user.fId, req.body);
-  let token;
-
-  if (result.result) {
-    let newToken = await reflashToken(req.user.fId);
-    if (newToken.result) {
-      token = newToken.token;
+  try {
+    if (!req.user) {
+      res.json({ result: 0, msg: "token 遺失" });
     }
-  }
 
-  res.json({ ...result, token: token });
+
+    console.dir(req.body);
+    let result = await memberSql.changeDetail(req.user.fId, req.body);
+    let token;
+
+    if (result.result) {
+      let newToken = await reflashToken(req.user.fId);
+      if (newToken.result) {
+        token = newToken.token;
+      }
+    }
+
+    res.json({ ...result, token: token });
+  } catch (ex) {
+    console.log(ex);
+    res.json({ result: 0, msg: "路由錯誤", data: ex });
+  }
+})
+
+
+// Change Member password
+router.put('/password', async (req, res) => {
+  try {
+
+    if (!req.user) {
+      res.json({ result: 0, msg: "token 遺失" });
+    }
+
+    // TODO 密碼雜湊
+    let password = req.body.fPassword;
+
+
+    let result = await memberSql.changePassword(req.user.fId, password);
+
+
+    res.json({ ...result });
+  } catch (ex) {
+    console.log(ex);
+    res.json({ result: 0, msg: "路由錯誤", data: ex });
+  }
 })
 
 
 
 
-// TODO Sign Up
+// Sign Up
 router.post('/signup', async (req, res) => {
+  try {
+
+    const { fAccount, fPassword, fName, fBirthdate, fMail,
+      fAddress, fCity, fCeilphoneNumber,
+      fIntroduction } = req.body;
+
+    let checkAccount = await memberSql.memberByAccount(fAccount);
+    if (checkAccount.result) {
+      res.json({ result: 0, msg: "帳號已存在" });
+      return;
+    }
+
+    // 寄信
+    let result = await sendSafetyCode(fMail);
+    if (!result.result) {
+      res.json(result);
+      return;
+    }
+
+    // TODO 密碼處理
 
 
+    // TODO 接收img
+    let fPhotoPath = "";
 
 
-  req.session[sessionKey.SK_USER_DATA] = req.body;
-
-
-  let result = await sendSafetyCode('adoro0920@gmail.com');
-  if (result.result) {
+    req.session[sessionKey.SK_USER_DATA] = {
+      fAccount, fPassword, fName, fBirthdate, fMail,
+      fAddress, fCity, fCeilphoneNumber,
+      fPhotoPath, fIntroduction
+    };
     req.session[sessionKey.SK_SIGNUP_SAFTY_CODE] = result.code;
-  }
 
-  res.json(result)
+
+    res.json({ result: 1, msg: `已發送認證信，請至${fMail}信箱確認` });
+  }
+  catch (ex) {
+    console.log(ex);
+    res.json({ result: 0, msg: "路由錯誤", data: ex });
+  }
 })
 
 
-// TODO is Sign Up safyty code correct 
+// is Sign Up safyty code correct  and finish  Sign Up
 router.get('/signup/:code', async (req, res) => {
+  try {
 
-  if (req.params.code == req.session[sessionKey.SK_SIGNUP_SAFTY_CODE]) {
+    if (req.params.code != req.session[sessionKey.SK_SIGNUP_SAFTY_CODE]) {
+      res.json({ result: 0, msg: "認證碼不符" });
+      return;
+    }
 
-    res.json({ result: 1, msg: "認證成功" });
-    return;
+    if (!req.session[sessionKey.SK_USER_DATA]) {
+      res.json({ result: 0, msg: "註冊資料遺失" });
+      return;
+    }
+
+    const { fAccount, fPassword, fName, fBirthdate, fMail,
+      fAddress, fCity, fCeilphoneNumber,
+      fPhotoPath, fIntroduction } = req.session[sessionKey.SK_USER_DATA];
+
+    let result = await memberSql.createMember(fAccount, fPassword, fName, fBirthdate, fMail,
+      fAddress, fCity, fCeilphoneNumber,
+      fPhotoPath, fIntroduction);
+
+    delete req.session[sessionKey.SK_USER_DATA];
+    delete req.session[sessionKey.SK_SIGNUP_SAFTY_CODE];
+
+    res.json(result);
+  } catch (ex) {
+    console.log(ex);
+    res.json({ result: 0, msg: "路由錯誤" });
   }
-
-  res.json({ result: 0, msg: "認證碼不符" })
 })
 
 
 
-// TODO Forget Password send email
+// TODO Forget Password & send email 
+router.post('/Forget/Password', async (req, res) => {
+  try{
+    let account = req.body.fAccount;
+    let mail = req.body.fMail;
 
+    let check = await memberSql.memberByAccountAndEmail(account, mail);
+    if (!check.result){
+      res.json(check);
+      return;
+    }
+
+    let send = await sendNewPassword(mail);
+    if (!send.result) {
+      res.json(send);
+      return;
+    }
+
+    // TODO 密碼加密
+    let password = send.code
+    
+    let result = await memberSql.changePassword(check.data.fId, password);
+    if (!result.result) {
+      res.json(result);
+      return;
+    }
+
+    res.json({ result: 1, msg: `已發送認證信，請至${mail}信箱確認` });
+
+
+  } catch (ex){
+    console.log(ex);
+    res.json({result:0, msg:"路由錯誤", data:ex});
+  }
+})
 
 
 
