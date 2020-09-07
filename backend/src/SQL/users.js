@@ -98,7 +98,7 @@ const memberById = async (id) => {
         if (!result.rowsAffected[0]) {
             return { result: 0, msg: "查無結果" }
         }
-        return { result: 1, msg: "查詢成功", data: result.recordset};
+        return { result: 1, msg: "查詢成功", data: result.recordset[0]};
     } catch (err) {
         console.log(err);
         return { result: 0, msg: "SQL 問題" };

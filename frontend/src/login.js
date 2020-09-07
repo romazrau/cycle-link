@@ -4,39 +4,35 @@ import { serverURL } from "./api.js";
 
 document.querySelector("#loginSubmit").addEventListener(
     "click",
-    (e) => {
+    async (e) => {
         e.preventDefault();
         console.log(e);
-        let form = document.querySelector("#form_signIn");
-        let formData = new FormData(form);
+        let form = document.querySelector("#form_signIn");  // 抓登入 form element
+        let formData = new FormData(form);                  // 打包成 FormData
 
-        fetch(serverURL.login, {
-            method: "POST",
-            body: formData,
-            cache: 'no-cache',
-            credentials: 'include',
-            mode: 'cors',
-            referrer: "client",
-        }).then(
-            (res) => res.text()
-        ).then(
-            resStr => {
-                const resData = JSON.parse(resStr);
-                console.log(resData);
-                if (resData.result == "1") {
-                    let show = `<i class="fas fa-bullhorn login_bullhorn"></i> <div><p>${resData.data.fName}</p><p>歡迎</p></div>`;
-                    document.querySelector("#header_link_login").innerHTML = show;
-                    location.hash = "#personal-maneger";
+        try {
+            let resopne = await fetch(serverURL.login, {
+                method: "POST",     // POST
+                body: formData,     // *攜帶的 FormData
+                cache: 'no-cache', 
+                credentials: 'include',
+                mode: 'cors',
+                referrer: "client",
+            })
 
-                    window.localStorage.setItem("Cycle link token", resData.token);
-                }
+            let result = await resopne.json()  // 解析回傳的物件
+
+            console.log(result);
+            if (result.result == "1") {
+                let show = `<i class="fas fa-bullhorn login_bullhorn"></i> <div><p>${result.data.fName}</p><p>歡迎</p></div>`;
+                document.querySelector("#header_link_login").innerHTML = show;
+                location.hash = "#personal-maneger";
+
+                window.localStorage.setItem("Cycle link token", result.token);   // *存前端來的 JWT 進 localStorage 裡
             }
-
-        ).catch(
-            err => console.log(err)
-        )
-
-
+        } catch (ex) {
+            console.log(ex);
+        }
     }
 )
 

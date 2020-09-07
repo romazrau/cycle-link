@@ -26,6 +26,8 @@ var personalPageRouter = require("./routes/personalPage");
 var homePageRouter = require("./routes/home");
 const app = express();
 
+
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
@@ -74,9 +76,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 // jwt
 app.use(jwt({
-  secret: "DayDayLuLuDaDaMiMiJJTenTen", // 签名的密钥 或 PublicKey
-  algorithms: ['HS256'],
-  credentialsRequired: false
+  secret: "DayDayLuLuDaDaMiMiJJTenTen", // 加密文字，極重要，不可讓駭客知道喔啾咪
+  algorithms: ['HS256'],               
+  credentialsRequired: false            // 要不要擋下驗證失敗的 http request，不要，因為我們不用所有API 都需要登入
 }))
 
 

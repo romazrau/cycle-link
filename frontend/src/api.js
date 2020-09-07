@@ -50,16 +50,24 @@ const postByid = async (id) => {
 };
 // postByid(1)
 
-const checkLogin = () =>
-  fetch(serverURL.login, {
+
+const checkLogin = async () => {  // 向後端驗證身分，攜帶 JWT ， 後端解析你的身分
+  if(!localStorage.getItem("Cycle link token")){   //
+    return {result:0, msg:"沒有 Token"};
+  }
+
+  let respone = await fetch(serverURL.login, {
     method: "GET",
-    cache: "no-cache",
-    headers: {
+    cache: "no-cache",   // 不准使用快取
+    headers: {           // *攜帶 http request headers 
       "Content-Type": "application/json",
-      Authorization: localStorage.getItem("Cycle link token"),
+      Authorization: localStorage.getItem("Cycle link token"),  // *這個屬性帶 JWT
     },
   })
-    .then((res) => res.text())
-    .then((resStr) => JSON.parse(resStr));
+   
+  let result = await respone.json();
+  return result;  // 回傳身分解析結果
+}
+// checkLogin()
 
 export { serverURL, checkLogin };

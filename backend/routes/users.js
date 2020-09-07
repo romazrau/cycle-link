@@ -31,11 +31,14 @@ router.get('/testGuest', function (req, res, next) {
 
 
 const reflashToken = async (id) => {
+try{
+
   let result = await memberSql.memberById(id);
   if (!result.result) {
     return { result: 0, msg: "id錯誤" }
   }
-  token = 'Bearer ' + jsonwebtoken.sign(
+
+  let token = 'Bearer ' + jsonwebtoken.sign(
     {
       fId: result.data.fId,
       fName: result.data.fName,
@@ -49,43 +52,52 @@ const reflashToken = async (id) => {
     { algorithm: 'HS256' }
   )
   return { result: 1, msg: "請求成功", token: token };
+}catch(ex){
+  return { result: 2, msg: "reflashToken 方法錯誤" };
+}
 }
 
 
 
 
-// *POST Login ， upload.array() => form data 解析用    
+// POST Login   
 router.post('/login', async function (req, res, next) {
   try {
 
-    let account = req.body.fAccount;
-    let password = req.body.fPassword;
+    let account = req.body.fAccount;    // POST 攜帶的資料會被其他中間層解析
+    let password = req.body.fPassword;  // 並放入 req.body 裡
 
-    console.log({ a: account, b: password });
-    let token;
-
-    let result = await memberSql.login(account, password);
-    if (result.result) {
-
-      let isTure = await bcrypt.compare(password, result.data.fPassword);
-      if (!isTure) {
-        res.send({ result: 0, msg: "密碼錯誤" });
-      }
-
-
-      token = 'Bearer ' + jsonwebtoken.sign(
-        {
-          ...result.data
-        },
-        "DayDayLuLuDaDaMiMiJJTenTen",
-        {
-          expiresIn: 3600 * 24 * 3
-        },
-        { algorithm: 'HS256' }
-      )
+    let result = await memberSql.login(account);    // SQL 從帳號撈出對應資料
+    if (!result.result) {   // 查詢失敗回傳結果
+      res.json(result);
+      return;               // 離開 func
     }
+
+    let isTure = await bcrypt.compare(password, result.data.fPassword);  // 另外個套件，解析加密過的密碼
+    if (!isTure) {         // 密碼不符
+      res.send({ result: 0, msg: "密碼錯誤" });
+      return;
+    }
+
+    delete result.data.fPassword;  // 刪除敏感屬性
+
+    // 產生 token，規定 JWT 前還要放個 'Bearer '。
+    let　token = 'Bearer ' + jsonwebtoken.sign(
+      {     // *攜帶的資料物件
+        fId: result.data.fId,
+        fName: result.data.fName,
+        fAccountType: result.data.fAccountType,
+        fAccountAuthority: result.data.fAccountAuthority,
+      },
+      "DayDayLuLuDaDaMiMiJJTenTen",   // 加密文字，極重要，不可讓駭客知道喔啾咪
+      {
+        expiresIn: 3600 * 24 * 3      // JWT 有效時間
+      },
+      { algorithm: 'HS256' }          // 加密方式
+    )
+
     console.log("user:", result);
-    res.json({ ...result, token: token });
+    res.json({ ...result, token: token });  // 把 SQL 從帳號撈出對應資料與 JWT 回傳
   }
   catch (err) {
     console.log(err);
@@ -97,11 +109,17 @@ router.post('/login', async function (req, res, next) {
 
 // is Login?
 router.get('/login', async (req, res) => {
-  let result = req.user ? { result: 1, msg: "認證成功", data: req.user } : { result: 0, msg: "未登入" };
+  if(!req.user){   // 確認 JWT 有解析成功
+    res.json( { result: 0, msg: "未登入" });
+    return;
+  }
+
+  let result = { result: 1, msg: "認證成功", data: req.user }  // *req.user 有之前裝入的資料物件喔
+  // console.log(req.user);
 
   let token;
   if (result.result) {
-    let newToken = await reflashToken(req.user.fId);
+    let newToken = await reflashToken(req.user.fId);  // 發新的 token
     if (newToken.result) {
       token = newToken.token;
     }
@@ -251,12 +269,12 @@ router.get('/signup/:code', async (req, res) => {
 
 // Forget Password & send email 
 router.post('/Forget/Password', async (req, res) => {
-  try{
+  try {
     let account = req.body.fAccount;
     let mail = req.body.fMail;
 
     let check = await memberSql.memberByAccountAndEmail(account, mail);
-    if (!check.result){
+    if (!check.result) {
       res.json(check);
       return;
     }
@@ -269,7 +287,7 @@ router.post('/Forget/Password', async (req, res) => {
 
     // TODO 密碼加密
     let password = await bcrypt.hash(send.code, saltRounds)
-    
+
     let result = await memberSql.changePassword(check.data.fId, password);
     if (!result.result) {
       res.json(result);
@@ -279,9 +297,9 @@ router.post('/Forget/Password', async (req, res) => {
     res.json({ result: 1, msg: `已發送認證信，請至${mail}信箱確認` });
 
 
-  } catch (ex){
+  } catch (ex) {
     console.log(ex);
-    res.json({result:0, msg:"路由錯誤", data:ex});
+    res.json({ result: 0, msg: "路由錯誤", data: ex });
   }
 })
 

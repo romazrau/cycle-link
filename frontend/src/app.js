@@ -4,15 +4,18 @@ import {
     checkLogin
 } from "./api.js";
 
-// console.log( "%cCycle link token: "+ localStorage.getItem("Cycle link token"), "color:purple");
+
+// 啟動前端時 看看攜帶的 JWT 是不是合法的
 checkLogin()
     .then((res) => {
         console.log(res);
-        if (res.result == "1") {
+        if (res.result == "1" &&  res.data.fName) {
             let show = `<i class="fas fa-bullhorn login_bullhorn"></i> <div><p>${res.data.fName}</p><p>歡迎</p></div>`;
             document.querySelector("#header_link_login").innerHTML = show;
 
             window.localStorage.setItem("Cycle link token", res.token);
+        }else{
+            window.localStorage.removeItem( "Cycle link token" ) 
         }
     })
     .catch( (err) => {console.log(err)});
