@@ -162,7 +162,7 @@ const searcharticle = async (x) => {
       on l.fPostId = r.fPostId)
       
       select *
-      from CombineList as c
+      from PostDetail as c
       where c.CommunityName like '%${x}%'
       or c.PostContent like '%${x}%'`;
 
@@ -182,7 +182,7 @@ const searcharticle = async (x) => {
 
 //   }
 // }
-articlelist();
+searcharticle("台");
 // const addlike
 
 // const removelike

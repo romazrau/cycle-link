@@ -27,7 +27,7 @@ router.get("/reply", async function (req, res, next) {
 
 router.get("/search", async function (req, res, next) {
   try {
-    let Searchresult = await Sql.searcharticle(req.body.searchinput);
+    let Searchresult = await Sql.searcharticle(req.headers.get('searchinput'));
     res.json(Searchresult);
   } catch (err) {
     res.send(err);

@@ -125,9 +125,11 @@ ${ImgIsNullOrNot(x.PostImg)}
 
   //字串樣板匯入
   const CMpost = document.querySelector(".community_main_ul_timeline");
+  
   const display_postDetail = (o) => {
+    CMpost.innerHTML = "";
     o.map((e, index) => {
-      CMpost.innerHTML = "";
+      //放外面
       if (index % 2 == 0) {
         CMpost.innerHTML += htmlCommunityMainPostLeft(e);
       } else {
@@ -167,7 +169,7 @@ ${ImgIsNullOrNot(x.PostImg)}
     .getElementById("CM_search_click")
     .addEventListener("click", function () {
       let input_text = document.querySelector(".CM_banner_searchbar_text")
-        .innerHTML;
+        .value;
       checksearchtext(input_text);
     });
 
@@ -180,20 +182,21 @@ ${ImgIsNullOrNot(x.PostImg)}
         headers: {
           // http headers
           "Content-Type": "application/json", // 請求的資料類型
+          "searchinput":x
         },
-        body: { searchinput: x },
+        
         // 以下跟身分認證有關，後端要使用session 要帶這幾項
         cache: "no-cache",
         credentials: "include",
       });
       let result = await response.json();
-      console.log(result);
-      // display_postDetail(result.data);
+      console.log(result.data);
+      
     } catch (err) {
       console.log(err);
     }
   };
-  checksearchtext();
+ 
 
   //點擊愛心，字串樣板輸入完後，才可以寫icon動態
   var click123 = false;
