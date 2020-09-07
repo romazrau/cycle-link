@@ -27,6 +27,32 @@ function ClsCommunityMain() {
     }
   });
 
+  //TODO 到底要怎麼刪除照片是null的div啦崩潰
+  const ImgIsNullOrNot = (x) => {
+    if (x === null) {
+      return `<span></span>`;
+    } else {
+      return `<div class="CM_timeline_body_img">
+      <img class="CM_timeline_body_img_img" src='${x}' />
+      </div>`;
+    }
+  };
+  const ifnullremovediv = () => {
+    $(".CM_timeline_body_img_img").each(function () {
+      if ($(this).attr(src == null)) {
+        console.log($(this).parent(".CM_timeline_body_img"));
+        $(this).parent(".CM_timeline_body_img").remove();
+      }
+    });
+  };
+  // let x = document.querySelectorAll(".CM_timeline_body_img_img");
+  // console.log(x);
+  // if (x.getAttribute("src") == "") {
+  //   x.classList.add("CM_timeline_body_img_disapear");
+  // }
+
+  // || ifnulladdclass()
+
   //文字樣板
   const htmlCommunityMainPost = (x) => {
     return `
@@ -56,13 +82,11 @@ function ClsCommunityMain() {
         </div>
         <div class="CM_timeline_body">
           <p>${x.PostContent}</p>
-          <div class="CM_timeline_body_img">
-          <img src='${x.PostImg}' />
-          </div>
+${ImgIsNullOrNot(x.PostImg)}
         </div>
         <div class="CM_timeline_footer">
           <i class="far fa-heart changebyclick"></i><span>${
-            x.HowMuchLike === null ? "" : HowMuchLike
+            x.HowMuchLike || ""
           }</span>
           <i class="far fa-comments"></i><span>${x.HowMuchReply || ""}</span>
         </div>
@@ -71,11 +95,18 @@ function ClsCommunityMain() {
     </li>`;
   };
 
+  //ImgIsNullOrNot(x.PostImg)
+  // {x.HowMuchLike === null ? "" : HowMuchLike}不知為何很容易報錯
+
   //字串樣板匯入
   const CMpost = document.querySelector(".community_main_ul_timeline");
+  const liclass = document.querySelector("li");
   const display_postDetail = (o) => {
     o.map((e, index) => {
       CMpost.innerHTML += htmlCommunityMainPost(e);
+      if (index % 2 == 0) {
+        liclass.classList.add("community_main_timeline_inverted");
+      }
     });
   };
 
@@ -127,7 +158,9 @@ function ClsCommunityMain() {
 
   //TODO postime判斷距離現在時間
   //TODO 新增喜歡
+
   //TODO 刪除喜歡
+
   //TODO 新增留言
   //TODO 刪除留言
   //TODO 新增文章

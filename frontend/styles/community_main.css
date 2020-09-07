@@ -235,6 +235,10 @@
   margin-top: 5px;
 }
 
+.CM_timeline_body_img_disapear {
+  display: none;
+}
+
 .CM_timeline_body_img {
   width: 100%;
   overflow: hidden;

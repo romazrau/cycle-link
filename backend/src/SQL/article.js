@@ -42,8 +42,8 @@ const articlelist = async () => {
     const result = await sql.query(str);
     // 看一下回傳結果
     // console.dir(result);
-    console.dir(result.recordset);
-    console.dir(result.rowsAffected[0]);
+    // console.dir(result.recordset);
+    // console.dir(result.rowsAffected[0]);
     // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
     return { result: 1, msg: "請求成功", data: result.recordset };
   } catch (err) {
@@ -55,7 +55,7 @@ const articlelist = async () => {
 
 const replylist = async () => {
   try {
-    console.dir("123");
+    // console.dir("123");
     await sql.connect(config);
     let str = `
     select r.*, m.fName as ReplyMemberName
@@ -65,8 +65,8 @@ const replylist = async () => {
     `;
     const result = await sql.query(str);
     // console.dir(result);
-    console.dir(result.recordset);
-    console.dir(result.rowsAffected[0]);
+    // console.dir(result.recordset);
+    // console.dir(result.rowsAffected[0]);
     return {
       result: 1,
       msg: "請求成功",
@@ -77,5 +77,59 @@ const replylist = async () => {
   }
 };
 // replylist();
+
+// const addarticle = async(fPostMemberId, fCommunityId, fContent, fImgPath)=>{
+//   try{
+//    await sql.connect(config);
+//    if (fContent){
+//    let str = `
+//    insert into Community.tPost( fMemberId, fCommunityId, fPostTime, fContent, fImgPaths )
+//    values (${fPostMemberId}, ${fCommunityId} ,CURRENT_TIMESTAMP, '${fContent}', '${fImgPath}')
+//    `
+//    const resultArticle = await sql.query(str);
+//    if(resultArticle.recordset[0])
+//    return{
+//     result: 1,
+//     msg: "請求成功",
+//    }}
+//    else{
+//     return { result: 0, msg: "錯誤:請輸入內容" }
+//    }
+//   }
+//   catch (err) {
+//     return { result: 0, msg: "SQL錯誤"};
+//   }
+// }
+
+// const editarticle = async(fId)=>{
+//   try{
+//     await sql.connect(config);
+//     let str = `UPDATE Community.tPost
+//     SET fContent = '${fContent}', fImgPaths = '${fImgPath}'
+//     WHERE fId = ${fId}`
+//     const result = await sql.query(str);
+//     return{
+//       result: 1,
+//       msg: "請求成功",
+//      }
+//   }
+//   catch(err){
+//     return { result: 0, msg: "SQL錯誤"};
+//   }
+// }
+
+// const deletearticle = async(fId) => {
+//   try{
+
+//   }
+// }
+
+// const addlike
+
+// const removelike
+
+// const addreply
+
+// const removereply
 
 module.exports = { articlelist, replylist };
