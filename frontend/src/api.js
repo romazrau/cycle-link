@@ -13,7 +13,7 @@ const serverURL = {
   actsearchdetail: `${rootURL}/activity/searchdetail/`,
   maps: `${rootURL}/map/`,
   personalPages: `${rootURL}/personalPage/`,
-  homePages:`${rootURL}/home/`,
+  homePages: `${rootURL}/home/`,
 };
 
 const postlist = async () => {

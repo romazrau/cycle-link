@@ -410,7 +410,7 @@ const ActivityDetail = new ClsActivityDetail();
 const actDetailChangeHash = () => {
     let actDetailArr = location.hash.split('/');
     let actDetailId = actDetailArr[2];
-    if (location.hash.includes("#activity/detail")) {
+    if (location.hash.includes("#activity/detail/")) {
         ActivityDetail.actDetail(actDetailId)
     }
 }

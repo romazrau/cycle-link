@@ -95,21 +95,46 @@ const communityByString = async (fName) => {
 };
 
 
-//TODO
-// //**會員Id查詢社團(ex.會員頁面用)
-// const communityByMemberId = async (fMemberId) => {
-//     try {
-//         await sql.connect(config)
+//**會員Id查詢社團(ex.會員頁面用)
+const communityByMemberId = async (fid) => {
+    try {
+        await sql.connect(config)
 
-//         let sqlStr = ``
+        let sqlStr = `with Community 
+        as
+        (
+        select CM.fId,
+               CM.fCommunityId,
+               CM.fMemberId,
+               CM.fAccessRightId,
+               C.fImgPath as fImgPath,
+               C.fDate as fDate,
+               C.fName as fName
+        from Community.tMemberList as CM
+        left join Community.tCommunity C
+        on CM.fCommunityId = C.fId
+        )
 
+        select Community.* ,
+               Member.fName as fMemberName,
+               Member.fPhotoPath as fPhotoPath
+        from  Community as Community
+        left join Member.tMember as Member
+        on Community.fMemberId = Member.fId
+        where Member.fId = ${fid}
+        
+        ;`;
 
-//         return { result: 1, msg: "請求成功", data: }
-//     }
-//     catch (err) {
-//         return { result: 0, msg: "SQL錯誤", data: err };
-//     }
-// }
+        const result = await sql.query(sqlStr);
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "查無結果" }
+        }
+        return { result: 1, msg: "請求成功", data: result.recordset }
+    }
+    catch (err) {
+        return { result: 0, msg: "SQL錯誤", data: err };
+    }
+}
 
 
 //** 社團Id查詢社團
@@ -268,10 +293,6 @@ const communityById_communityMember = async (fid) => {
 
 
 
-
-
-
-
 //**新增社團
 //驗證社團名稱 : 不可為空值 / 不可重複
 const communityCreate = async (fName, fStatusId, fImgPath, fInfo, fDate) => {
@@ -318,32 +339,8 @@ const communityCreate = async (fName, fStatusId, fImgPath, fInfo, fDate) => {
 };
 
 
-//TODO 
-// //**修改社團
-// //!多切一個社團編輯頁面
-// const communityModified = async (fId) => {
-//     try {
-//         await sql.connect(config)
 
-//     }
-//     catch (erro) {
-//         return { result: 0, msg: "SQL錯誤", data: err }
-//     }
-// }
-// //修改:
-// //修改社團照片
-// //修改社團名稱
-// //修改社團狀態
-// //增加社團管理員
-// //刪除社團管理員
-// //修改社團關於我們
-// //刪除社團成員
-// //增加社團成員
-
-
-
-
-//**刪除社團:用fId設定fStatus停權
+//**刪除社團:用社員fId設定fStatus停權
 //!會員頁面按解散社團
 //把fId設定fStatus停權
 const communityDelet = async (fId) => {
@@ -393,6 +390,36 @@ const communityDelet = async (fId) => {
 
 
 
+//TODO 
+// //**修改社團
+// //!多切一個社團編輯頁面
+// const communityModified = async (fId) => {
+//     try {
+//         await sql.connect(config)
+
+//     }
+//     catch (erro) {
+//         return { result: 0, msg: "SQL錯誤", data: err }
+//     }
+// }
+//修改:
+//修改社團照片
+//修改社團名稱
+//修改社團狀態
+//增加社團管理員
+//刪除社團管理員
+//修改社團關於我們
+//刪除社團成員
+//增加社團成員
+
+
+
+
+
+
+
+
+
 //直接測試用 func ， node src/SQL/test.js
 // 解除註解，並把匯出方法註解才能用喔
 // mySqlFunc();
@@ -401,4 +428,4 @@ const communityDelet = async (fId) => {
 // *匯出方法 ， 多個方法包在{}裡， ex: {func1, func2}
 //{es6寫法communityList:communityList}
 
-module.exports = { communityList, communityById_communityDetail, communityById_communityManager, communityById_communityMember, communityByString, communityCreate, communityDelet };
+module.exports = { communityList, communityById_communityDetail, communityById_communityManager, communityById_communityMember, communityByString, communityCreate, communityDelet, communityByMemberId };
