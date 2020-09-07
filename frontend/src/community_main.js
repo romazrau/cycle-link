@@ -27,10 +27,21 @@ function ClsCommunityMain() {
     }
   });
 
+  //判斷是否有圖片，沒有就不匯入div
+  const ImgIsNullOrNot = (x) => {
+    if (x === null) {
+      return ``;
+    } else {
+      return `<div class="CM_timeline_body_img">
+      <img class="CM_timeline_body_img_img" src='${x}' />
+      </div>`;
+    }
+  };
+
   //文字樣板
-  const htmlCommunityMainPost = (x) => {
+  const htmlCommunityMainPostLeft = (x) => {
     return `
-      <li class='community_main_timeline_basic'${x.isRight}>
+      <li>
       <div class="community_main_groupIcon">
         <a href="#community/${x.CommunityId}" title="${
       x.CommunityName
@@ -56,13 +67,11 @@ function ClsCommunityMain() {
         </div>
         <div class="CM_timeline_body">
           <p>${x.PostContent}</p>
-          <div class="CM_timeline_body_img">
-          <img src='${x.PostImg}' />
-          </div>
+${ImgIsNullOrNot(x.PostImg)}
         </div>
         <div class="CM_timeline_footer">
           <i class="far fa-heart changebyclick"></i><span>${
-            x.HowMuchLike === null ? "" : HowMuchLike
+            x.HowMuchLike || ""
           }</span>
           <i class="far fa-comments"></i><span>${x.HowMuchReply || ""}</span>
         </div>
@@ -71,38 +80,120 @@ function ClsCommunityMain() {
     </li>`;
   };
 
+  const htmlCommunityMainPostRight = (x) => {
+    return `
+      <li class='community_main_timeline_inverted'>
+      <div class="community_main_groupIcon">
+        <a href="#community/${x.CommunityId}" title="${
+      x.CommunityName
+    }" class="CM_groupIcon_wrap">
+          <img class="CM_groupIcon_img" src="${x.CommunityImgPath}" />
+        </a>
+      </div>
+      <div class="community_main_timeline_panel">
+        <div class="CM_timeline_heading">
+        <div class="CM_timeline_heading_img_circle_border">
+          <div class="CM_timeline_heading_img_container">
+            <img class="CM_timeline_heading_img" src="${x.MemberImgPath}" />
+          </div> </div>
+          <div class="CM_timeline_heading_userinfo">
+             <a href="#community/${x.MemberId}"><p>${x.PostMemberName}</p></a>
+             <a href="#community/${x.CommunityId}">
+             <span class="communityName_span">${x.CommunityName}</span>
+             </a>
+             <a href="#community/post/${x.PostId}"><span>${
+      x.fPostTime
+    }</span></a>
+          </div>
+        </div>
+        <div class="CM_timeline_body">
+          <p>${x.PostContent}</p>${ImgIsNullOrNot(x.PostImg)}
+        </div>
+        <div class="CM_timeline_footer">
+          <i class="far fa-heart changebyclick"></i><span>${
+            x.HowMuchLike || ""
+          }</span>
+          <i class="far fa-comments"></i><span>${x.HowMuchReply || ""}</span>
+        </div>
+        <div class="replyContainer"></div>
+      </div>
+    </li>`;
+  };
+
+  //ImgIsNullOrNot(x.PostImg)
+  // {x.HowMuchLike === null ? "" : HowMuchLike}不知為何很容易報錯
+
   //字串樣板匯入
   const CMpost = document.querySelector(".community_main_ul_timeline");
   const display_postDetail = (o) => {
     o.map((e, index) => {
-      CMpost.innerHTML += htmlCommunityMainPost(e);
+      CMpost.innerHTML = "";
+      if (index % 2 == 0) {
+        CMpost.innerHTML += htmlCommunityMainPostLeft(e);
+      } else {
+        CMpost.innerHTML += htmlCommunityMainPostRight(e);
+      }
     });
   };
 
-  //撈資料撈到啦
+  //文章列表撈資料
   const getCommunityPost = async () => {
     try {
       let response = await fetch(serverURL.articlepost);
       let result = await response.json();
       // console.log(result);
       display_postDetail(result.data);
+      // console.log("data:", result.data);
     } catch (err) {
       console.log(err);
     }
   };
   getCommunityPost();
-
+  //留言撈資料
   const getCommunityReply = async () => {
     try {
       let response = await fetch(serverURL.articlereply);
       let result = await response.json();
       // console.log(result);
-      display_postDetail(result.data);
+      // display_postDetail(result.data);
     } catch (err) {
       console.log(err);
     }
   };
   getCommunityReply();
+
+  //搜尋Icon點擊觸動function
+  document
+    .getElementById("CM_search_click")
+    .addEventListener("click", function () {
+      let input_text = document.querySelector(".CM_banner_searchbar_text")
+        .innerHTML;
+      checksearchtext(input_text);
+    });
+
+  //搜尋撈資料
+  const checksearchtext = async (x) => {
+    try {
+      console.log(x);
+      let response = await fetch(serverURL.articlesearch, {
+        method: "GET",
+        headers: {
+          // http headers
+          "Content-Type": "application/json", // 請求的資料類型
+        },
+        body: { searchinput: x },
+        // 以下跟身分認證有關，後端要使用session 要帶這幾項
+        cache: "no-cache",
+        credentials: "include",
+      });
+      let result = await response.json();
+      console.log(result);
+      // display_postDetail(result.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  checksearchtext();
 
   //點擊愛心，字串樣板輸入完後，才可以寫icon動態
   var click123 = false;
@@ -127,7 +218,9 @@ function ClsCommunityMain() {
 
   //TODO postime判斷距離現在時間
   //TODO 新增喜歡
+
   //TODO 刪除喜歡
+
   //TODO 新增留言
   //TODO 刪除留言
   //TODO 新增文章

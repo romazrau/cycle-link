@@ -26,6 +26,8 @@ var personalPageRouter = require("./routes/personalPage");
 var homePageRouter = require("./routes/home");
 const app = express();
 
+
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
@@ -39,7 +41,6 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
 app.use(
   bodyParser.urlencoded({
     extended: false,
@@ -74,9 +75,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 // jwt
 app.use(jwt({
-  secret: "DayDayLuLuDaDaMiMiJJTenTen", // 签名的密钥 或 PublicKey
-  algorithms: ['HS256'],
-  credentialsRequired: false
+  secret: "DayDayLuLuDaDaMiMiJJTenTen", // 加密文字，極重要，不可讓駭客知道喔啾咪
+  algorithms: ['HS256'],               
+  credentialsRequired: false            // 要不要擋下驗證失敗的 http request，不要，因為我們不用所有API 都需要登入
 }))
 
 
@@ -114,7 +115,6 @@ app.get('/protected', function (req, res) {
 
 
 
-
 // *路由區，把路由分給哪個檔案
 // app.use()是接受所有的httprequest method (ex. get 和 post etc.)
 app.use("/", indexRouter);
@@ -128,6 +128,12 @@ app.use("/article", articleRouter);
 app.use("/community", communityRouter);
 app.use("/personalPage", personalPageRouter)
 app.use("/home", homePageRouter)
+
+
+
+
+// 靜態網站
+app.use(express.static(path.join(__dirname, "public")));
 
 
 // catch 404 and forward to error handler

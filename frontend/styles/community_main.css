@@ -235,6 +235,10 @@
   margin-top: 5px;
 }
 
+.CM_timeline_body_img_disapear {
+  display: none;
+}
+
 .CM_timeline_body_img {
   width: 100%;
   overflow: hidden;
@@ -400,7 +404,8 @@
 .community_main_ul_timeline
   > .community_main_timeline_inverted
   > .community_main_groupIcon {
-  left: -25px;
+  left: -35px;
+  margin-top: 40px;
 }
 
 .community_main_ul_timeline > li:nth-child(2) {

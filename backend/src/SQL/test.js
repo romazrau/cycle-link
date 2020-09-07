@@ -38,12 +38,20 @@ const mySqlFunc = async () => {
 
 
 // *匯出方法 ， 多個方法包在{}裡， ex: {func1, func2}
-// module.exports = mySqlFunc;
+module.exports = mySqlFunc;
 
 
 
-const saltRounds = 10;
-bcrypt.hash(`w134667`, saltRounds).then(function (hash) {   console.log(hash); }); 
+// const saltRounds = 10;
+// (async ()=>{
+//     let password = 'web123456';
+//     let pas = await bcrypt.hash(`web123456`, saltRounds);
+//     let isTure = await bcrypt.compare(password, pas);
+
+//     console.log(pas);
+//     console.log(isTure);
+// })();
+
 
 
 // node src/SQL/test.js
