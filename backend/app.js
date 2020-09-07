@@ -41,7 +41,6 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
 app.use(
   bodyParser.urlencoded({
     extended: false,
@@ -116,7 +115,6 @@ app.get('/protected', function (req, res) {
 
 
 
-
 // *路由區，把路由分給哪個檔案
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
@@ -128,6 +126,12 @@ app.use("/article", articleRouter);
 app.use("/community", communityRouter);
 app.use("/personalPage",personalPageRouter)
 app.use("/home",homePageRouter)
+
+
+
+
+// 靜態網站
+app.use(express.static(path.join(__dirname, "public")));
 
 
 // catch 404 and forward to error handler

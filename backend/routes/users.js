@@ -139,6 +139,7 @@ router.put("/", async (req, res) => {
   try {
     if (!req.user) {
       res.json({ result: 0, msg: "token 遺失" });
+      return;
     }
 
     console.dir(req.body);
@@ -164,6 +165,7 @@ router.put("/password", async (req, res) => {
   try {
     if (!req.user) {
       res.json({ result: 0, msg: "token 遺失" });
+      return;
     }
 
     // 密碼雜湊
