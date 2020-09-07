@@ -404,7 +404,8 @@
 .community_main_ul_timeline
   > .community_main_timeline_inverted
   > .community_main_groupIcon {
-  left: -25px;
+  left: -35px;
+  margin-top: 40px;
 }
 
 .community_main_ul_timeline > li:nth-child(2) {
