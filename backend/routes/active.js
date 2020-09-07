@@ -42,13 +42,34 @@ router.get('/:id/:text', async function(req, res, next) {
     // 物件用json格式回傳
     // 可以整理一下，刪掉不必要的資料再回傳
     res.json(resultgosearch);
+    console.log("test",resultgosearch);
   }catch(err){
     res.send(err);
   } 
 });
 
+//瀏覽過的活動
 
+router.get('/activeseen', async function(req, res, next) {
+  // 判斷前端req資料是否有登入，如為false回傳result:0
+  // if( !req.user ){
+  //   res.json({result:0, msg:"TOKEN?"});
+  //   return;
+  // }
+  //todo token 還沒做完
 
+  try{
+    // *用 await 等待資料庫回應
+    // todo let resultactiveseen = await activesql.activeseensql( req.user.fId  ); 
+    let resultactiveseen = await activesql.activeseensql(6); 
+    // 物件用json格式回傳
+    // 可以整理一下，刪掉不必要的資料再回傳
+    res.json(resultactiveseen);
+  }catch(err){
+    console.log(err);
+    res.send({result:0, msg:"路由錯誤", data:err});
+  } 
+});
 
 
 // 匯出方法

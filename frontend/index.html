@@ -334,7 +334,7 @@
                 <img src="img/eventTop_01.svg">
                 <div class="activity_search_container">
                     <div class="active_main_search">
-                        <input type="text">
+                        <input id="search_txt" type="text">
                         <select name="type" id="activity_option">
                         </select>
                     </div>
@@ -408,11 +408,15 @@
                     <div id="search_citydetial" class="search_city_detail search_hidden  ">
                         <ul>
                             <li class="select_city">台北市</li>
+                            <li class="select_city">桃園市</li>
+                            <li class="select_city">新竹市</li>
+                            <li class="select_city">苗栗市</li>
                             <li class="select_city">台中市</li>
+                            <li class="select_city">彰化市</li>
+                            <li class="select_city">嘉義市</li>
+                            <li class="select_city">雲林市</li>
                             <li class="select_city">高雄市</li>
-                            <li class="select_city">台北市</li>
-                            <li class="select_city">台中市</li>
-                            <li class="select_city">高雄市</li>
+
                         </ul>
                     </div>
                     <div id="search_date" class="search_box">
@@ -443,135 +447,18 @@
 
                     <h3>瀏覽過的活動</h3>
                     <div class="activity_event" id="activity_event_history">
-                        <!-- <img src="img/left.jpg" class="activity_event_icon_right" alt=""> -->
-                        <!-- <div class="activity_event_history2"></div> -->
-                        <!-- <img src="img/right.svg" class="activity_event_icon_right" alt=""> -->
+                       
                     </div>
 
                 </div>
-                <div class="communmity_main">
 
-                    <div class="communmity_container_middle">
-                        <!-- <div class="communmity_search_head">
-                            <div class="communmity_search_head_left">
-                                <input class="communmity_search_event" type="search" placeholder="Search anything" focus
-                                    value="">
-                                <br>
-                                <input class="communmity_search_event" type="text" placeholder="in Online events"
-                                    value="">
-                            </div>
-                            <div class="communmity_search_head_right">
-                                <button>search</button>
-                            </div>
-                        </div> -->
-                        <div class="communmity_shadow">
-                            <div class="communmity_container_middle_content ">
-                                <div class="communmity_container_middle_content_imgbox">
-                                    <img src="./img/communmity_images1.jpg" alt="">
-                                </div>
-                                <div class="communmity_container_middle_content_title">
-                                    <span>
-                                        Sun, Aug 16, 2020 9:30 PM CST + 3 more events
-                                    </span>
-                                    <h3>周子瑜粉絲見面會</h3>
-                                    <p>free</p>
-                                </div>
-                                <div class="communmity_container_middle_content_icon">
-                                    <div class="communmity_icon_box">
-                                        <span><button><img src="./img/share.svg" alt=""></button></span>
-                                        <span><button><img src="./img/like.svg" alt=""></button></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="communmity_shadow">
-                            <div class="communmity_container_middle_content ">
-                                <div class="communmity_container_middle_content_imgbox">
-                                    <img src="./img/communmity_images4.jpg" alt="">
-                                </div>
-                                <div class="communmity_container_middle_content_title">
-                                    <span>
-                                        Sun, Aug 16, 2020 9:30 PM CST + 3 more events
-                                    </span>
-                                    <h3>R.I.P</h3>
-                                    <p>free</p>
-                                </div>
-                                <div class="communmity_container_middle_content_icon">
-                                    <div class="communmity_icon_box">
-                                        <span><button><img src="./img/share.svg" alt=""></button></span>
-                                        <span><button><img src="./img/like.svg" alt=""></button></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="communmity_shadow">
-                            <div class="communmity_container_middle_content ">
-                                <div class="communmity_container_middle_content_imgbox">
-                                    <img src="./img/communmity_images3.jpg" alt="">
-                                </div>
-                                <div class="communmity_container_middle_content_title">
-                                    <span>
-                                        Sun, Aug 16, 2020 9:30 PM CST + 3 more events
-                                    </span>
-                                    <h3>上海時裝秀</h3>
-                                    <p>free</p>
-                                </div>
-                                <div class="communmity_container_middle_content_icon">
-                                    <div class="communmity_icon_box">
-                                        <span><button><img src="./img/share.svg" alt=""></button></span>
-                                        <span><button><img src="./img/like.svg" alt=""></button></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="communmity_shadow">
-                            <div class="communmity_container_middle_content ">
-                                <div class="communmity_container_middle_content_imgbox">
-                                    <img src="./img/communmity_images5.jpg" alt="">
-                                </div>
-                                <div class="communmity_container_middle_content_title">
-                                    <span>
-                                        Sun, Aug 16, 2020 9:30 PM CST + 3 more events
-                                    </span>
-                                    <h3>嬰兒腳臭大賽</h3>
-                                    <p>free</p>
-                                </div>
-                                <div class="communmity_container_middle_content_icon">
-                                    <div class="communmity_icon_box">
-                                        <span><button><img src="./img/share.svg" alt=""></button></span>
-                                        <span><button><img src="./img/like.svg" alt=""></button></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="communmity_shadow">
-                            <div class="communmity_container_middle_content ">
-                                <div class="communmity_container_middle_content_imgbox">
-                                    <img src="./img/communmity_images2.jpg" alt="">
-                                </div>
-                                <div class="communmity_container_middle_content_title">
-                                    <span>
-                                        Sun, Aug 16, 2020 9:30 PM CST + 3 more events
-                                    </span>
-                                    <h3>朴信惠粉絲見面會</h3>
-                                    <p>free</p>
-                                </div>
-                                <div class="communmity_container_middle_content_icon">
-                                    <div class="communmity_icon_box">
-                                        <span><button><img src="./img/share.svg" alt=""></button></span>
-                                        <span><button><img src="./img/like.svg" alt=""></button></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class=" activity_main" id="activesearchresult">
+
                 </div>
             </div>
 
 
-            <!-- <div class="activity_main">
-
-            </div> -->
+            
         </div>
 
         <!-- * Community  ****************      ****************       ****************   -->

@@ -152,6 +152,8 @@
     margin: 1rem auto;
     align-items: center;
     max-width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .activity_main h3 {

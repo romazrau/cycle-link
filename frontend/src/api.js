@@ -1,19 +1,21 @@
 const rootURL = "http://localhost:3050";
 
 const serverURL = {
-  root: rootURL,
-  login: `${rootURL}/users/login`,
-  test: `${rootURL}/test/`,
-  postslist: `${rootURL}/posts/`,
-  articlepost: `${rootURL}/article/post`,
-  articlereply: `${rootURL}/article/reply`,
-  active: `${rootURL}/active/`,
-  activemainlevel: `${rootURL}/active/searchmainlevel/`,
-  actDetail: `${rootURL}/activityDetail/`,
-  actsearchdetail: `${rootURL}/activity/searchdetail/`,
-  maps: `${rootURL}/map/`,
-  personalPages: `${rootURL}/personalPage/`,
-  homePages:`${rootURL}/home/`,
+    root: rootURL,
+    login: `${rootURL}/users/login`,
+    test: `${rootURL}/test/`,
+    postslist: `${rootURL}/posts/`,
+    article: `${rootURL}/article/`,
+    active: `${rootURL}/active/`,
+    activemainlevel: `${rootURL}/active/searchmainlevel/`,
+    actDetail: `${rootURL}/activityDetail/`,
+    actsearchdetail:`${rootURL}/activity/searchdetail/`,
+    maps: `${rootURL}/map/`,
+    personalPages: `${rootURL}/personalPage/`,
+    activeseen:`${rootURL}/active/activeseen`,
+    articlepost: `${rootURL}/article/post`,
+    articlereply: `${rootURL}/article/reply`,
+    homePages:`${rootURL}/home/`,
 };
 
 const postlist = async () => {
