@@ -378,17 +378,14 @@ function ClsActivity() {
     const ActSearchresult = document.getElementById("activesearchresult");
     const Actforyou = document.getElementById("activity_event_recommend");
     const display_active_foryou = (o) => {
-        
+        Actforyou.innerHTML = "";
         o.map(
             (e, index) => {
-                // console.log(e);
                 Actforyou.innerHTML += htmlActCard(e);
             }
         )
-        // console.groupEnd("display_active map");
 
     }
-
 
     const display_search_go = (o) =>{
         ActSearchresult.innerHTML = "";
@@ -413,14 +410,11 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-            
             display_active(result.data);
             getactid();
-
         } catch (err) {
             console.log(err);
             // 錯誤處理
-
         }
     }
     activeAwait();
@@ -440,8 +434,7 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-            
-            // display_active_foryou(result.data);
+            display_active_foryou(result.data);
             getactid();
         } catch (err) {
             console.log(err);

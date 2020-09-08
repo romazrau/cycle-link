@@ -94,6 +94,8 @@ router.get('/activeinsertseensql/:actId/:dateStr', async function(req, res, next
   // 判斷前端req資料是否有登入，如為false回傳result:0
   if( !req.user ){
     res.json({result:0, msg:"TOKEN?"});
+    //如果沒有登入將Id設為訪客
+    req.user.fId=2;
     return;
   }
   console.log(req.params);
@@ -101,8 +103,6 @@ router.get('/activeinsertseensql/:actId/:dateStr', async function(req, res, next
   try{
     // *用 await 等待資料庫回應s
     let resultactiveseeninsert = await activesql.activeinsertseensql(req.params.actId,req.user.fId,req.params.dateStr); 
-    console.log(req.params.dateStr);
-    console.log(req.params.actId);
     // 物件用json格式回傳
     // 可以整理一下，刪掉不必要的資料再回傳
     res.json(resultactiveseeninsert);

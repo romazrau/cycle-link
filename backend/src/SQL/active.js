@@ -62,7 +62,7 @@ const activegosearchsql = async (fid,text) => {
         await sql.connect(config)
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
         let sqlStr = `
-        select  A.fActName , A.fActivityDate,A.fActivityEndDate , A.fImgPath,A.fActLocation
+        select A.fId, A.fActName , A.fActivityDate,A.fActivityEndDate , A.fImgPath,A.fActLocation
         from Activity.tActivity as A 
         left join Activity.tActivityMainLabel as S
         on A.fActLabelId = S.fId
@@ -86,7 +86,9 @@ const activeforyousql = async()=>{
         // 連接資料庫
         await sql.connect(config)
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
-        let sqlStr = `select top(6)* from Activity.tActivity order by newid() `
+        let sqlStr = `select top(6) * from Activity.tActivity as A 
+        where A.fImgPath is not null
+        order by newid() `
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
         console.dir(result)
@@ -127,11 +129,13 @@ const activeseensql = async (id)=>{
         // 連接資料庫
         await sql.connect(config)
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
-        let sqlStr = `select top(6) A.fImgPath,A.fActName,A.fActivityDate,A.fActLocation
+        let sqlStr = `select   top(6)  A.fImgPath,A.fActName,A.fActivityDate,A.fActLocation
         from Activity.tSearchList as S 
         left join Activity.tActivity as A 
         on S.fActivityId = A.fId  
-        where S.fMemberId = ${id}`
+        where S.fMemberId = ${id}
+        order by S.fSearchTime desc `
+        
         // todo  登入功能可使用時需換成判斷id where S.fMemberId = ${id}
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
@@ -154,7 +158,9 @@ const activeinsertseensql = async (fActivityId,fMemberId,fSearchTime)=>{
         await sql.connect(config)
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
         let sqlStr = `INSERT INTO Activity.tSearchList( fActivityId , fMemberId , fSearchTime) 
-        VALUES (${fActivityId},${fMemberId},'${fSearchTime}')`;
+        VALUES (${fActivityId},${fMemberId},'${fSearchTime}')
+        `;
+        
         // todo  
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
