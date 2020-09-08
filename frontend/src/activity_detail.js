@@ -1,7 +1,6 @@
 import {
     serverURL
-} from "./api.js"
-
+} from "./api.js";
 
 //用class包起來
 
@@ -24,13 +23,13 @@ function ClsActivityDetail() {
     // * -------------- 固定右側資訊 -------------- //
     function boxMove2(y) {
         // console.log(y);
-        box = document.querySelector('.activity_detail_right')
+        box = document.querySelector(".activity_detail_right");
         box.style.marginTop = `${y}px`;
     }
     var last_known_scroll_position = 0;
     var ticking = false;
 
-    window.addEventListener('scroll', function (e) {
+    window.addEventListener("scroll", function (e) {
         last_known_scroll_position = window.scrollY - 150;
         if (window.scrollY > 150) {
             if (!ticking) {
@@ -45,20 +44,37 @@ function ClsActivityDetail() {
 
     // * ********************************** 文字樣板 ********************************** //
 
-    const activity_detail_initiatorbox = document.querySelector(".activity_detail_titlebox");
-    const activity_detail_leftImg = document.querySelector(".activity_detail_text_left_img");
-    const activity_detail_text_detail = document.querySelector(".activity_detail_text_detail");
-    const activity_detail_bigTag = document.querySelector(".activity_detail_bigTag");
-    const activity_detail_TagBox = document.querySelector(".activity_detail_TagBox");
-    const actDetailRightInfo = document.querySelector(".activity_detail_right_info");
-    const activity_detail_participant_All = document.querySelector(".activity_detail_participant_flex");
-    const activity_detail_participant_count = document.querySelector("#activity_detail_participant_count")
-    const actDetailSocieties = document.querySelector(".activity_detail_Societies");
+    const activity_detail_initiatorbox = document.querySelector(
+        ".activity_detail_titlebox"
+    );
+    const activity_detail_leftImg = document.querySelector(
+        ".activity_detail_text_left_img"
+    );
+    const activity_detail_text_detail = document.querySelector(
+        ".activity_detail_text_detail"
+    );
+    const activity_detail_bigTag = document.querySelector(
+        ".activity_detail_bigTag"
+    );
+    const activity_detail_TagBox = document.querySelector(
+        ".activity_detail_TagBox"
+    );
+    const actDetailRightInfo = document.querySelector(
+        ".activity_detail_right_info"
+    );
+    const activity_detail_participant_All = document.querySelector(
+        ".activity_detail_participant_flex"
+    );
+    const activity_detail_participant_count = document.querySelector(
+        "#activity_detail_participant_count"
+    );
+    const actDetailSocieties = document.querySelector(
+        ".activity_detail_Societies"
+    );
 
     // * ---------------- 發起人 文字樣板 ---------------- //
 
     const activity_detail_initiatorCard = (o) => {
-
         return ` 
             <h2>${o.fActName}</h2>
         <div class="activity_detail_info">
@@ -77,44 +93,44 @@ function ClsActivityDetail() {
             </div>
         </div>
         </div>`;
-    }
+    };
 
     // * ---------------- 活動內容 文字樣板 ---------------- //
 
     const actDetail_img = (o) => {
         return `
         <img class="activity_detail_leftImg" src=${o.fImgPath} alt="">
-        `
-    }
+        `;
+    };
 
     const actDetail_textDetail = (o) => {
         return `
         <p>${o.fIntroduction}</p>
-        `
-    }
+        `;
+    };
 
     // * ---------------- 活動分類 文字樣板 ---------------- //
 
     const actDetail_bigTag = (o) => {
         return `
         <a href="#">${o.ActCategory}</a>
-        `
-    }
+        `;
+    };
 
     // * ---------------- 活動標籤 文字樣板 ---------------- //
 
     const activity_detail_tag = (o) => {
         return `<div class="activity_detail_tag">
                     <a href="#">${o.fLabelName}</a>
-                </div>`
-    }
+                </div>`;
+    };
     // * ---------------- 活動參與者數量 文字樣板 ---------------- //
 
     const actDetail_participant_count = (o) => {
         return `<h5 id="activity_detail_participant_count">活動參與者(${o.JoinCount})</h5>
         <a href="#">See All</a>
-        `
-    }
+        `;
+    };
 
     // * ---------------- 活動參與者 文字樣板 ---------------- //
 
@@ -127,8 +143,8 @@ function ClsActivityDetail() {
     </div>
     <p>${o.fName}</p>
     <span>Member</span>
-</div>`
-    }
+</div>`;
+    };
 
     // * ---------------- 活動隸屬社團 文字樣板 ---------------- //
 
@@ -144,7 +160,7 @@ function ClsActivityDetail() {
                     <p>see more events</p>
                 </div>
                 <img src="img/right.svg" alt="" width="20vw">
-                </a>`
+                </a>`;
     };
 
     // * ---------------- 活動右側內容 文字樣板 ---------------- //
@@ -228,7 +244,6 @@ function ClsActivityDetail() {
     }
 
 
-
     // * ---------------- actDetail ajax ---------------- //
 
     const actDetail = async (id) => {
@@ -236,13 +251,14 @@ function ClsActivityDetail() {
             // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
             // *用變數接 fetch 結果 ，要用await等。
             let response = await fetch(serverURL.actDetail + id, {
-                method: "GET", // http request method 
-                headers: { // http headers
-                    'Content-Type': 'application/json' // 請求的資料類型
+                method: "GET", // http request method
+                headers: {
+                    // http headers
+                    "Content-Type": "application/json", // 請求的資料類型
                 },
                 // 以下跟身分認證有關，後端要使用session 要帶這幾項
-                cache: 'no-cache',
-                credentials: 'include',
+                cache: "no-cache",
+                credentials: "include",
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
@@ -258,7 +274,7 @@ function ClsActivityDetail() {
             console.log(err);
             // 錯誤處理
         }
-    }
+    };
 
     const actDetailPost = async () => {
         try {
@@ -328,8 +344,7 @@ function ClsActivityDetail() {
             </div>
         </div>
     </div>`;
-
-    }
+    };
 
     const ActCard = document.querySelector("#activity_detail_see");
 
@@ -339,7 +354,7 @@ function ClsActivityDetail() {
             title: "世界環境清潔日 - 相約海洋淨灘",
             count: 100,
             member: "王曉明",
-            local: "新金山海灘"
+            local: "新金山海灘",
         },
         {
             imgPath: "img/event3.jpg",
@@ -347,7 +362,7 @@ function ClsActivityDetail() {
             title: "魚取漁囚 - 守護海洋行動體驗特展",
             count: 99,
             member: "洲仔於",
-            local: "布袋漁港"
+            local: "布袋漁港",
         },
         {
             imgPath: "img/event7.jpg",
@@ -355,19 +370,16 @@ function ClsActivityDetail() {
             title: "臉部平權運動臺北國道馬拉松",
             count: 500,
             member: "時間管理大師",
-            local: "中山高速公路五股 - 汐止高架段"
-        }
-    ]
+            local: "中山高速公路五股 - 汐止高架段",
+        },
+    ];
 
-    ActCardData.map(
-        (e, index) => {
-            ActCard.innerHTML += this.htmlActCard(e);
-        }
-    )
-
+    ActCardData.map((e, index) => {
+        ActCard.innerHTML += this.htmlActCard(e);
+    });
 
     // * -------------------------------- 留言區 -------------------------------- //
-    //get the btn element by id 
+    //get the btn element by id
     let btnMessage = document.querySelector("#btnMessage");
     // btnMessage.addEventListener("mouseout", getClsChangeback);
 
@@ -376,7 +388,7 @@ function ClsActivityDetail() {
     }
 
     //留言按鈕ONCLICK
-    //btn element binding with click 
+    //btn element binding with click
     btnMessage.addEventListener("click", showMessagebox);
 
     function showMessagebox() {
@@ -423,18 +435,17 @@ function ClsActivityDetail() {
         //把訊息顯示在留言框
         function putMassageOn() {
             //把留言放入div
-            massageInputDiv.innerHTML = document.querySelector(".messageInputBox").value;
+            massageInputDiv.innerHTML = document.querySelector(
+                ".messageInputBox"
+            ).value;
             invisibleDiv.appendChild(massageInputDiv);
             //加入class
             massageInputDiv.classList.add("inputAft");
             //刪除input tag(會再新增留言加進去以免被複寫)
-            document.querySelector('.divForInput').remove();
+            document.querySelector(".divForInput").remove();
             window.alert("留言成功！");
         }
     }
-
-
-
 
     // * -------------------------------- 分享功能 -------------------------------- //
 
@@ -444,21 +455,18 @@ function ClsActivityDetail() {
     var ac_share_closeBtn = document.getElementById("ac_share_closeBtn");
 
     ac_share_btn.onclick = function () {
-        ac_share_bg.style.display = 'block';
-        ac_share_bg_div.style.display = 'block';
-    }
+        ac_share_bg.style.display = "block";
+        ac_share_bg_div.style.display = "block";
+    };
 
     ac_share_closeBtn.onclick = function () {
-        ac_share_bg.style.display = 'none';
-        ac_share_bg_div.style.display = 'none';
+        ac_share_bg.style.display = "none";
+        ac_share_bg_div.style.display = "none";
         ac_share_bg.preventDefault();
-    }
+    };
     this.actDetail = actDetail;
 }
 const ActivityDetail = new ClsActivityDetail();
-
-
-
 
 //? src api actDetail: `${rootURL}/activityDetail/1`, 有給 1 才跑出資料, 如何不輸入 1 叫出 1 ???
 //* 利用 hash , 如下
@@ -466,12 +474,12 @@ const ActivityDetail = new ClsActivityDetail();
 // * -------------------------------- hash -------------------------------- //
 
 const actDetailChangeHash = () => {
-    let actDetailArr = location.hash.split('/');
+    let actDetailArr = location.hash.split("/");
     let actDetailId = actDetailArr[2];
     if (location.hash.includes("#activity/detail")) {
-        ActivityDetail.actDetail(actDetailId)
+        ActivityDetail.actDetail(actDetailId);
     }
-}
+};
 
 window.addEventListener("hashchange", actDetailChangeHash);
 window.addEventListener("load", actDetailChangeHash);

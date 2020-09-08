@@ -38,7 +38,7 @@
 
 }
 
-.home_top_event p {
+.home_top_event_p {
   position: absolute;
   right: 4rem;
   top: 15rem;
@@ -47,11 +47,15 @@
   text-align: right;
   text-shadow: 0.05em 0.05em 0.1em rgb(83, 83, 83)
 }
-#home_top_event_p2
+.home_top_event_p2
 {
-  position: relative;
-  top: 20rem;
-  right: -21rem;
+  position: absolute;
+  right: 4rem;
+  top: 18rem;
+  font-size: 72px;
+  color: var(--white-color);
+  text-align: right;
+  text-shadow: 0.05em 0.05em 0.1em rgb(83, 83, 83)
 }
 
 .home_top_text_wrapper {

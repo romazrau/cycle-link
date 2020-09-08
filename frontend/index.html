@@ -401,7 +401,7 @@
             </div>
             <!-------------------------------------- main -------------------------------------->
             <div class="activity_main">
-                <div class="search_container ">
+                <div class="search_container search_hidden ">
                     <div id="search_city" class="search_box">
                         <div id="search_city_text" class="search_citytext"></div>
                     </div>
@@ -490,9 +490,12 @@
                                 <div class="CM_searchbar_catlinee CM_catlinee2"></div>
                                 <div class="CM_searchbar_catlinee CM_catlinee3"></div>
                             </div>
-                            <div class="CM_banner_searchbar_input"><input type="text" /></div>
-                            <div class="CM_banner_searchbar_searchIcon">
-                                <a href="#"><i class="fas fa-search"></i></a>
+                            <div class="CM_banner_searchbar_input"><input type="text" name="CM_banner_searchbar_text"
+                                    class="CM_banner_searchbar_text" /></div>
+                            <div class="CM_banner_searchbar_searchIcon" id="CM_search_click">
+                                <!-- <a href="#"> -->
+                                <i class="fas fa-search"></i>
+                                <!-- </a> -->
                             </div>
                         </div>
                         <!--社團類別選項刪除 
@@ -1345,7 +1348,7 @@
                         <!--GroupTopLeft max-width:50%; -->
                         <div class="GroupTopLeft ">
                             <div class="GroupTopMainPicDivForImg">
-                                <img src="./img/水下攝影與淨海.jpg" alt="cover pic of diving" width="100%">
+                                <img id="CommunityPic" src="./img/水下攝影與淨海.jpg" alt="cover pic of diving" width="100%">
                                 <img class="GroupImgSeeMoreIcon" src="./img/icon_seemore.svg" width="25px">
                                 <div class="DropDownMenu">
                                     <div class="dropdown-triangle"></div>
@@ -1358,8 +1361,8 @@
                         <div class="GroupTopRight FlexContainer">
 
                             <div class="GroupTopEventName">
-                                <pre>週末北海岸
-水下攝影fit淨海</pre>
+                                <p id="CommunityName">週末北海岸
+                                    水下攝影fit淨海</p>
                                 <img class="GroupTopRightImgIcon" src="./img/icon_seemore.svg" width="25px">
                                 <div class="DropDownMenu">
                                     <div class="dropdown-triangleR"></div>
@@ -1370,18 +1373,23 @@
                     <div class="Size20IconMarginRight"><img src="./img/icon_gps.svg" width="20"></div>
                     <div>台北,台灣</div>
                 </div> -->
-                            <div class="FlexContainer GroupTopRightEventInfoBox">
-                                <div class="Size20IconMarginRight"><img src="./img/icon_group.svg" width="20"></div>
-                                <div>社團人數50人</div>
-                                <div>-</div>
-                                <div>私人社團</div>
-                                <div class="Size20IconMarginLeft"><img src="./img/icon_question.svg" width="20">
+
+                            <div>
+                                <div class="FlexContainer GroupTopRightEventInfoBox">
+                                    <div class="Size20IconMarginRight"><img src="./img/icon_group.svg" width="20"></div>
+                                    <div>社團人數&nbsp;<span id="CommunityNumberOfPeople">50</span>&nbsp;人</div>
+                                    <span>-</span>
+                                    <div>
+                                        <sapn id="CommunityStatus">私人</sapn>社團
+                                    </div>
+                                    <div class="Size20IconMarginLeft"><img src="./img/icon_question.svg" width="20">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="FlexContainer GroupTopRightEventInfoBox group_margin_bottom">
-                                <div class="Size20IconMarginRight"><img src="./img/icon_user.svg" width="20"></div>
-                                <div>社團管理員</div>
-                                <div>郭安迪</div>
+                                <div class="FlexContainer GroupTopRightEventInfoBox group_margin_bottom">
+                                    <div class="Size20IconMarginRight"><img src="./img/icon_user.svg" width="20"></div>
+                                    <div>社團管理員&nbsp;</div>
+                                    <div id="CommunityManager">郭安迪</div>
+                                </div>
                             </div>
 
                             <div class="FlexContainer share-text">
@@ -1472,7 +1480,8 @@
                                         <div class="dropdownD">編輯</div>
                                     </div>
                                 </div>
-                                <div class="FontSectionText">當您已完成潛水課程，成為一位合格的潛水員後，當然水世界潛水會為您安排接續探索水下風光的活動！
+                                <div id="CommunityAboutUs" class="FontSectionText">
+                                    當您已完成潛水課程，成為一位合格的潛水員後，當然水世界潛水會為您安排接續探索水下風光的活動！
                                     剛結訓的學員基本上對台灣海域不熟悉、也不知道該從哪裡開始玩起，也擔心沒人準備後勤作業，也沒有同伴一起分享。
                                     水世界潛水俱樂部可以帶領喜愛潛水的同好，更重要的就是可以找到志同道合的潛友成為彼此的潛伴，一同下水遊覽美麗的海底世界；「水世界潛水俱樂部」是由專業導潛、資深教練、資深潛友、潛水新手聚集而成的團體，帶您體驗大自然。
                                     您要如何加入會員
@@ -1485,7 +1494,7 @@
                                     *當年度於水世界潛水結訓之學員，享免年費優惠，只需繳交$1,000元入會費即可享有會員權益。
                                 </div>
 
-                                <a class="ReadMoreLink GroupEnglishFont" href="#">read more</a>
+                                <!-- <a class="ReadMoreLink GroupEnglishFont" href="#">read more</a> -->
                                 <!-- 沒抓到  -->
 
                                 <!-------------------下層即將到來活動------------------>
@@ -3124,7 +3133,8 @@
     <script type="module" src="./src/activity_detail.js"></script>
     <script src="./src/community_main.js"></script>
     <script src="./src/community.js"></script>
-    <script src="./src/community_detail.js"></script>
+    community_detail.js有import檔案所以被使用的時候要加type="module"
+    <script type="module" src="./src/community_detail.js"></script>
     <script src="./src/create_activities.js"></script>
     <script src="./src/create_community.js"></script>
     <script type="module" src="./src/personalPage.js"></script>

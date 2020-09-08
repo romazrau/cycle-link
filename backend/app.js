@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 // from data 解析必備
-const multer  = require('multer');
+const multer = require('multer');
 const upload = multer();
 // 特殊套件
 const jsonwebtoken = require('jsonwebtoken');
@@ -41,7 +41,6 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
 app.use(
   bodyParser.urlencoded({
     extended: false,
@@ -85,14 +84,14 @@ app.use(jwt({
 app.post('/login', function (req, res) {
   // 注意默认情况 Token 必须以 Bearer+空格 开头
   const token = 'Bearer ' + jsonwebtoken.sign({
-      admin: 'admin',
-      tente: "eeeeee"
-    },
+    admin: 'admin',
+    tente: "eeeeee"
+  },
     "DayDayLuLuDaDaMiMiJJTenTen", {
-      expiresIn: 3600 * 24 * 3,
-    }, {
-      algorithm: 'HS256'
-    }
+    expiresIn: 3600 * 24 * 3,
+  }, {
+    algorithm: 'HS256'
+  }
   )
   res.json({
     status: 'ok',
@@ -116,8 +115,8 @@ app.get('/protected', function (req, res) {
 
 
 
-
 // *路由區，把路由分給哪個檔案
+// app.use()是接受所有的httprequest method (ex. get 和 post etc.)
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/posts", postRouter);
@@ -125,9 +124,16 @@ app.use("/activityDetail", activityDetailRouter);
 app.use("/map", mapRouter);
 app.use("/active", activeRouter);
 app.use("/article", articleRouter);
+// if url 輸入/community 會交由 communityRouter處理
 app.use("/community", communityRouter);
-app.use("/personalPage",personalPageRouter)
-app.use("/home",homePageRouter)
+app.use("/personalPage", personalPageRouter)
+app.use("/home", homePageRouter)
+
+
+
+
+// 靜態網站
+app.use(express.static(path.join(__dirname, "public")));
 
 
 // catch 404 and forward to error handler

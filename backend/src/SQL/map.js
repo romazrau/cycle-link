@@ -7,6 +7,12 @@ const config = {
     password: 'everybodycanuse',
     server: 'localhost', // You can use 'localhost\\instance' to connect to named instance
     database: 'SeaTurtleOnTheWay',
+
+    options: {
+        enableArithAbort: true,
+        encrypt: true
+    },
+    port: 1433,
 }
 
 
@@ -25,17 +31,17 @@ const map_GetAllActivity = async (account, password) => {
         const result = await sql.query(sqlString);
         console.dir(result);
 
-        if( ! result.rowsAffected[0]) {
-            return {result:0, msg:"帳號或密碼錯誤"}
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "帳號或密碼錯誤" }
         }
-        return {result:1, msg:"登入成功", data:result.recordset};
+        return { result: 1, msg: "登入成功", data: result.recordset };
     } catch (err) {
         console.log(err);
-        return {result:0, msg:"SQL 問題", data:result};
+        return { result: 0, msg: "SQL 問題", data: result };
     }
 };
 
+// map_GetAllActivity();
 
 
-
-module.exports = {map_GetAllActivity};
+module.exports = { map_GetAllActivity };

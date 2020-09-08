@@ -3,8 +3,7 @@ var express = require('express');
 var router = express.Router();
 // *檔案引用
 let Sql = require('../src/SQL/community');
-const { clearScreenDown } = require('readline');
-const { strictEqual } = require('assert');
+
 
 
 
@@ -25,6 +24,20 @@ router.get('/', async function (req, res, next) {
         res.send({ result: 0, msg: "路由錯誤", data: err });
     }
 });
+
+//查詢社團by社員ID
+router.get('/communityByMemberId/:id', async function (req, res, next) {
+    try {
+        let result = await Sql.communityByMemberId(req.params.id);
+        res.json(result);
+
+    } catch (err) {
+        res.send({ result: 0, msg: "路由錯誤", data: err })
+    }
+
+
+})
+
 
 //查詢社團by社團id
 // 此路由/:id Restful.API
