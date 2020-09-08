@@ -15,10 +15,12 @@ const serverURL = {
   activeseen: `${rootURL}/active/activeseen`,
   articlepost: `${rootURL}/article/post`,
   articlereply: `${rootURL}/article/reply`,
-  articlesearch: `${rootURL}/article/search`,
+  articlesearch: `${rootURL}/article/`,
   homePages: `${rootURL}/home/`,
   community: `${rootURL}/community/`,
-  communityManager: `${rootURL}/community/communityManager/`
+  communityManager: `${rootURL}/community/communityManager/`,
+  activeinsertseensql:`${rootURL}/active/activeinsertseensql/`,
+  activeforyou:`${rootURL}/active/activeforyou/`,
 };
 
 const postlist = async () => {

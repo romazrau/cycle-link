@@ -8,7 +8,7 @@ const config = {
 
   options: {
     enableArithAbort: true,
-    encrypt: true
+    encrypt: true,
   },
   port: 1433,
 };
@@ -71,10 +71,10 @@ const replylist = async () => {
     // console.dir("123");
     await sql.connect(config);
     let str = `
-    select r.*, m.fName as ReplyMemberName
-    from Community.tReply as r
-    left join Member.tMember as m
-    on r.fReplyMemberId=m.fId
+    select r.*, m.fName as ReplyMemberName, m.fPhotoPath as ReplyMemberImg
+from Community.tReply as r
+left join Member.tMember as m
+on r.fReplyMemberId=m.fId
     `;
     const result = await sql.query(str);
     // console.dir(result);
@@ -182,7 +182,7 @@ const searcharticle = async (x) => {
 
 //   }
 // }
-searcharticle("台");
+// searcharticle("台");
 // const addlike
 
 // const removelike
