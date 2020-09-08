@@ -173,11 +173,12 @@ ${ImgIsNullOrNot(x.PostImg)}
     try {
       let response = await fetch(serverURL.articlepost);
       let result = await response.json();
-      // console.log(result);
+      // console.log(result.data);
+      // console.log(result.data.length);
       display_postDetail(result.data);
       // console.log("data:", result.data);
       showReplyContainer();
-      addClickEventToLike();
+      addClickEventToLike(result.data.length);
     } catch (err) {
       console.log(err);
     }
@@ -197,7 +198,7 @@ ${ImgIsNullOrNot(x.PostImg)}
     try {
       let response = await fetch(serverURL.articlereply);
       let result = await response.json();
-      console.log(result);
+      // console.log(result);
       display_replyDetail(result.data);
     } catch (err) {
       console.log(err);
@@ -245,24 +246,39 @@ ${ImgIsNullOrNot(x.PostImg)}
     }
   };
 
-  //愛心，字串樣板輸入完畢後，才可以寫icon動態
-
-  function addClickEventToLike() {
+  //喜歡文章：愛心function，字串樣板輸入完畢後執行
+  function addClickEventToLike(x) {
     let Postlikeflag = false;
-    document.querySelectorAll(".changebyclick").forEach((x) => {
-      x.addEventListener("click", function () {
+    for (let i = 1; i < x + 1; i++) {
+      let LikeIconItems = document.getElementById("likeIconbyfId" + i);
+      LikeIconItems.addEventListener("click", function () {
         if (Postlikeflag == false) {
-          $(".changebyclick").removeClass("far").addClass("fas");
-          console.log("愛心被點了");
+          LikeIconItems.classList.remove("far");
+          LikeIconItems.classList.add("fas");
+          // console.log("愛心被點了");
           Postlikeflag = true;
         } else {
-          $(".changebyclick").removeClass("fas").addClass("far");
+          LikeIconItems.classList.remove("fas");
+          LikeIconItems.classList.add("far");
           Postlikeflag = false;
-          console.log("愛心又被點了");
+          // console.log("愛心又被點了");
         }
       });
-    });
+    }
   }
+  // document.querySelectorAll(".changebyclick").forEach((x) => {
+  //   x.addEventListener("click", function () {
+  //     if (Postlikeflag == false) {
+  //       $(".changebyclick").removeClass("far").addClass("fas");
+  //       console.log("愛心被點了");
+  //       Postlikeflag = true;
+  //     } else {
+  //       $(".changebyclick").removeClass("fas").addClass("far");
+  //       Postlikeflag = false;
+  //       console.log("愛心又被點了");
+  //     }
+  //   });
+  // });
 
   //跳轉至社團Detail
   // document.querySelectorAll(".communityName_span").forEach((item, index) => {
