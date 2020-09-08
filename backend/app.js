@@ -24,6 +24,7 @@ var articleRouter = require("./routes/article");
 var communityRouter = require("./routes/community");
 var personalPageRouter = require("./routes/personalPage");
 var homePageRouter = require("./routes/home");
+var likeRouter=require("./routes/like")
 const app = express();
 
 
@@ -128,7 +129,7 @@ app.use("/article", articleRouter);
 app.use("/community", communityRouter);
 app.use("/personalPage", personalPageRouter)
 app.use("/home", homePageRouter)
-
+app.use("/like",likeRouter)
 
 
 
