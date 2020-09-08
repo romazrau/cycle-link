@@ -25,7 +25,7 @@ router.get("/reply", async function (req, res, next) {
   }
 });
 
-router.get("/search/:searchinput", async function (req, res, next) {
+router.get("/:searchinput", async function (req, res, next) {
   try {
     let Searchresult = await Sql.searcharticle(req.params.searchinput);
     res.json(Searchresult);

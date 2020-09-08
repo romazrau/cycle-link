@@ -22,16 +22,13 @@ const GetHomePageBannerActivity = async () => {
       let imgs =result.data.imgs;
       
       home_picturesbox.innerHTML=home_picturesItem(imgs)
-
-      const Home = new HomeBanner(banner);
-      // display_information(data);
-      
-      document.querySelector(".home_top_event").innerHTML = 
-      `<img src="${banner[0].fImgPath}" id="A1">
-        <p id="home_top_event_p">${banner[0].fActName}</p></br>
-        <p id="home_top_event_p2">${banner[0].fActivityDate}</p>`
-     
-          
+           
+       //大圖匯入
+        banner.map(function(e,index){
+          document.querySelector(".home_top_event").innerHTML+=home_bannerimgs(e)
+        })
+      //輪播
+        CarouselBanner(banner);
         
      
         recent.map(
@@ -39,7 +36,7 @@ const GetHomePageBannerActivity = async () => {
           recent_activities.innerHTML += home_recent_activities(e);
         }
       )
-
+       
         
 
 
@@ -50,6 +47,8 @@ const GetHomePageBannerActivity = async () => {
   }
 }
 
+
+
 GetHomePageBannerActivity();
 
 
@@ -59,64 +58,62 @@ GetHomePageBannerActivity();
 
 
 
+function CarouselBanner(data)
+{
+  let home_bannerboxs=$(".home_bannerbox")
+  let postion=-1;
 
-
-
-
-function HomeBanner(data) {
-  let postion = 0;
-  
-  var timearr=[]
   for(let i=0;i<data.length;i++)
   {
-    timearr.push(data[i].fActivityDate)
-  }
-  console.log("timearr:",timearr);
-
-  function scrollPic() {
-    if (postion > data.length - 1) {
-      postion = 0;
-
-    }
-    getBannerTime(postion,timearr)
-     
-    document.getElementById("A1").src =`${data[postion].fImgPath}`;
-    document.getElementById("home_top_event_p").innerHTML = data[postion].fActName ;
+   
+    setInterval(getBannerTime(data[i],i),1000)
+  } 
 
 
-    // getBannerTime(postion);
+  setInterval(function(){
     postion++;
-  }
-  setInterval(scrollPic, 5000);
-  
+    if(postion>data.length-1)
+    postion=0
+    home_bannerboxs.eq(postion).css("display", "block").siblings().css("display", "none");
+  },5000)
 }
 
 
 
-function getBannerTime(t,arr)
+function getBannerTime(t,index)
 {
-  if(Interval!=null)
-    clearInterval(Interval);
-    
-  var Interval=setInterval(function(){
+  console.log("t",t);
+  console.log("index:",index);
+
   let time = new Date();
   let nowTime = time.getTime()
-  let endTime = Date.parse(arr[t]);//"字串時間"
+  let endTime = Date.parse(t.fActivityDate);//"字串時間"
   let offsetTime = (endTime - nowTime) / 1000; // ** 以秒為單位
 
   let sec = parseInt(offsetTime % 60); // 秒
   let min = parseInt((offsetTime / 60) % 60); // 分 ex: 90秒
   let hr = parseInt(offsetTime / 60 / 60)%60; // 時
   let day = parseInt((offsetTime / 60 / 60)%24)
-  document.getElementById("home_top_event_p2").innerHTML =day+" 天 "+hr+" 時 "+min+" 分 "+sec+" 秒 "
-},1000)
-
+  console.log("p2:",$(".home_top_event_p2").eq(index));
+  $(".home_top_event_p2").eq(index).innerHTML="倒數"+day+" 天 "+hr+" 時 "+min+" 分 "+sec+" 秒 "
 }
 
 
 
 
 //---------------------------字串樣板--------------------------//
+const home_bannerimgs=(o)=>
+{
+  return`
+  <div class="home_bannerbox">
+    <img src="${o.fImgPath}" alt=""> 
+    <p class="home_top_event_p">${o.fActName}</p>  
+    <p class="home_top_event_p2"></p>                 
+  </div>`
+}
+
+
+
 
 const home_recent_activities = (o) => {
 

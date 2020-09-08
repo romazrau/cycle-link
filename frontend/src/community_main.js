@@ -234,8 +234,8 @@ ${ImgIsNullOrNot(x.PostImg)}
         headers: {
           // http headers
           "Content-Type": "application/json", // 請求的資料類型
-          // searchinput: x,
         },
+
         // 以下跟身分認證有關，後端要使用session 要帶這幾項
         cache: "no-cache",
         credentials: "include",
