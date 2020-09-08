@@ -18,7 +18,9 @@ const serverURL = {
   articlesearch: `${rootURL}/article/`,
   homePages: `${rootURL}/home/`,
   community: `${rootURL}/community/`,
-  communityManager: `${rootURL}/community/communityManager/`
+  communityManager: `${rootURL}/community/communityManager/`,
+  activeinsertseensql:`${rootURL}/active/activeinsertseensql/`,
+  activeforyou:`${rootURL}/active/activeforyou/`,
 };
 
 const postlist = async () => {
@@ -67,7 +69,6 @@ const checkLogin = async () => {
     cache: "no-cache", // 不准使用快取
     headers: {
       // *攜帶 http request headers
-      "Content-Type": "application/json",
       Authorization: localStorage.getItem("Cycle link token"), // *這個屬性帶 JWT
     },
   });

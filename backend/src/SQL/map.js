@@ -18,7 +18,7 @@ const config = {
 
 
 //登入
-const map_GetAllActivity = async (account, password) => {
+const map_GetAllActivity = async () => {
     try {
         // make sure that any items are correctly URL encoded in the connection string
         await sql.connect(config)
