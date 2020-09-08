@@ -57,7 +57,7 @@ function ClsActivity() {
 
     const display_active_main_level = (o) => {
         o.map(
-            (e, index) => {
+            (e,index) => {
                 ActSearch.innerHTML += htmlActSearch(e);
             }
         )
@@ -114,7 +114,6 @@ function ClsActivity() {
         } catch (err) {
             console.log(err);
             // 錯誤處理
-
         }
     }
 
@@ -133,9 +132,7 @@ function ClsActivity() {
         }
     );
 
-
     //日期
-
 
     //防止冒泡
     const stopdate = document.querySelectorAll(".ui-state-default");
@@ -288,7 +285,7 @@ function ClsActivity() {
 
   // 活動樣板
     const htmlActCard = (o) => {
-        return ` <a href="#activity/detail/${o.fId}">
+        return ` <a  href="#activity/detail/${o.fId}" class="activecard">
     <div class="active_card_container">
         <div class="active_card" >
             <i class="fas fa-heart fa-lg active_card_heart"></i>
@@ -307,16 +304,38 @@ function ClsActivity() {
     </div></a>`;
     }
 
+    // //為您推薦樣板
+    // const htmlActCard2 = (o) => {
+    //     return ` <a  href="#activity/detail/${o.fId}" class="activecard2">
+    // <div class="active_card_container">
+    //     <div class="active_card" >
+    //         <i class="fas fa-heart fa-lg active_card_heart"></i>
+    //         <div class="active_card_div">
+    //             <img src="${o.fImgPath}" alt="" class="active_card_img">
+    //         </div>
+    //         <div class="active_card_info">
+    //             <p>${o.fActivityDate}</p>
+    //             <p class="active_card_title">${o.fActName}</p>
+    //             <div class="active_card_location_div">
+    //                 <img src="img/929497.svg" class="active_card_location">
+    //                 <p>${o.fActLocation}</p>
+    //             </div>
+    //         </div>
+    //     </div>
+    // </div></a>`;
+    // }
+
     // 搜尋結果
     //todo 圖片路徑 目前是寫死的 如有更新後需更改為動態
     const htmlActSearchgo = (o) =>{
         return `
-        <a href="#activity/detail/${o.fId}">
+        
+        <a  href="#activity/detail/${o.fId}">
         <div class="active_card_container">
             <div class="active_card" >
                 <i class="fas fa-heart fa-lg active_card_heart"></i>
                 <div class="active_card_div">
-                    <img src="img/event6.png" alt="" class="active_card_img">
+                    <img src="${o.fImgPath}" alt="" class="active_card_img">
                 </div>
                 <div class="active_card_info">
                     <p>${o.fActivityDate}</p>
@@ -345,17 +364,29 @@ function ClsActivity() {
         // console.groupEnd("display_active map");
 
     }
+
+
     const ActSeen = document.getElementById("activity_event_history")
 
     const display_active_seen = (o) =>{
+        ActSeen.innerHTML = "";
         o.map((e,index)=>{
             ActSeen.innerHTML += htmlActCard(e);
         })
     }
 
     const ActSearchresult = document.getElementById("activesearchresult");
-    
-    
+    const Actforyou = document.getElementById("activity_event_recommend");
+    const display_active_foryou = (o) => {
+        Actforyou.innerHTML = "";
+        o.map(
+            (e, index) => {
+                Actforyou.innerHTML += htmlActCard(e);
+            }
+        )
+
+    }
+
     const display_search_go = (o) =>{
         ActSearchresult.innerHTML = "";
         o.map((e,index)=>{
@@ -379,25 +410,20 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-            
             display_active(result.data);
-            // *用 result  do something ...
-
+            getactid();
         } catch (err) {
             console.log(err);
             // 錯誤處理
-
         }
     }
-
     activeAwait();
-
-    // 瀏覽過的活動
-    const activeseenAwait = async () => {
+    // todo 為您推薦 
+    const activeforyou  = async () => {
         try {
             // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
             // *用變數接 fetch 結果 ，要用await等。
-            let response = await fetch(serverURL.activeseen, {
+            let response = await fetch(serverURL.activeforyou, {
                 method: "GET", // http request method 
                 headers: { // http headers
                     'Content-Type': 'application/json' // 請求的資料類型
@@ -408,7 +434,34 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-            console.log("rrr",result)
+            display_active_foryou(result.data);
+            getactid();
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+
+        }
+    }
+    activeforyou();
+
+
+    // 瀏覽過的活動
+    const activeseenAwait = async () => {
+        try {
+            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+            // *用變數接 fetch 結果 ，要用await等。
+            let response = await fetch(serverURL.activeseen, {
+                method: "GET", // http request method 
+                headers: { // http headers
+                    'Content-Type': 'application/json', // 請求的資料類型
+                    Authorization: localStorage.getItem("Cycle link token"),
+                },
+                // 以下跟身分認證有關，後端要使用session 要帶這幾項
+                cache: 'no-cache',
+                credentials: 'include',
+            });
+            // 用變數接 fetch結果的資料內容， 要用await等。
+            let result = await response.json();
             //文字樣板
             display_active_seen(result.data);
             // *用 result  do something ...
@@ -422,14 +475,72 @@ function ClsActivity() {
 
     activeseenAwait();
 
+    //取的瀏覽紀錄的活動id 時間
+    function getactid (){
+        var selectactive = document.querySelectorAll(".activecard");
+        
+        let nowtime = new Date();
+        let date = nowtime.toLocaleDateString();
+        let timesplit = nowtime.toTimeString().split(" ");
+        let time = timesplit[0];
+        let now = date+" "+time;
+        now = now.split("/").join(",");
 
+
+        let activeseenId ;
+        for(let i = 0;i<selectactive.length;i++)
+        {
+            selectactive[i].addEventListener('click',function(){
+                let ahref= selectactive[i].href;
+                var hrefsplit = ahref.split("/");
+                activeseenId = hrefsplit[hrefsplit.length-1];
+                activeinsertseensql(activeseenId,now);
+               
+            })
+        }
+
+    }
+    
+    
+    // activeinsertseenSQL 瀏覽過的資料寫入資料庫
+    const activeinsertseensql   = async (activeseenId,now) => {
+        try {
+            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+            // *用變數接 fetch 結果 ，要用await等。
+            console.log(activeseenId);
+            console.log(now);
+            let response = await fetch(`${serverURL.activeinsertseensql}${activeseenId}/${now}`, {
+                method: "GET", // http request method 
+                headers: { // http headers
+                    'Content-Type': 'application/json', // 請求的資料類型
+                     Authorization: localStorage.getItem("Cycle link token"),
+                    
+                },
+                
+                // 以下跟身分認證有關，後端要使用session 要帶這幾項
+                cache: 'no-cache',
+                credentials: 'include',
+            });
+            // 用變數接 fetch結果的資料內容， 要用await等。
+            let result = await response.json();
+            //文字樣板
+            // display_active_seen(result.data);
+           
+            
+            // *用 result  do something ...
+
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+
+        }
+    }
 
     
 
     const ActCard = document.querySelector("#activity_event_top");
 
     //AJAX
-
    
     //------------------------------------------------------
 
@@ -474,55 +585,14 @@ function ClsActivity() {
 
     ]
 
-
     ActCardData2.map(
         (e, index) => {
             ActCard2.innerHTML += htmlActCard(e);
         }
     )
 
-    //------------------------------------------------------
+    //------------------------------------------------------  
 
-
-
-
-    // const HisAct = document.querySelector("#activity_event_history")
-
-    // let HisActData = [{
-    //         imgPath: "img/event2.jpg",
-    //         date: "2020/09/26",
-    //         title: "螢光夜跑",
-    //         count: 100,
-    //         member: "王曉明",
-    //         local: "新北大道"
-    //     },
-    //     {
-    //         imgPath: "img/event3.jpg",
-    //         date: "2020/09/26",
-    //         title: "潛水撿垃圾，愛海洋！",
-    //         count: 99,
-    //         member: "洲仔於",
-    //         local: "布袋漁港"
-    //     },
-    //     {
-    //         imgPath: "img/event4.jpg",
-    //         date: "2020/09/26",
-    //         title: "飢餓三十！",
-    //         count: 500,
-    //         member: "時間管理大師",
-    //         local: "桃園"
-    //     }
-    // ]
-
-    // HisActData.map(
-    //     (e, index) => {
-    //         HisAct.innerHTML += htmlActCard(e);
-    //     }
-    // )
-
-        
-
-    // 跳轉 #activity/detail
 
     document.querySelectorAll(".active_card_container").forEach(
         (item, index) => {
@@ -534,8 +604,21 @@ function ClsActivity() {
             )
         }
     )
-
-
+    this.render = ()=>{activeseenAwait()};
 }
 
 const Activity = new ClsActivity();
+
+//* 利用 hash , 如下
+
+// * -------------------------------- hash -------------------------------- //
+
+const activityChangeHash = () => {
+    if (location.hash === "#activity"){
+        Activity.render();
+        // const Activity = new ClsActivity();
+    }
+}
+
+window.addEventListener("hashchange", activityChangeHash);
+window.addEventListener("load", activityChangeHash);

@@ -21,7 +21,7 @@ function ClsNavbar() {
     }
 
     navLinksContainer.addEventListener("click", this.closeShowMenu);
-
+    
 
     let pageY = window.pageYOffset;
     const navbarMain = document.querySelector("#navbar_main");

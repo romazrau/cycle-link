@@ -221,6 +221,10 @@
   margin-bottom: 0.6rem;
 }
 
+.activity_detail_right_map {
+  height: 12.8rem;
+}
+
 /* 活動參與者 */
 .activity_detail_participant_all {
   margin-top: 5rem;

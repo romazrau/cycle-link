@@ -24,6 +24,7 @@ var articleRouter = require("./routes/article");
 var communityRouter = require("./routes/community");
 var personalPageRouter = require("./routes/personalPage");
 var homePageRouter = require("./routes/home");
+var likeRouter=require("./routes/like")
 const app = express();
 
 
@@ -60,7 +61,7 @@ app.use(
   })
 );
 // cors
-const whitelist = ['http://127.0.0.1:5501', 'http://127.0.0.1:5500', 'http://127.0.0.1:5502', undefined];
+const whitelist = ['http://127.0.0.1:5501', 'http://127.0.0.1:5500', 'http://127.0.0.1:5502', 'http://localhost:8080', 'http://localhost:8081', 'http://localhost:8082', undefined];
 const corsOptions = {
   credentials: true,
   origin: function (origin, callback) {
@@ -128,7 +129,7 @@ app.use("/article", articleRouter);
 app.use("/community", communityRouter);
 app.use("/personalPage", personalPageRouter)
 app.use("/home", homePageRouter)
-
+app.use("/like",likeRouter)
 
 
 

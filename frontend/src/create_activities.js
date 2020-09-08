@@ -4,7 +4,7 @@ $(".create_active_basicInfo").eq(0).css("display", "block").siblings().css("disp
 $(".create_active_title_div").click(function () {
     hcTitle = $(this).index();
     $(".create_active_basicInfo").eq(hcTitle).css("display", "block").siblings().css("display", "none");
-    console.log($(".create_active_basicInfo"));
+    // console.log($(".create_active_basicInfo"));
 });
 $("#create_active_btn_next").click(function () {
     $(".create_active_basicInfo").eq(1).css("display", "block").siblings().css("display", "none");
@@ -95,7 +95,7 @@ function inputTag() {
     const tagInput = $("#create_active_tag_input").val();
 
     if (tagInput != "") {
-        const htmlTagInput = `<div id="create_active_tag">${tagInput}<button>x</button>`;
+        const htmlTagInput = `<div id="create_active_tag" >${tagInput}<button>x</button>`;
         document.getElementById("test_a").innerHTML += htmlTagInput;
         create_active_tag_count++;
     } else {
