@@ -79,7 +79,26 @@ router.post('/', async function (req, res, next) {
 })
 
 
+//* ----------------------- 新增標籤 ----------------------- //
+router.post('/tag', async function (req, res, next) {
+    try {
+        // console.log(req.body);
+        if (!req.body.fLabelName) {
+            res.json({
+                result: 0,
+                msg: "???"
+            });
+            return;
+        }
 
+        let result = await Sql.creatActTag(req.body.fLabelName);
+
+        res.json(result);
+    } catch (err) {
+        console.log(err);
+        res.send(err);
+    }
+})
 
 
 

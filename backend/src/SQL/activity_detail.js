@@ -202,6 +202,32 @@ const creatAct = async (fActName, fCreatDate, fActivityDate, fActivityEndDate, f
     }
 };
 
+//* ----------------------- 新增標籤 ----------------------- //
+const creatActTag = async (fLabelName) => {
+    try {
+        await sql.connect(config)
+        let sqlStr = `
+        insert into Activity.tActivityLabel (fLabelName)
+        values ('${fLabelName}')`
+        const result = await sql.query(sqlStr)
+        // console.dir(result)
+        // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
+        return {
+            result: 1,
+            msg: "請求成功"
+        };
+        // 錯誤處理
+    } catch (err) {
+        console.log(err);
+        console.log(fLabelName);
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err.message
+        };
+    }
+};
+
 
 
 //直接測試用 func ， node src/SQL/test.js
@@ -219,5 +245,6 @@ module.exports = {
     TagById,
     JoinById,
     JoinCount,
-    creatAct
+    creatAct,
+    creatActTag
 };

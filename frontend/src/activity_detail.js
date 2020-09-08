@@ -6,6 +6,20 @@ import {
 //用class包起來
 
 function ClsActivityDetail() {
+    function actMap(x, y) {
+        var map = L.map('actmapid')
+        var marker = L.marker([x, y]).addTo(map);
+        map.setView(new L.LatLng(x, y), 16);
+        var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        var osm = new L.TileLayer(osmUrl, {
+            minZoom: 8,
+            maxZoom: 20
+        });
+        map.addLayer(osm);
+
+    }
+    // console.log(actMap());
+
 
     // * -------------- 固定右側資訊 -------------- //
     function boxMove2(y) {
@@ -135,6 +149,8 @@ function ClsActivityDetail() {
 
     // * ---------------- 活動右側內容 文字樣板 ---------------- //
 
+
+
     const actDetailRightInfoALL = (o) => {
         return `
     <div>
@@ -153,14 +169,8 @@ function ClsActivityDetail() {
          <img src="img/coin.png" alt="" class="activity_detail_right_icon">
          <p>${o.fPayCoin}</p>
     </div>
-    <div class="activity_detail_right_map">
-        <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.8021294706664!2d121.53890655092397!3d25.074694842733358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ac0099201ca3%3A0xe5164eddb6bbeab1!2z5aSn5L2z5rKz5r-x5YWs5ZyS!5e0!3m2!1szh-TW!2stw!4v1598202965298!5m2!1szh-TW!2stw"
-        width="100%" height="250" frameborder="0" style="border:0;"
-        allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    <div class="activity_detail_right_map" id="actmapid">
     </div>
-    <p>x:${o.fCoordinateX}</p>
-    <p>y:${o.fCoordinateY}</p>
     `
     }
 
@@ -176,6 +186,8 @@ function ClsActivityDetail() {
                 activity_detail_text_detail.innerHTML = actDetail_textDetail(e);
                 activity_detail_bigTag.innerHTML = actDetail_bigTag(e);
                 actDetailRightInfo.innerHTML = actDetailRightInfoALL(e);
+                actMap(e.fCoordinateX, e.fCoordinateY);
+                console.log(e.fCoordinateX)
 
                 if (e.CommuntyName !== null) {
                     actDetailSocieties.innerHTML = actDetailSocietiesALL(e);
@@ -248,8 +260,54 @@ function ClsActivityDetail() {
         }
     }
 
+    const actDetailPost = async () => {
+        try {
+            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+            // *用變數接 fetch 結果 ，要用await等。
+            let actForm = document.querySelector("#creatAct_form");
+            let actFormData = new FormData(actForm);
+            let response = await fetch(serverURL.actDetail, {
+                method: "POST", // http request method 
+                headers: { // http headers
+                    'Content-Type': 'application/json' // 請求的資料類型
+                },
+                body: actFormData,
+                // 以下跟身分認證有關，後端要使用session 要帶這幾項
+                cache: 'no-cache',
+                credentials: 'include',
+            });
+            // 用變數接 fetch結果的資料內容， 要用await等。
+            let result = await response.json();
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+        }
+    }
 
 
+    // ! ------------- 傳送表單 ------------- //
+    $("#actCreatTagSubmit").click(async function (e) {
+        e.preventDefault();
+        // console.log(e);
+        let form = document.querySelector("#actCreatTag");
+        let formData = new FormData(form);
+        try {
+            let response = await fetch(serverURL.actDetail + "tag", {
+                method: "POST", // POST
+                body: formData, // *攜帶的 FormData
+                cache: 'no-cache',
+                credentials: 'include',
+                mode: 'cors',
+                referrer: "client",
+            })
+            let result = await response.json();
+            console.log(result);
+
+        } catch (err) {
+            console.log(err);
+        }
+
+    })
 
     //  TODO: -------------------------------- 為您推薦 文字樣板 -------------------------------- //
     this.htmlActCard = (o) => {
