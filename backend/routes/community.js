@@ -25,9 +25,14 @@ router.get('/', async function (req, res, next) {
     }
 });
 
+
+
 //查詢社團by社員ID
 router.get('/communityByMemberId/:id', async function (req, res, next) {
     try {
+
+
+
         let result = await Sql.communityByMemberId(req.params.id);
         res.json(result);
 
@@ -39,13 +44,64 @@ router.get('/communityByMemberId/:id', async function (req, res, next) {
 })
 
 
-//查詢社團by社團id
+
+// serverURL.community + id 
+// !資料都在這裡過濾處理 再用data送回前端
+// 查詢社團by社團id
 // 此路由/:id Restful.API
 router.get('/:id', async function (req, res, next) {
     try {
-        let result = await Sql.communityById_communityDetail(req.params.id);
 
-        //顯示在頁面上 
+        //----創變數(最後會包入data回傳使用者身分):管理員 社員 非社員(含訪客)
+        let user = "";
+
+        //訪客的id 是 2
+        let memberId = 2;
+        //token
+        //----判斷是否為會員 非會員維持memberId 2
+        if (req.user.fId) {
+            memberId = req.user.fId
+        }
+
+        let result = await Sql.communityById_communityDetail(req.params.id);
+        //----丟入社團ID把所有社員資料撈出
+        let memberOfCommunity = await Sql.communityById_communityMember(req.params.id);
+        // console.log('++++++++++++++++++');
+        //memberOfCommunity.data 是物件array
+        // console.log(memberOfCommunity.data);
+        //----把社員id拿出放進一個array
+        let MemberIdArray = [];
+        memberOfCommunity.data.forEach(element => {
+            MemberIdArray.push(element.fMemberId)
+        });
+
+        //----比對會員id是否在array內 if true : 判斷是否為管理員 else 會員 
+
+        if (MemberIdArray.includes(memberId)) {
+
+            let Managers = await Sql.communityById_communityManager(req.params.id);
+
+            let idarr = [];
+            Managers.data.forEach(e => {
+                idarr.push(e.fId);
+            })
+
+
+
+            if (idarr.includes(memberId)) {
+                user = "管理員";
+
+            } else {
+                user = "社員";
+            }
+        }
+        else {
+            user = "非社員";
+        }
+        //----把user放進result.data裡用res.json()回傳
+        result.data[0].user = user;
+        // console.log('++++++++++++++++++');
+        // console.log(result.data[0]);
         res.json(result);
     } catch (err) {
         res.send({ result: 0, msg: "路由錯誤", data: err });
@@ -58,7 +114,7 @@ router.get('/communityManager/:id', async function (req, res, next) {
     try {
         let result = await Sql.communityById_communityManager(req.params.id);
 
-        //顯示在頁面上 
+
         res.json(result);
     } catch (err) {
         res.send({ result: 0, msg: "路由錯誤", data: err });
@@ -144,7 +200,6 @@ router.delete('/:id', async function (req, res, next) {
     }
 
 })
-
 
 
 // 匯出方法

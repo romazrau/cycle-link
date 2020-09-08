@@ -9,18 +9,18 @@ import {
 checkLogin()
     .then((res) => {
         console.log(res);
-        if (res.result == "1" &&  res.data.fName) {
+        if (res.result == "1" && res.data.fName) {
             let show = `<i class="fas fa-bullhorn login_bullhorn"></i> <div><p>${res.data.fName}</p><p>歡迎</p></div>`;
             document.querySelector("#header_link_login").innerHTML = show;
 
             window.localStorage.setItem("Cycle link token", res.token);
-            window.localStorage.setItem("Cycle link user data", res.data.fName);   
-        }else{
-            window.localStorage.removeItem( "Cycle link token" ) 
-            window.localStorage.removeItem("Cycle link user data");   
+            window.localStorage.setItem("Cycle link user data", res.data.fName);
+        } else {
+            window.localStorage.removeItem("Cycle link token")
+            window.localStorage.removeItem("Cycle link user data");
         }
     })
-    .catch( (err) => {console.log(err)});
+    .catch((err) => { console.log(err) });
 
 
 

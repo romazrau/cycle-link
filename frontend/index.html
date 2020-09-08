@@ -1385,11 +1385,7 @@
                                     <div class="Size20IconMarginLeft"><img src="./img/icon_question.svg" width="20">
                                     </div>
                                 </div>
-                                <div class="FlexContainer GroupTopRightEventInfoBox group_margin_bottom">
-                                    <div class="Size20IconMarginRight"><img src="./img/icon_user.svg" width="20"></div>
-                                    <div>社團管理員&nbsp;</div>
-                                    <div id="CommunityManager">郭安迪</div>
-                                </div>
+
                             </div>
 
                             <div class="FlexContainer share-text">
@@ -1435,9 +1431,9 @@
                         <div class="GroupDiveBtn FlexContainer">
                             <div class=" FlexContainer">
                                 <img src="./img/icon_setting.svg" width="25px">
-
-                                <div class="GroupDiveBtnText">&nbsp&nbsp管理員</div>
-                                <div class="GroupNavBtn GroupDiveBtnText hide">我是社員</div>
+                                <div id="ApplyBtn" class="GroupDiveBtnText">加入社團</div>
+                                <div id="ManagerBtn" class="GroupDiveBtnText hide">&nbsp&nbsp管理員</div>
+                                <div id="MemberBtn" class="GroupNavBtn GroupDiveBtnText hide">我是社員</div>
                                 <!-- <img src="./img/icon_triangle_downside.svg" width="25px"> -->
                                 <div class="dropdown-triangle hide"></div>
                                 <div class="dropdown hide">
@@ -1709,7 +1705,7 @@
                                         <div class="dropdownDR">編輯管理員名單</div>
                                     </div>
                                 </div>
-                                <div class="FlexContainer GroupRight">
+                                <div id="MemberTemplate" class="FlexContainer GroupRight">
                                     <div class="activity_detail_info_img_circle">
                                         <div class="activity_detail_info_img_div">
                                             <img src="./img/id2.jpg" class="activity_detail_info_img">
@@ -1717,7 +1713,7 @@
                                     </div>
                                     <div class="GroupRightInfo FlexContainer GroupRightInfoText">
 
-                                        <a href="#" class="GroupHolderName">蘇菲唐納</a>
+                                        <a id="CommunityManager" href="#" class="GroupHolderName">蘇菲唐納</a>
                                         <a class="GroupEnglishFont GroupRightInfoM" href="#">
                                             <img src="./img/icon_chat.svg" width="20"></a>
 
