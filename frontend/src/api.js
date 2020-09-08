@@ -16,6 +16,8 @@ const serverURL = {
     articlepost: `${rootURL}/article/post`,
     articlereply: `${rootURL}/article/reply`,
     homePages:`${rootURL}/home/`,
+    activeinsertseensql:`${rootURL}/active/activeinsertseensql/`,
+    activeforyou:`${rootURL}/active/activeforyou/`,
 };
 
 const postlist = async () => {

@@ -395,6 +395,9 @@ function ClsActivityDetail() {
         ac_share_bg_div.style.display = 'none';
         ac_share_bg.preventDefault();
     }
+
+
+    
     this.actDetail = actDetail;
 }
 const ActivityDetail = new ClsActivityDetail();

@@ -43,30 +43,71 @@ router.get('/:id/:text', async function(req, res, next) {
     // 可以整理一下，刪掉不必要的資料再回傳
     res.json(resultgosearch);
     console.log("test",resultgosearch);
-  }catch(err){
+  }
+  catch(err){
     res.send(err);
   } 
 });
+
+//為您推薦
+
+router.get('/activeforyou', async function(req, res, next) {
+  // 判斷前端req資料是否有登入，如為false回傳result:0
+  
+
+  try{
+    // *用 await 等待資料庫回應
+    let resultforyou = await activesql.activeforyousql(); 
+    // 物件用json格式回傳
+    // 可以整理一下，刪掉不必要的資料再回傳
+    res.json(resultforyou);
+  }catch(err){
+    console.log(err);
+    res.send({result:0, msg:"路由錯誤", data:err});
+  } 
+});
+
 
 //瀏覽過的活動
 
 router.get('/activeseen', async function(req, res, next) {
   // 判斷前端req資料是否有登入，如為false回傳result:0
-  // if( !req.user ){
-  //   res.json({result:0, msg:"TOKEN?"});
-  //   return;
-  // }
-  //todo token 還沒做完
+  if( !req.user ){
+    res.json({result:0, msg:"TOKEN?"});
+    return;
+  }
 
   try{
     // *用 await 等待資料庫回應
     // todo let resultactiveseen = await activesql.activeseensql( req.user.fId  ); 
-    let resultactiveseen = await activesql.activeseensql(6); 
+    let resultactiveseen = await activesql.activeseensql(req.user.fId); 
     // 物件用json格式回傳
     // 可以整理一下，刪掉不必要的資料再回傳
     res.json(resultactiveseen);
   }catch(err){
     console.log(err);
+    res.send({result:0, msg:"路由錯誤", data:err});
+  } 
+});
+
+router.get('/activeinsertseensql/:actId/:dateStr', async function(req, res, next) {
+  // 判斷前端req資料是否有登入，如為false回傳result:0
+  if( !req.user ){
+    res.json({result:0, msg:"TOKEN?"});
+    return;
+  }
+  console.log(req.params);
+  req.params.dateStr =  req.params.dateStr.split(",").join("/");
+  try{
+    // *用 await 等待資料庫回應s
+    let resultactiveseeninsert = await activesql.activeinsertseensql(req.params.actId,req.user.fId,req.params.dateStr); 
+    console.log(req.params.dateStr);
+    console.log(req.params.actId);
+    // 物件用json格式回傳
+    // 可以整理一下，刪掉不必要的資料再回傳
+    res.json(resultactiveseeninsert);
+    console.log(resultactiveseeninsert);
+  }catch(err){
     res.send({result:0, msg:"路由錯誤", data:err});
   } 
 });
