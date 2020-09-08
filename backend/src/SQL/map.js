@@ -41,7 +41,7 @@ const map_GetAllActivity = async (account, password) => {
     }
 };
 
-map_GetAllActivity();
+// map_GetAllActivity();
 
 
 module.exports = { map_GetAllActivity };
