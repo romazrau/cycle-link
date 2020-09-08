@@ -13,20 +13,6 @@ function ClsCommunityMain() {
     pageY = window.pageYOffset;
   });
 
-  //用不上的社團類別動態
-  var CM_appearCategory_item_flag = true;
-  $(".CM_appearCategory_item").hide();
-  $(".CM_searchbar_category").on("click", function () {
-    // console.log("hi");
-    if (CM_appearCategory_item_flag) {
-      $(".CM_appearCategory_item").show();
-      CM_appearCategory_item_flag = false;
-    } else {
-      $(".CM_appearCategory_item").hide();
-      CM_appearCategory_item_flag = true;
-    }
-  });
-
   //判斷是否有圖片，沒有就不匯入div
   const ImgIsNullOrNot = (x) => {
     if (x === null) {
@@ -38,7 +24,7 @@ function ClsCommunityMain() {
     }
   };
 
-  //文字樣板
+  //文章：文字樣板
   const htmlCommunityMainPostLeft = (x) => {
     return `
       <li>
@@ -70,14 +56,14 @@ function ClsCommunityMain() {
 ${ImgIsNullOrNot(x.PostImg)}
         </div>
         <div class="CM_timeline_footer">
-          <i class="far fa-heart changebyclick"></i><span>${
-            x.HowMuchLike || ""
-          }</span>
-          <i class="far fa-comments" id="replyIconbyfId${x.fId}"></i><span>${
+          <i class="far fa-heart changebyclick" id="likeIconbyfId${
+            x.PostId
+          }"></i><span>${x.HowMuchLike || ""}</span>
+          <i class="far fa-comments" id="replyIconbyfId${x.PostId}"></i><span>${
       x.HowMuchReply || ""
     }</span>
           </div>
-          <div class="replyContainer" id="bindPostReplybyfId${x.fId}"></div>
+          <div class="replyContainer" id="bindPostReplybyfId${x.PostId}"></div>
         </div>
       </li>`;
   };
@@ -113,25 +99,31 @@ ${ImgIsNullOrNot(x.PostImg)}
           <p>${x.PostContent}</p>${ImgIsNullOrNot(x.PostImg)}
         </div>
         <div class="CM_timeline_footer">
-          <i class="far fa-heart changebyclick"></i><span>${
-            x.HowMuchLike || ""
-          }</span>
-          <i class="far fa-comments" id="replyIconbyfId${x.fId}"></i><span>${
+          <i class="far fa-heart changebyclick" id="likeIconbyfId${
+            x.PostId
+          }"></i><span>${x.HowMuchLike || ""}</span>
+          <i class="far fa-comments" id="replyIconbyfId${x.PostId}"></i><span>${
       x.HowMuchReply || ""
     }</span>
-        </div>
-        <div class="replyContainer" id="bindPostReplybyfId${x.fId}"></div>
+          </div>
+        <div class="replyContainer" id="bindPostReplybyfId${x.PostId}"></div>
       </div>
     </li>`;
   };
 
-  //留言呈現文字樣板
+  // 留言：文字樣板
   const htmlCommunityMainReply = (x) => {
-    return `<div class="CM_reply_item">
+    return `
+    <div class="CM_reply_item">
     <div class="CM_reply_item_header">
-      <div class="CM_reply_item_header_img_circle_border">
-        <div class="CM_reply_item_header_img">
-          <img src="${x.ReplyMemberImg}" class="CM_reply_item_header_img_img" />
+      <div class="CM_reply_item_header_img_container">
+        <div class="CM_reply_item_header_img_circle_border">
+          <div class="CM_reply_item_header_img">
+            <img
+              src="${x.ReplyMemberImg}"
+              class="CM_reply_item_header_img_img"
+            />
+          </div>
         </div>
       </div>
       <div class="CM_reply_item_header_content">
@@ -140,28 +132,30 @@ ${ImgIsNullOrNot(x.PostImg)}
           <span>${x.fReplyTime}</span>
         </div>
         <div class="CM_reply_item_header_content_text">
-          <span>${x.fContent}</span>
+          <span
+            >${x.fContent}</span
+          >
         </div>
       </div>
     </div>
     <div class="CM_reply_item_content"></div>
   </div>`;
   };
-  //使用者留言的文字樣板
-  const htmlCommunityMainReplyInput = () => {
-    return `<div class="CM_reply_input_container">
-    <div class="CM_reply_input_img_circle_border">
-      <div class="CM_reply_input_img">
-        <img src="../img/member/"id3.jpg" class="CM_reply_input_img_img" />
-      </div>
-    </div>
-    <input type="text" />
-  </div>`;
-  };
 
-  //字串樣板匯入
+  //我要留言：文字樣板
+  // const htmlCommunityMainReplyInput = () => {
+  //   return `<div class="CM_reply_input_container">
+  //   <div class="CM_reply_input_img_circle_border">
+  //     <div class="CM_reply_input_img">
+  //       <img src="../img/member/"id3.jpg" class="CM_reply_input_img_img" />
+  //     </div>
+  //   </div>
+  //   <input type="text" />
+  // </div>`;
+  // };
+
+  //文章字串樣板匯入
   const CMpost = document.querySelector(".community_main_ul_timeline");
-
   const display_postDetail = (o) => {
     CMpost.innerHTML = "";
     o.map((e, index) => {
@@ -174,14 +168,6 @@ ${ImgIsNullOrNot(x.PostImg)}
     });
   };
 
-  const display_replyDetail = (o) => {
-    o.map((e, index) => {
-      document.getElementById(
-        "bindPostReplybyfId" + display_replyDetail.fId
-      ).innerHTML = htmlCommunityMainReply(e);
-    });
-  };
-
   //文章列表撈資料
   const getCommunityPost = async () => {
     try {
@@ -190,13 +176,23 @@ ${ImgIsNullOrNot(x.PostImg)}
       // console.log(result);
       display_postDetail(result.data);
       // console.log("data:", result.data);
+      showReplyContainer();
+      addClickEventToLike();
     } catch (err) {
       console.log(err);
     }
   };
   getCommunityPost();
 
-  //留言撈資料
+  //留言：字串樣板輸入畫面
+  const display_replyDetail = (o) => {
+    o.map((e, index) => {
+      document.getElementById(
+        "bindPostReplybyfId" + e.fPostId
+      ).innerHTML += htmlCommunityMainReply(e);
+    });
+  };
+  //留言：塞資料進去字串樣板裡面
   const getCommunityReply = async () => {
     try {
       let response = await fetch(serverURL.articlereply);
@@ -207,14 +203,15 @@ ${ImgIsNullOrNot(x.PostImg)}
       console.log(err);
     }
   };
-
-  //留言Icon點擊觸動function寫入留言內容
-  // let iconReply = document.querySelectorAll(".fa-comments");
-  // let replyContainer = document.querySelector(".replyContainer");
-  // iconReply.forEach.addEventListener("click", showReplyContainer);
-  // function showReplyContainer(x) {
-  //   console.log(x.currentTarget.nextElementSibling);
-  // }
+  //留言：Icon點擊觸動function寫入留言內容
+  function showReplyContainer() {
+    let AllReplyIcon = document.querySelectorAll(".fa-comments");
+    AllReplyIcon.forEach((x) => {
+      x.addEventListener("click", function () {
+        getCommunityReply();
+      });
+    });
+  }
 
   //搜尋Icon點擊觸動function
   document
@@ -248,40 +245,59 @@ ${ImgIsNullOrNot(x.PostImg)}
     }
   };
 
-  //點擊愛心，字串樣板輸入完後，才可以寫icon動態
-  var click123 = false;
-  $(".changebyclick").click(function () {
-    if (click123 == false) {
-      $(".changebyclick").removeClass("far").addClass("fas");
-      console.log("愛心被點了");
-      click123 = true;
-    } else {
-      $(".changebyclick").removeClass("fas").addClass("far");
-      click123 = false;
-      console.log("愛心又被點了");
-    }
-  });
+  //愛心，字串樣板輸入完畢後，才可以寫icon動態
+
+  function addClickEventToLike() {
+    let Postlikeflag = false;
+    document.querySelectorAll(".changebyclick").forEach((x) => {
+      x.addEventListener("click", function () {
+        if (Postlikeflag == false) {
+          $(".changebyclick").removeClass("far").addClass("fas");
+          console.log("愛心被點了");
+          Postlikeflag = true;
+        } else {
+          $(".changebyclick").removeClass("fas").addClass("far");
+          Postlikeflag = false;
+          console.log("愛心又被點了");
+        }
+      });
+    });
+  }
 
   //跳轉至社團Detail
-
-  document.querySelectorAll(".communityName_span").forEach((item, index) => {
-    item.addEventListener("click", (fId) => {
-      location.hash = `#community/detail/${fId}`;
-    });
-  });
+  // document.querySelectorAll(".communityName_span").forEach((item, index) => {
+  //   item.addEventListener("click", (fId) => {
+  //     location.hash = `#community/detail/${fId}`;
+  //   });
+  // });
 
   //TODO postime判斷距離現在時間
   //TODO 新增喜歡
-
   //TODO 刪除喜歡
 
   //TODO 新增留言
   //TODO 刪除留言
+
   //TODO 新增文章
   //TODO 編輯文章
   //TODO 刪除文章
+
   //TODO 照片如果有很多張怎ㄇ半
   //TODO 留言區尚未進行
+
+  //用不上的社團類別動態
+  // var CM_appearCategory_item_flag = true;
+  // $(".CM_appearCategory_item").hide();
+  // $(".CM_searchbar_category").on("click", function () {
+  //   // console.log("hi");
+  //   if (CM_appearCategory_item_flag) {
+  //     $(".CM_appearCategory_item").show();
+  //     CM_appearCategory_item_flag = false;
+  //   } else {
+  //     $(".CM_appearCategory_item").hide();
+  //     CM_appearCategory_item_flag = true;
+  //   }
+  // });
 
   //POST假資料
   // let CommunityMainFakeData = [{

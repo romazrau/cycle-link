@@ -507,3 +507,88 @@
   height: 600px; */
   width: 100%;
 }
+
+/* 留言區 */
+
+.CM_reply_item_header {
+  display: flex;
+}
+
+.CM_reply_item_header_img_container {
+  width: 20%;
+}
+.CM_reply_item_header_img_circle_border {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--lightblue-color);
+  border-radius: 50%;
+  margin: 20px;
+}
+.CM_reply_item_header_img {
+  position: absolute;
+  /* margin: 10px; */
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.CM_reply_item_header_img_img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.CM_reply_item_header_content {
+  width: 100%;
+}
+
+.CM_reply_item_header_content_info {
+  width: 80%;
+  margin: 10px;
+  /* float: right; */
+}
+
+.CM_reply_item_header_content_text {
+  width: 80%;
+  margin: 10px;
+  /* float: right; */
+}
+
+/* 輸入資料區 */
+.CM_reply_input_container {
+  /* margin: 10px 40px; */
+}
+.CM_reply_input_img_circle_border {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--lightblue-color);
+  border-radius: 50%;
+  margin: 1rem 0 0 1rem;
+}
+.CM_reply_input_img {
+  position: absolute;
+  /* top: 3px;
+  left: 3px; */
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.CM_reply_input_img_img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.CM_reply_input_container input {
+  border: none;
+  width: 90%;
+  margin: 10px 5%;
+}
