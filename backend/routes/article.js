@@ -15,10 +15,20 @@ router.get("/post", async function (req, res, next) {
     res.send(err);
   }
 });
+
 router.get("/reply", async function (req, res, next) {
   try {
     let Replyresult = await Sql.replylist();
     res.json(Replyresult);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+router.get("/:searchinput", async function (req, res, next) {
+  try {
+    let Searchresult = await Sql.searcharticle(req.params.searchinput);
+    res.json(Searchresult);
   } catch (err) {
     res.send(err);
   }

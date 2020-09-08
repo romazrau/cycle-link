@@ -9,6 +9,11 @@ function ClsRouter() {
             e.classList.remove("focus");
         })
 
+        if( hashTitle === "personal-maneger"){
+            hashTitle = "log-in";
+        }
+
+
         let targetNav = document.querySelector(`#navbar_${hashTitle}`)
         if (targetNav) { //確定這個nav存在，才套色
             targetNav.classList.add('focus');
@@ -75,6 +80,11 @@ function ClsRouter() {
                     break;
 
                 case "log-in":
+                    if(localStorage.getItem("Cycle link user data") && localStorage.getItem("Cycle link token")){
+                        location.hash = `#personal-maneger`
+                    }
+
+
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
                     break;
 

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .st1 {
+            border-bottom: 2px gray solid;
+            margin-top: 5px;
+            padding: 10px;
+            width: 300px;
+
+        }
+
+        fieldset {
+            width: 400px;
+            border-radius: 10px 0 10px 0;
+            border: skyblue solid;
+        }
+
+        fieldset legend {
+            font-size: 140%;
+            font-weight: 600;
+            font-family: 標楷體;
+
+        }
+
+        .st2 {
+            border: 2px dotted;
+            width: 200px;
+            margin: 10px;
+        }
+
+        .lb1 {
+            float: left;
+            margin-right: 10px;
+            text-align: right;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <form action="#" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <legend>個人資料</legend>
+            <div class="st1">
+                <label for="account1" class="lb1">姓名:</label><input type="text" id="account1" name="account"
+                    autofocus="guest" autocomplete="0">
+            </div>
+            <div class="st1">
+                <label for="pwd1" class="lb1">密碼:</label>
+                <input type="password" id="pwd1" name="pwd" maxlength="6" required="required">
+            </div>
+            <div class="st1">
+                <input type="radio" name="gender" value="male" id="male1"><label for="male1">男</label>
+                <label>
+                    <input type="radio" name="gender" value="female">女
+                </label>
+
+            </div>
+            <div class="st1">
+                <label for="">身分證字號:
+                    <input type="text" name="id1" id="id1" pattern="[a-zA-Z]{1}[1-2]{1}\d{8}" maxlength="10">
+                </label>
+            </div>
+            <div class="st1">
+                <label for="" name="date1">日期:
+                    <input type="datetime-local">
+                </label>
+
+            </div>
+
+            <div class="st1">
+                <label for="">網址:
+                </label>
+                <input type="url" name="url1" id="url1" list="hpurl">
+                <datalist id="hpurl">
+                    <option value="http://yahoo.com.tw"></option>
+                    <option value="http://www.google.com.tw">google</option>
+                    <option value="http://www.facebook.com"></option>
+                </datalist>
+            </div>
+
+
+        </fieldset>
+        <fieldset>
+            <legend>地址</legend>
+            <div class="st1">
+                <label>縣市:</label>
+                <select name="Livingln" id="Livingln1">
+                    <option value="TPE">台北市</option>
+                    <option value="TPH">新北市</option>
+                    <option value="TYU" selected>桃園市</option>
+                </select>
+
+
+            </div>
+            <div class="st1">
+                <label for="add1"> 完整地址:</label>
+                <input type="text" name="add" value="地址" id="add1" readonly>
+                <div class="st1">
+
+
+                </div>
+                <div class="st1">
+                    <label for="">email:
+                        <input type="email" name="email" id="email" disabled>
+                    </label>
+                </div>
+
+        </fieldset>
+        <fieldset>
+            <legend>其他</legend>
+            </div>
+            <div class="st">
+                <label for="">照片:</label>
+                <input type="file" name="picture" value="picture">
+            </div>
+            <div class="st1">
+                <label>
+                    <input type="checkbox" name="hobby" value="music">音樂
+                </label>
+                <label>
+                    <input type="checkbox" name="hobby" value="sport">運動
+                </label>
+                <label>
+                    <input type="checkbox" name="hobby" value="reading">閱讀
+                </label>
+                <label>
+                    <input type="checkbox" name="hobby" value="movie">電影
+                </label>
+
+
+            </div>
+
+
+            <div class="st1">
+                <label for="demo1" class="lb1">表格:</label>
+                <textarea cols="20" rows="5" id="demo1" name="demo"></textarea>
+            </div>
+        </fieldset>
+
+        <div class="st2">
+            <input type="submit" value="提交">
+            <input type="reset" value="清除">
+        </div>
+
+
+
+
+
+
+
+    </form>
+    <script>
+        function numberChange() {
+            var n = document.getElementById('rangeInput').value;
+            document.getElementById('rangeText').value = n;
+        }
+    </script>
+</body>
+
+</html>
