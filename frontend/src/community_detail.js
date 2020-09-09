@@ -395,6 +395,7 @@ function ClsCommuntityDetail() {
                 isPhotoFlowLoaded = 1;
             }
         }
+
     )
 
 
@@ -413,33 +414,76 @@ function ClsCommuntityDetail() {
 
 
     // ----------------------------------------------Ajax----------------------------------------------------//
-    //開啟特定社團頁面(社團id)
+    // todo
+    // 開啟特定社團頁面(社團id)
     const renderPage = async (id) => {
         try {
 
             let response = await fetch(serverURL.community + id, {
                 method: "GET", // http request method
-                headers: {           // *攜帶 http request headers 
+                //token
+                headers: {
                     "Content-Type": "application/json",
-                    // "Authorization": localStorage.getItem("Cycle link token"),  // *這個屬性帶 JWT
+                    "Authorization": localStorage.getItem("Cycle link token"),
                 },
-                // 以下跟身分認證有關，後端要使用session 要帶這幾項
                 cache: "no-cache",
                 credentials: "include",
             });
+
+            // 含有從token拿的fId
             let result = await response.json();
             // //for debug
             // console.log("%c +++++++++++++", "color: green");
             // console.log(result);
-            // console.log(result.data[0].fImgPath);
+
+
+
+            // 訪者身分
+            // ----從result取出訪者身分
+            // ----抓三個btnElement把CLS屬性設隱藏
+            // ----sitch 打開要得btn
+            let user = result.data[0].user;
+
+            document.querySelector("#ApplyBtn").setAttribute("class", "hide");
+            document.querySelector("#ManagerBtn").setAttribute("class", "hide");
+            document.querySelector("#MemberBtn").setAttribute("class", "hide");
+
+            // console.log(user);
+            // 管理員 社員 非社員(含訪客)
+            switch (user) {
+                case "管理員":
+                    document.querySelector("#ManagerBtn").classList.remove("hide");
+                    break
+                case "社員":
+                    document.querySelector("#MemberBtn").classList.remove("hide");
+                    break
+                case "非社員":
+                    document.querySelector("#ApplyBtn").classList.remove("hide");
+                    break
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // 錯誤處理:沒有回傳資料導回原頁面
             if (!result.result) {
                 //# >>> 前端路由導向
                 window.location.hash = "#community";
                 return;
             }
 
-
-            // TODO 
+            // TODO 錯誤處理
             document.querySelector("#CommunityPic").src = result.data[0].fImgPath;
             document.querySelector("#CommunityName").innerHTML = result.data[0].fName;
             document.querySelector("#CommunityNumberOfPeople").innerHTML = result.data[0].totalNumber;
@@ -470,8 +514,38 @@ function ClsCommuntityDetail() {
             });
 
             let result = await response.json();
-            document.querySelector("#CommunityManager").innerHTML = result.data[0].fName;
 
+            //----成員文字樣板
+
+
+
+            let MemberContainer = document.querySelector("#MemberTemplate");
+            const data2manageImg = (o) => {
+
+                // console.log(o.fPhotoPath);
+
+                return `<div class="activity_detail_info_img_circle">
+                 <div class="activity_detail_info_img_div">
+                     <img src="${o.fPhotoPath}" class="activity_detail_info_img">
+                 </div>
+                 </div>
+                 <div class="GroupRightInfo FlexContainer GroupRightInfoText">
+                 <a id="CommunityManager" href="#" class="GroupHolderName">${o.fName}</a>
+                 <a class="GroupEnglishFont GroupRightInfoM" href="#">
+                 <img src="./img/icon_chat.svg" width="20"></a>
+                 </div>`;
+            };
+
+            MemberContainer.innerHTML = "";
+
+
+            result.data.map((item) => {
+                MemberContainer.innerHTML += data2manageImg(item);
+                console.log(item);
+            })
+
+
+            // document.querySelector("#CommunityManager").innerHTML = result.data[0].fName;
 
 
         }
@@ -481,21 +555,27 @@ function ClsCommuntityDetail() {
             console.log(err);
         }
 
+
+
+
+
     }
 
 
-    //this 指的是 ClsCommuntityDetail
+
+
+    // this 指的是 ClsCommuntityDetail
     this.renderMainCommunityInfo = renderPage;
     this.renderMemberListInfo = renderPageMember;
 
 }
 const CommuntityDetail = new ClsCommuntityDetail();
 
-//* 利用 hash , 如下
+// * 利用 hash , 如下
 // * -------------------------------- hash -------------------------------- //
 const communityDetailChangeHash = () => {
 
-    //Window物件方法偵測URL改變 執行rederPage function
+    //!Window物件方法偵測URL改變 執行rederPage function
     let actDetailArr = window.location.hash.split('/');   // #community/detail/3  -> [ #community, detail, 3 ]
     let actDetailId = actDetailArr[2];
     if (location.hash.includes("#community/detail/")) {

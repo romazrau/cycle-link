@@ -69,7 +69,6 @@ const checkLogin = async () => {
     cache: "no-cache", // 不准使用快取
     headers: {
       // *攜帶 http request headers
-      "Content-Type": "application/json",
       Authorization: localStorage.getItem("Cycle link token"), // *這個屬性帶 JWT
     },
   });

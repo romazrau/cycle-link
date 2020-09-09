@@ -49,6 +49,54 @@
   list-style: none;
 }
 
+
+.div_container_login{
+  display: flex;
+
+}
+
+.navebar_msg_icons{
+  display: flex;
+  justify-items: flex-end;
+  align-items: center;
+}
+
+
+.login_bullhorn {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+#header_link_login{
+  display: flex;
+  align-items: center;
+  padding: 1rem 2vw;
+}
+
+
+#navbar_logout {
+  transform: scale(1.2);
+}
+
+#navbar_logout:hover {
+  transform: scale(1.4);
+}
+
+
+
+.login_bullhorn:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
 .navbar_menu {
   display: none;
   flex-direction: column;

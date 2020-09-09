@@ -186,7 +186,7 @@ const communityById_communityDetail = async (fid) => {
         const result = await sql.query(sqlStr)
 
 
-        console.log(result);
+        // console.log(result);
 
         //如果沒撈到資料的錯誤處理
         if (!result.rowsAffected[0]) {
@@ -225,7 +225,7 @@ const communityById_communityManager = async (fid) => {
         select MemberList.fMemberId
               ,MemberList.fAccessRightId
         from Community.tMemberList as MemberList
-        where fCommunityId =  ${fid} and fAccessRightId = 3
+        where fCommunityId = ${fid} and fAccessRightId = 3
         ),
         v_getCommunitytAccessRight
         as(
@@ -236,7 +236,8 @@ const communityById_communityManager = async (fid) => {
         on v_Community.fAccessRightId = CommunitytAccessRight.fId 
         )
         
-        select  MembertMember.fName,
+        select  MembertMember.fId,
+                MembertMember.fName,
                 MembertMember.fPhotoPath	       
         from v_getCommunitytAccessRight as v_getCommunitytAccessRight
         LEFT JOIN Member.tMember as MembertMember
@@ -272,14 +273,15 @@ const communityById_communityMember = async (fid) => {
 
 
         let sqlStr = `
-        select CommunitytMemberList.fId,
-      CommunitytMemberList.fJoinDate,
-      MembertMember.fName,
-      MembertMember.fPhotoPath
-      from Community.tMemberList as  CommunitytMemberList
-      LEFT JOIN Member.tMember as MembertMember
-       on MembertMember.fId = CommunitytMemberList.fMemberId
-       where CommunitytMemberList.fCommunityId = ${fid}
+        select CommunitytMemberList.fMemberId,
+       CommunitytMemberList.fJoinDate,
+       MembertMember.fName,
+	   MembertMember.fPhotoPath
+       
+from Community.tMemberList as  CommunitytMemberList
+LEFT JOIN Member.tMember as MembertMember
+on MembertMember.fId = CommunitytMemberList.fMemberId
+where CommunitytMemberList.fCommunityId = ${fid}
         `;
 
         const result = await sql.query(sqlStr)
