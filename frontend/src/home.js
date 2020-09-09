@@ -89,10 +89,10 @@ function getBannerTime(t, index) {
 
   let sec = parseInt(offsetTime % 60); // 秒
   let min = parseInt((offsetTime / 60) % 60); // 分 ex: 90秒
-  let hr = parseInt(offsetTime / 60 / 60) % 60; // 時
-  let day = parseInt((offsetTime / 60 / 60) % 24)
+  let hr = parseInt(offsetTime / 60 / 60)%60; // 時
+  let day = parseInt((offsetTime / 60 / 60)%24)
   // console.log("p2:",$(".home_top_event_p2").eq(index));
-  $(".home_top_event_p2").eq(index).innerHTML = "倒數" + day + " 天 " + hr + " 時 " + min + " 分 " + sec + " 秒 "
+  $(".home_top_event_p2").eq(index).innerHTML="倒數"+day+" 天 "+hr+" 時 "+min+" 分 "+sec+" 秒 "
 }
 
 

@@ -423,7 +423,6 @@ function ClsCommuntityDetail() {
                 method: "GET", // http request method
                 //token
                 headers: {
-                    "Content-Type": "application/json",
                     "Authorization": localStorage.getItem("Cycle link token"),
                 },
                 cache: "no-cache",
@@ -432,11 +431,19 @@ function ClsCommuntityDetail() {
 
             // 含有從token拿的fId
             let result = await response.json();
+
+
+
+            // 錯誤處理:沒有回傳資料導回原頁面 
+            if (!result.result) {
+                //# >>> 前端路由導向
+                window.location.hash = "#community";
+                return;
+            }
+
             // //for debug
             // console.log("%c +++++++++++++", "color: green");
             // console.log(result);
-
-
 
             // 訪者身分
             // ----從result取出訪者身分
@@ -465,28 +472,11 @@ function ClsCommuntityDetail() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-            // 錯誤處理:沒有回傳資料導回原頁面
-            if (!result.result) {
-                //# >>> 前端路由導向
-                window.location.hash = "#community";
-                return;
-            }
-
             // TODO 錯誤處理
             document.querySelector("#CommunityPic").src = result.data[0].fImgPath;
             document.querySelector("#CommunityName").innerHTML = result.data[0].fName;
             document.querySelector("#CommunityNumberOfPeople").innerHTML = result.data[0].totalNumber;
+            document.querySelector("#NumOfMem").innerHTML = `(${result.data[0].totalNumber})`;
             document.querySelector("#CommunityStatus").innerHTML = result.data[0].fSatusName;
             document.querySelector("#CommunityAboutUs").innerHTML = result.data[0].fInfo;
 
@@ -500,72 +490,112 @@ function ClsCommuntityDetail() {
     }
 
 
-    const renderPageMember = async (id) => {
+    const renderPageManager = async (id) => {
         try {
             let response = await fetch(serverURL.communityManager + id, {
                 method: "GET", // http request method
-                headers: {
-                    // http headers
-                    "Content-Type": "application/json", // 請求的資料類型
-                },
                 // 以下跟身分認證有關，後端要使用session 要帶這幾項
                 cache: "no-cache",
                 credentials: "include",
             });
 
             let result = await response.json();
-
-            //----成員文字樣板
-
+            console.log("+++++++++++++++++++++++++++");
+            console.log(result.data);
 
 
             let MemberContainer = document.querySelector("#MemberTemplate");
-            const data2manageImg = (o) => {
-
-                // console.log(o.fPhotoPath);
-
-                return `<div class="activity_detail_info_img_circle">
-                 <div class="activity_detail_info_img_div">
-                     <img src="${o.fPhotoPath}" class="activity_detail_info_img">
-                 </div>
-                 </div>
-                 <div class="GroupRightInfo FlexContainer GroupRightInfoText">
-                 <a id="CommunityManager" href="#" class="GroupHolderName">${o.fName}</a>
-                 <a class="GroupEnglishFont GroupRightInfoM" href="#">
-                 <img src="./img/icon_chat.svg" width="20"></a>
-                 </div>`;
-            };
-
             MemberContainer.innerHTML = "";
 
-
-            result.data.map((item) => {
-                MemberContainer.innerHTML += data2manageImg(item);
-                console.log(item);
-            })
-
+            if (result.result) {
+                result.data.map((item) => {
+                    MemberContainer.innerHTML += data2manageImg(item);
+                    // console.log(item);
+                })
+            }
 
             // document.querySelector("#CommunityManager").innerHTML = result.data[0].fName;
-
-
         }
         catch (err) {
-
-
             console.log(err);
         }
 
 
 
+    }
+    const renderPageMember = async (id) => {
+        try {
+            // console.log(`${serverURL.communityMember}${id}`);
+            let response = await fetch(`${serverURL.communityMember}${id}`, {
+                cache: "no-cache",
+                headers: {
+                    "Authorization": localStorage.getItem("Cycle link token"),
+                },
+            });
 
+            let result = await response.json();
+
+            console.log(result.data);
+
+            let MemberContainer = document.querySelector("#CommunityMember");
+            MemberContainer.innerHTML = "";
+
+            if (result.result) {
+
+                result.data.map((item) => {
+                    MemberContainer.innerHTML += data2memImg(item);
+                    // console.log(item);
+                })
+
+
+            }
+
+            //顯示處理
+            if (result.data.length < 4) {
+                document.querySelector("#CommunityMember").classList.remove("Group_FlexJustifyContentSB");
+                document.querySelector("#GroupMemberPicLessThan4").classList.add("GroupMemberPicLessThan4");
+            }
+
+
+        }
+        catch (err) {
+            console.log(err);
+        }
 
     }
 
+
+    // 管理員頭像的文字樣板
+    const data2manageImg = (o) => {
+
+        // console.log(o.fPhotoPath);
+        return `<div class="activity_detail_info_img_circle">
+         <div class="activity_detail_info_img_div">
+             <img src="${o.fPhotoPath}" class="activity_detail_info_img">
+         </div>
+         </div>
+         <div class="GroupRightInfo FlexContainer GroupRightInfoText">
+         <a id="CommunityManager" href="#" class="GroupHolderName">${o.fName}</a>
+         <a class="GroupEnglishFont GroupRightInfoM" href="#">
+         <img src="./img/icon_chat.svg" width="20"></a>
+         </div>`;
+    };
+
+    //會員頭像的文字樣板
+    const data2memImg = (o) => {
+        return ` <div id="GroupMemberPicLessThan4" class="activity_detail_info_img_circle GroupMemberPic GroupMemberPicLessThan4">
+        <div class="activity_detail_info_img_div">
+            <img class="activity_detail_info_img GoupRightInfoPhoto" src="${o.fPhotoPath}"
+                width="30">
+        </div>
+    </div>`
+    }
 
 
 
     // this 指的是 ClsCommuntityDetail
     this.renderMainCommunityInfo = renderPage;
+    this.renderManagerListInfo = renderPageManager;
     this.renderMemberListInfo = renderPageMember;
 
 }
@@ -580,7 +610,10 @@ const communityDetailChangeHash = () => {
     let actDetailId = actDetailArr[2];
     if (location.hash.includes("#community/detail/")) {
         CommuntityDetail.renderMainCommunityInfo(actDetailId);
+        CommuntityDetail.renderManagerListInfo(actDetailId);
         CommuntityDetail.renderMemberListInfo(actDetailId);
+
+
 
 
     }
