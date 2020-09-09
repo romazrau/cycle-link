@@ -414,8 +414,10 @@ function ClsCommuntityDetail() {
 
 
     // ----------------------------------------------Ajax----------------------------------------------------//
-    // todo
+
     // 開啟特定社團頁面(社團id)
+
+
     const renderPage = async (id) => {
         try {
 
@@ -472,11 +474,22 @@ function ClsCommuntityDetail() {
 
 
 
+
+
+
             // TODO 錯誤處理
             document.querySelector("#CommunityPic").src = result.data[0].fImgPath;
             document.querySelector("#CommunityName").innerHTML = result.data[0].fName;
             document.querySelector("#CommunityNumberOfPeople").innerHTML = result.data[0].totalNumber;
-            document.querySelector("#NumOfMem").innerHTML = `(${result.data[0].totalNumber})`;
+
+            if (!result.data[0].totalNumber) {
+                document.querySelector("#NumOfMem").innerHTML = `(0)`;
+
+            }
+            else {
+                document.querySelector("#NumOfMem").innerHTML = `(${result.data[0].totalNumber})`;
+
+            }
             document.querySelector("#CommunityStatus").innerHTML = result.data[0].fSatusName;
             document.querySelector("#CommunityAboutUs").innerHTML = result.data[0].fInfo;
 
@@ -500,8 +513,8 @@ function ClsCommuntityDetail() {
             });
 
             let result = await response.json();
-            console.log("+++++++++++++++++++++++++++");
-            console.log(result.data);
+            // console.log("+++++++++++++++++++++++++++");
+            // console.log(result.data);
 
 
             let MemberContainer = document.querySelector("#MemberTemplate");
@@ -523,6 +536,8 @@ function ClsCommuntityDetail() {
 
 
     }
+
+    // todo開放或私密 用社團16做測試
     const renderPageMember = async (id) => {
         try {
             // console.log(`${serverURL.communityMember}${id}`);
@@ -535,11 +550,43 @@ function ClsCommuntityDetail() {
 
             let result = await response.json();
 
-            console.log(result.data);
+            //----------------------------------成員---------------------------------------
 
+
+
+
+            document.querySelector("#MemberPageTemplateContainer").innerHTML = "";
+            document.querySelector("#MemberPageTemplateContainerM").innerHTML = "";
+
+
+            if (result.result) {
+
+                result.data.forEach((items) => {
+                    if (items.ifManager == 0) {
+
+                        document.querySelector("#MemberPageTemplateContainer").innerHTML += data2memCard(items);
+                    }
+                    else {
+                        document.querySelector("#MemberPageTemplateContainerM").innerHTML += data2memCard(items);
+                    }
+                })
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+            //----------------------------------介紹---------------------------------------
             let MemberContainer = document.querySelector("#CommunityMember");
             MemberContainer.innerHTML = "";
-
+            console.log(result);
             if (result.result) {
 
                 result.data.map((item) => {
@@ -565,7 +612,7 @@ function ClsCommuntityDetail() {
     }
 
 
-    // 管理員頭像的文字樣板
+    // 介紹分頁--管理員頭像的文字樣板
     const data2manageImg = (o) => {
 
         // console.log(o.fPhotoPath);
@@ -581,13 +628,44 @@ function ClsCommuntityDetail() {
          </div>`;
     };
 
-    //會員頭像的文字樣板
+    // 介紹分頁-- 會員頭像的文字樣板
     const data2memImg = (o) => {
+
+        console.log("111111111111");
+
         return ` <div id="GroupMemberPicLessThan4" class="activity_detail_info_img_circle GroupMemberPic GroupMemberPicLessThan4">
         <div class="activity_detail_info_img_div">
             <img class="activity_detail_info_img GoupRightInfoPhoto" src="${o.fPhotoPath}"
                 width="30">
         </div>
+    </div>`
+    }
+
+    // 成員分頁--會員卡的文字樣板
+    const data2memCard = (o) => {
+        return ` <div
+        class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
+        <div class="FlexContainer">
+            <a href="#" class="DivForImg">
+                <div class="activity_detail_info_img_circle">
+                    <div class="activity_detail_info_img_div">
+                        <img src=${o.fPhotoPath}
+                            class="activity_detail_info_img">
+                    </div>
+                </div>
+            </a>
+            <div class="GroupMemberCardInfo">
+                <a href="#">${o.fName}</a>
+                <div class="FlexContainer">
+                    <div>${o.fJoinDate}</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;加入此社團</div>
+                </div>
+            </div>
+        </div>
+        <a href="#">
+            <img class="Size20IconMarginRight" src="./img/icon_chat.svg"
+                width="20">
+        </a>
     </div>`
     }
 
