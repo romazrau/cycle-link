@@ -3,16 +3,17 @@ const sql = require('mssql');
 
 // *資料庫連結設定檔 大家都把 sa 的密碼改成 everybodycanuse 才能一直用喔
 const config = {
-    user: 'sa',
-    password: 'everybodycanuse',
-    server: 'localhost', // You can use 'localhost\\instance' to connect to named instance
-    database: 'SeaTurtleOnTheWay',
-
+    // user: 'sa',
+    // password: 'P@ssw0rd',
+    user: process.env.SQLSERVER_USER || 'sa',
+    password: process.env.SQLSERVER_PASSWORD || 'everybodycanuse',
+    server: process.env.SQLSERVER_SERVER || 'localhost', // You can use 'localhost\\instance' to connect to named instance
+    database: process.env.SQLSERVER_DATABASE ||'SeaTurtleOnTheWay',
     options: {
         enableArithAbort: true,
         encrypt: true
-    },
-    port: 1433,
+      },
+      port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
 }
 
 // 設計 SQL指令方法
@@ -183,13 +184,15 @@ const JoinCount = async (fid) => {
 
 //* ----------------------- 新增活動 ----------------------- //
 
-const creatAct = async (fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation) => {
+const createAct = async (fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation, fLabelName) => {
     try {
         await sql.connect(config)
         let sqlStr = `
-        insert into Activity.tActivity
-        (fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation)
-    values ('${fActName}', '${fCreatDate}','${fActivityDate}', '${fActivityEndDate}', ${fMemberId}, '${fIntroduction}', '${fImgPath}', ${fActLabelId}, ${fMaxLimit}, ${fMinLimit}, ${fActAttestId},${fActTypeId},'${fActLocation}')`
+        insert into Activity.tActivity(fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation)
+values ('${fActName}', '${fCreatDate}','${fActivityDate}', '${fActivityEndDate}', ${fMemberId}, '${fIntroduction}', '${fImgPath}', ${fActLabelId}, ${fMaxLimit}, ${fMinLimit}, ${fActAttestId},${fActTypeId},'${fActLocation}');
+insert into Activity.tActivityLabel (fLabelName)
+values ('${fLabelName}')`
+        console.log(sqlStr);
         const result = await sql.query(sqlStr)
         // console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
@@ -208,8 +211,9 @@ const creatAct = async (fActName, fCreatDate, fActivityDate, fActivityEndDate, f
     }
 };
 
+
 //* ----------------------- 新增標籤 ----------------------- //
-const creatActTag = async (fLabelName) => {
+const createActTag = async (fLabelName) => {
     try {
         await sql.connect(config)
         let sqlStr = `
@@ -251,6 +255,6 @@ module.exports = {
     TagById,
     JoinById,
     JoinCount,
-    creatAct,
-    creatActTag
+    createAct
+    // createActTag
 };

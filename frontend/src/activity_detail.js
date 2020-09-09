@@ -203,7 +203,7 @@ function ClsActivityDetail() {
                 activity_detail_bigTag.innerHTML = actDetail_bigTag(e);
                 actDetailRightInfo.innerHTML = actDetailRightInfoALL(e);
                 actMap(e.fCoordinateX, e.fCoordinateY);
-                console.log(e.fCoordinateX)
+                // console.log(e.fCoordinateX)
 
                 if (e.CommuntyName !== null) {
                     actDetailSocieties.innerHTML = actDetailSocietiesALL(e);
@@ -300,25 +300,44 @@ function ClsActivityDetail() {
         }
     }
 
+    // function getActDetail() {
+    //     let nowtime = new Date();
+    //     let date = nowtime.toLocaleDateString();
+    //     console.log(date)
+
+    //     let timesplit = nowtime.toTimeString().split(" ");
+    //     let time = timesplit[0];
+    //     let now = date + " " + time;
+    //     now = now.split("/").join(",");
+
+    // }
 
     // ! ------------- 傳送表單 ------------- //
-    $("#actCreatTagSubmit").click(async function (e) {
+    $("#create_active_btn_done").click(async (e) => {
         e.preventDefault();
         // console.log(e);
-        let form = document.querySelector("#actCreatTag");
+        // console.log(localStorage.getItem("Cycle link token"));
+        let nowtime = new Date();
+        let date = nowtime.toLocaleDateString();
+        console.log("目前日期: " + date);
+        let form = document.querySelector("#creatAct_form");
+        // console.log(form);
         let formData = new FormData(form);
+        formData.append('fCreatDate', date);
+        // console.log(now);
         try {
-            let response = await fetch(serverURL.actDetail + "tag", {
+            let response = await fetch(serverURL.actDetail, {
                 method: "POST", // POST
                 body: formData, // *攜帶的 FormData
-                cache: 'no-cache',
-                credentials: 'include',
                 mode: 'cors',
                 referrer: "client",
-            })
-            let result = await response.json();
-            console.log(result);
+                headers: { // http headers
+                    Authorization: localStorage.getItem("Cycle link token"),
+                }
 
+            })
+            let result = await response.text();
+            console.log(result);
         } catch (err) {
             console.log(err);
         }

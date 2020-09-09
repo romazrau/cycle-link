@@ -24,8 +24,9 @@ document.querySelector("#loginSubmit").addEventListener(
 
             console.log(result);
             if (result.result == "1") {
-                let show = `<i class="fas fa-bullhorn login_bullhorn"></i> <div><p>${result.data.fName}</p><p>歡迎</p></div>`;
+                let show = `<div>${result.data.fName}<br/>歡迎</div>`;
                 document.querySelector("#header_link_login").innerHTML = show;
+                document.querySelector('.navebar_msg_icons').classList.remove("hide");
                 location.hash = "#personal-maneger";
 
                 window.localStorage.setItem("Cycle link token", result.token);   // *存前端來的 JWT 進 localStorage 裡

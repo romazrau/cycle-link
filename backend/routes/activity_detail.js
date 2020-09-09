@@ -53,27 +53,83 @@ router.get('/:id', async function (req, res, next) {
 
 //* ----------------------- 新增活動 ----------------------- //
 router.post('/', async function (req, res, next) {
+
+    if (!req.user) {
+        // 確認 JWT 有解析成功
+        res.json({
+            result: 0,
+            msg: "未登入"
+        });
+        return;
+    }
+
     try {
+        console.log("====try start===");
+        console.log("會員ID: ",
+            req.user);
+        console.log(req.user.fAccountType);
+
+
+
         console.log(req.body);
+        let fActTypeId = 1;
+
         let {
             fActName,
             fCreatDate,
             fActivityDate,
             fActivityEndDate,
-            fMemberId,
             fIntroduction,
             fImgPath,
             fActLabelId,
             fMaxLimit,
             fMinLimit,
             fActAttestId,
-            fActTypeId,
-            fActLocation
+            fActLocation,
+            fLabelName
         } = req.body
+        if (!fImgPath) {
+            fImgPath = null;
+        }
+        if (!fMaxLimit) {
+            fMaxLimit = null;
+        }
+        if (!fMinLimit) {
+            fMinLimit = null
+        }
+        if (req.user.fAccountType == "普通會員") {
+            fActAttestId = 1
+        } else if (req.user.fAccountType == "公眾人物") {
+            fActAttestId = 2
+        } else if (req.user.fAccountType == "白鯨會員") {
+            fActAttestId = 3
+        } else if (req.user.fAccountType == "白鯨公眾人物") {
+            fActAttestId = 4
+        }
 
-        let result = await Sql.creatAct(fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation);
-        res.json(result);
+
+
+
+
+
+        let fMemberId = req.user.fId;
+        // req.user.fId = 13;
+        console.log(fMemberId)
+        let result = await Sql.createAct(fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation, fLabelName);
+        if (!result.result) {
+            res.json(result.data.message);
+            return;
+        }
+
+
+        res.json({
+            result: 1,
+            msg: "傳送成功"
+        });
+
     } catch (err) {
+        console.log(err);
+        console.log("======0=");
         res.send(err);
     }
 })
@@ -91,7 +147,7 @@ router.post('/tag', async function (req, res, next) {
             return;
         }
 
-        let result = await Sql.creatActTag(req.body.fLabelName);
+        let result = await Sql.createActTag(req.body.fLabelName);
 
         res.json(result);
     } catch (err) {

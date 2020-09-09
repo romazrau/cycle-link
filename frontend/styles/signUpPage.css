@@ -144,15 +144,3 @@
 
 
 
-.login_bullhorn {
-    margin-right: 2rem;
-}
-
-#header_link_login {
-    display: flex;
-    align-items: center;
-}
-
-#header_link_login p {
-    margin: 0;
-}

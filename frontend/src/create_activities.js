@@ -1,18 +1,20 @@
 // ----------- 頁面轉換 -----------
 $(".create_active_basicInfo").eq(0).css("display", "block").siblings().css("display", "none");
-
+console.log($(".create_active_basicInfo"));
 $(".create_active_title_div").click(function () {
     hcTitle = $(this).index();
+    console.log(hcTitle)
     $(".create_active_basicInfo").eq(hcTitle).css("display", "block").siblings().css("display", "none");
     // console.log($(".create_active_basicInfo"));
 });
+
 $("#create_active_btn_next").click(function () {
     $(".create_active_basicInfo").eq(1).css("display", "block").siblings().css("display", "none");
     console.log($(".create_active_basicInfo"));
 });
 $("#create_active_btn_pre").click(function () {
     $(".create_active_basicInfo").eq(0).css("display", "block").siblings().css("display", "none");
-    console.log($(".create_active_basicInfo"));
+    // console.log($(".create_active_basicInfo"));
 });
 
 // ----------- 字數限制 -----------

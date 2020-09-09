@@ -3,36 +3,32 @@ const sql = require('mssql');
 const config = {
     // user: 'sa',
     // password: 'P@ssw0rd',
-    user: 'sa',
-    password: 'everybodycanuse',
-    server: 'localhost', // You can use 'localhost\\instance' to connect to named instance
-    database: 'SeaTurtleOnTheWay',
-
+    user: process.env.SQLSERVER_USER || 'sa',
+    password: process.env.SQLSERVER_PASSWORD || 'everybodycanuse',
+    server: process.env.SQLSERVER_SERVER || 'localhost', // You can use 'localhost\\instance' to connect to named instance
+    database: process.env.SQLSERVER_DATABASE ||'SeaTurtleOnTheWay',
     options: {
         enableArithAbort: true,
         encrypt: true
-    },
-    port: 1433,
+      },
+      port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
 }
 
 
-
 //登入
-const Community_AddLike = async (PostId, MemberId) => {
+const Community_AddLike = async (fPostId, fLikeMemberId) => {
     try {
         // make sure that any items are correctly URL encoded in the connection string
         await sql.connect(config)
         const sqlString = `
         INSERT INTO Community.tLike(fPostId,fLikeMemberId)
-        VALUES(${PostId},${MemberId})
+        VALUES(${fPostId},${fLikeMemberId})
         `
         const result = await sql.query(sqlString);
         console.dir(result);
 
-        if (!result.rowsAffected[0]) {
-            return { result: 0, msg: "帳號或密碼錯誤" }
-        }
-        return { result: 1, msg: "登入成功", data: result.recordset };
+       
+        return { result: 1, msg: "新增成功", data: result.recordset };
     } catch (err) {
         console.log(err);
         return { result: 0, msg: "SQL 問題", data: result };
@@ -50,17 +46,33 @@ const Community_RemoveLike = async (PostId, MemberId) => {
         const result = await sql.query(sqlString);
         console.dir(result);
 
-        if (!result.rowsAffected[0]) {
-            return { result: 0, msg: "帳號或密碼錯誤" }
-        }
-        return { result: 1, msg: "登入成功", data: result.recordset };
+        return { result: 1, msg: "刪除成功", data: result.recordset };
     } catch (err) {
         console.log(err);
         return { result: 0, msg: "SQL 問題", data: result };
     }
 };
 
-// Community_AddLike();
+// Community_RemoveLike(3,5);
+const getLikes = async (PostId, MemberId) => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        await sql.connect(config)
+        const sqlString = `
+        SELECT *
+        FROM Community.tLike
+        `
+        const result = await sql.query(sqlString);
+        console.dir(result);
+
+        return { result: 1, msg: "刪除成功", data: result.recordset };
+    } catch (err) {
+        console.log(err);
+        return { result: 0, msg: "SQL 問題", data: result };
+    }
+};
 
 
-module.exports = { Community_AddLike,Community_RemoveLike };
+
+
+module.exports = { Community_AddLike,Community_RemoveLike,getLikes };

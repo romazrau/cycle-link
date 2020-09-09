@@ -255,12 +255,22 @@ ${ImgIsNullOrNot(x.PostImg)}
         if (Postlikeflag == false) {
           LikeIconItems.classList.remove("far");
           LikeIconItems.classList.add("fas");
-          // console.log("愛心被點了");
+          //取ID增點讚
+          let id_arr = this.id.split("fId");
+         
+          addLikeToSQL(id_arr[1]);
+          
+          
           Postlikeflag = true;
         } else {
           LikeIconItems.classList.remove("fas");
           LikeIconItems.classList.add("far");
+
           Postlikeflag = false;
+          let id_arr = this.id.split("fId");
+          console.log(id_arr[1]);
+          removeLikeToSQL(id_arr[1]);
+          
           // console.log("愛心又被點了");
         }
       });
@@ -289,8 +299,50 @@ ${ImgIsNullOrNot(x.PostImg)}
 
   //TODO postime判斷距離現在時間
   //TODO 新增喜歡
+const addLikeToSQL = async (P) => {
+  try {
+    
+    
+    var formdata=new FormData()
+    formdata.append("fPostId",P)
+      let response = await fetch(serverURL.addlikes, {
+          method: "POST", // http request method 
+          headers: { // http headers
+            Authorization: localStorage.getItem("Cycle link token"),
+          },
+          body:formdata,   
+          cache: 'no-cache',
+          credentials: 'include',
+      });
+      let result = await response.json();     
+      console.log(result);
+  } catch (err) {
+      console.log(err);
+      // 錯誤處理
+  }
+}
   //TODO 刪除喜歡
-
+  const removeLikeToSQL = async (P) => {
+    try {
+      console.log("P:",P)
+      var formdata=new FormData()
+    formdata.append("fPostId",P)
+        let response = await fetch(serverURL.removelikes, {
+            method: "DELETE", // http request method 
+            headers: { // http headers
+              Authorization: localStorage.getItem("Cycle link token"),
+            },
+            body:formdata,   
+            cache: 'no-cache',
+            credentials: 'include',
+        });
+        let result = await response.json();     
+        console.log(result);
+    } catch (err) {
+        console.log(err);
+        // 錯誤處理
+    }
+  }
   //TODO 新增留言
   //TODO 刪除留言
 
