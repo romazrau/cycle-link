@@ -27,22 +27,22 @@ function ClsActivity() {
     var activity_search_go = document.getElementById("activity_search_go");
     var activity_card_ALL = document.getElementById("activity_card_ALL");
     var activity_main = document.querySelector(".activity_main");
-    var activity_option  = document.getElementById("activity_option");
-    var searchtext =  document.getElementById("search_txt");
+    var activity_option = document.getElementById("activity_option");
+    var searchtext = document.getElementById("search_txt");
 
-    activity_search_go.addEventListener('click',function () {
+    activity_search_go.addEventListener('click', function () {
         var typeId = activity_option.value;
         var searchtxt = searchtext.value;
         activity_card_ALL.style.display = 'none';
         activity_main.style.display = 'block';
-        activeSearchGoAwait(typeId,searchtxt);
-        
-        
-    })
-    
-    
+        activeSearchGoAwait(typeId, searchtxt);
 
-    
+
+    })
+
+
+
+
 
     // * ---------------- 文字樣板 -----------------
 
@@ -53,16 +53,16 @@ function ClsActivity() {
     const ActSearch = document.querySelector("#activity_option");
 
 
-   
+
 
     const display_active_main_level = (o) => {
         o.map(
-            (e,index) => {
+            (e, index) => {
                 ActSearch.innerHTML += htmlActSearch(e);
             }
         )
     };
-    
+
     const activemainlevelAwait = async () => {
         try {
             // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
@@ -78,7 +78,7 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-            
+
             display_active_main_level(result.data);
             // *用 result  do something ...
 
@@ -93,7 +93,7 @@ function ClsActivity() {
 
 
 
-    const activeSearchGoAwait = async (id,text) => {
+    const activeSearchGoAwait = async (id, text) => {
         try {
             // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  ),
             // *用變數接 fetch 結果 ，要用await等。
@@ -108,7 +108,7 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-           display_search_go(result.data);
+            display_search_go(result.data);
             // *用 result  do something ...
 
         } catch (err) {
@@ -117,7 +117,7 @@ function ClsActivity() {
         }
     }
 
-    
+
 
 
 
@@ -136,9 +136,8 @@ function ClsActivity() {
 
     //防止冒泡
     const stopdate = document.querySelectorAll(".ui-state-default");
-    for(var i =0;i<stopdate.length;i++)
-    {
-        stopdate[i].addEventListener("click",function(){
+    for (var i = 0; i < stopdate.length; i++) {
+        stopdate[i].addEventListener("click", function () {
             console.log("WTF");
             event.preventDefault();
         })
@@ -183,11 +182,10 @@ function ClsActivity() {
     btncity.addEventListener('click', function () {
         btncity.classList.add("search_hidden");
         $("#search_citydetial").fadeIn("5000")
-                btncitydetial.classList.remove("search_hidden");
-        ;
-        
+        btncitydetial.classList.remove("search_hidden");;
+
         // btncitydetial.classList.add("search_hidden");
-        
+
     });
     var list = document.getElementsByTagName("li");
     var searchcitytext = "";
@@ -206,7 +204,7 @@ function ClsActivity() {
     var btndatedetial = document.getElementById("search_datedetial");
     btndate.addEventListener('click', function () {
         btndate.classList.add("search_hidden");
-        
+
         $("#search_datedetial").fadeIn("5000");
         btndatedetial.classList.remove("search_hidden");
     });
@@ -283,7 +281,7 @@ function ClsActivity() {
 
 
 
-  // 活動樣板
+    // 活動樣板
     const htmlActCard = (o) => {
         return ` <a  href="#activity/detail/${o.fId}" class="activecard">
     <div class="active_card_container">
@@ -327,7 +325,7 @@ function ClsActivity() {
 
     // 搜尋結果
     //todo 圖片路徑 目前是寫死的 如有更新後需更改為動態
-    const htmlActSearchgo = (o) =>{
+    const htmlActSearchgo = (o) => {
         return `
         
         <a  href="#activity/detail/${o.fId}">
@@ -354,7 +352,7 @@ function ClsActivity() {
     //ActCardData
     //* ------------------------------------- 文字樣板 -------------------------------------
     const display_active = (o) => {
-        
+
         o.map(
             (e, index) => {
                 // console.log(e);
@@ -368,9 +366,9 @@ function ClsActivity() {
 
     const ActSeen = document.getElementById("activity_event_history")
 
-    const display_active_seen = (o) =>{
+    const display_active_seen = (o) => {
         ActSeen.innerHTML = "";
-        o.map((e,index)=>{
+        o.map((e, index) => {
             ActSeen.innerHTML += htmlActCard(e);
         })
     }
@@ -378,7 +376,7 @@ function ClsActivity() {
     const ActSearchresult = document.getElementById("activesearchresult");
     const Actforyou = document.getElementById("activity_event_recommend");
     const display_active_foryou = (o) => {
-        
+
         o.map(
             (e, index) => {
                 // console.log(e);
@@ -390,10 +388,10 @@ function ClsActivity() {
     }
 
 
-    const display_search_go = (o) =>{
+    const display_search_go = (o) => {
         ActSearchresult.innerHTML = "";
-        o.map((e,index)=>{
-            
+        o.map((e, index) => {
+
             ActSearchresult.innerHTML += htmlActSearchgo(e);
         })
     }
@@ -413,7 +411,7 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-            
+
             display_active(result.data);
             getactid();
 
@@ -425,7 +423,7 @@ function ClsActivity() {
     }
     activeAwait();
     // todo 為您推薦 
-    const activeforyou  = async () => {
+    const activeforyou = async () => {
         try {
             // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
             // *用變數接 fetch 結果 ，要用await等。
@@ -440,7 +438,7 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-            
+
             // display_active_foryou(result.data);
             getactid();
         } catch (err) {
@@ -483,47 +481,47 @@ function ClsActivity() {
     activeseenAwait();
 
     //取的瀏覽紀錄的活動id 時間
-    function getactid (){
+    function getactid() {
         var selectactive = document.querySelectorAll(".activecard");
-        
+
         let nowtime = new Date();
         let date = nowtime.toLocaleDateString();
+        // console.log(date)
         let timesplit = nowtime.toTimeString().split(" ");
         let time = timesplit[0];
-        let now = date+" "+time;
+        let now = date + " " + time;
         now = now.split("/").join(",");
 
 
-        let activeseenId ;
-        for(let i = 0;i<selectactive.length;i++)
-        {
-            selectactive[i].addEventListener('click',function(){
-                let ahref= selectactive[i].href;
+        let activeseenId;
+        for (let i = 0; i < selectactive.length; i++) {
+            selectactive[i].addEventListener('click', function () {
+                let ahref = selectactive[i].href;
                 var hrefsplit = ahref.split("/");
-                activeseenId = hrefsplit[hrefsplit.length-1];
-                activeinsertseensql(activeseenId,now);
-               
+                activeseenId = hrefsplit[hrefsplit.length - 1];
+                activeinsertseensql(activeseenId, now);
+
             })
         }
 
     }
-    
-    
+
+
     // activeinsertseenSQL 瀏覽過的資料寫入資料庫
-    const activeinsertseensql   = async (activeseenId,now) => {
+    const activeinsertseensql = async (activeseenId, now) => {
         try {
             // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
             // *用變數接 fetch 結果 ，要用await等。
-            console.log(activeseenId);
-            console.log(now);
+            // console.log(activeseenId);
+            // console.log(now);
             let response = await fetch(`${serverURL.activeinsertseensql}${activeseenId}/${now}`, {
                 method: "GET", // http request method 
                 headers: { // http headers
                     'Content-Type': 'application/json', // 請求的資料類型
-                     Authorization: localStorage.getItem("Cycle link token"),
-                    
+                    Authorization: localStorage.getItem("Cycle link token"),
+
                 },
-                
+
                 // 以下跟身分認證有關，後端要使用session 要帶這幾項
                 cache: 'no-cache',
                 credentials: 'include',
@@ -532,8 +530,8 @@ function ClsActivity() {
             let result = await response.json();
             //文字樣板
             // display_active_seen(result.data);
-           
-            
+
+
             // *用 result  do something ...
 
         } catch (err) {
@@ -543,12 +541,12 @@ function ClsActivity() {
         }
     }
 
-    
+
 
     const ActCard = document.querySelector("#activity_event_top");
 
     //AJAX
-   
+
     //------------------------------------------------------
 
     // const htmlActCard2 = (o) => {
@@ -611,7 +609,9 @@ function ClsActivity() {
             )
         }
     )
-    this.render = ()=>{activeseenAwait()};
+    this.render = () => {
+        activeseenAwait()
+    };
 }
 
 const Activity = new ClsActivity();
@@ -621,7 +621,7 @@ const Activity = new ClsActivity();
 // * -------------------------------- hash -------------------------------- //
 
 const activityChangeHash = () => {
-    if (location.hash === "#activity"){
+    if (location.hash === "#activity") {
         Activity.render();
         // const Activity = new ClsActivity();
     }

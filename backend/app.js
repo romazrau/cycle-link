@@ -24,9 +24,11 @@ var articleRouter = require("./routes/article");
 var communityRouter = require("./routes/community");
 var personalPageRouter = require("./routes/personalPage");
 var homePageRouter = require("./routes/home");
+
+
+
+
 const app = express();
-
-
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -60,7 +62,7 @@ app.use(
   })
 );
 // cors
-const whitelist = ['http://127.0.0.1:5501', 'http://127.0.0.1:5500', 'http://127.0.0.1:5502', undefined];
+const whitelist = ['http://127.0.0.1:5501', 'http://127.0.0.1:5500', 'http://127.0.0.1:5500/', 'http://127.0.0.1:5502', undefined];
 const corsOptions = {
   credentials: true,
   origin: function (origin, callback) {
@@ -76,22 +78,22 @@ app.use(cors(corsOptions));
 // jwt
 app.use(jwt({
   secret: "DayDayLuLuDaDaMiMiJJTenTen", // 加密文字，極重要，不可讓駭客知道喔啾咪
-  algorithms: ['HS256'],               
-  credentialsRequired: false            // 要不要擋下驗證失敗的 http request，不要，因為我們不用所有API 都需要登入
+  algorithms: ['HS256'],
+  credentialsRequired: false // 要不要擋下驗證失敗的 http request，不要，因為我們不用所有API 都需要登入
 }))
 
 
 app.post('/login', function (req, res) {
   // 注意默认情况 Token 必须以 Bearer+空格 开头
   const token = 'Bearer ' + jsonwebtoken.sign({
-    admin: 'admin',
-    tente: "eeeeee"
-  },
+      admin: 'admin',
+      tente: "eeeeee"
+    },
     "DayDayLuLuDaDaMiMiJJTenTen", {
-    expiresIn: 3600 * 24 * 3,
-  }, {
-    algorithm: 'HS256'
-  }
+      expiresIn: 3600 * 24 * 3,
+    }, {
+      algorithm: 'HS256'
+    }
   )
   res.json({
     status: 'ok',

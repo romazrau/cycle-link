@@ -4,45 +4,45 @@ import {
 
 const GetHomePageBannerActivity = async () => {
   try {
-      // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
-      // *用變數接 fetch 結果 ，要用await等。
-      let response = await fetch(serverURL.homePages, {
-          method: "GET", // http request method 
-          headers: { // http headers
-              'Content-Type': 'application/json' // 請求的資料類型
-          },
-          // 以下跟身分認證有關，後端要使用session 要帶這幾項
-          cache: 'no-cache',
-          credentials: 'include',
-      });
-      // 用變數接 fetch結果的資料內容， 要用await等。
-      let result = await response.json();
-      let banner =result.data.banner;
-      let recent =result.data.recent;
-      let imgs =result.data.imgs;
-      
-      home_picturesbox.innerHTML=home_picturesItem(imgs)
-           
-       //大圖匯入
-        banner.map(function(e,index){
-          document.querySelector(".home_top_event").innerHTML+=home_bannerimgs(e)
-        })
-      //輪播
-        CarouselBanner(banner);
-        
-     
-        recent.map(
-        (e, index) => {
-          recent_activities.innerHTML += home_recent_activities(e);
-        }
-      )
-       
-        
+    // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+    // *用變數接 fetch 結果 ，要用await等。
+    let response = await fetch(serverURL.homePages, {
+      method: "GET", // http request method 
+      headers: { // http headers
+        'Content-Type': 'application/json' // 請求的資料類型
+      },
+      // 以下跟身分認證有關，後端要使用session 要帶這幾項
+      cache: 'no-cache',
+      credentials: 'include',
+    });
+    // 用變數接 fetch結果的資料內容， 要用await等。
+    let result = await response.json();
+    let banner = result.data.banner;
+    let recent = result.data.recent;
+    let imgs = result.data.imgs;
+
+    home_picturesbox.innerHTML = home_picturesItem(imgs)
+
+    //大圖匯入
+    banner.map(function (e, index) {
+      document.querySelector(".home_top_event").innerHTML += home_bannerimgs(e)
+    })
+    //輪播
+    CarouselBanner(banner);
+
+
+    recent.map(
+      (e, index) => {
+        recent_activities.innerHTML += home_recent_activities(e);
+      }
+    )
+
+
 
 
   } catch (err) {
-      console.log(err);
-      // 錯誤處理
+    console.log(err);
+    // 錯誤處理
 
   }
 }
@@ -58,53 +58,49 @@ GetHomePageBannerActivity();
 
 
 
-function CarouselBanner(data)
-{
-  let home_bannerboxs=$(".home_bannerbox")
-  let postion=-1;
+function CarouselBanner(data) {
+  let home_bannerboxs = $(".home_bannerbox")
+  let postion = -1;
 
-  for(let i=0;i<data.length;i++)
-  {
-   
-    setInterval(getBannerTime(data[i],i),1000)
-  } 
+  for (let i = 0; i < data.length; i++) {
+
+    setInterval(getBannerTime(data[i], i), 1000)
+  }
 
 
-  setInterval(function(){
+  setInterval(function () {
     postion++;
-    if(postion>data.length-1)
-    postion=0
+    if (postion > data.length - 1)
+      postion = 0
     home_bannerboxs.eq(postion).css("display", "block").siblings().css("display", "none");
-  },5000)
+  }, 5000)
 }
 
 
 
-function getBannerTime(t,index)
-{
-  console.log("t",t);
-  console.log("index:",index);
+function getBannerTime(t, index) {
+  // console.log("t",t);
+  // console.log("index:",index);
 
   let time = new Date();
   let nowTime = time.getTime()
-  let endTime = Date.parse(t.fActivityDate);//"字串時間"
+  let endTime = Date.parse(t.fActivityDate); //"字串時間"
   let offsetTime = (endTime - nowTime) / 1000; // ** 以秒為單位
 
   let sec = parseInt(offsetTime % 60); // 秒
   let min = parseInt((offsetTime / 60) % 60); // 分 ex: 90秒
-  let hr = parseInt(offsetTime / 60 / 60)%60; // 時
-  let day = parseInt((offsetTime / 60 / 60)%24)
-  console.log("p2:",$(".home_top_event_p2").eq(index));
-  $(".home_top_event_p2").eq(index).innerHTML="倒數"+day+" 天 "+hr+" 時 "+min+" 分 "+sec+" 秒 "
+  let hr = parseInt(offsetTime / 60 / 60) % 60; // 時
+  let day = parseInt((offsetTime / 60 / 60) % 24)
+  // console.log("p2:",$(".home_top_event_p2").eq(index));
+  $(".home_top_event_p2").eq(index).innerHTML = "倒數" + day + " 天 " + hr + " 時 " + min + " 分 " + sec + " 秒 "
 }
 
 
 
 
 //---------------------------字串樣板--------------------------//
-const home_bannerimgs=(o)=>
-{
-  return`
+const home_bannerimgs = (o) => {
+  return `
   <div class="home_bannerbox">
     <img src="${o.fImgPath}" alt=""> 
     <p class="home_top_event_p">${o.fActName}</p>  
@@ -141,12 +137,12 @@ const recent_activities = document.querySelector(".home_recent_activities");
 
 
 //------------------------------圖片---------------------------
-const home_picturesbox=document.querySelector(".home_show_activities_wrapper")
+const home_picturesbox = document.querySelector(".home_show_activities_wrapper")
 
 
-const home_picturesItem =(o)=>{
+const home_picturesItem = (o) => {
 
- return `
+  return `
  <div class="home_showAct_left">
                         <div class="home_left_top">
                         <a href="#activity/detail/${o[0].fId}"><img src=${o[0].fImgPath} class="home_left_top"></a>
@@ -179,8 +175,8 @@ const home_picturesItem =(o)=>{
 
 
 
-  
- 
+
+
 
 
 
@@ -209,4 +205,3 @@ const home_picturesItem =(o)=>{
 // NewsRightData.map((e,index) =>{
 //   NewsRightBox.innerHTML+=HomePage_NewsRightBox(e);
 // })
-
