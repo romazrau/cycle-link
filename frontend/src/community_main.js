@@ -18,18 +18,45 @@ function ClsCommunityMain() {
     if (x === null) {
       return ``;
     } else {
-      return `<div class="CM_timeline_body_img">
+      var y = x.includes(",,");
+      if (y) {
+        let imgArr = x.split(",,");
+        // for (let i = 0; i < imgArr.length; i++) {
+        // console.log(arrimgarr);
+        return `<div class="CM_timeline_body_img">
+        <img class="CM_timeline_body_img_img" src='${imgArr[0]}' />
+        </div>
+        <div class="CM_timeline_body_img">
+        <img class="CM_timeline_body_img_img" src='${imgArr[1]}' />
+        </div>
+        <div class="CM_timeline_body_img">
+        <img class="CM_timeline_body_img_img" src='${imgArr[2]}' />
+        </div>`;
+        // }
+        // return;
+      } else {
+        return `<div class="CM_timeline_body_img">
       <img class="CM_timeline_body_img_img" src='${x}' />
       </div>`;
+      }
     }
   };
-
+  // function arrimgarr(x) {
+  //   return `<div class="CM_timeline_body_img">
+  //   <img class="CM_timeline_body_img_img" src='${x}' />
+  //   </div>`;
+  // }
+  // const imgIMG = (x)=>{
+  //   return `<div class="CM_timeline_body_img">
+  //   <img class="CM_timeline_body_img_img" src='${imgArr[i]}' />
+  //   </div>`;
+  // }
   //文章：文字樣板
   const htmlCommunityMainPostLeft = (x) => {
     return `
       <li>
       <div class="community_main_groupIcon">
-        <a href="#community/${x.CommunityId}" title="${
+        <a href="#community/detail/${x.CommunityId}" title="${
       x.CommunityName
     }" class="CM_groupIcon_wrap">
           <img class="CM_groupIcon_img" src="${x.CommunityImgPath}" />
@@ -38,12 +65,18 @@ function ClsCommunityMain() {
       <div class="community_main_timeline_panel">
         <div class="CM_timeline_heading">
         <div class="CM_timeline_heading_img_circle_border">
-          <div class="CM_timeline_heading_img_container">
-            <img class="CM_timeline_heading_img" src="${x.MemberImgPath}" />
+          <div class="CM_timeline_heading_img_container" onclick="location.hash='#personal-page/${
+            x.MemberId
+          }'">
+            <img class="CM_timeline_heading_img" src="${
+              x.MemberImgPath
+            }" onclick="location.hash='#personal-page/${x.MemberId}'"/>
           </div> </div>
           <div class="CM_timeline_heading_userinfo">
-             <a href="#community/${x.MemberId}"><p>${x.PostMemberName}</p></a>
-             <a href="#community/${x.CommunityId}">
+             <a href="#personal-page/${x.MemberId}"><p>${
+      x.PostMemberName
+    }</p></a>
+             <a href="#community/detail/${x.CommunityId}">
              <span class="communityName_span">${x.CommunityName}</span>
              </a>
              <a href="#community/post/${x.PostId}"><span>${
@@ -73,7 +106,7 @@ ${ImgIsNullOrNot(x.PostImg)}
     return `
       <li class='community_main_timeline_inverted'>
       <div class="community_main_groupIcon">
-        <a href="#community/${x.CommunityId}" title="${
+        <a href="#community/detail/${x.CommunityId}" title="${
       x.CommunityName
     }" class="CM_groupIcon_wrap">
           <img class="CM_groupIcon_img" src="${x.CommunityImgPath}" />
@@ -82,12 +115,18 @@ ${ImgIsNullOrNot(x.PostImg)}
       <div class="community_main_timeline_panel">
         <div class="CM_timeline_heading">
         <div class="CM_timeline_heading_img_circle_border">
-          <div class="CM_timeline_heading_img_container">
-            <img class="CM_timeline_heading_img" src="${x.MemberImgPath}" />
+          <div class="CM_timeline_heading_img_container" onclick="location.hash='#personal-page/${
+            x.MemberId
+          }'">
+            <img class="CM_timeline_heading_img" src="${
+              x.MemberImgPath
+            }" onclick="location.hash='#personal-page/${x.MemberId}'"/>
           </div> </div>
           <div class="CM_timeline_heading_userinfo">
-             <a href="#community/${x.MemberId}"><p>${x.PostMemberName}</p></a>
-             <a href="#community/${x.CommunityId}">
+             <a href="#personal-page/${x.MemberId}"><p>${
+      x.PostMemberName
+    }</p></a>
+             <a href="#community/detail/${x.CommunityId}">
              <span class="communityName_span">${x.CommunityName}</span>
              </a>
              <a href="#community/post/${x.PostId}"><span>${
@@ -96,7 +135,8 @@ ${ImgIsNullOrNot(x.PostImg)}
           </div>
         </div>
         <div class="CM_timeline_body">
-          <p>${x.PostContent}</p>${ImgIsNullOrNot(x.PostImg)}
+          <p>${x.PostContent}</p>
+${ImgIsNullOrNot(x.PostImg)}
         </div>
         <div class="CM_timeline_footer">
           <i class="far fa-heart changebyclick" id="likeIconbyfId${
@@ -106,8 +146,8 @@ ${ImgIsNullOrNot(x.PostImg)}
       x.HowMuchReply || ""
     }</span>
           </div>
-        <div class="replyContainer" id="bindPostReplybyfId${x.PostId}"></div>
-      </div>
+          <div class="replyContainer" id="bindPostReplybyfId${x.PostId}"></div>
+        </div>
     </li>`;
   };
 
@@ -138,21 +178,17 @@ ${ImgIsNullOrNot(x.PostImg)}
         </div>
       </div>
     </div>
-    <div class="CM_reply_item_content"></div>
+    <div class="CM_reply_item_content" id=""></div>
   </div>`;
   };
 
   //我要留言：文字樣板
-  // const htmlCommunityMainReplyInput = () => {
-  //   return `<div class="CM_reply_input_container">
-  //   <div class="CM_reply_input_img_circle_border">
-  //     <div class="CM_reply_input_img">
-  //       <img src="../img/member/"id3.jpg" class="CM_reply_input_img_img" />
-  //     </div>
-  //   </div>
-  //   <input type="text" />
-  // </div>`;
-  // };
+  const htmlCommunityMainReplyInput = () => {
+    return `<div class="CM_reply_input_container">
+    <input type="text" />
+    <a href="#" class="ReplySendClass" id="ReplySend"><i class="fas fa-paper-plane"></i></a>
+  </div>`;
+  };
 
   //文章字串樣板匯入
   const CMpost = document.querySelector(".community_main_ul_timeline");
@@ -177,7 +213,7 @@ ${ImgIsNullOrNot(x.PostImg)}
       // console.log(result.data.length);
       display_postDetail(result.data);
       // console.log("data:", result.data);
-      showReplyContainer();
+      addClickEventToReply(result.data.length);
       addClickEventToLike(result.data.length);
     } catch (err) {
       console.log(err);
@@ -186,32 +222,47 @@ ${ImgIsNullOrNot(x.PostImg)}
   getCommunityPost();
 
   //留言：字串樣板輸入畫面
-  const display_replyDetail = (o) => {
+  const display_replyDetail = (o, x) => {
     o.map((e, index) => {
-      document.getElementById(
-        "bindPostReplybyfId" + e.fPostId
-      ).innerHTML += htmlCommunityMainReply(e);
+      if (e.fPostId == x) {
+        document.getElementById(
+          "bindPostReplybyfId" + x
+        ).innerHTML += htmlCommunityMainReply(e);
+      }
     });
+    //匯入我要留言區
+    showReplyInput(x);
   };
+
+  function showReplyInput(x) {
+    document.getElementById(
+      "bindPostReplybyfId" + x
+    ).innerHTML += htmlCommunityMainReplyInput();
+  }
+
   //留言：塞資料進去字串樣板裡面
-  const getCommunityReply = async () => {
+  const getCommunityReply = async (x) => {
     try {
       let response = await fetch(serverURL.articlereply);
       let result = await response.json();
       // console.log(result);
-      display_replyDetail(result.data);
+      // console.log(x);
+      // console.log(result.data[x]);
+      display_replyDetail(result.data, x);
     } catch (err) {
       console.log(err);
     }
   };
+
   //留言：Icon點擊觸動function寫入留言內容
-  function showReplyContainer() {
-    let AllReplyIcon = document.querySelectorAll(".fa-comments");
-    AllReplyIcon.forEach((x) => {
-      x.addEventListener("click", function () {
-        getCommunityReply();
+  function addClickEventToReply(x) {
+    for (let i = 1; i < x + 1; i++) {
+      let TheReplyIcon = document.getElementById("replyIconbyfId" + i);
+      TheReplyIcon.addEventListener("click", function (e) {
+        // console.log(i);
+        getCommunityReply(i);
       });
-    });
+    }
   }
 
   //搜尋Icon點擊觸動function
@@ -233,7 +284,6 @@ ${ImgIsNullOrNot(x.PostImg)}
           // http headers
           "Content-Type": "application/json", // 請求的資料類型
         },
-
         // 以下跟身分認證有關，後端要使用session 要帶這幾項
         cache: "no-cache",
         credentials: "include",
@@ -257,10 +307,9 @@ ${ImgIsNullOrNot(x.PostImg)}
           LikeIconItems.classList.add("fas");
           //取ID增點讚
           let id_arr = this.id.split("fId");
-         
+
           addLikeToSQL(id_arr[1]);
-          
-          
+
           Postlikeflag = true;
         } else {
           LikeIconItems.classList.remove("fas");
@@ -270,87 +319,71 @@ ${ImgIsNullOrNot(x.PostImg)}
           let id_arr = this.id.split("fId");
           console.log(id_arr[1]);
           removeLikeToSQL(id_arr[1]);
-          
+
           // console.log("愛心又被點了");
         }
       });
     }
   }
-  // document.querySelectorAll(".changebyclick").forEach((x) => {
-  //   x.addEventListener("click", function () {
-  //     if (Postlikeflag == false) {
-  //       $(".changebyclick").removeClass("far").addClass("fas");
-  //       console.log("愛心被點了");
-  //       Postlikeflag = true;
-  //     } else {
-  //       $(".changebyclick").removeClass("fas").addClass("far");
-  //       Postlikeflag = false;
-  //       console.log("愛心又被點了");
-  //     }
-  //   });
-  // });
-
-  //跳轉至社團Detail
-  // document.querySelectorAll(".communityName_span").forEach((item, index) => {
-  //   item.addEventListener("click", (fId) => {
-  //     location.hash = `#community/detail/${fId}`;
-  //   });
-  // });
 
   //TODO postime判斷距離現在時間
   //TODO 新增喜歡
-const addLikeToSQL = async (P) => {
-  try {
-    
-    
-    var formdata=new FormData()
-    formdata.append("fPostId",P)
+  const addLikeToSQL = async (P) => {
+    try {
+      var formdata = new FormData();
+      formdata.append("fPostId", P);
       let response = await fetch(serverURL.addlikes, {
-          method: "POST", // http request method 
-          headers: { // http headers
-            Authorization: localStorage.getItem("Cycle link token"),
-          },
-          body:formdata,   
-          cache: 'no-cache',
-          credentials: 'include',
+        method: "POST", // http request method
+        headers: {
+          // http headers
+          Authorization: localStorage.getItem("Cycle link token"),
+        },
+        body: formdata,
+        cache: "no-cache",
+        credentials: "include",
       });
-      let result = await response.json();     
+      let result = await response.json();
       console.log(result);
-  } catch (err) {
+    } catch (err) {
       console.log(err);
       // 錯誤處理
-  }
-}
+    }
+  };
   //TODO 刪除喜歡
   const removeLikeToSQL = async (P) => {
     try {
-      console.log("P:",P)
-      var formdata=new FormData()
-    formdata.append("fPostId",P)
-        let response = await fetch(serverURL.removelikes, {
-            method: "DELETE", // http request method 
-            headers: { // http headers
-              Authorization: localStorage.getItem("Cycle link token"),
-            },
-            body:formdata,   
-            cache: 'no-cache',
-            credentials: 'include',
-        });
-        let result = await response.json();     
-        console.log(result);
+      console.log("P:", P);
+      var formdata = new FormData();
+      formdata.append("fPostId", P);
+      let response = await fetch(serverURL.removelikes, {
+        method: "DELETE", // http request method
+        headers: {
+          // http headers
+          Authorization: localStorage.getItem("Cycle link token"),
+        },
+        body: formdata,
+        cache: "no-cache",
+        credentials: "include",
+      });
+      let result = await response.json();
+      console.log(result);
     } catch (err) {
-        console.log(err);
-        // 錯誤處理
+      console.log(err);
+      // 錯誤處理
     }
-  }
+  };
   //TODO 新增留言
+  // const addReply = async (r) => {
+  //   try {
+  //   }
+  // };
   //TODO 刪除留言
 
-  //TODO 新增文章
+  //TODO 新增文章JHY
   //TODO 編輯文章
   //TODO 刪除文章
 
-  //TODO 照片如果有很多張怎ㄇ半
+  //TODO 照片如果有很多張怎ㄇ半<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   //TODO 留言區尚未進行
 
   //用不上的社團類別動態
