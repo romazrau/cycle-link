@@ -1,17 +1,18 @@
 const sql = require("mssql");
 
 const config = {
-  user: "sa",
-  password: "everybodycanuse",
-  server: "localhost", // You can use 'localhost\\instance' to connect to named instance
-  database: "SeaTurtleOnTheWay",
-
+  // user: 'sa',
+  // password: 'P@ssw0rd',
+  user: process.env.SQLSERVER_USER || 'sa',
+  password: process.env.SQLSERVER_PASSWORD || 'everybodycanuse',
+  server: process.env.SQLSERVER_SERVER || 'localhost', // You can use 'localhost\\instance' to connect to named instance
+  database: process.env.SQLSERVER_DATABASE ||'SeaTurtleOnTheWay',
   options: {
-    enableArithAbort: true,
-    encrypt: true,
-  },
-  port: 1433,
-};
+      enableArithAbort: true,
+      encrypt: true
+    },
+    port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
+}
 
 const articlelist = async () => {
   try {

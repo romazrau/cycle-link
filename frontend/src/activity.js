@@ -225,8 +225,9 @@ function ClsActivity() {
     var btndate = document.getElementById("search_date");
     var btndatedetial = document.getElementById("search_datedetial");
     btndate.addEventListener('click', function () {
-        // btndate.classList.add("search_hidden");
-        // $("#search_datedetial").fadeIn("5000");
+        btndate.classList.add("search_hidden");
+
+        $("#search_datedetial").fadeIn("5000");
         btndatedetial.classList.remove("search_hidden");
     });
 
@@ -516,6 +517,7 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
+
             display_active(result.data);
             getactid();
         } catch (err) {
@@ -540,7 +542,8 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-            display_active_foryou(result.data);
+
+            // display_active_foryou(result.data);
             getactid();
         } catch (err) {
             console.log(err);
@@ -587,6 +590,7 @@ function ClsActivity() {
 
         let nowtime = new Date();
         let date = nowtime.toLocaleDateString();
+        // console.log(date)
         let timesplit = nowtime.toTimeString().split(" ");
         let time = timesplit[0];
         let now = date + " " + time;
@@ -612,8 +616,8 @@ function ClsActivity() {
         try {
             // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
             // *用變數接 fetch 結果 ，要用await等。
-            console.log(activeseenId);
-            console.log(now);
+            // console.log(activeseenId);
+            // console.log(now);
             let response = await fetch(`${serverURL.activeinsertseensql}${activeseenId}/${now}`, {
                 method: "GET", // http request method 
                 headers: { // http headers
@@ -709,7 +713,9 @@ function ClsActivity() {
             )
         }
     )
-    this.render = () => { activeseenAwait() };
+    this.render = () => {
+        activeseenAwait()
+    };
 }
 
 let Activity = new ClsActivity();

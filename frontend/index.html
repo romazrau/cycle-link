@@ -60,7 +60,7 @@
                     <i id="navbar_msg" class="fas fa-bullhorn login_bullhorn"></i>
                     <i id="navbar_logout" class="fas fa-sign-out-alt login_bullhorn"></i>
                 </div>
-                
+
                 <div id="navbar_log-in" class="li_menutitle header_nav"><a id="header_link_login" href="#log-in">Log
                         in<br>登入</a></div>
             </div>
@@ -1305,7 +1305,8 @@
                         <div class="activity_detail_right_container">
                             <div class="activity_detail_right">
                                 <div class="activity_detail_right_top">
-                                    <button>參加</button>
+                                    <button id="joinActBtn">參加</button>
+                                    <button id="cancelJoinActBtn" style="display: none;">取消</button>
                                     <a href=""><img src="img/icon1.svg" alt="" class="activity_detail_right_love"></a>
                                 </div>
                                 <div class="activity_detail_right_info">
@@ -1380,7 +1381,7 @@
                     <div>台北,台灣</div>
                 </div> -->
 
-                            <div>
+                            <div class="FlexContainer rightTopInfoFlexColume">
                                 <div class="FlexContainer GroupTopRightEventInfoBox">
                                     <div class="Size20IconMarginRight"><img src="./img/icon_group.svg" width="20"></div>
                                     <div>社團人數&nbsp;<span id="CommunityNumberOfPeople">50</span>&nbsp;人</div>
@@ -1392,10 +1393,10 @@
                                     </div>
                                 </div>
 
-                            </div>
 
-                            <div class="FlexContainer share-text">
-                                <div class="FlexContainer share-text-div">
+
+
+                                <div class="FlexContainer ">
                                     <div class="Boldtitle">Share:</div>
                                     <div class="Size20IconMarginLeft Size20IconMarginRight"><img
                                             src="./img/icon_facebook.svg" width="20"></div>
@@ -1405,6 +1406,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -1729,7 +1731,7 @@
                                     <div class="FlexContainer RightPartTopInfo Group_FlexJustifyContentSB ">
                                         <div class="FlexContainer">
                                             <div class="GroupComingEvent FontSectionTitle">社團成員</div>
-                                            <div class="FontSectionTitle">(4)</div>
+                                            <div id="NumOfMem" class="FontSectionTitle">(4)</div>
                                         </div>
                                         <img class="GroupComingEventImg" src="/img/icon_seemore.svg" width="25px">
                                         <!-- <a href="#" class="SeeAllRight FontSectionTitle">see all</a> -->
@@ -1739,7 +1741,7 @@
                                         <div class="dropdownDR">編輯會員名單</div>
                                     </div>
                                 </div>
-                                <div class="FlexContainer GroupRightInfoPhotoContainer
+                                <div id="CommunityMember" class="FlexContainer GroupRightInfoPhotoContainer
                                 Group_FlexJustifyContentSB">
                                     <div class="activity_detail_info_img_circle GroupMemberPic">
                                         <div class="activity_detail_info_img_div">
@@ -2608,120 +2610,126 @@
                     <!-- ------------- Basic Info --------------- -->
 
                     <div class="create_active_basicInfo_container">
-                        <!-- <form action="#" method='post' id="creatAct_form"> -->
-                        <div class="create_active_basicInfo">
-                            <h2>基本資料</h2>
-                            <p>Name your event and tell event-goers why they should come. Add
-                                details that highlight what makes it unique.
-                            </p>
-                            <div class="create_active_basicInfo_div">
-                                <div class="create_active_basicInfo_div2 ">
-                                    <p>活動名稱</p>
-                                    <div class="create_active_flex ">
-                                        <!-- ! -->
-                                        <input type="text" maxlength="50" id="create_active_name"
-                                            class="create_active_full" name="actName" />
-                                        <p class="create_active_ml" id="create_active_name_count">0</p>
-                                        <p>&nbsp;/&nbsp;50</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="create_active_basicInfo_div">
-                                <div class="create_active_basicInfo_div2">
-                                    <p>活動發起者</p>
-                                    <!-- ! -->
-                                    <select name="type">
-                                        <option value="個人">個人</option>
-                                        <option value="社團管理員">社團管理員</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="create_active_basicInfo_div">
-                                <!-- Google API??????-->
-                                <div class="create_active_basicInfo_div2">
-                                    <p>活動地點</p>
-                                    <div class="create_active_flex" style="align-items: center;">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        <!-- ! -->
-                                        <input type="text" class="create_active_ml create_active_full"
-                                            style="background-color: white;" id="create_active_local_tags"
-                                            name="actLocation" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="create_active_basicInfo_div">
-                                <div class="create_active_basicInfo_div2">
-                                    <p>活動日期</p>
-                                    <label for="ac_date_from">Start</label>
-                                    <!-- ! -->
-                                    <input type="text" id="ac_date_from" name="ac_date_from" autocomplete="off" />
-                                    <label for="">Start Time</label>
-                                    <select name="type">
-                                        <option value="">07:30</option>
-                                        <option value="">08:00</option>
-                                    </select><br>
-                                    <label for="ac_date_to">End</label>
-                                    <!-- ! -->
-                                    <input type="text" id="ac_date_to" name="ac_date_to" autocomplete="off" />
-                                    <label for="">End Time</label>
-                                    <select name="type">
-                                        <option value="">07:30</option>
-                                        <option value="">08:00</option>
-                                    </select><br>
-                                </div>
-                            </div>
-                            <div class="create_active_basicInfo_div3">
-                                <button id="create_active_btn_next">Next</button>
-                            </div>
-                        </div>
-
-                        <!-- ------------- Details --------------- -->
-
-                        <div class="create_active_basicInfo">
-                            <h2>詳細資料</h2>
-                            <p>
-                                Name your event and tell event-goers why they should come. Add
-                                details that highlight what makes it unique.
-                            </p>
-                            <div class="create_active_basicInfo_div">
-
-                                <div class="create_active_basicInfo_div2">
-                                    <p>活動圖片</p>
-                                    <div>
-                                        <label class="ca_imgUpload_lbl">
+                        <form id="creatAct_form" method="POST">
+                            <div class="create_active_basicInfo">
+                                <h2>基本資料</h2>
+                                <p>Name your event and tell event-goers why they should come. Add
+                                    details that highlight what makes it unique.
+                                </p>
+                                <div class="create_active_basicInfo_div">
+                                    <div class="create_active_basicInfo_div2 ">
+                                        <p>活動名稱</p>
+                                        <div class="create_active_flex ">
                                             <!-- ! -->
-                                            <input class="ca_imgUpload" style="display:none;" type="file">
-                                            <i class="fa fa-photo"></i> 上傳圖片
-                                        </label>
-                                        <div class="ca_imgUpload_div">
-                                            <img src="" class="ca_img_avatar">
+                                            <input type="text" maxlength="50" id="create_active_name"
+                                                class="create_active_full" name="fActName" />
+                                            <p class="create_active_ml" id="create_active_name_count">0</p>
+                                            <p>&nbsp;/&nbsp;50</p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="create_active_basicInfo_div">
-                                <div class="create_active_basicInfo_div2">
-                                    <p>活動內容描述</p>
-                                    <div class="create_active_flex">
+                                <div class="create_active_basicInfo_div">
+                                    <div class="create_active_basicInfo_div2">
+                                        <p>活動發起者</p>
                                         <!-- ! -->
-                                        <textarea name="" id="create_active_text" cols="60" rows="8"
-                                            maxlength="500"></textarea>
-                                        <p class="create_active_flex_end create_active_ml"
-                                            id="create_active_text_count">0</p>
-                                        <p class="create_active_flex_end">&nbsp;/&nbsp;500</p>
+                                        <select name="type">
+                                            <option value="個人">個人</option>
+                                            <option value="社團管理員">社團管理員</option>
+                                        </select>
                                     </div>
                                 </div>
+                                <div class="create_active_basicInfo_div">
+                                    <!-- Google API??????-->
+                                    <div class="create_active_basicInfo_div2">
+                                        <p>活動地點</p>
+                                        <div class="create_active_flex" style="align-items: center;">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <!-- ! -->
+                                            <input type="text" class="create_active_ml create_active_full"
+                                                style="background-color: white;" id="create_active_local_tags"
+                                                name="fActLocation" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="create_active_basicInfo_div">
+                                    <div class="create_active_basicInfo_div2">
+                                        <p>活動日期</p>
+                                        <label for="ac_date_from">Start</label>
+                                        <!-- ! -->
+                                        <input type="text" id="ac_date_from" name="fActivityDate" autocomplete="off" />
+                                        <label for="">Start Time</label>
+                                        <!-- <select name="type">
+                                            <option value="">07:30</option>
+                                            <option value="">08:00</option>
+                                        </select><br> -->
+                                        <label for="ac_date_to">End</label>
+                                        <!-- ! -->
+                                        <input type="text" id="ac_date_to" name="fActivityEndDate" autocomplete="off" />
+                                        <label for="">End Time</label>
+                                        <!-- <select name="type">
+                                            <option value="">07:30</option>
+                                            <option value="">08:00</option>
+                                        </select><br> -->
+                                    </div>
+                                </div>
+                                <div class="create_active_basicInfo_div3">
+                                    <button id="create_active_btn_next">Next</button>
+                                </div>
                             </div>
-                            <div class="create_active_basicInfo_div">
-                                <div class="create_active_basicInfo_div2">
-                                    <p>活動標籤(小標籤最多五個)</p>
-                                    <form id="actCreatTag">
+
+                            <!-- ------------- Details --------------- -->
+
+                            <div class="create_active_basicInfo">
+                                <h2>詳細資料</h2>
+                                <p>
+                                    Name your event and tell event-goers why they should come. Add
+                                    details that highlight what makes it unique.
+                                </p>
+
+                                <div class="create_active_basicInfo_div">
+
+                                    <div class="create_active_basicInfo_div2">
+                                        <p>活動圖片</p>
+                                        <div>
+                                            <label class="ca_imgUpload_lbl">
+                                                <!-- ! -->
+                                                <input class="ca_imgUpload" style="display:none;" type="file"
+                                                    name="fImgPath">
+                                                <i class="fa fa-photo"></i> 上傳圖片
+                                            </label>
+                                            <div class="ca_imgUpload_div">
+                                                <img src="" class="ca_img_avatar">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="create_active_basicInfo_div">
+                                    <div class="create_active_basicInfo_div2">
+                                        <p>活動內容描述</p>
                                         <div class="create_active_flex">
                                             <!-- ! -->
-                                            <select name="type">
-                                                <option value="">淨山</option>
-                                                <option value="">淨海</option>
-                                                <option value="">路跑</option>
+                                            <textarea id="create_active_text" cols="60" rows="8" maxlength="500"
+                                                name="fIntroduction"></textarea>
+                                            <p class="create_active_flex_end create_active_ml"
+                                                id="create_active_text_count">0</p>
+                                            <p class="create_active_flex_end">&nbsp;/&nbsp;500</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="create_active_basicInfo_div">
+                                    <div class="create_active_basicInfo_div2">
+                                        <p>活動標籤(小標籤最多五個)</p>
+
+                                        <div class="create_active_flex">
+                                            <!-- ! -->
+                                            <select name="fActLabelId">
+                                                <option value="0">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">環境清潔</option>
+                                                <option value="3">自然教育</option>
+                                                <option value="4">二手市集</option>
+                                                <option value="5">運動</option>
+                                                <option value="6">線上活動</option>
                                             </select>
                                             <!-- ! -->
 
@@ -2732,34 +2740,35 @@
                                             <input type="text" name="fLabelName">
                                         </div>
                                         <div id="test_a" style="display: flex;"></div>
-                                        <input type="submit" value="Submit" id="actCreatTagSubmit">
-                                    </form>
+                                        <!-- <input type="submit" value="Submit" id="actCreatTagSubmit"> -->
+
+                                    </div>
+
+                                </div>
+                                <div class="create_active_basicInfo_div">
+                                    <div class="create_active_basicInfo_div2 create_active_flex">
+                                        <div>
+                                            <p>最小人數</p>
+                                            <!-- ! -->
+                                            <input type="checkbox" />
+                                            <input type="text" maxlength="4" style="width: 80%;" name="fMinLimit" />
+                                        </div>
+                                        <div>
+                                            <p>最大人數</p>
+                                            <!-- ! -->
+                                            <input type="checkbox" />
+                                            <input type="text" maxlength="4" style="width: 80%;" name="fMaxLimit" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="create_active_basicInfo_div3">
+
+                                    <button id="create_active_btn_pre">Pre</button>
+                                    <button typr="submit" id="create_active_btn_done">Done</button>
                                 </div>
 
                             </div>
-                            <div class="create_active_basicInfo_div">
-                                <div class="create_active_basicInfo_div2 create_active_flex">
-                                    <div>
-                                        <p>最小人數</p>
-                                        <!-- ! -->
-                                        <input type="checkbox" />
-                                        <input type="text" maxlength="4" style="width: 80%;" va />
-                                    </div>
-                                    <div>
-                                        <p>最大人數</p>
-                                        <!-- ! -->
-                                        <input type="checkbox" />
-                                        <input type="text" maxlength="4" style="width: 80%;" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="create_active_basicInfo_div3">
-
-                                <button id="create_active_btn_pre">Pre</button>
-                                <button id="create_active_btn_done">Done</button>
-                            </div>
-                        </div>
-                        <!-- </form> -->
+                        </form>
                         <!-- ------------- 審核 --------------- -->
 
                         <div class="create_active_basicInfo">
@@ -3135,7 +3144,7 @@
     <script type="module" src="./src/activity_detail.js"></script>
     <script src="./src/community_main.js"></script>
     <script src="./src/community.js"></script>
-    community_detail.js有import檔案所以被使用的時候要加type="module"
+    <!-- community_detail.js有import檔案所以被使用的時候要加type="module" -->
     <script type="module" src="./src/community_detail.js"></script>
     <script src="./src/create_activities.js"></script>
     <script src="./src/create_community.js"></script>

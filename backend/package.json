@@ -1,6 +1,7 @@
 {
   "name": "backend",
   "version": "0.0.0",
+  "main": "./bin/www",
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www"

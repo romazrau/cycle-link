@@ -15,32 +15,32 @@ const config = {
 }
 
 
-
-//登入
-const map_GetAllActivity = async () => {
+//確認訪客在不在
+const test = async () => {
     try {
         // make sure that any items are correctly URL encoded in the connection string
         await sql.connect(config)
         const sqlString = `
-        select a.fId,fActName,ML.fLabelName,fIntroduction ,fCoordinateX,fCoordinateY,fImgPath
-        from Activity.tActivity as a
-        left join Activity.tActivityMainLabel as ML
-        on ML.fId=a.fActLabelId
-        `
+        select M.fId, M.fName , T.fAccountType as 'account type' , T.fAccountAuthority as 'account authority'
+        from Member.tMember as M
+        LEFT join Member.tAccountType as T
+        on M.fAccountTypeId = T.fId
+        where fAccount = 'guest' AND fPassword = 'badiii7777';`
         const result = await sql.query(sqlString);
-        console.dir(result);
-
-        if (!result.rowsAffected[0]) {
-            return { result: 0, msg: "帳號或密碼錯誤" }
-        }
-        return { result: 1, msg: "登入成功", data: result.recordset };
+        console.dir(result)
+        return result;
     } catch (err) {
         console.log(err);
-        return { result: 0, msg: "SQL 問題", data: result };
+        return err;
     }
 };
 
-// map_GetAllActivity();
 
 
-module.exports = { map_GetAllActivity };
+
+
+
+
+
+
+module.exports = { test,};

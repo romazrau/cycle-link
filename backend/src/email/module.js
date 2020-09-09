@@ -1,15 +1,16 @@
 //引用 nodemailer
 var nodemailer = require('nodemailer');
-var process = require('dotenv').config();
+require('dotenv').config();
 
 //宣告發信物件
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: process.parsed.EMAIL_ACCOUNT,
-        pass: process.parsed.EMAIL_POSSWORD,
+        user: process.env.EMAIL_ACCOUNT,
+        pass: process.env.EMAIL_POSSWORD,
     }
 });
+
 
 
 const sendEmail = async (account, title ,txt) =>{
