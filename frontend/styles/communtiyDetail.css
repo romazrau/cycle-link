@@ -467,12 +467,12 @@ hr {
 
 .GroupTopLeft {
   position: relative;
-  max-width: 60%;
+  width: 60%;
   box-sizing: border-box;
 }
 
 .GroupTopRight {
-  max-width: 40%;
+  width: 40%;
   position: relative;
   box-sizing: border-box;
   padding-left: 60px;

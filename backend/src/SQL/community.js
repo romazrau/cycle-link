@@ -9,12 +9,12 @@ const config = {
     user: process.env.SQLSERVER_USER || 'sa',
     password: process.env.SQLSERVER_PASSWORD || 'everybodycanuse',
     server: process.env.SQLSERVER_SERVER || 'localhost', // You can use 'localhost\\instance' to connect to named instance
-    database: process.env.SQLSERVER_DATABASE ||'SeaTurtleOnTheWay',
+    database: process.env.SQLSERVER_DATABASE || 'SeaTurtleOnTheWay',
     options: {
         enableArithAbort: true,
         encrypt: true
-      },
-      port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
+    },
+    port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
 }
 
 //"後端路由"透過Function對資料庫下的指令:CRUD增刪查改
