@@ -344,7 +344,7 @@
                         </select>
                     </div>
 
-                    <div class="active_advance_row">
+                    <div class="active_advance_row search_hidden">
                         <div id="activity_advence_show">進階搜尋<div class="activity_advence_t">▼</div>
                         </div>
 
@@ -362,10 +362,11 @@
                             </div>
                         </div>
 
-                        <div class="active_advance_row">
+                        <div class="active_advance_row search_hidden">
                             <div class="active_advance_search">
                                 <div class="active_advance_search_tile">時間範圍:</div>
                                 <div class="active_advance_dateRange">
+                                    
                                     <select name="dateStart" size="1">
                                         <option value="2020">2020/10/09</option>
                                     </select>
@@ -382,7 +383,7 @@
                         </div>
 
 
-                        <div class="active_advance_row">
+                        <div class="active_advance_row search_hidden">
                             <div class="active_advance_search">
                                 <div class="active_advance_search_tile">忽略額滿活動</div>
                                 <input type="checkbox" name="" value="">
@@ -432,6 +433,7 @@
                             onchange="getstartdate(this.id)" />
                         <label for="ac_date_end_from">Enddate</label>
                         <input type="text" id="ac_date_end_from" name="ac_date_end_from" autocomplete="off" />
+                        <button class="btn_check_date">確定</button>
                     </div>
 
 
