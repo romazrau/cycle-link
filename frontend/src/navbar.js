@@ -21,7 +21,7 @@ function ClsNavbar() {
     }
 
     navLinksContainer.addEventListener("click", this.closeShowMenu);
-    
+
 
     let pageY = window.pageYOffset;
     const navbarMain = document.querySelector("#navbar_main");
@@ -69,6 +69,23 @@ function ClsNavbar() {
             }
         }
     )
+
+
+
+    // log out
+    document.querySelector('#navbar_logout').addEventListener("click", (e) => {
+        console.log("********");
+
+        let isLogout = confirm("確定要登出嗎?", "Cycle Link");
+
+        if (isLogout) {
+            window.localStorage.removeItem("Cycle link token");
+            window.localStorage.removeItem("Cycle link user data");
+
+            location.hash = "#log-in";
+            location.reload();
+        }
+    })
 
 
 
