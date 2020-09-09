@@ -417,7 +417,7 @@ function ClsCommuntityDetail() {
 
     // 開啟特定社團頁面(社團id)
 
-
+    // todo開放或私密 用社團16做測試
     const renderPage = async (id) => {
         try {
 
@@ -493,6 +493,13 @@ function ClsCommuntityDetail() {
             document.querySelector("#CommunityStatus").innerHTML = result.data[0].fSatusName;
             document.querySelector("#CommunityAboutUs").innerHTML = result.data[0].fInfo;
 
+            console.log("+++++++++++++++++++++++++++");
+            console.log(result.data);
+
+            //todo
+            //result.data[0].fStatusId: 2    or   result.data[0]."私密"
+            //私密的話把 let MemberContainer = document.querySelector("#CommunityMember") 增加隱藏Class
+            //移除 <div id="CommunityMemberNone" class="CommunityMemberNone">
 
 
         }
@@ -537,7 +544,6 @@ function ClsCommuntityDetail() {
 
     }
 
-    // todo開放或私密 用社團16做測試
     const renderPageMember = async (id) => {
         try {
             // console.log(`${serverURL.communityMember}${id}`);
@@ -571,8 +577,9 @@ function ClsCommuntityDetail() {
                     }
                 })
 
-
             }
+
+
 
 
 
@@ -602,6 +609,9 @@ function ClsCommuntityDetail() {
                 document.querySelector("#CommunityMember").classList.remove("Group_FlexJustifyContentSB");
                 document.querySelector("#GroupMemberPicLessThan4").classList.add("GroupMemberPicLessThan4");
             }
+
+
+
 
 
         }

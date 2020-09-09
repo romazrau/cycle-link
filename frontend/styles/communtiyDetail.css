@@ -542,6 +542,13 @@ hr {
 
 /******************* MIDDLE ******************/
 
+.CommunityMemberNone{
+  background-color: #939393;
+  height: 200px;
+  width: 100%;
+}
+
+
 .dropdown-relative-container{
   position: relative;
 }
