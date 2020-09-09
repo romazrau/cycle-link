@@ -64,9 +64,20 @@ router.get('/:id', async function (req, res, next) {
         }
 
         let result = await Sql.communityById_communityDetail(req.params.id);
+        // console.log('++++++++++++');
+        // console.log(result);
         //----丟入社團ID把所有社員資料撈出
         let memberOfCommunity = await Sql.communityById_communityMember(req.params.id);
         // console.log('++++++++++++++++++');
+        // console.log(memberOfCommunity);
+
+        // 沒有成員回傳 非管理員
+        if (!memberOfCommunity.result) {
+            result.data[0].user = "非社員";
+            res.json(result);
+            return;
+        }
+
         //memberOfCommunity.data 是物件array
         // console.log(memberOfCommunity.data);
         //----把社員id拿出放進一個array
@@ -86,8 +97,6 @@ router.get('/:id', async function (req, res, next) {
                 idarr.push(e.fId);
             })
 
-
-
             if (idarr.includes(memberId)) {
                 user = "管理員";
 
@@ -104,6 +113,7 @@ router.get('/:id', async function (req, res, next) {
         // console.log(result.data[0]);
         res.json(result);
     } catch (err) {
+        console.log(err);
         res.send({ result: 0, msg: "路由錯誤", data: err });
     }
 });
@@ -122,10 +132,11 @@ router.get('/communityManager/:id', async function (req, res, next) {
 });
 
 
-//查詢社團成員byId
+//查詢社團成員by社團Id
 router.get('/communityById_communityMember/:id', async function (req, res, next) {
     try {
         let result = await Sql.communityById_communityMember(req.params.id);
+        // let resultStatus =
         // params 是post解決querystring
         // console.log(req.params);
 
