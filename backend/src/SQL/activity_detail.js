@@ -3,16 +3,17 @@ const sql = require('mssql');
 
 // *資料庫連結設定檔 大家都把 sa 的密碼改成 everybodycanuse 才能一直用喔
 const config = {
-    user: 'sa',
-    password: 'everybodycanuse',
-    server: 'localhost', // You can use 'localhost\\instance' to connect to named instance
-    database: 'SeaTurtleOnTheWay',
-
+    // user: 'sa',
+    // password: 'P@ssw0rd',
+    user: process.env.SQLSERVER_USER || 'sa',
+    password: process.env.SQLSERVER_PASSWORD || 'everybodycanuse',
+    server: process.env.SQLSERVER_SERVER || 'localhost', // You can use 'localhost\\instance' to connect to named instance
+    database: process.env.SQLSERVER_DATABASE ||'SeaTurtleOnTheWay',
     options: {
         enableArithAbort: true,
         encrypt: true
-    },
-    port: 1433,
+      },
+      port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
 }
 
 // 設計 SQL指令方法
@@ -179,6 +180,112 @@ const JoinCount = async (fid) => {
 };
 
 
+//* ----------------------- 標籤搜尋 ----------------------- //
+
+// const TagSearch = async (text) => {
+//     try {
+//         await sql.connect(config)
+//         let sqlStr = `select fActName
+//         from Activity.tActivity
+//         where fActName like '%${text}%'`
+//         const result = await sql.query(sqlStr);
+//         console.dir(result.recordset)
+//         return {
+//             result: 1,
+//             msg: "請求成功",
+//             data: result.recordset
+//         };
+//     } catch (err) {
+//         console.log(err);
+//         return {
+//             result: 0,
+//             msg: "SQL 錯誤",
+//             data: err
+//         };
+//     }
+// };
+
+
+//* ----------------------- 參加活動 ----------------------- //
+const JoinAct = async (fActivityId, fMemberId, fJoinTime, fJoinTypeId) => {
+    try {
+        await sql.connect(config)
+        let sqlStr = `insert into Activity.tJoinList(fActivityId, fMemberId, fJoinTime, fJoinTypeId)
+        values (${fActivityId},${fMemberId},'${fJoinTime}',${fJoinTypeId})`
+
+        // console.log(sqlStr);
+
+        const result = await sql.query(sqlStr);
+        // console.dir(result.recordset)
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+    } catch (err) {
+        console.log(err);
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
+    }
+};
+
+
+//* ----------------------- 取消參加活動 ----------------------- //
+const CancelJoinAct = async (fActivityId, fMemberId) => {
+    try {
+        await sql.connect(config)
+        let sqlStr = `delete from Activity.tJoinList
+        where fActivityId = ${fActivityId} and fMemberId = ${fMemberId}`
+
+        // console.log(sqlStr);
+
+        const result = await sql.query(sqlStr);
+        // console.dir(result.recordset)
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+    } catch (err) {
+        console.log(err);
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
+    }
+};
+
+//* ----------------------- 判斷是否參加活動 ----------------------- //
+const OrJoinAct = async (fActivityId, fMemberId) => {
+    try {
+        await sql.connect(config)
+        let sqlStr = `select fActivityId, fMemberId
+        from Activity.tJoinList
+        where fActivityId = ${fActivityId} and fMemberId = ${fMemberId}`
+
+        // console.log(sqlStr);
+
+        const result = await sql.query(sqlStr);
+        // console.log("============");
+        // console.dir(result.recordset)
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+    } catch (err) {
+        console.log(err);
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
+    }
+};
 
 
 //* ----------------------- 新增活動 ----------------------- //
@@ -246,6 +353,8 @@ const createActTag = async (fLabelName) => {
 // TagById(1);
 // JoinById(1);
 // JoinCount(1);
+// TagSearch(2020)
+// OrJoinAct(1, 6)
 
 // *匯出方法 ， 多個方法包在{}裡， ex: {func1, func2}
 module.exports = {
@@ -254,6 +363,10 @@ module.exports = {
     TagById,
     JoinById,
     JoinCount,
-    createAct
-    // createActTag
+    createAct,
+    // createActTag,
+    // TagSearch,
+    JoinAct,
+    CancelJoinAct,
+    OrJoinAct
 };

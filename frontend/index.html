@@ -60,7 +60,7 @@
                     <i id="navbar_msg" class="fas fa-bullhorn login_bullhorn"></i>
                     <i id="navbar_logout" class="fas fa-sign-out-alt login_bullhorn"></i>
                 </div>
-                
+
                 <div id="navbar_log-in" class="li_menutitle header_nav"><a id="header_link_login" href="#log-in">Log
                         in<br>登入</a></div>
             </div>
@@ -344,7 +344,7 @@
                         </select>
                     </div>
 
-                    <div class="active_advance_row">
+                    <div class="active_advance_row search_hidden">
                         <div id="activity_advence_show">進階搜尋<div class="activity_advence_t">▼</div>
                         </div>
 
@@ -362,10 +362,11 @@
                             </div>
                         </div>
 
-                        <div class="active_advance_row">
+                        <div class="active_advance_row search_hidden">
                             <div class="active_advance_search">
                                 <div class="active_advance_search_tile">時間範圍:</div>
                                 <div class="active_advance_dateRange">
+                                    
                                     <select name="dateStart" size="1">
                                         <option value="2020">2020/10/09</option>
                                     </select>
@@ -382,7 +383,7 @@
                         </div>
 
 
-                        <div class="active_advance_row">
+                        <div class="active_advance_row search_hidden">
                             <div class="active_advance_search">
                                 <div class="active_advance_search_tile">忽略額滿活動</div>
                                 <input type="checkbox" name="" value="">
@@ -432,6 +433,7 @@
                             onchange="getstartdate(this.id)" />
                         <label for="ac_date_end_from">Enddate</label>
                         <input type="text" id="ac_date_end_from" name="ac_date_end_from" autocomplete="off" />
+                        <button class="btn_check_date">確定</button>
                     </div>
 
 
@@ -1303,7 +1305,8 @@
                         <div class="activity_detail_right_container">
                             <div class="activity_detail_right">
                                 <div class="activity_detail_right_top">
-                                    <button>參加</button>
+                                    <button id="joinActBtn">參加</button>
+                                    <button id="cancelJoinActBtn" style="display: none;">取消</button>
                                     <a href=""><img src="img/icon1.svg" alt="" class="activity_detail_right_love"></a>
                                 </div>
                                 <div class="activity_detail_right_info">
@@ -1378,7 +1381,7 @@
                     <div>台北,台灣</div>
                 </div> -->
 
-                            <div>
+                            <div class="FlexContainer rightTopInfoFlexColume">
                                 <div class="FlexContainer GroupTopRightEventInfoBox">
                                     <div class="Size20IconMarginRight"><img src="./img/icon_group.svg" width="20"></div>
                                     <div>社團人數&nbsp;<span id="CommunityNumberOfPeople">50</span>&nbsp;人</div>
@@ -1390,10 +1393,10 @@
                                     </div>
                                 </div>
 
-                            </div>
 
-                            <div class="FlexContainer share-text">
-                                <div class="FlexContainer share-text-div">
+
+
+                                <div class="FlexContainer ">
                                     <div class="Boldtitle">Share:</div>
                                     <div class="Size20IconMarginLeft Size20IconMarginRight"><img
                                             src="./img/icon_facebook.svg" width="20"></div>
@@ -1403,6 +1406,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -1435,7 +1439,7 @@
                         <div class="GroupDiveBtn FlexContainer">
                             <div class=" FlexContainer">
                                 <img src="./img/icon_setting.svg" width="25px">
-                                <div id="ApplyBtn" class="GroupDiveBtnText">加入社團</div>
+                                <div id="ApplyBtn" class="GroupDiveBtnText">&nbsp;&nbsp;加入社團</div>
                                 <div id="ManagerBtn" class="GroupDiveBtnText hide">&nbsp&nbsp管理員</div>
                                 <div id="MemberBtn" class="GroupNavBtn GroupDiveBtnText hide">我是社員</div>
                                 <!-- <img src="./img/icon_triangle_downside.svg" width="25px"> -->
@@ -1723,11 +1727,13 @@
 
                                     </div>
                                 </div>
+
+
                                 <div class="dropdown-relative-container">
                                     <div class="FlexContainer RightPartTopInfo Group_FlexJustifyContentSB ">
                                         <div class="FlexContainer">
                                             <div class="GroupComingEvent FontSectionTitle">社團成員</div>
-                                            <div class="FontSectionTitle">(4)</div>
+                                            <div id="NumOfMem" class="FontSectionTitle">(4)</div>
                                         </div>
                                         <img class="GroupComingEventImg" src="/img/icon_seemore.svg" width="25px">
                                         <!-- <a href="#" class="SeeAllRight FontSectionTitle">see all</a> -->
@@ -1737,7 +1743,7 @@
                                         <div class="dropdownDR">編輯會員名單</div>
                                     </div>
                                 </div>
-                                <div class="FlexContainer GroupRightInfoPhotoContainer
+                                <div id="CommunityMember" class="FlexContainer GroupRightInfoPhotoContainer
                                 Group_FlexJustifyContentSB">
                                     <div class="activity_detail_info_img_circle GroupMemberPic">
                                         <div class="activity_detail_info_img_div">
@@ -1994,83 +2000,89 @@
                                         </div>
                                         <input class="GroupMemberSearchInput" type="text"
                                             placeholder="who you wanna search for?">
+                                        <div id="MemberPageTemplateContainer">
+                                            <!------- 會員卡 -------->
+                                            <div
+                                                class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
+                                                <div class="FlexContainer">
+                                                    <a href="#" class="DivForImg">
+                                                        <div class="activity_detail_info_img_circle">
+                                                            <div class="activity_detail_info_img_div">
+                                                                <img src="./img/id3.jpg"
+                                                                    class="activity_detail_info_img">
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <div class="GroupMemberCardInfo">
+                                                        <a href="#">Wwill354</a>
+                                                        <div class="FlexContainer">
+                                                            <div>May 11, 2019</div>
+                                                            <div>加入此社團</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a href="#">
+                                                    <img class="Size20IconMarginRight" src="./img/icon_chat.svg"
+                                                        width="20">
+                                                </a>
+                                            </div>
 
-                                        <!------- 會員卡 -------->
-                                        <div
-                                            class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
-                                            <div class="FlexContainer">
-                                                <a href="#" class="DivForImg">
-                                                    <div class="activity_detail_info_img_circle">
-                                                        <div class="activity_detail_info_img_div">
-                                                            <img src="./img/id3.jpg" class="activity_detail_info_img">
+                                            <!-------  -------->
+                                            <hr>
+                                            <!------- 會員卡 -------->
+                                            <div
+                                                class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
+                                                <div class="FlexContainer">
+                                                    <a href="#" class="DivForImg">
+                                                        <div class="activity_detail_info_img_circle">
+                                                            <div class="activity_detail_info_img_div">
+                                                                <img src="./img/home08.jpg"
+                                                                    class="activity_detail_info_img">
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <div class="GroupMemberCardInfo">
+                                                        <a href="#">奔跑8boy</a>
+                                                        <div class="FlexContainer">
+                                                            <div>March 03, 2019</div>
+                                                            <div>加入此社團</div>
                                                         </div>
                                                     </div>
-                                                </a>
-                                                <div class="GroupMemberCardInfo">
-                                                    <a href="#">Wwill354</a>
-                                                    <div class="FlexContainer">
-                                                        <div>May 11, 2019</div>
-                                                        <div>加入此社團</div>
-                                                    </div>
                                                 </div>
+                                                <a href="#">
+                                                    <img class="Size20IconMarginRight" src="./img/icon_chat.svg"
+                                                        width="20">
+                                                </a>
                                             </div>
-                                            <a href="#">
-                                                <img class="Size20IconMarginRight" src="./img/icon_chat.svg" width="20">
-                                            </a>
-                                        </div>
-
-                                        <!-------  -------->
-                                        <hr>
-                                        <!------- 會員卡 -------->
-                                        <div
-                                            class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
-                                            <div class="FlexContainer">
-                                                <a href="#" class="DivForImg">
-                                                    <div class="activity_detail_info_img_circle">
-                                                        <div class="activity_detail_info_img_div">
-                                                            <img src="./img/home08.jpg"
-                                                                class="activity_detail_info_img">
+                                            <!-------  -------->
+                                            <hr>
+                                            <!------- 會員卡 -------->
+                                            <div
+                                                class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
+                                                <div class="FlexContainer">
+                                                    <a href="#" class="DivForImg">
+                                                        <div class="activity_detail_info_img_circle">
+                                                            <div class="activity_detail_info_img_div">
+                                                                <img src="./img/id1.jpg"
+                                                                    class="activity_detail_info_img">
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <div class="GroupMemberCardInfo">
+                                                        <a href="#">aa5568</a>
+                                                        <div class="FlexContainer">
+                                                            <div>Jun 6, 2019</div>
+                                                            <div>加入此社團</div>
                                                         </div>
                                                     </div>
-                                                </a>
-                                                <div class="GroupMemberCardInfo">
-                                                    <a href="#">奔跑8boy</a>
-                                                    <div class="FlexContainer">
-                                                        <div>March 03, 2019</div>
-                                                        <div>加入此社團</div>
-                                                    </div>
                                                 </div>
-                                            </div>
-                                            <a href="#">
-                                                <img class="Size20IconMarginRight" src="./img/icon_chat.svg" width="20">
-                                            </a>
-                                        </div>
-                                        <!-------  -------->
-                                        <hr>
-                                        <!------- 會員卡 -------->
-                                        <div
-                                            class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
-                                            <div class="FlexContainer">
-                                                <a href="#" class="DivForImg">
-                                                    <div class="activity_detail_info_img_circle">
-                                                        <div class="activity_detail_info_img_div">
-                                                            <img src="./img/id1.jpg" class="activity_detail_info_img">
-                                                        </div>
-                                                    </div>
+                                                <a href="#">
+                                                    <img class="Size20IconMarginRight" src="./img/icon_chat.svg"
+                                                        width="20">
                                                 </a>
-                                                <div class="GroupMemberCardInfo">
-                                                    <a href="#">aa5568</a>
-                                                    <div class="FlexContainer">
-                                                        <div>Jun 6, 2019</div>
-                                                        <div>加入此社團</div>
-                                                    </div>
-                                                </div>
                                             </div>
-                                            <a href="#">
-                                                <img class="Size20IconMarginRight" src="./img/icon_chat.svg" width="20">
-                                            </a>
+                                            <!-------  -------->
                                         </div>
-                                        <!-------  -------->
                                         <button class="ShowMoreBtn">show more!</button>
 
                                     </div>
@@ -2087,23 +2099,26 @@
                                             </div>
                                         </div>
                                         <!------- 會員卡 -------->
-                                        <div
-                                            class="FlexContainer GroupMemberBottomRightMemberCard Group_FlexJustifyContentSB">
+                                        <div id="MemberPageTemplateContainerM">
 
-                                            <div class="FlexContainer">
-                                                <a href="#" class="DivForImg">
-                                                    <div class="activity_detail_info_img_circle">
-                                                        <div class="activity_detail_info_img_div">
-                                                            <img src="./img/id2.jpg" class="activity_detail_info_img">
+                                            <div
+                                                class="FlexContainer GroupMemberBottomRightMemberCard Group_FlexJustifyContentSB">
+                                                <div class="FlexContainer">
+                                                    <a href="#" class="DivForImg">
+                                                        <div class="activity_detail_info_img_circle">
+                                                            <div class="activity_detail_info_img_div">
+                                                                <img src="./img/id2.jpg"
+                                                                    class="activity_detail_info_img">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </a>
-                                                <div class="GroupMemberCardInfo">
-                                                    <a href="#">蘇菲唐納</a>
-                                                    <div class="FlexContainer">
-                                                        <div class="GroupMemberBottomRightInfoCardText">May 11, 2019
+                                                    </a>
+                                                    <div class="GroupMemberCardInfo">
+                                                        <a href="#">蘇菲唐納</a>
+                                                        <div class="FlexContainer">
+                                                            <div class="GroupMemberBottomRightInfoCardText">May 11, 2019
+                                                            </div>
+                                                            <div>加入此社團</div>
                                                         </div>
-                                                        <div>加入此社團</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2606,7 +2621,7 @@
                     <!-- ------------- Basic Info --------------- -->
 
                     <div class="create_active_basicInfo_container">
-                        <form id="creatAct_form">
+                        <form id="creatAct_form" method="POST">
                             <div class="create_active_basicInfo">
                                 <h2>基本資料</h2>
                                 <p>Name your event and tell event-goers why they should come. Add

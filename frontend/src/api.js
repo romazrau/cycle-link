@@ -19,10 +19,11 @@ const serverURL = {
   homePages: `${rootURL}/home/`,
   community: `${rootURL}/community/`,
   communityManager: `${rootURL}/community/communityManager/`,
-  activeinsertseensql:`${rootURL}/active/activeinsertseensql/`,
-  activeforyou:`${rootURL}/active/activeforyou/`,
-  addlikes:`${rootURL}/like/add`,
-  removelikes:`${rootURL}/like/remove`
+  communityMember: `${rootURL}/community/communityById_communityMember/`,
+  activeinsertseensql: `${rootURL}/active/activeinsertseensql/`,
+  activeforyou: `${rootURL}/active/activeforyou/`,
+  addlikes: `${rootURL}/like/add`,
+  removelikes: `${rootURL}/like/remove`
 };
 
 const postlist = async () => {

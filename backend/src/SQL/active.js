@@ -3,16 +3,17 @@ const sql = require('mssql');
 
 // *資料庫連結設定檔 大家都把 sa 的密碼改成 everybodycanuse 才能一直用喔
 const config = {
-    user: 'sa',
-    password: 'everybodycanuse',
-    server: 'localhost', // You can use 'localhost\\instance' to connect to named instance
-    database: 'SeaTurtleOnTheWay',
-
+    // user: 'sa',
+    // password: 'P@ssw0rd',
+    user: process.env.SQLSERVER_USER || 'sa',
+    password: process.env.SQLSERVER_PASSWORD || 'everybodycanuse',
+    server: process.env.SQLSERVER_SERVER || 'localhost', // You can use 'localhost\\instance' to connect to named instance
+    database: process.env.SQLSERVER_DATABASE ||'SeaTurtleOnTheWay',
     options: {
         enableArithAbort: true,
         encrypt: true
-    },
-    port: 1433,
+      },
+      port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
 }
  
 // 設計 SQL指令方法
@@ -102,13 +103,38 @@ const activeforyousql = async()=>{
 }
 
 //進階搜尋城市
-const activesearchcitysql = async () => {
+// const activesearchcitysql = async () => {
+//     try {
+//         // make sure that any items are correctly URL encoded in the connection string
+//         // 連接資料庫
+//         await sql.connect(config)
+//         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
+//         let sqlStr = `select A.fActLocation  from Activity.tActivity as A `
+//         const result = await sql.query(sqlStr)
+//         // 看一下回傳結果
+//         console.dir(result)
+//         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
+//         return {result:1, msg:"請求成功", data:result.recordset};
+//     // 錯誤處理
+//     } catch (err) {
+//         console.log(err);
+//         return {result:0, msg:"SQL 錯誤", data:err};
+//     }
+// };
+
+//todo 進階搜尋
+
+const activesearchdetailsql = async () => {
     try {
         // make sure that any items are correctly URL encoded in the connection string
         // 連接資料庫
         await sql.connect(config)
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
-        let sqlStr = `select A.fActLocation  from Activity.tActivity as A `
+        let sqlStr = `select A.fId, A.fActName , A.fActivityDate,A.fActivityEndDate , A.fImgPath,A.fActLocation
+        from Activity.tActivity as A 
+        left join Activity.tActivityMainLabel as S
+        on A.fActLabelId = S.fId
+        where S.fId = ${fid} and A.fActName like '%${text}%'; `
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
         console.dir(result)

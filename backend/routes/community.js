@@ -64,9 +64,20 @@ router.get('/:id', async function (req, res, next) {
         }
 
         let result = await Sql.communityById_communityDetail(req.params.id);
+        // console.log('++++++++++++');
+        // console.log(result);
         //----丟入社團ID把所有社員資料撈出
         let memberOfCommunity = await Sql.communityById_communityMember(req.params.id);
         // console.log('++++++++++++++++++');
+        // console.log(memberOfCommunity);
+
+        // 沒有成員回傳 非管理員
+        if (!memberOfCommunity.result) {
+            result.data[0].user = "非社員";
+            res.json(result);
+            return;
+        }
+
         //memberOfCommunity.data 是物件array
         // console.log(memberOfCommunity.data);
         //----把社員id拿出放進一個array
@@ -86,8 +97,6 @@ router.get('/:id', async function (req, res, next) {
                 idarr.push(e.fId);
             })
 
-
-
             if (idarr.includes(memberId)) {
                 user = "管理員";
 
@@ -104,6 +113,7 @@ router.get('/:id', async function (req, res, next) {
         // console.log(result.data[0]);
         res.json(result);
     } catch (err) {
+        console.log(err);
         res.send({ result: 0, msg: "路由錯誤", data: err });
     }
 });
@@ -121,17 +131,91 @@ router.get('/communityManager/:id', async function (req, res, next) {
     }
 });
 
-
-//查詢社團成員byId
+// 查詢社團成員by社團Id
 router.get('/communityById_communityMember/:id', async function (req, res, next) {
     try {
         let result = await Sql.communityById_communityMember(req.params.id);
-        // params 是post解決querystring
-        // console.log(req.params);
+        let resultStatus = await Sql.communityById_communityManager(req.params.id);
+        //權限:使用社團Id查詢社團SQL function
+        let resultOftStatus = await Sql.communityById_communityDetail(req.params.id);
+
+        // console.log("++++++++++++++++++++++");
+        // console.log(resultOftStatus.data[0].fStatusId);
+        // console.log(result.data);
+        // console.log(resultStatus.data);
+
+        if (result.result && resultStatus.result) {
+            result.data.forEach(items => {
+                resultStatus.data.forEach(element => {
+
+                    if (items.fMemberId == element.fId) {
+                        console.log(element.fId);
+                        items["ifManager"] = 1;
+                    }
+                    else {
+                        items["ifManager"] = 0;
+                    }
+                })
+            })
+
+        } else {
+            if (result.result) {
+                result.data.forEach(items => {
+                    items["ifManager"] = 0;
+                })
+            }
+        }
+
+
+
+
+
+        // console.log("++++++++++++++++++++++");
+        // console.log(result.data);
+        // console.log("----------------------------");
+        // console.log(result.data);
+
+
+        //  todo 社團開放或私密  社團16做測試
+        //--如果社團為開放
+        //--回傳社員所有資料
+        //--如果社團為不開放進一步檢查
+        //--是否為社員token: req.user.fId 比對
+        //--是回傳所有資料
+        //--不是社員 只回傳管理員資料
+
+
+        if (resultOftStatus.data[0].fStatusId == 2) {
+
+            // 用filter代替以下?
+            result.data.forEach((element, i) => {
+                if (element.fMemberId == req.user.fId) {
+                    // console.log("**");
+                    res.json(result);
+                }
+                else {
+
+                    let newResultArr = result.data.filter(item => item.ifManager == 1)
+                    result.data = newResultArr;
+
+
+                }
+
+            })
+
+
+
+        }
+
+
+
+        // console.log("----------------------------");
+        // console.log(result.data);
 
         //顯示在頁面上 
         res.json(result);
     } catch (err) {
+        console.log(err);
         res.send({ result: 0, msg: "路由錯誤", data: err });
     }
 });
