@@ -82,8 +82,8 @@ function CarouselBanner(data)
 
 function getBannerTime(t,index)
 {
-  console.log("t",t);
-  console.log("index:",index);
+  // console.log("t",t);
+  // console.log("index:",index);
 
   let time = new Date();
   let nowTime = time.getTime()

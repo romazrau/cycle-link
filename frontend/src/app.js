@@ -15,13 +15,13 @@ checkLogin()
             document.querySelector('.navebar_msg_icons').classList.remove("hide");
 
             window.localStorage.setItem("Cycle link token", res.token);
-            window.localStorage.setItem("Cycle link user data", res.data.fName);   
-        }else{
-            window.localStorage.removeItem( "Cycle link token" ) 
-            window.localStorage.removeItem("Cycle link user data");   
+            window.localStorage.setItem("Cycle link user data", res.data.fName);
+        } else {
+            window.localStorage.removeItem("Cycle link token")
+            window.localStorage.removeItem("Cycle link user data");
         }
     })
-    .catch( (err) => {console.log(err)});
+    .catch((err) => { console.log(err) });
 
 
 
