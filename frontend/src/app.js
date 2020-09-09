@@ -10,8 +10,9 @@ checkLogin()
     .then((res) => {
         console.log(res);
         if (res.result == "1" &&  res.data.fName) {
-            let show = `<i class="fas fa-bullhorn login_bullhorn"></i> <div><p>${res.data.fName}</p><p>歡迎</p></div>`;
+            let show = `<div>${res.data.fName}<br/>歡迎</div>`;
             document.querySelector("#header_link_login").innerHTML = show;
+            document.querySelector('.navebar_msg_icons').classList.remove("hide");
 
             window.localStorage.setItem("Cycle link token", res.token);
             window.localStorage.setItem("Cycle link user data", res.data.fName);   
