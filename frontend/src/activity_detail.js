@@ -300,26 +300,15 @@ function ClsActivityDetail() {
         }
     }
 
-    // function getActDetail() {
-    //     let nowtime = new Date();
-    //     let date = nowtime.toLocaleDateString();
-    //     console.log(date)
 
-    //     let timesplit = nowtime.toTimeString().split(" ");
-    //     let time = timesplit[0];
-    //     let now = date + " " + time;
-    //     now = now.split("/").join(",");
-
-    // }
-
-    // ! ------------- 傳送表單 ------------- //
+    // ! ------------- 傳送表單 創建活動 ------------- //
     $("#create_active_btn_done").click(async (e) => {
         e.preventDefault();
         // console.log(e);
         // console.log(localStorage.getItem("Cycle link token"));
         let nowtime = new Date();
         let date = nowtime.toLocaleDateString();
-        console.log("目前日期: " + date);
+        // console.log("目前日期: " + date);
         let form = document.querySelector("#creatAct_form");
         // console.log(form);
         let formData = new FormData(form);
@@ -343,6 +332,105 @@ function ClsActivityDetail() {
         }
 
     })
+
+    // TODO: -------------------------------- 標籤搜尋 -------------------------------- //
+    // TODO: -------------------------------- 編輯活動 -------------------------------- //
+    // TODO: -------------------------------- 刪除活動 -------------------------------- //
+
+    // TODO: -------------------------------- 是否參加活動 -------------------------------- //
+    const OrJoinAct = async (actId) => {
+        try {
+            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+            // *用變數接 fetch 結果 ，要用await等。
+            let response = await fetch(serverURL.actDetail + `OrJoinAct/${actId}`, {
+                method: "GET", // http request method
+                headers: {
+                    // "Content-Type": "application/json", // 請求的資料類型
+                    Authorization: localStorage.getItem("Cycle link token")
+                },
+                cache: "no-cache",
+                credentials: "include",
+            });
+            // 用變數接 fetch結果的資料內容， 要用await等。
+            let result = await response.json();
+            // console.log("actDetail await");
+            console.log(result);
+            // *用 result  do something ...
+            // console.log(result.data.joiner.length);
+            if (result.data.joiner.length > 0) {
+                $("#joinActBtn").css("display", "none");
+                $("#cancelJoinActBtn").css("display", "block")
+            } else {
+                $("#joinActBtn").css("display", "block");
+                $("#cancelJoinActBtn").css("display", "none")
+            }
+
+            // display_actDetail(result.data.detail);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    // TODO: -------------------------------- 參加活動 -------------------------------- //
+    $("#joinActBtn").click(async (e) => {
+        e.preventDefault();
+        let nowtime = new Date();
+        let date = nowtime.toLocaleDateString();
+        let actID = location.hash.split("/")[2];
+        try {
+            let response = await fetch(serverURL.actDetail + "joinAct", {
+                method: "POST",
+                body: JSON.stringify({
+                    fActivityId: actID,
+                    fJoinTime: date
+                }),
+                mode: 'cors',
+                referrer: "client",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: localStorage.getItem("Cycle link token"),
+                }
+            })
+            let result = await response.text();
+            console.log(result);
+        } catch (err) {
+            console.log(err);
+        }
+        $("#joinActBtn").css("display", "none");
+        $("#cancelJoinActBtn").css("display", "block")
+
+    })
+
+    // TODO: -------------------------------- 取消參加活動 -------------------------------- //
+    $("#cancelJoinActBtn").click(async (e) => {
+        e.preventDefault();
+        let actID = location.hash.split("/")[2];
+        try {
+            let response = await fetch(serverURL.actDetail + "CancelJoinAct", {
+                method: "Delete",
+                body: JSON.stringify({
+                    fActivityId: actID
+                }),
+                mode: 'cors',
+                referrer: "client",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: localStorage.getItem("Cycle link token"),
+                }
+            })
+            let result = await response.text();
+
+            console.log(result);
+        } catch (err) {
+            console.log(err);
+        }
+        $("#joinActBtn").css("display", "block");
+        $("#cancelJoinActBtn").css("display", "none")
+    })
+
+
+    // TODO: -------------------------------- 加入最愛活動 -------------------------------- //
+
 
     //  TODO: -------------------------------- 為您推薦 文字樣板 -------------------------------- //
     this.htmlActCard = (o) => {
@@ -484,6 +572,7 @@ function ClsActivityDetail() {
         ac_share_bg.preventDefault();
     };
     this.actDetail = actDetail;
+    this.OrJoinAct = OrJoinAct;
 }
 const ActivityDetail = new ClsActivityDetail();
 
@@ -497,6 +586,7 @@ const actDetailChangeHash = () => {
     let actDetailId = actDetailArr[2];
     if (location.hash.includes("#activity/detail")) {
         ActivityDetail.actDetail(actDetailId);
+        ActivityDetail.OrJoinAct(actDetailId);
     }
 };
 

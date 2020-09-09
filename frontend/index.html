@@ -1303,7 +1303,8 @@
                         <div class="activity_detail_right_container">
                             <div class="activity_detail_right">
                                 <div class="activity_detail_right_top">
-                                    <button>參加</button>
+                                    <button id="joinActBtn">參加</button>
+                                    <button id="cancelJoinActBtn" style="display: none;">取消</button>
                                     <a href=""><img src="img/icon1.svg" alt="" class="activity_detail_right_love"></a>
                                 </div>
                                 <div class="activity_detail_right_info">
@@ -2618,7 +2619,7 @@
                     <!-- ------------- Basic Info --------------- -->
 
                     <div class="create_active_basicInfo_container">
-                        <form id="creatAct_form">
+                        <form id="creatAct_form" method="POST">
                             <div class="create_active_basicInfo">
                                 <h2>基本資料</h2>
                                 <p>Name your event and tell event-goers why they should come. Add
