@@ -21,26 +21,26 @@ function ClsActivityDetail() {
 
 
     // * -------------- 固定右側資訊 -------------- //
-    function boxMove2(y) {
-        // console.log(y);
-        box = document.querySelector(".activity_detail_right");
-        box.style.marginTop = `${y}px`;
-    }
-    var last_known_scroll_position = 0;
-    var ticking = false;
+    // function boxMove2(y) {
+    //     // console.log(y);
+    //     box = document.querySelector(".activity_detail_right");
+    //     box.style.marginTop = `${y}px`;
+    // }
+    // var last_known_scroll_position = 0;
+    // var ticking = false;
 
-    window.addEventListener("scroll", function (e) {
-        last_known_scroll_position = window.scrollY - 150;
-        if (window.scrollY > 150) {
-            if (!ticking) {
-                window.requestAnimationFrame(function () {
-                    boxMove2(last_known_scroll_position);
-                    ticking = false;
-                });
-            }
-            ticking = true;
-        }
-    });
+    // window.addEventListener("scroll", function (e) {
+    //     last_known_scroll_position = window.scrollY - 150;
+    //     if (window.scrollY > 150) {
+    //         if (!ticking) {
+    //             window.requestAnimationFrame(function () {
+    //                 boxMove2(last_known_scroll_position);
+    //                 ticking = false;
+    //             });
+    //         }
+    //         ticking = true;
+    //     }
+    // });
 
     // * ********************************** 文字樣板 ********************************** //
 
@@ -221,6 +221,7 @@ function ClsActivityDetail() {
         o.map(
             (e, index) => {
                 activity_detail_TagBox.innerHTML += activity_detail_tag(e);
+
             }
         )
     }
@@ -230,6 +231,7 @@ function ClsActivityDetail() {
         o.map(
             (e, index) => {
                 activity_detail_participant_All.innerHTML += activity_detail_participant(e);
+
             }
         )
     }
@@ -304,6 +306,14 @@ function ClsActivityDetail() {
     // ! ------------- 傳送表單 創建活動 ------------- //
     $("#create_active_btn_done").click(async (e) => {
         e.preventDefault();
+        let fd = document.querySelector("#ac_date_from").value;
+        let fdt = document.querySelector("#ac_date_from_time").value;
+        let ed = document.querySelector("#ac_date_to").value;
+        let edt = document.querySelector("#ac_date_to_time").value;
+        let actFromDate = fd + " " + fdt;
+        let actEndDate = ed + " " + edt;
+        // console.log(actFromDate);
+        // console.log(fActTypeId);
         // console.log(e);
         // console.log(localStorage.getItem("Cycle link token"));
         let nowtime = new Date();
@@ -313,6 +323,9 @@ function ClsActivityDetail() {
         // console.log(form);
         let formData = new FormData(form);
         formData.append('fCreatDate', date);
+        formData.append('fActivityDate', actFromDate);
+        formData.append('fActivityEndDate', actEndDate);
+
         // console.log(now);
         try {
             let response = await fetch(serverURL.actDetail, {
@@ -354,7 +367,7 @@ function ClsActivityDetail() {
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
             // console.log("actDetail await");
-            console.log(result);
+            // console.log(result);
             // *用 result  do something ...
             // console.log(result.data.joiner.length);
             if (result.data.joiner.length > 0) {

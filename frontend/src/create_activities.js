@@ -1,20 +1,25 @@
 // ----------- 頁面轉換 -----------
 $(".create_active_basicInfo").eq(0).css("display", "block").siblings().css("display", "none");
-console.log($(".create_active_basicInfo"));
+// console.log($(".create_active_basicInfo"));
 $(".create_active_title_div").click(function () {
     hcTitle = $(this).index();
-    console.log(hcTitle)
+    // console.log(hcTitle)
     $(".create_active_basicInfo").eq(hcTitle).css("display", "block").siblings().css("display", "none");
     // console.log($(".create_active_basicInfo"));
+    window.scroll(0, 0)
 });
 
-$("#create_active_btn_next").click(function () {
+$("#create_active_btn_next").click(function (e) {
+    e.preventDefault();
     $(".create_active_basicInfo").eq(1).css("display", "block").siblings().css("display", "none");
-    console.log($(".create_active_basicInfo"));
+    // console.log($(".create_active_basicInfo").eq(1));
+    window.scroll(0, 0)
 });
-$("#create_active_btn_pre").click(function () {
+$("#create_active_btn_pre").click(function (e) {
+    e.preventDefault();
     $(".create_active_basicInfo").eq(0).css("display", "block").siblings().css("display", "none");
     // console.log($(".create_active_basicInfo"));
+    window.scroll(0, 0)
 });
 
 // ----------- 字數限制 -----------
@@ -38,6 +43,7 @@ $(function () {
     var availableTags = [
         "Keelung, 基隆市",
         "Taipei, 台北市",
+        "Taipei, 台北市大安區",
         "New Taipei City, 新北市",
         "Taoyuan, 桃園市",
         "Hsinchu, 新竹市",
@@ -52,6 +58,9 @@ $(function () {
         }
     });
 });
+
+
+
 
 // ----------- datepicker -----------
 $(function () {
@@ -79,12 +88,24 @@ $(function () {
         var date;
         try {
             date = $.datepicker.parseDate(dateFormat, element.value);
+            // console.log(document.querySelector("#ac_date_from") == "");
+            // console.log(document.querySelector("#ac_date_to").value);
+            let actDateFrom = document.querySelector("#ac_date_from");
+            let actDateTo = document.querySelector("#ac_date_to");
+            if (actDateFrom.value !== "") {
+                $("#ac_date_from_div").css("display", "block")
+            }
+            if (actDateTo.value !== "") {
+                $("#ac_date_to_div").css("display", "block")
+            }
+
         } catch (error) {
             date = null;
         }
         return date;
     }
 });
+
 
 // ----------- 標籤寫入 -----------
 var create_active_tag_count = 0;
@@ -97,7 +118,7 @@ function inputTag() {
     const tagInput = $("#create_active_tag_input").val();
 
     if (tagInput != "") {
-        const htmlTagInput = `<div id="create_active_tag" >${tagInput}<button>x</button>`;
+        const htmlTagInput = `<a id="create_active_tag" name="fLabelName">${tagInput}<button>x</button>`;
         document.getElementById("test_a").innerHTML += htmlTagInput;
         create_active_tag_count++;
     } else {
@@ -117,3 +138,46 @@ $('.ca_imgUpload').change(function () {
     };
     reader.readAsDataURL(file);
 });
+
+
+// -- 塞時間 --
+// function createActTime() {
+var timeArr = new Array();
+for (let i = 0; i < 24; i++) {
+    if (i < 10) {
+        timeArr.push("0" + i + ":" + "00")
+        timeArr.push("0" + i + ":" + "30")
+    } else {
+        timeArr.push(i + ":" + "00")
+        timeArr.push(i + ":" + "30")
+    }
+}
+let acfd = document.querySelector("#ac_date_from_time");
+let aced = document.querySelector("#ac_date_to_time");
+
+for (let i = 0; i < 48; i++) {
+    var op = document.createElement("option");
+    op.appendChild(document.createTextNode(timeArr[i]));
+    acfd.appendChild(op)
+}
+for (let i = 0; i < 48; i++) {
+    var op = document.createElement("option");
+    op.appendChild(document.createTextNode(timeArr[i]));
+    aced.appendChild(op)
+}
+// }
+
+
+
+
+// -- 勾選後加入最低人數
+let ttt = document.querySelector("#actMinPeopleCk");
+let ttt22 = document.querySelector("#actMinPeople");
+
+$("#actMinPeopleCk").click(function () {
+    if (ttt.checked) {
+        ttt22.setAttribute("value", "5")
+    } else {
+        ttt22.removeAttribute("value")
+    }
+})

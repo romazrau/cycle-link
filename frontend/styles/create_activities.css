@@ -73,10 +73,12 @@
 }
 
 .create_active_basicInfo_div2 {
+
   border-radius: 0.5rem;
   padding: 1rem 2rem 1rem 2rem;
   background-color: white;
 }
+
 
 #ac_date_from,
 #ac_date_to {
@@ -139,6 +141,20 @@
   border-bottom: 1px solid var(--blue-color);
   outline: none;
 }
+
+.actPeople {
+  width: 30%;
+}
+
+.actPeople input {
+  width: 50%;
+}
+
+.actDateDiv {
+  height: 4rem;
+  align-items: center;
+}
+
 
 .create_active_basicInfo_div3 {
   text-align: end;

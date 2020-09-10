@@ -155,6 +155,7 @@
 
 /* 活動右側 */
 .activity_detail_right_container {
+  width: 20%;
   margin: 0 auto;
   /* width: 35vw; */
   /* border: 1px solid red; */
@@ -163,6 +164,8 @@
 .activity_detail_right {
   margin-top: 1.5rem;
   width: 340px;
+  position: fixed;
+
   /* position: absolute; */
   /* left: 5rem; */
   /* height: 30rem; */
