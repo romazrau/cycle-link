@@ -21,31 +21,34 @@ function ClsCommunityMain() {
       var y = x.includes(",,");
       if (y) {
         let imgArr = x.split(",,");
-        // for (let i = 0; i < imgArr.length; i++) {
-        // console.log(arrimgarr);
-        return `<div class="CM_timeline_body_img">
-        <img class="CM_timeline_body_img_img" src='${imgArr[0]}' />
-        </div>
-        <div class="CM_timeline_body_img">
-        <img class="CM_timeline_body_img_img" src='${imgArr[1]}' />
-        </div>
-        <div class="CM_timeline_body_img">
-        <img class="CM_timeline_body_img_img" src='${imgArr[2]}' />
-        </div>`;
-        // }
-        // return;
+        // console.log(imgArr);
+        var a = multiImgArr(imgArr);
+        return `<a class="Post_preIcon" href=""><</a>${a}<a class="Post_nextIcon"href="">></a>`;
       } else {
-        return `<div class="CM_timeline_body_img">
+        return `
+        <div class="CM_timeline_body_img">
       <img class="CM_timeline_body_img_img" src='${x}' />
       </div>`;
       }
     }
   };
+
   // function arrimgarr(x) {
-  //   return `<div class="CM_timeline_body_img">
-  //   <img class="CM_timeline_body_img_img" src='${x}' />
-  //   </div>`;
+  // return `<div class="CM_timeline_body_img">
+  // <img class="CM_timeline_body_img_img" src='${x}' />
+  // </div>`;
   // }
+
+  const multiImgArr = (k) => {
+    let result = "";
+    k.map((e, index) => {
+      result += `<div class="CM_timeline_body_img">
+    <img class="CM_timeline_body_img_img" src='${e}' />
+    </div>`;
+    });
+    return result;
+  };
+
   // const imgIMG = (x)=>{
   //   return `<div class="CM_timeline_body_img">
   //   <img class="CM_timeline_body_img_img" src='${imgArr[i]}' />
@@ -86,7 +89,9 @@ function ClsCommunityMain() {
         </div>
         <div class="CM_timeline_body">
           <p>${x.PostContent}</p>
-${ImgIsNullOrNot(x.PostImg)}
+          
+        ${ImgIsNullOrNot(x.PostImg)}
+          
         </div>
         <div class="CM_timeline_footer">
           <i class="far fa-heart changebyclick" id="likeIconbyfId${
@@ -215,6 +220,86 @@ ${ImgIsNullOrNot(x.PostImg)}
       // console.log("data:", result.data);
       addClickEventToReply(result.data.length);
       addClickEventToLike(result.data.length);
+      const CM_timeline_body=document.querySelectorAll(".CM_timeline_body")
+     //處理超過2張照片
+      for (let i=0;i<CM_timeline_body.length;i++)
+      {
+        if(CM_timeline_body[i].getElementsByTagName('img').length>1)
+        {
+          let PostImgs=CM_timeline_body[i].querySelectorAll(".CM_timeline_body_img");
+          for(let j=0;j<PostImgs.length;j++)
+          {
+            if(j>0)         
+              PostImgs[j].style.display="none";
+          }
+        }
+      }
+      //下一張
+      var allNextIcon=document.querySelectorAll(".Post_nextIcon")
+      for(let i=0;i<allNextIcon.length;i++)
+      {
+        allNextIcon[i].addEventListener
+        ("click",function(e){
+          e.preventDefault();
+          //this取a物件>再取父層>父層下所有div
+          // this.parentNode.getElementsByTagName('div')
+          let thisImgBox=this.parentNode.getElementsByTagName('div');
+          var position=0;
+          for(let p=0;p<thisImgBox.length;p++)
+          {
+            let display=thisImgBox[p].style.display
+            if(display!="none")
+              {position=p; ;}
+          }
+            position++;
+            
+            if(position>thisImgBox.length-1)
+              { position=0;}
+            
+          for(let j=0;j<thisImgBox.length;j++)
+          {
+            // console.log("j:",j);
+              if(position==j)
+              {
+                thisImgBox[j].style.display="block";}
+              else
+              {thisImgBox[j].style.display="none";}
+          }
+        })
+      }
+      //上一張
+      var allPreIcon=document.querySelectorAll(".Post_preIcon")
+      for(let i=0;i<allPreIcon.length;i++)
+      {
+        allPreIcon[i].addEventListener
+        ("click",function(e){
+          e.preventDefault();
+          //this取a物件>再取父層>父層下所有div
+          // this.parentNode.getElementsByTagName('div')
+          let thisImgBox=this.parentNode.getElementsByTagName('div');
+          //判斷postion位置 
+          var position=0;
+          for(let p=0;p<thisImgBox.length;p++)
+          {        
+            let display=thisImgBox[p].style.display
+            if(display!="none")
+              {position=p; }
+          }
+            position--;          
+            if(position<0)
+            {position=thisImgBox.length-1;}
+          for(let j=0;j<thisImgBox.length;j++)
+          {
+            if(position==j)
+              {
+                thisImgBox[j].style.display="block";}
+           else{
+                thisImgBox[j].style.display="none";
+              }                          
+          }
+        })
+      }
+
     } catch (err) {
       console.log(err);
     }
@@ -325,8 +410,31 @@ ${ImgIsNullOrNot(x.PostImg)}
       });
     }
   }
-
+  //點擊發送
   //TODO postime判斷距離現在時間
+  //TODO 新增留言
+  const addReplyToSQL = async (r) => {
+    try {
+      let nowtime = new Date();
+      let replyTime = nowtime.toLocaleDateString();
+
+      let replyFormdata = new FormData();
+      replyFormdata.append("fPostId", r);
+      let res = await fetch(serverURL.addReply, {
+        method: "POST",
+        headers: {
+          Authorization: localStorage.getItem("Cycle link token"),
+        },
+        body: replyFormdata,
+        cache: "no-cache",
+        credentials: "include",
+      });
+      let result = await res.json();
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   //TODO 新增喜歡
   const addLikeToSQL = async (P) => {
     try {
@@ -372,11 +480,7 @@ ${ImgIsNullOrNot(x.PostImg)}
       // 錯誤處理
     }
   };
-  //TODO 新增留言
-  // const addReply = async (r) => {
-  //   try {
-  //   }
-  // };
+
   //TODO 刪除留言
 
   //TODO 新增文章JHY

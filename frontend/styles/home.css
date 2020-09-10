@@ -51,7 +51,7 @@
 {
   position: absolute;
   right: 4rem;
-  top: 18rem;
+  top: 20rem;
   font-size: 72px;
   color: var(--white-color);
   text-align: right;
@@ -202,12 +202,14 @@
 }
 
 .home_left_bottom_item1 {
+  width: 50%;
   max-width: 24rem;
   height: 100%;
   margin-right: 2rem;
 }
 
 .home_left_bottom_item2 {
+  width: 50%;
   max-width: 24rem;
   height: 100%;
 }
