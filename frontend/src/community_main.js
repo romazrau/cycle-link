@@ -23,9 +23,10 @@ function ClsCommunityMain() {
         let imgArr = x.split(",,");
         // console.log(imgArr);
         var a = multiImgArr(imgArr);
-        return a;
+        return `<a class="Post_preIcon" href=""><</a>${a}<a class="Post_nextIcon"href="">></a>`;
       } else {
-        return `<div class="CM_timeline_body_img">
+        return `
+        <div class="CM_timeline_body_img">
       <img class="CM_timeline_body_img_img" src='${x}' />
       </div>`;
       }
@@ -77,7 +78,9 @@ function ClsCommunityMain() {
         </div>
         <div class="CM_timeline_body">
           <p>${x.PostContent}</p>
-${ImgIsNullOrNot(x.PostImg)}
+          
+        ${ImgIsNullOrNot(x.PostImg)}
+          
         </div>
         <div class="CM_timeline_footer">
           <i class="far fa-heart changebyclick" id="likeIconbyfId${
@@ -204,6 +207,86 @@ ${ImgIsNullOrNot(x.PostImg)}
       // console.log("data:", result.data);
       addClickEventToReply(result.data.length);
       addClickEventToLike(result.data.length);
+      const CM_timeline_body=document.querySelectorAll(".CM_timeline_body")
+     //處理超過2張照片
+      for (let i=0;i<CM_timeline_body.length;i++)
+      {
+        if(CM_timeline_body[i].getElementsByTagName('img').length>1)
+        {
+          let PostImgs=CM_timeline_body[i].querySelectorAll(".CM_timeline_body_img");
+          for(let j=0;j<PostImgs.length;j++)
+          {
+            if(j>0)         
+              PostImgs[j].style.display="none";
+          }
+        }
+      }
+      //下一張
+      var allNextIcon=document.querySelectorAll(".Post_nextIcon")
+      for(let i=0;i<allNextIcon.length;i++)
+      {
+        allNextIcon[i].addEventListener
+        ("click",function(e){
+          e.preventDefault();
+          //this取a物件>再取父層>父層下所有div
+          // this.parentNode.getElementsByTagName('div')
+          let thisImgBox=this.parentNode.getElementsByTagName('div');
+          var position=0;
+          for(let p=0;p<thisImgBox.length;p++)
+          {
+            let display=thisImgBox[p].style.display
+            if(display!="none")
+              {position=p; ;}
+          }
+            position++;
+            
+            if(position>thisImgBox.length-1)
+              { position=0;}
+            
+          for(let j=0;j<thisImgBox.length;j++)
+          {
+            // console.log("j:",j);
+              if(position==j)
+              {
+                thisImgBox[j].style.display="block";}
+              else
+              {thisImgBox[j].style.display="none";}
+          }
+        })
+      }
+      //上一張
+      var allPreIcon=document.querySelectorAll(".Post_preIcon")
+      for(let i=0;i<allPreIcon.length;i++)
+      {
+        allPreIcon[i].addEventListener
+        ("click",function(e){
+          e.preventDefault();
+          //this取a物件>再取父層>父層下所有div
+          // this.parentNode.getElementsByTagName('div')
+          let thisImgBox=this.parentNode.getElementsByTagName('div');
+          //判斷postion位置 
+          var position=0;
+          for(let p=0;p<thisImgBox.length;p++)
+          {        
+            let display=thisImgBox[p].style.display
+            if(display!="none")
+              {position=p; }
+          }
+            position--;          
+            if(position<0)
+            {position=thisImgBox.length-1;}
+          for(let j=0;j<thisImgBox.length;j++)
+          {
+            if(position==j)
+              {
+                thisImgBox[j].style.display="block";}
+           else{
+                thisImgBox[j].style.display="none";
+              }                          
+          }
+        })
+      }
+
     } catch (err) {
       console.log(err);
     }

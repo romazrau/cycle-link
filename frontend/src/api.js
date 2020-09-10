@@ -20,6 +20,7 @@ const serverURL = {
   community: `${rootURL}/community/`,
   communityManager: `${rootURL}/community/communityManager/`,
   communityMember: `${rootURL}/community/communityById_communityMember/`,
+  creatCommunity: `${rootURL}/`,
   activeinsertseensql: `${rootURL}/active/activeinsertseensql/`,
   activeforyou: `${rootURL}/active/activeforyou/`,
   addlikes: `${rootURL}/like/add`,
