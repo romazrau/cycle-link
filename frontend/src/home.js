@@ -29,7 +29,9 @@ const GetHomePageBannerActivity = async () => {
     })
     //輪播
     CarouselBanner(banner);
-
+    
+     
+   
 
     recent.map(
       (e, index) => {
@@ -54,18 +56,15 @@ GetHomePageBannerActivity();
 
 
 
-
+var bannerdata
 
 
 
 function CarouselBanner(data) {
   let home_bannerboxs = $(".home_bannerbox")
   let postion = -1;
-
-  for (let i = 0; i < data.length; i++) {
-
-    setInterval(getBannerTime(data[i], i), 1000)
-  }
+  bannerdata=data
+  
 
 
   setInterval(function () {
@@ -75,24 +74,31 @@ function CarouselBanner(data) {
     home_bannerboxs.eq(postion).css("display", "block").siblings().css("display", "none");
   }, 5000)
 }
+ setInterval(getBannerTime, 1000)
+      
 
 
 
 function getBannerTime(t, index) {
-  // console.log("t",t);
-  // console.log("index:",index);
 
   let time = new Date();
   let nowTime = time.getTime()
-  let endTime = Date.parse(t.fActivityDate); //"字串時間"
-  let offsetTime = (endTime - nowTime) / 1000; // ** 以秒為單位
+  
+ 
+  for(let i=0;i<bannerdata.length;i++)
+  {
+    let endTime = Date.parse(bannerdata[i].fActivityDate); //"字串時間"
+    let offsetTime = (endTime - nowTime) / 1000; // ** 以秒為單位
 
-  let sec = parseInt(offsetTime % 60); // 秒
-  let min = parseInt((offsetTime / 60) % 60); // 分 ex: 90秒
-  let hr = parseInt(offsetTime / 60 / 60)%60; // 時
-  let day = parseInt((offsetTime / 60 / 60)%24)
-  // console.log("p2:",$(".home_top_event_p2").eq(index));
-  $(".home_top_event_p2").eq(index).innerHTML="倒數"+day+" 天 "+hr+" 時 "+min+" 分 "+sec+" 秒 "
+    let sec = parseInt(offsetTime % 60); // 秒
+    let min = parseInt((offsetTime / 60) % 60); // 分 ex: 90秒
+    let hr = parseInt(offsetTime / 60 / 60)%60; // 時
+    let day = parseInt((offsetTime / 60 / 60)%24)
+    
+  $(".home_top_event_p2").eq(i).html(`倒數${day}天${hr}時${min}分${sec}秒`)
+
+}
+
 }
 
 
