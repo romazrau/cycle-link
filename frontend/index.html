@@ -366,7 +366,7 @@
                             <div class="active_advance_search">
                                 <div class="active_advance_search_tile">時間範圍:</div>
                                 <div class="active_advance_dateRange">
-                                    
+
                                     <select name="dateStart" size="1">
                                         <option value="2020">2020/10/09</option>
                                     </select>
@@ -1437,9 +1437,10 @@
                         </div>
 
                         <div class="GroupDiveBtn FlexContainer">
-                            <div class=" FlexContainer">
+                            <div class=" FlexContainer statusBtn">
                                 <img src="./img/icon_setting.svg" width="25px">
-                                <div id="ApplyBtn" class="GroupDiveBtnText">&nbsp;&nbsp;加入社團</div>
+                                <div href="#community/detail/" id="ApplyBtn" class="GroupDiveBtnText">&nbsp;&nbsp;加入社團
+                                </div>
                                 <div id="ManagerBtn" class="GroupDiveBtnText hide">&nbsp&nbsp管理員</div>
                                 <div id="MemberBtn" class="GroupNavBtn GroupDiveBtnText hide">我是社員</div>
                                 <!-- <img src="./img/icon_triangle_downside.svg" width="25px"> -->
@@ -2913,33 +2914,34 @@
                     <!-- ------------- Basic Info --------------- -->
 
                     <div class="create_community_basicInfo_container">
-                        <div class="create_community_basicInfo">
-                            <h2>基本資料</h2>
-                            <p>
-                                Name your event and tell event-goers why they should come. Add
-                                details that highlight what makes it unique.
-                            </p>
-                            <div class="create_community_basicInfo_div">
-                                <div class="create_community_basicInfo_div2">
-                                    <p>社團名稱</p>
-                                    <div class="create_community_flex">
-                                        <input type="text" maxlength="20" id="create_community_name"
-                                            class="create_community_full" />
-                                        <p class="create_community_ml" id="create_community_name_count">0</p>
-                                        <p>&nbsp;/&nbsp;20</p>
+                        <form id="formOfCreate">
+                            <div class="create_community_basicInfo">
+                                <h2>基本資料</h2>
+                                <p>
+                                    Name your event and tell event-goers why they should come. Add
+                                    details that highlight what makes it unique.
+                                </p>
+                                <div class="create_community_basicInfo_div">
+                                    <div class="create_community_basicInfo_div2">
+                                        <p>社團名稱</p>
+                                        <div class="create_community_flex">
+                                            <input name="fName" type="text" maxlength="20" id="create_community_name"
+                                                class="create_community_full" />
+                                            <p class="create_community_ml" id="create_community_name_count">0</p>
+                                            <p>&nbsp;/&nbsp;20</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="create_community_basicInfo_div">
-                                <div class="create_community_basicInfo_div2">
-                                    <p>Privacy Settings</p>
-                                    <select name="type">
-                                        <option value="">公開</option>
-                                        <option value="">私人</option>
-                                    </select>
+                                <div class="create_community_basicInfo_div">
+                                    <div class="create_community_basicInfo_div2">
+                                        <p>Privacy Settings</p>
+                                        <select name="fStatus" id="selectStatus">
+                                            <option value="1">公開</option>
+                                            <option value="2">私人</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="create_community_basicInfo_div">
+                                <!-- <div class="create_community_basicInfo_div">
                                 <div class="create_community_basicInfo_div2">
                                     <p>社團類別</p>
                                     <select name="type">
@@ -2949,60 +2951,65 @@
                                         <option value="">海洋環境</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="create_community_basicInfo_div3">
-                                <button id="create_community_btn_next">Next</button>
-                            </div>
-                        </div>
+                            </div> -->
+                                <div class="create_community_basicInfo_div3">
 
-                        <!-- ------------- Details --------------- -->
+                                    <button id="create_community_btn_next">Next</button>
+                                </div>
+                            </div>
 
-                        <div class="create_community_basicInfo">
-                            <h2>詳細資料</h2>
-                            <p>
-                                Name your event and tell event-goers why they should come. Add
-                                details that highlight what makes it unique.
-                            </p>
-                            <div class="create_community_basicInfo_div">
-                                <div class="create_community_basicInfo_div2">
-                                    <p>社團首頁圖片</p>
-                                    <div>
-                                        <label class="cc_imgUpload_lbl">
-                                            <input class="cc_imgUpload" style="display:none;" type="file">
-                                            <i class="fa fa-photo"></i> 上傳圖片
-                                        </label>
-                                        <div class="cc_imgUpload_div">
-                                            <img src="" class="cc_img_avatar">
+                            <!-- ------------- Details --------------- -->
+
+                            <div name="formDetails" class="create_community_basicInfo">
+                                <h2>詳細資料</h2>
+                                <p>
+                                    Name your event and tell event-goers why they should come. Add
+                                    details that highlight what makes it unique.
+                                </p>
+                                <div class="create_community_basicInfo_div">
+                                    <div class="create_community_basicInfo_div2">
+                                        <p>社團首頁圖片</p>
+                                        <div>
+                                            <label class="cc_imgUpload_lbl">
+                                                <input id="fImgPath" name="fImgPath" class="cc_imgUpload"
+                                                    style="display:none;" type="file" value="預設值">
+                                                <i class="fa fa-photo"></i> 上傳圖片
+                                            </label>
+                                            <div class="cc_imgUpload_div">
+                                                <img src="" class="cc_img_avatar">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="create_community_basicInfo_div">
-                                <div class="create_community_basicInfo_div2">
-                                    <p>社團描述</p>
-                                    <div class="create_community_flex">
-                                        <textarea name="" id="create_community_text" cols="60" rows="8"
-                                            maxlength="500"></textarea>
-                                        <p class="create_community_flex_end create_community_ml"
-                                            id="create_community_text_count">0</p>
-                                        <p class="create_community_flex_end">&nbsp;/&nbsp;500</p>
+                                <div class="create_community_basicInfo_div">
+                                    <div class="create_community_basicInfo_div2">
+                                        <p>社團描述</p>
+                                        <div class="create_community_flex">
+                                            <textarea name="fInfo" id="create_community_text" cols="60" rows="8"
+                                                maxlength="500"></textarea>
+                                            <p class="create_community_flex_end create_community_ml"
+                                                id="create_community_text_count">0</p>
+                                            <p class="create_community_flex_end">&nbsp;/&nbsp;500</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="create_community_basicInfo_div">
-                                <div class="create_community_basicInfo_div2">
-                                    <p>社團邀請</p>
-                                    <div class="create_community_flex">
-                                        <input type="text" maxlength="20" id="create_community_name_re"
-                                            class="create_community_full" />
+                                <!-- <div class="create_community_basicInfo_div">
+                                    <div class="create_community_basicInfo_div2">
+                                        <p>社團邀請</p>
+                                        <div class="create_community_flex">
+                                            <input type="text" maxlength="20" id="create_community_name_re"
+                                                class="create_community_full" />
+                                        </div>
                                     </div>
+                                </div> -->
+                                <div class="create_community_basicInfo_div3">
+                                    <button id="create_community_btn_pre">Pre</button>
+                                    <button id="create_community_btn_done">Done</button>
+
+
                                 </div>
                             </div>
-                            <div class="create_community_basicInfo_div3">
-                                <button id="create_community_btn_pre">Pre</button>
-                                <button id="create_community_btn_done">Done</button>
-                            </div>
-                        </div>
+                        </form>
 
                         <!-- ------------- 審核 --------------- -->
 
@@ -3161,7 +3168,7 @@
     <!-- community_detail.js有import檔案所以被使用的時候要加type="module" -->
     <script type="module" src="./src/community_detail.js"></script>
     <script src="./src/create_activities.js"></script>
-    <script src="./src/create_community.js"></script>
+    <script type="module" src="./src/create_community.js"></script>
     <script type="module" src="./src/personalPage.js"></script>
     <script type="module" src="./src/home.js"></script>
     <!-- 其他 -->
