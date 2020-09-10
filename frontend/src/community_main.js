@@ -21,19 +21,9 @@ function ClsCommunityMain() {
       var y = x.includes(",,");
       if (y) {
         let imgArr = x.split(",,");
-        // for (let i = 0; i < imgArr.length; i++) {
-        // console.log(arrimgarr);
-        return `<div class="CM_timeline_body_img">
-        <img class="CM_timeline_body_img_img" src='${imgArr[0]}' />
-        </div>
-        <div class="CM_timeline_body_img">
-        <img class="CM_timeline_body_img_img" src='${imgArr[1]}' />
-        </div>
-        <div class="CM_timeline_body_img">
-        <img class="CM_timeline_body_img_img" src='${imgArr[2]}' />
-        </div>`;
-        // }
-        // return;
+        // console.log(imgArr);
+        var a = multiImgArr(imgArr);
+        return a;
       } else {
         return `<div class="CM_timeline_body_img">
       <img class="CM_timeline_body_img_img" src='${x}' />
@@ -41,11 +31,23 @@ function ClsCommunityMain() {
       }
     }
   };
+
   // function arrimgarr(x) {
-  //   return `<div class="CM_timeline_body_img">
-  //   <img class="CM_timeline_body_img_img" src='${x}' />
-  //   </div>`;
+  // return `<div class="CM_timeline_body_img">
+  // <img class="CM_timeline_body_img_img" src='${x}' />
+  // </div>`;
   // }
+
+  const multiImgArr = (k) => {
+    let result = "";
+    k.map((e, index) => {
+      result += `<div class="CM_timeline_body_img">
+    <img class="CM_timeline_body_img_img" src='${e}' />
+    </div>`;
+    });
+    return result;
+  };
+
   // const imgIMG = (x)=>{
   //   return `<div class="CM_timeline_body_img">
   //   <img class="CM_timeline_body_img_img" src='${imgArr[i]}' />
@@ -325,8 +327,31 @@ ${ImgIsNullOrNot(x.PostImg)}
       });
     }
   }
-
+  //點擊發送
   //TODO postime判斷距離現在時間
+  //TODO 新增留言
+  const addReplyToSQL = async (r) => {
+    try {
+      let nowtime = new Date();
+      let replyTime = nowtime.toLocaleDateString();
+
+      let replyFormdata = new FormData();
+      replyFormdata.append("fPostId", r);
+      let res = await fetch(serverURL.addReply, {
+        method: "POST",
+        headers: {
+          Authorization: localStorage.getItem("Cycle link token"),
+        },
+        body: replyFormdata,
+        cache: "no-cache",
+        credentials: "include",
+      });
+      let result = await res.json();
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   //TODO 新增喜歡
   const addLikeToSQL = async (P) => {
     try {
@@ -372,11 +397,7 @@ ${ImgIsNullOrNot(x.PostImg)}
       // 錯誤處理
     }
   };
-  //TODO 新增留言
-  // const addReply = async (r) => {
-  //   try {
-  //   }
-  // };
+
   //TODO 刪除留言
 
   //TODO 新增文章JHY
