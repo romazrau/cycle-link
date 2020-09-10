@@ -241,6 +241,7 @@
 
 .CM_timeline_body_img {
   width: 100%;
+  max-height: 20rem;
   overflow: hidden;
 }
 
@@ -575,4 +576,15 @@
 .ReplySendClass i {
   margin: 20px 20px 0 0;
   font-size: 18px;
+}
+.Post_preIcon
+{
+  position: relative;
+  top:10.75rem;
+}
+.Post_nextIcon
+{
+  position: relative;
+  left: 28.5rem;
+  bottom: 10.75rem;
 }
