@@ -32,12 +32,6 @@ function ClsCommunityMain() {
     }
   };
 
-  // function arrimgarr(x) {
-  // return `<div class="CM_timeline_body_img">
-  // <img class="CM_timeline_body_img_img" src='${x}' />
-  // </div>`;
-  // }
-
   const multiImgArr = (k) => {
     let result = "";
     k.map((e, index) => {
@@ -48,11 +42,6 @@ function ClsCommunityMain() {
     return result;
   };
 
-  // const imgIMG = (x)=>{
-  //   return `<div class="CM_timeline_body_img">
-  //   <img class="CM_timeline_body_img_img" src='${imgArr[i]}' />
-  //   </div>`;
-  // }
   //文章：文字樣板
   const htmlCommunityMainPostLeft = (x) => {
     return `
@@ -102,7 +91,6 @@ ${ImgIsNullOrNot(x.PostImg)}
         </div>
       </li>`;
   };
-  //ImgIsNullOrNot(x.PostImg)
   // {x.HowMuchLike === null ? "" : HowMuchLike}不知為何很容易報錯
   const htmlCommunityMainPostRight = (x) => {
     return `
@@ -185,10 +173,10 @@ ${ImgIsNullOrNot(x.PostImg)}
   };
 
   //我要留言：文字樣板
-  const htmlCommunityMainReplyInput = () => {
+  const htmlCommunityMainReplyInput = (x) => {
     return `<div class="CM_reply_input_container">
-    <input type="text" />
-    <a href="#" class="ReplySendClass" id="ReplySend"><i class="fas fa-paper-plane"></i></a>
+    <input type="text" id="ReplyText${x}"/>
+    <div class="ReplySendClass" id="ReplySend${x}"><i class="fas fa-paper-plane"></i></div>
   </div>`;
   };
 
@@ -197,7 +185,6 @@ ${ImgIsNullOrNot(x.PostImg)}
   const display_postDetail = (o) => {
     CMpost.innerHTML = "";
     o.map((e, index) => {
-      //放外面
       if (index % 2 == 0) {
         CMpost.innerHTML += htmlCommunityMainPostLeft(e);
       } else {
@@ -234,12 +221,20 @@ ${ImgIsNullOrNot(x.PostImg)}
     });
     //匯入我要留言區
     showReplyInput(x);
+    // 增加發出訊息的事件
+    document
+      .getElementById("ReplySend" + x)
+      .addEventListener("click", function () {
+        // 抓取Text內容
+        let content = document.getElementById("ReplyText" + x).value;
+        addReplyToSQL(x, content);
+      });
   };
 
   function showReplyInput(x) {
     document.getElementById(
       "bindPostReplybyfId" + x
-    ).innerHTML += htmlCommunityMainReplyInput();
+    ).innerHTML += htmlCommunityMainReplyInput(x);
   }
 
   //留言：塞資料進去字串樣板裡面
@@ -309,9 +304,7 @@ ${ImgIsNullOrNot(x.PostImg)}
           LikeIconItems.classList.add("fas");
           //取ID增點讚
           let id_arr = this.id.split("fId");
-
           addLikeToSQL(id_arr[1]);
-
           Postlikeflag = true;
         } else {
           LikeIconItems.classList.remove("fas");
@@ -321,7 +314,6 @@ ${ImgIsNullOrNot(x.PostImg)}
           let id_arr = this.id.split("fId");
           console.log(id_arr[1]);
           removeLikeToSQL(id_arr[1]);
-
           // console.log("愛心又被點了");
         }
       });
@@ -329,14 +321,24 @@ ${ImgIsNullOrNot(x.PostImg)}
   }
   //點擊發送
   //TODO postime判斷距離現在時間
-  //TODO 新增留言
-  const addReplyToSQL = async (r) => {
+
+  //新增留言
+  const addReplyToSQL = async (postid, content) => {
     try {
       let nowtime = new Date();
-      let replyTime = nowtime.toLocaleDateString();
+      let replytime =
+        nowtime.toLocaleDateString() +
+        " " +
+        nowtime.getHours() +
+        ":" +
+        nowtime.getMinutes();
 
       let replyFormdata = new FormData();
-      replyFormdata.append("fPostId", r);
+      replyFormdata.append("fPostId", postid);
+      // replyFormdata.append("fReplyMemberId", replymemberid);
+      replyFormdata.append("fContent", content);
+      replyFormdata.append("fReplyTime", replytime);
+
       let res = await fetch(serverURL.addReply, {
         method: "POST",
         headers: {
@@ -352,6 +354,8 @@ ${ImgIsNullOrNot(x.PostImg)}
       console.log(err);
     }
   };
+  //TODO 刪除留言
+  const deleteReplyToSQL = async(postid);
   //TODO 新增喜歡
   const addLikeToSQL = async (P) => {
     try {
@@ -398,14 +402,11 @@ ${ImgIsNullOrNot(x.PostImg)}
     }
   };
 
-  //TODO 刪除留言
-
-  //TODO 新增文章JHY
+  //TODO 新增文章
   //TODO 編輯文章
   //TODO 刪除文章
 
   //TODO 照片如果有很多張怎ㄇ半<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-  //TODO 留言區尚未進行
 
   //用不上的社團類別動態
   // var CM_appearCategory_item_flag = true;
