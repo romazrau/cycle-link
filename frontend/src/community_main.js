@@ -173,10 +173,7 @@ ${ImgIsNullOrNot(x.PostImg)}
     try {
       let response = await fetch(serverURL.articlepost);
       let result = await response.json();
-      // console.log(result.data);
-      // console.log(result.data.length);
       display_postDetail(result.data);
-      // console.log("data:", result.data);
       showReplyContainer();
       addClickEventToLike(result.data.length);
     } catch (err) {
@@ -226,7 +223,6 @@ ${ImgIsNullOrNot(x.PostImg)}
   //搜尋撈資料
   const checksearchtext = async (x) => {
     try {
-      console.log(x);
       let response = await fetch(serverURL.articlesearch + x, {
         method: "GET",
         headers: {
@@ -240,7 +236,6 @@ ${ImgIsNullOrNot(x.PostImg)}
       });
       let result = await response.json();
       display_postDetail(result.data);
-      console.log(result.data);
     } catch (err) {
       console.log(err);
     }
@@ -257,10 +252,7 @@ ${ImgIsNullOrNot(x.PostImg)}
           LikeIconItems.classList.add("fas");
           //取ID增點讚
           let id_arr = this.id.split("fId");
-         
-          addLikeToSQL(id_arr[1]);
-          
-          
+          addLikeToSQL(id_arr[1]);  
           Postlikeflag = true;
         } else {
           LikeIconItems.classList.remove("fas");
@@ -315,7 +307,6 @@ const addLikeToSQL = async (P) => {
           credentials: 'include',
       });
       let result = await response.json();     
-      console.log(result);
   } catch (err) {
       console.log(err);
       // 錯誤處理

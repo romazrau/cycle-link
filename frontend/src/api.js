@@ -23,7 +23,8 @@ const serverURL = {
   activeinsertseensql: `${rootURL}/active/activeinsertseensql/`,
   activeforyou: `${rootURL}/active/activeforyou/`,
   addlikes: `${rootURL}/like/add`,
-  removelikes: `${rootURL}/like/remove`
+  removelikes: `${rootURL}/like/remove`,
+  addActLikeToSQL: `${rootURL}/active/addActLikeToSQL`,
 };
 
 const postlist = async () => {
