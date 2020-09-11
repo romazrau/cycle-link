@@ -33,7 +33,7 @@ const HomePageActivity = async () => {
             `
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
-        console.dir(result)
+  
 
         if (!result.rowsAffected[0]) {
             return { result: 0, msg: "查無結果" }
@@ -62,7 +62,7 @@ const HomePagerecentActivity = async (id) => {
             `
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
-        console.dir(result)
+    
 
         if (!result.rowsAffected[0]) {
             return { result: 0, msg: "查無結果" }
@@ -90,7 +90,7 @@ const HomePageActivityImg = async (id) => {
             `
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
-        console.dir(result)
+
 
         if (!result.rowsAffected[0]) {
             return { result: 0, msg: "查無結果" }

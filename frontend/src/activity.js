@@ -264,25 +264,9 @@ function ClsActivity() {
             onclick: function () {
                 console.log("sdffsd");
             }
-            // onChange: function(){
-
-            //     for(var i=0;i<result_arr.length;i++){
-            //         let acttime = Date.parse(result_arr[i].fActivityDate);
-            //         let satrttime = Date.parse(dateAsString);
-            //         if(acttime >  satrttime )
-            //         {
-            //             resultdate_arr +=  result_arr[i] ;
-            //         }
-            //     }
-            //     console.log("1",resultdate_arr);
-            // }
-
         });
 
         //日期
-
-
-        let resultdate_arr2;
 
         $("#ac_date_end_from").datepicker({
             onSelect: function (dateText, inst) {
@@ -304,22 +288,7 @@ function ClsActivity() {
             //  設置一個最大的可選日期。可以是Date對象，或者是數字（從今天算起，例如+7），
             //或者有效的字符串('y'代表年, 'm'代表月, 'w'代表周, 'd'代表日, 例如：'+1m +7d')。
             maxDate: "+1m",
-
-            // onChange: function(){
-
-            //     for(var i=0;i<result_arr.length;i++){
-            //         let acttime = Date.parse(result_arr[i].fActivityDate);
-            //         let endtime = Date.parse(dateAsString);
-            //         if(acttime <  endtime )
-            //         {
-            //             resultdate_arr += result_arr[i] ;
-            //         }
-            //     }
-            //     console.log("2",resultdate_arr);
-            // }
         });
-
-
 
     });
 
@@ -333,8 +302,6 @@ function ClsActivity() {
     function getstartdate(startdate) {
         var startdatetext = document.getElementById("search_date_text");
         startdatetext.innerHTML = "起始日 <br>" + startdate + '<br>';
-       
-
     }
 
 
@@ -366,12 +333,8 @@ function ClsActivity() {
             display_search_go(resultdate_arr);
             displaydate();
         }
-
-
     })
     //)
-
-
     function getenddate(enddate) {
         var enddatetext = document.getElementById("search_date_text");
         enddatetext.innerHTML += "結束日 <br>" + enddate;
@@ -392,23 +355,62 @@ function ClsActivity() {
 
     // 活動樣板
     const htmlActCard = (o) => {
-        return ` <a  href="#activity/detail/${o.fId}" class="activecard">
-    <div class="active_card_container">
-        <div class="active_card" >
-            <i class="fas fa-heart fa-lg active_card_heart"></i>
-            <div class="active_card_div">
-                <img src="${o.fImgPath}" alt="" class="active_card_img">
-            </div>
-            <div class="active_card_info">
-                <p>${o.fActivityDate}</p>
-                <p class="active_card_title">${o.fActName}</p>
-                <div class="active_card_location_div">
-                    <img src="img/929497.svg" class="active_card_location">
-                    <p>${o.fActLocation}</p>
-                </div>
-            </div>
-        </div>
-    </div></a>`;
+        if(o.fJoinTypeId == 0)
+        {
+            return ` 
+            <div class="">
+            <a  href="#activity/detail/${o.fId}" class="activecard">
+                 <div class="active_card_container">
+                 <div class="active_card" >
+                     <div class="addlike">
+                         <i class="fas fa-heart fa-lg active_card_heart actlikecolor "></i>
+                     </div>
+                     <div class="active_card_div">
+                         <img src="${o.fImgPath}" alt="" class="active_card_img">
+                     </div>
+                     
+                     <div class="active_card_info">
+                         <p>${o.fActivityDate}</p>
+                         <p class="active_card_title">${o.fActName}</p>
+                 
+                     <div class="active_card_location_div">
+                         <img src="img/929497.svg" class="active_card_location">
+                         <p>${o.fActLocation}</p>
+                     </div>
+                 </div>
+                 </div>
+                 </div>
+             </a>
+             </div>`;
+        }
+        else{
+            return ` 
+            <div class="">
+            <a  href="#activity/detail/${o.fId}" class="activecard">
+                 <div class="active_card_container">
+                 <div class="active_card" >
+                     <div class="addlike">
+                         <i class="fas fa-heart fa-lg active_card_heart "></i>
+                     </div>
+                     <div class="active_card_div">
+                         <img src="${o.fImgPath}" alt="" class="active_card_img">
+                     </div>
+                     
+                     <div class="active_card_info">
+                         <p>${o.fActivityDate}</p>
+                         <p class="active_card_title">${o.fActName}</p>
+                 
+                     <div class="active_card_location_div">
+                         <img src="img/929497.svg" class="active_card_location">
+                         <p>${o.fActLocation}</p>
+                     </div>
+                 </div>
+                 </div>
+                 </div>
+             </a>
+             </div>`;
+        }
+       
     }
 
     // //為您推薦樣板
@@ -453,8 +455,7 @@ function ClsActivity() {
                     </div>
                 </div>
             </div>
-        </div></a>
-                        
+        </div></a>               
         `
     }
 
@@ -468,7 +469,6 @@ function ClsActivity() {
                 ActCard.innerHTML += htmlActCard(e);
             }
         )
-        // console.groupEnd("display_active map");
 
     }
 
@@ -517,9 +517,8 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-
             display_active(result.data);
-            getactid();
+            // getactid();
         } catch (err) {
             console.log(err);
             // 錯誤處理
@@ -543,7 +542,7 @@ function ClsActivity() {
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
 
-            // display_active_foryou(result.data);
+            display_active_foryou(result.data);
             getactid();
         } catch (err) {
             console.log(err);
@@ -581,51 +580,60 @@ function ClsActivity() {
 
         }
     }
-
     activeseenAwait();
 
     //取的瀏覽紀錄的活動id 時間
     function getactid() {
         var selectactive = document.querySelectorAll(".activecard");
-
+        var selectactivelike = document.querySelectorAll(".active_card_heart");
+        var active_card_heart = document.querySelectorAll(".active_card_heart");
+        console.log("cdcsd",selectactivelike);
         let nowtime = new Date();
         let date = nowtime.toLocaleDateString();
-        // console.log(date)
         let timesplit = nowtime.toTimeString().split(" ");
         let time = timesplit[0];
         let now = date + " " + time;
         now = now.split("/").join(",");
 
-
         let activeseenId;
         for (let i = 0; i < selectactive.length; i++) {
-            selectactive[i].addEventListener('click', function () {
+            selectactive[i].addEventListener('click', function (e) {
                 let ahref = selectactive[i].href;
                 var hrefsplit = ahref.split("/");
                 activeseenId = hrefsplit[hrefsplit.length - 1];
-                activeinsertseensql(activeseenId, now);
+                console.log(activeseenId);
+                activeinsertseensql(activeseenId,now);
+            })
 
+        }
+        let activelikeid;
+        for(let i =0;i<selectactivelike.length;i++){
+            selectactivelike[i].addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            let ahref = selectactive[i].href;
+            active_card_heart[i].classList.add("actlikecolor");
+            
+            var hrefsplit2 = ahref.split("/");
+            activelikeid = hrefsplit2[hrefsplit2.length - 1];
+            console.log(activelikeid);
+            addActLikeToSQL(activelikeid,now);
             })
         }
-
     }
 
 
     // activeinsertseenSQL 瀏覽過的資料寫入資料庫
-    const activeinsertseensql = async (activeseenId, now) => {
+    const activeinsertseensql = async (activeseenId,now) => {
         try {
             // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
             // *用變數接 fetch 結果 ，要用await等。
-            // console.log(activeseenId);
-            // console.log(now);
             let response = await fetch(`${serverURL.activeinsertseensql}${activeseenId}/${now}`, {
                 method: "GET", // http request method 
                 headers: { // http headers
                     'Content-Type': 'application/json', // 請求的資料類型
                     Authorization: localStorage.getItem("Cycle link token"),
-
                 },
-
                 // 以下跟身分認證有關，後端要使用session 要帶這幾項
                 cache: 'no-cache',
                 credentials: 'include',
@@ -633,26 +641,42 @@ function ClsActivity() {
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
             //文字樣板
-            // display_active_seen(result.data);
-
-
             // *用 result  do something ...
 
         } catch (err) {
             console.log(err);
             // 錯誤處理
-
         }
     }
 
-
-
-    const ActCard = document.querySelector("#activity_event_top");
+    const addActLikeToSQL = async (activelikeid,now) => {
+        try {
+          var formdata=new FormData()
+          formdata.append("fActivityId",activelikeid);
+          formdata.append("fJoinTypeId",0);
+          formdata.append("fJoinTime",now);
+            let response = await fetch(serverURL.addActLikeToSQL,{
+                method: "POST", // http request method 
+                headers: { // http headers
+                    //傳token
+                  Authorization: localStorage.getItem("Cycle link token"),
+                },
+                body:formdata,
+                cache: 'no-cache',
+                credentials: 'include',
+            });
+            let result = await response.json();
+            console.log(result);
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+        }
+      }
+    const ActCard = document.querySelector("#activity_event_top");    
 
     //AJAX
 
     //------------------------------------------------------
-
     // const htmlActCard2 = (o) => {
     //     return ` 
     // <div id="ActCard2">
@@ -661,11 +685,10 @@ function ClsActivity() {
     // <h3>${o.title}</h3>
     // <img src="img/icon1.svg" class="activity_icon" alt=""><span>${o.count}</span>
     // </div>`;
-
     // }
 
     const ActCard2 = document.querySelector("#activity_event_recommend");
-
+    
     //AJAX
     let ActCardData2 = [{
         imgPath: "img/event9.jpg",
@@ -691,7 +714,6 @@ function ClsActivity() {
         member: "彌勒佛",
         local: "烏石港"
     }
-
     ]
 
     ActCardData2.map(
@@ -701,7 +723,6 @@ function ClsActivity() {
     )
 
     //------------------------------------------------------  
-
 
     document.querySelectorAll(".active_card_container").forEach(
         (item, index) => {
@@ -727,7 +748,6 @@ let Activity = new ClsActivity();
 const activityChangeHash = () => {
     if (location.hash === "#activity") {
         Activity.render();
-        // const Activity = new ClsActivity();
     }
 }
 

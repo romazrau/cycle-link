@@ -24,6 +24,9 @@
     <link rel="stylesheet" type="text/css" href="./calendar/lib/main.css" rel="external nofollow">
     <script src='./calendar/lib/main.js'></script>
 
+    <!-- 其他套件 -->
+    <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>
+
 
     <title>小海龜</title>
 </head>
@@ -87,7 +90,7 @@
         </div>
 
 
-        <!-- * 聊天機器人 -->
+        <!-- * 聊天機器人 改成世界頻道囉 -->
         <div class="chat_robot_room_window hide">
             <img id="chat_robot_window_close" class="chat_window_close" src="./img/times-solid.svg" alt="X">
             <div id="chat_message_window_title" class="chat_window_title">聊天機器人</div>
@@ -95,7 +98,7 @@
                 訊息
             </div>
             <div class="chat_input">
-                <textarea placeholder="想說什麼呢?" onfocus="this.placeholder=''" onblur="this.placeholder='想說什麼呢?'"
+                <textarea id="chat_robot_textarea" placeholder="想說什麼呢?" onfocus="this.placeholder=''" onblur="this.placeholder='想說什麼呢?'"
                     row="2"></textarea>
             </div>
         </div>
@@ -2146,7 +2149,7 @@
                                 <div class="FontSectionTitle">(10)</div>
                             </div>
 
-                            <!------------------------/// Left part switch hidden///  ------------------------>
+                            <!------------------------/// Left part ///  ------------------------>
                             <div class="FlexContainer">
                                 <div class="DiscussionLeft">
                                     <div class="FlexContainer MessageBox">
@@ -2163,9 +2166,11 @@
 
                                     </div>
 
-
+                                    <div class="community_article_container">
+                                        <ul class="community_article_ul"></ul>
+                                    </div>
                                     <!------ 一張卡 ------->
-                                    <div class="card MessagePost">
+                                    <!-- <div class="card MessagePost">
                                         <div class="FlexContainer Group_FlexJustifyContentSB">
                                             <div class="FlexContainer GroupAlignItemsC">
                                                 <div class="Group_detail_Societies_img_div">
@@ -2193,11 +2198,11 @@
                                             <a class="Group_reply" href="#">reply</a>
                                         </div>
 
-                                    </div>
+                                    </div> -->
 
                                     <!-- <a href="#" class="GroupMemberSeeAllBtn">see all</a>  -->
                                 </div>
-                                <!------------------------/// Right part switch hidden///  ------------------------>
+                                <!------------------------/// Right part///  ------------------------>
                                 <div class="DiscussionRight ">
                                     <div class="FlexContainer SearchBox">
                                         <div>
@@ -3154,6 +3159,7 @@
         crossorigin="anonymous"></script>
 
     <!-- *內部引用 -->
+    <script src="./src/api.js"></script>
     <script type="module" src="./src/app.js"></script>
     <script type="module" src="./src/map.js"></script>
     <script src='./src/router.js'></script>
@@ -3168,6 +3174,7 @@
     <script src="./src/aboutUs.js"></script>
     <script src="./src/activity_detail.js"></script>
     <script type="module" src="./src/community_main.js"></script>
+    <script type="module" src="./src/community_article.js"></script>
     <script type="module" src="./src/activity_detail.js"></script>
     <script src="./src/community_main.js"></script>
     <script src="./src/community.js"></script>
@@ -3179,7 +3186,7 @@
     <script type="module" src="./src/home.js"></script>
     <!-- 其他 -->
     <script src="./src/navbar.js"></script>
-    <script src="./src/chat.js"></script>
+    <script type="module" src="./src/chat.js"></script>
 
 </body>
 
