@@ -28,8 +28,6 @@ const map_GetAllActivity = async () => {
         on ML.fId=a.fActLabelId
         `
         const result = await sql.query(sqlString);
-        console.dir(result);
-
         if (!result.rowsAffected[0]) {
             return { result: 0, msg: "帳號或密碼錯誤" }
         }

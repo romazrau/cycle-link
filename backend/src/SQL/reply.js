@@ -14,11 +14,11 @@ const config = {
   port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
 };
 
-const AddReply = async (fPostId, fContent, fReplyMemberId) => {
+const AddReply = async (fPostId, fReplyMemberId, fContent, fReplyTime) => {
   try {
     await sql.connect(config);
     const str = `INSERT INTO Community.tReply(fPostId, fContent, fReplyMemberId, fReplyTime)
-    VALUES (${fPostId}, '${fContent}', ${fReplyMemberId}, CURRENT_TIMESTAMP)`;
+    VALUES (${fPostId}, '${fContent}', ${fReplyMemberId}, '${fReplyTime}')`;
     const result = sql.query(str);
 
     console.dir(result);

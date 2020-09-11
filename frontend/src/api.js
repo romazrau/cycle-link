@@ -23,9 +23,12 @@ const serverURL = {
   creatCommunity: `${rootURL}/`,
   activeinsertseensql: `${rootURL}/active/activeinsertseensql/`,
   activeforyou: `${rootURL}/active/activeforyou/`,
+  likes:`${rootURL}/like/`,
   addlikes: `${rootURL}/like/add`,
   removelikes: `${rootURL}/like/remove`,
+  addActLikeToSQL: `${rootURL}/active/addActLikeToSQL`,
   addReply: `${rootURL}/reply`,
+  getChatroom:`${rootURL}/chat/`,
 };
 
 const postlist = async () => {

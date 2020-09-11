@@ -45,7 +45,23 @@ router.delete('/remove', async function(req, res, next) {
   });
 
 
-
+  router.get('/', async function(req, res, next) {
+    try{
+     
+      
+      let fLikeMemberId= req.user.fId;
+      console.log("fLikeMemberId:",fLikeMemberId)
+      
+      // *用 await 等待資料庫回應
+      let result = await Sql.getMemberlikelist(fLikeMemberId);
+                                            //Postid,Memberid
+      // let result = await Sql.getLikes(); 測試路由
+      res.json(result);
+  
+    }catch(err){
+      res.send(err);
+    } 
+  })
 
 
 
