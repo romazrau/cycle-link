@@ -240,6 +240,18 @@ hr {
 }
 
 /******************* TOP ******************/
+
+.statusBtn{
+  padding: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.statusBtn:hover{
+  background-color: var(--lightgrey-color);
+
+}
+
 .rightTopInfoFlexColume{
   flex-direction: column;
 }
@@ -541,6 +553,13 @@ hr {
 
 
 /******************* MIDDLE ******************/
+
+.CommunityMemberNone{
+  background-color: #939393;
+  height: 200px;
+  width: 100%;
+}
+
 
 .dropdown-relative-container{
   position: relative;

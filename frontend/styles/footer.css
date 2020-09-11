@@ -12,9 +12,9 @@ footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  align-content: flex-start;
+  /* align-content: flex-start; */
   margin: 0rem auto;
-  padding: 1rem 0rem;
+  padding: 1rem 0 0 0;
   max-width: 960px;
 }
 

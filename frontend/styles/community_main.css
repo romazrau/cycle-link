@@ -241,6 +241,7 @@
 
 .CM_timeline_body_img {
   width: 100%;
+  max-height: 20rem;
   overflow: hidden;
 }
 
@@ -405,7 +406,7 @@
   > .community_main_timeline_inverted
   > .community_main_groupIcon {
   left: -35px;
-  margin-top: 40px;
+  /* margin-top: 40px; */
 }
 
 .community_main_ul_timeline > li:nth-child(2) {
@@ -559,36 +560,31 @@
 }
 
 /* 輸入資料區 */
+
 .CM_reply_input_container {
-  /* margin: 10px 40px; */
-}
-.CM_reply_input_img_circle_border {
-  position: relative;
-  width: 30px;
-  height: 30px;
-  border: 2px solid var(--lightblue-color);
-  border-radius: 50%;
-  margin: 1rem 0 0 1rem;
-}
-.CM_reply_input_img {
-  position: absolute;
-  /* top: 3px;
-  left: 3px; */
-  width: 40px;
-  height: 40px;
-  overflow: hidden;
-  border-radius: 50%;
+  display: flex;
+  background-color: var(--lightgrey-color);
 }
 
-.CM_reply_input_img_img {
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 .CM_reply_input_container input {
   border: none;
   width: 90%;
-  margin: 10px 5%;
+  margin: 15px 20px;
+  outline: none;
+}
+
+.ReplySendClass i {
+  margin: 20px 20px 0 0;
+  font-size: 18px;
+}
+.Post_preIcon
+{
+  position: relative;
+  top:10.75rem;
+}
+.Post_nextIcon
+{
+  position: relative;
+  left: 28.5rem;
+  bottom: 10.75rem;
 }

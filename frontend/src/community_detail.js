@@ -416,8 +416,7 @@ function ClsCommuntityDetail() {
     // ----------------------------------------------Ajax----------------------------------------------------//
 
     // 開啟特定社團頁面(社團id)
-
-
+    // todo開放或私密 用社團16做測試
     const renderPage = async (id) => {
         try {
 
@@ -493,6 +492,13 @@ function ClsCommuntityDetail() {
             document.querySelector("#CommunityStatus").innerHTML = result.data[0].fSatusName;
             document.querySelector("#CommunityAboutUs").innerHTML = result.data[0].fInfo;
 
+            console.log("+++++++++++++++++++++++++++");
+            console.log(result.data);
+
+            //todo
+            //result.data[0].fStatusId: 2    or   result.data[0]."私密"
+            //私密的話把 let MemberContainer = document.querySelector("#CommunityMember") 增加隱藏Class
+            //移除 <div id="CommunityMemberNone" class="CommunityMemberNone">
 
 
         }
@@ -501,10 +507,9 @@ function ClsCommuntityDetail() {
         }
 
     }
-
-
     const renderPageManager = async (id) => {
         try {
+           
             let response = await fetch(serverURL.communityManager + id, {
                 method: "GET", // http request method
                 // 以下跟身分認證有關，後端要使用session 要帶這幾項
@@ -536,8 +541,6 @@ function ClsCommuntityDetail() {
 
 
     }
-
-    // todo開放或私密 用社團16做測試
     const renderPageMember = async (id) => {
         try {
             // console.log(`${serverURL.communityMember}${id}`);
@@ -571,8 +574,9 @@ function ClsCommuntityDetail() {
                     }
                 })
 
-
             }
+
+
 
 
 
@@ -604,6 +608,9 @@ function ClsCommuntityDetail() {
             }
 
 
+
+
+
         }
         catch (err) {
             console.log(err);
@@ -612,7 +619,7 @@ function ClsCommuntityDetail() {
     }
 
 
-    // 介紹分頁--管理員頭像的文字樣板
+    // 介紹分頁-- 管理員頭像的文字樣板
     const data2manageImg = (o) => {
 
         // console.log(o.fPhotoPath);
@@ -627,7 +634,6 @@ function ClsCommuntityDetail() {
          <img src="./img/icon_chat.svg" width="20"></a>
          </div>`;
     };
-
     // 介紹分頁-- 會員頭像的文字樣板
     const data2memImg = (o) => {
 
@@ -640,8 +646,7 @@ function ClsCommuntityDetail() {
         </div>
     </div>`
     }
-
-    // 成員分頁--會員卡的文字樣板
+    // 成員分頁-- 會員卡的文字樣板
     const data2memCard = (o) => {
         return ` <div
         class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
@@ -669,14 +674,15 @@ function ClsCommuntityDetail() {
     </div>`
     }
 
-
-
     // this 指的是 ClsCommuntityDetail
     this.renderMainCommunityInfo = renderPage;
     this.renderManagerListInfo = renderPageManager;
     this.renderMemberListInfo = renderPageMember;
 
 }
+
+
+
 const CommuntityDetail = new ClsCommuntityDetail();
 
 // * 利用 hash , 如下
@@ -690,11 +696,8 @@ const communityDetailChangeHash = () => {
         CommuntityDetail.renderMainCommunityInfo(actDetailId);
         CommuntityDetail.renderManagerListInfo(actDetailId);
         CommuntityDetail.renderMemberListInfo(actDetailId);
-
-
-
-
     }
+
 }
 
 window.addEventListener("hashchange", communityDetailChangeHash);
