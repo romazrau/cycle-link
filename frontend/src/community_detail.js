@@ -420,6 +420,7 @@ function ClsCommuntityDetail() {
     const renderPage = async (id) => {
         try {
 
+
             let response = await fetch(serverURL.community + id, {
                 method: "GET", // http request method
                 //token
@@ -492,8 +493,8 @@ function ClsCommuntityDetail() {
             document.querySelector("#CommunityStatus").innerHTML = result.data[0].fSatusName;
             document.querySelector("#CommunityAboutUs").innerHTML = result.data[0].fInfo;
 
-            console.log("+++++++++++++++++++++++++++");
-            console.log(result.data);
+            // console.log("+++++++++++++++++++++++++++");
+            // console.log(result.data);
 
             //todo
             //result.data[0].fStatusId: 2    or   result.data[0]."私密"
@@ -590,7 +591,7 @@ function ClsCommuntityDetail() {
             //----------------------------------介紹---------------------------------------
             let MemberContainer = document.querySelector("#CommunityMember");
             MemberContainer.innerHTML = "";
-            console.log(result);
+            // console.log(result);
             if (result.result) {
 
                 result.data.map((item) => {
@@ -618,6 +619,54 @@ function ClsCommuntityDetail() {
 
     }
 
+    // !多切一個社團編輯頁面
+    // todo 修改社團
+    document.querySelectorAll(".js_editCommunity").forEach(items => {
+
+        items.addEventListener("click", async () => {
+            try {
+
+                // 導向社團編輯頁面
+                // -----# >>> 前端路由導向
+                window.location.hash = "#create-community";
+                // 更改頁面DOM處理
+                //todo
+                document.querySelector("#UpdatePageName").innerHTML = "修改社團";
+
+
+                // 拿到資料
+                // fetch
+
+                // let response = await fetch(serverURL. , {
+                //     method: "", // http request method
+                //     //token
+                //     headers: {
+                //         "Authorization": localStorage.getItem("Cycle link token"),
+                //     },
+                //     cache: "no-cache",
+                //     credentials: "include",
+                // });
+
+                // // 含有從token拿的fId
+                // let result = await response.json();
+
+                // // 錯誤處理:沒有回傳資料導回原頁面 
+                // if (!result.result) {
+
+                //     return;
+                // }
+
+
+            }
+            catch (err) {
+                console.log(err);
+            }
+
+        })
+    })
+
+    // TODO 加入社團by使用者id,社團id
+
 
     // 介紹分頁-- 管理員頭像的文字樣板
     const data2manageImg = (o) => {
@@ -637,7 +686,7 @@ function ClsCommuntityDetail() {
     // 介紹分頁-- 會員頭像的文字樣板
     const data2memImg = (o) => {
 
-        console.log("111111111111");
+
 
         return ` <div id="GroupMemberPicLessThan4" class="activity_detail_info_img_circle GroupMemberPic GroupMemberPicLessThan4">
         <div class="activity_detail_info_img_div">

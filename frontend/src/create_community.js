@@ -4,16 +4,19 @@ import { serverURL } from "./api.js";
 $(".create_community_basicInfo").eq(0).css("display", "block").siblings().css("display", "none");
 
 $(".create_community_title_div").click(function () {
+    // preventDefault();
     hcTitle = $(this).index();
     $(".create_community_basicInfo").eq(hcTitle).css("display", "block").siblings().css("display", "none");
     console.log($(".create_community_basicInfo"));
 });
 $("#create_community_btn_next").click(function () {
+    // preventDefault();
     console.log("gogo");
     $(".create_community_basicInfo").eq(1).css("display", "block").siblings().css("display", "none");
     console.log($(".create_community_basicInfo"));
 });
 $("#create_community_btn_pre").click(function () {
+    // preventDefault();
     $(".create_community_basicInfo").eq(0).css("display", "block").siblings().css("display", "none");
     console.log($(".create_community_basicInfo"));
 });
