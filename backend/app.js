@@ -12,6 +12,7 @@ const jsonwebtoken = require('jsonwebtoken');
 const jwt = require('express-jwt');
 const session = require("express-session");
 const cors = require("cors");
+const socket_io    = require( "socket.io" );
 
 // *路由引入
 var indexRouter = require("./routes/index");
@@ -24,13 +25,14 @@ var articleRouter = require("./routes/article");
 var communityRouter = require("./routes/community");
 var personalPageRouter = require("./routes/personalPage");
 var homePageRouter = require("./routes/home");
-var likeRouter = require("./routes/like")
+var likeRouter = require("./routes/like");
 
 
 
 
 
 const app = express();
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -104,10 +106,6 @@ app.post('/login', function (req, res) {
     }
   })
 })
-
-
-
-
 app.get('/protected', function (req, res) {
   console.log(req.user);
 
@@ -117,7 +115,10 @@ app.get('/protected', function (req, res) {
 })
 
 
-
+// Socket.io
+var io  = socket_io();
+app.io  = io;
+var chetRouter = require('./routes/chat')(io);
 
 // *路由區，把路由分給哪個檔案
 // app.use()是接受所有的httprequest method (ex. get 和 post etc.)
@@ -133,6 +134,7 @@ app.use("/community", communityRouter);
 app.use("/personalPage", personalPageRouter)
 app.use("/home", homePageRouter)
 app.use("/like", likeRouter)
+app.use("/chat", chetRouter);
 
 
 
@@ -155,5 +157,9 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+
+
+
 
 module.exports = app;

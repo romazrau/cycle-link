@@ -1,6 +1,5 @@
 //引用 nodemailer
 var nodemailer = require('nodemailer');
-require('dotenv').config();
 
 //宣告發信物件
 var transporter = nodemailer.createTransport({

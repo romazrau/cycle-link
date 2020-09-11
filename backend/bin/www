@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+require('dotenv').config();
 let myport = process.env.PORT || '3050';
 
 /**
@@ -90,3 +91,13 @@ function onListening() {
   debug('Listening on ' + bind);
   console.log("Server is listen on " + myport)
 }
+
+
+
+
+
+// * socket io
+var io     = app.io
+io.attach( server );
+
+

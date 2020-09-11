@@ -24,6 +24,9 @@
     <link rel="stylesheet" type="text/css" href="./calendar/lib/main.css" rel="external nofollow">
     <script src='./calendar/lib/main.js'></script>
 
+    <!-- 其他套件 -->
+    <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>
+
 
     <title>小海龜</title>
 </head>
@@ -60,7 +63,7 @@
                     <i id="navbar_msg" class="fas fa-bullhorn login_bullhorn"></i>
                     <i id="navbar_logout" class="fas fa-sign-out-alt login_bullhorn"></i>
                 </div>
-                
+
                 <div id="navbar_log-in" class="li_menutitle header_nav"><a id="header_link_login" href="#log-in">Log
                         in<br>登入</a></div>
             </div>
@@ -3123,6 +3126,7 @@
         crossorigin="anonymous"></script>
 
     <!-- *內部引用 -->
+    <script src="./src/api.js"></script>
     <script type="module" src="./src/app.js"></script>
     <script type="module" src="./src/map.js"></script>
     <script src='./src/router.js'></script>
@@ -3148,7 +3152,7 @@
     <script type="module" src="./src/home.js"></script>
     <!-- 其他 -->
     <script src="./src/navbar.js"></script>
-    <script src="./src/chat.js"></script>
+    <script type="module" src="./src/chat.js"></script>
 
 </body>
 
