@@ -204,11 +204,8 @@ ${ImgIsNullOrNot(x.PostImg)}
     try {
       let response = await fetch(serverURL.articlepost);
       let result = await response.json();
-      // console.log(result.data);
-      // console.log(result.data.length);
       display_postDetail(result.data);
-      // console.log("data:", result.data);
-      addClickEventToReply(result.data.length);
+      showReplyContainer();
       addClickEventToLike(result.data.length);
       const CM_timeline_body = document.querySelectorAll(".CM_timeline_body");
       //處理超過2張照片
@@ -282,6 +279,8 @@ ${ImgIsNullOrNot(x.PostImg)}
           }
         });
       }
+      //尋找有按過讚的文章使其愛心變色
+      MemberLikePost();
     } catch (err) {
       console.log(err);
     }
@@ -352,7 +351,6 @@ ${ImgIsNullOrNot(x.PostImg)}
   //搜尋撈資料
   const checksearchtext = async (x) => {
     try {
-      console.log(x);
       let response = await fetch(serverURL.articlesearch + x, {
         method: "GET",
         headers: {
@@ -365,7 +363,6 @@ ${ImgIsNullOrNot(x.PostImg)}
       });
       let result = await response.json();
       display_postDetail(result.data);
-      console.log(result.data);
     } catch (err) {
       console.log(err);
     }
@@ -373,24 +370,29 @@ ${ImgIsNullOrNot(x.PostImg)}
 
   //喜歡文章：愛心function，字串樣板輸入完畢後執行
   function addClickEventToLike(x) {
-    let Postlikeflag = false;
     for (let i = 1; i < x + 1; i++) {
       let LikeIconItems = document.getElementById("likeIconbyfId" + i);
+
       LikeIconItems.addEventListener("click", function () {
-        if (Postlikeflag == false) {
+        //已點過愛心包含'far','fas' class
+        if (
+          LikeIconItems.classList.contains("far") &&
+          LikeIconItems.classList.contains("fas")
+        ) {
+          LikeIconItems.classList.remove("fas");
+          LikeIconItems.classList.add("far");
+          let id_arr = this.id.split("fId");
+          removeLikeToSQL(id_arr[1]);
+        } else if (LikeIconItems.classList.contains("far")) {
           LikeIconItems.classList.remove("far");
           LikeIconItems.classList.add("fas");
           //取ID增點讚
           let id_arr = this.id.split("fId");
           addLikeToSQL(id_arr[1]);
-          Postlikeflag = true;
         } else {
           LikeIconItems.classList.remove("fas");
           LikeIconItems.classList.add("far");
-
-          Postlikeflag = false;
           let id_arr = this.id.split("fId");
-          console.log(id_arr[1]);
           removeLikeToSQL(id_arr[1]);
           // console.log("愛心又被點了");
         }
@@ -432,9 +434,38 @@ ${ImgIsNullOrNot(x.PostImg)}
       console.log(err);
     }
   };
+
   //TODO 刪除留言
-  const deleteReplyToSQL = async(postid);
-  //TODO 新增喜歡
+  // const deleteReplyToSQL = async(postid);
+  //獲讚清單
+  const MemberLikePost = async (P) => {
+    try {
+      let response = await fetch(serverURL.likes, {
+        method: "Get", // http request method
+        headers: {
+          // http headers
+          Authorization: localStorage.getItem("Cycle link token"),
+        },
+        cache: "no-cache",
+        credentials: "include",
+      });
+      let result = await response.json();
+      console.log("result:", result.data);
+      let hearts_arr = document.querySelectorAll(".fa-heart");
+      for (let i = 0; i < hearts_arr.length; i++) {
+        for (let j = 0; j < result.data.length; j++)
+          if (hearts_arr[i].id.split("Id")[1] == result.data[j].fPostId) {
+            hearts_arr[i].classList.add("fas");
+            console.log("i:", i, "j:", j);
+          }
+      }
+    } catch (err) {
+      console.log(err);
+      // 錯誤處理
+    }
+  };
+
+  //新增喜歡
   const addLikeToSQL = async (P) => {
     try {
       var formdata = new FormData();
@@ -450,13 +481,12 @@ ${ImgIsNullOrNot(x.PostImg)}
         credentials: "include",
       });
       let result = await response.json();
-      console.log(result);
     } catch (err) {
       console.log(err);
       // 錯誤處理
     }
   };
-  //TODO 刪除喜歡
+  //刪除喜歡
   const removeLikeToSQL = async (P) => {
     try {
       console.log("P:", P);
@@ -483,8 +513,6 @@ ${ImgIsNullOrNot(x.PostImg)}
   //TODO 新增文章
   //TODO 編輯文章
   //TODO 刪除文章
-
-  //TODO 照片如果有很多張怎ㄇ半<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   //用不上的社團類別動態
   // var CM_appearCategory_item_flag = true;
