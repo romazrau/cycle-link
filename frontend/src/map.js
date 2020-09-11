@@ -72,7 +72,8 @@ function map_GetActivityList(o){
     var osm = new L.TileLayer(osmUrl, {minZoom: 7, maxZoom: 16});
     map.addLayer(osm);
     var popup = L.popup(); 
-    
+    console.log("L:",L)
+     L.control.scale().addTo(map);
     map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng),7 );
     
     /**載入地圖 */
@@ -118,10 +119,9 @@ function map_GetActivityList(o){
      
      
       
-     
+      
       L.marker(e.latlng, {icon: myIcon}).addTo(map);
-    
-    
+     
       OriginalPlacelat=e.latlng.lat;
       OriginalPlacelng=e.latlng.lng;
      

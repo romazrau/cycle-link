@@ -63,6 +63,24 @@ router.delete('/remove', async function(req, res, next) {
     } 
   })
 
+  router.get('/renewcount', async function(req, res, next) {
+    try{
+     
+      
+      let fPostId= req.body.fPostId;
+      console.log("fPostId:",fPostId)
+      
+      // *用 await 等待資料庫回應
+      let result = await Sql.renewCountLikes(fPostId);
+                                            //Postid,Memberid
+      // let result = await Sql.getLikes(); 測試路由
+      res.json(result);
+  
+    }catch(err){
+      res.send(err);
+    } 
+  })
+
 
 
 // 匯出方法
