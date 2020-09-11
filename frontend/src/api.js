@@ -23,6 +23,7 @@ const serverURL = {
   creatCommunity: `${rootURL}/`,
   activeinsertseensql: `${rootURL}/active/activeinsertseensql/`,
   activeforyou: `${rootURL}/active/activeforyou/`,
+  likes:`${rootURL}/like/`,
   addlikes: `${rootURL}/like/add`,
   removelikes: `${rootURL}/like/remove`,
   addReply: `${rootURL}/reply`,

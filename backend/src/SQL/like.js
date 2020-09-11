@@ -72,7 +72,28 @@ const getLikes = async (PostId, MemberId) => {
     }
 };
 
+const getMemberlikelist = async(fLikeMemberId)=>{
+    try{
+      await sql.connect(config);
+      let str = `select * 
+      from Community.tLike
+      where fLikeMemberId=${fLikeMemberId}`
+      const result = await sql.query(str);
+      console.log(result)
+      return{
+        result: 1,
+        msg: "請求成功",
+        data:result.recordsets[0]
+       }
+    }
+    catch(err){
+      return { result: 0, msg: "SQL錯誤"};
+    }
+  }
 
 
 
-module.exports = { Community_AddLike,Community_RemoveLike,getLikes };
+
+
+
+module.exports = { Community_AddLike,Community_RemoveLike,getLikes,getMemberlikelist };
