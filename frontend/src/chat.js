@@ -7,29 +7,34 @@ let socket;
 const setSocket = (obj) => {
     socket = obj;
 }
-let messages;
-const setMessages = (arr) => {
-    messages = arr;
+let messages = [{
+    isMe: 0,
+    name: "系統",
+    msg: "哈囉我是客服~"
+}];
+const setMessages = (msg) => {
+    messages.push(msg);
+    document.querySelector("#chat_robot_message").innerHTML = data2chatRobotMessage(messages);
 }
 
 
 const makeToast = (title, msg) => {
-    console.log("%c" + title + "  " + msg, "color:green;font-size:16px;" );
+    console.log("%c" + title + "  " + msg, "color:green;font-size:16px;");
 }
 
-// 設定區域
+// 設定 socket
 var setupSocket = () => {
     const token = localStorage.getItem('Cycle link token');
     console.group("socket-----------");
     // console.log(socket);
-    if(token && !socket){  // 
+    if (token && !socket) {  // 
         const newSocket = io(serverURL.root, {
             query: {
                 token: localStorage.getItem('Cycle link token'),
             }
         });
         console.log(newSocket);
-        
+
         newSocket.on("disconnect", () => {
             setSocket(null);
             setTimeout(setupSocket, 3000);
@@ -47,10 +52,23 @@ var setupSocket = () => {
 }
 
 
+const sendMessage = (msg) => {
+    if (socket) {
+        console.log("send msg");
+        socket.emit("chatRoomMessage", {
+            chatroomId: "world",
+            message: msg
+        })
+    }
+}
+
+
+
+
 function ClsChat() {
 
     // socket.io
-    if(localStorage.getItem('Cycle link token')){
+    if (localStorage.getItem('Cycle link token')) {
         setupSocket();
     }
     // TODO 登入後開啟
@@ -132,7 +150,7 @@ function ClsChat() {
             let result = await respones.json();
             if (result.result) {
                 chatList.innerHTML = data2cahtList(result.data);
-            }else{
+            } else {
                 chatList.innerHTML = `<div>${result.msg}</div>`
             }
 
@@ -230,7 +248,7 @@ function ClsChat() {
 
 
 
-    // *聊天機器人div-------------------------------------------
+    // *世界頻道div-------------------------------------------
     const cahtRobotMessageData = [{
         isMe: 0,
         msg: "哈囉我是客服~"
@@ -258,35 +276,57 @@ function ClsChat() {
     const data2chatRobotMessage = array => {
         let result = ""
         array.map((e) => {
-            result += `<div class=${e.isMe ? "caht_Me" : "caht_notMe"}>${e.msg}<div class="caht_arrow"></div></div>`;
+            result += `<div class=${e.isMe ? "caht_Me" : "caht_notMe"}>${e.isMe ? "" : e.name + ": "}${e.msg}<div class="caht_arrow"></div></div>`;
         });
         return result;
     };
 
 
-    //點擊 icon 打開
+    //點擊 icon 打開  世界頻道與 socket . io
     const chatRobotWindow = document.querySelector(".chat_robot_room_window");
     const chatRobotMessage = document.querySelector("#chat_robot_message");
     document.querySelector("#chat_robot_icon").addEventListener("click", () => {
-        chatRobotMessage.innerHTML = data2chatRobotMessage(cahtRobotMessageData);
 
-        if(chatRobotWindow.classList.contains("hide")){
-            console.log("open");
-            socket.emit("joinRoom", {chatroomId: "world"});
-            socket.on("newMessage", ({message, userId})=>{
-                setMessages(...messages, message);
+        if (chatRobotWindow.classList.contains("hide")) {
+            chatRobotMessage.innerHTML = data2chatRobotMessage(messages);
+
+
+
+            console.log("世界頻道 open");
+            socket.emit("joinRoom", { chatroomId: "world" });
+            socket.on("newMessage", ({ message, userId, userName }) => {
+                console.log(message + " " + userName);
+                setMessages({
+                    isMe: localStorage.getItem("Cycle link user data") ==  userName ? 1 : 0,
+                    name: userName,
+                    msg: message,
+                });
             })
-        }else{
-            console.log("close");
-            socket.emit("leaveRoom", {chatroomId: "world"});
+
+        } else {
+            console.log("世界頻道 close");
+            socket.emit("leaveRoom", { chatroomId: "world" });
         }
 
         chatRobotWindow.classList.toggle("hide");
     });
 
-    // 聊天窗關-------------------------------------------
+    // 世界頻道div 發訊息
+    document.querySelector("#chat_robot_textarea").addEventListener("keydown", (e) => {
+        if (e.keyCode === 13 && !e.shiftKey) {
+            e.preventDefault();
+            // sendMessage 
+            sendMessage(e.target.value);
+            e.target.value = "";
+        }
+    })
+
+
+
+
+    // 世界頻道div-------------------------------------------
     document.querySelector("#chat_robot_window_close").addEventListener("click", (e) => {
-        socket.emit("leaveRoom", {chatroomId: "world"});
+        socket.emit("leaveRoom", { chatroomId: "world" });
         e.target.parentNode.classList.add("hide");
     });
 

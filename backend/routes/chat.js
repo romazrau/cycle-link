@@ -8,24 +8,25 @@ module.exports = function (io) {
     // src 資源
     const chatSql = require("../src/SQL/chat.js");
 
-
+    // socket 
     io.use((socket, next) => {
         try {
             const tokenOrigin = socket.handshake.query.token;
             const token = tokenOrigin.split(" ")[1];
 
-            console.log("Socket use*************");
+            // console.log("Socket use*************");
             let payload = jsonwebtoken.verify(token, process.env.JWT_SECRET, { algorithms: process.env.JWT_ALGORITHMS })
-            console.group("Socket payload ++++++");
+            // console.group("Socket payload ++++++");
             // console.log(tokenOrigin);
             // console.log(token);
-            console.log(payload);
-            console.groupEnd("Socket payload ++++++");
+            // console.log(payload);
+            // console.groupEnd("Socket payload ++++++");
 
             socket.userId = payload.fId;
             socket.userName = payload.fName;
             next();
         } catch (ex) {
+            console.log("io.use error");
             console.log(ex);
         }
     })
@@ -39,6 +40,7 @@ module.exports = function (io) {
             console.log("Socket-- Disconnected: " + socket.userId + " " + socket.userName);
         })
 
+        // 世界頻道
         socket.on("joinRoom", (data) => {
             console.log("Socket-- A user join world room: " + socket.userId + " " + socket.userName);
             console.log(data);
@@ -54,16 +56,24 @@ module.exports = function (io) {
             console.log(data);
         });
 
-        socket.on("chatRoomMessage", async ({ chatroomIdm, message }) => {
+        socket.on("chatRoomMessage", async ({ chatroomId, message }) => {
 
+            console.log({chatroomId, message });
             if (message.trim().length > 0) {
-                io.to(chatroomIdm).emit("newMessage", {
+            console.log("Go ");
+                io.to(chatroomId).emit("newMessage", {
                     message,
                     userId: socket.userId,
                     userName: socket.userName,
                 })
             }
         })
+
+
+        // TODO 私有頻道
+
+
+
     });
 
 
