@@ -10,7 +10,7 @@ import {
 checkLogin()
     .then((res) => {
         console.log(res);
-        if (res.result == "1" &&  res.data.fName) {
+        if (res.result == "1" && res.data.fName) {
             let show = `<div>${res.data.fName}<br/>歡迎</div>`;
             document.querySelector("#header_link_login").innerHTML = show;
             document.querySelector('.navebar_msg_icons').classList.remove("hide");

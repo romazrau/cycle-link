@@ -5,11 +5,11 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 // from data 解析必備
-const multer = require('multer');
+const multer = require("multer");
 const upload = multer();
 // 特殊套件
-const jsonwebtoken = require('jsonwebtoken');
-const jwt = require('express-jwt');
+const jsonwebtoken = require("jsonwebtoken");
+const jwt = require("express-jwt");
 const session = require("express-session");
 const cors = require("cors");
 const socket_io    = require( "socket.io" );
@@ -26,10 +26,7 @@ var communityRouter = require("./routes/community");
 var personalPageRouter = require("./routes/personalPage");
 var homePageRouter = require("./routes/home");
 var likeRouter = require("./routes/like");
-
-
-
-
+var replyRouter = require("./routes/reply");
 
 const app = express();
 
@@ -66,41 +63,55 @@ app.use(
   })
 );
 // cors
-const whitelist = ['http://127.0.0.1:5501', 'http://127.0.0.1:5500', 'http://127.0.0.1:5502', 'http://localhost:8080', 'http://localhost:8081', 'http://localhost:8082', undefined];
+const whitelist = [
+  "http://127.0.0.1:5501",
+  "http://127.0.0.1:5500",
+  "http://127.0.0.1:5502",
+  "http://localhost:8080",
+  "http://localhost:8081",
+  "http://localhost:8082",
+  undefined,
+];
 const corsOptions = {
   credentials: true,
   origin: function (origin, callback) {
-    console.log('origin: ' + origin);
+    console.log("origin: " + origin);
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'))
+      callback(new Error("Not allowed by CORS"));
     }
-  }
-}
+  },
+};
 app.use(cors(corsOptions));
 // jwt
-app.use(jwt({
-  secret: "DayDayLuLuDaDaMiMiJJTenTen", // 加密文字，極重要，不可讓駭客知道喔啾咪
-  algorithms: ['HS256'],
-  credentialsRequired: false // 要不要擋下驗證失敗的 http request，不要，因為我們不用所有API 都需要登入
-}))
+app.use(
+  jwt({
+    secret: "DayDayLuLuDaDaMiMiJJTenTen", // 加密文字，極重要，不可讓駭客知道喔啾咪
+    algorithms: ["HS256"],
+    credentialsRequired: false, // 要不要擋下驗證失敗的 http request，不要，因為我們不用所有API 都需要登入
+  })
+);
 
-
-app.post('/login', function (req, res) {
+app.post("/login", function (req, res) {
   // 注意默认情况 Token 必须以 Bearer+空格 开头
-  const token = 'Bearer ' + jsonwebtoken.sign({
-      admin: 'admin',
-      tente: "eeeeee"
-    },
-    "DayDayLuLuDaDaMiMiJJTenTen", {
-      expiresIn: 3600 * 24 * 3,
-    }, {
-      algorithm: 'HS256'
-    }
-  )
+  const token =
+    "Bearer " +
+    jsonwebtoken.sign(
+      {
+        admin: "admin",
+        tente: "eeeeee",
+      },
+      "DayDayLuLuDaDaMiMiJJTenTen",
+      {
+        expiresIn: 3600 * 24 * 3,
+      },
+      {
+        algorithm: "HS256",
+      }
+    );
   res.json({
-    status: 'ok',
+    status: "ok",
     data: {
       token: token
     }
@@ -131,16 +142,14 @@ app.use("/active", activeRouter);
 app.use("/article", articleRouter);
 // if url 輸入/community 會交由 communityRouter處理
 app.use("/community", communityRouter);
-app.use("/personalPage", personalPageRouter)
-app.use("/home", homePageRouter)
-app.use("/like", likeRouter)
+app.use("/personalPage", personalPageRouter);
+app.use("/home", homePageRouter);
+app.use("/like", likeRouter);
+app.use("/reply", replyRouter);
 app.use("/chat", chetRouter);
-
-
 
 // 靜態網站
 app.use(express.static(path.join(__dirname, "public")));
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -23,7 +23,10 @@ const activesql = async () => {
         // 連接資料庫
         await sql.connect(config)
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
-        let sqlStr = `select top(6)* from Activity.tActivity`
+        let sqlStr = `select top(6)* from Activity.tActivity as A 
+        left join  Activity.tJoinList as J 
+        on j.fMemberId = A.fMemberId
+        where j.fMemberId = 3`
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
         console.dir(result)
@@ -103,13 +106,38 @@ const activeforyousql = async()=>{
 }
 
 //進階搜尋城市
-const activesearchcitysql = async () => {
+// const activesearchcitysql = async () => {
+//     try {
+//         // make sure that any items are correctly URL encoded in the connection string
+//         // 連接資料庫
+//         await sql.connect(config)
+//         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
+//         let sqlStr = `select A.fActLocation  from Activity.tActivity as A `
+//         const result = await sql.query(sqlStr)
+//         // 看一下回傳結果
+//         console.dir(result)
+//         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
+//         return {result:1, msg:"請求成功", data:result.recordset};
+//     // 錯誤處理
+//     } catch (err) {
+//         console.log(err);
+//         return {result:0, msg:"SQL 錯誤", data:err};
+//     }
+// };
+
+//todo 進階搜尋
+
+const activesearchdetailsql = async () => {
     try {
         // make sure that any items are correctly URL encoded in the connection string
         // 連接資料庫
         await sql.connect(config)
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
-        let sqlStr = `select A.fActLocation  from Activity.tActivity as A `
+        let sqlStr = `select A.fId, A.fActName , A.fActivityDate,A.fActivityEndDate , A.fImgPath,A.fActLocation
+        from Activity.tActivity as A 
+        left join Activity.tActivityMainLabel as S
+        on A.fActLabelId = S.fId
+        where S.fId = ${fid} and A.fActName like '%${text}%'; `
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
         console.dir(result)
@@ -130,12 +158,21 @@ const activeseensql = async (id)=>{
         // 連接資料庫
         await sql.connect(config)
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
-        let sqlStr = `select   top(6)  A.fImgPath,A.fActName,A.fActivityDate,A.fActLocation
-        from Activity.tSearchList as S 
-        left join Activity.tActivity as A 
-        on S.fActivityId = A.fId  
-        where S.fMemberId = ${id}
-        order by S.fSearchTime desc `
+        let sqlStr = `WITH active123 AS (  
+            select  S.*, A.fActName,A.fActLocation,A.fImgPath 
+            from Activity.tSearchList as S 
+            left join Activity.tActivity as A 
+            on A.fId = S.fActivityId
+            where S.fMemberId = ${id}
+            ), mylist as (
+            select fActivityId,fJoinTypeId 
+            from Activity.tJoinList 
+            where fMemberId = ${id}
+        )
+            select top(6) S.*, J.*  
+            from active123 as S
+            LEFT JOIN  mylist  as J
+            on  S.fActivityId  = J.fActivityId; `
         
         // todo  登入功能可使用時需換成判斷id where S.fMemberId = ${id}
         const result = await sql.query(sqlStr)
@@ -175,10 +212,37 @@ const activeinsertseensql = async (fActivityId,fMemberId,fSearchTime)=>{
     }
 };
 
+//新增活動進我的興趣
+
+const addActLikeTosql = async (fActivityId,fMemberId,fJoinTime,fJoinTypeId)=>{
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        // 連接資料庫
+        await sql.connect(config)
+        // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
+        let sqlStr = `INSERT INTO Activity.tJoinList(fActivityId ,fMemberId ,fJoinTime,fJoinTypeId) 
+        VALUES (${fActivityId},${fMemberId},'${fJoinTime}','${fJoinTypeId}')
+        `;
+        
+        // todo  
+        const result = await sql.query(sqlStr)
+        // 看一下回傳結果
+        console.dir(result)
+        // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
+        return {result:1, msg:"請求成功", data:result.recordset};
+    // 錯誤處理
+    } catch (err) {
+        console.log(err);
+        return {result:0, msg:"SQL 錯誤", data:err};
+    }
+};
+
+//
+
 //直接測試用 func ， node src/SQL/test.js
 // 解除註解，並把匯出方法註解才能用喔
 // mySqlFunc();
 
 
 // *匯出方法 ， 多個方法包在{}裡， ex: {func1, func2}
-module.exports = {activesql,activemainlevelsql,activegosearchsql, activeseensql,activeinsertseensql,activeforyousql};
+module.exports = {activesql,activemainlevelsql,activegosearchsql, activeseensql,activeinsertseensql,activeforyousql,addActLikeTosql};

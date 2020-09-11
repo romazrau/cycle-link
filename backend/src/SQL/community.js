@@ -9,19 +9,19 @@ const config = {
     user: process.env.SQLSERVER_USER || 'sa',
     password: process.env.SQLSERVER_PASSWORD || 'everybodycanuse',
     server: process.env.SQLSERVER_SERVER || 'localhost', // You can use 'localhost\\instance' to connect to named instance
-    database: process.env.SQLSERVER_DATABASE ||'SeaTurtleOnTheWay',
+    database: process.env.SQLSERVER_DATABASE || 'SeaTurtleOnTheWay',
     options: {
         enableArithAbort: true,
         encrypt: true
-      },
-      port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
+    },
+    port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
 }
 
 //"後端路由"透過Function對資料庫下的指令:CRUD增刪查改
 //後端路由的變化影響SQL function參數的接收
 
 
-//**查詢所有社團
+//** 查詢所有社團
 const communityList = async () => {
     try {
         // make sure that any items are correctly URL encoded in the connection string
@@ -47,7 +47,7 @@ const communityList = async () => {
 };
 
 
-//**社團名稱(可部分)查詢社團
+//** 社團名稱(可部分)查詢社團
 const communityByString = async (fName) => {
     try {
         // 連接資料庫
@@ -102,8 +102,62 @@ const communityByString = async (fName) => {
 };
 
 
-//**會員Id查詢社團(ex.會員頁面用)
-const communityByMemberId = async (fid) => {
+//** 社團名稱(全對)查詢社團
+const communityByFullString = async (fName) => {
+    try {
+        // 連接資料庫
+        await sql.connect(config)
+
+        let sqlStr = `
+        with 
+        Community as
+        (
+        select C.fId,
+               C.fImgPath,
+               C.fName,
+               C.fInfo,
+               S.fId as fStatusId,
+               S.fName as fSatusName
+        from Community.tCommunity as C
+        LEFT JOIN Community.tStatus as S
+        ON C.fStatusId = S.fId 
+        WHERE  C.fName like  '${fName}' and C.fStatusId != 0
+        ),
+        
+        MemberList as
+        (
+        select MemberList.fCommunityId, COUNT(MemberList.fMemberId) as 'totalNumber'
+        from Community.tMemberList as MemberList
+        GROUP BY MemberList.fCommunityId
+        )
+        
+        select Community.*, MemberList.totalNumber
+        
+        from Community as Community
+        left join MemberList as MemberList
+         on Community.fId = MemberList.fCommunityId;`;
+
+
+
+
+
+        const result = await sql.query(sqlStr);
+
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "查無結果" }
+        }
+        return { result: 1, msg: "請求成功", data: result.recordset };
+
+    }
+    catch (err) {
+        console.log(err);
+        return { result: 0, msg: "SQL 錯誤", data: err };
+
+    }
+};
+
+//** 會員Id查詢社團(ex.會員頁面用)
+const searchByMemberId = async (fid) => {
     try {
         await sql.connect(config)
 
@@ -133,6 +187,10 @@ const communityByMemberId = async (fid) => {
         ;`;
 
         const result = await sql.query(sqlStr);
+        // 結果看上
+        // console.log("+++++++++++++++++++++++++++++++++");
+        // console.log(result);
+
         if (!result.rowsAffected[0]) {
             return { result: 0, msg: "查無結果" }
         }
@@ -141,7 +199,44 @@ const communityByMemberId = async (fid) => {
     catch (err) {
         return { result: 0, msg: "SQL錯誤", data: err };
     }
+
 }
+
+
+
+
+
+
+//** 會員Id加入社團 
+const communityAddByMemberId = async (fCommunityId, fMemberId, fDate, fAccessRightId) => {
+    try {
+        await sql.connect(config)
+
+        let sqlStr = `
+        INSERT INTO Community.tMemberList(fCommunityId, fMemberId , fJoinDate , fAccessRightId)  
+        VALUES ( ${fCommunityId}, ${fMemberId} ,${fDate} , ${fAccessRightId})
+        ;`;
+        const result = await sql.query(sqlStr);
+
+        // console.log("+++++++++++++++++++++++++++++++");
+        // console.log(result.rowsAffected[0]);
+
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "查無結果" }
+        }
+        return { result: 1, msg: "請求成功", data: result }
+    }
+    catch (err) {
+        return { result: 0, msg: "SQL錯誤", data: err };
+    }
+}
+
+// log看資料
+// (async () => {
+//     let result = await communityAddByMemberId(1, 12, "1945/05/15", 2);
+//     console.log(result);
+// })()
+
 
 
 //** 社團Id查詢社團
@@ -204,7 +299,7 @@ const communityById_communityDetail = async (fid) => {
 };
 
 
-//**社團id查詢社團管理員
+//** 社團id查詢社團管理員
 const communityById_communityManager = async (fid) => {
     try {
         // 連接資料庫
@@ -258,7 +353,7 @@ const communityById_communityManager = async (fid) => {
     }
 };
 
-//**社團id查詢社員
+//** 社團id查詢社員
 const communityById_communityMember = async (fid) => {
     try {
         // 連接資料庫
@@ -302,7 +397,7 @@ where CommunitytMemberList.fCommunityId = ${fid}
 
 
 
-//**新增社團
+//**新增社團 
 //驗證社團名稱 : 不可為空值 / 不可重複
 const communityCreate = async (fName, fStatusId, fImgPath, fInfo, fDate) => {
     try {
@@ -331,8 +426,6 @@ const communityCreate = async (fName, fStatusId, fImgPath, fInfo, fDate) => {
 
 
             const result = await sql.query(sqlStr);
-
-
 
             return { result: 1, msg: "請求成功" }
         }
@@ -399,8 +492,8 @@ const communityDelet = async (fId) => {
 
 
 
-//TODO 
-// //**修改社團
+
+// TODO 修改社團
 // //!多切一個社團編輯頁面
 // const communityModified = async (fId) => {
 //     try {
@@ -437,4 +530,4 @@ const communityDelet = async (fId) => {
 // *匯出方法 ， 多個方法包在{}裡， ex: {func1, func2}
 //{es6寫法communityList:communityList}
 
-module.exports = { communityList, communityById_communityDetail, communityById_communityManager, communityById_communityMember, communityByString, communityCreate, communityDelet, communityByMemberId };
+module.exports = { communityList, communityById_communityDetail, communityById_communityManager, communityById_communityMember, communityByString, communityCreate, communityDelet, searchByMemberId, communityByFullString, communityAddByMemberId };
