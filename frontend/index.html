@@ -2644,13 +2644,14 @@
                                     </div>
                                 </div>
                                 <div class="create_active_basicInfo_div">
-                                    <div class="create_active_basicInfo_div2">
+                                    <div class="create_active_basicInfo_div2" id="createPeople">
                                         <p>活動發起者</p>
                                         <!-- ! -->
-                                        <select name="type">
-                                            <option value="個人">個人</option>
-                                            <option value="社團管理員">社團管理員</option>
+                                        <select name="type" id="actCreaterType">
+                                            <option value="0">個人</option>
+                                            <option value="1">社團管理員</option>
                                         </select>
+                                        <span id="actCreaterTypeSpan" style="display: none;"></span>
                                     </div>
                                 </div>
                                 <div class="create_active_basicInfo_div">
@@ -2754,11 +2755,11 @@
                                             </select>
                                             <!-- ! -->
 
-                                            <!-- <input type="text" class="create_active_ml create_active_full"
+                                            <input type="text" class="create_active_ml create_active_full"
                                                 id="create_active_tag_input" value="" onblur="inputTag()"
                                                 placeholder="此處輸入可輸入五個小標籤" onfocus="this.placeholder=''" /><span
-                                                id="create_active_please"></span> -->
-                                            <input type="text" name="fLabelName">
+                                                id="create_active_please"></span>
+                                            <!-- <input type="text" name="fLabelName"> -->
                                         </div>
                                         <div id="test_a" style="display: flex;"></div>
                                         <!-- <input type="submit" value="Submit" id="actCreatTagSubmit"> -->

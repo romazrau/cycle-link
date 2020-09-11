@@ -72,6 +72,7 @@ function ClsActivityDetail() {
         ".activity_detail_Societies"
     );
 
+
     // * ---------------- 發起人 文字樣板 ---------------- //
 
     const activity_detail_initiatorCard = (o) => {
@@ -165,8 +166,6 @@ function ClsActivityDetail() {
 
     // * ---------------- 活動右側內容 文字樣板 ---------------- //
 
-
-
     const actDetailRightInfoALL = (o) => {
         return `
     <div>
@@ -189,6 +188,8 @@ function ClsActivityDetail() {
     </div>
     `
     }
+
+
 
     // * ---------------- 文字樣板 資料匯入 ---------------- //
 
@@ -303,6 +304,8 @@ function ClsActivityDetail() {
     }
 
 
+
+
     // ! ------------- 傳送表單 創建活動 ------------- //
     $("#create_active_btn_done").click(async (e) => {
         e.preventDefault();
@@ -346,11 +349,77 @@ function ClsActivityDetail() {
 
     })
 
+    // * -------------------------------- 創建活動 以個人或社團 -------------------------------- //
+    let ct = document.querySelector("#actCreaterType")
+    // let actCreaterTypeSpan = document.querySelector("#actCreaterTypeSpan")
+    ct.addEventListener('change', async (e) => {
+        if (ct.value == 1) {
+            console.log(ct.value);
+            // actCreaterTypeSpan.setAttribute("style", "display:block");
+            actCType();
+
+
+        } else {
+            console.log(ct.value);
+            actCreaterTypeSpan.setAttribute("style", "display:none")
+        }
+    })
+
+    const actCType = async () => {
+        try {
+            let response = await fetch(serverURL.actDetail + "aaa/bbb", {
+                method: "GET",
+                headers: {
+                    // "Content-Type": "application/json", // 請求的資料類型
+                    Authorization: localStorage.getItem("Cycle link token")
+                },
+                cache: "no-cache",
+                credentials: "include",
+            });
+            // console.log(response);
+            let result = await response.json();
+            console.log(result.data);
+            // display_actCreaterType(result.data.ct);
+            createSelect(result.data.ct);
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+        }
+    }
+
+    function createSelect(d) {
+        let cp = document.querySelector("#createPeople")
+        let createSelect = document.createElement("select");
+        createSelect.classList.add("createSelect")
+        createSelect.setAttribute("name", "fCommunityId")
+        cp.appendChild(createSelect);
+        console.log(createSelect)
+        const actCreaterTypeSpan = document.querySelector(".createSelect");
+        d.map(
+            (e, index) => {
+                actCreaterTypeSpan.innerHTML += actCreaterType(e);
+            }
+        )
+
+    }
+    const actCreaterType = (o) => {
+        return `<option value="${o.fCommunityId}">${o.fName}</option>`
+    }
+
+
+    // TODO: -------------------------------- 創建活動 地圖座標 -------------------------------- //
+    // TODO: -------------------------------- 創建活動 標籤寫入hadLabel -------------------------------- //
+
+
     // TODO: -------------------------------- 標籤搜尋 -------------------------------- //
     // TODO: -------------------------------- 編輯活動 -------------------------------- //
     // TODO: -------------------------------- 刪除活動 -------------------------------- //
+    // TODO: -------------------------------- 加入最愛活動 -------------------------------- //
 
-    // TODO: -------------------------------- 是否參加活動 -------------------------------- //
+
+
+
+    // * -------------------------------- 是否參加活動 -------------------------------- //
     const OrJoinAct = async (actId) => {
         try {
             // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
@@ -384,7 +453,7 @@ function ClsActivityDetail() {
         }
     };
 
-    // TODO: -------------------------------- 參加活動 -------------------------------- //
+    // * -------------------------------- 參加活動 -------------------------------- //
     $("#joinActBtn").click(async (e) => {
         e.preventDefault();
         let nowtime = new Date();
@@ -414,7 +483,7 @@ function ClsActivityDetail() {
 
     })
 
-    // TODO: -------------------------------- 取消參加活動 -------------------------------- //
+    // * -------------------------------- 取消參加活動 -------------------------------- //
     $("#cancelJoinActBtn").click(async (e) => {
         e.preventDefault();
         let actID = location.hash.split("/")[2];
@@ -442,7 +511,6 @@ function ClsActivityDetail() {
     })
 
 
-    // TODO: -------------------------------- 加入最愛活動 -------------------------------- //
 
 
     //  TODO: -------------------------------- 為您推薦 文字樣板 -------------------------------- //

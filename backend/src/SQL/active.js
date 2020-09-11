@@ -8,14 +8,14 @@ const config = {
     user: process.env.SQLSERVER_USER || 'sa',
     password: process.env.SQLSERVER_PASSWORD || 'everybodycanuse',
     server: process.env.SQLSERVER_SERVER || 'localhost', // You can use 'localhost\\instance' to connect to named instance
-    database: process.env.SQLSERVER_DATABASE ||'SeaTurtleOnTheWay',
+    database: process.env.SQLSERVER_DATABASE || 'SeaTurtleOnTheWay',
     options: {
         enableArithAbort: true,
         encrypt: true
-      },
-      port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
+    },
+    port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
 }
- 
+
 // 設計 SQL指令方法
 const activesql = async () => {
     try {
@@ -26,13 +26,21 @@ const activesql = async () => {
         let sqlStr = `select top(6)* from Activity.tActivity`
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
-        console.dir(result)
+        // console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
-        return {result:1, msg:"請求成功", data:result.recordset};
-    // 錯誤處理
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+        // 錯誤處理
     } catch (err) {
         console.log(err);
-        return {result:0, msg:"SQL 錯誤", data:err};
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
     }
 };
 
@@ -46,17 +54,25 @@ const activemainlevelsql = async () => {
         let sqlStr = `select  * from Activity.tActivityMainLabel order by fId desc`
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
-        console.dir(result)
+        // console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
-        return {result:1, msg:"請求成功", data:result.recordset};
-    // 錯誤處理
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+        // 錯誤處理
     } catch (err) {
         console.log(err);
-        return {result:0, msg:"SQL 錯誤", data:err};
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
     }
 };
 
-const activegosearchsql = async (fid,text) => {
+const activegosearchsql = async (fid, text) => {
     try {
         // make sure that any items are correctly URL encoded in the connection string
         // 連接資料庫
@@ -71,17 +87,25 @@ const activegosearchsql = async (fid,text) => {
         const result = await sql.query(sqlStr)
         console.log("searchgo")
         // 看一下回傳結果'
-        console.dir(result)
+        // console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
-        return {result:1, msg:"請求成功", data:result.recordset};
-    // 錯誤處理
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+        // 錯誤處理
     } catch (err) {
         console.log(err);
-        return {result:0, msg:"SQL 錯誤", data:err};
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
     }
 };
 //為您推薦
-const activeforyousql = async()=>{
+const activeforyousql = async () => {
     try {
         // make sure that any items are correctly URL encoded in the connection string
         // 連接資料庫
@@ -92,13 +116,21 @@ const activeforyousql = async()=>{
         order by newid() `
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
-        console.dir(result)
+        // console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
-        return {result:1, msg:"請求成功", data:result.recordset};
-    // 錯誤處理
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+        // 錯誤處理
     } catch (err) {
         console.log(err);
-        return {result:0, msg:"SQL 錯誤", data:err};
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
     }
 }
 
@@ -137,19 +169,27 @@ const activesearchdetailsql = async () => {
         where S.fId = ${fid} and A.fActName like '%${text}%'; `
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
-        console.dir(result)
+        // console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
-        return {result:1, msg:"請求成功", data:result.recordset};
-    // 錯誤處理
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+        // 錯誤處理
     } catch (err) {
         console.log(err);
-        return {result:0, msg:"SQL 錯誤", data:err};
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
     }
 };
 
 // 瀏覽過的活動
 
-const activeseensql = async (id)=>{
+const activeseensql = async (id) => {
     try {
         // make sure that any items are correctly URL encoded in the connection string
         // 連接資料庫
@@ -161,23 +201,31 @@ const activeseensql = async (id)=>{
         on S.fActivityId = A.fId  
         where S.fMemberId = ${id}
         order by S.fSearchTime desc `
-        
+
         // todo  登入功能可使用時需換成判斷id where S.fMemberId = ${id}
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
-        console.dir(result)
+        // console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
-        return {result:1, msg:"請求成功", data:result.recordset};
-    // 錯誤處理
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+        // 錯誤處理
     } catch (err) {
         console.log(err);
-        return {result:0, msg:"SQL 錯誤", data:err};
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
     }
 };
 
 //寫入
 //todo
-const activeinsertseensql = async (fActivityId,fMemberId,fSearchTime)=>{
+const activeinsertseensql = async (fActivityId, fMemberId, fSearchTime) => {
     try {
         // make sure that any items are correctly URL encoded in the connection string
         // 連接資料庫
@@ -186,17 +234,25 @@ const activeinsertseensql = async (fActivityId,fMemberId,fSearchTime)=>{
         let sqlStr = `INSERT INTO Activity.tSearchList( fActivityId , fMemberId , fSearchTime) 
         VALUES (${fActivityId},${fMemberId},'${fSearchTime}')
         `;
-        
+
         // todo  
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
-        console.dir(result)
+        // console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
-        return {result:1, msg:"請求成功", data:result.recordset};
-    // 錯誤處理
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+        // 錯誤處理
     } catch (err) {
         console.log(err);
-        return {result:0, msg:"SQL 錯誤", data:err};
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
     }
 };
 
@@ -206,4 +262,11 @@ const activeinsertseensql = async (fActivityId,fMemberId,fSearchTime)=>{
 
 
 // *匯出方法 ， 多個方法包在{}裡， ex: {func1, func2}
-module.exports = {activesql,activemainlevelsql,activegosearchsql, activeseensql,activeinsertseensql,activeforyousql};
+module.exports = {
+    activesql,
+    activemainlevelsql,
+    activegosearchsql,
+    activeseensql,
+    activeinsertseensql,
+    activeforyousql
+};

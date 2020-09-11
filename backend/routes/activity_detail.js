@@ -84,7 +84,8 @@ router.post('/', async function (req, res, next) {
             fMinLimit,
             fActAttestId,
             fActLocation,
-            fLabelName
+            fLabelName,
+            fCommunityId
         } = req.body
 
         if (!fImgPath) {
@@ -109,7 +110,7 @@ router.post('/', async function (req, res, next) {
 
         let fMemberId = req.user.fId;
         // console.log(fMemberId)
-        let result = await Sql.createAct(fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation, fLabelName);
+        let result = await Sql.createAct(fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation, fLabelName, fCommunityId);
         if (!result.result) {
             res.json(result.data.message);
             return;
@@ -193,7 +194,6 @@ router.get('/OrJoinAct/:actId', async function (req, res, next) {
         // console.log(fMemberId)
         let JoinId = await Sql.OrJoinAct(req.params.actId, fMemberId);
 
-
         // 物件用json格式回傳
         // 可以整理一下，刪掉不必要的資料再回傳
         res.json({
@@ -208,30 +208,26 @@ router.get('/OrJoinAct/:actId', async function (req, res, next) {
         res.send(err);
     }
 });
-// router.get('/:id', async function (req, res, next) {
-//     try {
-//         // *用 await 等待資料庫回應
-//         let ActDetailById = await Sql.ActDetailById(req.params.id);
-//         let TagById = await Sql.TagById(req.params.id);
-//         let JoinById = await Sql.JoinById(req.params.id);
-//         let JoinCount = await Sql.JoinCount(req.params.id);
-//         // res.json(result);
-//         // 物件用json格式回傳
-//         // 可以整理一下，刪掉不必要的資料再回傳
-//         res.json({
-//             result: 1,
-//             data: {
-//                 detail: ActDetailById.data,
-//                 tag: TagById.data,
-//                 join: JoinById.data,
-//                 joinCount: JoinCount.data
-//             }
-//         });
 
-//     } catch (err) {
-//         res.send(err);
-//     }
-// });
+//* ----------------------- 創建活動 以個人或社團 ----------------------- //
+router.get('/aaa/bbb', async function (req, res, next) {
+    try {
+        let fMemberId = req.user.fId;
+        console.log("ID : ========== " + fMemberId)
+        let hello = await Sql.actCreaterType(fMemberId);
+        res.json({
+            result: 1,
+            data: {
+                ct: hello.data
+            }
+        });
+
+    } catch (err) {
+        console.log(err);
+        res.send(err);
+    }
+});
+
 
 
 //* ----------------------- 新增標籤 ----------------------- //
@@ -257,35 +253,6 @@ router.post('/tag', async function (req, res, next) {
 
 
 
-
-
-
-// router.get('/tagById/:id', async function (req, res, next) {
-//     try {
-//         // *用 await 等待資料庫回應
-//         let result = await Sql.TagById(req.params.id);
-//         // 物件用json格式回傳
-//         // 可以整理一下，刪掉不必要的資料再回傳
-//         res.json(result);
-
-//     } catch (err) {
-//         res.send(err);
-//     }
-// });
-
-
-// router.get('/joinById/:id', async function (req, res, next) {
-//     try {
-//         // *用 await 等待資料庫回應
-//         let result = await Sql.JoinById(req.params.id);
-//         // 物件用json格式回傳
-//         // 可以整理一下，刪掉不必要的資料再回傳
-//         res.json(result);
-
-//     } catch (err) {
-//         res.send(err);
-//     }
-// });
 
 
 // 匯出方法
