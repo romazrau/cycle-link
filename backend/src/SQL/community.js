@@ -203,10 +203,6 @@ const searchByMemberId = async (fid) => {
 }
 
 
-
-
-
-
 //** 會員Id加入社團 
 const communityAddByMemberId = async (fCommunityId, fMemberId, fDate, fAccessRightId) => {
     try {
@@ -231,13 +227,61 @@ const communityAddByMemberId = async (fCommunityId, fMemberId, fDate, fAccessRig
     }
 }
 
-// log看資料
+
+// TODO  會員Id and 社團Id 查詢成員是否在此社團
+const searchMemInCom = async (fId, fCommunityId) => {
+    try {
+
+        await sql.connect(config);
+
+        let sqlStr = `select *
+        from Community.tMemberList
+        where fCommunityId = ${fCommunityId}  and fMemberId = ${fId}                             
+        `
+        const result = await sql.query(sqlStr);
+
+
+        if (!result.recordset[0]) {
+
+            return { result: 0, msg: "查無結果" }
+        }
+
+
+
+
+
+        // if(result.recordset[0]) => 沒東西就會是undefined
+        //   {
+        //     fId: 1,
+        //     fCommunityId: 1,
+        //     fMemberId: 10,
+        //     fJoinDate: '2020/4/16',
+        //     fAccessRightId: 3
+        //   }
+
+
+
+        return result.recordset[0]
+
+
+
+    }
+    catch (err) {
+        console.dir(err);
+        return { result: 0, msg: "SQL錯誤", data: err }
+    }
+
+
+
+
+
+}
+//log看資料
 // (async () => {
-//     let result = await communityAddByMemberId(1, 12, "1945/05/15", 2);
+//     let result = await searchMemInCom(1, 10);
+//     console.log("-------------------------------result");
 //     console.log(result);
 // })()
-
-
 
 //** 社團Id查詢社團
 //(傳給特定路由去使用)
@@ -297,7 +341,6 @@ const communityById_communityDetail = async (fid) => {
         return { result: 0, msg: "SQL 錯誤", data: err };
     }
 };
-
 
 //** 社團id查詢社團管理員
 const communityById_communityManager = async (fid) => {
@@ -396,7 +439,6 @@ where CommunitytMemberList.fCommunityId = ${fid}
 };
 
 
-
 //**新增社團 
 //驗證社團名稱 : 不可為空值 / 不可重複
 const communityCreate = async (fName, fStatusId, fImgPath, fInfo, fDate) => {
@@ -439,7 +481,6 @@ const communityCreate = async (fName, fStatusId, fImgPath, fInfo, fDate) => {
 
 
 };
-
 
 
 //**刪除社團:用社員fId設定fStatus停權
@@ -493,8 +534,121 @@ const communityDelet = async (fId) => {
 
 
 
-// TODO 修改社團
-// //!多切一個社團編輯頁面
+// TODO  修改tCommunity資料by社團id
+const updateCommunity = async (fCommunityId, fName, fInfo, fStatusId, fImgPath) => {
+    try {
+
+        await sql.connect(config);
+
+        let sqlStr = `UPDATE Community.tCommunity
+        SET fName = '${fName}',   fInfo = '${fInfo}' ,fStatusId = ${fStatusId}, fImgPath='${fImgPath}' 
+        WHERE fId = ${fCommunityId}`
+
+        const result = await sql.query(sqlStr);
+
+        // if(result.recordset[0]) => 沒東西就會是undefined
+        // console.dir(result.recordset[0]);
+        if (!result.recordset[0]) {
+
+            return { result: 0, msg: "無法更改,沒有此社團" }
+
+        }
+
+        return { result: 1, msg: "請求成功" }
+
+
+    }
+    catch (err) {
+        console.dir(err);
+        return { result: 0, msg: "SQL錯誤", data: err }
+    }
+
+
+
+
+
+}
+
+//!前端抓fCommunityId
+// TODO 刪除tMemberList資料by社員id,社團id
+const deletMemberOfCommunity = async (fId, fCommunityId) => {
+    try {
+
+        await sql.connect(config);
+
+        let sqlStr = `DELETE FROM Community.tMemberList
+        WHERE fMemberId =  ${fId} and  fCommunityId = ${fCommunityId}                               
+        `
+
+        const result = await sql.query(sqlStr);
+
+        // if(result.recordset[0]) => 沒東西就會是undefined
+        // console.dir(result.recordset[0]);
+        if (!result.recordset[0]) {
+
+            return { result: 0, msg: "無法刪除,沒有此社團" }
+
+        }
+
+        return { result: 1, msg: "請求成功" }
+
+
+    }
+    catch (err) {
+        console.dir(err);
+        return { result: 0, msg: "SQL錯誤", data: err }
+    }
+
+
+
+
+
+}
+
+// TODO 修改tMemberList資料by社團id,社員id ( 增加社團管理員 去除社團管理員 : 更改會員 fAccessRightId )
+const updatatMemberList = async (fId, fCommunityId, ifManager) => {
+    try {
+        await sql.connect(config);
+
+        let sqlStr;
+        //判斷目前身分
+        //如果是管理者,改成一般成員代號2
+        //不是管理者,改成管理者代號3
+        if (ifManager) {
+
+            let sqlStr = ` UPDATE Community.tMemberList
+            SET fAccessRightId = 2
+            WHERE  fCommunityId = ${fCommunityId} and fMemberId = ${fId}                               
+          `
+        }
+        else {
+            let sqlStr = ` UPDATE Community.tMemberList
+            SET fAccessRightId = 3
+            WHERE  fCommunityId = ${fCommunityId} and fMemberId = ${fId}                               
+          `
+        }
+
+        const result = await sql.query(sqlStr);
+
+        // if(result.recordset[0]) => 沒東西就會是undefined
+        // console.dir(result.recordset[0]);
+        if (!result.recordset[0]) {
+
+            return { result: 0, msg: "無法更新" }
+
+        }
+
+        return { result: 1, msg: "請求成功" }
+
+
+    }
+    catch (err) {
+        console.dir(err);
+        return { result: 0, msg: "SQL錯誤", data: err }
+    }
+
+}
+
 // const communityModified = async (fId) => {
 //     try {
 //         await sql.connect(config)
@@ -504,16 +658,6 @@ const communityDelet = async (fId) => {
 //         return { result: 0, msg: "SQL錯誤", data: err }
 //     }
 // }
-//修改:
-//修改社團照片
-//修改社團名稱
-//修改社團狀態
-//增加社團管理員
-//刪除社團管理員
-//修改社團關於我們
-//刪除社團成員
-//增加社團成員
-
 
 
 
@@ -530,4 +674,4 @@ const communityDelet = async (fId) => {
 // *匯出方法 ， 多個方法包在{}裡， ex: {func1, func2}
 //{es6寫法communityList:communityList}
 
-module.exports = { communityList, communityById_communityDetail, communityById_communityManager, communityById_communityMember, communityByString, communityCreate, communityDelet, searchByMemberId, communityByFullString, communityAddByMemberId };
+module.exports = { communityList, communityById_communityDetail, communityById_communityManager, communityById_communityMember, communityByString, communityCreate, communityDelet, searchByMemberId, communityByFullString, communityAddByMemberId, updateCommunity, deletMemberOfCommunity, updatatMemberList, searchMemInCom };

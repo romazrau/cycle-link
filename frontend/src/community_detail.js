@@ -509,7 +509,7 @@ function ClsCommuntityDetail() {
     }
     const renderPageManager = async (id) => {
         try {
-           
+
             let response = await fetch(serverURL.communityManager + id, {
                 method: "GET", // http request method
                 // 以下跟身分認證有關，後端要使用session 要帶這幾項

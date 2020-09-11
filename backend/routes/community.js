@@ -8,7 +8,7 @@ let Sql = require('../src/SQL/community');
 
 
 
-//查詢所有社團
+// 查詢所有社團
 // *測試SQL 語法    注意這裡要 async function，才有非同步效果
 router.get('/', async function (req, res, next) {
     try {
@@ -27,7 +27,7 @@ router.get('/', async function (req, res, next) {
 
 
 
-//查詢社團by社員ID
+// 查詢社團by社員ID
 router.get('/communityByMemberId/:id', async function (req, res, next) {
     try {
 
@@ -118,7 +118,7 @@ router.get('/:id', async function (req, res, next) {
     }
 });
 
-//查詢社團管理員byId
+// 查詢社團管理員byId
 // 此路由開始不依照Restful.API
 router.get('/communityManager/:id', async function (req, res, next) {
     try {
@@ -220,7 +220,7 @@ router.get('/communityById_communityMember/:id', async function (req, res, next)
     }
 });
 
-//查詢社團by社團名字
+// 查詢社團by社團名字
 router.get('/communityByString/:str', async function (req, res, next) {
     try {
         console.error(req.params.str);
@@ -291,6 +291,82 @@ router.post('/', async function (req, res, next) {
 
 
 // TODO 加入社團by使用者id
+
+
+
+
+
+
+// //!多切一個社團編輯頁面
+// TODO 修改社團
+// 這是restful.API 風格
+
+// SQL修改tCommunity資料by社團id:
+// 修改社團照片
+// 修改社團名稱
+// 修改社團關於我們
+
+// SQL刪除tMemberList資料by社團id,社員id:
+// 刪除社團成員
+
+// SQL查詢tMemberList是否為管理員by社團id,社員id >> 丟出ifManager 0 1
+// SQL修改tMemberList資料by社團id,社員id,ifManager:
+// 增加社團管理員
+// 去除社團管理員
+
+router.put('/', async function (req, res, next) {
+    try {
+        // es6 物件解構
+        let { fId, fCommunityId, fName, fInfo, fStatusId, fImgPath } = req.body
+        // console.log("----------------------");
+        // console.log(req.body);
+
+
+        //token
+        if (!req.user) {
+            res.json({ result: 0, msg: "token 遺失" });
+            return;
+        }
+
+
+
+        let resultUpdateCommunity = await Sql.updateCommunity(fCommunityId, fName, fInfo, fStatusId, fImgPath);
+        // console.log("----------------------");
+        // console.log((resultUpdateCommunity));
+
+        let resultDeletMemberOfCommunity = await Sql.deletMemberOfCommunity(fId, fCommunityId);
+        // console.log("----------------------");
+        // console.log((resultDeletMemberOfCommunity));
+
+        let resultSearchMemberCommunity = await Sql.searchMemInCom(fId, fCommunityId);
+        // console.log("-------++++++++++++++++++++-------");
+        // console.log(resultSearchMemberCommunity);
+
+        let ifManager;
+        if (resultSearchMemberCommunity.fAccessRightId == 3) {
+            ifManager = 1;
+        }
+        else {
+            ifManager = 0;
+        }
+
+        let resultUpdatatMemberList = await Sql.updatatMemberList(fId, fCommunityId, ifManager);
+        // console.log("----------------------");
+        // console.log((resultUpdatatMemberList));
+
+        res.json(resultUpdatatMemberList);
+    } catch (err) {
+        res.send({ result: 0, msg: "路由錯誤", data: err });
+    }
+});
+
+
+
+
+
+
+
+
 
 // 刪除社團
 // 此路由/:id Restful.API
