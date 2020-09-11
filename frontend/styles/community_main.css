@@ -205,6 +205,7 @@
 
 .CM_timeline_heading_userinfo {
   margin: 1rem 0 0 1rem;
+  width: 72%;
 }
 
 .CM_timeline_heading_userinfo p {
@@ -548,7 +549,7 @@
 }
 
 .CM_reply_item_header_content_info {
-  width: 80%;
+  width: 95%;
   margin: 10px;
   /* float: right; */
 }
@@ -577,14 +578,28 @@
   margin: 20px 20px 0 0;
   font-size: 18px;
 }
-.Post_preIcon
-{
+.Post_preIcon {
   position: relative;
-  top:10.75rem;
+  top: 10.75rem;
 }
-.Post_nextIcon
-{
+.Post_nextIcon {
   position: relative;
   left: 28.5rem;
   bottom: 10.75rem;
+}
+/* 要讓編輯Icon消失ㄉClass */
+.editIconDisappear {
+  display: none;
+}
+.editIconforReply {
+  font-size: 10px;
+  margin-top: 7px;
+  float: right;
+  color: var(--lightgrey-color);
+}
+
+.editIconforArticle {
+  font-size: 15px;
+  margin-top: 25px;
+  color: var(--grey-color);
 }
