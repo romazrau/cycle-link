@@ -143,9 +143,9 @@ function ClsActivity() {
     //防止冒泡
     const stopdate = document.querySelectorAll(".ui-state-default");
     for (var i = 0; i < stopdate.length; i++) {
-        stopdate[i].addEventListener("click", function () {
+        stopdate[i].addEventListener("click", function (e) {
             console.log("WTF");
-            event.preventDefault();
+            e.preventDefault();
         })
     }
 
@@ -439,7 +439,7 @@ function ClsActivity() {
     const htmlActSearchgo = (o) => {
         return `
         
-        <a  href="#activity/detail/${o.fId}">
+        <a  href="#activity/detail/${o.fId}" >
         <div class="active_card_container">
             <div class="active_card" >
                 <i class="fas fa-heart fa-lg active_card_heart"></i>
@@ -584,6 +584,8 @@ function ClsActivity() {
     }
     activeseenAwait();
 
+
+
     //取的瀏覽紀錄的活動id 時間
     function getactid() {
         var selectactive = document.querySelectorAll(".activecard");
@@ -600,47 +602,73 @@ function ClsActivity() {
 
         let activeseenId;
         for (let i = 0; i < selectactive.length; i++) {
-            selectactive[i].addEventListener('click', function (e) {
+            selectactive[i].onclick = function (e) {
                 let ahref = selectactive[i].href;
                 var hrefsplit = ahref.split("/");
                 activeseenId = hrefsplit[hrefsplit.length - 1];
                 console.log(activeseenId);
                 activeinsertseensql(activeseenId,now);
-            })
+            }
 
         }
         let activelikeid;
         for(let i =0;i<selectactivelike.length;i++){
-         
-                selectactivelike[i].addEventListener('click', function (e) {
+            
+            
+                selectactivelike[i].onclick = function (e) {
+                   
                     e.preventDefault();
                     e.stopPropagation();
-                let ahref = selectactive[i].href;
-                selectactivelike[i].classList.add("actlikecolor");
-                var hrefsplit2 = ahref.split("/"); 
-                activelikeid = hrefsplit2[hrefsplit2.length - 1];
-                addActLikeToSQL(activelikeid,now);
-                })
-            
-            
+                    let ahref = selectactive[i].href;
+                    var hrefsplit2 = ahref.split("/"); 
+                    activelikeid = hrefsplit2[hrefsplit2.length - 1];
+                    if(selectactivelike[i].classList.contains("actlikecolor") == true){
+                        selectactivelike[i].classList.remove("actlikecolor");
+                        remove(activelikeid);
+                    }
+                    else{
+                        selectactivelike[i].classList.add("actlikecolor");
+                        addActLikeToSQL(activelikeid,now);
+                    }
+                    
+                }
         }
-
-        for(let i=0;i<removelike.length;i++)
-        {
-            removelike[i].addEventListener('click',function(e){
-                e.preventDefault();
-                e.stopPropagation();
-                removelike[i].classList.remove("actlikecolor");
-                console.log(removelike);
-                let ahref = selectactive[i].href;
-                var hrefsplit2 = ahref.split("/"); 
-                activelikeid = hrefsplit2[hrefsplit2.length - 1];
-                removeactlikesql(activelikeid);
-            })
+        function remove (activelikeid){
+            removeactlikesql(activelikeid);
+            console.log("0 0 ");
         }
-
+        // let actremoveid;
+        // for(let i=0;i<removelike.length;i++)
+        //             {
+        //                 removelike[i].onclcik = function(e){
+        //                     e.preventDefault();
+        //                     e.stopPropagation();
+        //                     removelike[i].classList.remove("actlikecolor");
+        //                     // console.log(removelike);
+        //                     let ahref = selectactive[i].href;
+        //                     var hrefsplit2 = ahref.split("/"); 
+        //                     actremoveid = hrefsplit2[hrefsplit2.length - 1];
+        //                     console.log(actremoveid);
+                            
+        //                 }
+        //             }
+                
+    };
+    
         
-    }
+    
+    
+
+
+
+
+
+
+
+
+
+
+
 
 
     // activeinsertseenSQL 瀏覽過的資料寫入資料庫
