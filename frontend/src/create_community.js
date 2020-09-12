@@ -1,12 +1,13 @@
 import {
-    serverURL
+    serverURL,
+    checkLogin
 } from "./api.js";
 
 // ----------- 頁面轉換 -----------
 $(".create_community_basicInfo").eq(0).css("display", "block").siblings().css("display", "none");
 
 $(".create_community_title_div").click(function (e) {
-    // e.preventDefault();
+    e.preventDefault();
     let hcTitle = $(this).index();
     console.log(hcTitle);
     $(".create_community_basicInfo").eq(hcTitle).css("display", "block").siblings().css("display", "none");
@@ -89,19 +90,22 @@ function ClsCommunityCreate() {
             // .....
 
             let form = document.querySelector("#formOfCreate"); // form element
+
             let formData = new FormData(form); // FormData
 
-            let fName = "我快瘋掉ㄌ";
-            let fStatus = 1;
-            let fImgPath = "gladkj;sflaisdj";
-            let fInfo = "你好";
 
 
-            //!TODO FOR TEXT ONLY
-            formData.append("fName", fName);
-            formData.append("fStatusId", fStatus);
-            formData.append("fImgPath", fImgPath);
-            formData.append("fInfo", fInfo);
+            //FOR TEXT ONLY
+            // let fName = "我快瘋掉ㄌ";
+            // let fStatus = 1;
+            // let fImgPath = "gladkj;sflaisdj";
+            // let fInfo = "你好";
+
+
+            // formData.append("fName", fName);
+            // formData.append("fStatusId", fStatus);
+            // formData.append("fImgPath", fImgPath);
+            // formData.append("fInfo", fInfo);
 
 
 
@@ -116,15 +120,22 @@ function ClsCommunityCreate() {
                     // formdata 不是用這種解析方式
                     // "Content-type": "application/json; charset=UTF-8",
                     "Authorization": localStorage.getItem("Cycle link token"),
-                    cache: "no-cache",
-                    credentials: "include",
+
                 },
+                cache: "no-cache",
+                credentials: "include",
             })
 
             let result = await response.json();
 
+            if(result.result){
+            alert("創建成功")
+            
+                window.location.hash = "#community";
 
 
+            }
+            console.log(result);
 
         } catch (err) {
             console.log(err);
@@ -135,6 +146,7 @@ function ClsCommunityCreate() {
 
 
     document.getElementById("create_community_btn_done").addEventListener("click", (e) => {
+        e.preventDefault();
 
         getCommunityData();
 
