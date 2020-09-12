@@ -462,13 +462,14 @@ function ClsActivity() {
     //ActCardData
     //* ------------------------------------- 文字樣板 -------------------------------------
     const display_active = (o) => {
-
+        // console.group("----------------");
         o.map(
             (e, index) => {
                 // console.log(e);
                 ActCard.innerHTML += htmlActCard(e);
             }
         )
+        // console.groupEnd("----------------");
 
     }
 
@@ -572,6 +573,7 @@ function ClsActivity() {
             let result = await response.json();
             //文字樣板
             display_active_seen(result.data);
+            getactid();
             // *用 result  do something ...
 
         } catch (err) {
@@ -586,8 +588,9 @@ function ClsActivity() {
     function getactid() {
         var selectactive = document.querySelectorAll(".activecard");
         var selectactivelike = document.querySelectorAll(".active_card_heart");
-        var active_card_heart = document.querySelectorAll(".active_card_heart");
-        console.log("cdcsd",selectactivelike);
+        var removelike = document.querySelectorAll(".actlikecolor");
+        // var active_card_heart = document.querySelectorAll(".active_card_heart");
+        console.log("cdcsd",removelike);
         let nowtime = new Date();
         let date = nowtime.toLocaleDateString();
         let timesplit = nowtime.toTimeString().split(" ");
@@ -608,18 +611,35 @@ function ClsActivity() {
         }
         let activelikeid;
         for(let i =0;i<selectactivelike.length;i++){
-            selectactivelike[i].addEventListener('click', function (e) {
+         
+                selectactivelike[i].addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                let ahref = selectactive[i].href;
+                selectactivelike[i].classList.add("actlikecolor");
+                var hrefsplit2 = ahref.split("/"); 
+                activelikeid = hrefsplit2[hrefsplit2.length - 1];
+                addActLikeToSQL(activelikeid,now);
+                })
+            
+            
+        }
+
+        for(let i=0;i<removelike.length;i++)
+        {
+            removelike[i].addEventListener('click',function(e){
                 e.preventDefault();
                 e.stopPropagation();
-            let ahref = selectactive[i].href;
-            active_card_heart[i].classList.add("actlikecolor");
-            
-            var hrefsplit2 = ahref.split("/");
-            activelikeid = hrefsplit2[hrefsplit2.length - 1];
-            console.log(activelikeid);
-            addActLikeToSQL(activelikeid,now);
+                removelike[i].classList.remove("actlikecolor");
+                console.log(removelike);
+                let ahref = selectactive[i].href;
+                var hrefsplit2 = ahref.split("/"); 
+                activelikeid = hrefsplit2[hrefsplit2.length - 1];
+                removeactlikesql(activelikeid);
             })
         }
+
+        
     }
 
 
@@ -673,6 +693,31 @@ function ClsActivity() {
         }
       }
     const ActCard = document.querySelector("#activity_event_top");    
+    //todo 刪除
+    const removeactlikesql = async(activelikeid) =>{
+        try {
+            console.log("================")
+            console.log("activelikeid:", activelikeid);
+            var formdata = new FormData();
+            formdata.append("fActivityId", activelikeid);
+            let response = await fetch(serverURL.removeactlikesql, {
+              method: "DELETE", // http request method
+              headers: {
+                // http headers
+                Authorization: localStorage.getItem("Cycle link token"),
+              },
+              body: formdata,
+              cache: "no-cache",
+              credentials: "include",
+            });
+            let result = await response.json();
+            console.log(result);
+          } catch (err) {
+            console.log(err);
+            // 錯誤處理
+          }
+    }
+    
 
     //AJAX
 

@@ -28,6 +28,7 @@ const serverURL = {
   removelikes: `${rootURL}/like/remove`,
   addActLikeToSQL: `${rootURL}/active/addActLikeToSQL`,
   addReply: `${rootURL}/reply`,
+  removeactlikesql:`${rootURL}/active/removeactlikesql`
 };
 
 const postlist = async () => {

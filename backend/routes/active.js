@@ -134,5 +134,24 @@ router.post('/addActLikeToSQL', async function(req, res, next) {
   } 
 });
 
+router.delete('/removeactlikesql', async function(req, res, next) {
+  try{
+   
+    console.log("req.body:",req.body)
+    let fActivityId=req.body.fActivityId;
+    let fMemberId= req.user.fId;
+    console.log("fMemberId:",fMemberId)
+    console.log("fActivityId:",fActivityId)
+    // *用 await 等待資料庫回應
+    let result = await Sql.removeactlikesql(fActivityId,fMemberId);
+                                          //Postid,Memberid
+    // let result = await Sql.getLikes(); 測試路由
+    res.json(result.data);
+
+  }catch(err){
+    res.send(err);
+  } 
+});
+
 // 匯出方法
 module.exports = router;
