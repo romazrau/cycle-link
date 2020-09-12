@@ -43,4 +43,29 @@ router.get("/:searchinput", async function (req, res, next) {
   }
 });
 
+router.post("/add", async function (req, res, next) {
+  try {
+    let fPostMemberId = req.user.fId;
+    let fCommunityId = req.body.fCommunityId;
+    let fPostTime = req.body.fPostTime;
+    let fContent = req.body.fContent;
+    let fImgPaths = req.body.fImgPaths;
+
+    let result = await Sql.addarticle(
+      fPostMemberId,
+      fCommunityId,
+      fPostTime,
+      fContent,
+      fImgPaths
+    );
+    console.log(result);
+    console.log(result.recordset);
+    console.log(result.recordsets[0]);
+
+    res.json(result);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
 module.exports = router;

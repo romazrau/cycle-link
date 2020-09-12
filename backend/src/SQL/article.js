@@ -14,6 +14,7 @@ const config = {
   port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
 };
 
+//社團首頁：文章列表
 const articlelist = async () => {
   try {
     // make sure that any items are correctly URL encoded in the connection string
@@ -63,6 +64,7 @@ const articlelist = async () => {
 };
 // articlelist();
 
+//社團頁面：顯示該社團文章
 const articleInCommunity = async (communityId) => {
   try {
     await sql.connect(config);
@@ -96,7 +98,7 @@ const articleInCommunity = async (communityId) => {
       from PostAndReplyAndLike
       where fCommunityId=${communityId}`;
     const result = await sql.query(str);
-    console.dir(result);
+    // console.dir(result);
     return { result: 1, msg: "請求成功", data: result.recordset };
   } catch (err) {
     console.log(err);
@@ -105,9 +107,9 @@ const articleInCommunity = async (communityId) => {
 };
 // articleInCommunity(2);
 
+//回覆列表
 const replylist = async () => {
   try {
-    // console.dir("123");
     await sql.connect(config);
     let str = `
     select r.*, m.fName as ReplyMemberName, m.fPhotoPath as ReplyMemberImg
@@ -130,28 +132,38 @@ on r.fReplyMemberId=m.fId
 };
 // replylist();
 
-// const addarticle = async(fPostMemberId, fCommunityId, fContent, fImgPath)=>{
-//   try{
-//    await sql.connect(config);
-//    if (fContent){
-//    let str = `
-//    insert into Community.tPost( fMemberId, fCommunityId, fPostTime, fContent, fImgPaths )
-//    values (${fPostMemberId}, ${fCommunityId} ,CURRENT_TIMESTAMP, '${fContent}', '${fImgPath}')
-//    `
-//    const resultArticle = await sql.query(str);
-//    if(resultArticle.recordset[0])
-//    return{
-//     result: 1,
-//     msg: "請求成功",
-//    }}
-//    else{
-//     return { result: 0, msg: "錯誤:請輸入內容" }
-//    }
-//   }
-//   catch (err) {
-//     return { result: 0, msg: "SQL錯誤"};
-//   }
-// }
+//社團頁面：新增文章
+const addarticle = async (
+  fPostMemberId,
+  fCommunityId,
+  fPostTime,
+  fContent,
+  fImgPaths
+) => {
+  try {
+    await sql.connect(config);
+    if (fContent) {
+      let str = `
+   insert into Community.tPost( fMemberId, fCommunityId, fPostTime, fContent, fImgPaths )
+   values (${fPostMemberId}, ${fCommunityId} ,'${fPostTime}', '${fContent}', '${fImgPaths}')
+   `;
+      const result = await sql.query(str);
+      console.dir(result);
+
+      if (result.recordset[0])
+        return {
+          result: 1,
+          msg: "請求成功",
+          data: result.recordset,
+        };
+    } else {
+      return { result: 0, msg: "錯誤:請輸入內容", data: result.recordset };
+    }
+  } catch (err) {
+    return { result: 0, msg: "SQL錯誤", data: result };
+  }
+};
+// addarticle(17, 1, "2020/09/02 20:11", "SQL語法測試儀下唷", "imgpaht");
 
 // const editarticle = async(fId)=>{
 //   try{
@@ -230,4 +242,10 @@ const searcharticle = async (x) => {
 
 // const removereply
 
-module.exports = { articlelist, articleInCommunity, replylist, searcharticle };
+module.exports = {
+  articlelist,
+  articleInCommunity,
+  replylist,
+  searcharticle,
+  addarticle,
+};

@@ -17,6 +17,7 @@ const serverURL = {
   articlereply: `${rootURL}/article/reply`,
   articlesearch: `${rootURL}/article/`,
   articlearticle: `${rootURL}/article/community/`,
+  addarticle: `${rootURL}/article/add`,
   homePages: `${rootURL}/home/`,
   community: `${rootURL}/community/`,
   communityManager: `${rootURL}/community/communityManager/`,
@@ -29,8 +30,8 @@ const serverURL = {
   removelikes: `${rootURL}/like/remove`,
   addActLikeToSQL: `${rootURL}/active/addActLikeToSQL`,
   addReply: `${rootURL}/reply`,
-  removeactlikesql:`${rootURL}/active/removeactlikesql`,
-  getChatroom:`${rootURL}/chat/`,
+  removeactlikesql: `${rootURL}/active/removeactlikesql`,
+  getChatroom: `${rootURL}/chat/`,
 };
 
 const postlist = async () => {

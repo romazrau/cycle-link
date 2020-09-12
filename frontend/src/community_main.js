@@ -202,7 +202,7 @@ ${ImgIsNullOrNot(x.PostImg)}
   //文章列表撈資料
   const getCommunityPost = async () => {
     try {
-      console.log(serverURL.articlepost);
+      // console.log(serverURL.articlepost);
       let response = await fetch(serverURL.articlepost);
       let result = await response.json();
       await display_postDetail(result.data);
@@ -417,7 +417,6 @@ ${ImgIsNullOrNot(x.PostImg)}
 
       let replyFormdata = new FormData();
       replyFormdata.append("fPostId", postid);
-      // replyFormdata.append("fReplyMemberId", replymemberid);
       replyFormdata.append("fContent", content);
       replyFormdata.append("fReplyTime", replytime);
 
