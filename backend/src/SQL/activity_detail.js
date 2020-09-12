@@ -30,8 +30,6 @@ const ActDetail = async () => {
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
         // console.dir(result)
-        // console.dir(result.recordset)
-        // console.dir(result.rowsAffected[0])
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
         return {
             result: 1,
@@ -49,8 +47,7 @@ const ActDetail = async () => {
     }
 };
 
-
-
+//* ----------------------- 寫入活動 BY ID ----------------------- //
 const ActDetailById = async (fid) => {
     try {
         await sql.connect(config)
@@ -98,8 +95,6 @@ const ActDetailById = async (fid) => {
         };
     }
 };
-
-
 
 const TagById = async (fid) => {
     try {
@@ -153,7 +148,6 @@ const JoinById = async (fid) => {
         };
     }
 };
-
 
 const JoinCount = async (fid) => {
     try {
@@ -287,9 +281,38 @@ const OrJoinAct = async (fActivityId, fMemberId) => {
     }
 };
 
+//* ----------------------- 判斷是否為活動發起者 ----------------------- //
+const OrActInitiator = async (fActivityId, fMemberId) => {
+    try {
+        await sql.connect(config)
+        let sqlStr = `select fid, fActName, fMemberId
+        from Activity.tActivity
+        where fid = ${fActivityId} and fMemberId = ${fMemberId}`
 
-//* ----------------------- 新增活動 ----------------------- //
-// -- 新增多個標籤
+        // console.log(sqlStr);
+
+        const result = await sql.query(sqlStr);
+        // console.log("============");
+        // console.dir(result.recordset)
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+    } catch (err) {
+        console.log(err);
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
+    }
+};
+
+
+//* ----------------------- 創建活動 ----------------------- //
+// ----- 新增多個標籤 ----- //
+// TODO: [待修正] ----- 只有一個標籤會錯誤 map is not a function ----- //
 const CreateTag5 = (x) => {
     let result = ""
     x.map((e, index) => {
@@ -298,6 +321,7 @@ const CreateTag5 = (x) => {
     })
     return result;
 }
+// TODO: [待修正] ----- 沒選擇社團會傳入undefined ----- //
 
 
 const createAct = async (fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation, fLabelName, fCommunityId) => {
@@ -307,13 +331,13 @@ const createAct = async (fActName, fCreatDate, fActivityDate, fActivityEndDate, 
         insert into Activity.tActivity(fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation,fCommunityId)
 values ('${fActName}', '${fCreatDate}','${fActivityDate}', '${fActivityEndDate}', ${fMemberId}, '${fIntroduction}', '${fImgPath}', ${fActLabelId}, ${fMaxLimit}, ${fMinLimit}, ${fActAttestId},${fActTypeId},'${fActLocation}',${fCommunityId});
 ${CreateTag5(fLabelName)}`
-        // console.log(sqlStr);
+        console.log(sqlStr);
         const result = await sql.query(sqlStr)
         // console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
         return {
             result: 1,
-            msg: "請求成功",
+            msg: "請求成功"
         };
         // 錯誤處理
     } catch (err) {
@@ -348,7 +372,6 @@ where fAccessRightId=3 and fMemberId=${fMemberId}`
         // 錯誤處理
     } catch (err) {
         console.log(err);
-        // console.log(fLabelName);
         return {
             result: 0,
             msg: "SQL 錯誤",
@@ -357,32 +380,87 @@ where fAccessRightId=3 and fMemberId=${fMemberId}`
     }
 };
 
-
-//* ----------------------- 新增標籤 ----------------------- //
-const createActTag = async (fLabelName) => {
+//* TODO: ----------------------- 創建活動 讓標籤隸屬在活動底下 ----------------------- //
+const createActTagAll = async (fActivityId, fActivityLabelId) => {
     try {
         await sql.connect(config)
         let sqlStr = `
-        insert into Activity.tActivityLabel (fLabelName)
-        values ('${fLabelName}')`
+        insert into Activity.tActivityHadLabel(fActivityId,fActivityLabelId)
+values (${fActivityId},${fActivityLabelId})`
+        console.log(sqlStr);
         const result = await sql.query(sqlStr)
-        // console.dir(result)
-        // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
+        console.dir(result)
         return {
             result: 1,
-            msg: "請求成功"
+            msg: "請求成功",
+            data: result.recordset
         };
         // 錯誤處理
     } catch (err) {
         console.log(err);
-        console.log(fLabelName);
         return {
             result: 0,
             msg: "SQL 錯誤",
-            data: err.message
+            data: err
         };
     }
 };
+
+//* ----------------------- 編輯活動 ----------------------- //
+const EditAct = async (fActName) => {
+    try {
+        await sql.connect(config)
+        let sqlStr = `
+            update Activity.tActivity
+            set fActName = '${fActName}'
+            where fId=139`
+        console.log(sqlStr);
+        const result = await sql.query(sqlStr)
+        // console.dir(result)
+        return {
+            result: 1,
+            msg: "請求成功",
+            // data: result.recordset
+        };
+        // 錯誤處理
+    } catch (err) {
+        console.log(err);
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
+    }
+};
+
+// EditAct('SQL___test2')
+
+
+
+//* ----------------------- 新增標籤(已寫入創建活動中) ----------------------- //
+// const createActTag = async (fLabelName) => {
+//     try {
+//         await sql.connect(config)
+//         let sqlStr = `
+//         insert into Activity.tActivityLabel (fLabelName)
+//         values ('${fLabelName}')`
+//         const result = await sql.query(sqlStr)
+//         // console.dir(result)
+//         return {
+//             result: 1,
+//             msg: "請求成功"
+//         };
+//         // 錯誤處理
+//     } catch (err) {
+//         console.log(err);
+//         console.log(fLabelName);
+//         return {
+//             result: 0,
+//             msg: "SQL 錯誤",
+//             data: err.message
+//         };
+//     }
+// };
 
 
 
@@ -405,10 +483,11 @@ module.exports = {
     JoinById,
     JoinCount,
     createAct,
-    // createActTag,
     // TagSearch,
     JoinAct,
     CancelJoinAct,
     OrJoinAct,
-    actCreaterType
+    actCreaterType,
+    OrActInitiator,
+    EditAct
 };
