@@ -8,12 +8,12 @@ const config = {
     user: process.env.SQLSERVER_USER || 'sa',
     password: process.env.SQLSERVER_PASSWORD || 'everybodycanuse',
     server: process.env.SQLSERVER_SERVER || 'localhost', // You can use 'localhost\\instance' to connect to named instance
-    database: process.env.SQLSERVER_DATABASE ||'SeaTurtleOnTheWay',
+    database: process.env.SQLSERVER_DATABASE || 'SeaTurtleOnTheWay',
     options: {
         enableArithAbort: true,
         encrypt: true
-      },
-      port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
+    },
+    port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
 }
 
 // 設計 SQL指令方法
@@ -289,22 +289,31 @@ const OrJoinAct = async (fActivityId, fMemberId) => {
 
 
 //* ----------------------- 新增活動 ----------------------- //
+// -- 新增多個標籤
+const CreateTag5 = (x) => {
+    let result = ""
+    x.map((e, index) => {
+        result += `insert into Activity.tActivityLabel (fLabelName)
+    values ('${e}')`
+    })
+    return result;
+}
 
-const createAct = async (fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation, fLabelName) => {
+
+const createAct = async (fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation, fLabelName, fCommunityId) => {
     try {
         await sql.connect(config)
         let sqlStr = `
-        insert into Activity.tActivity(fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation)
-values ('${fActName}', '${fCreatDate}','${fActivityDate}', '${fActivityEndDate}', ${fMemberId}, '${fIntroduction}', '${fImgPath}', ${fActLabelId}, ${fMaxLimit}, ${fMinLimit}, ${fActAttestId},${fActTypeId},'${fActLocation}');
-insert into Activity.tActivityLabel (fLabelName)
-values ('${fLabelName}')`
-        console.log(sqlStr);
+        insert into Activity.tActivity(fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation,fCommunityId)
+values ('${fActName}', '${fCreatDate}','${fActivityDate}', '${fActivityEndDate}', ${fMemberId}, '${fIntroduction}', '${fImgPath}', ${fActLabelId}, ${fMaxLimit}, ${fMinLimit}, ${fActAttestId},${fActTypeId},'${fActLocation}',${fCommunityId});
+${CreateTag5(fLabelName)}`
+        // console.log(sqlStr);
         const result = await sql.query(sqlStr)
         // console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
         return {
             result: 1,
-            msg: "請求成功"
+            msg: "請求成功",
         };
         // 錯誤處理
     } catch (err) {
@@ -313,6 +322,37 @@ values ('${fLabelName}')`
             result: 0,
             msg: "SQL 錯誤",
             data: err
+        };
+    }
+};
+
+//* ----------------------- 創建活動 以個人或社團 ----------------------- //
+const actCreaterType = async (fMemberId) => {
+    try {
+        await sql.connect(config)
+        let sqlStr = `
+        select fCommunityId, fMemberId, fAccessRightId,tCommunity.fName
+from Community.tMemberList
+LEFT JOIN Community.tCommunity
+on tMemberList.fCommunityId = tCommunity.fId
+where fAccessRightId=3 and fMemberId=${fMemberId}`
+        const result = await sql.query(sqlStr)
+        // console.log(sqlStr);
+        // console.dir(result.recordset)
+        // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset // 顯示結果
+        };
+        // 錯誤處理
+    } catch (err) {
+        console.log(err);
+        // console.log(fLabelName);
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err.message
         };
     }
 };
@@ -355,6 +395,7 @@ const createActTag = async (fLabelName) => {
 // JoinCount(1);
 // TagSearch(2020)
 // OrJoinAct(1, 6)
+// actCreaterType()
 
 // *匯出方法 ， 多個方法包在{}裡， ex: {func1, func2}
 module.exports = {
@@ -368,5 +409,6 @@ module.exports = {
     // TagSearch,
     JoinAct,
     CancelJoinAct,
-    OrJoinAct
+    OrJoinAct,
+    actCreaterType
 };

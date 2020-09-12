@@ -6,7 +6,7 @@ document.querySelector("#loginSubmit").addEventListener(
     "click",
     async (e) => {
         e.preventDefault();
-        console.log(e);
+        // console.log(e);
         let form = document.querySelector("#form_signIn");  // 抓登入 form element
         let formData = new FormData(form);                  // 打包成 FormData
 
@@ -31,6 +31,7 @@ document.querySelector("#loginSubmit").addEventListener(
 
                 window.localStorage.setItem("Cycle link token", result.token);   // *存前端來的 JWT 進 localStorage 裡
                 window.localStorage.setItem("Cycle link user data", result.data.fName);  
+                // setupSocket();
             }
         } catch (ex) {
             console.log(ex);

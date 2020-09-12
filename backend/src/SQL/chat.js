@@ -15,32 +15,38 @@ const config = {
 }
 
 
-//確認訪客在不在
-const test = async () => {
+
+const myChatroomList = async (id) => {
     try {
         // make sure that any items are correctly URL encoded in the connection string
         await sql.connect(config)
         const sqlString = `
-        select M.fId, M.fName , T.fAccountType as 'account type' , T.fAccountAuthority as 'account authority'
-        from Member.tMember as M
-        LEFT join Member.tAccountType as T
-        on M.fAccountTypeId = T.fId
-        where fAccount = 'guest' AND fPassword = 'badiii7777';`
+        select C.* , M.fName as 'fMember1Name', M2.fName as 'fMember2Name'
+        from Chat.tChatroom as C
+        left join Member.tMember as M
+        on C.fMemberId1 = M.fId
+        left join Member.tMember as M2
+        on C.fMemberId2 = M2.fId
+        where fMemberId1 = ${id} OR fMemberId2 = ${id};
+        `;
         const result = await sql.query(sqlString);
-        console.dir(result)
-        return result;
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "趕快去找人聊天吧~" }
+        }
+        return { result: 1, msg: "你的聊天室來囉", data: result.recordset };
     } catch (err) {
         console.log(err);
-        return err;
+        return { result: 0, msg: "SQL 問題", data: result };
     }
 };
 
 
+// TODO 新增聊天內容
+// const
 
 
 
 
 
 
-
-module.exports = { test,};
+module.exports = { myChatroomList };

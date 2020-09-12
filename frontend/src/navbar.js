@@ -74,7 +74,6 @@ function ClsNavbar() {
 
     // log out
     document.querySelector('#navbar_logout').addEventListener("click", (e) => {
-        console.log("********");
 
         let isLogout = confirm("確定要登出嗎?", "Cycle Link");
 
@@ -82,8 +81,8 @@ function ClsNavbar() {
             window.localStorage.removeItem("Cycle link token");
             window.localStorage.removeItem("Cycle link user data");
 
-            location.hash = "#log-in";
             location.reload();
+            // location.hash = "#log-in";
         }
     })
 

@@ -109,18 +109,31 @@ $(function () {
 
 // ----------- 標籤寫入 -----------
 var create_active_tag_count = 0;
+let createActTagInput = document.querySelector("#create_active_tag_input")
 
 function inputTag() {
     if (create_active_tag_count >= 5) {
         document.getElementById("create_active_please").innerHTML = "標籤最多五個";
         return;
     }
-    const tagInput = $("#create_active_tag_input").val();
+    // const tagInput = $("#create_active_tag_input").val();
+    console.log(createActTagInput.value);
+    if (createActTagInput.value != "") {
+        let ca = document.createElement("input");
+        document.getElementById("test_a").appendChild(ca);
+        ca.setAttribute("name", "fLabelName");
+        ca.setAttribute("id", "create_active_tag");
+        ca.setAttribute("value", createActTagInput.value);
+        ca.innerText = createActTagInput.value;
+        let aaa = document.querySelector("#create_active_tag")
+        console.log("aaa v: " + aaa.innerText);
 
-    if (tagInput != "") {
-        const htmlTagInput = `<a id="create_active_tag" name="fLabelName">${tagInput}<button>x</button>`;
-        document.getElementById("test_a").innerHTML += htmlTagInput;
-        create_active_tag_count++;
+
+        // const htmlTagInput = `<a id="create_active_tag" name="fLabelName">${createActTagInput.value}<button>x</button>`;
+        // document.getElementById("test_a").innerHTML += htmlTagInput;
+        // create_active_tag_count++;
+        // let aaa = document.querySelector("#text")
+        // console.log(aaa);
     } else {
         document.getElementById("create_active_please").innerHTML = "請輸入文字";
         // alert("請輸入文字");
