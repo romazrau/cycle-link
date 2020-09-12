@@ -12,6 +12,7 @@ const jsonwebtoken = require("jsonwebtoken");
 const jwt = require("express-jwt");
 const session = require("express-session");
 const cors = require("cors");
+const socket_io    = require( "socket.io" );
 
 // *路由引入
 var indexRouter = require("./routes/index");
@@ -27,7 +28,9 @@ var homePageRouter = require("./routes/home");
 var likeRouter = require("./routes/like");
 var replyRouter = require("./routes/reply");
 
+
 const app = express();
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -111,17 +114,23 @@ app.post("/login", function (req, res) {
   res.json({
     status: "ok",
     data: {
-      token: token,
-    },
-  });
-});
-
-app.get("/protected", function (req, res) {
+      token: token
+    }
+  })
+})
+app.get('/protected', function (req, res) {
   console.log(req.user);
 
-  if (!req.user.admin) return res.sendStatus(401);
-  res.json(req.user);
-});
+  if (!req.user.admin)
+    return res.sendStatus(401)
+  res.json(req.user)
+})
+
+
+// Socket.io
+var io  = socket_io();
+app.io  = io;
+var chetRouter = require('./routes/chat')(io);
 
 // *路由區，把路由分給哪個檔案
 // app.use()是接受所有的httprequest method (ex. get 和 post etc.)
@@ -139,6 +148,7 @@ app.use("/personalPage", personalPageRouter);
 app.use("/home", homePageRouter);
 app.use("/like", likeRouter);
 app.use("/reply", replyRouter);
+app.use("/chat", chetRouter);
 
 // 靜態網站
 app.use(express.static(path.join(__dirname, "public")));
@@ -158,5 +168,9 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+
+
+
 
 module.exports = app;

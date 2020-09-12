@@ -24,6 +24,9 @@
     <link rel="stylesheet" type="text/css" href="./calendar/lib/main.css" rel="external nofollow">
     <script src='./calendar/lib/main.js'></script>
 
+    <!-- 其他套件 -->
+    <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>
+
 
     <title>小海龜</title>
 </head>
@@ -80,22 +83,22 @@
 
         <div class="chat_icon_container">
             <img src="img/talk.png" class="chat_icon_main" alt="聊天">
-            <img id="chat_robot_icon" src="./img/icons8-broken-robot-100.png" class="chat_icon widthAndHeight2Zero"
-                alt="客服">
+            <img id="chat_robot_icon" src="./img/icons8-world-map-100.png" class="chat_icon widthAndHeight2Zero"
+                alt="群聊">
             <img id="chat_friend_icon" src="./img/icons8-user-group-100.png" class="chat_icon widthAndHeight2Zero"
                 alt="我的聯絡人">
         </div>
 
 
-        <!-- * 聊天機器人 -->
+        <!-- * 聊天機器人 改成世界頻道囉 -->
         <div class="chat_robot_room_window hide">
             <img id="chat_robot_window_close" class="chat_window_close" src="./img/times-solid.svg" alt="X">
-            <div id="chat_message_window_title" class="chat_window_title">聊天機器人</div>
+            <div id="chat_message_window_title" class="chat_window_title">公開聊天室</div>
             <div id="chat_robot_message" class="chat_message">
                 訊息
             </div>
             <div class="chat_input">
-                <textarea placeholder="想說什麼呢?" onfocus="this.placeholder=''" onblur="this.placeholder='想說什麼呢?'"
+                <textarea id="chat_robot_textarea" placeholder="想說什麼呢?" onfocus="this.placeholder=''" onblur="this.placeholder='想說什麼呢?'"
                     row="2"></textarea>
             </div>
         </div>
@@ -1358,7 +1361,7 @@
                                 <img id="CommunityPic" src="./img/水下攝影與淨海.jpg" alt="cover pic of diving" width="100%">
                                 <img class="GroupImgSeeMoreIcon" src="./img/icon_seemore.svg" width="25px">
                                 <div class="DropDownMenu">
-                                    <div class="dropdown-triangle"></div>
+                                    <div class="dropdown-triangle js_editCommunity"></div>
                                     <div class="dropdown">編輯照片</div>
                                 </div>
 
@@ -1372,8 +1375,8 @@
                                     水下攝影fit淨海</p>
                                 <img class="GroupTopRightImgIcon" src="./img/icon_seemore.svg" width="25px">
                                 <div class="DropDownMenu">
-                                    <div class="dropdown-triangleR"></div>
-                                    <div class="dropdownR">編輯名稱</div>
+                                    <div class="dropdown-triangleR "></div>
+                                    <div class="dropdownR js_editCommunity">編輯名稱</div>
                                 </div>
                             </div>
                             <!-- <div class="FlexContainer GroupTopRightEventInfoBox">
@@ -1480,7 +1483,7 @@
                                     </div>
                                     <div class="DropDownMenu">
                                         <div class="dropdown-triangleD"></div>
-                                        <div class="dropdownD">編輯</div>
+                                        <div class="dropdownD js_editCommunity">編輯</div>
                                     </div>
                                 </div>
                                 <div id="CommunityAboutUs" class="FontSectionText">
@@ -1709,7 +1712,7 @@
                                     </div>
                                     <div class="DropdownMenu">
                                         <div class="dropdown-triangleDR"></div>
-                                        <div class="dropdownDR">編輯管理員名單</div>
+                                        <div class="dropdownDR js_editCommunity">編輯管理員名單</div>
                                     </div>
                                 </div>
                                 <div id="MemberTemplate" class="FlexContainer GroupRight">
@@ -1739,7 +1742,7 @@
                                     </div>
                                     <div class="DropdownMenu">
                                         <div class="dropdown-triangleDR"></div>
-                                        <div class="dropdownDR">編輯會員名單</div>
+                                        <div class="dropdownDR js_editCommunity">編輯會員名單</div>
                                     </div>
                                 </div>
                                 <div id="CommunityMember" class="hide FlexContainer GroupRightInfoPhotoContainer
@@ -2644,13 +2647,14 @@
                                     </div>
                                 </div>
                                 <div class="create_active_basicInfo_div">
-                                    <div class="create_active_basicInfo_div2">
+                                    <div class="create_active_basicInfo_div2" id="createPeople">
                                         <p>活動發起者</p>
                                         <!-- ! -->
-                                        <select name="type">
-                                            <option value="個人">個人</option>
-                                            <option value="社團管理員">社團管理員</option>
+                                        <select name="type" id="actCreaterType">
+                                            <option value="0">個人</option>
+                                            <option value="1">社團管理員</option>
                                         </select>
+                                        <span id="actCreaterTypeSpan" style="display: none;"></span>
                                     </div>
                                 </div>
                                 <div class="create_active_basicInfo_div">
@@ -2754,11 +2758,11 @@
                                             </select>
                                             <!-- ! -->
 
-                                            <!-- <input type="text" class="create_active_ml create_active_full"
+                                            <input type="text" class="create_active_ml create_active_full"
                                                 id="create_active_tag_input" value="" onblur="inputTag()"
                                                 placeholder="此處輸入可輸入五個小標籤" onfocus="this.placeholder=''" /><span
-                                                id="create_active_please"></span> -->
-                                            <input type="text" name="fLabelName">
+                                                id="create_active_please"></span>
+                                            <!-- <input type="text" name="fLabelName"> -->
                                         </div>
                                         <div id="test_a" style="display: flex;"></div>
                                         <!-- <input type="submit" value="Submit" id="actCreatTagSubmit"> -->
@@ -2900,7 +2904,7 @@
 
                 <div class="create_community_flex">
                     <div class="create_community_title">
-                        <h2>創建社團</h2>
+                        <h2 id="UpdatePageName">創建社團</h2>
                         <div>
                             <a href="#create-community" class="create_community_title_div">
                                 <p class="create_community_title_circle">1</p>
@@ -3154,6 +3158,7 @@
         crossorigin="anonymous"></script>
 
     <!-- *內部引用 -->
+    <script src="./src/api.js"></script>
     <script type="module" src="./src/app.js"></script>
     <script type="module" src="./src/map.js"></script>
     <script src='./src/router.js'></script>
@@ -3180,7 +3185,7 @@
     <script type="module" src="./src/home.js"></script>
     <!-- 其他 -->
     <script src="./src/navbar.js"></script>
-    <script src="./src/chat.js"></script>
+    <script type="module" src="./src/chat.js"></script>
 
 </body>
 
