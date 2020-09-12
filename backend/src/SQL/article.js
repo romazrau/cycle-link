@@ -3,16 +3,16 @@ const sql = require("mssql");
 const config = {
   // user: 'sa',
   // password: 'P@ssw0rd',
-  user: process.env.SQLSERVER_USER || 'sa',
-  password: process.env.SQLSERVER_PASSWORD || 'everybodycanuse',
-  server: process.env.SQLSERVER_SERVER || 'localhost', // You can use 'localhost\\instance' to connect to named instance
-  database: process.env.SQLSERVER_DATABASE ||'SeaTurtleOnTheWay',
+  user: process.env.SQLSERVER_USER || "sa",
+  password: process.env.SQLSERVER_PASSWORD || "everybodycanuse",
+  server: process.env.SQLSERVER_SERVER || "localhost", // You can use 'localhost\\instance' to connect to named instance
+  database: process.env.SQLSERVER_DATABASE || "SeaTurtleOnTheWay",
   options: {
-      enableArithAbort: true,
-      encrypt: true
-    },
-    port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
-}
+    enableArithAbort: true,
+    encrypt: true,
+  },
+  port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
+};
 
 const articlelist = async () => {
   try {
@@ -62,6 +62,48 @@ const articlelist = async () => {
   }
 };
 // articlelist();
+
+const articleInCommunity = async (communityId) => {
+  try {
+    await sql.connect(config);
+    let str = `WITH PostMember AS(select p.fMemberId, p.fCommunityId, p.fPostTime, p.fImgPaths as PostImg, p.fId as PostId, p.fContent as PostContent, m.fName as PostMemberName, m.fId as MemberId, m.fPhotoPath as MemberImgPath
+      from Community.tPost as p
+      left join Member.tMember as m
+      on p.fMemberId=m.fId)
+      , PostCommunity AS(select p.fId as PostId, c.fId as CommunityId, c.fName as CommunityName, c.fImgPath as CommunityImgPath
+      from Community.tPost as p
+      left join Community.tCommunity as c
+      on p.fCommunityId=c.fId)
+	    , PostDetail AS(select pm.*, pc.CommunityId, pc.CommunityName, pc.CommunityImgPath
+      from PostMember as pm
+      left join PostCommunity as pc
+      on pm.PostId=pc.PostId)
+      , PostReplyCount AS(select r.fPostId , count(r.fId) as HowMuchReply
+      from Community.tReply as r
+      group by r.fPostId)
+      , PostLikeCount AS(select l.fPostId, count(l.fId) as HowMuchLike
+      from Community.tLike as l  
+      group by l.fPostId)
+      , PostAndReply AS(select pd.*, r.HowMuchReply
+      from PostDetail as pd
+      left join PostReplyCount as r
+      on pd.PostId = r.fPostId)
+	    , PostAndReplyAndLike AS(select par.*, l.HowMuchLike
+      from PostAndReply as par
+      left join PostLikeCount as l
+      on par.PostId = l.fPostId)
+      select *
+      from PostAndReplyAndLike
+      where fCommunityId=${communityId}`;
+    const result = await sql.query(str);
+    console.dir(result);
+    return { result: 1, msg: "請求成功", data: result.recordset };
+  } catch (err) {
+    console.log(err);
+    return { result: 0, msg: "SQL錯誤", data: err };
+  }
+};
+// articleInCommunity(2);
 
 const replylist = async () => {
   try {
@@ -188,4 +230,4 @@ const searcharticle = async (x) => {
 
 // const removereply
 
-module.exports = { articlelist, replylist, searcharticle };
+module.exports = { articlelist, articleInCommunity, replylist, searcharticle };

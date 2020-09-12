@@ -143,9 +143,9 @@ function ClsActivity() {
     //防止冒泡
     const stopdate = document.querySelectorAll(".ui-state-default");
     for (var i = 0; i < stopdate.length; i++) {
-        stopdate[i].addEventListener("click", function () {
+        stopdate[i].addEventListener("click", function (e) {
             console.log("WTF");
-            event.preventDefault();
+            e.preventDefault();
         })
     }
 
@@ -439,7 +439,7 @@ function ClsActivity() {
     const htmlActSearchgo = (o) => {
         return `
         
-        <a  href="#activity/detail/${o.fId}">
+        <a  href="#activity/detail/${o.fId}" >
         <div class="active_card_container">
             <div class="active_card" >
                 <i class="fas fa-heart fa-lg active_card_heart"></i>
@@ -462,13 +462,14 @@ function ClsActivity() {
     //ActCardData
     //* ------------------------------------- 文字樣板 -------------------------------------
     const display_active = (o) => {
-
+        // console.group("----------------");
         o.map(
             (e, index) => {
                 // console.log(e);
                 ActCard.innerHTML += htmlActCard(e);
             }
         )
+        // console.groupEnd("----------------");
 
     }
 
@@ -572,6 +573,7 @@ function ClsActivity() {
             let result = await response.json();
             //文字樣板
             display_active_seen(result.data);
+            getactid();
             // *用 result  do something ...
 
         } catch (err) {
@@ -582,12 +584,15 @@ function ClsActivity() {
     }
     activeseenAwait();
 
+
+
     //取的瀏覽紀錄的活動id 時間
     function getactid() {
         var selectactive = document.querySelectorAll(".activecard");
         var selectactivelike = document.querySelectorAll(".active_card_heart");
-        var active_card_heart = document.querySelectorAll(".active_card_heart");
-        console.log("cdcsd",selectactivelike);
+        var removelike = document.querySelectorAll(".actlikecolor");
+        // var active_card_heart = document.querySelectorAll(".active_card_heart");
+        console.log("cdcsd",removelike);
         let nowtime = new Date();
         let date = nowtime.toLocaleDateString();
         let timesplit = nowtime.toTimeString().split(" ");
@@ -597,30 +602,73 @@ function ClsActivity() {
 
         let activeseenId;
         for (let i = 0; i < selectactive.length; i++) {
-            selectactive[i].addEventListener('click', function (e) {
+            selectactive[i].onclick = function (e) {
                 let ahref = selectactive[i].href;
                 var hrefsplit = ahref.split("/");
                 activeseenId = hrefsplit[hrefsplit.length - 1];
                 console.log(activeseenId);
                 activeinsertseensql(activeseenId,now);
-            })
+            }
 
         }
         let activelikeid;
         for(let i =0;i<selectactivelike.length;i++){
-            selectactivelike[i].addEventListener('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-            let ahref = selectactive[i].href;
-            active_card_heart[i].classList.add("actlikecolor");
             
-            var hrefsplit2 = ahref.split("/");
-            activelikeid = hrefsplit2[hrefsplit2.length - 1];
-            console.log(activelikeid);
-            addActLikeToSQL(activelikeid,now);
-            })
+            
+                selectactivelike[i].onclick = function (e) {
+                   
+                    e.preventDefault();
+                    e.stopPropagation();
+                    let ahref = selectactive[i].href;
+                    var hrefsplit2 = ahref.split("/"); 
+                    activelikeid = hrefsplit2[hrefsplit2.length - 1];
+                    if(selectactivelike[i].classList.contains("actlikecolor") == true){
+                        selectactivelike[i].classList.remove("actlikecolor");
+                        remove(activelikeid);
+                    }
+                    else{
+                        selectactivelike[i].classList.add("actlikecolor");
+                        addActLikeToSQL(activelikeid,now);
+                    }
+                    
+                }
         }
-    }
+        function remove (activelikeid){
+            removeactlikesql(activelikeid);
+            console.log("0 0 ");
+        }
+        // let actremoveid;
+        // for(let i=0;i<removelike.length;i++)
+        //             {
+        //                 removelike[i].onclcik = function(e){
+        //                     e.preventDefault();
+        //                     e.stopPropagation();
+        //                     removelike[i].classList.remove("actlikecolor");
+        //                     // console.log(removelike);
+        //                     let ahref = selectactive[i].href;
+        //                     var hrefsplit2 = ahref.split("/"); 
+        //                     actremoveid = hrefsplit2[hrefsplit2.length - 1];
+        //                     console.log(actremoveid);
+                            
+        //                 }
+        //             }
+                
+    };
+    
+        
+    
+    
+
+
+
+
+
+
+
+
+
+
+
 
 
     // activeinsertseenSQL 瀏覽過的資料寫入資料庫
@@ -673,6 +721,31 @@ function ClsActivity() {
         }
       }
     const ActCard = document.querySelector("#activity_event_top");    
+    //todo 刪除
+    const removeactlikesql = async(activelikeid) =>{
+        try {
+            console.log("================")
+            console.log("activelikeid:", activelikeid);
+            var formdata = new FormData();
+            formdata.append("fActivityId", activelikeid);
+            let response = await fetch(serverURL.removeactlikesql, {
+              method: "DELETE", // http request method
+              headers: {
+                // http headers
+                Authorization: localStorage.getItem("Cycle link token"),
+              },
+              body: formdata,
+              cache: "no-cache",
+              credentials: "include",
+            });
+            let result = await response.json();
+            console.log(result);
+          } catch (err) {
+            console.log(err);
+            // 錯誤處理
+          }
+    }
+    
 
     //AJAX
 

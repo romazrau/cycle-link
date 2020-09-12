@@ -16,6 +16,15 @@ router.get("/post", async function (req, res, next) {
   }
 });
 
+router.get("/community/:communityid", async function (req, res, next) {
+  try {
+    let Postresult = await Sql.articleInCommunity(req.params.communityid);
+    res.json(Postresult);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
 router.get("/reply", async function (req, res, next) {
   try {
     let Replyresult = await Sql.replylist();

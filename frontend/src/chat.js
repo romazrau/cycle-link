@@ -2,70 +2,68 @@ import { serverURL } from "./api.js";
 // import io from "socket.io-client";
 
 
-// socket.io 區域
-let socket;
-const setSocket = (obj) => {
-    socket = obj;
-}
-let messages = [{
-    isMe: 0,
-    name: "系統",
-    msg: "哈囉我是客服~"
-}];
-const setMessages = (msg) => {
-    messages.push(msg);
-    document.querySelector("#chat_robot_message").innerHTML = data2chatRobotMessage(messages);
-}
-
-
-const makeToast = (title, msg) => {
-    console.log("%c" + title + "  " + msg, "color:green;font-size:16px;");
-}
-
-// 設定 socket
-var setupSocket = () => {
-    const token = localStorage.getItem('Cycle link token');
-    console.group("socket-----------");
-    // console.log(socket);
-    if (token && !socket) {  // 
-        const newSocket = io(serverURL.root, {
-            query: {
-                token: localStorage.getItem('Cycle link token'),
-            }
-        });
-        console.log(newSocket);
-
-        newSocket.on("disconnect", () => {
-            setSocket(null);
-            setTimeout(setupSocket, 3000);
-            makeToast("error", "Socket Disconnected!");
-        });
-
-
-        newSocket.on("connect", () => {
-            makeToast("success", "Socket Connected!");
-        });
-
-        setSocket(newSocket);
-    }
-    console.groupEnd("socket-----------");
-}
-
-
-const sendMessage = (msg) => {
-    if (socket) {
-        console.log("send msg");
-        socket.emit("chatRoomMessage", {
-            chatroomId: "world",
-            message: msg
-        })
-    }
-}
-
-
-
 
 function ClsChat() {
+
+    // socket.io 區域
+    let socket;
+    const setSocket = (obj) => {
+        socket = obj;
+    }
+    let messages = [{
+        isMe: 0,
+        name: "系統",
+        msg: "歡迎加入公開頻道~"
+    }];
+    const setMessages = (msg) => {
+        messages.push(msg);
+        document.querySelector("#chat_robot_message").innerHTML = data2chatRobotMessage(messages);
+    }
+
+    const makeToast = (title, msg) => {
+        console.log("%c" + title + "  " + msg, "color:green;font-size:16px;");
+    }
+
+    // 設定 socket
+    var setupSocket = () => {
+        const token = localStorage.getItem('Cycle link token');
+        // console.group("socket-----------");
+        // console.log(socket);
+        if (token && !socket) {  // 
+            const newSocket = io(serverURL.root, {
+                query: {
+                    token: localStorage.getItem('Cycle link token'),
+                }
+            });
+            // console.log(newSocket);
+
+            newSocket.on("disconnect", () => {
+                setSocket(null);
+                setTimeout(setupSocket, 3000);
+                makeToast("error", "Socket Disconnected!");
+            });
+
+
+            newSocket.on("connect", () => {
+                makeToast("success", "Socket Connected!");
+            });
+
+            setSocket(newSocket);
+        }
+        // console.groupEnd("socket-----------");
+    }
+
+
+    const sendMessage = (msg) => {
+        if (socket) {
+            console.log("send msg");
+            socket.emit("chatRoomMessage", {
+                chatroomId: "world",
+                message: msg
+            })
+        }
+    }
+
 
     // socket.io
     if (localStorage.getItem('Cycle link token')) {
@@ -290,22 +288,25 @@ function ClsChat() {
         if (chatRobotWindow.classList.contains("hide")) {
             chatRobotMessage.innerHTML = data2chatRobotMessage(messages);
 
-
-
-            console.log("世界頻道 open");
-            socket.emit("joinRoom", { chatroomId: "world" });
-            socket.on("newMessage", ({ message, userId, userName }) => {
-                console.log(message + " " + userName);
-                setMessages({
-                    isMe: localStorage.getItem("Cycle link user data") ==  userName ? 1 : 0,
-                    name: userName,
-                    msg: message,
-                });
-            })
+            if (socket) {
+                console.log("世界頻道 open");
+                socket.emit("joinRoom", { chatroomId: "world" });
+                socket.on("newMessage", ({ message, userId, userName }) => {
+                    console.log("get msg:" + message + "||from: " + userName);
+                    setMessages({
+                        isMe: localStorage.getItem("Cycle link user data") == userName ? 1 : 0,
+                        name: userName,
+                        msg: message,
+                    });
+                })
+            }
 
         } else {
-            console.log("世界頻道 close");
-            socket.emit("leaveRoom", { chatroomId: "world" });
+            if (socket) {
+                console.log("世界頻道 close");
+                socket.emit("leaveRoom", { chatroomId: "world" });
+                socket.removeAllListeners("newMessage");
+            }
         }
 
         chatRobotWindow.classList.toggle("hide");
@@ -326,8 +327,13 @@ function ClsChat() {
 
     // 世界頻道div-------------------------------------------
     document.querySelector("#chat_robot_window_close").addEventListener("click", (e) => {
-        socket.emit("leaveRoom", { chatroomId: "world" });
         e.target.parentNode.classList.add("hide");
+
+        if (socket) {
+            console.log("世界頻道 close");
+            socket.emit("leaveRoom", { chatroomId: "world" });
+            socket.removeAllListeners("newMessage");
+        }
     });
 
 
