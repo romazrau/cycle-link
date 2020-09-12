@@ -80,6 +80,12 @@ function ClsCommunityArticle() {
   </div>`;
   };
 
+  const getCommunityIdFromUrl = () => {
+    let whereAmI = window.location.hash.split("/");
+    let getCommunityId = whereAmI[2];
+    return getCommunityId;
+  };
+
   //判斷是否有圖片，沒有就不匯入div
   const CA_ImgIsNullOrNot = (x) => {
     if (x === null) {
@@ -168,11 +174,20 @@ function ClsCommunityArticle() {
     }
   }
   //文章列表撈資料
-  const getCommunityPost = async () => {
+  const getPostInCommunity = async (x) => {
     try {
-      let response = await fetch(serverURL.articlepost);
+      //   console.log(serverURL.articlearticle + x);
+      let response = await fetch(serverURL.articlearticle + x, {
+        method: "GET",
+        headers: {
+          Authorization: localStorage.getItem("Cycle link token"),
+        },
+        cache: "no-cache",
+        credentials: "include",
+      });
+      //   console.log(response);
       let result = await response.json();
-      // console.log(result.data);
+      //   console.log(result.data);
       // console.log(result.data.length);
       display_postDetail(result.data);
       // console.log("data:", result.data);
@@ -256,6 +271,62 @@ function ClsCommunityArticle() {
       console.log(err);
     }
   };
-  getCommunityPost();
+  getPostInCommunity(getCommunityIdFromUrl());
+  //TODO新增喜歡
+  const addLikeToSQL = async (P) => {
+    try {
+      var formdata = new FormData();
+      formdata.append("fPostId", P);
+      let response = await fetch(serverURL.addlikes, {
+        method: "POST", // http request method
+        headers: {
+          // http headers
+          Authorization: localStorage.getItem("Cycle link token"),
+        },
+        body: formdata,
+        cache: "no-cache",
+        credentials: "include",
+      });
+      let result = await response.json();
+    } catch (err) {
+      console.log(err);
+      // 錯誤處理
+    }
+  };
+  //TODO刪除喜歡
+  const removeLikeToSQL = async (P) => {
+    try {
+      console.log("P:", P);
+      var formdata = new FormData();
+      formdata.append("fPostId", P);
+      let response = await fetch(serverURL.removelikes, {
+        method: "DELETE", // http request method
+        headers: {
+          // http headers
+          Authorization: localStorage.getItem("Cycle link token"),
+        },
+        body: formdata,
+        cache: "no-cache",
+        credentials: "include",
+      });
+      let result = await response.json();
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+      // 錯誤處理
+    }
+  };
+
+  //   const whichCommunity = () => {
+  //     let whereAmI = window.location.hash.split("/");
+  //     let getCommunityId = whereAmI[2];
+  //     console.log(whereAmI);
+  //     console.log(getCommunityId);
+  //     if (location.hash.includes("#community/detail/")) {
+  //       let result = getPostInCommunity(getCommunityId);
+  //       console.log(result);
+  //     }
+  //   };
+  //   window.addEventListener("load", whichCommunity);
 }
 const CommunityArticle = new ClsCommunityArticle();

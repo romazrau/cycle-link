@@ -202,10 +202,12 @@ ${ImgIsNullOrNot(x.PostImg)}
   //文章列表撈資料
   const getCommunityPost = async () => {
     try {
+      console.log(serverURL.articlepost);
       let response = await fetch(serverURL.articlepost);
       let result = await response.json();
-      display_postDetail(result.data);
-      showReplyContainer();
+      await display_postDetail(result.data);
+      // 這三小啊為何會有這個showReplyContainer();
+      addClickEventToReply(result.data.length);
       addClickEventToLike(result.data.length);
       const CM_timeline_body = document.querySelectorAll(".CM_timeline_body");
       //處理超過2張照片
@@ -450,7 +452,7 @@ ${ImgIsNullOrNot(x.PostImg)}
         credentials: "include",
       });
       let result = await response.json();
-      console.log("result:", result.data);
+      console.log("MemberLikePost_result:", result.data);
       let hearts_arr = document.querySelectorAll(".fa-heart");
       for (let i = 0; i < hearts_arr.length; i++) {
         for (let j = 0; j < result.data.length; j++)
