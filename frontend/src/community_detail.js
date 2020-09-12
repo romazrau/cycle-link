@@ -418,6 +418,7 @@ function ClsCommuntityDetail() {
     // 開啟特定社團頁面(社團id)
     // todo開放或私密 用社團16做測試
     const renderPage = async (id) => {
+
         try {
 
 
@@ -508,6 +509,7 @@ function ClsCommuntityDetail() {
         }
 
     }
+
     const renderPageManager = async (id) => {
         try {
 
@@ -619,8 +621,9 @@ function ClsCommuntityDetail() {
 
     }
 
-    // !多切一個社團編輯頁面
+    
     // todo 修改社團
+    // 編輯按鈕Onclick觸發編輯社團頁面
     document.querySelectorAll(".js_editCommunity").forEach(items => {
 
         items.addEventListener("click", async () => {
@@ -630,31 +633,115 @@ function ClsCommuntityDetail() {
                 // -----# >>> 前端路由導向
                 window.location.hash = "#create-community";
                 // 更改頁面DOM處理
-                //todo
+                // 更改頁面名稱
                 document.querySelector("#UpdatePageName").innerHTML = "修改社團";
+                document.querySelector("#approveCommunityTitle").innerHTML = "成員修改";
+                document.querySelector("#memTitle").innerHTML = "刪除成員";
+                // 打開審核頁
+                document.querySelector("#approveMember").classList.remove("hide");
+                document.querySelector("#approveMemberSide").classList.remove("hide");
+                // 藏起next pre done btn
+                document.querySelector("#create_community_btn_next").classList.add("hide");
+                document.querySelector("#create_community_btn_pre" ).classList.add("hide");
+                document.querySelector("#create_community_btn_done").classList.add("hide");
+
+                // 打開detail managerBlcok Blcok
+                document.querySelector("#detailBlock").style.display="block";
+                document.querySelector("#managerBlcok").style.display="block";
+
+                // 抓到fCommunityId放進去formdata
+                let fCommunityId = this.cumDetailId;
+
+                // fetch舊資料
+                let response = await fetch(serverURL.community + fCommunityId, {
+                    method: "GET", // http request method
+                    //token
+                    headers: {
+                        "Authorization": localStorage.getItem("Cycle link token"),
+                    },
+                    cache: "no-cache",
+                    credentials: "include",
+                });
+
+                let result = await response.json();
+                console.log(result.data[0]);
+                // {fId: 6
+                // fImgPath: "img/community/01.jpg"
+                // fInfo: "這裡是一個提供所有社會大眾、服務性社團、志工團隊、志工運用單位相互交流的平台！"
+                // fName: "北部地區志工活動資訊交流站"
+                // fSatusName: "開放"
+                // fStatusId: 1
+                // totalNumber: 2
+                // user: "非社員"}
+                console.log(response);
+                console.log(document.querySelector("#create_community_name"));
+                console.log(result.data[0].fName);
+
+                // todo 把舊資料放入前端頁面
+                document.querySelector("#create_community_name").value = result.data[0].fName;
 
 
-                // 拿到資料
-                // fetch
 
-                // let response = await fetch(serverURL. , {
-                //     method: "", // http request method
-                //     //token
-                //     headers: {
-                //         "Authorization": localStorage.getItem("Cycle link token"),
-                //     },
-                //     cache: "no-cache",
-                //     credentials: "include",
-                // });
+                if (!result.result) {
+                  
+                   console.log(result);
+                }
 
-                // // 含有從token拿的fId
-                // let result = await response.json();
+               
+                
+                // 頁面拿到資料
+                let form = document.querySelector("#formOfCreate"); // form element
+                let formData = new FormData(form); // FormData
+        
+                formData.append("fCommunityId", fCommunityId)
 
-                // // 錯誤處理:沒有回傳資料導回原頁面 
-                // if (!result.result) {
+                
+                // fetch_修改tCommunity資料
+                // let { fCommunityId, fName, fInfo, fStatusId, fImgPath } = req.body
+                let responseput = await fetch("http://localhost:3050/community/", {
 
-                //     return;
-                // }
+                    method: "PUT",
+                    // Adding body or contents to send 
+                    body: formData,
+                    // Adding headers to the request 
+                    headers: {
+                        // formdata 不是用這種解析方式
+                        // "Content-type": "application/json; charset=UTF-8",
+                        "Authorization": localStorage.getItem("Cycle link token"),
+                    },
+                    cache: "no-cache",
+                    credentials: "include",
+                })
+                let resultput = await responseput.json();
+                // 錯誤處理:沒有回傳資料導回原頁面 
+           
+                if (!resultput.result) {
+                    console.log(resultput);
+                }
+
+                
+                // if()
+                // fetch_刪除成員
+
+
+            
+
+                // 如果有身份被修改
+                // fetch_修改tMemberList
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             }
@@ -664,9 +751,29 @@ function ClsCommuntityDetail() {
 
         })
     })
+    //還原社團編輯頁面
+    document.querySelector("#changeBack").addEventListener("click",()=>{
+                document.querySelector("#UpdatePageName").innerHTML = "創建社團";
+                document.querySelector("#approveCommunityTitle").innerHTML = "詳細資料";
+                document.querySelector("#memTitle").innerHTML = "社團成員&nbsp;(&nbsp;6&nbsp;)";
+
+
+                // 關閉審核頁
+                document.querySelector("#approveMember").classList.add("hide");
+                document.querySelector("#approveMemberSide").classList.add("hide");
+                // next pre done btn打開
+                document.querySelector("#create_community_btn_next").classList.remove("hide");
+                document.querySelector("#create_community_btn_pre").classList.remove("hide");
+                document.querySelector("#create_community_btn_done").classList.remove("hide");
+                // 關掉 managerBlcok detail Blcok
+                document.querySelector("#detailBlock").style.display = "none";   
+                document.querySelector("#managerBlcok").style.display = "none";
+
+    })
+   
+
 
     // TODO 加入社團by使用者id,社團id
-
 
     // 介紹分頁-- 管理員頭像的文字樣板
     const data2manageImg = (o) => {
@@ -739,12 +846,13 @@ const CommuntityDetail = new ClsCommuntityDetail();
 const communityDetailChangeHash = () => {
 
     //!Window物件方法偵測URL改變 執行rederPage function
-    let actDetailArr = window.location.hash.split('/');   // #community/detail/3  -> [ #community, detail, 3 ]
-    let actDetailId = actDetailArr[2];
+    let cumDetailArr = window.location.hash.split('/');   // #community/detail/3  -> [ #community, detail, 3 ]
+    let cumDetailId = cumDetailArr[2];
     if (location.hash.includes("#community/detail/")) {
-        CommuntityDetail.renderMainCommunityInfo(actDetailId);
-        CommuntityDetail.renderManagerListInfo(actDetailId);
-        CommuntityDetail.renderMemberListInfo(actDetailId);
+        CommuntityDetail.renderMainCommunityInfo(cumDetailId);
+        CommuntityDetail.renderManagerListInfo(cumDetailId);
+        CommuntityDetail.renderMemberListInfo(cumDetailId);
+        CommuntityDetail.cumDetailId = cumDetailId;
     }
 
 }

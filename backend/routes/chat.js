@@ -26,7 +26,7 @@ module.exports = function (io) {
             socket.userName = payload.fName;
             next();
         } catch (ex) {
-            console.log("io.use error");
+            console.log("Socket-- io.use error");
             console.log(ex);
         }
     })
@@ -41,31 +41,28 @@ module.exports = function (io) {
         })
 
         // 世界頻道
-        socket.on("joinRoom", (data) => {
-            console.log("Socket-- A user join world room: " + socket.userId + " " + socket.userName);
-            console.log(data);
+        socket.on("joinRoom", ({chatroomId}) => {
+            console.log(`Socket-- A user join ${chatroomId} room: ${socket.userId} ${socket.userName}`);
+            socket.join(chatroomId);
         });
 
-        socket.on("leaveRoom", (data) => {
-            console.log("Socket-- A user leave world room: " + socket.userId + " " + socket.userName);
-            console.log(data);
+        socket.on("leaveRoom", ({chatroomId}) => {
+            console.log(`Socket-- A user leave ${chatroomId} room: ${socket.userId} ${socket.userName}`);
+            socket.leave(chatroomId);
         });
 
-        socket.on("leaveRoom", (data) => {
-            console.log("Socket-- A user leave world room: " + socket.userId + " " + socket.userName);
-            console.log(data);
-        });
 
         socket.on("chatRoomMessage", async ({ chatroomId, message }) => {
 
-            console.log({chatroomId, message });
             if (message.trim().length > 0) {
-            console.log("Go ");
-                io.to(chatroomId).emit("newMessage", {
+                let data = {
                     message,
                     userId: socket.userId,
                     userName: socket.userName,
-                })
+                }
+                console.log("Socket-- 向聊天室傳送訊息: " + chatroomId);
+                console.log(data);
+                io.to(chatroomId).emit("newMessage", data)
             }
         })
 

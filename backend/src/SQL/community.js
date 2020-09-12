@@ -46,6 +46,12 @@ const communityList = async () => {
     }
 };
 
+//log看資料
+ (async () => {
+    let result = await communityList();
+     console.log("-------------------------------result");
+     console.log(result);
+})()
 
 //** 社團名稱(可部分)查詢社團
 const communityByString = async (fName) => {
@@ -266,12 +272,7 @@ const searchMemInCom = async (fMemberManagerId, fCommunityId) => {
 
 
 }
-//log看資料
-// (async () => {
-//     let result = await searchMemInCom(1, 10);
-//     console.log("-------------------------------result");
-//     console.log(result);
-// })()
+
 
 //** 社團Id查詢社團
 //(傳給特定路由去使用)
@@ -386,6 +387,7 @@ const communityById_communityManager = async (fid) => {
     }
 };
 
+
 //** 社團id查詢社員
 const communityById_communityMember = async (fid) => {
     try {
@@ -447,7 +449,6 @@ const communityCreate = async (fName, fStatusId, fImgPath, fInfo, fDate) => {
             where fName = '${fName}'`
             const result1 = await sql.query(sqlStrName);
             if (result1.recordset[0]) {
-
                 return { result: 0, msg: "錯誤:重複社團名稱" }
             }
 
@@ -455,7 +456,7 @@ const communityCreate = async (fName, fStatusId, fImgPath, fInfo, fDate) => {
             let sqlStr = `
             INSERT INTO Community.tCommunity( fName,fStatusId,fImgPath,fInfo,fDate)  
              VALUES ( '${fName}','${fStatusId}','${fImgPath}','${fInfo}','${fDate}');`;
-
+            console.log(sqlStr);
 
             const result = await sql.query(sqlStr);
 

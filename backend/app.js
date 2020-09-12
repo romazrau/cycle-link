@@ -141,6 +141,7 @@ app.use("/activityDetail", activityDetailRouter);
 app.use("/map", mapRouter);
 app.use("/active", activeRouter);
 app.use("/article", articleRouter);
+
 // if url 輸入/community 會交由 communityRouter處理
 app.use("/community", communityRouter);
 app.use("/personalPage", personalPageRouter);

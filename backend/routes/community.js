@@ -253,7 +253,12 @@ router.post('/', async function (req, res, next) {
 
 
         // es6 物件解構
-        let { fName, fStatusId, fImgPath, fInfo } = req.body
+        console.log("===================");
+        console.log(req.body);
+        let { fName, fStatusId, fInfo } = req.body;
+
+        // TODO 照片上傳
+        let fImgPath = 'gg.jpg'
 
         //時間"物件"
         let dateObj = new Date();
@@ -328,7 +333,6 @@ router.post('/members', async function (req, res, next) {
 // //!多切一個社團編輯頁面
 // TODO 修改社團
 // 這是restful.API 風格
-
 // SQL修改tCommunity資料by社團id:
 // 修改社團照片
 // 修改社團名稱
@@ -385,7 +389,7 @@ router.delete('/members', async function (req, res, next) {
     }
 });
 
-// 社團成員身分修改   SQL查詢tMemberList是否為管理員by社團id,社員id >> 丟出ifManager 0 1
+// 社團成員身分修改 : SQL查詢tMemberList是否為管理員by社團id,社員id 
 router.put('/members', async function (req, res, next) {
     try {
         // es6 物件解構
