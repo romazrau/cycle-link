@@ -98,8 +98,8 @@
                 訊息
             </div>
             <div class="chat_input">
-                <textarea id="chat_robot_textarea" placeholder="想說什麼呢?" onfocus="this.placeholder=''" onblur="this.placeholder='想說什麼呢?'"
-                    row="2"></textarea>
+                <textarea id="chat_robot_textarea" placeholder="想說什麼呢?" onfocus="this.placeholder=''"
+                    onblur="this.placeholder='想說什麼呢?'" row="2"></textarea>
             </div>
         </div>
 
@@ -1212,7 +1212,7 @@
                         <!-- 活動發起者 -->
                     </div>
                     <div class="activity_detail_info_share activity_detail_flex">
-                        <button style="margin-right: 1rem;"><img src="img/edit-regular.svg" width="20"></button>
+                        <button id="InitiatorEdit"><img src="img/edit-regular.svg" width="20"></button>
                         <button id="ac_share_btn"><img src="img/share.svg" width="20"></button>
                     </div>
                     <div id="ac_share_bg"></div>
@@ -2736,7 +2736,7 @@
                                         <div class="create_active_flex">
                                             <!-- ! -->
                                             <textarea id="create_active_text" cols="60" rows="8" maxlength="500"
-                                                name="fIntroduction"></textarea>
+                                                name="fIntroduction"></textarea><br>
                                             <p class="create_active_flex_end create_active_ml"
                                                 id="create_active_text_count">0</p>
                                             <p class="create_active_flex_end">&nbsp;/&nbsp;500</p>
@@ -2766,7 +2766,7 @@
                                                 id="create_active_please"></span>
                                             <!-- <input type="text" name="fLabelName"> -->
                                         </div>
-                                        <div id="test_a" style="display: flex;"></div>
+                                        <div id="act5Tag" style="display: flex;"></div>
                                         <!-- <input type="submit" value="Submit" id="actCreatTagSubmit"> -->
 
                                     </div>
@@ -2797,7 +2797,6 @@
                             </div>
                         </form>
                         <!-- ------------- 審核 --------------- -->
-
                         <div class="create_active_basicInfo" style="display: none;">
                             <h2>活動參與審核</h2>
                             <p>
