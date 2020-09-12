@@ -23,13 +23,23 @@ const activesql = async () => {
         // 連接資料庫
         await sql.connect(config)
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
-        let sqlStr = `select top(6)* from Activity.tActivity as A 
-        left join  Activity.tJoinList as J 
-        on j.fMemberId = A.fMemberId
-        where j.fMemberId = 3`
+        let sqlStr = `with act123 as(
+            select top(6)  * from Activity.tActivity
+            order by  newid()
+        ),jo as (
+            select j.fActivityId,j.fMemberId
+            from Activity.tJoinList as J
+        )
+        select A.* , J.*
+        from  act123 as A 
+        left join jo as J
+        on A.fId = J.fActivityId
+        ` 
+        // todo where j.fMemberId = ${}
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
-        console.dir(result)
+        console.dir(result.recordset)
+        console.log("============");
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
         return {result:1, msg:"請求成功", data:result.recordset};
     // 錯誤處理
@@ -49,7 +59,7 @@ const activemainlevelsql = async () => {
         let sqlStr = `select  * from Activity.tActivityMainLabel order by fId desc`
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
-        console.dir(result)
+        // console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
         return {result:1, msg:"請求成功", data:result.recordset};
     // 錯誤處理
@@ -72,9 +82,9 @@ const activegosearchsql = async (fid,text) => {
         on A.fActLabelId = S.fId
         where S.fId = ${fid} and A.fActName like '%${text}%';`
         const result = await sql.query(sqlStr)
-        console.log("searchgo")
+        // console.log("searchgo")
         // 看一下回傳結果'
-        console.dir(result)
+        // console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
         return {result:1, msg:"請求成功", data:result.recordset};
     // 錯誤處理
@@ -95,7 +105,7 @@ const activeforyousql = async()=>{
         order by newid() `
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
-        console.dir(result)
+        // console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
         return {result:1, msg:"請求成功", data:result.recordset};
     // 錯誤處理
@@ -104,6 +114,8 @@ const activeforyousql = async()=>{
         return {result:0, msg:"SQL 錯誤", data:err};
     }
 }
+
+
 
 //進階搜尋城市
 // const activesearchcitysql = async () => {
@@ -140,7 +152,7 @@ const activesearchdetailsql = async () => {
         where S.fId = ${fid} and A.fActName like '%${text}%'; `
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
-        console.dir(result)
+        // console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
         return {result:1, msg:"請求成功", data:result.recordset};
     // 錯誤處理
@@ -177,7 +189,7 @@ const activeseensql = async (id)=>{
         // todo  登入功能可使用時需換成判斷id where S.fMemberId = ${id}
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
-        console.dir(result)
+        // console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
         return {result:1, msg:"請求成功", data:result.recordset};
     // 錯誤處理
@@ -202,7 +214,7 @@ const activeinsertseensql = async (fActivityId,fMemberId,fSearchTime)=>{
         // todo  
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
-        console.dir(result)
+        // console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
         return {result:1, msg:"請求成功", data:result.recordset};
     // 錯誤處理
@@ -227,13 +239,32 @@ const addActLikeTosql = async (fActivityId,fMemberId,fJoinTime,fJoinTypeId)=>{
         // todo  
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
-        console.dir(result)
+        // console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
         return {result:1, msg:"請求成功", data:result.recordset};
     // 錯誤處理
     } catch (err) {
         console.log(err);
         return {result:0, msg:"SQL 錯誤", data:err};
+    }
+};
+
+const removeactlikesql = async (fActivityId, fMemberId) => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        await sql.connect(config)
+        const sqlString = `
+        DELETE FROM Activity.tJoinlist
+        WHERE fActivityId=${fActivityId} AND fMemberId=${fMemberId}
+        `
+        console.log(sqlString);
+        const result = await sql.query(sqlString);
+        // console.dir(result);
+
+        return { result: 1, msg: "刪除成功", data: result.recordset };
+    } catch (err) {
+        console.log(err);
+        return { result: 0, msg: "SQL 問題", data: result };
     }
 };
 
@@ -245,4 +276,4 @@ const addActLikeTosql = async (fActivityId,fMemberId,fJoinTime,fJoinTypeId)=>{
 
 
 // *匯出方法 ， 多個方法包在{}裡， ex: {func1, func2}
-module.exports = {activesql,activemainlevelsql,activegosearchsql, activeseensql,activeinsertseensql,activeforyousql,addActLikeTosql};
+module.exports = {activesql,activemainlevelsql,activegosearchsql, activeseensql,activeinsertseensql,activeforyousql,addActLikeTosql,removeactlikesql};
