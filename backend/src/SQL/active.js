@@ -34,7 +34,7 @@ const activesql = async () => {
         from  act123 as A 
         left join jo as J
         on A.fId = J.fActivityId
-        ` 
+        `
         // todo where j.fMemberId = ${}
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
@@ -254,11 +254,24 @@ const activeinsertseensql = async (fActivityId, fMemberId, fSearchTime) => {
         // make sure that any items are correctly URL encoded in the connection string
         // 連接資料庫
         await sql.connect(config)
+
+
+        let sqlstr1 = `select *
+        from Activity.tSearchList 
+        where fMemberId = ${fMemberId} and fActivityId = ${fActivityId}`
+
+        const searchresult = await sql.query(sqlstr1)
+
+
+        if (searchresult.recordset[0]) {
+            return   { result: 0, msg: "had" };
+        }
+
+
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
         let sqlStr = `INSERT INTO Activity.tSearchList( fActivityId , fMemberId , fSearchTime) 
-        VALUES (${fActivityId},${fMemberId},'${fSearchTime}')
-        `;
-
+                    VALUES (${fActivityId},${fMemberId},'${fSearchTime}')
+                    `;
         // todo  
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
@@ -320,10 +333,10 @@ const removeactlikesql = async (fActivityId, fMemberId) => {
         const sqlString = `
         DELETE FROM Activity.tJoinlist
         WHERE fActivityId=${fActivityId} AND fMemberId=${fMemberId}
-        `
-        console.log(sqlString);
+        `;
         const result = await sql.query(sqlString);
-        // console.dir(result);
+         console.dir(result);
+         console.log("SQL",result)
 
         return { result: 1, msg: "刪除成功", data: result.recordset };
     } catch (err) {
@@ -349,4 +362,5 @@ module.exports = {
     activeforyousql,
     addActLikeTosql,
     removeactlikesql
+    
 };
