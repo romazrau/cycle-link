@@ -131,6 +131,8 @@ router.get('/communityManager/:id', async function (req, res, next) {
     }
 });
 
+
+
 // 查詢社團成員by社團Id
 router.get('/communityById_communityMember/:id', async function (req, res, next) {
     try {
@@ -295,19 +297,107 @@ router.post('/', async function (req, res, next) {
 });
 
 
-// TODO 加入社團   by使用者id,社團id
+
+
+
+
+// TODO 加入社團_審核 
+router.put('/communityById_communityMember/:id', async function (req, res, next) {
+    try {
+        // -- 是否有Token(驗證機制) 是會員才會有Token才能增加社團
+        if (!req.user) {
+            res.json({
+                result: 0,
+                msg: "token 遺失"
+            });
+            return;
+        }
+
+        // es6 物件解構
+        let {
+            fId,
+            fCommunityId
+        } = req.body
+
+        // 修改fAccessright
+        let result = await Sql.ChangeMemberAccessRight(fId, fCommunityId);
+        res.json(result);
+
+    } catch (err) {
+        res.send({
+            result: 0,
+            msg: "路由錯誤",
+            data: err
+        });
+    }
+});
+
+
+// //!多切一個社團編輯頁面
+// TODO 修改社團
+// 這是restful.API 風格
+// SQL修改tCommunity資料by社團id:
+// 修改社團照片
+// 修改社團名稱
+// 修改社團關於我們
+// SQL修改tMemberList資料by社團id,社員id,ifManager:
+router.put('/', async function (req, res, next) {
+    try {
+        // es6 物件解構
+        let {
+            fCommunityId,
+            fName,
+            fInfo,
+            fStatusId,
+            fImgPath
+        } = req.body
+        // console.log("----------------------");
+        // console.log(req.body);
+        //token
+        if (!req.user) {
+            res.json({
+                result: 0,
+                msg: "token 遺失"
+            });
+            return;
+        }
+
+        //todo 驗證社團管理員身分
+
+        //todo 假裝是
+        let resultUpdateCommunity = await Sql.updateCommunity(fCommunityId, fName, fInfo, fStatusId, fImgPath);
+
+        console.log((resultUpdateCommunity));
+        res.json(resultUpdateCommunity);
+    } catch (err) {
+        console.log(err);
+        res.send({
+            result: 0,
+            msg: "路由錯誤",
+            data: err
+        });
+    }
+});
+
+// TODO 加入社團_要求 by使用者id,社團id （ fAccessright = 1 審核中 ）
 router.post('/members', async function (req, res, next) {
     try {
 
         // -- 是否有Token(驗證機制) 是會員才會有Token才能增加社團
         if (!req.user) {
-            res.json({ result: 0, msg: "token 遺失" });
+            res.json({
+                result: 0,
+                msg: "token 遺失"
+            });
             return;
         }
 
 
         // es6 物件解構
-        let { fId, fCommunityId } = req.body
+        let {
+            fId,
+            fCommunityId
+        } = req.body
 
         //時間"物件"
         let dateObj = new Date();
@@ -324,42 +414,11 @@ router.post('/members', async function (req, res, next) {
 
         res.json(result);
     } catch (err) {
-        res.send({ result: 0, msg: "路由錯誤", data: err });
-    }
-});
-
-
-
-// //!多切一個社團編輯頁面
-// TODO 修改社團
-// 這是restful.API 風格
-// SQL修改tCommunity資料by社團id:
-// 修改社團照片
-// 修改社團名稱
-// 修改社團關於我們
-// SQL修改tMemberList資料by社團id,社員id,ifManager:
-router.put('/', async function (req, res, next) {
-    try {
-        // es6 物件解構
-        let { fCommunityId, fName, fInfo, fStatusId, fImgPath } = req.body
-        // console.log("----------------------");
-        // console.log(req.body);
-        //token
-        if (!req.user) {
-            res.json({ result: 0, msg: "token 遺失" });
-            return;
-        }
-
-        //todo 驗證社團管理員身分
-
-        //todo 假裝是
-        let resultUpdateCommunity = await Sql.updateCommunity(fCommunityId, fName, fInfo, fStatusId, fImgPath);
-
-        console.log((resultUpdateCommunity));
-        res.json(resultUpdateCommunity);
-    } catch (err) {
-        console.log(err);
-        res.send({ result: 0, msg: "路由錯誤", data: err });
+        res.send({
+            result: 0,
+            msg: "路由錯誤",
+            data: err
+        });
     }
 });
 
@@ -377,7 +436,7 @@ router.delete('/members', async function (req, res, next) {
             return;
         }
         //todo 驗證社團管理員身分
-        // 
+        
 
 
         let resultDeletMemberOfCommunity = await Sql.deletMemberOfCommunity(fMemberIdArr, fCommunityId);
@@ -430,82 +489,43 @@ router.put('/members', async function (req, res, next) {
         console.log(err);
         res.send({ result: 0, msg: "路由錯誤", data: err });
     }
-});
+}
+);
 
+// todo (SQL端還沒寫）
+// 社團社員身份查詢：待審核
+router.get('/members/:id', async function (req, res, next) {
+            try {
 
+                //token
+                if (!req.user) {
+                    res.json({
+                        result: 0,
+                        msg: "token 遺失"
+                    });
+                    return;
+                }
 
-router.put('/', async function (req, res, next) {
-    try {
-        // es6 物件解構
-        let { fId, fCommunityId, fName, fInfo, fStatusId, fImgPath, fDeletedArryId } = req.body
-        // console.log("----------------------");
-        // console.log(req.body);
+                console.log("===========");
+                console.log(req.params);
+                let fCommunityId = req.params.id;
+                let resultPendingMember = await Sql.SearchMemberAccessRight(fCommunityId);
 
+                if (!resultPendingMember.result){
+                    res.json({ result: 0 , msg: "沒有待審核會員" })
+                    return;
+                }
+                res.json(resultPendingMember);
 
-        //token
-        if (!req.user) {
-            res.json({ result: 0, msg: "token 遺失" });
-            return;
+            } catch (err) {
+                res.send({
+                    result: 0,
+                    msg: "路由錯誤",
+                    data: err
+                });
+            }
         }
-
-        //todo 驗證社團管理員身分
-
-        //todo 假裝是
-        let resultUpdateCommunity = await Sql.updateCommunity(fCommunityId, fName, fInfo, fStatusId, fImgPath);
-        console.log("----------------------");
-        console.log((resultUpdateCommunity));
-        if (!resultUpdateCommunity.result) {
-            res.json(resultUpdateCommunity);
-            // console.log("+++++++++++++++++++++++");
-            // console.log(resultUpdateCommunity);
-            return;
-
-        }
-
-        let resultDeletMemberOfCommunity = await Sql.deletMemberOfCommunity(fDeletedArryId, fCommunityId);
-        console.log("----------------------");
-        console.log((resultDeletMemberOfCommunity));
-        if (!resultDeletMemberOfCommunity.result) {
-            // res.json(resultDeletMemberOfCommunity);
-            // console.log("-------------------------");
-
-            return;
-        }
-
-        let resultSearchMemberCommunity = await Sql.searchMemInCom(fMemberManagerId, fCommunityId);
-        console.log("-------++++++++++++++++++++-------");
-        console.log(resultSearchMemberCommunity);
-        if (!resultSearchMemberCommunity.result) {
-            res.json(resultSearchMemberCommunity);
-            // console.log("*************************");
-
-            return;
-        }
-
-        let ifManager;
-        if (resultSearchMemberCommunity.fAccessRightId == 3) {
-            ifManager = 1;
-        }
-        else {
-            ifManager = 0;
-        }
-
-        let resultUpdatatMemberList = await Sql.updatatMemberList(fMemberManagerId, fCommunityId, ifManager);
-        console.log("0000000000000000000000000000000000000000000");
-        console.log((resultUpdatatMemberList));
-
-        res.json(resultUpdatatMemberList);
-    } catch (err) {
-        res.send({ result: 0, msg: "路由錯誤", data: err });
-    }
-});
-
-
-
-
-
-
-
+)
 
 // 刪除社團
 // 此路由/:id Restful.API
