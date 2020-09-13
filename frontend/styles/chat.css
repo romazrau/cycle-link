@@ -117,7 +117,23 @@
   display: flex;
   flex-direction: column;
   font-size: 1rem;
-  flex-grow: 1;
+  flex-basis: 15rem;
+  overflow-y: scroll;
+}
+
+/* 滾輪 */
+.chat_message::-webkit-scrollbar {
+  width: 5px;
+}
+.chat_message::-webkit-scrollbar-track {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  margin: 3px 0 3px 0;
+}
+.chat_message::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background: rgb(219, 219, 219);
 }
 
 .caht_Me_time {
@@ -131,11 +147,14 @@
 
 .caht_notMe {
   position: relative;
-  padding: 0.2rem 0.2rem;
+  padding: 0.2rem 0.5rem;
   margin-top: 0.2rem;
   border-radius: 0.5rem;
   background-color: var(--white-color);
   align-self: flex-start;
+  max-width: 15rem;
+  white-space:pre-wrap;
+  word-break: break-all;
 }
 
 .caht_notMe .caht_arrow {
@@ -164,11 +183,14 @@
 
 .caht_Me {
   position: relative;
-  padding: 0.2rem 0.2rem;
+  padding: 0.2rem 0.5rem;
   margin-top: 0.2rem;
   border-radius: 0.5rem;
   background-color: var(--white-color);
   align-self: flex-end;
+  max-width: 15rem;
+  white-space:pre-wrap;
+  word-break: break-all;
 }
 
 .caht_Me .caht_arrow {
@@ -199,11 +221,28 @@
 .chat_list_window {
   position: relative;
   margin-right: 2rem;
-  min-width: 10rem;
-  min-height: 20rem;
+  width: 10rem;
+  height: 21.3rem;
   background-color: rgb(218, 218, 218);
   border-radius: 0.5rem;
+  overflow-y: scroll;
 }
+
+/* 滾輪 */
+.chat_list_window::-webkit-scrollbar {
+  width: 5px;
+}
+.chat_list_window::-webkit-scrollbar-track {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  margin: 3px 0 3px 0;
+}
+.chat_list_window::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background: rgb(219, 219, 219);
+}
+
 
 .chat_list {
   padding: 0 1rem;

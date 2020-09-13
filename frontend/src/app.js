@@ -22,7 +22,10 @@ checkLogin()
             window.localStorage.removeItem("Cycle link user data");
         }
     })
-    .catch((err) => { console.log(err) });
+    .catch((err) => { 
+               window.localStorage.removeItem("Cycle link token")
+               window.localStorage.removeItem("Cycle link user data");
+        console.log(err) });
 
 
 
