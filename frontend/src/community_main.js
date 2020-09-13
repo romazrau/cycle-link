@@ -202,7 +202,7 @@ ${ImgIsNullOrNot(x.PostImg)}
   //文章列表撈資料
   const getCommunityPost = async () => {
     try {
-      console.log(serverURL.articlepost);
+      // console.log(serverURL.articlepost);
       let response = await fetch(serverURL.articlepost);
       let result = await response.json();
       await display_postDetail(result.data);
@@ -404,6 +404,12 @@ ${ImgIsNullOrNot(x.PostImg)}
   //點擊發送
   //TODO postime判斷距離現在時間
 
+  function timeFormatAdjust(x) {
+    if (x < 10) {
+      x = "0" + x;
+    }
+    return x;
+  }
   //新增留言
   const addReplyToSQL = async (postid, content) => {
     try {
@@ -411,13 +417,12 @@ ${ImgIsNullOrNot(x.PostImg)}
       let replytime =
         nowtime.toLocaleDateString() +
         " " +
-        nowtime.getHours() +
+        timeFormatAdjust(nowtime.getHours()) +
         ":" +
-        nowtime.getMinutes();
+        timeFormatAdjust(nowtime.getMinutes());
 
       let replyFormdata = new FormData();
       replyFormdata.append("fPostId", postid);
-      // replyFormdata.append("fReplyMemberId", replymemberid);
       replyFormdata.append("fContent", content);
       replyFormdata.append("fReplyTime", replytime);
 

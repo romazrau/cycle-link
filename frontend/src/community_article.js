@@ -40,6 +40,46 @@ function ClsCommunityArticle() {
         </div>
 `;
   };
+
+  //新增文章使用者頭像：文字樣板
+  const htmlCommunityAddArticleImg = (x) => {
+    return `
+    <div class="community_article_heading_img_circle_border">
+    <div class="community_article_heading_img_container" onclick="location.hash='#personal-page/${x.MemberId}'">
+      <img class="community_article_heading_img" src="${x.MemberImgPath}" onclick="location.hash='#personal-page/${x.MemberId}'"/>
+    </div> </div>
+  `;
+  };
+
+  let UserImgOnArticleAdd = document.querySelector(
+    ".Group_detail_Societies_img_div"
+  );
+
+  const display_UserImg = (e) => {
+    UserImgOnArticleAdd.innerHTML += htmlCommunityAddArticleImg(e);
+  };
+
+  const showUserImg = async () => {
+    try {
+      let response = await fetch(serverURL.articleuser, {
+        method: "GET",
+        headers: {
+          Authorization: localStorage.getItem("Cycle link token"),
+        },
+        cache: "no-cache",
+        credentials: "include",
+      });
+
+      console.log(response);
+      let result = await response.json();
+      console.log(result);
+      display_UserImg(result.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  showUserImg();
+
   //TODO社團留言：文字樣板
   const htmlCommunityMainReply = (x) => {
     return `
@@ -176,8 +216,7 @@ function ClsCommunityArticle() {
   //文章列表撈資料
   const getPostInCommunity = async (x) => {
     try {
-      //   console.log(serverURL.articlearticle + x);
-      let response = await fetch(serverURL.articlearticle + x, {
+      let response = await fetch(serverURL.articlebycommunity + x, {
         method: "GET",
         headers: {
           Authorization: localStorage.getItem("Cycle link token"),
@@ -185,17 +224,16 @@ function ClsCommunityArticle() {
         cache: "no-cache",
         credentials: "include",
       });
-      //   console.log(response);
       let result = await response.json();
-      //   console.log(result.data);
-      // console.log(result.data.length);
-      display_postDetail(result.data);
-      // console.log("data:", result.data);
+
+      await display_postDetail(result.data);
+
       addClickEventToReply(result.data.length);
       addClickEventToLike(result.data.length);
       const community_article_body = document.querySelectorAll(
         ".community_article_body"
       );
+
       //處理超過2張照片
       for (let i = 0; i < community_article_body.length; i++) {
         if (community_article_body[i].getElementsByTagName("img").length > 1) {
@@ -272,6 +310,66 @@ function ClsCommunityArticle() {
     }
   };
   getPostInCommunity(getCommunityIdFromUrl());
+
+  //TODO點擊上傳圖片Icon時，上傳圖片至後端？
+  document
+    .querySelector(".UploadImgforArticle")
+    .addEventListener("click", function (e) {
+      // 上傳後該如何得到圖片路徑ㄋ？
+    });
+
+  //點擊送出Icon時，抓取目前的資料發出文章內容給SQL
+  document
+    .querySelector(".AddArticleinCommunity")
+    .addEventListener("click", function (e) {
+      let addArticleInput = document.querySelector(".AddArticleInput").value;
+      console.log(getCommunityIdFromUrl());
+      addArticletoSQL(getCommunityIdFromUrl(), addArticleInput);
+    });
+
+  function timeFormatAdjust(x) {
+    if (x < 10) {
+      x = "0" + x;
+    }
+    return x;
+  }
+
+  //新增文章
+  const addArticletoSQL = async (CommunityId, Content) => {
+    try {
+      let nowtime = new Date();
+      let addarticletime =
+        nowtime.toLocaleDateString() +
+        " " +
+        timeFormatAdjust(nowtime.getHours()) +
+        ":" +
+        timeFormatAdjust(nowtime.getMinutes());
+
+      console.log(addarticletime);
+
+      var articleFormdata = new FormData();
+      let imgTemp = "img/qwe";
+      articleFormdata.append("fCommunityId", CommunityId);
+      articleFormdata.append("fPostTime", addarticletime);
+      articleFormdata.append("fContent", Content);
+      articleFormdata.append("fImgPaths", imgTemp);
+
+      let response = await fetch(serverURL.addarticle, {
+        method: "POST",
+        headers: {
+          Authorization: localStorage.getItem("Cycle link token"),
+        },
+        body: articleFormdata,
+        cache: "no-cache",
+        credentials: "include",
+      });
+      let result = await response.json();
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   //TODO新增喜歡
   const addLikeToSQL = async (P) => {
     try {
@@ -316,17 +414,5 @@ function ClsCommunityArticle() {
       // 錯誤處理
     }
   };
-
-  //   const whichCommunity = () => {
-  //     let whereAmI = window.location.hash.split("/");
-  //     let getCommunityId = whereAmI[2];
-  //     console.log(whereAmI);
-  //     console.log(getCommunityId);
-  //     if (location.hash.includes("#community/detail/")) {
-  //       let result = getPostInCommunity(getCommunityId);
-  //       console.log(result);
-  //     }
-  //   };
-  //   window.addEventListener("load", whichCommunity);
 }
 const CommunityArticle = new ClsCommunityArticle();
