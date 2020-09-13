@@ -14,10 +14,6 @@
     padding: 0;
 }
 
-::-webkit-scrollbar {
-    /*隱藏滾輪*/
-    display: none;
-    }
 
 #map_cityspan{
     background-color: var(--blue-color);

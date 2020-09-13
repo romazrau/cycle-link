@@ -5,20 +5,66 @@ import { serverURL } from "./api.js";
 
 function ClsChat() {
 
-    // socket.io 區域
+    // socket.io 訊息與物件儲存 區域
     let socket;
     const setSocket = (obj) => {
         socket = obj;
     }
+
+    // world room 用
     let messages = [{
         isMe: 0,
         name: "系統",
-        msg: "歡迎加入公開頻道~"
+        msg: "歡迎加入公開頻道~",
+        time: (new Date).toLocaleTimeString("zh-TW").split(":").slice(0, 2).join(":")
+    }, {
+        isMe: 0,
+        name: "系統",
+        msg: "保持頻道開啟，接收新訊息",
+        time: (new Date).toLocaleTimeString("zh-TW").split(":").slice(0, 2).join(":")
     }];
-    const setMessages = (msg) => {
-        messages.push(msg);
-        document.querySelector("#chat_robot_message").innerHTML = data2chatRobotMessage(messages);
+     // world room 用
+    const setMessages = (msgObj) => {
+        messages.push(msgObj);
+        let room = document.querySelector("#chat_robot_message");
+        room.innerHTML = data2chatRobotMessage(messages);
+        room.scrollTo(0, room.scrollHeight);
     }
+
+    let chatroomList = [];
+    const setChatroomList = (roomListObj) => {
+        chatroomList.push(roomListObj);
+        document.querySelector(".chat_list").innerHTML = data2cahtList(chatroomList);
+    }
+    const initChatroomList = async () => {
+        const chatList = document.querySelector(".chat_list");
+        try {
+            chatList.innerHTML = "";
+            let respones = await fetch(serverURL.getChatroom, {
+                cache: "no-cache",
+                headers: {
+                    Authorization: localStorage.getItem("Cycle link token"),
+                }
+            })
+            let result = await respones.json();
+            if (!result.result) {
+                chatList.innerHTML = `<div>${result.msg}</div>`
+                return;
+            }
+
+            result.data.map(item => {
+                setChatroomList(item);
+            })
+        } catch (ex) {
+            console.log(ex);
+            chatList.innerHTML = `<div>連線錯誤</div>`;
+        }
+    }
+
+
+
+
+
 
     const makeToast = (title, msg) => {
         console.log("%c" + title + "  " + msg, "color:green;font-size:16px;");
@@ -46,14 +92,30 @@ function ClsChat() {
 
             newSocket.on("connect", () => {
                 makeToast("success", "Socket Connected!");
+
+                socket.on("newMessage", ({ message, userId, userName, time, chatroomId }) => {
+                    console.log("get msg:" + message + " ||from: " + userName + " ||room: " + chatroomId);
+                    let data = {
+                        isMe: localStorage.getItem("Cycle link user data") == userName ? 1 : 0,
+                        name: userName,
+                        msg: message,
+                        time,   
+                    }
+                    if(chatroomId === "world"){
+                        setMessages(data);
+                    }
+                    
+                })
+                // socket.removeAllListeners("newMessage");
             });
 
             setSocket(newSocket);
+
         }
         // console.groupEnd("socket-----------");
     }
 
-
+    // 發送訊息
     const sendMessage = (msg) => {
         if (socket) {
             console.log("send msg");
@@ -63,13 +125,6 @@ function ClsChat() {
             })
         }
     }
-
-
-    // socket.io
-    if (localStorage.getItem('Cycle link token')) {
-        setupSocket();
-    }
-    // TODO 登入後開啟
 
 
 
@@ -135,27 +190,7 @@ function ClsChat() {
 
     //點擊 icon 打開
     const chatListWindow = document.querySelector(".chat_list_window");
-    const chatList = document.querySelector(".chat_list");
-    document.querySelector("#chat_friend_icon").addEventListener("click", async () => {
-        try {
-            chatList.innerHTML = "";
-            let respones = await fetch(serverURL.getChatroom, {
-                cache: "no-cache",
-                headers: {
-                    Authorization: localStorage.getItem("Cycle link token"),
-                }
-            })
-            let result = await respones.json();
-            if (result.result) {
-                chatList.innerHTML = data2cahtList(result.data);
-            } else {
-                chatList.innerHTML = `<div>${result.msg}</div>`
-            }
-
-        } catch (ex) {
-            console.log(ex);
-            chatList.innerHTML = data2cahtList(chatListData);
-        }
+    document.querySelector("#chat_friend_icon").addEventListener("click", () => {
         chatListWindow.classList.toggle("hide");
     });
 
@@ -211,7 +246,8 @@ function ClsChat() {
     const data2cahtMessage = (array, title) => {
         let result = `<div id="chatRommWith_${title}" class="chat_room_window"><img class="chat_window_close" src="./img/times-solid.svg" alt="X"><div id="chat_message_window_title" class="chat_window_title">${title}</div><div class="chat_message">`;
         array.map((e) => {
-            result += `<div class=${e.isMe ? "caht_Me" : "caht_notMe"}>${e.msg}<div class="caht_arrow2"></div></div><div class="${e.isMe ? "caht_Me_time" : "caht_notMe_time"}">${e.time}</div>`;
+            result += `<div class=${e.isMe ? "caht_Me" : "caht_notMe"}>${e.msg}<div class="caht_arrow2"></div></div>
+                       <div class="${e.isMe ? "caht_Me_time" : "caht_notMe_time"}">${e.time}</div>`;
         });
         result += `</div><div class="chat_input">
                     <textarea placeholder="想說什麼呢?" onfocus="this.placeholder=''" onblur="this.placeholder='想說什麼呢?'" row="2"></textarea>
@@ -274,7 +310,8 @@ function ClsChat() {
     const data2chatRobotMessage = array => {
         let result = ""
         array.map((e) => {
-            result += `<div class=${e.isMe ? "caht_Me" : "caht_notMe"}>${e.isMe ? "" : e.name + ": "}${e.msg}<div class="caht_arrow"></div></div>`;
+            result += `<div class=${e.isMe ? "caht_Me" : "caht_notMe"}>${e.isMe ? "" : e.name + ": "}${e.msg}<div class="caht_arrow"></div></div>
+                        <div class="${e.isMe ? "caht_Me_time" : "caht_notMe_time"}">${e.time ? e.time : ""}</div>`;
         });
         return result;
     };
@@ -291,21 +328,12 @@ function ClsChat() {
             if (socket) {
                 console.log("世界頻道 open");
                 socket.emit("joinRoom", { chatroomId: "world" });
-                socket.on("newMessage", ({ message, userId, userName }) => {
-                    console.log("get msg:" + message + "||from: " + userName);
-                    setMessages({
-                        isMe: localStorage.getItem("Cycle link user data") == userName ? 1 : 0,
-                        name: userName,
-                        msg: message,
-                    });
-                })
             }
 
         } else {
             if (socket) {
                 console.log("世界頻道 close");
                 socket.emit("leaveRoom", { chatroomId: "world" });
-                socket.removeAllListeners("newMessage");
             }
         }
 
@@ -332,12 +360,20 @@ function ClsChat() {
         if (socket) {
             console.log("世界頻道 close");
             socket.emit("leaveRoom", { chatroomId: "world" });
-            socket.removeAllListeners("newMessage");
         }
     });
 
 
 
+    // 初始化區域
+    // socket.io
+    if (localStorage.getItem('Cycle link token')) {
+        setupSocket();
+    }
+    // TODO 登入後開啟
+
+    initChatroomList();
 }
 const Chat = new ClsChat();
+
 

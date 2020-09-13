@@ -8,7 +8,7 @@ module.exports = function (io) {
     // src 資源
     const chatSql = require("../src/SQL/chat.js");
 
-    // socket 
+    // socket middleware
     io.use((socket, next) => {
         try {
             const tokenOrigin = socket.handshake.query.token;
@@ -32,7 +32,7 @@ module.exports = function (io) {
     })
 
 
-    // socket.io events
+    // socket.io events ， 由 連線事件開始
     io.on("connection", function (socket) {
         console.log("Socket-- A user connected: " + socket.userId + " " + socket.userName);
 
@@ -40,10 +40,10 @@ module.exports = function (io) {
             console.log("Socket-- Disconnected: " + socket.userId + " " + socket.userName);
         })
 
-        // 世界頻道
+        // 加入聊天室事件
         socket.on("joinRoom", ({chatroomId}) => {
             console.log(`Socket-- A user join ${chatroomId} room: ${socket.userId} ${socket.userName}`);
-            socket.join(chatroomId);
+            socket.join(chatroomId); // *socket 房間功能，加入
         });
 
         socket.on("leaveRoom", ({chatroomId}) => {
@@ -51,7 +51,7 @@ module.exports = function (io) {
             socket.leave(chatroomId);
         });
 
-
+        // 發送訊息事件
         socket.on("chatRoomMessage", async ({ chatroomId, message }) => {
 
             if (message.trim().length > 0) {
@@ -59,10 +59,12 @@ module.exports = function (io) {
                     message,
                     userId: socket.userId,
                     userName: socket.userName,
+                    time:  (new Date).toLocaleTimeString("zh-TW").split(":").slice(0,2).join(":"),
+                    chatroomId,
                 }
                 console.log("Socket-- 向聊天室傳送訊息: " + chatroomId);
                 console.log(data);
-                io.to(chatroomId).emit("newMessage", data)
+                io.to(chatroomId).emit("newMessage", data)  // *對特定房間發送事件
             }
         })
 
