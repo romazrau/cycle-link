@@ -183,7 +183,7 @@ function ClsChat() {
     const data2cahtList = (array) => {
         let result = "";
         array.map((e) => {
-            result += `<li chatRoomId=${e.fId}>${e.fMemberName}</li>`;
+            result += `<li data-chatRoom-id=${e.fId}>${e.fMemberName}</li>`;
         });
         return result;
     };
@@ -243,8 +243,8 @@ function ClsChat() {
     ];
 
     //文字樣板 -- 參考 html 中聊天機器人格式
-    const data2cahtMessage = (array, title) => {
-        let result = `<div id="chatRommWith_${title}" class="chat_room_window"><img class="chat_window_close" src="./img/times-solid.svg" alt="X"><div id="chat_message_window_title" class="chat_window_title">${title}</div><div class="chat_message">`;
+    const data2cahtMessage = (array, title, chatRoomId) => {
+        let result = `<div id="chatRoomId_${chatRoomId}" class="chat_room_window"><img class="chat_window_close" src="./img/times-solid.svg" alt="X"><div id="chat_message_window_title" class="chat_window_title">${title}</div><div class="chat_message">`;
         array.map((e) => {
             result += `<div class=${e.isMe ? "caht_Me" : "caht_notMe"}>${e.msg}<div class="caht_arrow2"></div></div>
                        <div class="${e.isMe ? "caht_Me_time" : "caht_notMe_time"}">${e.time}</div>`;
@@ -261,12 +261,12 @@ function ClsChat() {
         // console.log(e.target, e.target.tagName);
         // 點擊的是否是li
         if (e.target.tagName !== "LI") {
-            console.log(e.target);
+            // console.log(e.target);
             return;
         }
 
         //檢查是否已開啟
-        if (document.querySelector(`#chatRommWith_${e.target.innerHTML}`)) {
+        if (document.querySelector(`#chatRoomId_${e.target.dataset.chatroomId}`)) {
             return;
         };
 
@@ -274,7 +274,7 @@ function ClsChat() {
         const chatRoom = document.createElement("div");
         chatRoom.onclick = chatRoomClose;
 
-        chatRoom.innerHTML = data2cahtMessage(cahtMessageData, e.target.innerHTML);
+        chatRoom.innerHTML = data2cahtMessage(cahtMessageData, e.target.innerHTML, e.target.dataset.chatroomId);
         chatContainer.appendChild(chatRoom);
     });
 
