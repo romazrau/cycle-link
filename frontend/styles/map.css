@@ -29,6 +29,8 @@
 
 
 .map_container{
+    position: fixed;
+    top:5rem;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -120,4 +122,34 @@
     margin:1rem 0.5rem 0 0.5rem;
     line-height: 1.5rem;
     color: var(--green-color);
+}
+
+.checkbox_container
+{
+    position: absolute;
+    top:6rem;
+    z-index: 500;
+}
+.checkbox_container
+{
+    display: flex;
+    position: absolute;
+    top:1rem;
+    left: 6rem;
+    z-index: 500;
+}
+.map_ckeck{
+    margin:0.3rem;
+    
+    border-radius: 10%;
+    background-color: #fff;
+}
+.map_ckeck input
+{
+    padding: 1rem;
+    margin:0.3rem;
+}
+.map_ckeck label
+{
+    margin:0 0.3rem 0 0;
 }
