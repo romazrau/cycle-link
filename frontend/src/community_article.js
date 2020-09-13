@@ -51,6 +51,35 @@ function ClsCommunityArticle() {
   `;
   };
 
+  let UserImgOnArticleAdd = document.querySelector(
+    ".Group_detail_Societies_img_div"
+  );
+
+  const display_UserImg = (e) => {
+    UserImgOnArticleAdd.innerHTML += htmlCommunityAddArticleImg(e);
+  };
+
+  const showUserImg = async () => {
+    try {
+      let response = await fetch(serverURL.articleuser, {
+        method: "GET",
+        headers: {
+          Authorization: localStorage.getItem("Cycle link token"),
+        },
+        cache: "no-cache",
+        credentials: "include",
+      });
+
+      console.log(response);
+      let result = await response.json();
+      console.log(result);
+      display_UserImg(result.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  showUserImg();
+
   //TODO社團留言：文字樣板
   const htmlCommunityMainReply = (x) => {
     return `
@@ -187,8 +216,7 @@ function ClsCommunityArticle() {
   //文章列表撈資料
   const getPostInCommunity = async (x) => {
     try {
-      //   console.log(serverURL.articlearticle + x);
-      let response = await fetch(serverURL.articlearticle + x, {
+      let response = await fetch(serverURL.articlebycommunity + x, {
         method: "GET",
         headers: {
           Authorization: localStorage.getItem("Cycle link token"),
@@ -196,17 +224,16 @@ function ClsCommunityArticle() {
         cache: "no-cache",
         credentials: "include",
       });
-      //   console.log(response);
       let result = await response.json();
-      //   console.log(result.data);
-      // console.log(result.data.length);
+
       await display_postDetail(result.data);
-      // console.log("data:", result.data);
+
       addClickEventToReply(result.data.length);
       addClickEventToLike(result.data.length);
       const community_article_body = document.querySelectorAll(
         ".community_article_body"
       );
+
       //處理超過2張照片
       for (let i = 0; i < community_article_body.length; i++) {
         if (community_article_body[i].getElementsByTagName("img").length > 1) {
@@ -300,6 +327,13 @@ function ClsCommunityArticle() {
       addArticletoSQL(getCommunityIdFromUrl(), addArticleInput);
     });
 
+  function timeFormatAdjust(x) {
+    if (x < 10) {
+      x = "0" + x;
+    }
+    return x;
+  }
+
   //新增文章
   const addArticletoSQL = async (CommunityId, Content) => {
     try {
@@ -307,10 +341,12 @@ function ClsCommunityArticle() {
       let addarticletime =
         nowtime.toLocaleDateString() +
         " " +
-        nowtime.getHours() +
+        timeFormatAdjust(nowtime.getHours()) +
         ":" +
-        nowtime.getMinutes();
+        timeFormatAdjust(nowtime.getMinutes());
+
       console.log(addarticletime);
+
       var articleFormdata = new FormData();
       let imgTemp = "img/qwe";
       articleFormdata.append("fCommunityId", CommunityId);
@@ -327,8 +363,6 @@ function ClsCommunityArticle() {
         cache: "no-cache",
         credentials: "include",
       });
-      console.log(articleFormdata);
-      console.log(response);
       let result = await response.json();
       console.log(result);
     } catch (err) {

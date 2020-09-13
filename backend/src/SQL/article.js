@@ -165,6 +165,29 @@ const addarticle = async (
 };
 // addarticle(17, 1, "2020/09/02 20:11", "SQL語法測試儀下唷", "imgpaht");
 
+//使用者資訊for新增文章的使用者頭像
+const ShowUserInfo = async (fMemberId) => {
+  try {
+    await sql.connect(config);
+    let str = `
+      select *
+      from Member.tMember
+      where fId =${fMemberId}')
+   `;
+    const result = await sql.query(str);
+    console.log("奇怪欸我的Console在哪裡" + result);
+    return {
+      result: 1,
+      msg: "請求成功",
+      data: result.recordset,
+    };
+  } catch (err) {
+    return { result: 0, msg: "SQL錯誤", data: err };
+  }
+};
+ShowUserInfo(15);
+console.log(ShowUserInfo(12));
+
 // const editarticle = async(fId)=>{
 //   try{
 //     await sql.connect(config);
@@ -233,7 +256,7 @@ const searcharticle = async (x) => {
 
 //   }
 // }
-// searcharticle("台");
+
 // const addlike
 
 // const removelike
@@ -248,4 +271,5 @@ module.exports = {
   replylist,
   searcharticle,
   addarticle,
+  ShowUserInfo,
 };
