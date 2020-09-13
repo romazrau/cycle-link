@@ -117,30 +117,43 @@ function inputTag() {
         return;
     }
     // const tagInput = $("#create_active_tag_input").val();
-    console.log(createActTagInput.value);
+    // console.log(createActTagInput.value);
     if (createActTagInput.value != "") {
         let ca = document.createElement("input");
-        document.getElementById("test_a").appendChild(ca);
+        let tag5All = document.getElementById("act5Tag");
+        tag5All.appendChild(ca);
         ca.setAttribute("name", "fLabelName");
-        ca.setAttribute("id", "create_active_tag");
-        ca.setAttribute("value", createActTagInput.value);
+        ca.setAttribute("class", "create_active_tag");
+        ca.setAttribute("value", "#" + createActTagInput.value);
+        ca.setAttribute("style", "display:none");
         ca.innerText = createActTagInput.value;
-        let aaa = document.querySelector("#create_active_tag")
-        console.log("aaa v: " + aaa.innerText);
+        let caTag = document.querySelector(".create_active_tag")
 
 
-        // const htmlTagInput = `<a id="create_active_tag" name="fLabelName">${createActTagInput.value}<button>x</button>`;
-        // document.getElementById("test_a").innerHTML += htmlTagInput;
-        // create_active_tag_count++;
-        // let aaa = document.querySelector("#text")
-        // console.log(aaa);
+        const htmlTagInput = `<div class="create_active_tag">#${createActTagInput.value}<button class="actRemoveTag"><i class="fas fa-times"></i></button>`;
+        tag5All.innerHTML += htmlTagInput;
+        create_active_tag_count++;
+        // console.log(tag5All.indexOf(caTag));
     } else {
         document.getElementById("create_active_please").innerHTML = "請輸入文字";
         // alert("請輸入文字");
         return;
     }
     $("#create_active_tag_input").val("");
+
+    // ----------- 標籤移除 -----------
+    let actRemoveTag = document.querySelector(".actRemoveTag")
+    // let rt = document.getElementsByClassName("create_active_tag")
+
+    actRemoveTag.addEventListener('click', (e) => {
+        e.preventDefault();
+        $(".create_active_tag").remove();
+        create_active_tag_count--;
+        // console.log($(this));
+    })
 };
+
+
 
 // ----------- 圖片載入 -----------
 $('.ca_imgUpload').change(function () {
@@ -154,7 +167,6 @@ $('.ca_imgUpload').change(function () {
 
 
 // -- 塞時間 --
-// function createActTime() {
 var timeArr = new Array();
 for (let i = 0; i < 24; i++) {
     if (i < 10) {
@@ -178,9 +190,6 @@ for (let i = 0; i < 48; i++) {
     op.appendChild(document.createTextNode(timeArr[i]));
     aced.appendChild(op)
 }
-// }
-
-
 
 
 // -- 勾選後加入最低人數

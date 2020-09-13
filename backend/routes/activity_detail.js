@@ -32,8 +32,6 @@ router.get('/:id', async function (req, res, next) {
         let JoinById = await Sql.JoinById(req.params.id);
         let JoinCount = await Sql.JoinCount(req.params.id);
         // res.json(result);
-        // 物件用json格式回傳
-        // 可以整理一下，刪掉不必要的資料再回傳
         res.json({
             result: 1,
             data: {
@@ -64,11 +62,11 @@ router.post('/', async function (req, res, next) {
     // }
 
     try {
+        // 前端有 headers 才能抓到目前登入會員資料
         console.log("====try start===");
-        console.log("會員ID: ",
-            req.user);
+        console.log("會員ID: " + req.user);
         console.log(req.user.fAccountType);
-        console.log(req.body);
+        // console.log("req.body: "+req.body);
 
         let fActTypeId = 1;
 
@@ -111,20 +109,28 @@ router.post('/', async function (req, res, next) {
         let fMemberId = req.user.fId;
         // console.log(fMemberId)
         let result = await Sql.createAct(fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation, fLabelName, fCommunityId);
+        // console.log(result.result);
+
         if (!result.result) {
-            res.json(result.data.message);
+            res.json(result.data);
             return;
         }
 
         res.json({
             result: 1,
-            msg: "傳送成功"
+            msg: "傳送成功",
         });
 
     } catch (err) {
+        console.log(err);
         res.send(err);
     }
 })
+
+// TODO:----------------------- 創建活動 讓標籤隸屬在活動底下 ----------------------- //
+
+
+
 
 //* ----------------------- 參加活動 ----------------------- //
 router.post('/joinAct', async function (req, res, next) {
@@ -161,9 +167,6 @@ router.post('/joinAct', async function (req, res, next) {
 //* ----------------------- 取消參加活動 ----------------------- //
 router.delete('/CancelJoinAct', async function (req, res, next) {
     try {
-        console.log("====try start===");
-        console.log("會員ID: ", req.user);
-        // console.log(req.body);
         let {
             fActivityId
         } = req.body
@@ -186,16 +189,12 @@ router.delete('/CancelJoinAct', async function (req, res, next) {
     }
 })
 
-//* ----------------------- 是否參加活動 ----------------------- //
+//* ----------------------- 判斷是否參加活動 ----------------------- //
 router.get('/OrJoinAct/:actId', async function (req, res, next) {
     try {
-        // *用 await 等待資料庫回應
         let fMemberId = req.user.fId;
-        // console.log(fMemberId)
         let JoinId = await Sql.OrJoinAct(req.params.actId, fMemberId);
 
-        // 物件用json格式回傳
-        // 可以整理一下，刪掉不必要的資料再回傳
         res.json({
             result: 1,
             data: {
@@ -209,16 +208,16 @@ router.get('/OrJoinAct/:actId', async function (req, res, next) {
     }
 });
 
-//* ----------------------- 創建活動 以個人或社團 ----------------------- //
-router.get('/aaa/bbb', async function (req, res, next) {
+//* ----------------------- 判斷是否為活動發起者 ----------------------- //
+router.get('/OrActInitiator/:actId', async function (req, res, next) {
     try {
         let fMemberId = req.user.fId;
-        console.log("ID : ========== " + fMemberId)
-        let hello = await Sql.actCreaterType(fMemberId);
+        let Initiator = await Sql.OrActInitiator(req.params.actId, fMemberId);
+
         res.json({
             result: 1,
             data: {
-                ct: hello.data
+                Initiator: Initiator.data,
             }
         });
 
@@ -229,27 +228,76 @@ router.get('/aaa/bbb', async function (req, res, next) {
 });
 
 
-
-//* ----------------------- 新增標籤 ----------------------- //
-router.post('/tag', async function (req, res, next) {
+//* ----------------------- 創建活動 以個人或社團 ----------------------- //
+router.get('/create/forWho', async function (req, res, next) {
     try {
-        // console.log(req.body);
-        if (!req.body.fLabelName) {
-            res.json({
-                result: 0,
-                msg: "???"
-            });
-            return;
-        }
+        let fMemberId = req.user.fId;
+        let actInitiatorType = await Sql.actCreaterType(fMemberId);
 
-        let result = await Sql.createActTag(req.body.fLabelName);
+        res.json({
+            result: 1,
+            data: {
+                createForWho: actInitiatorType.data
+            }
+        });
 
-        res.json(result);
     } catch (err) {
         console.log(err);
         res.send(err);
     }
-})
+});
+
+
+//* ----------------------- 編輯活動 ----------------------- //
+router.put('/Edit', async function (req, res, next) {
+    try {
+        // let fMemberId = req.user.fId;
+        // let fActivityId = req.params.actId
+        let {
+            fActName
+        } = req.body
+        console.log("===== req.body ======" + req.body);
+        // console.log(fActName);
+        let result = await Sql.EditAct(fActName);
+
+        // console.log("====== result =====" + result);
+
+
+        res.json({
+            result: 1,
+            msg: "編輯成功",
+        });
+        // console.log("=== EditAct ===" + EditAct);
+    } catch (err) {
+        console.log(err);
+        res.send(err);
+    }
+});
+
+
+
+
+
+//* ----------------------- 新增標籤(已寫入創建活動中) ----------------------- //
+// router.post('/tag', async function (req, res, next) {
+//     try {
+//         // console.log(req.body);
+//         if (!req.body.fLabelName) {
+//             res.json({
+//                 result: 0,
+//                 msg: "???"
+//             });
+//             return;
+//         }
+
+//         let result = await Sql.createActTag(req.body.fLabelName);
+
+//         res.json(result);
+//     } catch (err) {
+//         console.log(err);
+//         res.send(err);
+//     }
+// })
 
 
 
