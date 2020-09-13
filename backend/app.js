@@ -52,7 +52,7 @@ app.use(
 );
 app.use(bodyParser.json());
 
-// app.use(upload.array());
+app.use(upload.array());
 //session
 app.use(
   session({
