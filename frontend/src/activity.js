@@ -321,9 +321,12 @@ function ClsActivity() {
                 datestart = startinput.value;
                 datestartarr = datestart.split("/");
                 newdatestart = datestartarr[2]+"/" + datestartarr[0]+"/" + datestartarr[1];
+                dateend = endinput.value;
+                dateendarr = dateend.split("/");
+                newdateend = dateendarr[2]+"/" + dateendarr[0]+"/" + dateendarr[1];
                 let satrttime = Date.parse(newdatestart);
-                
-                if(acttime >  satrttime )
+                let endtime = Date.parse(newdateend);
+                if(acttime >  satrttime && acttime <  endtime )
                 {   
                     resultdate_arr.push(datearr[i]);
                     
@@ -413,6 +416,67 @@ function ClsActivity() {
        
     }
 
+    //瀏覽過的活動
+    const htmlActCardseen = (o) => {
+        if(o.fJoinTypeId == 0)
+        {
+            return ` 
+            <div class="">
+            <a  href="#activity/detail/${o.fActivityId}" class="activecard">
+                 <div class="active_card_container">
+                 <div class="active_card" >
+                     <div class="addlike">
+                         <i class="fas fa-heart fa-lg active_card_heart actlikecolor "></i>
+                     </div>
+                     <div class="active_card_div">
+                         <img src="${o.fImgPath}" alt="" class="active_card_img">
+                     </div>
+                     
+                     <div class="active_card_info">
+                         <p>${o.fActivityDate}</p>
+                         <p class="active_card_title">${o.fActName}</p>
+                 
+                     <div class="active_card_location_div">
+                         <img src="img/929497.svg" class="active_card_location">
+                         <p>${o.fActLocation}</p>
+                     </div>
+                 </div>
+                 </div>
+                 </div>
+             </a>
+             </div>`;
+        }
+        else{
+            return ` 
+            <div class="">
+            <a  href="#activity/detail/${o.fActivityId}" class="activecard">
+                 <div class="active_card_container">
+                 <div class="active_card" >
+                     <div class="addlike">
+                         <i class="fas fa-heart fa-lg active_card_heart "></i>
+                     </div>
+                     <div class="active_card_div">
+                         <img src="${o.fImgPath}" alt="" class="active_card_img">
+                     </div>
+                     
+                     <div class="active_card_info">
+                         <p>${o.fActivityDate}</p>
+                         <p class="active_card_title">${o.fActName}</p>
+                 
+                     <div class="active_card_location_div">
+                         <img src="img/929497.svg" class="active_card_location">
+                         <p>${o.fActLocation}</p>
+                     </div>
+                 </div>
+                 </div>
+                 </div>
+             </a>
+             </div>`;
+        }
+       
+    }
+
+
     // //為您推薦樣板
     // const htmlActCard2 = (o) => {
     //     return ` <a  href="#activity/detail/${o.fId}" class="activecard2">
@@ -479,7 +543,7 @@ function ClsActivity() {
     const display_active_seen = (o) => {
         ActSeen.innerHTML = "";
         o.map((e, index) => {
-            ActSeen.innerHTML += htmlActCard(e);
+            ActSeen.innerHTML += htmlActCardseen(e);
         })
     }
 

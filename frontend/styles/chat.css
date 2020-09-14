@@ -98,6 +98,15 @@
   outline: none;
 }
 
+
+.chat_info_message{
+  align-self: center;
+  color: white;
+  font-size: 0.8rem;
+}
+
+
+
 /* 以下聊天室 */
 .chat_room_window {
   position: relative;

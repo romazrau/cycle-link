@@ -36,6 +36,7 @@ const serverURL = {
   addReply: `${rootURL}/reply`,
   removeactlikesql: `${rootURL}/active/removeactlikesql`,
   getChatroom: `${rootURL}/chat/`,
+  getChatmessage: `${rootURL}/chat/messages/`
 };
 
 const postlist = async () => {
