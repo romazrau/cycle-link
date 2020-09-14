@@ -20,6 +20,7 @@
 @import "./create_activities.css";
 @import "./create_community.css";
 @import "./community_main.css";
+@import "./community_article.css";
 /*  其他 */
 @import "./chat.css";
 @import "./map.css";
@@ -29,6 +30,11 @@
   margin: 0px;
   font-family: "Noto Sans TC", sans-serif;
   text-decoration: none !important;
+}
+
+/*隱藏滾輪*/
+body::-webkit-scrollbar {
+  display: none;
 }
 
 .page_container {

@@ -1,5 +1,135 @@
+import { serverURL } from "./api.js";
+// import io from "socket.io-client";
+
+
+
 function ClsChat() {
 
+    // socket.io 訊息與物件儲存 區域
+    let socket;
+    const setSocket = (obj) => {
+        socket = obj;
+    }
+
+    // world room 用
+    let messages = [{
+        isMe: 0,
+        name: "系統",
+        msg: "歡迎加入公開頻道~",
+        time: (new Date).toLocaleTimeString("zh-TW").split(":").slice(0, 2).join(":")
+    }, {
+        isMe: 0,
+        name: "系統",
+        msg: "保持頻道開啟，接收新訊息",
+        time: (new Date).toLocaleTimeString("zh-TW").split(":").slice(0, 2).join(":")
+    }];
+     // world room 用
+    const setMessages = (msgObj) => {
+        messages.push(msgObj);
+        let room = document.querySelector("#chat_robot_message");
+        room.innerHTML = data2chatRobotMessage(messages);
+        room.scrollTo(0, room.scrollHeight);
+    }
+
+    let chatroomList = [];
+    const setChatroomList = (roomListObj) => {
+        chatroomList.push(roomListObj);
+        document.querySelector(".chat_list").innerHTML = data2cahtList(chatroomList);
+    }
+    const initChatroomList = async () => {
+        const chatList = document.querySelector(".chat_list");
+        try {
+            chatList.innerHTML = "";
+            let respones = await fetch(serverURL.getChatroom, {
+                cache: "no-cache",
+                headers: {
+                    Authorization: localStorage.getItem("Cycle link token"),
+                }
+            })
+            let result = await respones.json();
+            if (!result.result) {
+                chatList.innerHTML = `<div>${result.msg}</div>`
+                return;
+            }
+
+            result.data.map(item => {
+                setChatroomList(item);
+            })
+        } catch (ex) {
+            console.log(ex);
+            chatList.innerHTML = `<div>連線錯誤</div>`;
+        }
+    }
+
+
+
+
+
+
+    const makeToast = (title, msg) => {
+        console.log("%c" + title + "  " + msg, "color:green;font-size:16px;");
+    }
+
+    // 設定 socket
+    var setupSocket = () => {
+        const token = localStorage.getItem('Cycle link token');
+        // console.group("socket-----------");
+        // console.log(socket);
+        if (token && !socket) {  // 
+            const newSocket = io(serverURL.root, {
+                query: {
+                    token: localStorage.getItem('Cycle link token'),
+                }
+            });
+            // console.log(newSocket);
+
+            newSocket.on("disconnect", () => {
+                setSocket(null);
+                setTimeout(setupSocket, 3000);
+                makeToast("error", "Socket Disconnected!");
+            });
+
+
+            newSocket.on("connect", () => {
+                makeToast("success", "Socket Connected!");
+
+                socket.on("newMessage", ({ message, userId, userName, time, chatroomId }) => {
+                    console.log("get msg:" + message + " ||from: " + userName + " ||room: " + chatroomId);
+                    let data = {
+                        isMe: localStorage.getItem("Cycle link user data") == userName ? 1 : 0,
+                        name: userName,
+                        msg: message,
+                        time,   
+                    }
+                    if(chatroomId === "world"){
+                        setMessages(data);
+                    }
+                    
+                })
+                // socket.removeAllListeners("newMessage");
+            });
+
+            setSocket(newSocket);
+
+        }
+        // console.groupEnd("socket-----------");
+    }
+
+    // 發送訊息
+    const sendMessage = (msg) => {
+        if (socket) {
+            console.log("send msg");
+            socket.emit("chatRoomMessage", {
+                chatroomId: "world",
+                message: msg
+            })
+        }
+    }
+
+
+
+
+    // 置頂
     $(document).ready(function () {
         $(".upTop").click(function () {
             $("html,body").animate({
@@ -32,37 +162,35 @@ function ClsChat() {
 
     // *聊天室列表div-------------------------------------------
     const chatListData = [{
-            chatRoomId: 0,
-            name: "哈士奇"
-        },
-        {
-            chatRoomId: 1,
-            name: "豆柴"
-        },
-        {
-            chatRoomId: 2,
-            name: "狐狸犬"
-        },
-        {
-            chatRoomId: 3,
-            name: "米克斯驚喜包"
-        },
+        fId: 0,
+        fMemberName: "哈士奇"
+    },
+    {
+        fId: 1,
+        fMemberName: "豆柴"
+    },
+    {
+        fId: 2,
+        fMemberName: "狐狸犬"
+    },
+    {
+        fId: 3,
+        fMemberName: "米克斯驚喜包"
+    },
     ];
 
-    //文字樣板
+    // 聊天列表 文字樣板
     const data2cahtList = (array) => {
         let result = "";
         array.map((e) => {
-            result += `<li chatRoomId=${e.chatRoomId}>${e.name}</li>`;
+            result += `<li data-chatRoom-id=${e.fId}>${e.fMemberName}</li>`;
         });
         return result;
     };
 
     //點擊 icon 打開
     const chatListWindow = document.querySelector(".chat_list_window");
-    const chatList = document.querySelector(".chat_list");
     document.querySelector("#chat_friend_icon").addEventListener("click", () => {
-        chatList.innerHTML = data2cahtList(chatListData);
         chatListWindow.classList.toggle("hide");
     });
 
@@ -88,37 +216,38 @@ function ClsChat() {
 
 
     const cahtMessageData = [{
-            isMe: 0,
-            msg: "哈囉~",
-            time: "16:35"
-        },
-        {
-            isMe: 0,
-            msg: "你的狗勾好可愛",
-            time: "16:35"
-        },
-        {
-            isMe: 0,
-            msg: "可以跟他交朋友嗎 <3",
-            time: "16:35"
-        },
-        {
-            isMe: 1,
-            msg: "嘿?",
-            time: "16:38"
-        },
-        {
-            isMe: 0,
-            msg: "謝謝",
-            time: "16:39"
-        },
+        isMe: 0,
+        msg: "哈囉~",
+        time: "16:35"
+    },
+    {
+        isMe: 0,
+        msg: "你的狗勾好可愛",
+        time: "16:35"
+    },
+    {
+        isMe: 0,
+        msg: "可以跟他交朋友嗎 <3",
+        time: "16:35"
+    },
+    {
+        isMe: 1,
+        msg: "嘿?",
+        time: "16:38"
+    },
+    {
+        isMe: 0,
+        msg: "謝謝",
+        time: "16:39"
+    },
     ];
 
     //文字樣板 -- 參考 html 中聊天機器人格式
-    const data2cahtMessage = (array, title) => {
-        let result = `<div id="chatRommWith_${title}" class="chat_room_window"><img class="chat_window_close" src="./img/times-solid.svg" alt="X"><div id="chat_message_window_title" class="chat_window_title">${title}</div><div class="chat_message">`;
+    const data2cahtMessage = (array, title, chatRoomId) => {
+        let result = `<div id="chatRoomId_${chatRoomId}" class="chat_room_window"><img class="chat_window_close" src="./img/times-solid.svg" alt="X"><div id="chat_message_window_title" class="chat_window_title">${title}</div><div class="chat_message">`;
         array.map((e) => {
-            result += `<div class=${e.isMe ? "caht_Me" : "caht_notMe"}>${e.msg}<div class="caht_arrow2"></div></div><div class="${e.isMe ? "caht_Me_time" : "caht_notMe_time"}">${e.time}</div>`;
+            result += `<div class=${e.isMe ? "caht_Me" : "caht_notMe"}>${e.msg}<div class="caht_arrow2"></div></div>
+                       <div class="${e.isMe ? "caht_Me_time" : "caht_notMe_time"}">${e.time}</div>`;
         });
         result += `</div><div class="chat_input">
                     <textarea placeholder="想說什麼呢?" onfocus="this.placeholder=''" onblur="this.placeholder='想說什麼呢?'" row="2"></textarea>
@@ -132,12 +261,12 @@ function ClsChat() {
         // console.log(e.target, e.target.tagName);
         // 點擊的是否是li
         if (e.target.tagName !== "LI") {
-            console.log(e.target);
+            // console.log(e.target);
             return;
         }
 
         //檢查是否已開啟
-        if (document.querySelector(`#chatRommWith_${e.target.innerHTML}`)) {
+        if (document.querySelector(`#chatRoomId_${e.target.dataset.chatroomId}`)) {
             return;
         };
 
@@ -145,7 +274,7 @@ function ClsChat() {
         const chatRoom = document.createElement("div");
         chatRoom.onclick = chatRoomClose;
 
-        chatRoom.innerHTML = data2cahtMessage(cahtMessageData, e.target.innerHTML);
+        chatRoom.innerHTML = data2cahtMessage(cahtMessageData, e.target.innerHTML, e.target.dataset.chatroomId);
         chatContainer.appendChild(chatRoom);
     });
 
@@ -153,27 +282,27 @@ function ClsChat() {
 
 
 
-    // *聊天機器人div-------------------------------------------
+    // *世界頻道div-------------------------------------------
     const cahtRobotMessageData = [{
-            isMe: 0,
-            msg: "哈囉我是客服~"
-        },
-        {
-            isMe: 0,
-            msg: "你的狗勾好可愛"
-        },
-        {
-            isMe: 0,
-            msg: "可以跟他交朋友嗎 <3"
-        },
-        {
-            isMe: 1,
-            msg: "嘿?"
-        },
-        {
-            isMe: 0,
-            msg: "謝謝"
-        },
+        isMe: 0,
+        msg: "哈囉我是客服~"
+    },
+    {
+        isMe: 0,
+        msg: "你的狗勾好可愛"
+    },
+    {
+        isMe: 0,
+        msg: "可以跟他交朋友嗎 <3"
+    },
+    {
+        isMe: 1,
+        msg: "嘿?"
+    },
+    {
+        isMe: 0,
+        msg: "謝謝"
+    },
     ];
 
 
@@ -181,24 +310,70 @@ function ClsChat() {
     const data2chatRobotMessage = array => {
         let result = ""
         array.map((e) => {
-            result += `<div class=${e.isMe ? "caht_Me" : "caht_notMe"}>${e.msg}<div class="caht_arrow"></div></div>`;
+            result += `<div class=${e.isMe ? "caht_Me" : "caht_notMe"}>${e.isMe ? "" : e.name + ": "}${e.msg}<div class="caht_arrow"></div></div>
+                        <div class="${e.isMe ? "caht_Me_time" : "caht_notMe_time"}">${e.time ? e.time : ""}</div>`;
         });
         return result;
     };
 
 
-    //點擊 icon 打開
+    //點擊 icon 打開  世界頻道與 socket . io
     const chatRobotWindow = document.querySelector(".chat_robot_room_window");
     const chatRobotMessage = document.querySelector("#chat_robot_message");
     document.querySelector("#chat_robot_icon").addEventListener("click", () => {
-        chatRobotMessage.innerHTML = data2chatRobotMessage(cahtRobotMessageData);
-        chatRobotWindow.classList.toggle("hide")
+
+        if (chatRobotWindow.classList.contains("hide")) {
+            chatRobotMessage.innerHTML = data2chatRobotMessage(messages);
+
+            if (socket) {
+                console.log("世界頻道 open");
+                socket.emit("joinRoom", { chatroomId: "world" });
+            }
+
+        } else {
+            if (socket) {
+                console.log("世界頻道 close");
+                socket.emit("leaveRoom", { chatroomId: "world" });
+            }
+        }
+
+        chatRobotWindow.classList.toggle("hide");
     });
 
-    // 聊天列表窗關-------------------------------------------
+    // 世界頻道div 發訊息
+    document.querySelector("#chat_robot_textarea").addEventListener("keydown", (e) => {
+        if (e.keyCode === 13 && !e.shiftKey) {
+            e.preventDefault();
+            // sendMessage 
+            sendMessage(e.target.value);
+            e.target.value = "";
+        }
+    })
+
+
+
+
+    // 世界頻道div-------------------------------------------
     document.querySelector("#chat_robot_window_close").addEventListener("click", (e) => {
         e.target.parentNode.classList.add("hide");
+
+        if (socket) {
+            console.log("世界頻道 close");
+            socket.emit("leaveRoom", { chatroomId: "world" });
+        }
     });
 
+
+
+    // 初始化區域
+    // socket.io
+    if (localStorage.getItem('Cycle link token')) {
+        setupSocket();
+    }
+    // TODO 登入後開啟
+
+    initChatroomList();
 }
 const Chat = new ClsChat();
+
+

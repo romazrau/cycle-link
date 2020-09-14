@@ -42,35 +42,18 @@ function ClsActivityDetail() {
     //     }
     // });
 
-    // * ********************************** 文字樣板 ********************************** //
+    // * ********************************** [ START ] 文字樣板 [ START ] ********************************** //
 
-    const activity_detail_initiatorbox = document.querySelector(
-        ".activity_detail_titlebox"
-    );
-    const activity_detail_leftImg = document.querySelector(
-        ".activity_detail_text_left_img"
-    );
-    const activity_detail_text_detail = document.querySelector(
-        ".activity_detail_text_detail"
-    );
-    const activity_detail_bigTag = document.querySelector(
-        ".activity_detail_bigTag"
-    );
-    const activity_detail_TagBox = document.querySelector(
-        ".activity_detail_TagBox"
-    );
-    const actDetailRightInfo = document.querySelector(
-        ".activity_detail_right_info"
-    );
-    const activity_detail_participant_All = document.querySelector(
-        ".activity_detail_participant_flex"
-    );
-    const activity_detail_participant_count = document.querySelector(
-        "#activity_detail_participant_count"
-    );
-    const actDetailSocieties = document.querySelector(
-        ".activity_detail_Societies"
-    );
+    const activity_detail_initiatorbox = document.querySelector(".activity_detail_titlebox");
+    const activity_detail_leftImg = document.querySelector(".activity_detail_text_left_img");
+    const activity_detail_text_detail = document.querySelector(".activity_detail_text_detail");
+    const activity_detail_bigTag = document.querySelector(".activity_detail_bigTag");
+    const activity_detail_TagBox = document.querySelector(".activity_detail_TagBox");
+    const actDetailRightInfo = document.querySelector(".activity_detail_right_info");
+    const activity_detail_participant_All = document.querySelector(".activity_detail_participant_flex");
+    const activity_detail_participant_count = document.querySelector("#activity_detail_participant_count");
+    const actDetailSocieties = document.querySelector(".activity_detail_Societies");
+
 
     // * ---------------- 發起人 文字樣板 ---------------- //
 
@@ -165,8 +148,6 @@ function ClsActivityDetail() {
 
     // * ---------------- 活動右側內容 文字樣板 ---------------- //
 
-
-
     const actDetailRightInfoALL = (o) => {
         return `
     <div>
@@ -190,8 +171,7 @@ function ClsActivityDetail() {
     `
     }
 
-    // * ---------------- 文字樣板 資料匯入 ---------------- //
-
+    // * ---------------- 文字樣板 [ 資料匯入 ] ---------------- //
     const display_actDetail = (o) => {
         actDetailSocieties.innerHTML = "";
 
@@ -216,6 +196,7 @@ function ClsActivityDetail() {
         )
     }
 
+    // --- 標籤匯入 --- //
     const display_actDetailTag = (o) => {
         activity_detail_TagBox.innerHTML = "";
         o.map(
@@ -226,6 +207,7 @@ function ClsActivityDetail() {
         )
     }
 
+    // --- 參與者匯入 --- //
     const display_actDetailJoin = (o) => {
         activity_detail_participant_All.innerHTML = "";
         o.map(
@@ -236,6 +218,7 @@ function ClsActivityDetail() {
         )
     }
 
+    // --- 參與者人數匯入 --- //
     const display_actDetailJoinCount = (o) => {
         activity_detail_participant_count.innerHTML = "";
         o.map(
@@ -245,9 +228,11 @@ function ClsActivityDetail() {
         )
     }
 
+    // * ********************************** [ END ] 文字樣板 [ END ] ********************************** //
 
-    // * ---------------- actDetail ajax ---------------- //
 
+
+    // ! ************************ [ START ] actDetail ajax [ START ] ************************ //
     const actDetail = async (id) => {
         try {
             // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
@@ -302,31 +287,23 @@ function ClsActivityDetail() {
         }
     }
 
-
-    // ! ------------- 傳送表單 創建活動 ------------- //
-    $("#create_active_btn_done").click(async (e) => {
-        e.preventDefault();
+    const CreateActivity = async () => {
         let fd = document.querySelector("#ac_date_from").value;
         let fdt = document.querySelector("#ac_date_from_time").value;
         let ed = document.querySelector("#ac_date_to").value;
         let edt = document.querySelector("#ac_date_to_time").value;
         let actFromDate = fd + " " + fdt;
         let actEndDate = ed + " " + edt;
-        // console.log(actFromDate);
-        // console.log(fActTypeId);
-        // console.log(e);
         // console.log(localStorage.getItem("Cycle link token"));
         let nowtime = new Date();
         let date = nowtime.toLocaleDateString();
-        // console.log("目前日期: " + date);
+
         let form = document.querySelector("#creatAct_form");
-        // console.log(form);
         let formData = new FormData(form);
         formData.append('fCreatDate', date);
         formData.append('fActivityDate', actFromDate);
         formData.append('fActivityEndDate', actEndDate);
 
-        // console.log(now);
         try {
             let response = await fetch(serverURL.actDetail, {
                 method: "POST", // POST
@@ -336,26 +313,95 @@ function ClsActivityDetail() {
                 headers: { // http headers
                     Authorization: localStorage.getItem("Cycle link token"),
                 }
-
             })
             let result = await response.text();
             console.log(result);
         } catch (err) {
             console.log(err);
         }
+    }
+    // ! ************************ [ END ] actDetail ajax [ END ] ************************ //
 
+
+
+
+    // * ------------- 傳送表單 創建活動 ------------- //
+    $("#create_active_btn_done").click((e) => {
+        e.preventDefault(); // 預防跳轉
+        CreateActivity(); // 傳送表單
     })
+
+    // TODO: 創建完後資料表要清空 
+
+
+    // * -------------------------------- 創建活動 以個人或社團 -------------------------------- //
+    let actInitiatorType = document.querySelector("#actCreaterType")
+    actInitiatorType.addEventListener('change', async (e) => {
+        if (actInitiatorType.value == 1) {
+            actCType();
+        } else {
+            actCreaterTypeSpan.setAttribute("style", "display:none")
+        }
+    })
+
+    const actCType = async () => {
+        try {
+            let response = await fetch(serverURL.actDetail + "create/forWho", {
+                method: "GET",
+                headers: {
+                    // "Content-Type": "application/json", // 請求的資料類型
+                    Authorization: localStorage.getItem("Cycle link token")
+                },
+                cache: "no-cache",
+                credentials: "include",
+            });
+            let result = await response.json();
+            // console.log(result.data);
+            createSelect(result.data.createForWho);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    function createSelect(d) {
+        let cp = document.querySelector("#createPeople")
+        let createSelect = document.createElement("select");
+        createSelect.classList.add("createSelect")
+        createSelect.setAttribute("name", "fCommunityId")
+        cp.appendChild(createSelect);
+        const actCreaterTypeSpan = document.querySelector(".createSelect");
+        d.map(
+            (e, index) => {
+                actCreaterTypeSpan.innerHTML += actCreaterType(e);
+            }
+        )
+    }
+    const actCreaterType = (o) => {
+        return `<option value="${o.fCommunityId}">${o.fName}</option>`
+    }
+
+
+    // TODO: -------------------------------- 創建活動 地圖座標 -------------------------------- //
+    // TODO: -------------------------------- 創建活動 標籤寫入hadLabel -------------------------------- //
+
+
 
     // TODO: -------------------------------- 標籤搜尋 -------------------------------- //
     // TODO: -------------------------------- 編輯活動 -------------------------------- //
+
+
     // TODO: -------------------------------- 刪除活動 -------------------------------- //
 
-    // TODO: -------------------------------- 是否參加活動 -------------------------------- //
-    const OrJoinAct = async (actId) => {
+    // TODO: -------------------------------- 參加活動後參加人數要刷新 -------------------------------- //
+
+    // TODO: -------------------------------- 加入最愛活動 -------------------------------- //
+
+
+    // * -------------------------------- 是否為活動發起者 -------------------------------- //
+    const OrActInitiator = async (actId) => {
         try {
-            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
             // *用變數接 fetch 結果 ，要用await等。
-            let response = await fetch(serverURL.actDetail + `OrJoinAct/${actId}`, {
+            let response = await fetch(serverURL.actDetail + `OrActInitiator/${actId}`, {
                 method: "GET", // http request method
                 headers: {
                     // "Content-Type": "application/json", // 請求的資料類型
@@ -366,10 +412,32 @@ function ClsActivityDetail() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-            // console.log("actDetail await");
             // console.log(result);
-            // *用 result  do something ...
-            // console.log(result.data.joiner.length);
+            if (result.data.Initiator.length > 0) {
+                $("#InitiatorEdit").css("display", "block");
+            } else {
+                $("#InitiatorEdit").css("display", "none");
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+
+    // * -------------------------------- 是否參加活動 -------------------------------- //
+    const OrJoinAct = async (actId) => {
+        try {
+            // *用變數接 fetch 結果 ，要用await等。
+            let response = await fetch(serverURL.actDetail + `OrJoinAct/${actId}`, {
+                method: "GET",
+                headers: {
+                    Authorization: localStorage.getItem("Cycle link token")
+                },
+                cache: "no-cache",
+                credentials: "include",
+            });
+            let result = await response.json();
+            // console.log(result);
             if (result.data.joiner.length > 0) {
                 $("#joinActBtn").css("display", "none");
                 $("#cancelJoinActBtn").css("display", "block")
@@ -377,14 +445,12 @@ function ClsActivityDetail() {
                 $("#joinActBtn").css("display", "block");
                 $("#cancelJoinActBtn").css("display", "none")
             }
-
-            // display_actDetail(result.data.detail);
         } catch (err) {
             console.log(err);
         }
     };
 
-    // TODO: -------------------------------- 參加活動 -------------------------------- //
+    // * -------------------------------- 參加活動 -------------------------------- //
     $("#joinActBtn").click(async (e) => {
         e.preventDefault();
         let nowtime = new Date();
@@ -414,7 +480,7 @@ function ClsActivityDetail() {
 
     })
 
-    // TODO: -------------------------------- 取消參加活動 -------------------------------- //
+    // * -------------------------------- 取消參加活動 -------------------------------- //
     $("#cancelJoinActBtn").click(async (e) => {
         e.preventDefault();
         let actID = location.hash.split("/")[2];
@@ -442,7 +508,6 @@ function ClsActivityDetail() {
     })
 
 
-    // TODO: -------------------------------- 加入最愛活動 -------------------------------- //
 
 
     //  TODO: -------------------------------- 為您推薦 文字樣板 -------------------------------- //
@@ -582,10 +647,11 @@ function ClsActivityDetail() {
     ac_share_closeBtn.onclick = function () {
         ac_share_bg.style.display = "none";
         ac_share_bg_div.style.display = "none";
-        ac_share_bg.preventDefault();
+        // ac_share_bg.preventDefault();
     };
     this.actDetail = actDetail;
     this.OrJoinAct = OrJoinAct;
+    this.OrActInitiator = OrActInitiator;
 }
 const ActivityDetail = new ClsActivityDetail();
 
@@ -600,6 +666,7 @@ const actDetailChangeHash = () => {
     if (location.hash.includes("#activity/detail")) {
         ActivityDetail.actDetail(actDetailId);
         ActivityDetail.OrJoinAct(actDetailId);
+        ActivityDetail.OrActInitiator(actDetailId);
     }
 };
 

@@ -75,6 +75,7 @@ function ClsCommunityMain() {
       x.fPostTime
     }</span></a>
           </div>
+          <i class="fas fa-ellipsis-v editIconforArticle"></i>
         </div>
         <div class="CM_timeline_body">
           <p>${x.PostContent}</p>
@@ -126,6 +127,7 @@ function ClsCommunityMain() {
       x.fPostTime
     }</span></a>
           </div>
+          <i class="fas fa-ellipsis-v editIconforArticle"></i>
         </div>
         <div class="CM_timeline_body">
           <p>${x.PostContent}</p>
@@ -163,6 +165,7 @@ ${ImgIsNullOrNot(x.PostImg)}
         <div class="CM_reply_item_header_content_info">
           <span>${x.ReplyMemberName}</span>
           <span>${x.fReplyTime}</span>
+          <i class="fas fa-stream editIconforReply"></i>
         </div>
         <div class="CM_reply_item_header_content_text">
           <span
@@ -199,96 +202,87 @@ ${ImgIsNullOrNot(x.PostImg)}
   //文章列表撈資料
   const getCommunityPost = async () => {
     try {
+      // console.log(serverURL.articlepost);
       let response = await fetch(serverURL.articlepost);
       let result = await response.json();
-      // console.log(result.data);
-      // console.log(result.data.length);
       await display_postDetail(result.data);
-      // console.log("data:", result.data);
+      // 這三小啊為何會有這個showReplyContainer();
       addClickEventToReply(result.data.length);
       addClickEventToLike(result.data.length);
-      const CM_timeline_body=document.querySelectorAll(".CM_timeline_body")
-     //處理超過2張照片
-      for (let i=0;i<CM_timeline_body.length;i++)
-      {
-        if(CM_timeline_body[i].getElementsByTagName('img').length>1)
-        {
-          let PostImgs=CM_timeline_body[i].querySelectorAll(".CM_timeline_body_img");
-          for(let j=0;j<PostImgs.length;j++)
-          {
-            if(j>0)         
-              PostImgs[j].style.display="none";
+      const CM_timeline_body = document.querySelectorAll(".CM_timeline_body");
+      //處理超過2張照片
+      for (let i = 0; i < CM_timeline_body.length; i++) {
+        if (CM_timeline_body[i].getElementsByTagName("img").length > 1) {
+          let PostImgs = CM_timeline_body[i].querySelectorAll(
+            ".CM_timeline_body_img"
+          );
+          for (let j = 0; j < PostImgs.length; j++) {
+            if (j > 0) PostImgs[j].style.display = "none";
           }
         }
       }
       //下一張
-      var allNextIcon=document.querySelectorAll(".Post_nextIcon")
-      for(let i=0;i<allNextIcon.length;i++)
-      {
-        allNextIcon[i].addEventListener
-        ("click",function(e){
+      var allNextIcon = document.querySelectorAll(".Post_nextIcon");
+      for (let i = 0; i < allNextIcon.length; i++) {
+        allNextIcon[i].addEventListener("click", function (e) {
           e.preventDefault();
           //this取a物件>再取父層>父層下所有div
           // this.parentNode.getElementsByTagName('div')
-          let thisImgBox=this.parentNode.getElementsByTagName('div');
-          var position=0;
-          for(let p=0;p<thisImgBox.length;p++)
-          {
-            let display=thisImgBox[p].style.display
-            if(display!="none")
-              {position=p; ;}
+          let thisImgBox = this.parentNode.getElementsByTagName("div");
+          var position = 0;
+          for (let p = 0; p < thisImgBox.length; p++) {
+            let display = thisImgBox[p].style.display;
+            if (display != "none") {
+              position = p;
+            }
           }
-            position++;
-            
-            if(position>thisImgBox.length-1)
-              { position=0;}
-            
-          for(let j=0;j<thisImgBox.length;j++)
-          {
+          position++;
+
+          if (position > thisImgBox.length - 1) {
+            position = 0;
+          }
+
+          for (let j = 0; j < thisImgBox.length; j++) {
             // console.log("j:",j);
-              if(position==j)
-              {
-                thisImgBox[j].style.display="block";}
-              else
-              {thisImgBox[j].style.display="none";}
+            if (position == j) {
+              thisImgBox[j].style.display = "block";
+            } else {
+              thisImgBox[j].style.display = "none";
+            }
           }
-        })
+        });
       }
       //上一張
-      var allPreIcon=document.querySelectorAll(".Post_preIcon")
-      for(let i=0;i<allPreIcon.length;i++)
-      {
-        allPreIcon[i].addEventListener
-        ("click",function(e){
+      var allPreIcon = document.querySelectorAll(".Post_preIcon");
+      for (let i = 0; i < allPreIcon.length; i++) {
+        allPreIcon[i].addEventListener("click", function (e) {
           e.preventDefault();
           //this取a物件>再取父層>父層下所有div
           // this.parentNode.getElementsByTagName('div')
-          let thisImgBox=this.parentNode.getElementsByTagName('div');
-          //判斷postion位置 
-          var position=0;
-          for(let p=0;p<thisImgBox.length;p++)
-          {        
-            let display=thisImgBox[p].style.display
-            if(display!="none")
-              {position=p; }
+          let thisImgBox = this.parentNode.getElementsByTagName("div");
+          //判斷postion位置
+          var position = 0;
+          for (let p = 0; p < thisImgBox.length; p++) {
+            let display = thisImgBox[p].style.display;
+            if (display != "none") {
+              position = p;
+            }
           }
-            position--;          
-            if(position<0)
-            {position=thisImgBox.length-1;}
-          for(let j=0;j<thisImgBox.length;j++)
-          {
-            if(position==j)
-              {
-                thisImgBox[j].style.display="block";}
-           else{
-                thisImgBox[j].style.display="none";
-              }                          
+          position--;
+          if (position < 0) {
+            position = thisImgBox.length - 1;
           }
-        })
+          for (let j = 0; j < thisImgBox.length; j++) {
+            if (position == j) {
+              thisImgBox[j].style.display = "block";
+            } else {
+              thisImgBox[j].style.display = "none";
+            }
+          }
+        });
       }
       //尋找有按過讚的文章使其愛心變色
       MemberLikePost();
-
     } catch (err) {
       console.log(err);
     }
@@ -359,7 +353,6 @@ ${ImgIsNullOrNot(x.PostImg)}
   //搜尋撈資料
   const checksearchtext = async (x) => {
     try {
-      console.log(x);
       let response = await fetch(serverURL.articlesearch + x, {
         method: "GET",
         headers: {
@@ -372,7 +365,6 @@ ${ImgIsNullOrNot(x.PostImg)}
       });
       let result = await response.json();
       display_postDetail(result.data);
-      console.log(result.data);
     } catch (err) {
       console.log(err);
     }
@@ -382,25 +374,24 @@ ${ImgIsNullOrNot(x.PostImg)}
   function addClickEventToLike(x) {
     for (let i = 1; i < x + 1; i++) {
       let LikeIconItems = document.getElementById("likeIconbyfId" + i);
-      
+
       LikeIconItems.addEventListener("click", function () {
         //已點過愛心包含'far','fas' class
-        if(LikeIconItems.classList.contains('far')&&LikeIconItems.classList.contains('fas'))
-        {
+        if (
+          LikeIconItems.classList.contains("far") &&
+          LikeIconItems.classList.contains("fas")
+        ) {
           LikeIconItems.classList.remove("fas");
           LikeIconItems.classList.add("far");
           let id_arr = this.id.split("fId");
           removeLikeToSQL(id_arr[1]);
-        }
-        else if(LikeIconItems.classList.contains('far'))
-        {
+        } else if (LikeIconItems.classList.contains("far")) {
           LikeIconItems.classList.remove("far");
-          LikeIconItems.classList.add("fas");          
+          LikeIconItems.classList.add("fas");
           //取ID增點讚
-          let id_arr = this.id.split("fId");         
-          addLikeToSQL(id_arr[1]);       
-        } else
-        {
+          let id_arr = this.id.split("fId");
+          addLikeToSQL(id_arr[1]);
+        } else {
           LikeIconItems.classList.remove("fas");
           LikeIconItems.classList.add("far");
           let id_arr = this.id.split("fId");
@@ -413,6 +404,12 @@ ${ImgIsNullOrNot(x.PostImg)}
   //點擊發送
   //TODO postime判斷距離現在時間
 
+  function timeFormatAdjust(x) {
+    if (x < 10) {
+      x = "0" + x;
+    }
+    return x;
+  }
   //新增留言
   const addReplyToSQL = async (postid, content) => {
     try {
@@ -420,13 +417,12 @@ ${ImgIsNullOrNot(x.PostImg)}
       let replytime =
         nowtime.toLocaleDateString() +
         " " +
-        nowtime.getHours() +
+        timeFormatAdjust(nowtime.getHours()) +
         ":" +
-        nowtime.getMinutes();
+        timeFormatAdjust(nowtime.getMinutes());
 
       let replyFormdata = new FormData();
       replyFormdata.append("fPostId", postid);
-      // replyFormdata.append("fReplyMemberId", replymemberid);
       replyFormdata.append("fContent", content);
       replyFormdata.append("fReplyTime", replytime);
 
@@ -445,7 +441,7 @@ ${ImgIsNullOrNot(x.PostImg)}
       console.log(err);
     }
   };
-  
+
   //TODO 刪除留言
   // const deleteReplyToSQL = async(postid);
   //獲讚清單
@@ -461,22 +457,21 @@ ${ImgIsNullOrNot(x.PostImg)}
         credentials: "include",
       });
       let result = await response.json();
-      console.log("result:",result.data)
-      let hearts_arr=document.querySelectorAll(".fa-heart")
-      for(let i=0;i<hearts_arr.length;i++)
-      {
-        for(let j=0;j<result.data.length;j++)
-
-        if (hearts_arr[i].id.split("Id")[1]==result.data[j].fPostId)
-          {hearts_arr[i].classList.add("fas");console.log("i:",i,"j:",j);}
+      console.log("MemberLikePost_result:", result.data);
+      let hearts_arr = document.querySelectorAll(".fa-heart");
+      for (let i = 0; i < hearts_arr.length; i++) {
+        for (let j = 0; j < result.data.length; j++)
+          if (hearts_arr[i].id.split("Id")[1] == result.data[j].fPostId) {
+            hearts_arr[i].classList.add("fas");
+            console.log("i:", i, "j:", j);
+          }
       }
-      
     } catch (err) {
       console.log(err);
       // 錯誤處理
     }
   };
-  
+
   //新增喜歡
   const addLikeToSQL = async (P) => {
     try {
@@ -493,7 +488,6 @@ ${ImgIsNullOrNot(x.PostImg)}
         credentials: "include",
       });
       let result = await response.json();
-      console.log(result);
     } catch (err) {
       console.log(err);
       // 錯誤處理
@@ -526,8 +520,6 @@ ${ImgIsNullOrNot(x.PostImg)}
   //TODO 新增文章
   //TODO 編輯文章
   //TODO 刪除文章
-
-  
 
   //用不上的社團類別動態
   // var CM_appearCategory_item_flag = true;

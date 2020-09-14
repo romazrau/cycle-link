@@ -24,6 +24,9 @@
     <link rel="stylesheet" type="text/css" href="./calendar/lib/main.css" rel="external nofollow">
     <script src='./calendar/lib/main.js'></script>
 
+    <!-- 其他套件 -->
+    <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>
+
 
     <title>小海龜</title>
 </head>
@@ -80,23 +83,23 @@
 
         <div class="chat_icon_container">
             <img src="img/talk.png" class="chat_icon_main" alt="聊天">
-            <img id="chat_robot_icon" src="./img/icons8-broken-robot-100.png" class="chat_icon widthAndHeight2Zero"
-                alt="客服">
+            <img id="chat_robot_icon" src="./img/icons8-world-map-100.png" class="chat_icon widthAndHeight2Zero"
+                alt="群聊">
             <img id="chat_friend_icon" src="./img/icons8-user-group-100.png" class="chat_icon widthAndHeight2Zero"
                 alt="我的聯絡人">
         </div>
 
 
-        <!-- * 聊天機器人 -->
+        <!-- * 聊天機器人 改成世界頻道囉 -->
         <div class="chat_robot_room_window hide">
             <img id="chat_robot_window_close" class="chat_window_close" src="./img/times-solid.svg" alt="X">
-            <div id="chat_message_window_title" class="chat_window_title">聊天機器人</div>
+            <div id="chat_message_window_title" class="chat_window_title">公開聊天室</div>
             <div id="chat_robot_message" class="chat_message">
                 訊息
             </div>
             <div class="chat_input">
-                <textarea placeholder="想說什麼呢?" onfocus="this.placeholder=''" onblur="this.placeholder='想說什麼呢?'"
-                    row="2"></textarea>
+                <textarea id="chat_robot_textarea" placeholder="想說什麼呢?" onfocus="this.placeholder=''"
+                    onblur="this.placeholder='想說什麼呢?'" row="2"></textarea>
             </div>
         </div>
 
@@ -474,7 +477,8 @@
                 <div class="container page_navbar_row">
                     <div>CC</div>
                     <div>
-                        <button class="page_navbar_btn" onclick="location.hash = '#create-community'">創建社團</button>
+                        <button id="changeBack" class="page_navbar_btn"
+                            onclick="location.hash = '#create-community'">創建社團</button>
                     </div>
                 </div>
             </div>
@@ -563,14 +567,7 @@
                         附近<label for="" id="Activitydistance"></label>
                         <span>公里的活動</span>
                     </div>
-                    <div class="map_controllBar">
-                        <div class="map_controlltitle">類別</div>
-                        <div class="map_typeBox">
-                            <div class="map_typeBtn"><a href="">志工活動</a></div>
-                            <div class="map_typeBtn"><a href="">環境清潔</a></div>
-                            <div class="map_typeBtn"><a href="">運動</a></div>
-                        </div>
-                    </div>
+                    
                     <div class="map_introductionBox">
 
                         <div class="map_controlltitle">簡介</div>
@@ -579,6 +576,17 @@
 
                     </div>
                 </div>
+                <div class="checkbox_container">
+
+                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type1" value="其他"><label for="type1">其他</label></div>
+                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type2" value="志工活動"><label for="type2">志工活動</label></div>
+                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type3" value="環境清潔"><label for="type3">環境清潔</label></div>
+                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type4" value="自然教育"><label for="type4">自然教育</label></div>
+                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type5" value="二手市集"><label for="type5">二手市集</label></div>
+                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type6" value="運動"><label for="type6">運動</label></div>
+                    
+                </div>
+
 
 
 
@@ -1209,7 +1217,7 @@
                         <!-- 活動發起者 -->
                     </div>
                     <div class="activity_detail_info_share activity_detail_flex">
-                        <button style="margin-right: 1rem;"><img src="img/edit-regular.svg" width="20"></button>
+                        <button id="InitiatorEdit"><img src="img/edit-regular.svg" width="20"></button>
                         <button id="ac_share_btn"><img src="img/share.svg" width="20"></button>
                     </div>
                     <div id="ac_share_bg"></div>
@@ -1359,7 +1367,7 @@
                                 <img class="GroupImgSeeMoreIcon" src="./img/icon_seemore.svg" width="25px">
                                 <div class="DropDownMenu">
                                     <div class="dropdown-triangle"></div>
-                                    <div class="dropdown">編輯照片</div>
+                                    <div class="dropdown js_editCommunity">編輯照片</div>
                                 </div>
 
                             </div>
@@ -1372,8 +1380,8 @@
                                     水下攝影fit淨海</p>
                                 <img class="GroupTopRightImgIcon" src="./img/icon_seemore.svg" width="25px">
                                 <div class="DropDownMenu">
-                                    <div class="dropdown-triangleR"></div>
-                                    <div class="dropdownR">編輯名稱</div>
+                                    <div class="dropdown-triangleR "></div>
+                                    <div class="dropdownR js_editCommunity">編輯名稱</div>
                                 </div>
                             </div>
                             <!-- <div class="FlexContainer GroupTopRightEventInfoBox">
@@ -1419,18 +1427,17 @@
                         <div class="GroupTopLeftW60">
 
                             <div class="FlexContainer LinkBar Group_FlexJustifyContentSB">
-                                <div class="GroupLink" value="GroupDetailPage_home"><a class="GroupLinkFocus"
-                                        href="#community/detail">介 紹</a>
+                                <div class="GroupLink GroupLinkFocus" value="GroupDetailPage_home">介 紹
                                 </div>
-                                <div class="GroupLink" value="GroupDetailPage_Discussion"><a href="#community/detail">文
-                                        章</a></div>
-                                <div id="Group_navlink_Picture" class="GroupLink" value="GroupDetailPage_Picture"><a
-                                        href="#community/detail">照 片</a></div>
-                                <div class="GroupLink" value="GroupDetailPage_Event"><a href="#community/detail">活
-                                        動</a>
+                                <div class="GroupLink" value="GroupDetailPage_Discussion">文
+                                    章</div>
+                                <div id="Group_navlink_Picture" class="GroupLink" value="GroupDetailPage_Picture">照 片
                                 </div>
-                                <div class="GroupLink" value="GroupDetailPage_Member"><a href="#community/detail">成
-                                        員</a>
+                                <div class="GroupLink" value="GroupDetailPage_Event">活
+                                    動
+                                </div>
+                                <div class="GroupLink" value="GroupDetailPage_Member">成
+                                    員
                                 </div>
                             </div>
 
@@ -1482,7 +1489,7 @@
                                     </div>
                                     <div class="DropDownMenu">
                                         <div class="dropdown-triangleD"></div>
-                                        <div class="dropdownD">編輯</div>
+                                        <div class="dropdownD js_editCommunity">編輯</div>
                                     </div>
                                 </div>
                                 <div id="CommunityAboutUs" class="FontSectionText">
@@ -1711,7 +1718,7 @@
                                     </div>
                                     <div class="DropdownMenu">
                                         <div class="dropdown-triangleDR"></div>
-                                        <div class="dropdownDR">編輯管理員名單</div>
+                                        <div class="dropdownDR js_editCommunity">編輯管理員名單</div>
                                     </div>
                                 </div>
                                 <div id="MemberTemplate" class="FlexContainer GroupRight">
@@ -1741,7 +1748,7 @@
                                     </div>
                                     <div class="DropdownMenu">
                                         <div class="dropdown-triangleDR"></div>
-                                        <div class="dropdownDR">編輯會員名單</div>
+                                        <div class="dropdownDR js_editCommunity">編輯會員名單</div>
                                     </div>
                                 </div>
                                 <div id="CommunityMember" class="hide FlexContainer GroupRightInfoPhotoContainer
@@ -2143,29 +2150,28 @@
 
                             <div class="FlexContainer GroupDiscussionTitle">
                                 <div class="GroupComingEvent FontSectionTitle">文章</div>
+                                <!-- 可惡啊這邊還沒動態寫入 -->
                                 <div class="FontSectionTitle">(10)</div>
                             </div>
+                            
 
-                            <!------------------------/// Left part switch hidden///  ------------------------>
+                            <!------------------------/// Left part ///  ------------------------>
                             <div class="FlexContainer">
                                 <div class="DiscussionLeft">
                                     <div class="FlexContainer MessageBox">
                                         <div class="Group_detail_Societies_img_div">
-                                            <img class="Group_detail_Societies_img" src="./img/id1.jpg" width="30">
+                                            <!-- <img class="Group_detail_Societies_img" src="./img/id1.jpg" width="30"> -->
                                         </div>
-                                        <input class="LeaveMessage" type="text" placeholder="Post something...">
-                                        <a href="#">
-                                            <img src="./img/icon_photo.svg" width="23">
-                                        </a>
-                                        <a href="#">
-                                            <img src="./img/icon_send.svg" width="20">
-                                        </a>
-
+                                        <input class="AddArticleInput" type="text" placeholder="Post something...">
+                                        <img src="./img/icon_photo.svg" width="23" class="UploadImgforArticle">
+                                        <img src="./img/icon_send.svg" width="20" class="AddArticleinCommunity">
                                     </div>
 
-
+                                    <div class="community_article_container">
+                                        <ul class="community_article_ul"></ul>
+                                    </div>
                                     <!------ 一張卡 ------->
-                                    <div class="card MessagePost">
+                                    <!-- <div class="card MessagePost">
                                         <div class="FlexContainer Group_FlexJustifyContentSB">
                                             <div class="FlexContainer GroupAlignItemsC">
                                                 <div class="Group_detail_Societies_img_div">
@@ -2193,11 +2199,11 @@
                                             <a class="Group_reply" href="#">reply</a>
                                         </div>
 
-                                    </div>
+                                    </div> -->
 
                                     <!-- <a href="#" class="GroupMemberSeeAllBtn">see all</a>  -->
                                 </div>
-                                <!------------------------/// Right part switch hidden///  ------------------------>
+                                <!------------------------/// Right part///  ------------------------>
                                 <div class="DiscussionRight ">
                                     <div class="FlexContainer SearchBox">
                                         <div>
@@ -2218,12 +2224,12 @@
                         </div>
 
 
-                        <!-------------////文章發文////------------->
-                        <div class=“MessageBoxCover”>
+                        <!-------------不知道是不是彈跳出來？////文章發文////------------->
+                        <!-- <div class=“MessageBoxCover”>
                             <div>
 
                             </div>
-                        </div>
+                        </div> -->
                         <!----------------------------------------////// 下層＿照片 ////////---------------------------------------->
                         <div class="GroupBottomMain GroupDetailPage hide GroupDiscussion" id="GroupDetailPage_Picture">
 
@@ -2644,13 +2650,14 @@
                                     </div>
                                 </div>
                                 <div class="create_active_basicInfo_div">
-                                    <div class="create_active_basicInfo_div2">
+                                    <div class="create_active_basicInfo_div2" id="createPeople">
                                         <p>活動發起者</p>
                                         <!-- ! -->
-                                        <select name="type">
-                                            <option value="個人">個人</option>
-                                            <option value="社團管理員">社團管理員</option>
+                                        <select name="type" id="actCreaterType">
+                                            <option value="0">個人</option>
+                                            <option value="1">社團管理員</option>
                                         </select>
+                                        <span id="actCreaterTypeSpan" style="display: none;"></span>
                                     </div>
                                 </div>
                                 <div class="create_active_basicInfo_div">
@@ -2730,7 +2737,7 @@
                                         <div class="create_active_flex">
                                             <!-- ! -->
                                             <textarea id="create_active_text" cols="60" rows="8" maxlength="500"
-                                                name="fIntroduction"></textarea>
+                                                name="fIntroduction"></textarea><br>
                                             <p class="create_active_flex_end create_active_ml"
                                                 id="create_active_text_count">0</p>
                                             <p class="create_active_flex_end">&nbsp;/&nbsp;500</p>
@@ -2754,13 +2761,13 @@
                                             </select>
                                             <!-- ! -->
 
-                                            <!-- <input type="text" class="create_active_ml create_active_full"
+                                            <input type="text" class="create_active_ml create_active_full"
                                                 id="create_active_tag_input" value="" onblur="inputTag()"
                                                 placeholder="此處輸入可輸入五個小標籤" onfocus="this.placeholder=''" /><span
-                                                id="create_active_please"></span> -->
-                                            <input type="text" name="fLabelName">
+                                                id="create_active_please"></span>
+                                            <!-- <input type="text" name="fLabelName"> -->
                                         </div>
-                                        <div id="test_a" style="display: flex;"></div>
+                                        <div id="act5Tag" style="display: flex;"></div>
                                         <!-- <input type="submit" value="Submit" id="actCreatTagSubmit"> -->
 
                                     </div>
@@ -2791,7 +2798,6 @@
                             </div>
                         </form>
                         <!-- ------------- 審核 --------------- -->
-
                         <div class="create_active_basicInfo" style="display: none;">
                             <h2>活動參與審核</h2>
                             <p>
@@ -2900,7 +2906,7 @@
 
                 <div class="create_community_flex">
                     <div class="create_community_title">
-                        <h2>創建社團</h2>
+                        <h2 id="UpdatePageName">創建社團</h2>
                         <div>
                             <a href="#create-community" class="create_community_title_div">
                                 <p class="create_community_title_circle">1</p>
@@ -2910,7 +2916,7 @@
                                 <p class="create_community_title_circle">2</p>
                                 詳細資料
                             </a>
-                            <a href="#create-community" class="create_community_title_div">
+                            <a href="#create-community" id="approveMemberSide" class="create_community_title_div hide">
                                 <p class="create_community_title_circle">✓</p>
                                 社團加入審核
                             </a>
@@ -2941,7 +2947,7 @@
                                 <div class="create_community_basicInfo_div">
                                     <div class="create_community_basicInfo_div2">
                                         <p>Privacy Settings</p>
-                                        <select name="fStatus" id="selectStatus">
+                                        <select name="fStatusId" id="selectStatus">
                                             <option value="1">公開</option>
                                             <option value="2">私人</option>
                                         </select>
@@ -2966,7 +2972,7 @@
 
                             <!-- ------------- Details --------------- -->
 
-                            <div name="formDetails" class="create_community_basicInfo">
+                            <div id="detailBlock" name="formDetails" class="create_community_basicInfo">
                                 <h2>詳細資料</h2>
                                 <p>
                                     Name your event and tell event-goers why they should come. Add
@@ -2982,7 +2988,7 @@
                                                 <i class="fa fa-photo"></i> 上傳圖片
                                             </label>
                                             <div class="cc_imgUpload_div">
-                                                <img src="" class="cc_img_avatar">
+                                                <img src="" class="cc_img_avatar" id="communityImg">
                                             </div>
                                         </div>
                                     </div>
@@ -3019,81 +3025,173 @@
 
                         <!-- ------------- 審核 --------------- -->
 
-                        <div class="create_community_basicInfo">
-                            <h2>社團加入審核</h2>
+                        <div id="approveMember" class="create_community_basicInfo hide">
+                            <h2 id="approveCommunityTitle">社團加入審核</h2>
                             <p>
                                 Name your event and tell event-goers why they should come. Add
                                 details that highlight what makes it unique.
                             </p>
-                            <div class="create_community_basicInfo_div">
-                                <div class="create_community_basicInfo_div2">
-                                    <p>待審核&nbsp;(&nbsp;5&nbsp;)</p>
-                                    <div class="create_community_flex">
-                                        <input type="checkbox" style="align-self: center;" />
-                                        <div class="create_community_check">
-                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                            <p>JL1992</p>
-                                        </div>
-                                        <input type="checkbox" style="align-self: center;" />
-                                        <div class="create_community_check">
-                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                            <p>Wwill35489</p>
-                                        </div>
-                                        <input type="checkbox" style="align-self: center;" />
-                                        <div class="create_community_check">
-                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                            <p>romazrau</p>
-                                        </div>
-                                        <input type="checkbox" style="align-self: center;" />
-                                        <div class="create_community_check">
-                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                            <p>Wwill35489</p>
-                                        </div>
-                                        <input type="checkbox" style="align-self: center;" />
-                                        <div class="create_community_check">
-                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                            <p>romazrau</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="create_community_basicInfo_div3">
-                                <button id="create_community_btn_done">Done</button>
-                            </div>
-                            <div class="create_community_basicInfo_div">
-                                <div class="create_community_basicInfo_div2">
-                                    <p>社團成員&nbsp;(&nbsp;6&nbsp;)</p>
-                                    <div class="create_community_flex">
+                            <div id="managerBlcok" class="create_community_basicInfo_div ">
+                                <div class="create_community_basicInfo_div2 managerBlcokShow">
+                                    <p>&nbsp;社團管理員</p>
+                                    <div id="ManagerContainer" class="create_community_flex">
                                         <div class="create_community_check">
                                             <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                             <p>ddd555</p>
                                         </div>
-                                        <div class="create_community_check">
-                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                            <p>ccc666</p>
-                                        </div>
-                                        <div class="create_community_check">
-                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                            <p>AndyKao123</p>
-                                        </div>
-                                        <div class="create_community_check">
-                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                            <p>ddd555</p>
-                                        </div>
-                                        <div class="create_community_check">
-                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                            <p>ccc666</p>
-                                        </div>
-                                        <div class="create_community_check">
-                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                            <p>AndyKao123</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="managerBlcok" class="create_community_basicInfo_div removeBlock">
+                                <div class="create_community_basicInfo_div2">
+                                    <p>&nbsp;去除管理員</p>
+                                    <div id="re" class="create_community_flex">
+                                        <div class="create_community_flex">
+                                            <input type="checkbox" style="align-self: center;" />
+                                            <div class="create_community_check">
+                                                <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                                                <p>ddd555</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div id="managerBlcok" class="create_community_basicInfo_div">
+                                <div class="create_community_basicInfo_div2">
+                                    <p>&nbsp;新增管理員</p>
+                                    <div id="addManager" class="create_community_flex">
+                                        <div class="create_community_flex">
+                                            <input type="checkbox" style="align-self: center;" />
+                                            <div class="create_community_check">
+                                                <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                                                <p>ddd555</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="create_community_basicInfo_div">
+                                <div class="create_community_basicInfo_div2">
+                                    <p id="memTitle">社團成員&nbsp;(&nbsp;6&nbsp;)</p>
+                                    <div id="deletMem" class="create_community_flex">
+                                        <div class="create_community_flex">
+                                            <div class="create_community_flex">
+                                                <input type="checkbox" style="align-self: center;" />
+                                                <div class="create_community_check">
+                                                    <img src="https://fakeimg.pl/40/212121/"
+                                                        style="border-radius: 50%;" />
+                                                    <p>ddd555</p>
+                                                </div>
+
+                                                <div class="create_community_flex">
+                                                    <input type="checkbox" style="align-self: center;" />
+                                                    <div class="create_community_check">
+                                                        <img src="https://fakeimg.pl/40/212121/"
+                                                            style="border-radius: 50%;" />
+                                                        <p>ccc666</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="create_community_flex">
+                                                    <input type="checkbox" style="align-self: center;" />
+                                                    <div class="create_community_check">
+                                                        <img src="https://fakeimg.pl/40/212121/"
+                                                            style="border-radius: 50%;" />
+                                                        <p>AndyKao123</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="create_community_flex">
+                                                    <input type="checkbox" style="align-self: center;" />
+                                                    <div class="create_community_check">
+                                                        <img src="https://fakeimg.pl/40/212121/"
+                                                            style="border-radius: 50%;" />
+                                                        <p>ddd555</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="create_community_flex">
+                                                    <input type="checkbox" style="align-self: center;" />
+                                                    <div class="create_community_check">
+                                                        <img src="https://fakeimg.pl/40/212121/"
+                                                            style="border-radius: 50%;" />
+                                                        <p>ccc666</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="create_community_flex">
+                                                    <input type="checkbox" style="align-self: center;" />
+                                                    <div class="create_community_check">
+                                                        <img src="https://fakeimg.pl/40/212121/"
+                                                            style="border-radius: 50%;" />
+                                                        <p>AndyKao123</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="create_community_basicInfo_div">
+                                    <div class="create_community_basicInfo_div2">
+                                        <p>待審核&nbsp;(&nbsp;5&nbsp;)</p>
+                                        <div class="create_community_flex" id="penddingMemberContainer">
+                                            <div class="create_community_flex">
+                                                <input type="checkbox" style="align-self: center;" />
+                                                <div class="create_community_check">
+                                                    <img src="https://fakeimg.pl/40/212121/"
+                                                        style="border-radius: 50%;" />
+                                                    <p>JL1992</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="create_community_flex">
+                                                <input type="checkbox" style="align-self: center;" />
+                                                <div class="create_community_check">
+                                                    <img src="https://fakeimg.pl/40/212121/"
+                                                        style="border-radius: 50%;" />
+                                                    <p>Wwill35489</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="create_community_flex">
+                                                <input type="checkbox" style="align-self: center;" />
+                                                <div class="create_community_check">
+                                                    <img src="https://fakeimg.pl/40/212121/"
+                                                        style="border-radius: 50%;" />
+                                                    <p>romazrau</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="create_community_flex">
+                                                <input type="checkbox" style="align-self: center;" />
+                                                <div class="create_community_check">
+                                                    <img src="https://fakeimg.pl/40/212121/"
+                                                        style="border-radius: 50%;" />
+                                                    <p>Wwill35489</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="create_community_flex">
+                                                <input type="checkbox" style="align-self: center;" />
+                                                <div class="create_community_check">
+                                                    <img src="https://fakeimg.pl/40/212121/"
+                                                        style="border-radius: 50%;" />
+                                                    <p>romazrau</p>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="create_community_basicInfo_div3">
+                                    <button id="create_community_btn_done">Done</button>
+                                </div>
+
                             </div>
                         </div>
                     </div>
-                </div>
             </main>
         </div>
     </div>
@@ -3154,6 +3252,7 @@
         crossorigin="anonymous"></script>
 
     <!-- *內部引用 -->
+    <script src="./src/api.js"></script>
     <script type="module" src="./src/app.js"></script>
     <script type="module" src="./src/map.js"></script>
     <script src='./src/router.js'></script>
@@ -3168,6 +3267,7 @@
     <script src="./src/aboutUs.js"></script>
     <script src="./src/activity_detail.js"></script>
     <script type="module" src="./src/community_main.js"></script>
+    <script type="module" src="./src/community_article.js"></script>
     <script type="module" src="./src/activity_detail.js"></script>
     <script src="./src/community_main.js"></script>
     <script src="./src/community.js"></script>
@@ -3179,7 +3279,7 @@
     <script type="module" src="./src/home.js"></script>
     <!-- 其他 -->
     <script src="./src/navbar.js"></script>
-    <script src="./src/chat.js"></script>
+    <script type="module" src="./src/chat.js"></script>
 
 </body>
 

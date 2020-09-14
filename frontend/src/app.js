@@ -5,6 +5,7 @@ import {
 } from "./api.js";
 
 
+
 // 啟動前端時 看看攜帶的 JWT 是不是合法的
 checkLogin()
     .then((res) => {
@@ -21,7 +22,10 @@ checkLogin()
             window.localStorage.removeItem("Cycle link user data");
         }
     })
-    .catch((err) => { console.log(err) });
+    .catch((err) => { 
+               window.localStorage.removeItem("Cycle link token")
+               window.localStorage.removeItem("Cycle link user data");
+        console.log(err) });
 
 
 

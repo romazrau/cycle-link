@@ -1,4 +1,7 @@
-import { serverURL } from "./api.js";
+import {
+    checkLogin,
+    serverURL
+} from "./api.js";
 
 function ClsCommuntityDetail() {
 
@@ -19,59 +22,59 @@ function ClsCommuntityDetail() {
             businessHours: true,
             dayMaxEvents: true, // allow "more" link when too many events
             events: [{
-                title: 'All Day Event',
-                start: '2020-06-01'
-            },
-            {
-                title: 'Long Event',
-                start: '2020-06-07',
-                end: '2020-06-10'
-            },
-            {
-                groupId: 999,
-                title: 'Repeating Event',
-                start: '2020-06-09T16:00:00'
-            },
-            {
-                groupId: 999,
-                title: 'Repeating Event',
-                start: '2020-06-16T16:00:00'
-            },
-            {
-                title: 'Conference',
-                start: '2020-06-11',
-                end: '2020-06-13'
-            },
-            {
-                title: 'Meeting',
-                start: '2020-06-12T10:30:00',
-                end: '2020-06-12T12:30:00'
-            },
-            {
-                title: 'Lunch',
-                start: '2020-06-12T12:00:00'
-            },
-            {
-                title: 'Meeting',
-                start: '2020-06-12T14:30:00'
-            },
-            {
-                title: 'Happy Hour',
-                start: '2020-06-12T17:30:00'
-            },
-            {
-                title: 'Dinner',
-                start: '2020-06-12T20:00:00'
-            },
-            {
-                title: 'Birthday Party',
-                start: '2020-06-13T07:00:00'
-            },
-            {
-                title: 'Click for Google',
-                url: 'http://google.com/',
-                start: '2020-06-28'
-            }
+                    title: 'All Day Event',
+                    start: '2020-06-01'
+                },
+                {
+                    title: 'Long Event',
+                    start: '2020-06-07',
+                    end: '2020-06-10'
+                },
+                {
+                    groupId: 999,
+                    title: 'Repeating Event',
+                    start: '2020-06-09T16:00:00'
+                },
+                {
+                    groupId: 999,
+                    title: 'Repeating Event',
+                    start: '2020-06-16T16:00:00'
+                },
+                {
+                    title: 'Conference',
+                    start: '2020-06-11',
+                    end: '2020-06-13'
+                },
+                {
+                    title: 'Meeting',
+                    start: '2020-06-12T10:30:00',
+                    end: '2020-06-12T12:30:00'
+                },
+                {
+                    title: 'Lunch',
+                    start: '2020-06-12T12:00:00'
+                },
+                {
+                    title: 'Meeting',
+                    start: '2020-06-12T14:30:00'
+                },
+                {
+                    title: 'Happy Hour',
+                    start: '2020-06-12T17:30:00'
+                },
+                {
+                    title: 'Dinner',
+                    start: '2020-06-12T20:00:00'
+                },
+                {
+                    title: 'Birthday Party',
+                    start: '2020-06-13T07:00:00'
+                },
+                {
+                    title: 'Click for Google',
+                    url: 'http://google.com/',
+                    start: '2020-06-28'
+                }
             ]
         });
 
@@ -220,125 +223,125 @@ function ClsCommuntityDetail() {
     // *照片牆---------------------------------------------
     //假資料
     let photoFlowData = [{
-        id: 1,
-        msg: "春吶善後",
-        src: "01.jpg"
-    },
-    {
-        id: 1,
-        msg: "社員交流",
-        src: "02.jpg"
-    },
-    {
-        id: 1,
-        msg: "市集",
-        src: "03.jpg"
-    },
-    {
-        id: 1,
-        msg: "朔溪",
-        src: "04.jpg"
-    },
-    {
-        id: 1,
-        msg: "嘉南平原",
-        src: "05.jpg"
-    },
-    {
-        id: 1,
-        msg: "杉林溪",
-        src: "06.jpg"
-    },
-    {
-        id: 1,
-        msg: "聚餐",
-        src: "07.jpg"
-    },
-    {
-        id: 1,
-        msg: "談笑風生",
-        src: "08.jpg"
-    },
-    {
-        id: 1,
-        msg: "彩虹勝利趴",
-        src: "09.jpg"
-    },
-    {
-        id: 1,
-        msg: "大稻埕煙火",
-        src: "10.jpg"
-    },
-    {
-        id: 1,
-        msg: "喝酒囉",
-        src: "11.jpg"
-    },
-    {
-        id: 1,
-        msg: "最後的中餐",
-        src: "12.jpg"
-    },
-    {
-        id: 1,
-        msg: "中二病",
-        src: "13.jpg"
-    },
-    {
-        id: 1,
-        msg: "海洋圍觀",
-        src: "14.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "01.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "06.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "01.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "02.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "03.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "04.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "02.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "06.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "01.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "02.jpg"
-    },
+            id: 1,
+            msg: "春吶善後",
+            src: "01.jpg"
+        },
+        {
+            id: 1,
+            msg: "社員交流",
+            src: "02.jpg"
+        },
+        {
+            id: 1,
+            msg: "市集",
+            src: "03.jpg"
+        },
+        {
+            id: 1,
+            msg: "朔溪",
+            src: "04.jpg"
+        },
+        {
+            id: 1,
+            msg: "嘉南平原",
+            src: "05.jpg"
+        },
+        {
+            id: 1,
+            msg: "杉林溪",
+            src: "06.jpg"
+        },
+        {
+            id: 1,
+            msg: "聚餐",
+            src: "07.jpg"
+        },
+        {
+            id: 1,
+            msg: "談笑風生",
+            src: "08.jpg"
+        },
+        {
+            id: 1,
+            msg: "彩虹勝利趴",
+            src: "09.jpg"
+        },
+        {
+            id: 1,
+            msg: "大稻埕煙火",
+            src: "10.jpg"
+        },
+        {
+            id: 1,
+            msg: "喝酒囉",
+            src: "11.jpg"
+        },
+        {
+            id: 1,
+            msg: "最後的中餐",
+            src: "12.jpg"
+        },
+        {
+            id: 1,
+            msg: "中二病",
+            src: "13.jpg"
+        },
+        {
+            id: 1,
+            msg: "海洋圍觀",
+            src: "14.jpg"
+        },
+        {
+            id: 1,
+            msg: "哈哈哈",
+            src: "01.jpg"
+        },
+        {
+            id: 1,
+            msg: "哈哈哈",
+            src: "06.jpg"
+        },
+        {
+            id: 1,
+            msg: "哈哈哈",
+            src: "01.jpg"
+        },
+        {
+            id: 1,
+            msg: "哈哈哈",
+            src: "02.jpg"
+        },
+        {
+            id: 1,
+            msg: "哈哈哈",
+            src: "03.jpg"
+        },
+        {
+            id: 1,
+            msg: "哈哈哈",
+            src: "04.jpg"
+        },
+        {
+            id: 1,
+            msg: "哈哈哈",
+            src: "02.jpg"
+        },
+        {
+            id: 1,
+            msg: "哈哈哈",
+            src: "06.jpg"
+        },
+        {
+            id: 1,
+            msg: "哈哈哈",
+            src: "01.jpg"
+        },
+        {
+            id: 1,
+            msg: "哈哈哈",
+            src: "02.jpg"
+        },
     ]
 
     //有幾條col
@@ -418,7 +421,9 @@ function ClsCommuntityDetail() {
     // 開啟特定社團頁面(社團id)
     // todo開放或私密 用社團16做測試
     const renderPage = async (id) => {
+
         try {
+
 
             let response = await fetch(serverURL.community + id, {
                 method: "GET", // http request method
@@ -484,16 +489,15 @@ function ClsCommuntityDetail() {
             if (!result.data[0].totalNumber) {
                 document.querySelector("#NumOfMem").innerHTML = `(0)`;
 
-            }
-            else {
+            } else {
                 document.querySelector("#NumOfMem").innerHTML = `(${result.data[0].totalNumber})`;
 
             }
             document.querySelector("#CommunityStatus").innerHTML = result.data[0].fSatusName;
             document.querySelector("#CommunityAboutUs").innerHTML = result.data[0].fInfo;
 
-            console.log("+++++++++++++++++++++++++++");
-            console.log(result.data);
+            // console.log("+++++++++++++++++++++++++++");
+            // console.log(result.data);
 
             //todo
             //result.data[0].fStatusId: 2    or   result.data[0]."私密"
@@ -501,15 +505,15 @@ function ClsCommuntityDetail() {
             //移除 <div id="CommunityMemberNone" class="CommunityMemberNone">
 
 
-        }
-        catch (err) {
+        } catch (err) {
             console.log(err);
         }
 
     }
+
     const renderPageManager = async (id) => {
         try {
-           
+
             let response = await fetch(serverURL.communityManager + id, {
                 method: "GET", // http request method
                 // 以下跟身分認證有關，後端要使用session 要帶這幾項
@@ -533,8 +537,7 @@ function ClsCommuntityDetail() {
             }
 
             // document.querySelector("#CommunityManager").innerHTML = result.data[0].fName;
-        }
-        catch (err) {
+        } catch (err) {
             console.log(err);
         }
 
@@ -568,8 +571,7 @@ function ClsCommuntityDetail() {
                     if (items.ifManager == 0) {
 
                         document.querySelector("#MemberPageTemplateContainer").innerHTML += data2memCard(items);
-                    }
-                    else {
+                    } else {
                         document.querySelector("#MemberPageTemplateContainerM").innerHTML += data2memCard(items);
                     }
                 })
@@ -590,7 +592,7 @@ function ClsCommuntityDetail() {
             //----------------------------------介紹---------------------------------------
             let MemberContainer = document.querySelector("#CommunityMember");
             MemberContainer.innerHTML = "";
-            console.log(result);
+            // console.log(result);
             if (result.result) {
 
                 result.data.map((item) => {
@@ -611,13 +613,287 @@ function ClsCommuntityDetail() {
 
 
 
-        }
-        catch (err) {
+        } catch (err) {
             console.log(err);
         }
 
     }
 
+
+    // todo 修改社團
+    // 編輯按鈕Onclick_編輯社團頁面
+    document.querySelectorAll(".js_editCommunity").forEach(items => {
+
+        items.addEventListener("click", async () => {
+            console.group("修改社團");
+            try {
+
+                // 導向社團編輯頁面
+                // -----# >>> 前端路由導向
+                window.location.hash = "#create-community";
+                // 更改頁面DOM處理
+                // 更改頁面名稱
+                document.querySelector("#UpdatePageName").innerHTML = "修改社團";
+                document.querySelector("#approveCommunityTitle").innerHTML = "成員修改";
+                document.querySelector("#memTitle").innerHTML = "刪除成員";
+                // 打開審核頁
+                document.querySelector("#approveMember").classList.remove("hide");
+                document.querySelector("#approveMemberSide").classList.remove("hide");
+                // 藏起next pre done btn
+                document.querySelector("#create_community_btn_next").classList.add("hide");
+                document.querySelector("#create_community_btn_pre").classList.add("hide");
+                document.querySelector("#create_community_btn_done").classList.add("hide");
+
+                // 打開detail managerBlcok Blcok
+                document.querySelector("#detailBlock").style.display = "block";
+                document.querySelector("#managerBlcok").style.display = "block";
+
+                // 抓到fCommunityId放進去formdata
+                let fCommunityId = this.cumDetailId;
+
+                // fetch舊資料_社團基本資料
+                let response = await fetch(serverURL.community + fCommunityId, {
+                    method: "GET", // http request method
+                    //token
+                    headers: {
+                        "Authorization": localStorage.getItem("Cycle link token"),
+                    },
+                    cache: "no-cache",
+                    credentials: "include",
+                });
+
+                let result = await response.json();
+                // console.log(result.data[0]);
+                // {fId: 6
+                // fImgPath: "img/community/01.jpg"
+                // fInfo: "這裡是一個提供所有社會大眾、服務性社團、志工團隊、志工運用單位相互交流的平台！"
+                // fName: "北部地區志工活動資訊交流站"
+                // fSatusName: "開放"
+                // fStatusId: 1
+                // totalNumber: 2
+                // user: "非社員"}
+                // console.log(response);
+
+                // 把舊資料放入前端頁面_社團基本資料
+                document.querySelector("#create_community_text").innerHTML = result.data[0].fInfo;
+                document.querySelector("#create_community_name").value = result.data[0].fName;
+                document.querySelector("#selectStatus").value = result.data[0].fStatusId + "";
+                document.querySelector("#communityImg").src = result.data[0].fImgPath;
+
+                // fetch舊資料_管理員基本資料
+                let responseManager = await fetch(serverURL.communityManager + fCommunityId, {
+                    method: "GET", // http request method
+                    //token
+                    headers: {
+                        "Authorization": localStorage.getItem("Cycle link token"),
+                    },
+                    cache: "no-cache",
+                    credentials: "include",
+                });
+                let resultManager = await responseManager.json();
+                // console.log(resultMember.data);
+                // 1: {
+                //     fId: 9,
+                //     fName: "黑白熊",
+                //     fPhotoPath: "img/member/id5.png"
+                // }
+
+                console.log("resultManager+++++++++++++++++");
+                console.log(resultManager);
+
+                // 把舊資料放入前端頁面_管理員基本資料
+                if (resultManager.result) {
+
+                    let ManagerContainer = document.querySelector("#ManagerContainer");
+                    let ManagerRemoveContainer = document.querySelector("#re");
+
+                    ManagerContainer.innerHTML = "";
+                    ManagerRemoveContainer.innerHTML = "";
+
+                    resultManager.data.forEach((items) => {
+                        ManagerContainer.innerHTML += modifiedManager(items);
+
+                        if (resultManager.data.length > 1) {
+                            ManagerRemoveContainer.innerHTML += modifiedRemoveManager(items);
+                        }
+
+                    })
+                } else {
+                    console.log("假資料錯誤，沒有管理員");
+                }
+
+
+                // fetch舊資料_社員基本資料
+                let responseMember = await fetch(serverURL.communityMember + fCommunityId, {
+                    method: "GET", // http request method
+                    //token
+                    headers: {
+                        "Authorization": localStorage.getItem("Cycle link token"),
+                    },
+                    cache: "no-cache",
+                    credentials: "include",
+                });
+                let resultMember = await responseMember.json();
+                
+                console.log("resultMember++++++++++");
+                console.log(resultMember);
+                // 把舊資料放入前端頁面_社員基本資料
+                if (resultMember.result) {
+                    // console.log(resultMember.data);
+
+                    let AddManagerContainer = document.querySelector("#addManager");
+                    let deletMemberContainer = document.querySelector("#deletMem");
+                    AddManagerContainer.innerHTML = "";
+                    deletMemberContainer.innerHTML = "";
+
+                    resultMember.data.forEach((o) => {
+                        if (o.ifManager == 0) {
+                            AddManagerContainer.innerHTML += modifiedRemoveManager(o);
+                            deletMemberContainer.innerHTML += modifiedRemoveManager(o);
+                        }
+                    })
+                } else {
+                    console.log("假資料錯誤，沒有社員");
+                }
+
+
+                // todo_check fetch＿社團id搜尋待審核會員
+                let responseAccessRight = await fetch(serverURL.communityMemberAccessRight + fCommunityId, {
+                    method: "GET", // http request method
+                    //token
+                    headers: {
+                        "Authorization": localStorage.getItem("Cycle link token"),
+                    },
+                    cache: "no-cache",
+                    credentials: "include",
+                });
+                let resultAccessRight = await responseAccessRight.json();
+                // console.log(responseAccessRight);
+
+                console.log("resultAccessRight+++++++++++");
+                console.log(resultAccessRight);
+
+                // todo把舊資料放入前端頁面_待審核會員資料
+                if (resultAccessRight.result) {
+                    let penddingMemberContainer = document.querySelector("#penddingMemberContainer");
+                    penddingMemberContainer.innerHTML = "";
+                    resultAccessRight.data.forEach((o) => {
+                        penddingMemberContainer.innerHTML += modifiedRemoveManager(o);
+                    })
+                } else {
+                    console.log("沒有待審核社員");
+                }
+
+
+
+
+
+
+
+
+                // todo 待找地方放！！！！！！！！！！！！！！！！ 
+                // 修改＿審核會員身份
+                // let responseAccessRight = await fetch(serverURL.communityMember, {
+                //     method: "PUT",
+                //     // Adding body or contents to send 
+                //     body: formData,
+                //     // Adding headers to the request 
+                //     headers: {
+                //         // formdata 不是用這種解析方式
+                //         // "Content-type": "application/json; charset=UTF-8",
+                //         "Authorization": localStorage.getItem("Cycle link token"),
+                //     },
+                //     cache: "no-cache",
+                //     credentials: "include",
+                // })
+                // let resultAccessRight = await responseAccessRight.json();
+
+                // if (!resultAccessRight.result) {
+                //     console.log(resultAccessRight.result);
+                // }
+
+
+                // 頁面拿到資料
+                let form = document.querySelector("#formOfCreate"); // form element
+                let formData = new FormData(form); // FormData
+                formData.append("fCommunityId", fCommunityId)
+
+
+                // fetch_修改tCommunity資料
+                // let { fCommunityId, fName, fInfo, fStatusId, fImgPath } = req.body
+                let responseput = await fetch("http://localhost:3050/community/", {
+                    method: "PUT",
+                    // Adding body or contents to send 
+                    body: formData,
+                    // Adding headers to the request 
+                    headers: {
+                        // formdata 不是用這種解析方式
+                        // "Content-type": "application/json; charset=UTF-8",
+                        "Authorization": localStorage.getItem("Cycle link token"),
+                    },
+                    cache: "no-cache",
+                    credentials: "include",
+                })
+                let resultput = await responseput.json();
+                // 錯誤處理:沒有回傳資料導回原頁面 
+
+                if (!resultput.result) {
+                    console.log(resultput);
+                }
+
+
+                // todo
+                // if()
+                // fetch_刪除成員
+
+                // 如果有身份被修改
+                // fetch_修改tMemberList
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            } catch (err) {
+                console.log(err);
+            }
+            console.groupEnd("修改社團");
+
+        })
+    })
+    // 還原社團編輯頁面
+    document.querySelector("#changeBack").addEventListener("click", () => {
+        document.querySelector("#UpdatePageName").innerHTML = "創建社團";
+        document.querySelector("#approveCommunityTitle").innerHTML = "詳細資料";
+        document.querySelector("#memTitle").innerHTML = "社團成員&nbsp;(&nbsp;6&nbsp;)";
+
+
+        // 關閉審核頁
+        document.querySelector("#approveMember").classList.add("hide");
+        document.querySelector("#approveMemberSide").classList.add("hide");
+        // next pre done btn打開
+        document.querySelector("#create_community_btn_next").classList.remove("hide");
+        document.querySelector("#create_community_btn_pre").classList.remove("hide");
+        document.querySelector("#create_community_btn_done").classList.remove("hide");
+        // 關掉 managerBlcok detail Blcok
+        document.querySelector("#detailBlock").style.display = "none";
+        document.querySelector("#managerBlcok").style.display = "none";
+
+    })
+
+
+
+    // TODO 加入社團by使用者id,社團id
 
     // 介紹分頁-- 管理員頭像的文字樣板
     const data2manageImg = (o) => {
@@ -634,11 +910,9 @@ function ClsCommuntityDetail() {
          <img src="./img/icon_chat.svg" width="20"></a>
          </div>`;
     };
+
     // 介紹分頁-- 會員頭像的文字樣板
     const data2memImg = (o) => {
-
-        console.log("111111111111");
-
         return ` <div id="GroupMemberPicLessThan4" class="activity_detail_info_img_circle GroupMemberPic GroupMemberPicLessThan4">
         <div class="activity_detail_info_img_div">
             <img class="activity_detail_info_img GoupRightInfoPhoto" src="${o.fPhotoPath}"
@@ -646,6 +920,7 @@ function ClsCommuntityDetail() {
         </div>
     </div>`
     }
+
     // 成員分頁-- 會員卡的文字樣板
     const data2memCard = (o) => {
         return ` <div
@@ -674,6 +949,30 @@ function ClsCommuntityDetail() {
     </div>`
     }
 
+    // 修改社團--管理員文字樣板
+    const modifiedManager = (o) => {
+        return ` <div class="create_community_check">
+        <img src = "${o.fPhotoPath}" 
+        style = "border-radius: 50%; width:50px" />
+            <p style="white-space:nowrap">${o.fName}</p>
+            </div>`;
+    }
+
+    // 修改社團--刪除管理員文字樣板
+    // 修改社團--刪除會員文字樣板
+    // 修改社團--增加管理員文字樣版
+    const modifiedRemoveManager = (o) => {
+        return `<div class="create_community_flex">
+                <input type="checkbox" style="align-self: center;" />
+                <div class="create_community_check">
+                    <img src ="${o.fPhotoPath}"
+                    style = "border-radius: 50%; width:50px"/>
+                    <p>${o.fName} </p>
+                    </div>`;
+    }
+
+
+
     // this 指的是 ClsCommuntityDetail
     this.renderMainCommunityInfo = renderPage;
     this.renderManagerListInfo = renderPageManager;
@@ -690,18 +989,16 @@ const CommuntityDetail = new ClsCommuntityDetail();
 const communityDetailChangeHash = () => {
 
     //!Window物件方法偵測URL改變 執行rederPage function
-    let actDetailArr = window.location.hash.split('/');   // #community/detail/3  -> [ #community, detail, 3 ]
-    let actDetailId = actDetailArr[2];
+    let cumDetailArr = window.location.hash.split('/'); // #community/detail/3  -> [ #community, detail, 3 ]
+    let cumDetailId = cumDetailArr[2];
     if (location.hash.includes("#community/detail/")) {
-        CommuntityDetail.renderMainCommunityInfo(actDetailId);
-        CommuntityDetail.renderManagerListInfo(actDetailId);
-        CommuntityDetail.renderMemberListInfo(actDetailId);
+        CommuntityDetail.renderMainCommunityInfo(cumDetailId);
+        CommuntityDetail.renderManagerListInfo(cumDetailId);
+        CommuntityDetail.renderMemberListInfo(cumDetailId);
+        CommuntityDetail.cumDetailId = cumDetailId;
     }
 
 }
 
 window.addEventListener("hashchange", communityDetailChangeHash);
 window.addEventListener("load", communityDetailChangeHash);
-
-
-
