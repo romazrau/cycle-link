@@ -190,7 +190,7 @@ const searchByMemberId = async (fid) => {
   }
 };
 
-}
+
 
 //** 會員Id加入社團 
 const communityAddByMemberId = async (fCommunityId, fMemberId, fDate, fAccessRightId) => {
