@@ -44,9 +44,9 @@ function ClsCommunityArticle() {
   //新增文章使用者頭像：文字樣板
   const htmlCommunityAddArticleImg = (x) => {
     return `
-    <div class="community_article_heading_img_circle_border">
-    <div class="community_article_heading_img_container" onclick="location.hash='#personal-page/${x.MemberId}'">
-      <img class="community_article_heading_img" src="${x.MemberImgPath}" onclick="location.hash='#personal-page/${x.MemberId}'"/>
+    <div class="community_article_user_img_circle_border">
+    <div class="community_article_user_img_container" onclick="location.hash='#personal-page/${x.fId}'">
+      <img class="community_article_user_img" src="${x.fPhotoPath}" onclick="location.hash='#personal-page/${x.fId}'"/>
     </div> </div>
   `;
   };
@@ -69,10 +69,8 @@ function ClsCommunityArticle() {
         cache: "no-cache",
         credentials: "include",
       });
-
-      console.log(response);
       let result = await response.json();
-      console.log(result);
+      console.log(result.data);
       display_UserImg(result.data);
     } catch (err) {
       console.log(err);
@@ -225,7 +223,7 @@ function ClsCommunityArticle() {
         credentials: "include",
       });
       let result = await response.json();
-
+      // console.log(result);
       await display_postDetail(result.data);
 
       addClickEventToReply(result.data.length);
@@ -325,6 +323,7 @@ function ClsCommunityArticle() {
       let addArticleInput = document.querySelector(".AddArticleInput").value;
       console.log(getCommunityIdFromUrl());
       addArticletoSQL(getCommunityIdFromUrl(), addArticleInput);
+      getPostInCommunity(getCommunityIdFromUrl());
     });
 
   function timeFormatAdjust(x) {
