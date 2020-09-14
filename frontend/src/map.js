@@ -426,9 +426,8 @@ function map_GetActivityList(o){
           {
           
             document.getElementById("map_activityintroduction").innerHTML=ActivityList[i].fIntroduction;
-            document.querySelector(".map_imgbox").src=ActivityList[i].fImgPath;
+            document.querySelector(".map_imgbox").src="http://localhost:3050/"+ActivityList[i].fImgPath;
             document.querySelector(".map_link").href=`#activity/detail/${ActivityList[i].fId}`
-    
           }
         }
     }
