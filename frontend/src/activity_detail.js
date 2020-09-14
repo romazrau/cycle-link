@@ -110,12 +110,13 @@ function ClsActivityDetail() {
     // * ---------------- 活動參與者數量 文字樣板 ---------------- //
 
     const actDetail_participant_count = (o) => {
-        return `<h5 id="activity_detail_participant_count">活動參與者(${o.JoinCount})</h5>
+        return `<h5 id="activity_detail_participant_count">活動參與者(${o})</h5>
         <a href="#">See All</a>
         `;
     };
 
     // * ---------------- 活動參與者 文字樣板 ---------------- //
+
 
     const activity_detail_participant = (o) => {
         return `<div class="activity_detail_participant" onclick="location.hash='#personal-page/${o.fMemberId}'">
@@ -128,6 +129,16 @@ function ClsActivityDetail() {
     <span>Member</span>
 </div>`;
     };
+    // --- 參與者匯入 --- //
+    const display_actDetailJoin = (o) => {
+        activity_detail_participant_All.innerHTML = "";
+        o.map(
+            (e, index) => {
+                activity_detail_participant_All.innerHTML += activity_detail_participant(e);
+
+            }
+        )
+    }
 
     // * ---------------- 活動隸屬社團 文字樣板 ---------------- //
 
@@ -207,25 +218,14 @@ function ClsActivityDetail() {
         )
     }
 
-    // --- 參與者匯入 --- //
-    const display_actDetailJoin = (o) => {
-        activity_detail_participant_All.innerHTML = "";
-        o.map(
-            (e, index) => {
-                activity_detail_participant_All.innerHTML += activity_detail_participant(e);
 
-            }
-        )
-    }
 
     // --- 參與者人數匯入 --- //
     const display_actDetailJoinCount = (o) => {
-        activity_detail_participant_count.innerHTML = "";
-        o.map(
-            (e, index) => {
-                activity_detail_participant_count.innerHTML = actDetail_participant_count(e);
-            }
-        )
+        // activity_detail_participant_count.innerHTML = "";
+        // console.log(o[0].JoinCount)
+        activity_detail_participant_count.innerHTML = actDetail_participant_count(o[0].JoinCount);
+
     }
 
     // * ********************************** [ END ] 文字樣板 [ END ] ********************************** //
@@ -263,30 +263,31 @@ function ClsActivityDetail() {
         }
     };
 
-    const actDetailPost = async () => {
-        try {
-            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
-            // *用變數接 fetch 結果 ，要用await等。
-            let actForm = document.querySelector("#creatAct_form");
-            let actFormData = new FormData(actForm);
-            let response = await fetch(serverURL.actDetail, {
-                method: "POST", // http request method 
-                headers: { // http headers
-                    'Content-Type': 'application/json' // 請求的資料類型
-                },
-                body: actFormData,
-                // 以下跟身分認證有關，後端要使用session 要帶這幾項
-                cache: 'no-cache',
-                credentials: 'include',
-            });
-            // 用變數接 fetch結果的資料內容， 要用await等。
-            let result = await response.json();
-        } catch (err) {
-            console.log(err);
-            // 錯誤處理
-        }
-    }
+    // const actDetailPost = async () => {
+    //     try {
+    //         // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+    //         // *用變數接 fetch 結果 ，要用await等。
+    //         let actForm = document.querySelector("#creatAct_form");
+    //         let actFormData = new FormData(actForm);
+    //         let response = await fetch(serverURL.actDetail, {
+    //             method: "POST", // http request method 
+    //             headers: { // http headers
+    //                 'Content-Type': 'application/json' // 請求的資料類型
+    //             },
+    //             body: actFormData,
+    //             // 以下跟身分認證有關，後端要使用session 要帶這幾項
+    //             cache: 'no-cache',
+    //             credentials: 'include',
+    //         });
+    //         // 用變數接 fetch結果的資料內容， 要用await等。
+    //         let result = await response.json();
+    //     } catch (err) {
+    //         console.log(err);
+    //         // 錯誤處理
+    //     }
+    // }
 
+    // * -------------------------------- 創建活動 -------------------------------- //
     const CreateActivity = async () => {
         let fd = document.querySelector("#ac_date_from").value;
         let fdt = document.querySelector("#ac_date_from_time").value;
@@ -325,10 +326,14 @@ function ClsActivityDetail() {
 
 
 
-    // * ------------- 傳送表單 創建活動 ------------- //
+    // * ------------- 創建活動 傳送表單按鈕 ------------- //
     $("#create_active_btn_done").click((e) => {
         e.preventDefault(); // 預防跳轉
         CreateActivity(); // 傳送表單
+        alert("創建成功");
+        location.href = "#activity";
+        location.reload();
+
     })
 
     // TODO: 創建完後資料表要清空 
@@ -368,6 +373,8 @@ function ClsActivityDetail() {
         let createSelect = document.createElement("select");
         createSelect.classList.add("createSelect")
         createSelect.setAttribute("name", "fCommunityId")
+        createSelect.setAttribute("id", "createSelect")
+
         cp.appendChild(createSelect);
         const actCreaterTypeSpan = document.querySelector(".createSelect");
         d.map(
@@ -383,18 +390,98 @@ function ClsActivityDetail() {
 
     // TODO: -------------------------------- 創建活動 地圖座標 -------------------------------- //
     // TODO: -------------------------------- 創建活動 標籤寫入hadLabel -------------------------------- //
-
-
-
-    // TODO: -------------------------------- 標籤搜尋 -------------------------------- //
-    // TODO: -------------------------------- 編輯活動 -------------------------------- //
-
-
     // TODO: -------------------------------- 刪除活動 -------------------------------- //
-
-    // TODO: -------------------------------- 參加活動後參加人數要刷新 -------------------------------- //
-
     // TODO: -------------------------------- 加入最愛活動 -------------------------------- //
+    // TODO: -------------------------------- 標籤搜尋 -------------------------------- //
+
+
+    // TODO: -------------------------------- 編輯活動 -------------------------------- //
+    let InitiatorEditBTN = document.querySelector("#InitiatorEdit")
+    InitiatorEditBTN.addEventListener("click", async (actDetailId) => {
+
+        window.location.hash = "#create-activity"
+
+        document.querySelector("#creatActTitle").innerHTML = "編輯活動"
+
+        let fActivityId = this.actDetailId;
+        // console.log(fActivityId)
+        let response = await fetch(serverURL.actDetail + fActivityId, {
+            method: "GET", // http request method
+            headers: {
+                // "Content-Type": "application/json", // 請求的資料類型
+                Authorization: localStorage.getItem("Cycle link token")
+            },
+            cache: "no-cache",
+            credentials: "include",
+        });
+        let result = await response.json();
+        // console.log(result);
+
+        let fActivityDate = result.data.detail[0].fActivityDate.split(" ")
+        let fActivityEndDate = result.data.detail[0].fActivityEndDate.split(" ")
+        let fCommunityId = result.data.detail[0].fCommunityId
+
+        document.querySelector("#create_active_name").value = result.data.detail[0].fActName
+        document.querySelector("#create_active_local_tags").value = result.data.detail[0].fActLocation
+        document.querySelector("#create_active_text").value = result.data.detail[0].fIntroduction
+        document.querySelector("#ac_date_from").value = fActivityDate[0]
+        document.querySelector("#ac_date_to").value = fActivityEndDate[0]
+        document.querySelector("#ac_date_from_time").value = fActivityDate[1]
+        document.querySelector("#ac_date_to_time").value = fActivityEndDate[1]
+
+        document.querySelector("#ac_date_from_div").setAttribute("style", "display:block")
+        document.querySelector("#ac_date_to_div").setAttribute("style", "display:block")
+
+        document.querySelector("#actMinPeople").value = result.data.detail[0].fMinLimit
+        document.querySelector("#actMaxPeople").value = result.data.detail[0].fMaxLimit
+
+        document.querySelector("#create_active_btn_done").setAttribute("style", "display:none")
+        document.querySelector("#create_active_btn_done_edit").setAttribute("style", "display:block")
+
+        console.log(result.data.detail[0])
+
+        if (fCommunityId > 0) {
+            actCType()
+            actInitiatorType.getElementsByTagName("option")[1].selected = true;
+            // document.querySelector("#createSelect").getElementsByTagName("option").setAttribute("value", fCommunityId).selected = true
+        } else {
+            actCreaterTypeSpan.setAttribute("style", "display:none")
+        }
+
+        // 編輯確認按鈕
+        let createActEditDone = document.querySelector("#create_active_btn_done_edit")
+        createActEditDone.addEventListener("click", async (e) => {
+            e.preventDefault();
+            alert("編輯成功");
+            // location.href = "#activity";
+            // location.reload();
+
+            let form = document.querySelector("#creatAct_form");
+            let formData = new FormData(form);
+            formData.append('fId', fActivityId);
+            // console.log("fActivityId === " + fActivityId)
+            try {
+                let response = await fetch(serverURL.actDetail + "Edit", {
+                    method: "PUT", // http request method
+                    body: formData,
+                    headers: {
+                        // "Content-Type": "application/json", // 請求的資料類型
+                        Authorization: localStorage.getItem("Cycle link token")
+                    },
+                    cache: "no-cache",
+                    credentials: "include",
+                });
+                let result = await response.json();
+                console.log(result)
+            } catch (err) {
+                console.log(err)
+            }
+
+        })
+    })
+
+
+
 
 
     // * -------------------------------- 是否為活動發起者 -------------------------------- //
@@ -446,7 +533,7 @@ function ClsActivityDetail() {
                 $("#cancelJoinActBtn").css("display", "none")
             }
         } catch (err) {
-            console.log(err);
+            // console.log(err);
         }
     };
 
@@ -478,6 +565,10 @@ function ClsActivityDetail() {
         $("#joinActBtn").css("display", "none");
         $("#cancelJoinActBtn").css("display", "block")
 
+        let actDetailArr = location.hash.split("/");
+        let actDetailId = actDetailArr[2];
+
+        display_actDetailJoin(actDetail(actDetailId));
     })
 
     // * -------------------------------- 取消參加活動 -------------------------------- //
@@ -505,6 +596,11 @@ function ClsActivityDetail() {
         }
         $("#joinActBtn").css("display", "block");
         $("#cancelJoinActBtn").css("display", "none")
+        let actDetailArr = location.hash.split("/");
+        let actDetailId = actDetailArr[2];
+
+        display_actDetailJoin(actDetail(actDetailId));
+        console.log(actDetail(actDetailId))
     })
 
 
@@ -667,6 +763,8 @@ const actDetailChangeHash = () => {
         ActivityDetail.actDetail(actDetailId);
         ActivityDetail.OrJoinAct(actDetailId);
         ActivityDetail.OrActInitiator(actDetailId);
+        ActivityDetail.actDetailId = actDetailId;
+        // console.log("hash ===== " + actDetailId)
     }
 };
 

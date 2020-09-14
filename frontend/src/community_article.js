@@ -1,4 +1,6 @@
-import { serverURL } from "./api.js";
+import {
+  serverURL
+} from "./api.js";
 
 function ClsCommunityArticle() {
   //社團文章文字樣板
@@ -70,7 +72,7 @@ function ClsCommunityArticle() {
         credentials: "include",
       });
       let result = await response.json();
-      console.log(result.data);
+      // console.log(result.data);
       display_UserImg(result.data);
     } catch (err) {
       console.log(err);
@@ -176,6 +178,7 @@ function ClsCommunityArticle() {
       console.log(err);
     }
   };
+
   function addClickEventToReply(x) {
     for (let i = 1; i < x + 1; i++) {
       let TheReplyIcon = document.getElementById("replyIconbyfId" + i);
