@@ -6,7 +6,8 @@ const logger = require("morgan");
 const bodyParser = require("body-parser");
 // from data 解析必備
 const multer = require("multer");
-const upload = multer();
+const uploadFile = require("./upload-module");
+// const upload = multer();
 // 特殊套件
 const jsonwebtoken = require("jsonwebtoken");
 const jwt = require("express-jwt");
@@ -52,7 +53,11 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.use(upload.array());
+
+
+// app.use(uploadFile.array());
+app.use(uploadFile.array('fPhoto' , 10));
+
 //session
 app.use(
   session({

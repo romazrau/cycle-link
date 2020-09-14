@@ -13,10 +13,6 @@ const sendSafetyCode = require("../src/email/signUp");
 const sendNewPassword = require("../src/email/forgetPassword");
 //圖片
 
-const upload = require("../src/upload-module")
-
-
-
 // bcrypt 雜湊亂碼產生器
 const saltRounds = 10;
 
@@ -185,11 +181,22 @@ router.put("/password", async (req, res) => {
 });
 
 // Sign Up
-router.post("/signup",upload.single('fPhoto'), async (req, res) => {
+const uploadFile = require("../upload-module");
+// router.post("/signup", (req, res, next) => {
+//   console.log(req.body);
+//   req.postData = req.body;
+//   console.log(req.postData);
+//   next();
+// });
+// uploadFile.single("fPhoto")
 
+router.post("/signup", async (req, res) => {
   try {
-    
-        
+    console.log("------------------");
+    console.log(req.body);
+    console.log("檔案:",req.files[0].filename);
+
+
     let {
       fAccount,
       fPassword,
@@ -199,7 +206,7 @@ router.post("/signup",upload.single('fPhoto'), async (req, res) => {
       fAddress,
       fCity,
       fCeilphoneNumber,
-      fIntroduction, 
+      fIntroduction,
     } = req.body;
 
     let checkAccount = await memberSql.memberByAccount(fAccount);
@@ -218,10 +225,10 @@ router.post("/signup",upload.single('fPhoto'), async (req, res) => {
     // 密碼雜湊
     let password = await bcrypt.hash(fPassword, saltRounds);
     fPassword = password;
-    
-     
+
     // TODO 接收img
-    let fPhotoPath = req.file.path;
+    let fPhotoPath = "img/"+ req.files[1].filename;
+    console.log("fPhotoPath:",fPhotoPath);
 
     req.session[sessionKey.SK_USER_DATA] = {
       fAccount,
@@ -244,18 +251,12 @@ router.post("/signup",upload.single('fPhoto'), async (req, res) => {
   }
 });
 
-router.post("/signupphoto",upload.single('fPhoto'), async (req, res) => {
-                                      
-  res.json({
-    file:req.file,
-    body:req.body
-});
-
-    
-})
-
-
-
+// router.post("/signupphoto", async (req, res) => {
+//   res.json({
+//     file: req.file,
+//     body: req.body,
+//   });
+// });
 
 // is Sign Up safyty code correct  and finish  Sign Up
 router.get("/signup/:code", async (req, res) => {

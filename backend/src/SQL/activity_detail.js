@@ -312,6 +312,7 @@ const OrActInitiator = async (fActivityId, fMemberId) => {
 
 //* ----------------------- 創建活動 ----------------------- //
 // ----- 新增多個標籤 ----- //
+
 // TODO: [待修正] ----- 只有一個標籤會錯誤 map is not a function ----- //
 const CreateTag5 = (x) => {
     let result = ""
@@ -339,6 +340,13 @@ ${CreateTag5(fLabelName)}`
             result: 1,
             msg: "請求成功"
         };
+        //新增:
+        //1.先拿社團id=>select * from Activity.tActivity where fActName=${fActName}
+        //2.5個標籤id=>for*5 select * from Activity.tActivityLabel where fActName=${fLabelName}=>insert 
+        
+
+
+
         // 錯誤處理
     } catch (err) {
         console.log(err);
