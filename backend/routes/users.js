@@ -11,6 +11,11 @@ const jsonwebtoken = require("jsonwebtoken");
 const memberSql = require("../src/SQL/users");
 const sendSafetyCode = require("../src/email/signUp");
 const sendNewPassword = require("../src/email/forgetPassword");
+//圖片
+
+const upload = require("../src/upload-module")
+
+
 
 // bcrypt 雜湊亂碼產生器
 const saltRounds = 10;
@@ -180,8 +185,11 @@ router.put("/password", async (req, res) => {
 });
 
 // Sign Up
-router.post("/signup", async (req, res) => {
+router.post("/signup",upload.single('fPhoto'), async (req, res) => {
+
   try {
+    
+        
     let {
       fAccount,
       fPassword,
@@ -191,7 +199,7 @@ router.post("/signup", async (req, res) => {
       fAddress,
       fCity,
       fCeilphoneNumber,
-      fIntroduction,
+      fIntroduction, 
     } = req.body;
 
     let checkAccount = await memberSql.memberByAccount(fAccount);
@@ -210,9 +218,10 @@ router.post("/signup", async (req, res) => {
     // 密碼雜湊
     let password = await bcrypt.hash(fPassword, saltRounds);
     fPassword = password;
-
+    
+     
     // TODO 接收img
-    let fPhotoPath = "";
+    let fPhotoPath = req.file.path;
 
     req.session[sessionKey.SK_USER_DATA] = {
       fAccount,
@@ -234,6 +243,19 @@ router.post("/signup", async (req, res) => {
     res.json({ result: 0, msg: "路由錯誤", data: ex });
   }
 });
+
+router.post("/signupphoto",upload.single('fPhoto'), async (req, res) => {
+                                      
+  res.json({
+    file:req.file,
+    body:req.body
+});
+
+    
+})
+
+
+
 
 // is Sign Up safyty code correct  and finish  Sign Up
 router.get("/signup/:code", async (req, res) => {

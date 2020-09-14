@@ -51,6 +51,7 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+
 app.use(upload.array());
 //session
 app.use(

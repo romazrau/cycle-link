@@ -46,11 +46,11 @@ const communityList = async () => {
 };
 
 //log看資料
-(async () => {
-  //   let result = await communityList();
-  console.log("-------------------------------result");
-  //  console.log(result);
-})();
+//  (async () => {
+//     let result = await communityList();
+//      console.log("-------------------------------result");
+//     //  console.log(result);
+// })()
 
 //** 社團名稱(可部分)查詢社團
 const communityByString = async (fName) => {
@@ -190,17 +190,14 @@ const searchByMemberId = async (fid) => {
   }
 };
 
-//** 會員Id加入社團
-const communityAddByMemberId = async (
-  fCommunityId,
-  fMemberId,
-  fDate,
-  fAccessRightId
-) => {
-  try {
-    await sql.connect(config);
+}
 
-    let sqlStr = `
+//** 會員Id加入社團 
+const communityAddByMemberId = async (fCommunityId, fMemberId, fDate, fAccessRightId) => {
+    try {
+        await sql.connect(config)
+
+        let sqlStr = `
         INSERT INTO Community.tMemberList(fCommunityId, fMemberId , fJoinDate , fAccessRightId)  
         VALUES ( ${fCommunityId}, ${fMemberId} ,${fDate} , ${fAccessRightId})
         ;`;
@@ -218,7 +215,7 @@ const communityAddByMemberId = async (
   }
 };
 
-// TODO  會員Id and 社團Id 查詢成員是否在此社團
+//** 會員Id and 社團Id 查詢成員是否在此社團
 const searchMemInCom = async (fMemberManagerId, fCommunityId) => {
   try {
     await sql.connect(config);
@@ -428,15 +425,17 @@ const communityCreate = async (fName, fStatusId, fImgPath, fInfo, fDate) => {
   }
 };
 
-//todo routes還沒做
+
+// todo routes還沒做
 //**加入社團by社員id 社團id
+// fAccessRightId為審核中
 const communityAdd = async (fId, fCommunityId, fDate) => {
   try {
     await sql.connect(config);
 
     let sqlStr = `
             INSERT INTO Community.tMemberList( fCommunityId,fMemberId,fJoinDate,fAccessRightId)  
-             VALUES ( ${fCommunityId},${fId},'${fDate}','2')
+             VALUES ( ${fCommunityId},${fId},'${fDate}','1')
              `;
     // console.log(sqlStr);
 
@@ -447,6 +446,80 @@ const communityAdd = async (fId, fCommunityId, fDate) => {
     return { result: 0, msg: "SQL錯誤", data: err };
   }
 };
+
+
+// todo SQL待測試
+//** 修改社員身份by社員id 社團id
+const ChangeMemberAccessRight = async (fId, fCommunityId) => {
+    try {
+        await sql.connect(config)
+
+        let sqlStr = `
+        UPDATE Community.tMemberList
+        SET fAccessRightId = 2
+        WHERE fId = ${fId} and fCommunityId = ${fCommunityId}
+             `;
+        // console.log(sqlStr);
+
+        const result = await sql.query(sqlStr);
+
+        return {
+            result: 1,
+            msg: "請求成功"
+        }
+
+    } catch (err) {
+        return {
+            result: 0,
+            msg: "SQL錯誤",
+            data: err
+        }
+    }
+};
+
+// todo SQL待寫
+//** 搜尋待審核社員 by社員id 社團id
+const SearchMemberAccessRight = async(fCommunityId) =>{
+    try {
+        await sql.connect(config)
+
+        let sqlStr = `
+       SELECT l.*, m.fName, m.fPhotoPath
+       FROM Community.tMemberList as l
+       left join Member.tMember as m
+       on l.fMemberId = m.fId
+       where l.fAccessRightId = 1 and l.fCommunityId = ${fCommunityId};
+             `;
+        // console.log(sqlStr);
+
+        const result = await sql.query(sqlStr);
+
+        // console.log(result);
+        if (result.rowsAffected[0]){
+             return {
+                 result: 1,
+                 msg: "請求成功",
+                 data: result.recordset
+             }          
+        }
+
+        return {
+            result: 0,
+            msg: "查無結果"
+        }
+       
+
+    } catch (err) {
+        return {
+            result: 0,
+            msg: "SQL錯誤",
+            data: err
+        }
+    }
+
+};
+
+
 
 //**刪除社團:用社員fId設定fStatus停權
 //!會員頁面按解散社團
@@ -601,20 +674,4 @@ const updatatMemberList = async (fMemberManagerId, fCommunityId, ifManager) => {
 // *匯出方法 ， 多個方法包在{}裡， ex: {func1, func2}
 //{es6寫法communityList:communityList}
 
-module.exports = {
-  communityList,
-  communityById_communityDetail,
-  communityById_communityManager,
-  communityById_communityMember,
-  communityByString,
-  communityCreate,
-  communityDelet,
-  searchByMemberId,
-  communityByFullString,
-  communityAddByMemberId,
-  updateCommunity,
-  deletMemberOfCommunity,
-  updatatMemberList,
-  searchMemInCom,
-  communityAdd,
-};
+module.exports = { communityList, communityById_communityDetail, communityById_communityManager, communityById_communityMember, communityByString, communityCreate, communityDelet, searchByMemberId, communityByFullString, communityAddByMemberId, updateCommunity, deletMemberOfCommunity, updatatMemberList, searchMemInCom, communityAdd,ChangeMemberAccessRight,SearchMemberAccessRight};

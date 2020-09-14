@@ -72,7 +72,8 @@ function map_GetActivityList(o){
     var osm = new L.TileLayer(osmUrl, {minZoom: 7, maxZoom: 16});
     map.addLayer(osm);
     var popup = L.popup(); 
-    
+    console.log("L:",L)
+     L.control.scale().addTo(map);
     map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng),7 );
     
     /**載入地圖 */
@@ -118,10 +119,9 @@ function map_GetActivityList(o){
      
      
       
-     
+      
       L.marker(e.latlng, {icon: myIcon}).addTo(map);
-    
-    
+     
       OriginalPlacelat=e.latlng.lat;
       OriginalPlacelng=e.latlng.lng;
      
@@ -175,13 +175,20 @@ function map_GetActivityList(o){
           for (let i = 0; i < map_cities.length; i++) {
             map_cities[i].addEventListener("click", (e) => {
               e.preventDefault();
+              //清空類型搜索
+              let map_ckeck=document.querySelectorAll(".map_ckeckinput")
+              for(let k=0;k<map_ckeck.length;k++)
+              {
+                console.log(map_ckeck[k]);
+                map_ckeck[k].checked=false;
+              }
               document.getElementById("map_cityspan").innerHTML =
                 map_cities[i].textContent;
                 
                 /*移動地圖----城市 */
                  for(let j=0;j<CityList.length;j++)
                 {
-                
+                  
                  if( CityList[j].name==map_cities[i].textContent){
                     
                     OriginalPlacelat=CityList[j].lat;
@@ -238,74 +245,176 @@ function map_GetActivityList(o){
       
       })
     }
-    
+    var myGroup1;
+    var myGroup2;
+    var myGroup3;
+    var myGroup4;
+    var myGroup5;
+    var myGroup6;
     /*類型搜尋 */
+    var typecheck=document.querySelectorAll(".map_ckeck");
     
-    
-    
-    
-    var typeBtn=document.querySelectorAll(".map_typeBtn")
-    for(let i=0;i<typeBtn.length;i++)
+    for(let i=0;i<typecheck.length;i++){
+      typecheck[i].addEventListener("change",(e)=>
     {
-      typeBtn[i].addEventListener("click",(e)=>
-    {
-    
-        e.preventDefault();
+      
+      if($(`#type${i+1}`).prop("checked")){
         map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng), 11);
-    
-    
-    
-    
-        let type=typeBtn[i].textContent;
-        
-    
+        let type=typecheck[i].textContent;
         map_TypeMarkShow(type,ActivityList)
+        
+      }else
+      {
+        console.log("清除");
+        switch (i+1)
+        {
+        case 1:
+        myGroup1.clearLayers();
+        break;
+        case 2:
+          myGroup2.clearLayers();
+          break;
+        case 4:
+        myGroup4.clearLayers();
+        break;
+        case 3:
+        myGroup3.clearLayers();
+        break;
+        case 5:
+        myGroup5.clearLayers();
+        break;
+        case 6:
+        myGroup6.clearLayers();
+        break;
+
+        }
+      }
+    
+        
     
     })
     }
     
     
     
+    // var typeBtn=document.querySelectorAll(".map_typeBtn")
+    // for(let i=0;i<typeBtn.length;i++)
+    // {
+    //   typeBtn[i].addEventListener("click",(e)=>
+    // {
+    
+    //     e.preventDefault();
+    //     map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng), 11);
+    
+    
+    
+    
+    //     let type=typeBtn[i].textContent;
+        
+    
+    //     map_TypeMarkShow(type,ActivityList)
+    
+    // })
+    // }
+    
     
     function map_TypeMarkShow(str,arr){
-      cleanMarker();
+      var layers=[]
       L.marker([OriginalPlacelat,OriginalPlacelng], {icon: myIcon},{name:"目前位置"}).addTo(map);
       var resultList=arr.filter(function(item, index, array){
         
           return item.fLabelName==str ;
           ;
        
-      })
-      resultList.forEach(function(item, index, array){
-       
-        if(str=="志工活動")
-        L.marker([item.fCoordinateX,item.fCoordinateY], {icon: SeaIcon},).addTo(map).bindPopup(item.fActName).addEventListener("click",function (event) {
+      })   
+      if(str=="其他")
+      {     
+        resultList.forEach(function(item, index, array){
+          var layer=new L.marker([item.fCoordinateX,item.fCoordinateY], {icon: elseIcon},).addTo(map).bindPopup(item.fActName).addEventListener("click",function (event) {
+            
+            var marker=event.target;
+            var latlng = marker.getLatLng();
+            map_setInformation(latlng.lat,latlng.lng);
+            map.setView(new L.LatLng(latlng.lat,latlng.lng), 11)
           
+          });
+        layers.push(layer);  
+        })
+        myGroup1=L.layerGroup(layers)
+        map.addLayer(myGroup1);
+      }
+      
+      if(str=="志工活動")
+      {     
+        resultList.forEach(function(item, index, array){
+          var layer=new L.marker([item.fCoordinateX,item.fCoordinateY], {icon: SeaIcon},).addTo(map).bindPopup(item.fActName).addEventListener("click",function (event) {
+            
+            var marker=event.target;
+            var latlng = marker.getLatLng();
+            map_setInformation(latlng.lat,latlng.lng);
+            map.setView(new L.LatLng(latlng.lat,latlng.lng), 11)
+          
+          });
+        layers.push(layer);  
+        })
+        myGroup2=L.layerGroup(layers)
+        map.addLayer(myGroup2);
+      }
+      
+      if(str=="環境清潔"){
+        resultList.forEach(function(item, index, array){
+        var layer=new L.marker([item.fCoordinateX,item.fCoordinateY], {icon: RunningIcon},).addTo(map).bindPopup(item.fActName).addEventListener("click",function (event) {
           var marker=event.target;
           var latlng = marker.getLatLng();
           map_setInformation(latlng.lat,latlng.lng);
           map.setView(new L.LatLng(latlng.lat,latlng.lng), 11)
-         
         });
-    
-        if(str=="環境清潔")
-        L.marker([item.fCoordinateX,item.fCoordinateY], {icon: RunningIcon},).addTo(map).bindPopup(item.fActName).addEventListener("click",function (event) {
+        layers.push(layer); 
+       })
+       myGroup3=L.layerGroup(layers)
+        map.addLayer(myGroup3);
+      }
+      if(str=="自然教育"){
+        resultList.forEach(function(item, index, array){
+          var layer=new L.marker([item.fCoordinateX,item.fCoordinateY], {icon: edIcon},).addTo(map).  bindPopup(item.fActName).addEventListener("click",function (event) {  
           var marker=event.target;
-          var latlng = marker.getLatLng();
-          map_setInformation(latlng.lat,latlng.lng);
-          map.setView(new L.LatLng(latlng.lat,latlng.lng), 11)
-         
-        });
-        if(str=="運動")
-        L.marker([item.fCoordinateX,item.fCoordinateY], {icon: evIcon},).addTo(map).bindPopup(item.fActName).addEventListener("click",function (event) {  
-          var marker=event.target;
-          
-          var latlng = marker.getLatLng();
-         
+          var latlng = marker.getLatLng(); 
           map_setInformation(latlng.lat,latlng.lng);
           map.setView(new L.LatLng(latlng.lat,latlng.lng), 11) 
-        });
-     })
+          });
+          layers.push(layer); 
+        })
+        myGroup4=L.layerGroup(layers)
+        map.addLayer(myGroup4);
+      }
+      if(str=="二手市集"){
+        resultList.forEach(function(item, index, array){
+          var layer=new L.marker([item.fCoordinateX,item.fCoordinateY], {icon: marketIcon},).addTo(map).  bindPopup(item.fActName).addEventListener("click",function (event) {  
+          var marker=event.target;
+          var latlng = marker.getLatLng(); 
+          map_setInformation(latlng.lat,latlng.lng);
+          map.setView(new L.LatLng(latlng.lat,latlng.lng), 11) 
+          });
+          layers.push(layer); 
+        })
+        myGroup5=L.layerGroup(layers)
+        map.addLayer(myGroup5);
+      }
+      if(str=="運動"){
+        resultList.forEach(function(item, index, array){
+          var layer=new L.marker([item.fCoordinateX,item.fCoordinateY], {icon: evIcon},).addTo(map).  bindPopup(item.fActName).addEventListener("click",function (event) {  
+          var marker=event.target;
+          var latlng = marker.getLatLng(); 
+          map_setInformation(latlng.lat,latlng.lng);
+          map.setView(new L.LatLng(latlng.lat,latlng.lng), 11) 
+          });
+          layers.push(layer); 
+        })
+        myGroup6=L.layerGroup(layers)
+        map.addLayer(myGroup6);
+      }
+   
+    
     }
     
     
@@ -368,6 +477,37 @@ function map_GetActivityList(o){
             popupAnchor: [1, -34],
             shadowSize: [41, 41]
     });
+    const marketIcon= L.icon({
+      iconUrl:
+              "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png",
+            shadowUrl:
+              "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+    });
+    const edIcon= L.icon({
+      iconUrl:
+              "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png",
+            shadowUrl:
+              "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+    });
+    const elseIcon= L.icon({
+      iconUrl:
+              "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png",
+            shadowUrl:
+              "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+    });
+
     
     
     //距離公式
