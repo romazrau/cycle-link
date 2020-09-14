@@ -59,12 +59,14 @@ module.exports = function (io) {
                     message,
                     userId: socket.userId,
                     userName: socket.userName,
-                    time:  (new Date).toLocaleTimeString("zh-TW").split(":").slice(0,2).join(":"),
+                    time:  (new Date).toLocaleDateString("zh-TW") + " " + (new Date).toLocaleTimeString("zh-TW").split(":").slice(0,2).join(":"),
                     chatroomId,
                 }
                 console.log("Socket-- 向聊天室傳送訊息: " + chatroomId);
                 console.log(data);
                 io.to(chatroomId).emit("newMessage", data)  // *對特定房間發送事件
+                let result = await chatSql.insertMessage(data);
+                console.log(result);
             }
         })
 
@@ -106,15 +108,32 @@ module.exports = function (io) {
                 result.data = newData;
             }
 
-
             res.json(result);
 
         } catch (ex) {
             console.log(ex);
             res.json({ result: 0, msg: "路由錯誤", data: ex });
         }
+    })
 
 
+
+    router.get("/messages/:room", async (req, res, next) => {
+        try {
+            if (!req.user) {
+                res.json({ result: 0, msg: "尚未登入" });
+                return;
+            }
+
+            // TODO 身分查核
+
+            let result = await chatSql.myChatroomMessages(req.params.room);
+
+            res.json(result);
+        } catch (ex) {
+            console.log(ex);
+            res.json({ result: 0, msg: "路由錯誤", data: ex });
+        }
     })
 
     return router;

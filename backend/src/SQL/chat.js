@@ -41,12 +41,54 @@ const myChatroomList = async (id) => {
 };
 
 
+// 聊天內容初始化
+const myChatroomMessages = async (chatroom) => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        await sql.connect(config)
+        const sqlString = `
+        select d.* , m.fName
+        from Chat.tChatData as d
+        left join Member.tMember as m
+        on m.fId = d.fMemberId
+        where fChatRoomId = ${chatroom};
+        `;
+        const result = await sql.query(sqlString);
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "跟對方打個招呼吧" }
+        }
+        return { result: 1, msg: "你的聊天室來囉", data: result.recordset };
+    } catch (err) {
+        console.log(err);
+        return { result: 0, msg: "SQL 問題", data: result };
+    }
+};
+
+
 // TODO 新增聊天內容
-// const
+const insertMessage = async (obj) => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        await sql.connect(config)
+        const sqlString = `
+        INSERT INTO Chat.tChatData
+	    ( fChatRoomId, fTime, fMemberId, fContent )
+        VALUES (${obj.chatroomId}, '${obj.time}', ${obj.userId}, '${obj.message}');
+        `;
+        const result = await sql.query(sqlString);
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "新增失敗" }
+        }
+        return { result: 1, msg: "新增成功" };
+    } catch (err) {
+        console.log(err);
+        return { result: 0, msg: "SQL 問題", data: result };
+    }
+};
 
 
 
 
 
 
-module.exports = { myChatroomList };
+module.exports = { myChatroomList,  myChatroomMessages, insertMessage };
