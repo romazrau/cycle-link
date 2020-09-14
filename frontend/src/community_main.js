@@ -43,7 +43,7 @@ function ClsCommunityMain() {
     return result;
   };
 
-  //文章：文字樣板
+  //社團首頁：文章文字樣板(左邊)
   const htmlCommunityMainPostLeft = (x) => {
     return `
       <li>
@@ -96,6 +96,8 @@ function ClsCommunityMain() {
       </li>`;
   };
   // {x.HowMuchLike === null ? "" : HowMuchLike}不知為何很容易報錯
+
+  //社團首頁：文章文字樣板(右邊)
   const htmlCommunityMainPostRight = (x) => {
     return `
       <li class='community_main_timeline_inverted'>
@@ -146,7 +148,7 @@ ${ImgIsNullOrNot(x.PostImg)}
     </li>`;
   };
 
-  // 留言：文字樣板
+  // 社團首頁：留言文字樣板
   const htmlCommunityMainReply = (x) => {
     return `
     <div class="CM_reply_item">
@@ -178,7 +180,7 @@ ${ImgIsNullOrNot(x.PostImg)}
   </div>`;
   };
 
-  //我要留言：文字樣板
+  //社團首頁：我要留言文字樣板
   const htmlCommunityMainReplyInput = (x) => {
     return `<div class="CM_reply_input_container">
     <input type="text" id="ReplyText${x}"/>
@@ -186,8 +188,41 @@ ${ImgIsNullOrNot(x.PostImg)}
   </div>`;
   };
 
-  //文章字串樣板匯入
+  //社團首頁：社團卡片文字樣板for搜尋結果
+  const htmlCommunityCard = (x) => {
+    return `<div class="CM_recommend_item" id="CM_recommend_${x.CommunityId}">
+    <div class="CM_recommend_item_img">
+        <img src="${x.CommunityImgPath}" class="CM_recommend_item_img_img">
+    </div>
+    <div class="CM_recommend_item_info">
+        <p>${x.CommunityName}</p>
+    </div>
+</div>`;
+  };
+
+  //社團首頁：社團卡片字串匯入點
+  const CM_recommend = document.querySelector(".CM_recommend_container");
+
+  //社團首頁：文章字串匯入點
   const CMpost = document.querySelector(".community_main_ul_timeline");
+
+  //社團卡片字串匯入function
+  const display_recommendCommunity = (o) => {
+    CM_recommend.innerHTML = "";
+    o.map((e, index) => {
+      CM_recommend.innerHTML += htmlCommunityCard(e);
+    });
+  };
+  //TODO社團卡片：路由撈資料
+  //   const getRecommendCommunity = async() => {
+  //     try{
+  // let response = await
+  //     }catch(err){
+  // console.log(err);
+  //     }
+  //   }
+
+  //社團首頁：文章字串匯入function
   const display_postDetail = (o) => {
     CMpost.innerHTML = "";
     o.map((e, index) => {
@@ -199,7 +234,7 @@ ${ImgIsNullOrNot(x.PostImg)}
     });
   };
 
-  //文章列表撈資料
+  //文章：路由撈資料
   const getCommunityPost = async () => {
     try {
       // console.log(serverURL.articlepost);
@@ -289,7 +324,7 @@ ${ImgIsNullOrNot(x.PostImg)}
   };
   getCommunityPost();
 
-  //留言：字串樣板輸入畫面
+  //社團首頁：留言字串匯入function
   const display_replyDetail = (o, x) => {
     o.map((e, index) => {
       if (e.fPostId == x) {
@@ -310,6 +345,7 @@ ${ImgIsNullOrNot(x.PostImg)}
       });
   };
 
+  //留言區：顯示我要留言區(不需要撈資料庫)
   function showReplyInput(x) {
     document.getElementById(
       "bindPostReplybyfId" + x
@@ -436,7 +472,7 @@ ${ImgIsNullOrNot(x.PostImg)}
         credentials: "include",
       });
       let result = await res.json();
-      console.log(result);
+      // console.log(result);
     } catch (err) {
       console.log(err);
     }

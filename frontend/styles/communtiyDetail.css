@@ -1079,17 +1079,6 @@ hr {
   opacity: 50%;
 }
 
-.Group_detail_Societies_img_div {
-  position: relative;
-  top: 3px;
-  left: 3px;
-  width: 60px;
-  height: 60px;
-  overflow: hidden;
-  border-radius: 50%;
-  /* border: 1px solid var(--lightgrey-color); */
-}
-
 .Group_detail_Societies_img {
   width: 100%;
   position: absolute;

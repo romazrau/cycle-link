@@ -94,6 +94,38 @@
   transition: width 0.2s ease 0.1s;
 }
 
+.CM_recommend_container {
+  margin-top: 30px;
+  width: 600px;
+  height: 220px;
+  display: flex;
+}
+
+.CM_recommend_item {
+  width: 23%;
+  height: 100%;
+  background-color: var(--white-color);
+  border-radius: 10px;
+  margin-right: 2%;
+}
+.CM_recommend_item:hover {
+  transform: translate(0px, -5px);
+  transition: all 0.5s;
+}
+
+.CM_recommend_item_img {
+  margin: 10px;
+}
+
+.CM_recommend_item_img_img {
+  width: 100%;
+  overflow: hidden;
+}
+
+.CM_recommend_item_info {
+  text-align: center;
+}
+
 /*
 社團類別選項刪除
 .CM_appearCategory_item_container {

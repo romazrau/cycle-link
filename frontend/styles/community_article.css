@@ -98,3 +98,30 @@
 .community_article_footer span {
   margin-right: 5px;
 }
+
+/* 社團頁面的使用者頭像 */
+.community_article_user_img_circle_border {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--green-color);
+  border-radius: 50%;
+  margin: 0.3rem 0 0 0.7rem;
+}
+.community_article_user_img_container {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.community_article_user_img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

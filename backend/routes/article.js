@@ -27,6 +27,19 @@ router.get("/community/:communityid", async function (req, res, next) {
   }
 });
 
+router.get("/userinfo", async function (req, res, next) {
+  try {
+    console.log(12321313123);
+    let fMemberId = req.user.fId;
+    console.log(fMemberId);
+    let UserResult = await Sql.ShowUserInfo(fMemberId);
+    res.json(UserResult);
+    console.log(UserResult);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
 //社團文章：留言列表
 router.get("/reply", async function (req, res, next) {
   try {
@@ -65,17 +78,6 @@ router.post("/add", async function (req, res, next) {
     );
 
     res.json(result);
-  } catch (err) {
-    res.send(err);
-  }
-});
-
-router.post("/userinfo", async function (req, res, next) {
-  try {
-    let fMemberId = req.user.fId;
-    let UserResult = await Sql.ShowUserInfo(fMemberId);
-    res.json(UserResult);
-    console.log(UserResult);
   } catch (err) {
     res.send(err);
   }

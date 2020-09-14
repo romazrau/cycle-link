@@ -96,7 +96,8 @@ const articleInCommunity = async (communityId) => {
       on par.PostId = l.fPostId)
       select *
       from PostAndReplyAndLike
-      where fCommunityId=${communityId}`;
+      where fCommunityId=${communityId}
+      order by Convert(datetime, fPostTime) DESC`;
     const result = await sql.query(str);
     // console.dir(result);
     return { result: 1, msg: "請求成功", data: result.recordset };
@@ -172,21 +173,16 @@ const ShowUserInfo = async (fMemberId) => {
     let str = `
       select *
       from Member.tMember
-      where fId =${fMemberId}')
+      where fId =${fMemberId}
    `;
     const result = await sql.query(str);
-    console.log("奇怪欸我的Console在哪裡" + result);
-    return {
-      result: 1,
-      msg: "請求成功",
-      data: result.recordset,
-    };
+    console.log(result);
+    return { result: 1, msg: "請求成功", data: result.recordset[0] };
   } catch (err) {
     return { result: 0, msg: "SQL錯誤", data: err };
   }
 };
-ShowUserInfo(15);
-console.log(ShowUserInfo(12));
+// ShowUserInfo(4);
 
 // const editarticle = async(fId)=>{
 //   try{
@@ -204,6 +200,10 @@ console.log(ShowUserInfo(12));
 //     return { result: 0, msg: "SQL錯誤"};
 //   }
 // }
+
+//TODO ING
+const the4hottiest = async () => {};
+
 const searcharticle = async (x) => {
   try {
     await sql.connect(config);
