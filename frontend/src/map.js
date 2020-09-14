@@ -61,8 +61,8 @@ function map_GetActivityList(o){
             shadowSize: [41, 41]
     });
     
-    var OriginalPlacelat=23.705867;
-    var OriginalPlacelng=120.959473;
+    var OriginalPlacelat=23.784789;
+    var OriginalPlacelng=120.93699;
     
     var map = L.map('mapid');
     // 設定地圖來源
@@ -74,14 +74,14 @@ function map_GetActivityList(o){
     var popup = L.popup(); 
     console.log("L:",L)
      L.control.scale().addTo(map);
-    map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng),7 );
+    map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng),8 );
     
     /**載入地圖 */
     function MapLoad(){
      cleanMarker();
     // 經緯度座標
     
-    map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng),11 );
+    
     
     L.marker([OriginalPlacelat,OriginalPlacelng], {icon: myIcon},{name:"目前位置"}).addTo(map);
     /**限定範圍 */

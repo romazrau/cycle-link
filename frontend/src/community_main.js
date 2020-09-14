@@ -136,8 +136,10 @@ ${ImgIsNullOrNot(x.PostImg)}
         <div class="CM_timeline_footer">
           <i class="far fa-heart changebyclick" id="likeIconbyfId${
             x.PostId
-          }"></i><span>${x.HowMuchLike || ""}</span>
-          <i class="far fa-comments" id="replyIconbyfId${x.PostId}"></i><span>${
+          }"></i>
+          <span>${x.HowMuchLike || ""}</span>
+          <i class="far fa-comments" id="replyIconbyfId${x.PostId}"></i>
+          <span>${
       x.HowMuchReply || ""
     }</span>
           </div>
@@ -385,17 +387,21 @@ ${ImgIsNullOrNot(x.PostImg)}
           LikeIconItems.classList.add("far");
           let id_arr = this.id.split("fId");
           removeLikeToSQL(id_arr[1]);
+          likesMinusCount(this);
         } else if (LikeIconItems.classList.contains("far")) {
           LikeIconItems.classList.remove("far");
           LikeIconItems.classList.add("fas");
           //取ID增點讚
           let id_arr = this.id.split("fId");
           addLikeToSQL(id_arr[1]);
+          likesPlusCount(this);
         } else {
           LikeIconItems.classList.remove("fas");
           LikeIconItems.classList.add("far");
           let id_arr = this.id.split("fId");
           removeLikeToSQL(id_arr[1]);
+          likesMinusCount(this);
+          
           // console.log("愛心又被點了");
         }
       });
@@ -457,13 +463,11 @@ ${ImgIsNullOrNot(x.PostImg)}
         credentials: "include",
       });
       let result = await response.json();
-      console.log("MemberLikePost_result:", result.data);
       let hearts_arr = document.querySelectorAll(".fa-heart");
       for (let i = 0; i < hearts_arr.length; i++) {
         for (let j = 0; j < result.data.length; j++)
           if (hearts_arr[i].id.split("Id")[1] == result.data[j].fPostId) {
             hearts_arr[i].classList.add("fas");
-            console.log("i:", i, "j:", j);
           }
       }
     } catch (err) {
@@ -520,6 +524,25 @@ ${ImgIsNullOrNot(x.PostImg)}
   //TODO 新增文章
   //TODO 編輯文章
   //TODO 刪除文章
+  function likesPlusCount(e)
+  {
+    let target=e.parentNode.getElementsByTagName("span")[0];
+    if(target.innerHTML==""){
+      target.innerHTML=1;
+    }else{
+      target.innerHTML=parseInt(target.innerHTML)+1;
+    }
+  }
+  function likesMinusCount(e)
+  {
+       let target=e.parentNode.getElementsByTagName("span")[0];
+       if(target.innerHTML=="1"){
+        target.innerHTML="";
+      }else{
+        target.innerHTML=parseInt(target.innerHTML)-1;
+      }
+
+  }
 
   //用不上的社團類別動態
   // var CM_appearCategory_item_flag = true;
