@@ -124,6 +124,7 @@ function ClsActivity() {
     function getsearchdata(arr) {
         search_result_arr = arr;
         console.log(search_result_arr);
+        likelistfromsql();
     }
 
 
@@ -135,6 +136,7 @@ function ClsActivity() {
         () => {
             document.querySelector(".activity_advence_search_container").classList.toggle("hide");
             document.querySelector(".activity_advence_t").classList.toggle("upside_down")
+
         }
     );
 
@@ -211,6 +213,7 @@ function ClsActivity() {
             btncitydetial.classList.add("search_hidden");
             btncity.classList.remove("search_hidden");
             btncitytext.innerHTML = this.textContent;
+            
             //判斷目前活動是否符合進階搜尋的城市
             var result_arr = search_result_arr.filter(function (item) {
                 return (item.fActLocation.indexOf(btncitytext.innerHTML.substr(0, 2))) >= 0;
@@ -219,6 +222,7 @@ function ClsActivity() {
             display_search_go(result_arr);
             //將搜尋結果另外存一個陣列給日期使用
             datearr = result_arr;
+            likelistfromsql();
         })
     }
     // ----------------------------------------------------------------
@@ -321,9 +325,12 @@ function ClsActivity() {
                 datestart = startinput.value;
                 datestartarr = datestart.split("/");
                 newdatestart = datestartarr[2]+"/" + datestartarr[0]+"/" + datestartarr[1];
+                dateend = endinput.value;
+                dateendarr = dateend.split("/");
+                newdateend = dateendarr[2]+"/" + dateendarr[0]+"/" + dateendarr[1];
                 let satrttime = Date.parse(newdatestart);
-                
-                if(acttime >  satrttime )
+                let endtime = Date.parse(newdateend);
+                if(acttime >  satrttime && acttime <  endtime )
                 {   
                     resultdate_arr.push(datearr[i]);
                     
@@ -355,11 +362,72 @@ function ClsActivity() {
 
     // 活動樣板
     const htmlActCard = (o) => {
+        
+            return ` 
+            <div class="">
+            <a  href="#activity/detail/${o.fId}" class="activecard">
+                 <div class="active_card_container">
+                 <div class="active_card" >
+                     <div class="addlike">
+                         <i class="fas fa-heart fa-lg active_card_heart "></i>
+                     </div>
+                     <div class="active_card_div">
+                         <img src="${o.fImgPath}" alt="" class="active_card_img">
+                     </div>
+                     
+                     <div class="active_card_info">
+                         <p>${o.fActivityDate}</p>
+                         <p class="active_card_title">${o.fActName}</p>
+                 
+                     <div class="active_card_location_div">
+                         <img src="img/929497.svg" class="active_card_location">
+                         <p>${o.fActLocation}</p>
+                     </div>
+                 </div>
+                 </div>
+                 </div>
+             </a>
+             </div>`;
+             // if(o.fJoinTypeId == 0)
+        // {
+        //     return ` 
+        //     <div class="">
+        //     <a  href="#activity/detail/${o.fId}" class="activecard">
+        //          <div class="active_card_container">
+        //          <div class="active_card" >
+        //              <div class="addlike">
+        //                  <i class="fas fa-heart fa-lg active_card_heart actlikecolor "></i>
+        //              </div>
+        //              <div class="active_card_div">
+        //                  <img src="${o.fImgPath}" alt="" class="active_card_img">
+        //              </div>
+                     
+        //              <div class="active_card_info">
+        //                  <p>${o.fActivityDate}</p>
+        //                  <p class="active_card_title">${o.fActName}</p>
+                 
+        //              <div class="active_card_location_div">
+        //                  <img src="img/929497.svg" class="active_card_location">
+        //                  <p>${o.fActLocation}</p>
+        //              </div>
+        //          </div>
+        //          </div>
+        //          </div>
+        //      </a>
+        //      </div>`;
+        // }
+        // else{
+        }
+       
+    
+
+    //瀏覽過的活動
+    const htmlActCardseen = (o) => {
         if(o.fJoinTypeId == 0)
         {
             return ` 
             <div class="">
-            <a  href="#activity/detail/${o.fId}" class="activecard">
+            <a  href="#activity/detail/${o.fActivityId}" class="activecard">
                  <div class="active_card_container">
                  <div class="active_card" >
                      <div class="addlike">
@@ -386,7 +454,7 @@ function ClsActivity() {
         else{
             return ` 
             <div class="">
-            <a  href="#activity/detail/${o.fId}" class="activecard">
+            <a  href="#activity/detail/${o.fActivityId}" class="activecard">
                  <div class="active_card_container">
                  <div class="active_card" >
                      <div class="addlike">
@@ -412,6 +480,7 @@ function ClsActivity() {
         }
        
     }
+
 
     // //為您推薦樣板
     // const htmlActCard2 = (o) => {
@@ -479,7 +548,7 @@ function ClsActivity() {
     const display_active_seen = (o) => {
         ActSeen.innerHTML = "";
         o.map((e, index) => {
-            ActSeen.innerHTML += htmlActCard(e);
+            ActSeen.innerHTML += htmlActCardseen(e);
         })
     }
 
@@ -518,7 +587,9 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
+            
             display_active(result.data);
+            
             // getactid();
         } catch (err) {
             console.log(err);
@@ -545,6 +616,7 @@ function ClsActivity() {
 
             display_active_foryou(result.data);
             getactid();
+            likelistfromsql();
         } catch (err) {
             console.log(err);
             // 錯誤處理
@@ -794,6 +866,46 @@ function ClsActivity() {
             ActCard2.innerHTML += htmlActCard(e);
         }
     )
+        /*---------------YM修改活動 */
+    const likelistfromsql = async() =>{
+        try {
+            let response = await fetch(serverURL.active+"likeListSQL", {
+              method: "GET", // http request method
+              headers: {
+                // http headers
+                Authorization: localStorage.getItem("Cycle link token"),
+              },
+              cache: "no-cache",
+              credentials: "include",
+            });
+            let result = await response.json();
+
+           
+            //
+            let heart_arr=document.querySelectorAll(".active_card_heart ")
+            console.log("card:",heart_arr)
+           
+            for(let i=0;i<heart_arr.length-3;i++)
+            {
+                for(let j=0;j<result.length;j++)
+                {
+                    if(heart_arr[i].parentNode.parentNode.parentNode.parentNode.href.split("il/")[1]==result[j].fId)
+                    {
+                        console.log("有愛心:",heart_arr[i])
+                        heart_arr[i].classList.add("actlikecolor");
+                    }
+                }
+            }
+          } catch (err) {
+            console.log(err);
+            // 錯誤處理
+          }
+    }
+
+
+
+
+
 
     //------------------------------------------------------  
 

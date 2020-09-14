@@ -16,14 +16,14 @@ function ClsChat() {
         isMe: 0,
         name: "系統",
         msg: "歡迎加入公開頻道~",
-        time: (new Date).toLocaleTimeString("zh-TW").split(":").slice(0, 2).join(":")
+        time: (new Date).toLocaleDateString("zh-TW") + " " + (new Date).toLocaleTimeString("zh-TW").split(":").slice(0, 2).join(":")
     }, {
         isMe: 0,
         name: "系統",
         msg: "保持頻道開啟，接收新訊息",
-        time: (new Date).toLocaleTimeString("zh-TW").split(":").slice(0, 2).join(":")
+        time: (new Date).toLocaleDateString("zh-TW") + " " + (new Date).toLocaleTimeString("zh-TW").split(":").slice(0, 2).join(":")
     }];
-     // world room 用
+    // world room 用
     const setMessages = (msgObj) => {
         messages.push(msgObj);
         let room = document.querySelector("#chat_robot_message");
@@ -52,25 +52,52 @@ function ClsChat() {
                 return;
             }
 
+            // console.group("chatroom List");
             result.data.map(item => {
                 setChatroomList(item);
+
+                // TODO 處理未讀訊息
+
+                // console.log("joinRoom: " + item.fId);
+                socket.emit("joinRoom", { chatroomId: item.fId });
             })
+
+
+            // console.log(chatroomList);
+            // console.groupEnd("chatroom List");
+
         } catch (ex) {
             console.log(ex);
             chatList.innerHTML = `<div>連線錯誤</div>`;
         }
     }
 
+    // 私人聊天室用
+    const  setMessagesTo = (chatroomId, msgObj) => {
+        let roomElement = document.querySelector(`#chatRoomId_${chatroomId}`); 
+        if(roomElement){
+            let messagesContainer = roomElement.querySelector('.chat_message');
+            let prevDate = messagesContainer.dataset.prevDate;
+            let msgDate = msgObj.time.split(" ")[0];
+            if(prevDate !== msgDate){
+                messagesContainer.innerHTML += `<div class="chat_info_message">${msgDate}</div>`
+            }
+            messagesContainer.dataset.prevDate = msgDate;
 
+            messagesContainer.innerHTML += data2chatMessages(msgObj);
+            messagesContainer.scrollTo(0, messagesContainer.scrollHeight);
+        }
 
+        // TODO 未讀訊息
 
+    }
 
 
     const makeToast = (title, msg) => {
         console.log("%c" + title + "  " + msg, "color:green;font-size:16px;");
     }
 
-    // 設定 socket
+    // 設定 socket ---------------------------------------------------------------------
     var setupSocket = () => {
         const token = localStorage.getItem('Cycle link token');
         // console.group("socket-----------");
@@ -99,12 +126,14 @@ function ClsChat() {
                         isMe: localStorage.getItem("Cycle link user data") == userName ? 1 : 0,
                         name: userName,
                         msg: message,
-                        time,   
+                        time,
                     }
-                    if(chatroomId === "world"){
+                    if (chatroomId === "world") {
                         setMessages(data);
+                    } else {
+                        setMessagesTo(chatroomId, data);
                     }
-                    
+
                 })
                 // socket.removeAllListeners("newMessage");
             });
@@ -116,15 +145,17 @@ function ClsChat() {
     }
 
     // 發送訊息
-    const sendMessage = (msg) => {
+    const sendMessage = (message, chatroomId) => {
         if (socket) {
-            console.log("send msg");
+            console.log(`send message to ${chatroomId}`);
             socket.emit("chatRoomMessage", {
-                chatroomId: "world",
-                message: msg
+                chatroomId,
+                message
             })
         }
     }
+
+    // 以上設定 socket ---------------------------------------------------------------------
 
 
 
@@ -206,15 +237,6 @@ function ClsChat() {
 
 
     // *聊天室div-------------------------------------------
-    // 關聊天室
-    function chatRoomClose(e) {
-        // console.log(e.target, e.target.classList);
-        if ([...e.target.classList].includes("chat_window_close")) {
-            e.currentTarget.remove();
-        }
-    }
-
-
     const cahtMessageData = [{
         isMe: 0,
         msg: "哈囉~",
@@ -242,22 +264,59 @@ function ClsChat() {
     },
     ];
 
+    // 關聊天室
+    function chatRoomClose(e) {
+        // console.log(e.target, e.target.classList);
+        if ([...e.target.classList].includes("chat_window_close")) {
+            e.currentTarget.remove();
+        }
+    }
+
+    // 聊天室發訊息
+    const EventSendChatMessage = (e) => {
+        if (e.keyCode === 13 && !e.shiftKey) {
+            e.preventDefault();
+            let room = e.target.dataset ? e.target.dataset.chatroomId || "world" : "world";
+            sendMessage(e.target.value, room);
+            // console.log(`send message to ${room}`);
+            e.target.value = "";
+        }
+    }
+
+
     //文字樣板 -- 參考 html 中聊天機器人格式
-    const data2cahtMessage = (array, title, chatRoomId) => {
-        let result = `<div id="chatRoomId_${chatRoomId}" class="chat_room_window"><img class="chat_window_close" src="./img/times-solid.svg" alt="X"><div id="chat_message_window_title" class="chat_window_title">${title}</div><div class="chat_message">`;
-        array.map((e) => {
-            result += `<div class=${e.isMe ? "caht_Me" : "caht_notMe"}>${e.msg}<div class="caht_arrow2"></div></div>
-                       <div class="${e.isMe ? "caht_Me_time" : "caht_notMe_time"}">${e.time}</div>`;
+    const data2chatroom = (array, title, chatRoomId) => {        
+        let prevDate = "1911/01/01";
+        let msgs = array.map((e) => {
+            let date = e.time.split(" ")[0];
+
+            let result = "";
+            if(prevDate !== date){
+                result += `<div class="chat_info_message">${date}</div>`
+            }
+            prevDate = date;
+            result += data2chatMessages(e);
+            return result
         });
+
+        let result = `<div id="chatRoomId_${chatRoomId}" class="chat_room_window"><img class="chat_window_close" src="./img/times-solid.svg" alt="X"><div id="chat_message_window_title" class="chat_window_title">${title}</div><div data-prev-date=${prevDate} class="chat_message">`;
+        result += msgs.join("");
         result += `</div><div class="chat_input">
-                    <textarea placeholder="想說什麼呢?" onfocus="this.placeholder=''" onblur="this.placeholder='想說什麼呢?'" row="2"></textarea>
+                    <textarea data-chatRoom-id=${chatRoomId} placeholder="想說什麼呢?" onfocus="this.placeholder=''" onblur="this.placeholder='想說什麼呢?'" row="2"></textarea>
                    </div></div>`;
         return result;
     };
 
+    const data2chatMessages = (data) => (
+        `<div class=${data.isMe ? "caht_Me" : "caht_notMe"}>${data.msg}<div class="caht_arrow2"></div></div>
+        <div class="${data.isMe ? "caht_Me_time" : "caht_notMe_time"}">${data.time.split(" ")[1]}</div>`
+    )
+
+
+
     //點擊 聊天列表 打開
     const chatContainer = document.querySelector(".chat_container");
-    document.querySelector(".chat_list").addEventListener("click", (e) => {
+    document.querySelector(".chat_list").addEventListener("click", async (e) => {
         // console.log(e.target, e.target.tagName);
         // 點擊的是否是li
         if (e.target.tagName !== "LI") {
@@ -270,12 +329,39 @@ function ClsChat() {
             return;
         };
 
-        // chatContainer += data2cahtMessage(cahtMessageData, e.target.innerHTML);
+        // 容器與事件綁定
         const chatRoom = document.createElement("div");
-        chatRoom.onclick = chatRoomClose;
+        chatRoom.addEventListener("click", chatRoomClose);
+        chatRoom.addEventListener("keydown", EventSendChatMessage);
 
-        chatRoom.innerHTML = data2cahtMessage(cahtMessageData, e.target.innerHTML, e.target.dataset.chatroomId);
+        let response = await fetch(serverURL.getChatmessage + e.target.dataset.chatroomId, {
+            method: "GET",
+            cache: "no-cache",
+            headers: {
+                Authorization: localStorage.getItem("Cycle link token"),
+            },
+        })
+
+        if (!response.ok) {
+            chatRoom.innerHTML = data2chatroom(cahtMessageData, e.target.innerHTML, e.target.dataset.chatroomId);
+        } else {
+            let result = await response.json();
+            if (!result.result) {
+                chatRoom.innerHTML = data2chatroom([], e.target.innerHTML, e.target.dataset.chatroomId);  // {isMe: 0,msg: result.msg,time: ""}
+            } else {
+                let messagesData = result.data.map((item) => ({
+                    isMe: item.fName === localStorage.getItem("Cycle link user data"),
+                    msg: item.fContent,
+                    time: item.fTime
+                })
+                )
+                chatRoom.innerHTML = data2chatroom(messagesData, e.target.innerHTML, e.target.dataset.chatroomId);
+            }
+        }
+
         chatContainer.appendChild(chatRoom);
+        let messagesContainer = chatRoom.querySelector('.chat_message');
+        messagesContainer.scrollTo(0, messagesContainer.scrollHeight);
     });
 
 
@@ -308,10 +394,10 @@ function ClsChat() {
 
     //文字樣板 -- 
     const data2chatRobotMessage = array => {
-        let result = ""
+        let result = "";
         array.map((e) => {
             result += `<div class=${e.isMe ? "caht_Me" : "caht_notMe"}>${e.isMe ? "" : e.name + ": "}${e.msg}<div class="caht_arrow"></div></div>
-                        <div class="${e.isMe ? "caht_Me_time" : "caht_notMe_time"}">${e.time ? e.time : ""}</div>`;
+                        <div class="${e.isMe ? "caht_Me_time" : "caht_notMe_time"}">${e.time ? e.time.split(" ")[1] : ""}</div>`;
         });
         return result;
     };
@@ -341,14 +427,7 @@ function ClsChat() {
     });
 
     // 世界頻道div 發訊息
-    document.querySelector("#chat_robot_textarea").addEventListener("keydown", (e) => {
-        if (e.keyCode === 13 && !e.shiftKey) {
-            e.preventDefault();
-            // sendMessage 
-            sendMessage(e.target.value);
-            e.target.value = "";
-        }
-    })
+    document.querySelector("#chat_robot_textarea").addEventListener("keydown", EventSendChatMessage)
 
 
 

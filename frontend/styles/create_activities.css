@@ -161,6 +161,8 @@
 
 
 .create_active_basicInfo_div3 {
+  display: flex;
+  justify-content: flex-end;
   text-align: end;
 }
 
@@ -183,7 +185,8 @@
 }
 
 #create_active_btn_next,
-#create_active_btn_done {
+#create_active_btn_done,
+#create_active_btn_done_edit {
   padding: 0.8rem 1.5rem 0.8rem 1.5rem;
   font-size: 1.1rem;
   border-radius: 0.5rem;
@@ -193,7 +196,8 @@
 }
 
 #create_active_btn_next:hover,
-#create_active_btn_done:hover {
+#create_active_btn_done:hover,
+#create_active_btn_done_edit:hover {
   border: 1px solid rgb(209, 209, 209);
   transition: all 0.5s;
   cursor: pointer;

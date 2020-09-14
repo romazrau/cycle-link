@@ -30,17 +30,12 @@ router.get('/', async function (req, res, next) {
 // 查詢社團by社員ID
 router.get('/communityByMemberId/:id', async function (req, res, next) {
     try {
-
-
-
         let result = await Sql.searchByMemberId(req.params.id);
         res.json(result);
 
     } catch (err) {
         res.send({ result: 0, msg: "路由錯誤", data: err })
     }
-
-
 })
 
 
@@ -167,11 +162,6 @@ router.get('/communityById_communityMember/:id', async function (req, res, next)
                 })
             }
         }
-
-
-
-
-
         // console.log("++++++++++++++++++++++");
         // console.log(result.data);
         // console.log("----------------------------");
@@ -196,24 +186,13 @@ router.get('/communityById_communityMember/:id', async function (req, res, next)
                     res.json(result);
                 }
                 else {
-
                     let newResultArr = result.data.filter(item => item.ifManager == 1)
                     result.data = newResultArr;
-
-
                 }
-
             })
-
-
-
         }
-
-
-
-        console.log("----------------------------");
-        console.log(result.data);
-
+        // console.log("----------------------------");
+        // console.log(result.data);
         //顯示在頁面上 
         res.json(result);
     } catch (err) {
@@ -243,16 +222,11 @@ router.get('/communityByString/:str', async function (req, res, next) {
 //restful.API 風格
 router.post('/', async function (req, res, next) {
     try {
-
-
-
-
         // -- 是否有Token(驗證機制) 是會員才會有Token才能增加社團
         if (!req.user) {
             res.json({ result: 0, msg: "token 遺失" });
             return;
         }
-
 
         // es6 物件解構
         console.log("===================");
@@ -295,9 +269,6 @@ router.post('/', async function (req, res, next) {
         res.send({ result: 0, msg: "路由錯誤", data: err });
     }
 });
-
-
-
 
 
 
@@ -536,7 +507,6 @@ router.get('/members/:id', async function (req, res, next) {
 // 此路由/:id Restful.API
 //binding 方法,req,res是路由router方法給的
 router.delete('/:id', async function (req, res, next) {
-
     try {
 
         let result = await Sql.communityDelet(req.params.id);

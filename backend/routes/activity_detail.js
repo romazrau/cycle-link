@@ -254,11 +254,16 @@ router.put('/Edit', async function (req, res, next) {
         // let fMemberId = req.user.fId;
         // let fActivityId = req.params.actId
         let {
-            fActName
+            fId,
+            fActName,
+            fIntroduction,
+            fMinLimit,
+            fMaxLimit,
+            fCommunityId
         } = req.body
-        console.log("===== req.body ======" + req.body);
+        // console.log("===== req.body ======" + req.body);
         // console.log(fActName);
-        let result = await Sql.EditAct(fActName);
+        let result = await Sql.EditAct(fId, fActName, fIntroduction, fMinLimit, fMaxLimit, fCommunityId);
 
         // console.log("====== result =====" + result);
 

@@ -190,12 +190,15 @@ const searchByMemberId = async (fid) => {
   }
 };
 
-
-
-//** 會員Id加入社團 
-const communityAddByMemberId = async (fCommunityId, fMemberId, fDate, fAccessRightId) => {
+//** 會員Id加入社團
+const communityAddByMemberId = async (
+  fCommunityId,
+  fMemberId,
+  fDate,
+  fAccessRightId
+) => {
   try {
-    await sql.connect(config)
+    await sql.connect(config);
 
     let sqlStr = `
         INSERT INTO Community.tMemberList(fCommunityId, fMemberId , fJoinDate , fAccessRightId)  
@@ -425,7 +428,6 @@ const communityCreate = async (fName, fStatusId, fImgPath, fInfo, fDate) => {
   }
 };
 
-
 // todo routes還沒做
 //**加入社團by社員id 社團id
 // fAccessRightId為審核中
@@ -447,12 +449,11 @@ const communityAdd = async (fId, fCommunityId, fDate) => {
   }
 };
 
-
 // todo SQL待測試
 //** 修改社員身份by社員id 社團id
 const ChangeMemberAccessRight = async (fId, fCommunityId) => {
   try {
-    await sql.connect(config)
+    await sql.connect(config);
 
     let sqlStr = `
         UPDATE Community.tMemberList
@@ -462,19 +463,17 @@ const ChangeMemberAccessRight = async (fId, fCommunityId) => {
     // console.log(sqlStr);
 
     const result = await sql.query(sqlStr);
-    console.log(result);
 
     return {
       result: 1,
-      msg: "請求成功"
-    }
-
+      msg: "請求成功",
+    };
   } catch (err) {
     return {
       result: 0,
       msg: "SQL錯誤",
-      data: err
-    }
+      data: err,
+    };
   }
 };
 
@@ -482,7 +481,7 @@ const ChangeMemberAccessRight = async (fId, fCommunityId) => {
 //** 搜尋待審核社員 by社員id 社團id
 const SearchMemberAccessRight = async (fCommunityId) => {
   try {
-    await sql.connect(config)
+    await sql.connect(config);
 
     let sqlStr = `
        SELECT l.*, m.fName, m.fPhotoPath
@@ -517,10 +516,7 @@ const SearchMemberAccessRight = async (fCommunityId) => {
       data: err
     }
   }
-
-};
-
-
+}
 
 //**刪除社團:用社員fId設定fStatus停權
 //!會員頁面按解散社團
@@ -675,4 +671,22 @@ const updatatMemberList = async (fMemberManagerId, fCommunityId, ifManager) => {
 // *匯出方法 ， 多個方法包在{}裡， ex: {func1, func2}
 //{es6寫法communityList:communityList}
 
-module.exports = { communityList, communityById_communityDetail, communityById_communityManager, communityById_communityMember, communityByString, communityCreate, communityDelet, searchByMemberId, communityByFullString, communityAddByMemberId, updateCommunity, deletMemberOfCommunity, updatatMemberList, searchMemInCom, communityAdd, ChangeMemberAccessRight, SearchMemberAccessRight };
+module.exports = {
+  communityList,
+  communityById_communityDetail,
+  communityById_communityManager,
+  communityById_communityMember,
+  communityByString,
+  communityCreate,
+  communityDelet,
+  searchByMemberId,
+  communityByFullString,
+  communityAddByMemberId,
+  updateCommunity,
+  deletMemberOfCommunity,
+  updatatMemberList,
+  searchMemInCom,
+  communityAdd,
+  ChangeMemberAccessRight,
+  SearchMemberAccessRight,
+};

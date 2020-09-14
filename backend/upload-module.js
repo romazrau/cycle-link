@@ -15,7 +15,7 @@ const fileFilter = (req , file, callback) =>{
 const storage = multer.diskStorage({
     //儲存檔案位置
     destination: (req, file, cb)=>{
-        cb(null, __dirname + '/');
+        cb(null, __dirname + '/public/img');
     },
     //
     filename: (req, file, cb)=>{
@@ -24,5 +24,8 @@ const storage = multer.diskStorage({
 })
 
 
-const upload = multer({storage, fileFilter});
+const upload = multer({storage, fileFilter, imit: {
+    // 限制上傳檔案的大小為 20MB
+    fileSize: 20000000
+  }});
 module.exports = upload;

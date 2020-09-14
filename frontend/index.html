@@ -487,11 +487,11 @@
                 <div class="community_main_banner">
                     <div class="community_main_banner_searchbar">
                         <div class="CM_banner_searchbar_tag">
-                            <div class="CM_banner_searchbar_tag_item">
-                                <a href="#"><i class="fas fa-fire-alt"></i> 熱門社團</a>
+                            <div class="CM_banner_searchbar_tag_item CM_searchbar_hottiest_item">
+                                <i class="fas fa-fire-alt"></i> 熱門社團
                             </div>
-                            <div class="CM_banner_searchbar_tag_item">
-                                <a href="#"><i class="far fa-compass"></i> 探索</a>
+                            <div class="CM_banner_searchbar_tag_item CM_searchbar_explore_item">
+                                <i class="far fa-compass"></i> 探索
                             </div>
                         </div>
                         <div class="CM_banner_searchbar_input_container">
@@ -508,40 +508,7 @@
                                 <!-- </a> -->
                             </div>
                         </div>
-                        <div class="CM_recommend_container">
-                            <div class="CM_recommend_item">
-                                <div class="CM_recommend_item_img">
-                                    <img src="img/community/03.jpg" class="CM_recommend_item_img_img">
-                                </div>
-                                <div class="CM_recommend_item_info">
-                                    <p>社團名稱每次都取好長好長排版很難欸</p>
-                                </div>
-                            </div>
-                            <div class="CM_recommend_item">
-                                <div class="CM_recommend_item_img">
-                                    <img src="img/community/03.jpg" class="CM_recommend_item_img_img">
-                                </div>
-                                <div class="CM_recommend_item_info">
-                                    <p>社團名稱每次都取好長好長排版很難欸</p>
-                                </div>
-                            </div>
-                            <div class="CM_recommend_item">
-                                <div class="CM_recommend_item_img">
-                                    <img src="img/community/03.jpg" class="CM_recommend_item_img_img">
-                                </div>
-                                <div class="CM_recommend_item_info">
-                                    <p>社團名稱每次都取好長好長排版很難欸</p>
-                                </div>
-                            </div>
-                            <div class="CM_recommend_item">
-                                <div class="CM_recommend_item_img">
-                                    <img src="img/community/03.jpg" class="CM_recommend_item_img_img">
-                                </div>
-                                <div class="CM_recommend_item_info">
-                                    <p>社團名稱每次都取好長好長排版很難欸</p>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="CM_recommend_container"></div>
                         <!--社團類別選項刪除 
                             <div class="CM_appearCategory_item_container">
                             <div class="CM_appearCategory_item">
@@ -2622,7 +2589,7 @@
 
                 </div>
             </div>
-            //關注的活動註解
+           
             <!-- <div class="div_FavorActivity">
                 <div class="div_FavorActivity_Title">
                     <span class="span_FavorActivity_Title">關注的活動</span>
@@ -2654,7 +2621,7 @@
 
                 <div class="create_active_flex">
                     <div class="create_active_title">
-                        <h2>創建活動</h2>
+                        <h2 id="creatActTitle">創建活動</h2>
                         <div>
                             <a href="#create-activity" class="create_active_title_div">
                                 <p class="create_active_title_circle">1</p>基本資料
@@ -2825,14 +2792,16 @@
                                             <p>最大人數</p>
                                             <!-- ! -->
                                             <!-- <input type="checkbox" /> -->
-                                            <input type="text" maxlength="4" name="fMaxLimit" />
+                                            <input type="text" maxlength="4" name="fMaxLimit" id="actMaxPeople" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="create_active_basicInfo_div3">
-
                                     <button id="create_active_btn_pre">Pre</button>
-                                    <button typr="submit" id="create_active_btn_done">Done</button>
+                                    <button type="submit" id="create_active_btn_done"
+                                        style="display:block">Done</button>
+                                    <button type="submit" id="create_active_btn_done_edit"
+                                        style="display: none;">Done</button>
                                 </div>
 
                             </div>

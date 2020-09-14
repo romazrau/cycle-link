@@ -201,8 +201,55 @@ const ShowUserInfo = async (fMemberId) => {
 //   }
 // }
 
-//TODO ING
-const the4hottiest = async () => {};
+// 熱門社團搜尋
+const the4hottiest = async (x) => {
+  try {
+    await sql.connect(config);
+    let str = `with PostCommunity as(
+      select distinct p.fCommunityId as communityId, c.fName as communityName, c.fImgPath as communityImg
+      from Community.tPost as p
+      left join Community.tCommunity as c
+      on c.fId =  p.fCommunityId)
+      , FilterbyPost as(
+      select TOP(4) p.fCommunityId, count(p.fId) as PostCount
+      from Community.tPost as p
+      where p.fPostTime like '%/${x}/%'
+      group by p.fCommunityId
+      order by PostCount DESC)
+      select *
+      from FilterbyPost as fp
+      left join PostCommunity as pc
+      on fp.fCommunityId = pc.communityId
+    `;
+    const result = await sql.query(str);
+    return {
+      result: 1,
+      msg: "請求成功",
+      data: result.recordset,
+    };
+  } catch (err) {
+    return { result: 0, msg: "SQL錯誤", data: err };
+  }
+};
+
+//探索社團
+const explore4community = async () => {
+  try {
+    await sql.connect(config);
+    let str = `select top(4) c.fId as communityId, c.fName as communityName, c.fImgPath as communityImg
+    from Community.tCommunity as c
+    order by NEWID()
+    `;
+    const result = await sql.query(str);
+    return {
+      result: 1,
+      msg: "請求成功",
+      data: result.recordset,
+    };
+  } catch (err) {
+    return { result: 0, msg: "SQL錯誤", data: err };
+  }
+};
 
 const searcharticle = async (x) => {
   try {
@@ -272,4 +319,6 @@ module.exports = {
   searcharticle,
   addarticle,
   ShowUserInfo,
+  the4hottiest,
+  explore4community,
 };
