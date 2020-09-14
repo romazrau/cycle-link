@@ -132,7 +132,8 @@ const JoinById = async (fid) => {
             select joinList.*, tJoinType.fJoinName
             from joinList
             LEFT JOIN Activity.tJoinType
-            on joinList.fJoinTypeId = tJoinType.fId`
+            on joinList.fJoinTypeId = tJoinType.fId
+            order by fId desc`
         const result = await sql.query(sqlStr)
         return {
             result: 1,
@@ -335,7 +336,9 @@ ${CreateTag5(fLabelName)}`
         console.log(sqlStr);
         const result = await sql.query(sqlStr)
         // console.dir(result)
-        // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
+        // let sqlStr2 = ``
+        // const result2 = await sql.query(sqlStr2)
+
         return {
             result: 1,
             msg: "請求成功"
@@ -415,13 +418,13 @@ values (${fActivityId},${fActivityLabelId})`
 };
 
 //* ----------------------- 編輯活動 ----------------------- //
-const EditAct = async (fActName) => {
+const EditAct = async (fId, fActName, fIntroduction, fMinLimit, fMaxLimit, fCommunityId) => {
     try {
         await sql.connect(config)
         let sqlStr = `
             update Activity.tActivity
-            set fActName = '${fActName}'
-            where fId=139`
+            set fActName = '${fActName}', fIntroduction = '${fIntroduction}',fMinLimit=${fMinLimit},fMaxLimit=${fMaxLimit},fCommunityId=${fCommunityId}
+            where fId=${fId}`
         console.log(sqlStr);
         const result = await sql.query(sqlStr)
         // console.dir(result)
