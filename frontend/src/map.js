@@ -103,11 +103,7 @@ function map_GetActivityList(o){
     
      
      }
-    
-    
-    
-    
-    
+
     /*點擊地圖 */
     function onMapClick(e) {
       //清除多餘標籤
@@ -124,7 +120,7 @@ function map_GetActivityList(o){
      
       OriginalPlacelat=e.latlng.lat;
       OriginalPlacelng=e.latlng.lng;
-     
+      clearcheckbox();
     }
     map.on('click', onMapClick);
     
@@ -176,12 +172,8 @@ function map_GetActivityList(o){
             map_cities[i].addEventListener("click", (e) => {
               e.preventDefault();
               //清空類型搜索
-              let map_ckeck=document.querySelectorAll(".map_ckeckinput")
-              for(let k=0;k<map_ckeck.length;k++)
-              {
-                console.log(map_ckeck[k]);
-                map_ckeck[k].checked=false;
-              }
+              clearcheckbox()
+              
               document.getElementById("map_cityspan").innerHTML =
                 map_cities[i].textContent;
                 
@@ -193,7 +185,7 @@ function map_GetActivityList(o){
                     
                     OriginalPlacelat=CityList[j].lat;
                     OriginalPlacelng=CityList[j].lng;
-                    
+                    map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng), 11);
                     document.getElementById("map_activityintroduction").innerHTML=CityList[j].introduction;
                     document.querySelector(".map_imgbox").src=CityList[j].src;
                 }
@@ -203,7 +195,15 @@ function map_GetActivityList(o){
     
             });
           }
-    
+    function clearcheckbox()
+    {
+      let map_ckeck=document.querySelectorAll(".map_ckeckinput")
+              for(let k=0;k<map_ckeck.length;k++)
+              {
+                console.log(map_ckeck[k]);
+                map_ckeck[k].checked=false;
+              }
+    }
     /*-----------------------------------------END--------------------- */
     /**距離搜尋 */
     document.getElementById("map_Setdistance").addEventListener("input",map_ChangeDistance)
@@ -259,7 +259,7 @@ function map_GetActivityList(o){
     {
       
       if($(`#type${i+1}`).prop("checked")){
-        map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng), 11);
+        map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng));
         let type=typecheck[i].textContent;
         map_TypeMarkShow(type,ActivityList)
         
@@ -288,35 +288,9 @@ function map_GetActivityList(o){
         break;
 
         }
-      }
-    
-        
-    
+      }   
     })
     }
-    
-    
-    
-    // var typeBtn=document.querySelectorAll(".map_typeBtn")
-    // for(let i=0;i<typeBtn.length;i++)
-    // {
-    //   typeBtn[i].addEventListener("click",(e)=>
-    // {
-    
-    //     e.preventDefault();
-    //     map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng), 11);
-    
-    
-    
-    
-    //     let type=typeBtn[i].textContent;
-        
-    
-    //     map_TypeMarkShow(type,ActivityList)
-    
-    // })
-    // }
-    
     
     function map_TypeMarkShow(str,arr){
       var layers=[]
@@ -335,7 +309,7 @@ function map_GetActivityList(o){
             var marker=event.target;
             var latlng = marker.getLatLng();
             map_setInformation(latlng.lat,latlng.lng);
-            map.setView(new L.LatLng(latlng.lat,latlng.lng), 11)
+            map.setView(new L.LatLng(latlng.lat,latlng.lng))
           
           });
         layers.push(layer);  
@@ -352,7 +326,7 @@ function map_GetActivityList(o){
             var marker=event.target;
             var latlng = marker.getLatLng();
             map_setInformation(latlng.lat,latlng.lng);
-            map.setView(new L.LatLng(latlng.lat,latlng.lng), 11)
+            map.setView(new L.LatLng(latlng.lat,latlng.lng))
           
           });
         layers.push(layer);  
@@ -367,7 +341,7 @@ function map_GetActivityList(o){
           var marker=event.target;
           var latlng = marker.getLatLng();
           map_setInformation(latlng.lat,latlng.lng);
-          map.setView(new L.LatLng(latlng.lat,latlng.lng), 11)
+          map.setView(new L.LatLng(latlng.lat,latlng.lng))
         });
         layers.push(layer); 
        })
@@ -380,7 +354,7 @@ function map_GetActivityList(o){
           var marker=event.target;
           var latlng = marker.getLatLng(); 
           map_setInformation(latlng.lat,latlng.lng);
-          map.setView(new L.LatLng(latlng.lat,latlng.lng), 11) 
+          map.setView(new L.LatLng(latlng.lat,latlng.lng)) 
           });
           layers.push(layer); 
         })
@@ -393,7 +367,7 @@ function map_GetActivityList(o){
           var marker=event.target;
           var latlng = marker.getLatLng(); 
           map_setInformation(latlng.lat,latlng.lng);
-          map.setView(new L.LatLng(latlng.lat,latlng.lng), 11) 
+          map.setView(new L.LatLng(latlng.lat,latlng.lng)) 
           });
           layers.push(layer); 
         })
@@ -406,7 +380,7 @@ function map_GetActivityList(o){
           var marker=event.target;
           var latlng = marker.getLatLng(); 
           map_setInformation(latlng.lat,latlng.lng);
-          map.setView(new L.LatLng(latlng.lat,latlng.lng), 11) 
+          map.setView(new L.LatLng(latlng.lat,latlng.lng)) 
           });
           layers.push(layer); 
         })

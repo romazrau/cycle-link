@@ -116,10 +116,10 @@ router.get('/activeinsertseensql/:actId/:dateStr', async function(req, res, next
 // 加入我的興趣
 router.post('/addActLikeToSQL', async function(req, res, next) {
   // 判斷前端req資料是否有登入，如為false回傳result:0
-  if( !req.user ){
-    res.json({result:0, msg:"TOKEN?"});
-    return;
-  }
+  // if( !req.user ){
+  //   res.json({result:0, msg:"TOKEN?"});
+  //   return;
+  // }
   try{
     // *用 await 等待資料庫回應
     let fMemberId = req.user.fId ;
@@ -141,6 +141,25 @@ router.delete('/removeactlikesql', async function(req, res, next) {
     let fMemberId= req.user.fId;
     // *用 await 等待資料庫回應
     let result = await activesql.removeactlikesql(fActivityId,fMemberId);
+    console.log(result);
+                                          //Postid,Memberid
+    // let result = await Sql.getLikes(); 測試路由
+    res.json(result.data);
+
+  }catch(err){
+    res.send({result:0, msg:"路由錯誤", data:err});
+  } 
+});
+
+router.get('/likeListSQL', async function(req, res, next) {
+  try{
+   
+    let fJoinTypeId=0;
+    let fMemberId= req.user.fId;
+    console.log(fMemberId)
+    
+    // *用 await 等待資料庫回應
+    let result = await activesql.likeListSQL(fJoinTypeId,fMemberId);
     console.log(result);
                                           //Postid,Memberid
     // let result = await Sql.getLikes(); 測試路由
