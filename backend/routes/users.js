@@ -227,7 +227,7 @@ router.post("/signup", async (req, res) => {
     fPassword = password;
 
     // TODO 接收img
-    let fPhotoPath = "img/"+ req.files[1].filename;
+    let fPhotoPath = "img/"+ req.files[0].filename;
     console.log("fPhotoPath:",fPhotoPath);
 
     req.session[sessionKey.SK_USER_DATA] = {
