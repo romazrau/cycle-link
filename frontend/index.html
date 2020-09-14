@@ -601,7 +601,7 @@
                         附近<label for="" id="Activitydistance"></label>
                         <span>公里的活動</span>
                     </div>
-                    
+
                     <div class="map_introductionBox">
 
                         <div class="map_controlltitle">簡介</div>
@@ -612,13 +612,19 @@
                 </div>
                 <div class="checkbox_container">
 
-                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type1" value="其他"><label for="type1">其他</label></div>
-                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type2" value="志工活動"><label for="type2">志工活動</label></div>
-                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type3" value="環境清潔"><label for="type3">環境清潔</label></div>
-                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type4" value="自然教育"><label for="type4">自然教育</label></div>
-                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type5" value="二手市集"><label for="type5">二手市集</label></div>
-                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type6" value="運動"><label for="type6">運動</label></div>
-                    
+                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type1" value="其他"><label
+                            for="type1">其他</label></div>
+                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type2" value="志工活動"><label
+                            for="type2">志工活動</label></div>
+                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type3" value="環境清潔"><label
+                            for="type3">環境清潔</label></div>
+                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type4" value="自然教育"><label
+                            for="type4">自然教育</label></div>
+                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type5" value="二手市集"><label
+                            for="type5">二手市集</label></div>
+                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type6" value="運動"><label
+                            for="type6">運動</label></div>
+
                 </div>
 
 
@@ -2187,7 +2193,7 @@
                                 <!-- 可惡啊這邊還沒動態寫入 -->
                                 <div class="FontSectionTitle">(10)</div>
                             </div>
-                            
+
 
                             <!------------------------/// Left part ///  ------------------------>
                             <div class="FlexContainer">
@@ -2648,7 +2654,7 @@
 
                 <div class="create_active_flex">
                     <div class="create_active_title">
-                        <h2>創建活動</h2>
+                        <h2 id="creatActTitle">創建活動</h2>
                         <div>
                             <a href="#create-activity" class="create_active_title_div">
                                 <p class="create_active_title_circle">1</p>基本資料
@@ -2819,14 +2825,16 @@
                                             <p>最大人數</p>
                                             <!-- ! -->
                                             <!-- <input type="checkbox" /> -->
-                                            <input type="text" maxlength="4" name="fMaxLimit" />
+                                            <input type="text" maxlength="4" name="fMaxLimit" id="actMaxPeople" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="create_active_basicInfo_div3">
-
                                     <button id="create_active_btn_pre">Pre</button>
-                                    <button typr="submit" id="create_active_btn_done">Done</button>
+                                    <button type="submit" id="create_active_btn_done"
+                                        style="display:block">Done</button>
+                                    <button type="submit" id="create_active_btn_done_edit"
+                                        style="display: none;">Done</button>
                                 </div>
 
                             </div>
