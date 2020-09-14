@@ -19,6 +19,8 @@ const serverURL = {
   articleuser: `${rootURL}/article/userinfo`,
   articlebycommunity: `${rootURL}/article/community/`,
   addarticle: `${rootURL}/article/add`,
+  hottiestcommunity: `${rootURL}/article/hottiest/`,
+  explorecommunity: `${rootURL}/article/explore`,
   homePages: `${rootURL}/home/`,
   community: `${rootURL}/community/`,
   communityManager: `${rootURL}/community/communityManager/`,
