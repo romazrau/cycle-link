@@ -48,7 +48,6 @@ const activesql = async () => {
         };
         // 錯誤處理
     } catch (err) {
-        console.log(err);
         return {
             result: 0,
             msg: "SQL 錯誤",
@@ -76,7 +75,7 @@ const activemainlevelsql = async () => {
         };
         // 錯誤處理
     } catch (err) {
-        console.log(err);
+        
         return {
             result: 0,
             msg: "SQL 錯誤",
@@ -138,7 +137,6 @@ const activeforyousql = async () => {
         };
         // 錯誤處理
     } catch (err) {
-        console.log(err);
         return {
             result: 0,
             msg: "SQL 錯誤",
@@ -193,7 +191,6 @@ const activesearchdetailsql = async () => {
         };
         // 錯誤處理
     } catch (err) {
-        console.log(err);
         return {
             result: 0,
             msg: "SQL 錯誤",
@@ -211,7 +208,7 @@ const activeseensql = async (id) => {
         await sql.connect(config)
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
         let sqlStr = `WITH active123 AS (  
-            select  S.*, A.fActName,A.fActLocation,A.fImgPath 
+            select  S.*, A.fActName,A.fActLocation,A.fImgPath,A.fActivityDate
             from Activity.tSearchList as S 
             left join Activity.tActivity as A 
             on A.fId = S.fActivityId
@@ -221,7 +218,7 @@ const activeseensql = async (id) => {
             from Activity.tJoinList 
             where fMemberId = ${id}
         )
-            select top(6) S.*, J.*  
+            select top(6) S.*, J.fJoinTypeId  
             from active123 as S
             LEFT JOIN  mylist  as J
             on  S.fActivityId  = J.fActivityId; `
@@ -254,7 +251,6 @@ const activeinsertseensql = async (fActivityId, fMemberId, fSearchTime) => {
         // make sure that any items are correctly URL encoded in the connection string
         // 連接資料庫
         await sql.connect(config)
-
 
         let sqlstr1 = `select *
         from Activity.tSearchList 
@@ -336,11 +332,9 @@ const removeactlikesql = async (fActivityId, fMemberId) => {
         `;
         const result = await sql.query(sqlString);
          console.dir(result);
-         console.log("SQL",result)
 
         return { result: 1, msg: "刪除成功", data: result.recordset };
     } catch (err) {
-        console.log(err);
         return { result: 0, msg: "SQL 問題", data: result };
     }
 };
