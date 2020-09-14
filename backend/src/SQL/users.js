@@ -276,7 +276,32 @@ const createMember = async (fAccount, fPassword, fName, fBirthdate, fMail,
         return { result: 0, msg: "SQL 問題" };
     }
 };
+//關注活動
+// const MemberLike = async (fAccount, fPassword, fName, fBirthdate, fMail,
+//     fAddress, fCity, fCeilphoneNumber,
+//     fPhotoPath, fIntroduction) => {
+//     try {
+//         // make sure that any items are correctly URL encoded in the connection string
+//         await sql.connect(config)
+//         const sqlString = `
+//         INSERT INTO Member.tMember
+// 	    ( fAccount, fPassword, fName, fBirthdate, fMail,
+// 	    fAddress, fCity, fCeilphoneNumber,
+// 	    fPhotoPath, fIntroduction )
+//         VALUES
+// 	    ('${fAccount}', '${fPassword}', '${fName}', '${fBirthdate}', '${fMail}',
+// 		'${fAddress}', '${fCity}', ${fCeilphoneNumber}, 
+// 		'${fPhotoPath}', '${fIntroduction}');`
+//         const result = await sql.query(sqlString);
+//         // console.dir(result);
+//         console.log(result);
 
+//         return { result: 1, msg: "新增成功", data: result.rowsAffected };
+//     } catch (err) {
+//         console.log(err);
+//         return { result: 0, msg: "SQL 問題" };
+//     }
+// };
 
 
 module.exports = { test, login, changeDetail, memberById, memberList, memberByNameOrAccount, memberByAccount, memberByAccountAndEmail, createMember, changePassword };

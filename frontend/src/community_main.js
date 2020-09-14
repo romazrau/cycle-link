@@ -141,9 +141,7 @@ ${ImgIsNullOrNot(x.PostImg)}
           }"></i>
           <span>${x.HowMuchLike || ""}</span>
           <i class="far fa-comments" id="replyIconbyfId${x.PostId}"></i>
-          <span>${
-      x.HowMuchReply || ""
-    }</span>
+          <span>${x.HowMuchReply || ""}</span>
           </div>
           <div class="replyContainer" id="bindPostReplybyfId${x.PostId}"></div>
         </div>
@@ -192,12 +190,12 @@ ${ImgIsNullOrNot(x.PostImg)}
 
   //社團首頁：社團卡片文字樣板for搜尋結果
   const htmlCommunityCard = (x) => {
-    return `<div class="CM_recommend_item" id="CM_recommend_${x.CommunityId}">
+    return `<div class="CM_recommend_item" onclick="location.hash='#community/detail/${x.communityId}'">
     <div class="CM_recommend_item_img">
-        <img src="${x.CommunityImgPath}" class="CM_recommend_item_img_img">
+        <img src="${x.communityImg}" class="CM_recommend_item_img_img">
     </div>
     <div class="CM_recommend_item_info">
-        <p>${x.CommunityName}</p>
+        <p>${x.communityName}</p>
     </div>
 </div>`;
   };
@@ -215,14 +213,60 @@ ${ImgIsNullOrNot(x.PostImg)}
       CM_recommend.innerHTML += htmlCommunityCard(e);
     });
   };
-  //TODO社團卡片：路由撈資料
-  //   const getRecommendCommunity = async() => {
-  //     try{
-  // let response = await
-  //     }catch(err){
-  // console.log(err);
-  //     }
-  //   }
+
+  //熱門社團卡片：路由撈資料
+  const getRecommendCommunity = async (x) => {
+    try {
+      console.log(serverURL.hottiestcommunity);
+      let response = await fetch(serverURL.hottiestcommunity + x, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-cache",
+        credentials: "include",
+      });
+      let result = await response.json();
+      display_recommendCommunity(result.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  //熱門社團：點擊觸發
+  document
+    .querySelector(".CM_searchbar_hottiest_item")
+    .addEventListener("click", function () {
+      let nowtime = new Date();
+      let nowMonth = timeFormatAdjust(nowtime.getMonth() + 1);
+      getRecommendCommunity(nowMonth);
+    });
+
+  //套所社團卡片：路由撈資料
+  const getExploreCommunity = async () => {
+    try {
+      console.log(serverURL.explorecommunity);
+      let response = await fetch(serverURL.explorecommunity, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-cache",
+        credentials: "include",
+      });
+      let result = await response.json();
+      console.log(result.data);
+      display_recommendCommunity(result.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  //探索社團：點擊觸發
+  document
+    .querySelector(".CM_searchbar_explore_item")
+    .addEventListener("click", function () {
+      getExploreCommunity();
+    });
 
   //社團首頁：文章字串匯入function
   const display_postDetail = (o) => {
@@ -437,7 +481,7 @@ ${ImgIsNullOrNot(x.PostImg)}
           let id_arr = this.id.split("fId");
           removeLikeToSQL(id_arr[1]);
           likesMinusCount(this);
-          
+
           // console.log("愛心又被點了");
         }
       });
@@ -560,24 +604,21 @@ ${ImgIsNullOrNot(x.PostImg)}
   //TODO 新增文章
   //TODO 編輯文章
   //TODO 刪除文章
-  function likesPlusCount(e)
-  {
-    let target=e.parentNode.getElementsByTagName("span")[0];
-    if(target.innerHTML==""){
-      target.innerHTML=1;
-    }else{
-      target.innerHTML=parseInt(target.innerHTML)+1;
+  function likesPlusCount(e) {
+    let target = e.parentNode.getElementsByTagName("span")[0];
+    if (target.innerHTML == "") {
+      target.innerHTML = 1;
+    } else {
+      target.innerHTML = parseInt(target.innerHTML) + 1;
     }
   }
-  function likesMinusCount(e)
-  {
-       let target=e.parentNode.getElementsByTagName("span")[0];
-       if(target.innerHTML=="1"){
-        target.innerHTML="";
-      }else{
-        target.innerHTML=parseInt(target.innerHTML)-1;
-      }
-
+  function likesMinusCount(e) {
+    let target = e.parentNode.getElementsByTagName("span")[0];
+    if (target.innerHTML == "1") {
+      target.innerHTML = "";
+    } else {
+      target.innerHTML = parseInt(target.innerHTML) - 1;
+    }
   }
 
   //用不上的社團類別動態

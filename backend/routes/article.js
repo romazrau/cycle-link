@@ -29,9 +29,7 @@ router.get("/community/:communityid", async function (req, res, next) {
 
 router.get("/userinfo", async function (req, res, next) {
   try {
-    console.log(12321313123);
     let fMemberId = req.user.fId;
-    console.log(fMemberId);
     let UserResult = await Sql.ShowUserInfo(fMemberId);
     res.json(UserResult);
     console.log(UserResult);
@@ -50,7 +48,39 @@ router.get("/reply", async function (req, res, next) {
   }
 });
 
-//搜尋文章
+//熱門社團
+router.get("/hottiest/:nowMonth", async function (req, res, next) {
+  try {
+    let hottiestResult = await Sql.the4hottiest(req.params.nowMonth);
+    for (let i = 0; i < hottiestResult.data.length; i++) {
+      if (!hottiestResult.data[i].communityImg) {
+        hottiestResult.data[i].communityImg =
+          "img/community/community-default.png";
+      }
+    }
+    res.json(hottiestResult);
+  } catch (err) {
+    res.send(err);
+  }
+});
+//探索社團
+router.get("/explore", async function (req, res, next) {
+  try {
+    let exploreResult = await Sql.explore4community();
+    //判斷社團照片為空值時，帶入預設圖片
+    for (let i = 0; i < exploreResult.data.length; i++) {
+      if (!exploreResult.data[i].communityImg) {
+        exploreResult.data[i].communityImg =
+          "img/community/community-default.png";
+      }
+    }
+    res.json(exploreResult);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+//****搜尋文章（這個之後的路徑不能用/xxx，不然會被蓋掉）
 router.get("/:searchinput", async function (req, res, next) {
   try {
     let Searchresult = await Sql.searcharticle(req.params.searchinput);
