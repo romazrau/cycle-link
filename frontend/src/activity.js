@@ -321,9 +321,12 @@ function ClsActivity() {
                 datestart = startinput.value;
                 datestartarr = datestart.split("/");
                 newdatestart = datestartarr[2]+"/" + datestartarr[0]+"/" + datestartarr[1];
+                dateend = endinput.value;
+                dateendarr = dateend.split("/");
+                newdateend = dateendarr[2]+"/" + dateendarr[0]+"/" + dateendarr[1];
                 let satrttime = Date.parse(newdatestart);
-                
-                if(acttime >  satrttime )
+                let endtime = Date.parse(newdateend);
+                if(acttime >  satrttime && acttime <  endtime )
                 {   
                     resultdate_arr.push(datearr[i]);
                     
