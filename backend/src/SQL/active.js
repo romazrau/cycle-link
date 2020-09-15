@@ -23,19 +23,21 @@ const activesql = async () => {
         // 連接資料庫
         await sql.connect(config)
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
-        let sqlStr = `with act123 as(
-            select top(6)  * from Activity.tActivity
-            order by  newid()
-        ),jo as (
-            select j.fActivityId,j.fMemberId
-            from Activity.tJoinList as J
-        )
-        select A.* , J.*
-        from  act123 as A 
-        left join jo as J
-        on A.fId = J.fActivityId
-        `
+        // let sqlStr = `with act123 as(
+        //     select top(6)  * from Activity.tActivity
+        //     order by  newid()
+        // ),jo as (
+        //     select j.fActivityId,j.fMemberId
+        //     from Activity.tJoinList as J
+        // )
+        // select A.* , J.*
+        // from  act123 as A 
+        // left join jo as J
+        // on A.fId = J.fActivityId
+        // `
+        let sqlStr =`select top(6)  * from Activity.tActivity order by  newid()`
         // todo where j.fMemberId = ${}
+        
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
         console.dir(result.recordset)
@@ -338,8 +340,24 @@ const removeactlikesql = async (fActivityId, fMemberId) => {
         return { result: 0, msg: "SQL 問題", data: result };
     }
 };
+/*-------------------------*/
+const likeListSQL = async (fJoinTypeId, fMemberId) => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        await sql.connect(config)
+        const sqlString = `
+        SELECT * FROM Activity.tJoinlist
+        WHERE fJoinTypeId=${fJoinTypeId} AND fMemberId=${fMemberId}
+        `;
+        const result = await sql.query(sqlString);
+         console.dir(result);
 
-//
+        return { result: 1, msg: "刪除成功", data: result.recordset };
+    } catch (err) {
+        return { result: 0, msg: "SQL 問題", data: result };
+    }
+};
+
 
 //直接測試用 func ， node src/SQL/test.js
 // 解除註解，並把匯出方法註解才能用喔
@@ -355,6 +373,7 @@ module.exports = {
     activeinsertseensql,
     activeforyousql,
     addActLikeTosql,
-    removeactlikesql
+    removeactlikesql,
+    likeListSQL,
     
 };
