@@ -30,16 +30,24 @@ function ClsChat() {
         room.innerHTML = data2chatRobotMessage(messages);
         room.scrollTo(0, room.scrollHeight);
     }
+    // world room 用
+    const worldRoomReconnect = () => {
+        if(! chatRobotWindow.classList.contains("hide")){
+            console.log("世界頻道 open");
+            socket.emit("joinRoom", { chatroomId: "world" });
+        }
+    }
 
+    // 私人聊天室列表
     let chatroomList = [];
     const setChatroomList = (roomListObj) => {
         chatroomList.push(roomListObj);
-        document.querySelector(".chat_list").innerHTML = data2cahtList(chatroomList);
     }
-    const initChatroomList = async () => {
+    const initChatroomList = async ( ) => {
+        chatroomList = [];
         const chatList = document.querySelector(".chat_list");
+        chatList.innerHTML = "";
         try {
-            chatList.innerHTML = "";
             let respones = await fetch(serverURL.getChatroom, {
                 cache: "no-cache",
                 headers: {
@@ -60,26 +68,39 @@ function ClsChat() {
 
                 // console.log("joinRoom: " + item.fId);
                 socket.emit("joinRoom", { chatroomId: item.fId });
+
             })
 
-
-            // console.log(chatroomList);
             // console.groupEnd("chatroom List");
-
+            document.querySelector(".chat_list").innerHTML = data2cahtList(chatroomList);
         } catch (ex) {
             console.log(ex);
             chatList.innerHTML = `<div>連線錯誤</div>`;
         }
     }
+    const reFlashChatroomList = (chatroomId) => {
+        let index = chatroomList.findIndex((item)=> item.fId == chatroomId);
+        let pop = chatroomList.splice(index, 1)[0];
+        chatroomList.unshift(pop);
+
+        console.log(index);
+        console.log(pop);
+        console.log(chatroomList);
+
+        const chatList = document.querySelector(".chat_list");
+        chatList.innerHTML = "";
+
+        document.querySelector(".chat_list").innerHTML = data2cahtList(chatroomList);
+    }
 
     // 私人聊天室用
-    const  setMessagesTo = (chatroomId, msgObj) => {
-        let roomElement = document.querySelector(`#chatRoomId_${chatroomId}`); 
-        if(roomElement){
+    const setMessagesTo = (chatroomId, msgObj) => {
+        let roomElement = document.querySelector(`#chatRoomId_${chatroomId}`);
+        if (roomElement) {
             let messagesContainer = roomElement.querySelector('.chat_message');
             let prevDate = messagesContainer.dataset.prevDate;
             let msgDate = msgObj.time.split(" ")[0];
-            if(prevDate !== msgDate){
+            if (prevDate !== msgDate) {
                 messagesContainer.innerHTML += `<div class="chat_info_message">${msgDate}</div>`
             }
             messagesContainer.dataset.prevDate = msgDate;
@@ -97,7 +118,7 @@ function ClsChat() {
         console.log("%c" + title + "  " + msg, "color:green;font-size:16px;");
     }
 
-    // 設定 socket ---------------------------------------------------------------------
+    // *設定 socket ---------------------------------------------------------------------
     var setupSocket = () => {
         const token = localStorage.getItem('Cycle link token');
         // console.group("socket-----------");
@@ -111,17 +132,21 @@ function ClsChat() {
             // console.log(newSocket);
 
             newSocket.on("disconnect", () => {
-                setSocket(null);
-                setTimeout(setupSocket, 3000);
+                // setSocket(null);
+                // setTimeout(setupSocket, 3000);
                 makeToast("error", "Socket Disconnected!");
+                socket.removeAllListeners("newMessage");
             });
 
-
             newSocket.on("connect", () => {
+                setSocket(newSocket);
                 makeToast("success", "Socket Connected!");
+                initChatroomList();
+                worldRoomReconnect();
 
                 socket.on("newMessage", ({ message, userId, userName, time, chatroomId }) => {
                     console.log("get msg:" + message + " ||from: " + userName + " ||room: " + chatroomId);
+                    reFlashChatroomList(chatroomId);
                     let data = {
                         isMe: localStorage.getItem("Cycle link user data") == userName ? 1 : 0,
                         name: userName,
@@ -136,10 +161,17 @@ function ClsChat() {
 
                 })
                 // socket.removeAllListeners("newMessage");
+
+                socket.on("newChatroom", async () => {
+                    initChatroomList();
+                    console.log("new Chatroom create");
+                })
+
+
             });
 
-            setSocket(newSocket);
-
+        }else{
+            makeToast("", "Socket can't connect!");
         }
         // console.groupEnd("socket-----------");
     }
@@ -285,13 +317,13 @@ function ClsChat() {
 
 
     //文字樣板 -- 參考 html 中聊天機器人格式
-    const data2chatroom = (array, title, chatRoomId) => {        
+    const data2chatroom = (array, title, chatRoomId) => {
         let prevDate = "1911/01/01";
         let msgs = array.map((e) => {
             let date = e.time.split(" ")[0];
 
             let result = "";
-            if(prevDate !== date){
+            if (prevDate !== date) {
                 result += `<div class="chat_info_message">${date}</div>`
             }
             prevDate = date;
@@ -451,7 +483,6 @@ function ClsChat() {
     }
     // TODO 登入後開啟
 
-    initChatroomList();
 }
 const Chat = new ClsChat();
 

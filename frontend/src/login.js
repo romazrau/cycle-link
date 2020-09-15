@@ -14,7 +14,7 @@ document.querySelector("#loginSubmit").addEventListener(
             let resopne = await fetch(serverURL.login, {
                 method: "POST",     // POST
                 body: formData,     // *攜帶的 FormData
-                cache: 'no-cache', 
+                cache: 'no-cache',
                 credentials: 'include',
                 mode: 'cors',
                 referrer: "client",
@@ -24,14 +24,15 @@ document.querySelector("#loginSubmit").addEventListener(
 
             console.log(result);
             if (result.result == "1") {
-                let show = `<div>${result.data.fName}<br/>歡迎</div>`;
-                document.querySelector("#header_link_login").innerHTML = show;
-                document.querySelector('.navebar_msg_icons').classList.remove("hide");
-                location.hash = "#personal-maneger";
+                // let show = `<div>${result.data.fName}<br/>歡迎</div>`;
+                // document.querySelector("#header_link_login").innerHTML = show;
+                // document.querySelector('.navebar_msg_icons').classList.remove("hide");
+                // location.hash = "#personal-maneger";
 
                 window.localStorage.setItem("Cycle link token", result.token);   // *存前端來的 JWT 進 localStorage 裡
-                window.localStorage.setItem("Cycle link user data", result.data.fName);  
-                // setupSocket();
+                window.localStorage.setItem("Cycle link user data", result.data.fName);
+
+                location.reload();
             }
         } catch (ex) {
             console.log(ex);
