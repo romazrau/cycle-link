@@ -222,7 +222,7 @@ function ClsActivityDetail() {
 
     // --- 參與者人數匯入 --- //
     const display_actDetailJoinCount = (o) => {
-        // activity_detail_participant_count.innerHTML = "";
+        activity_detail_participant_count.innerHTML = "";
         // console.log(o[0].JoinCount)
         activity_detail_participant_count.innerHTML = actDetail_participant_count(o[0].JoinCount);
 
@@ -263,29 +263,6 @@ function ClsActivityDetail() {
         }
     };
 
-    // const actDetailPost = async () => {
-    //     try {
-    //         // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
-    //         // *用變數接 fetch 結果 ，要用await等。
-    //         let actForm = document.querySelector("#creatAct_form");
-    //         let actFormData = new FormData(actForm);
-    //         let response = await fetch(serverURL.actDetail, {
-    //             method: "POST", // http request method 
-    //             headers: { // http headers
-    //                 'Content-Type': 'application/json' // 請求的資料類型
-    //             },
-    //             body: actFormData,
-    //             // 以下跟身分認證有關，後端要使用session 要帶這幾項
-    //             cache: 'no-cache',
-    //             credentials: 'include',
-    //         });
-    //         // 用變數接 fetch結果的資料內容， 要用await等。
-    //         let result = await response.json();
-    //     } catch (err) {
-    //         console.log(err);
-    //         // 錯誤處理
-    //     }
-    // }
 
     // * -------------------------------- 創建活動 -------------------------------- //
     const CreateActivity = async () => {
@@ -389,7 +366,6 @@ function ClsActivityDetail() {
 
 
     // TODO: -------------------------------- 創建活動 地圖座標 -------------------------------- //
-    // TODO: -------------------------------- 創建活動 標籤寫入hadLabel -------------------------------- //
     // TODO: -------------------------------- 刪除活動 -------------------------------- //
     // TODO: -------------------------------- 加入最愛活動 -------------------------------- //
     // TODO: -------------------------------- 標籤搜尋 -------------------------------- //
@@ -416,7 +392,7 @@ function ClsActivityDetail() {
         });
         let result = await response.json();
         // console.log(result);
-
+        // 2020/01/01 02:00:00
         let fActivityDate = result.data.detail[0].fActivityDate.split(" ")
         let fActivityEndDate = result.data.detail[0].fActivityEndDate.split(" ")
         let fCommunityId = result.data.detail[0].fCommunityId
@@ -426,8 +402,8 @@ function ClsActivityDetail() {
         document.querySelector("#create_active_text").value = result.data.detail[0].fIntroduction
         document.querySelector("#ac_date_from").value = fActivityDate[0]
         document.querySelector("#ac_date_to").value = fActivityEndDate[0]
-        document.querySelector("#ac_date_from_time").value = fActivityDate[1]
-        document.querySelector("#ac_date_to_time").value = fActivityEndDate[1]
+        document.querySelector("#ac_date_from_time").value = fActivityDate[1].substring(0, 5)
+        document.querySelector("#ac_date_to_time").value = fActivityEndDate[1].substring(0, 5)
 
         document.querySelector("#ac_date_from_div").setAttribute("style", "display:block")
         document.querySelector("#ac_date_to_div").setAttribute("style", "display:block")
@@ -603,61 +579,6 @@ function ClsActivityDetail() {
         console.log(actDetail(actDetailId))
     })
 
-
-
-
-    //  TODO: -------------------------------- 為您推薦 文字樣板 -------------------------------- //
-    this.htmlActCard = (o) => {
-        return ` 
-    <div class="active_card_container">
-        <div class="active_card" >
-            <i class="fas fa-heart fa-lg active_card_heart"></i>
-            <div class="active_card_div">
-                <img src="http://localhost:3050/${o.imgPath}" alt="" class="active_card_img">
-            </div>
-            <div class="active_card_info">
-                <p>${o.date}</p>
-                <p class="active_card_title">${o.title}</p>
-                <div class="active_card_location_div">
-                    <img src="img/929497.svg" class="active_card_location">
-                    <p>${o.local}</p>
-                </div>
-            </div>
-        </div>
-    </div>`;
-    };
-
-    const ActCard = document.querySelector("#activity_detail_see");
-
-    let ActCardData = [{
-            imgPath: "img/event6.png",
-            date: "2020/09/15",
-            title: "世界環境清潔日 - 相約海洋淨灘",
-            count: 100,
-            member: "王曉明",
-            local: "新金山海灘",
-        },
-        {
-            imgPath: "img/event3.jpg",
-            date: "2020/09/26",
-            title: "魚取漁囚 - 守護海洋行動體驗特展",
-            count: 99,
-            member: "洲仔於",
-            local: "布袋漁港",
-        },
-        {
-            imgPath: "img/event7.jpg",
-            date: "2020/09/06",
-            title: "臉部平權運動臺北國道馬拉松",
-            count: 500,
-            member: "時間管理大師",
-            local: "中山高速公路五股 - 汐止高架段",
-        },
-    ];
-
-    ActCardData.map((e, index) => {
-        ActCard.innerHTML += this.htmlActCard(e);
-    });
 
     // * -------------------------------- 留言區 -------------------------------- //
     //get the btn element by id

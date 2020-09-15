@@ -32,7 +32,7 @@ function ClsChat() {
     }
     // world room 用
     const worldRoomReconnect = () => {
-        if(! chatRobotWindow.classList.contains("hide")){
+        if (!chatRobotWindow.classList.contains("hide")) {
             console.log("世界頻道 open");
             socket.emit("joinRoom", { chatroomId: "world" });
         }
@@ -43,7 +43,7 @@ function ClsChat() {
     const setChatroomList = (roomListObj) => {
         chatroomList.push(roomListObj);
     }
-    const initChatroomList = async ( ) => {
+    const initChatroomList = async () => {
         chatroomList = [];
         const chatList = document.querySelector(".chat_list");
         chatList.innerHTML = "";
@@ -62,13 +62,10 @@ function ClsChat() {
 
             // console.group("chatroom List");
             result.data.map(item => {
+                item.fIsReaded = item.fIsMeLastChat
                 setChatroomList(item);
-
-                // TODO 處理未讀訊息
-
                 // console.log("joinRoom: " + item.fId);
                 socket.emit("joinRoom", { chatroomId: item.fId });
-
             })
 
             // console.groupEnd("chatroom List");
@@ -78,19 +75,41 @@ function ClsChat() {
             chatList.innerHTML = `<div>連線錯誤</div>`;
         }
     }
-    const reFlashChatroomList = (chatroomId) => {
-        let index = chatroomList.findIndex((item)=> item.fId == chatroomId);
+    const reFlashChatroomList = (chatroomId, isMe = 0) => {
+        let index = chatroomList.findIndex((item) => item.fId == chatroomId);
         let pop = chatroomList.splice(index, 1)[0];
+        pop.fIsReaded = isMe;
         chatroomList.unshift(pop);
-
-        console.log(index);
-        console.log(pop);
-        console.log(chatroomList);
 
         const chatList = document.querySelector(".chat_list");
         chatList.innerHTML = "";
 
         document.querySelector(".chat_list").innerHTML = data2cahtList(chatroomList);
+
+        // console.group("reFlashChatroomList");
+        // console.log(index);
+        // console.log(pop);
+        // console.log(chatroomList);
+        // console.groupEnd("reFlashChatroomList");
+    }
+    const isfriendOnline = (chatroomId, isOnline) => {
+        try {
+            let theChatList = document.querySelector(`#chat-list-${chatroomId} > .chat_list_online`);
+            let index = chatroomList.findIndex((item) => item.fId == chatroomId);
+
+            if (isOnline) {
+                chatroomList[index].isOnline = 1;
+                theChatList.innerHTML = "●";
+            }else{
+                chatroomList[index].isOnline = 0;
+                theChatList.innerHTML = "";
+            }
+            return true;
+        }
+        catch (ex) {
+            console.log(ex);
+            return false;
+        }
     }
 
     // 私人聊天室用
@@ -146,7 +165,6 @@ function ClsChat() {
 
                 socket.on("newMessage", ({ message, userId, userName, time, chatroomId }) => {
                     console.log("get msg:" + message + " ||from: " + userName + " ||room: " + chatroomId);
-                    reFlashChatroomList(chatroomId);
                     let data = {
                         isMe: localStorage.getItem("Cycle link user data") == userName ? 1 : 0,
                         name: userName,
@@ -156,21 +174,48 @@ function ClsChat() {
                     if (chatroomId === "world") {
                         setMessages(data);
                     } else {
+                        reFlashChatroomList(chatroomId, data.isMe);
                         setMessagesTo(chatroomId, data);
                     }
 
                 })
                 // socket.removeAllListeners("newMessage");
 
-                socket.on("newChatroom", async () => {
+                socket.on("newChatroom", () => {
                     initChatroomList();
                     console.log("new Chatroom create");
                 })
 
+                socket.on("friendOnline", (chatroomId) => {
+                    let timer = setInterval(() => {
+                        let result = isfriendOnline(chatroomId, true);
+                        if (result) clearInterval(timer); 
+                    }, 3000);
+                    console.log("friend Online :)");
+                    socket.emit("FriendOnlineToo", chatroomId)
+                })
+
+                socket.on("friendOffline", (chatroomId) => {
+                    let timer = setInterval(() => {
+                        let result = isfriendOnline(chatroomId, false);
+                        if (result) clearInterval(timer); 
+                    }, 3000);
+                    console.log("friend Offline :(");
+                })
+
+                socket.on("friendOnlineTooYa", (chatroomId) => {
+                    let timer = setInterval(() => {
+                        let result = isfriendOnline(chatroomId, true);
+                        if (result) clearInterval(timer); 
+                    }, 3000);
+                    console.log("my friend online too :)");
+                })
+
+
 
             });
 
-        }else{
+        } else {
             makeToast("", "Socket can't connect!");
         }
         // console.groupEnd("socket-----------");
@@ -246,7 +291,11 @@ function ClsChat() {
     const data2cahtList = (array) => {
         let result = "";
         array.map((e) => {
-            result += `<li data-chatRoom-id=${e.fId}>${e.fMemberName}</li>`;
+            result += `<li id="chat-list-${e.fId}" data-chatRoom-id=${e.fId} data-title=${e.fMemberName}>
+                            <span class="chat_list_online">${e.isOnline ? "●" : ""}</span>
+                            ${e.fMemberName}
+                            <span class="chat_list_o">${e.fIsReaded ? "" : '<i class="far fa-comment-dots"></i>'}</span>
+                        </li>`;
         });
         return result;
     };
@@ -366,6 +415,8 @@ function ClsChat() {
         chatRoom.addEventListener("click", chatRoomClose);
         chatRoom.addEventListener("keydown", EventSendChatMessage);
 
+        e.target.querySelector(".chat_list_o").innerHTML = "";
+
         let response = await fetch(serverURL.getChatmessage + e.target.dataset.chatroomId, {
             method: "GET",
             cache: "no-cache",
@@ -375,11 +426,11 @@ function ClsChat() {
         })
 
         if (!response.ok) {
-            chatRoom.innerHTML = data2chatroom(cahtMessageData, e.target.innerHTML, e.target.dataset.chatroomId);
+            chatRoom.innerHTML = data2chatroom(cahtMessageData, e.target.dataset.title, e.target.dataset.chatroomId);
         } else {
             let result = await response.json();
             if (!result.result) {
-                chatRoom.innerHTML = data2chatroom([], e.target.innerHTML, e.target.dataset.chatroomId);  // {isMe: 0,msg: result.msg,time: ""}
+                chatRoom.innerHTML = data2chatroom([], e.target.dataset.title, e.target.dataset.chatroomId);  // {isMe: 0,msg: result.msg,time: ""}
             } else {
                 let messagesData = result.data.map((item) => ({
                     isMe: item.fName === localStorage.getItem("Cycle link user data"),
@@ -387,7 +438,7 @@ function ClsChat() {
                     time: item.fTime
                 })
                 )
-                chatRoom.innerHTML = data2chatroom(messagesData, e.target.innerHTML, e.target.dataset.chatroomId);
+                chatRoom.innerHTML = data2chatroom(messagesData, e.target.dataset.title, e.target.dataset.chatroomId);
             }
         }
 
