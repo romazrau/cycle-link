@@ -31,7 +31,7 @@ const communityList = async () => {
         where fStatusId != 0;`;
     const result = await sql.query(sqlStr);
     // 看一下回傳結果
-    console.dir(result);
+    // console.dir(result);
 
     if (!result.rowsAffected[0]) {
       return { result: 0, msg: "查無結果" };
@@ -499,22 +499,24 @@ const SearchMemberAccessRight = async (fCommunityId) => {
       return {
         result: 1,
         msg: "請求成功",
-        data: result.recordset,
-      };
+        data: result.recordset
+      }
     }
 
     return {
       result: 0,
-      msg: "查無結果",
-    };
+      msg: "查無結果"
+    }
+
+
   } catch (err) {
     return {
       result: 0,
       msg: "SQL錯誤",
-      data: err,
-    };
+      data: err
+    }
   }
-};
+}
 
 //**刪除社團:用社員fId設定fStatus停權
 //!會員頁面按解散社團

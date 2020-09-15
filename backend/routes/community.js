@@ -284,15 +284,18 @@ router.put('/communityById_communityMember/:id', async function (req, res, next)
             return;
         }
 
+
         // es6 物件解構
         let {
             fId,
             fCommunityId
         } = req.body
 
+
         // 修改fAccessright
         let result = await Sql.ChangeMemberAccessRight(fId, fCommunityId);
         res.json(result);
+        console.log("有進來Router");
 
     } catch (err) {
         res.send({
@@ -349,6 +352,7 @@ router.put('/', async function (req, res, next) {
         });
     }
 });
+
 
 // TODO 加入社團_要求 by使用者id,社團id （ fAccessright = 1 審核中 ）
 router.post('/members', async function (req, res, next) {
@@ -407,7 +411,7 @@ router.delete('/members', async function (req, res, next) {
             return;
         }
         //todo 驗證社團管理員身分
-        
+
 
 
         let resultDeletMemberOfCommunity = await Sql.deletMemberOfCommunity(fMemberIdArr, fCommunityId);
@@ -463,39 +467,41 @@ router.put('/members', async function (req, res, next) {
 }
 );
 
-// todo (SQL端還沒寫）
+
 // 社團社員身份查詢：待審核
 router.get('/members/:id', async function (req, res, next) {
-            try {
+    try {
 
-                //token
-                if (!req.user) {
-                    res.json({
-                        result: 0,
-                        msg: "token 遺失"
-                    });
-                    return;
-                }
+        //token
+        if (!req.user) {
+            res.json({
+                result: 0,
+                msg: "token 遺失"
+            });
+            return;
+        }
 
-                console.log("===========");
-                console.log(req.params);
-                let fCommunityId = req.params.id;
-                let resultPendingMember = await Sql.SearchMemberAccessRight(fCommunityId);
 
-                if (!resultPendingMember.result){
-                    res.json({ result: 0 , msg: "沒有待審核會員" })
-                    return;
-                }
-                res.json(resultPendingMember);
+        let fCommunityId = req.params.id;
+        let resultPendingMember = await Sql.SearchMemberAccessRight(fCommunityId);
 
-            } catch (err) {
-                res.send({
-                    result: 0,
-                    msg: "路由錯誤",
-                    data: err
-                });
-            }
-})
+        if (!resultPendingMember.result) {
+            res.json({ result: 0, msg: "沒有待審核會員" })
+            return;
+        }
+        console.log("========================!!!!!!");
+        console.log(resultPendingMember);
+        res.json(resultPendingMember);
+
+    } catch (err) {
+        res.send({
+            result: 0,
+            msg: "路由錯誤",
+            data: err
+        });
+    }
+}
+)
 
 // 刪除社團
 // 此路由/:id Restful.API

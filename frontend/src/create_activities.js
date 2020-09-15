@@ -142,17 +142,24 @@ function inputTag() {
     $("#create_active_tag_input").val("");
 
     // ----------- 標籤移除 -----------
-    let actRemoveTag = document.querySelector(".actRemoveTag")
-    // let rt = document.getElementsByClassName("create_active_tag")
+    let actRemoveBTN = document.querySelectorAll(".actRemoveTag")
+    for (let i = 0; i < actRemoveBTN.length; i++) {
+        actRemoveBTN[i].addEventListener('click', (e) => {
+            e.preventDefault();
+            let rt = document.querySelectorAll(".create_active_tag")
+            // console.log(rt)
+            let div = e.target.parentNode.parentNode
+            let input = e.target.parentNode.parentNode.previousSibling
+            // console.log("1==" + grandfather)
+            // console.log("2==" + grandfather2)
+            div.remove();
+            input.remove();
+            create_active_tag_count--;
+            // console.log($(this));
+        })
+    }
 
-    actRemoveTag.addEventListener('click', (e) => {
-        e.preventDefault();
-        $(".create_active_tag").remove();
-        create_active_tag_count--;
-        // console.log($(this));
-    })
 };
-
 
 
 // ----------- 圖片載入 -----------

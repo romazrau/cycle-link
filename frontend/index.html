@@ -1438,7 +1438,7 @@
                                 </div>
                                 <div class="GroupLink" value="GroupDetailPage_Discussion">文
                                     章</div>
-                                <div id="Group_navlink_Picture" class="GroupLink" value="GroupDetailPage_Picture">照 片
+                                <div class="GroupLink" id="Group_navlink_Picture" value="GroupDetailPage_Picture">照 片
                                 </div>
                                 <div class="GroupLink" value="GroupDetailPage_Event">活
                                     動
@@ -2815,7 +2815,7 @@
                             </p>
                             <div class="create_active_basicInfo_div">
                                 <div class="create_active_basicInfo_div2">
-                                    <p>待審核&nbsp;(&nbsp;5&nbsp;)</p>
+                                    <p>待審核&nbsp;</p>
                                     <div class="create_active_flex">
                                         <input type="checkbox" style="align-self: center;" />
                                         <div class="create_active_check">
@@ -3040,23 +3040,11 @@
                                 Name your event and tell event-goers why they should come. Add
                                 details that highlight what makes it unique.
                             </p>
-                            <div id="managerBlcok" class="create_community_basicInfo_div ">
-                                <div class="create_community_basicInfo_div2 managerBlcokShow">
-                                    <p>&nbsp;社團管理員</p>
-                                    <div id="ManagerContainer" class="create_community_flex">
-                                        <div class="create_community_check">
-                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                            <p>ddd555</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="managerBlcok" class="create_community_basicInfo_div removeBlock">
-                                <div class="create_community_basicInfo_div2">
-                                    <p>&nbsp;去除管理員</p>
-                                    <div id="re" class="create_community_flex">
-                                        <div class="create_community_flex">
-                                            <input type="checkbox" style="align-self: center;" />
+                            <form id="formOfCreateMem">
+                                <div id="managerBlcok" class="create_community_basicInfo_div ">
+                                    <div class="create_community_basicInfo_div2 managerBlcokShow">
+                                        <p>&nbsp;社團管理員</p>
+                                        <div id="ManagerContainer" class="create_community_flex">
                                             <div class="create_community_check">
                                                 <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
                                                 <p>ddd555</p>
@@ -3064,26 +3052,13 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div id="managerBlcok" class="create_community_basicInfo_div">
-                                <div class="create_community_basicInfo_div2">
-                                    <p>&nbsp;新增管理員</p>
-                                    <div id="addManager" class="create_community_flex">
-                                        <div class="create_community_flex">
-                                            <input type="checkbox" style="align-self: center;" />
-                                            <div class="create_community_check">
-                                                <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                                <p>ddd555</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="create_community_basicInfo_div">
-                                <div class="create_community_basicInfo_div2">
-                                    <p id="memTitle">社團成員&nbsp;(&nbsp;6&nbsp;)</p>
-                                    <div id="deletMem" class="create_community_flex">
-                                        <div class="create_community_flex">
+
+
+
+                                <div id="managerBlcok" class="create_community_basicInfo_div removeBlock">
+                                    <div class="create_community_basicInfo_div2">
+                                        <p>&nbsp;去除管理員</p>
+                                        <div id="re" class="create_community_flex create_community_flex_wrap">
                                             <div class="create_community_flex">
                                                 <input type="checkbox" style="align-self: center;" />
                                                 <div class="create_community_check">
@@ -3091,50 +3066,20 @@
                                                         style="border-radius: 50%;" />
                                                     <p>ddd555</p>
                                                 </div>
-
-                                                <div class="create_community_flex">
-                                                    <input type="checkbox" style="align-self: center;" />
-                                                    <div class="create_community_check">
-                                                        <img src="https://fakeimg.pl/40/212121/"
-                                                            style="border-radius: 50%;" />
-                                                        <p>ccc666</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="create_community_flex">
-                                                    <input type="checkbox" style="align-self: center;" />
-                                                    <div class="create_community_check">
-                                                        <img src="https://fakeimg.pl/40/212121/"
-                                                            style="border-radius: 50%;" />
-                                                        <p>AndyKao123</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="create_community_flex">
-                                                    <input type="checkbox" style="align-self: center;" />
-                                                    <div class="create_community_check">
-                                                        <img src="https://fakeimg.pl/40/212121/"
-                                                            style="border-radius: 50%;" />
-                                                        <p>ddd555</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="create_community_flex">
-                                                    <input type="checkbox" style="align-self: center;" />
-                                                    <div class="create_community_check">
-                                                        <img src="https://fakeimg.pl/40/212121/"
-                                                            style="border-radius: 50%;" />
-                                                        <p>ccc666</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="create_community_flex">
-                                                    <input type="checkbox" style="align-self: center;" />
-                                                    <div class="create_community_check">
-                                                        <img src="https://fakeimg.pl/40/212121/"
-                                                            style="border-radius: 50%;" />
-                                                        <p>AndyKao123</p>
-                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="managerBlcok" class="create_community_basicInfo_div">
+                                    <div class="create_community_basicInfo_div2">
+                                        <p>&nbsp;新增管理員</p>
+                                        <div id="addManager" class="create_community_flex create_community_flex_wrap">
+                                            <div class="create_community_flex">
+                                                <input type="checkbox" style="align-self: center;" />
+                                                <div class="create_community_check">
+                                                    <img src="https://fakeimg.pl/40/212121/"
+                                                        style="border-radius: 50%;" />
+                                                    <p>ddd555</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3142,65 +3087,130 @@
                                 </div>
                                 <div class="create_community_basicInfo_div">
                                     <div class="create_community_basicInfo_div2">
-                                        <p>待審核&nbsp;(&nbsp;5&nbsp;)</p>
-                                        <div class="create_community_flex" id="penddingMemberContainer">
+                                        <p id="memTitle">社團成員&nbsp;</p>
+                                        <div id="deletMem" class="create_community_flex create_community_flex_wrap">
                                             <div class="create_community_flex">
-                                                <input type="checkbox" style="align-self: center;" />
-                                                <div class="create_community_check">
-                                                    <img src="https://fakeimg.pl/40/212121/"
-                                                        style="border-radius: 50%;" />
-                                                    <p>JL1992</p>
+                                                <div class="create_community_flex">
+                                                    <input type="checkbox" style="align-self: center;" />
+                                                    <div class="create_community_check">
+                                                        <img src="https://fakeimg.pl/40/212121/"
+                                                            style="border-radius: 50%;" />
+                                                        <p>ddd555</p>
+                                                    </div>
+
+                                                    <div class="create_community_flex">
+                                                        <input type="checkbox" style="align-self: center;" />
+                                                        <div class="create_community_check">
+                                                            <img src="https://fakeimg.pl/40/212121/"
+                                                                style="border-radius: 50%;" />
+                                                            <p>ccc666</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="create_community_flex">
+                                                        <input type="checkbox" style="align-self: center;" />
+                                                        <div class="create_community_check">
+                                                            <img src="https://fakeimg.pl/40/212121/"
+                                                                style="border-radius: 50%;" />
+                                                            <p>AndyKao123</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="create_community_flex">
+                                                        <input type="checkbox" style="align-self: center;" />
+                                                        <div class="create_community_check">
+                                                            <img src="https://fakeimg.pl/40/212121/"
+                                                                style="border-radius: 50%;" />
+                                                            <p>ddd555</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="create_community_flex">
+                                                        <input type="checkbox" style="align-self: center;" />
+                                                        <div class="create_community_check">
+                                                            <img src="https://fakeimg.pl/40/212121/"
+                                                                style="border-radius: 50%;" />
+                                                            <p>ccc666</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="create_community_flex">
+                                                        <input type="checkbox" style="align-self: center;" />
+                                                        <div class="create_community_check">
+                                                            <img src="https://fakeimg.pl/40/212121/"
+                                                                style="border-radius: 50%;" />
+                                                            <p>AndyKao123</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-
-                                            <div class="create_community_flex">
-                                                <input type="checkbox" style="align-self: center;" />
-                                                <div class="create_community_check">
-                                                    <img src="https://fakeimg.pl/40/212121/"
-                                                        style="border-radius: 50%;" />
-                                                    <p>Wwill35489</p>
+                                        </div>
+                                    </div>
+                                    <div class="create_community_basicInfo_div">
+                                        <div class="create_community_basicInfo_div2">
+                                            <p>待審核&nbsp;</p>
+                                            <div class="create_community_flex create_community_flex_wrap"
+                                                id="penddingMemberContainer">
+                                                <div class="create_community_flex">
+                                                    <input type="checkbox" style="align-self: center;" />
+                                                    <div class="create_community_check">
+                                                        <img src="https://fakeimg.pl/40/212121/"
+                                                            style="border-radius: 50%;" />
+                                                        <p>JL1992</p>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="create_community_flex">
-                                                <input type="checkbox" style="align-self: center;" />
-                                                <div class="create_community_check">
-                                                    <img src="https://fakeimg.pl/40/212121/"
-                                                        style="border-radius: 50%;" />
-                                                    <p>romazrau</p>
+                                                <div class="create_community_flex">
+                                                    <input type="checkbox" style="align-self: center;" />
+                                                    <div class="create_community_check">
+                                                        <img src="https://fakeimg.pl/40/212121/"
+                                                            style="border-radius: 50%;" />
+                                                        <p>Wwill35489</p>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="create_community_flex">
-                                                <input type="checkbox" style="align-self: center;" />
-                                                <div class="create_community_check">
-                                                    <img src="https://fakeimg.pl/40/212121/"
-                                                        style="border-radius: 50%;" />
-                                                    <p>Wwill35489</p>
+                                                <div class="create_community_flex">
+                                                    <input type="checkbox" style="align-self: center;" />
+                                                    <div class="create_community_check">
+                                                        <img src="https://fakeimg.pl/40/212121/"
+                                                            style="border-radius: 50%;" />
+                                                        <p>romazrau</p>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="create_community_flex">
-                                                <input type="checkbox" style="align-self: center;" />
-                                                <div class="create_community_check">
-                                                    <img src="https://fakeimg.pl/40/212121/"
-                                                        style="border-radius: 50%;" />
-                                                    <p>romazrau</p>
+                                                <div class="create_community_flex">
+                                                    <input type="checkbox" style="align-self: center;" />
+                                                    <div class="create_community_check">
+                                                        <img src="https://fakeimg.pl/40/212121/"
+                                                            style="border-radius: 50%;" />
+                                                        <p>Wwill35489</p>
+                                                    </div>
                                                 </div>
+
+                                                <div class="create_community_flex">
+                                                    <input type="checkbox" style="align-self: center;" />
+                                                    <div class="create_community_check">
+                                                        <img src="https://fakeimg.pl/40/212121/"
+                                                            style="border-radius: 50%;" />
+                                                        <p>romazrau</p>
+                                                    </div>
+                                                </div>
+
+
                                             </div>
-
-
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="create_community_basicInfo_div3">
+                            </form>
+                            <div class="create_community_basicInfo_div3">
+                                <div id="fakeDoneBtn">
                                     <button id="create_community_btn_done">Done</button>
                                 </div>
-
                             </div>
+
                         </div>
                     </div>
+                </div>
             </main>
         </div>
     </div>
