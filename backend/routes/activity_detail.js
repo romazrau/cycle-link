@@ -26,11 +26,13 @@ router.get('/', async function (req, res, next) {
 
 router.get('/:id', async function (req, res, next) {
     try {
+        let fMemberId=req.user.fId;
         // *用 await 等待資料庫回應
         let ActDetailById = await Sql.ActDetailById(req.params.id);
         let TagById = await Sql.TagById(req.params.id);
         let JoinById = await Sql.JoinById(req.params.id);
         let JoinCount = await Sql.JoinCount(req.params.id);
+        let likechecked=await Sql.likechecked(fMemberId,req.params.id);
         // res.json(result);
         res.json({
             result: 1,
@@ -38,7 +40,8 @@ router.get('/:id', async function (req, res, next) {
                 detail: ActDetailById.data,
                 tag: TagById.data,
                 join: JoinById.data,
-                joinCount: JoinCount.data
+                joinCount: JoinCount.data,
+                likes:likechecked.data,
             }
         });
 
