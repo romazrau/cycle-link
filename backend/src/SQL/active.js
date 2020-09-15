@@ -35,7 +35,9 @@ const activesql = async () => {
         // left join jo as J
         // on A.fId = J.fActivityId
         // `
-        let sqlStr =`select top(6)  * from Activity.tActivity where fActLabelId = 3 order by  newid()`
+        let sqlStr =`select top(6)  * from Activity.tActivity  as A
+        where A.fActivityDate > convert(char, getdate(), 111) and A.fActLabelId = 3
+        order by  newid()`
         // todo where j.fMemberId = ${}
         
         const result = await sql.query(sqlStr)
@@ -223,7 +225,8 @@ const activeseensql = async (id) => {
             select top(6) S.*, J.fJoinTypeId  
             from active123 as S
             LEFT JOIN  mylist  as J
-            on  S.fActivityId  = J.fActivityId; `
+            on  S.fActivityId  = J.fActivityId
+            order by S.fId desc; `
 
         // todo  登入功能可使用時需換成判斷id where S.fMemberId = ${id}
         const result = await sql.query(sqlStr)

@@ -356,13 +356,17 @@ function ClsActivity() {
         btndatedetial.classList.add("search_hidden");
         btndate.classList.remove("search_hidden");
     }
-
-
+        
+    let nowtime = new Date();
+        let date = nowtime.toLocaleDateString();
+        let timesplit = nowtime.toTimeString().split(" ");
+        let time = timesplit[0];
+        let now = date;
 
 
     // 活動樣板
     const htmlActCard = (o) => {
-        
+           
             return ` 
             <div class="">
             <a  href="#activity/detail/${o.fId}" class="activecard">
@@ -537,7 +541,8 @@ function ClsActivity() {
             (e, index) => {
                 // console.log(e);
                 //todo 
-                ActCard.innerHTML += htmlActCard(e);
+                {ActCard.innerHTML += htmlActCard(e);}
+                
             }
         )
         // console.groupEnd("----------------");
@@ -864,17 +869,14 @@ function ClsActivity() {
     }
     ]
 
-    let nowtime = new Date();
-        let date = nowtime.toLocaleDateString();
-        let timesplit = nowtime.toTimeString().split(" ");
-        let time = timesplit[0];
-        let now = date + " " + time;
-        console.log(now);
+    
+        
         // now = now.split("/").join(",");
    
 
     ActCardData2.map(
         (e, index) => {
+
             ActCard2.innerHTML += htmlActCard(e);
         }
     )
