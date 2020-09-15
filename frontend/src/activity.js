@@ -121,6 +121,7 @@ function ClsActivity() {
 
 
     var search_result_arr;
+
     function getsearchdata(arr) {
         search_result_arr = arr;
         console.log(search_result_arr);
@@ -196,8 +197,7 @@ function ClsActivity() {
     btncity.addEventListener('click', function () {
         btncity.classList.add("search_hidden");
         $("#search_citydetial").fadeIn("5000")
-        btncitydetial.classList.remove("search_hidden");
-        ;
+        btncitydetial.classList.remove("search_hidden");;
 
         // btncitydetial.classList.add("search_hidden");
 
@@ -213,7 +213,7 @@ function ClsActivity() {
             btncitydetial.classList.add("search_hidden");
             btncity.classList.remove("search_hidden");
             btncitytext.innerHTML = this.textContent;
-            
+
             //判斷目前活動是否符合進階搜尋的城市
             var result_arr = search_result_arr.filter(function (item) {
                 return (item.fActLocation.indexOf(btncitytext.innerHTML.substr(0, 2))) >= 0;
@@ -316,26 +316,25 @@ function ClsActivity() {
     var resultdate_arr = [];
     btncheckdate.addEventListener("click", function (e) {
 
-        if(datearr.length>0)
-        {console.log("datearr:",datearr);
-            for(var i=0;i<datearr.length;i++){
+        if (datearr.length > 0) {
+            console.log("datearr:", datearr);
+            for (var i = 0; i < datearr.length; i++) {
 
                 // let acttime = Date.parse(datearr[i].fActivityDate);
                 let acttime = Date.parse(datearr[i].fActivityDate);
                 datestart = startinput.value;
                 datestartarr = datestart.split("/");
-                newdatestart = datestartarr[2]+"/" + datestartarr[0]+"/" + datestartarr[1];
+                newdatestart = datestartarr[2] + "/" + datestartarr[0] + "/" + datestartarr[1];
                 dateend = endinput.value;
                 dateendarr = dateend.split("/");
-                newdateend = dateendarr[2]+"/" + dateendarr[0]+"/" + dateendarr[1];
+                newdateend = dateendarr[2] + "/" + dateendarr[0] + "/" + dateendarr[1];
                 let satrttime = Date.parse(newdatestart);
                 let endtime = Date.parse(newdateend);
-                if(acttime >  satrttime && acttime <  endtime )
-                {   
+                if (acttime > satrttime && acttime < endtime) {
                     resultdate_arr.push(datearr[i]);
-                    
+
                 }
-                
+
             }
             display_search_go(resultdate_arr);
             displaydate();
@@ -366,8 +365,8 @@ function ClsActivity() {
 
     // 活動樣板
     const htmlActCard = (o) => {
-           
-            return ` 
+
+        return ` 
             <div class="">
             <a  href="#activity/detail/${o.fId}" class="activecard">
                  <div class="active_card_container">
@@ -392,7 +391,7 @@ function ClsActivity() {
                  </div>
              </a>
              </div>`;
-             // if(o.fJoinTypeId == 0)
+        // if(o.fJoinTypeId == 0)
         // {
         //     return ` 
         //     <div class="">
@@ -405,11 +404,11 @@ function ClsActivity() {
         //              <div class="active_card_div">
         //                  <img src="${o.fImgPath}" alt="" class="active_card_img">
         //              </div>
-                     
+
         //              <div class="active_card_info">
         //                  <p>${o.fActivityDate}</p>
         //                  <p class="active_card_title">${o.fActName}</p>
-                 
+
         //              <div class="active_card_location_div">
         //                  <img src="img/929497.svg" class="active_card_location">
         //                  <p>${o.fActLocation}</p>
@@ -421,14 +420,13 @@ function ClsActivity() {
         //      </div>`;
         // }
         // else{
-        }
-       
-    
+    }
+
+
 
     //瀏覽過的活動
     const htmlActCardseen = (o) => {
-        if(o.fJoinTypeId == 0)
-        {
+        if (o.fJoinTypeId == 0) {
             return ` 
             <div class="">
             <a  href="#activity/detail/${o.fActivityId}" class="activecard">
@@ -454,8 +452,7 @@ function ClsActivity() {
                  </div>
              </a>
              </div>`;
-        }
-        else{
+        } else {
             return ` 
             <div class="">
             <a  href="#activity/detail/${o.fActivityId}" class="activecard">
@@ -482,7 +479,7 @@ function ClsActivity() {
              </a>
              </div>`;
         }
-       
+
     }
 
 
@@ -536,7 +533,7 @@ function ClsActivity() {
     //* ------------------------------------- 文字樣板 -------------------------------------
     const display_active = (o) => {
         // console.group("----------------");
-        
+
         o.map(
             (e, index) => {
                 // console.log(e);
@@ -551,11 +548,14 @@ function ClsActivity() {
 
 
     const ActSeen = document.getElementById("activity_event_history")
+    const actDetailSeen = document.getElementById("activity_detail_see")
 
     const display_active_seen = (o) => {
         ActSeen.innerHTML = "";
+        actDetailSeen.innerHTML = "";
         o.map((e, index) => {
             ActSeen.innerHTML += htmlActCardseen(e);
+            actDetailSeen.innerHTML += htmlActCardseen(e);
         })
     }
 
@@ -594,9 +594,9 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-            
+
             display_active(result.data);
-            
+
             // getactid();
         } catch (err) {
             console.log(err);
@@ -671,7 +671,7 @@ function ClsActivity() {
         var selectactivelike = document.querySelectorAll(".active_card_heart");
         var removelike = document.querySelectorAll(".actlikecolor");
         // var active_card_heart = document.querySelectorAll(".active_card_heart");
-        console.log("cdcsd",removelike);
+        console.log("cdcsd", removelike);
         let nowtime = new Date();
         let date = nowtime.toLocaleDateString();
         let timesplit = nowtime.toTimeString().split(" ");
@@ -686,33 +686,33 @@ function ClsActivity() {
                 var hrefsplit = ahref.split("/");
                 activeseenId = hrefsplit[hrefsplit.length - 1];
                 console.log(activeseenId);
-                activeinsertseensql(activeseenId,now);
+                activeinsertseensql(activeseenId, now);
             }
 
         }
         let activelikeid;
-        for(let i =0;i<selectactivelike.length;i++){
-            
-            
-                selectactivelike[i].onclick = function (e) {
-                   
-                    e.preventDefault();
-                    e.stopPropagation();
-                    let ahref = selectactive[i].href;
-                    var hrefsplit2 = ahref.split("/"); 
-                    activelikeid = hrefsplit2[hrefsplit2.length - 1];
-                    if(selectactivelike[i].classList.contains("actlikecolor") == true){
-                        selectactivelike[i].classList.remove("actlikecolor");
-                        remove(activelikeid);
-                    }
-                    else{
-                        selectactivelike[i].classList.add("actlikecolor");
-                        addActLikeToSQL(activelikeid,now);
-                    }
-                    
+        for (let i = 0; i < selectactivelike.length; i++) {
+
+
+            selectactivelike[i].onclick = function (e) {
+
+                e.preventDefault();
+                e.stopPropagation();
+                let ahref = selectactive[i].href;
+                var hrefsplit2 = ahref.split("/");
+                activelikeid = hrefsplit2[hrefsplit2.length - 1];
+                if (selectactivelike[i].classList.contains("actlikecolor") == true) {
+                    selectactivelike[i].classList.remove("actlikecolor");
+                    remove(activelikeid);
+                } else {
+                    selectactivelike[i].classList.add("actlikecolor");
+                    addActLikeToSQL(activelikeid, now);
                 }
+
+            }
         }
-        function remove (activelikeid){
+
+        function remove(activelikeid) {
             removeactlikesql(activelikeid);
             console.log("0 0 ");
         }
@@ -728,15 +728,15 @@ function ClsActivity() {
         //                     var hrefsplit2 = ahref.split("/"); 
         //                     actremoveid = hrefsplit2[hrefsplit2.length - 1];
         //                     console.log(actremoveid);
-                            
+
         //                 }
         //             }
-                
+
     };
-    
-        
-    
-    
+
+
+
+
 
 
 
@@ -751,7 +751,7 @@ function ClsActivity() {
 
 
     // activeinsertseenSQL 瀏覽過的資料寫入資料庫
-    const activeinsertseensql = async (activeseenId,now) => {
+    const activeinsertseensql = async (activeseenId, now) => {
         try {
             // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
             // *用變數接 fetch 結果 ，要用await等。
@@ -776,19 +776,19 @@ function ClsActivity() {
         }
     }
 
-    const addActLikeToSQL = async (activelikeid,now) => {
+    const addActLikeToSQL = async (activelikeid, now) => {
         try {
-          var formdata=new FormData()
-          formdata.append("fActivityId",activelikeid);
-          formdata.append("fJoinTypeId",0);
-          formdata.append("fJoinTime",now);
-            let response = await fetch(serverURL.addActLikeToSQL,{
+            var formdata = new FormData()
+            formdata.append("fActivityId", activelikeid);
+            formdata.append("fJoinTypeId", 0);
+            formdata.append("fJoinTime", now);
+            let response = await fetch(serverURL.addActLikeToSQL, {
                 method: "POST", // http request method 
                 headers: { // http headers
                     //傳token
-                  Authorization: localStorage.getItem("Cycle link token"),
+                    Authorization: localStorage.getItem("Cycle link token"),
                 },
-                body:formdata,
+                body: formdata,
                 cache: 'no-cache',
                 credentials: 'include',
             });
@@ -798,34 +798,34 @@ function ClsActivity() {
             console.log(err);
             // 錯誤處理
         }
-      }
-    const ActCard = document.querySelector("#activity_event_top");    
+    }
+    const ActCard = document.querySelector("#activity_event_top");
     //todo 刪除
-    const removeactlikesql = async(activelikeid) =>{
+    const removeactlikesql = async (activelikeid) => {
         try {
             console.log("================")
             console.log("activelikeid:", activelikeid);
             var formdata = new FormData();
             formdata.append("fActivityId", activelikeid);
             let response = await fetch(serverURL.removeactlikesql, {
-              method: "DELETE", // http request method
-              headers: {
-                // http headers
-                Authorization: localStorage.getItem("Cycle link token"),
-              },
-              body: formdata,
-              cache: "no-cache",
-              credentials: "include",
+                method: "DELETE", // http request method
+                headers: {
+                    // http headers
+                    Authorization: localStorage.getItem("Cycle link token"),
+                },
+                body: formdata,
+                cache: "no-cache",
+                credentials: "include",
             });
             let result = await response.json();
             console.log(result);
-          } catch (err) {
+        } catch (err) {
             console.log(err);
             // 錯誤處理
-          }
+        }
     }
-    
-    
+
+
 
     //AJAX
 
@@ -841,32 +841,32 @@ function ClsActivity() {
     // }
 
     const ActCard2 = document.querySelector("#activity_event_recommend");
-    
+
     //AJAX
     let ActCardData2 = [{
-        imgPath: "img/event9.jpg",
-        date: "2020/11/19",
-        title: "城市獵人 - 生態公園夜觀",
-        count: 999,
-        member: "彌勒佛",
-        local: "玉山國家公園"
-    },
-    {
-        imgPath: "img/event10.jpg",
-        date: "2020/08/20",
-        title: "綠的手作坊 - 漂流木新生命",
-        count: 999,
-        member: "彌勒佛",
-        local: "紅樹林"
-    },
-    {
-        imgPath: "img/event11.png",
-        date: "2020/10/16",
-        title: "海洋危機，拯救機會",
-        count: 999,
-        member: "彌勒佛",
-        local: "烏石港"
-    }
+            imgPath: "img/event9.jpg",
+            date: "2020/11/19",
+            title: "城市獵人 - 生態公園夜觀",
+            count: 999,
+            member: "彌勒佛",
+            local: "玉山國家公園"
+        },
+        {
+            imgPath: "img/event10.jpg",
+            date: "2020/08/20",
+            title: "綠的手作坊 - 漂流木新生命",
+            count: 999,
+            member: "彌勒佛",
+            local: "紅樹林"
+        },
+        {
+            imgPath: "img/event11.png",
+            date: "2020/10/16",
+            title: "海洋危機，拯救機會",
+            count: 999,
+            member: "彌勒佛",
+            local: "烏石港"
+        }
     ]
 
     
@@ -880,40 +880,37 @@ function ClsActivity() {
             ActCard2.innerHTML += htmlActCard(e);
         }
     )
-        /*---------------YM修改活動 */
-    const likelistfromsql = async() =>{
+    /*---------------YM修改活動 */
+    const likelistfromsql = async () => {
         try {
-            let response = await fetch(serverURL.active+"likeListSQL", {
-              method: "GET", // http request method
-              headers: {
-                // http headers
-                Authorization: localStorage.getItem("Cycle link token"),
-              },
-              cache: "no-cache",
-              credentials: "include",
+            let response = await fetch(serverURL.active + "likeListSQL", {
+                method: "GET", // http request method
+                headers: {
+                    // http headers
+                    Authorization: localStorage.getItem("Cycle link token"),
+                },
+                cache: "no-cache",
+                credentials: "include",
             });
             let result = await response.json();
 
-           
+
             //
-            let heart_arr=document.querySelectorAll(".active_card_heart ")
-            console.log("card:",heart_arr)
-           
-            for(let i=0;i<heart_arr.length-3;i++)
-            {
-                for(let j=0;j<result.length;j++)
-                {
-                    if(heart_arr[i].parentNode.parentNode.parentNode.parentNode.href.split("il/")[1]==result[j].fId)
-                    {
-                        console.log("有愛心:",heart_arr[i])
+            let heart_arr = document.querySelectorAll(".active_card_heart ")
+            console.log("card:", heart_arr)
+
+            for (let i = 0; i < heart_arr.length - 3; i++) {
+                for (let j = 0; j < result.length; j++) {
+                    if (heart_arr[i].parentNode.parentNode.parentNode.parentNode.href.split("il/")[1] == result[j].fId) {
+                        console.log("有愛心:", heart_arr[i])
                         heart_arr[i].classList.add("actlikecolor");
                     }
                 }
             }
-          } catch (err) {
+        } catch (err) {
             console.log(err);
             // 錯誤處理
-          }
+        }
     }
 
 

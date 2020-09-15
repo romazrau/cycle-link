@@ -39,7 +39,7 @@ const activesql = async () => {
         where A.fActivityDate > convert(char, getdate(), 111) and A.fActLabelId = 3
         order by  newid()`
         // todo where j.fMemberId = ${}
-        
+
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
         console.dir(result.recordset)
@@ -79,7 +79,7 @@ const activemainlevelsql = async () => {
         };
         // 錯誤處理
     } catch (err) {
-        
+
         return {
             result: 0,
             msg: "SQL 錯誤",
@@ -265,7 +265,10 @@ const activeinsertseensql = async (fActivityId, fMemberId, fSearchTime) => {
 
 
         if (searchresult.recordset[0]) {
-            return   { result: 0, msg: "had" };
+            return {
+                result: 0,
+                msg: "had"
+            };
         }
 
 
@@ -336,11 +339,19 @@ const removeactlikesql = async (fActivityId, fMemberId) => {
         WHERE fActivityId=${fActivityId} AND fMemberId=${fMemberId}
         `;
         const result = await sql.query(sqlString);
-         console.dir(result);
+        console.dir(result);
 
-        return { result: 1, msg: "刪除成功", data: result.recordset };
+        return {
+            result: 1,
+            msg: "刪除成功",
+            data: result.recordset
+        };
     } catch (err) {
-        return { result: 0, msg: "SQL 問題", data: result };
+        return {
+            result: 0,
+            msg: "SQL 問題",
+            data: result
+        };
     }
 };
 /*-------------------------*/
@@ -353,11 +364,19 @@ const likeListSQL = async (fJoinTypeId, fMemberId) => {
         WHERE fJoinTypeId=${fJoinTypeId} AND fMemberId=${fMemberId}
         `;
         const result = await sql.query(sqlString);
-         console.dir(result);
+        console.dir(result);
 
-        return { result: 1, msg: "刪除成功", data: result.recordset };
+        return {
+            result: 1,
+            msg: "刪除成功",
+            data: result.recordset
+        };
     } catch (err) {
-        return { result: 0, msg: "SQL 問題", data: result };
+        return {
+            result: 0,
+            msg: "SQL 問題",
+            data: result
+        };
     }
 };
 
@@ -378,5 +397,5 @@ module.exports = {
     addActLikeTosql,
     removeactlikesql,
     likeListSQL,
-    
+
 };
