@@ -115,7 +115,7 @@ function ClsActivityDetail() {
 
     const activity_detail_tag = (o) => {
         return `<div class="activity_detail_tag">
-                    <a href="#">${o.fLabelName}</a>
+                    <a href="#" class="activityTag">${o.fLabelName}</a>
                 </div>`;
     };
     // * ---------------- 活動參與者數量 文字樣板 ---------------- //
@@ -267,11 +267,23 @@ function ClsActivityDetail() {
             display_actDetailTag(result.data.tag);
             display_actDetailJoin(result.data.join);
             display_actDetailJoinCount(result.data.joinCount);
-            if(result.data.likes!=null)
-            {
-                
+
+            // * -------------------------------- 標籤搜尋 -------------------------------- //
+            let tagFroBtn = document.querySelectorAll(".activityTag")
+            for (let i = 0; i < tagFroBtn.length; i++) {
+                tagFroBtn[i].addEventListener('click', (e) => {
+                    e.preventDefault();
+                    let a = e.target.text.substr(1)
+                    console.log(a);
+                    tagSearch(a)
+                })
+            }
+
+            // * -------------------------------- 加入最愛判斷 -------------------------------- //
+            if (result.data.likes != null) {
                 document.querySelector(".active_detail_card_heart").classList.add("actlikecolor");
             }
+
         } catch (err) {
             console.log(err);
             // 錯誤處理
@@ -313,6 +325,30 @@ function ClsActivityDetail() {
             console.log(err);
         }
     }
+
+    // * -------------------------------- 標籤搜尋 -------------------------------- //
+    const tagSearch = async (tag) => {
+        try {
+            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+            // *用變數接 fetch 結果 ，要用await等。
+            let response = await fetch(serverURL.actDetail + `tagSearch/${tag}`, {
+                method: "GET",
+                cache: "no-cache",
+                credentials: "include",
+            });
+            let result = await response.json();
+            console.log(result.data);
+            location.href = "#activity"
+            // display_actDetail(result.data.detail);
+            // TODO: 跳轉後寫入符合標籤活動卡
+
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+        }
+    };
+
+
     // ! ************************ [ END ] actDetail ajax [ END ] ************************ //
 
 
@@ -378,14 +414,13 @@ function ClsActivityDetail() {
         return `<option value="${o.fCommunityId}">${o.fName}</option>`
     }
 
+    // TODO: -------------------------------- textarea 會爆版 -------------------------------- //
 
     // TODO: -------------------------------- 創建活動 地圖座標 -------------------------------- //
     // TODO: -------------------------------- 刪除活動 -------------------------------- //
-    // TODO: -------------------------------- 加入最愛活動 -------------------------------- //
-    // TODO: -------------------------------- 標籤搜尋 -------------------------------- //
 
 
-    // TODO: -------------------------------- 編輯活動 -------------------------------- //
+    // TODO: -------------------------------- 編輯活動 ( 缺標籤寫入及地圖座標? ) -------------------------------- //
     let InitiatorEditBTN = document.querySelector("#InitiatorEdit")
     InitiatorEditBTN.addEventListener("click", async (actDetailId) => {
 
@@ -406,7 +441,6 @@ function ClsActivityDetail() {
         });
         let result = await response.json();
         // console.log(result);
-        // 2020/01/01 02:00:00
         let fActivityDate = result.data.detail[0].fActivityDate.split(" ")
         let fActivityEndDate = result.data.detail[0].fActivityEndDate.split(" ")
         let fCommunityId = result.data.detail[0].fCommunityId
@@ -593,6 +627,11 @@ function ClsActivityDetail() {
     })
 
 
+
+
+
+
+
     // * -------------------------------- 留言區 -------------------------------- //
     //get the btn element by id
     let btnMessage = document.querySelector("#btnMessage");
@@ -663,37 +702,47 @@ function ClsActivityDetail() {
     }
 
     // * -------------------------------- 分享功能 -------------------------------- //
-
     var ac_share_btn = document.getElementById("ac_share_btn");
     var ac_share_bg = document.getElementById("ac_share_bg");
     var ac_share_bg_div = document.getElementById("ac_share_bg_div");
     var ac_share_closeBtn = document.getElementById("ac_share_closeBtn");
     //按讚功能
-    var activityselectlike=document.querySelector(".active_detail_card_heart")
-    var activitylikelink=document.querySelector(".active_detail_card_heart_link");
+    var activityselectlike = document.querySelector(".active_detail_card_heart")
+    var activitylikelink = document.querySelector(".active_detail_card_heart_link");
 
-    
-    
+    ac_share_btn.onclick = function () {
+        ac_share_bg.style.display = "block";
+        ac_share_bg_div.style.display = "block";
+    };
+
+    ac_share_closeBtn.onclick = function () {
+        ac_share_bg.style.display = "none";
+        ac_share_bg_div.style.display = "none";
+        // ac_share_bg.preventDefault();
+    };
+
+
+    // * -------------------------------- 加入最愛活動 -------------------------------- //
     //預設跳轉取消
-    activitylikelink.addEventListener("click",function(e){
+    activitylikelink.addEventListener("click", function (e) {
         e.preventDefault();
     })
     //icon
-    activityselectlike.addEventListener("click",function(){
+    activityselectlike.addEventListener("click", function () {
         let nowtime = new Date();
         let date = nowtime.toLocaleDateString();
         let timesplit = nowtime.toTimeString().split(" ");
         let time = timesplit[0];
         let now = date + " " + time;
         now = now.split("/").join(",");
-        let id=location.hash.split("/")[2]
-       
+        let id = location.hash.split("/")[2]
+
         if (activityselectlike.classList.contains("actlikecolor") == true) {
             activityselectlike.classList.remove("actlikecolor");
-            removeactlikesql(id,now);
+            removeactlikesql(id, now);
         } else {
             activityselectlike.classList.add("actlikecolor");
-            addActLikeToSQL(id,now);
+            addActLikeToSQL(id, now);
         }
     })
     const addActLikeToSQL = async (activelikeid, now) => {
@@ -743,26 +792,6 @@ function ClsActivityDetail() {
             // 錯誤處理
         }
     }
-
-    
-
-
-
-
-    ac_share_btn.onclick = function () {
-        ac_share_bg.style.display = "block";
-        ac_share_bg_div.style.display = "block";
-    };
-
-    ac_share_closeBtn.onclick = function () {
-        ac_share_bg.style.display = "none";
-        ac_share_bg_div.style.display = "none";
-        // ac_share_bg.preventDefault();
-    };
-
-
-
-
 
 
 
