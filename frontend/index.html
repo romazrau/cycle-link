@@ -2306,10 +2306,10 @@
                             </div>
                         </div>
                         <div class="peoplefilebox_left">
-                            <button><a href="#create-activity">發起活動</a></button>
+                            <button class="btnLaunchActPersonPage"><a href="#create-activity">發起活動</a></button>
 
                             <br>
-                            <button><a href="#create-community">建立社團</a></button>
+                            <button class="btnLaunchActPersonPage"><a href="#create-community">建立社團</a></button>
 
                         </div>
 
@@ -2560,7 +2560,10 @@
                     <div id="personal-maneger-class4" class="container class">
                         <form action="" class="form_member">
                             <fieldset class="Memberfieldset">
-                                <legend class="Memberlegend">會員資料</legend>
+                                <legend class="Memberlegend"><h3>
+                                    會員資料
+                                    </h3>
+                                </legend>
                                 <div class="datawrap">
                                     <div class="dataContainer">
                                         <div class="dataItem"><label for="">姓名:</label><input type="text" name="Name"
@@ -2577,12 +2580,12 @@
 
                                         <div class="dataItem" id="Introduction"><label for="">介紹:</label>
                                             <br>
-                                            <textarea name="" cols="80" rows="10">範例</textarea>
+                                            <textarea name="" cols="80" rows="5">範例</textarea>
                                         </div>
                                     </div>
                                 </div>
                             </fieldset>
-                            <button type="button" id="member_submit">儲存</button>
+                            <button class="save" type="button" id="member_submit">儲存</button>
                         </form>
                     </div>
 
@@ -2743,7 +2746,7 @@
                                         <p>活動內容描述</p>
                                         <div class="create_active_flex">
                                             <!-- ! -->
-                                            <textarea id="create_active_text" cols="60" rows="8" maxlength="500"
+                                            <textarea id="create_active_text" cols="60" rows="5" maxlength="500"
                                                 name="fIntroduction"></textarea><br>
                                             <p class="create_active_flex_end create_active_ml"
                                                 id="create_active_text_count">0</p>
