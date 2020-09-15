@@ -286,18 +286,18 @@
     top: 1rem;
     width: 1.5rem;
     height: 1.5rem;
-    color: white;
+    color: rgb(245, 245, 245);
 }
 
-/* .active_card_heart:hover {
+.active_card_heart:hover {
     cursor: pointer;
     color: var(--lightblue-color);
     transition: all 0.6s;
-} */
+}
 
 /* 點讚後更換的顏色*/
 .actlikecolor {
-    color: var(--blue-color) !important;
+    color: var(--lightblue-color) !important;
 }
 
 
