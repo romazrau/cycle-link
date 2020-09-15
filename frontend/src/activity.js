@@ -212,6 +212,7 @@ function ClsActivity() {
             $("#search_citydetial").fadeOut("5000");
             btncitydetial.classList.add("search_hidden");
             btncity.classList.remove("search_hidden");
+          
             btncitytext.innerHTML = this.textContent;
 
             //判斷目前活動是否符合進階搜尋的城市
@@ -332,7 +333,6 @@ function ClsActivity() {
                 let endtime = Date.parse(newdateend);
                 if (acttime > satrttime && acttime < endtime) {
                     resultdate_arr.push(datearr[i]);
-
                 }
 
             }
@@ -671,7 +671,6 @@ function ClsActivity() {
         var selectactivelike = document.querySelectorAll(".active_card_heart");
         var removelike = document.querySelectorAll(".actlikecolor");
         // var active_card_heart = document.querySelectorAll(".active_card_heart");
-        console.log("cdcsd", removelike);
         let nowtime = new Date();
         let date = nowtime.toLocaleDateString();
         let datearr = date.split("/");
@@ -691,7 +690,6 @@ function ClsActivity() {
                 let ahref = selectactive[i].href;
                 var hrefsplit = ahref.split("/");
                 activeseenId = hrefsplit[hrefsplit.length - 1];
-                console.log(activeseenId);
                 activeinsertseensql(activeseenId, now);
             }
 
@@ -720,7 +718,7 @@ function ClsActivity() {
 
         function remove(activelikeid) {
             removeactlikesql(activelikeid);
-            console.log("0 0 ");
+           
         }
         // let actremoveid;
         // for(let i=0;i<removelike.length;i++)
