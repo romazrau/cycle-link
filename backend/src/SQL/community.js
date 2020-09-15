@@ -449,8 +449,8 @@ const communityAdd = async (fId, fCommunityId, fDate) => {
   }
 };
 
-// todo SQL待測試
 //** 修改社員身份by社員id 社團id
+// 審核會員fAccessRightId = 2
 const ChangeMemberAccessRight = async (fId, fCommunityId) => {
   try {
     await sql.connect(config);
@@ -458,7 +458,7 @@ const ChangeMemberAccessRight = async (fId, fCommunityId) => {
     let sqlStr = `
         UPDATE Community.tMemberList
         SET fAccessRightId = 2
-        WHERE fId = ${fId} and fCommunityId = ${fCommunityId}
+        WHERE fMemberId = ${fId} and fCommunityId = ${fCommunityId}
              `;
     // console.log(sqlStr);
 
@@ -477,7 +477,7 @@ const ChangeMemberAccessRight = async (fId, fCommunityId) => {
   }
 };
 
-// todo SQL待寫
+
 //** 搜尋待審核社員 by社員id 社團id
 const SearchMemberAccessRight = async (fCommunityId) => {
   try {
@@ -584,7 +584,7 @@ const updateCommunity = async (
 };
 
 // !前端抓fCommunityId
-// TODO 刪除tMemberList資料by社員id,社團id
+// TODO 刪除tMemberList資料by社員id,社團id CONTINUE
 // 社團12做測試
 const deletMemberOfCommunity = async (fDeletedArryId, fCommunityId) => {
   try {
