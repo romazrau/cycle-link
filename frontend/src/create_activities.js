@@ -167,7 +167,7 @@ $('.ca_imgUpload').change(function () {
     var file = $('.ca_imgUpload')[0].files[0];
     var reader = new FileReader;
     reader.onload = function (e) {
-        $('.ca_img_avatar').attr('src', e.target.result);
+        $('.ca_img_avatar').attr('src', "http://localhost:3050/"+e.target.result);
     };
     reader.readAsDataURL(file);
 });
