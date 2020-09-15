@@ -30,12 +30,21 @@ function ClsChat() {
         room.innerHTML = data2chatRobotMessage(messages);
         room.scrollTo(0, room.scrollHeight);
     }
+    // world room 用
+    const worldRoomReconnect = () => {
+        if(! chatRobotWindow.classList.contains("hide")){
+            console.log("世界頻道 open");
+            socket.emit("joinRoom", { chatroomId: "world" });
+        }
+    }
 
+    // 私人聊天室列表
     let chatroomList = [];
     const setChatroomList = (roomListObj) => {
         chatroomList.push(roomListObj);
     }
-    const initChatroomList = async () => {
+    const initChatroomList = async ( ) => {
+        chatroomList = [];
         const chatList = document.querySelector(".chat_list");
         chatList.innerHTML = "";
         try {
@@ -59,6 +68,7 @@ function ClsChat() {
 
                 // console.log("joinRoom: " + item.fId);
                 socket.emit("joinRoom", { chatroomId: item.fId });
+
             })
 
             // console.groupEnd("chatroom List");
@@ -67,6 +77,20 @@ function ClsChat() {
             console.log(ex);
             chatList.innerHTML = `<div>連線錯誤</div>`;
         }
+    }
+    const reFlashChatroomList = (chatroomId) => {
+        let index = chatroomList.findIndex((item)=> item.fId == chatroomId);
+        let pop = chatroomList.splice(index, 1)[0];
+        chatroomList.unshift(pop);
+
+        console.log(index);
+        console.log(pop);
+        console.log(chatroomList);
+
+        const chatList = document.querySelector(".chat_list");
+        chatList.innerHTML = "";
+
+        document.querySelector(".chat_list").innerHTML = data2cahtList(chatroomList);
     }
 
     // 私人聊天室用
@@ -118,11 +142,11 @@ function ClsChat() {
                 setSocket(newSocket);
                 makeToast("success", "Socket Connected!");
                 initChatroomList();
-                document.querySelector("#chat_robot_icon").click();
-                document.querySelector("#chat_robot_icon").click();
+                worldRoomReconnect();
 
                 socket.on("newMessage", ({ message, userId, userName, time, chatroomId }) => {
                     console.log("get msg:" + message + " ||from: " + userName + " ||room: " + chatroomId);
+                    reFlashChatroomList(chatroomId);
                     let data = {
                         isMe: localStorage.getItem("Cycle link user data") == userName ? 1 : 0,
                         name: userName,
@@ -139,7 +163,6 @@ function ClsChat() {
                 // socket.removeAllListeners("newMessage");
 
                 socket.on("newChatroom", async () => {
-                    chatroomList = [];
                     initChatroomList();
                     console.log("new Chatroom create");
                 })
