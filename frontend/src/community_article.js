@@ -10,7 +10,7 @@ function ClsCommunityArticle() {
           <div class="community_article_heading_img_container" onclick="location.hash='#personal-page/${
             x.MemberId
           }'">
-            <img class="community_article_heading_img" src="${
+            <img class="community_article_heading_img" src="http://localhost:3050/${
               x.MemberImgPath
             }" onclick="location.hash='#personal-page/${x.MemberId}'"/>
           </div> </div>
@@ -48,7 +48,7 @@ function ClsCommunityArticle() {
     return `
     <div class="community_article_user_img_circle_border">
     <div class="community_article_user_img_container" onclick="location.hash='#personal-page/${x.fId}'">
-      <img class="community_article_user_img" src="${x.fPhotoPath}" onclick="location.hash='#personal-page/${x.fId}'"/>
+      <img class="community_article_user_img" src="http://localhost:3050/${x.fPhotoPath}" onclick="location.hash='#personal-page/${x.fId}'"/>
     </div> </div>
   `;
   };
@@ -89,7 +89,7 @@ function ClsCommunityArticle() {
         <div class="CM_reply_item_header_img_circle_border">
           <div class="CM_reply_item_header_img">
             <img
-              src="${x.ReplyMemberImg}"
+              src="http://localhost:3050/${x.ReplyMemberImg}"
               class="CM_reply_item_header_img_img"
             />
           </div>
@@ -141,7 +141,7 @@ function ClsCommunityArticle() {
       } else {
         return `
         <div class="community_article_body_img">
-      <img class="community_article_body_img_img" src='${x}' />
+      <img class="community_article_body_img_img" src='http://localhost:3050/${x}' />
       </div>`;
       }
     }
@@ -152,7 +152,7 @@ function ClsCommunityArticle() {
     let result = "";
     k.map((e, index) => {
       result += `<div class="community_article_body_img">
-    <img class="community_article_body_img_img" src='${e}' />
+    <img class="community_article_body_img_img" src='http://localhost:3050/${e}' />
     </div>`;
     });
     return result;
