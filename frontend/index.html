@@ -1323,7 +1323,7 @@
                                 <div class="activity_detail_right_top">
                                     <button id="joinActBtn">參加</button>
                                     <button id="cancelJoinActBtn" style="display: none;">取消</button>
-                                    <a href=""><i class="fas fa-heart fa-2x active_card_heart"></i></a>
+                                    <a href="" class="active_detail_card_heart_link"><i class="fas fa-heart fa-2x active_detail_card_heart"></i></a>
                                 </div>
                                 <div class="activity_detail_right_info">
                                     <!-- 活動右側內容 -->
@@ -2170,9 +2170,20 @@
                                         <div class="Group_detail_Societies_img_div">
                                             <!-- <img class="Group_detail_Societies_img" src="./img/id1.jpg" width="30"> -->
                                         </div>
-                                        <input class="AddArticleInput" type="text" placeholder="Post something...">
-                                        <img src="./img/icon_photo.svg" width="23" class="UploadImgforArticle">
-                                        <img src="./img/icon_send.svg" width="20" class="AddArticleinCommunity">
+                                        <form id="article_form">
+                                            <textarea class="AddArticleInput" name="fContent" placeholder="Post something..." cols=30 rows=2></textarea>
+                                            <lable src="./img/icon_photo.svg" class="AddArticleLabel">
+                                             <input type="file" name="fPhoto" id="articleImgInput" multiple="multiple" style="display: none;">
+                                             <!-- <img src="./img/icon_photo.svg" width="23" class="UploadImgforArticle"> -->
+                                             <i class="fas fa-images"></i>
+                                            </lable>
+                                            <label src="./img/icon_photo.svg" class="AddArticleLabel">
+                                             <input type="submit" id="articleImgsubmit" style="display: none;">
+                                             <!-- <img src="./img/icon_send.svg" width="20" class="AddArticleinCommunity" -->
+                                             <i class="far fa-paper-plane"></i>
+                                            </label>
+                                            <div class="AddArticleImgDisplay"></div>
+                                        </form>
                                     </div>
 
                                     <div class="community_article_container">
@@ -2683,6 +2694,9 @@
                                                 style="background-color: white;" id="create_active_local_tags"
                                                 name="fActLocation" />
                                         </div>
+                                        <br>
+                                        <div id="creatActMapId" style="width: 20rem;height: 20rem;"></div>
+
                                     </div>
                                 </div>
                                 <div class="create_active_basicInfo_div">
@@ -2748,7 +2762,7 @@
                                         <p>活動內容描述</p>
                                         <div class="create_active_flex">
                                             <!-- ! -->
-                                            <textarea id="create_active_text" cols="60" rows="5" maxlength="500"
+                                            <textarea id="create_active_text" cols="60" rows="10" maxlength="500"
                                                 name="fIntroduction"></textarea><br>
                                             <p class="create_active_flex_end create_active_ml"
                                                 id="create_active_text_count">0</p>

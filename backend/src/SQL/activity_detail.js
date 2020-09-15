@@ -1,3 +1,6 @@
+const {
+    text
+} = require('express');
 //使用套件 mssql
 const sql = require('mssql');
 
@@ -177,29 +180,29 @@ const JoinCount = async (fid) => {
 
 //* ----------------------- 標籤搜尋 ----------------------- //
 
-// const TagSearch = async (text) => {
-//     try {
-//         await sql.connect(config)
-//         let sqlStr = `select fActName
-//         from Activity.tActivity
-//         where fActName like '%${text}%'`
-//         const result = await sql.query(sqlStr);
-//         console.dir(result.recordset)
-//         return {
-//             result: 1,
-//             msg: "請求成功",
-//             data: result.recordset
-//         };
-//     } catch (err) {
-//         console.log(err);
-//         return {
-//             result: 0,
-//             msg: "SQL 錯誤",
-//             data: err
-//         };
-//     }
-// };
-
+const TagSearch = async (text) => {
+    try {
+        await sql.connect(config)
+        let sqlStr = `select fActName
+        from Activity.tActivity
+        where fActName like '%${text}%'`
+        const result = await sql.query(sqlStr);
+        console.dir(result.recordset)
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+    } catch (err) {
+        console.log(err);
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
+    }
+};
+// TagSearch('2020')
 
 //* ----------------------- 參加活動 ----------------------- //
 const JoinAct = async (fActivityId, fMemberId, fJoinTime, fJoinTypeId) => {
@@ -309,6 +312,30 @@ const OrActInitiator = async (fActivityId, fMemberId) => {
         };
     }
 };
+/*--------------判斷是否按過愛心-------------- */
+const likechecked = async (fActivityId, fMemberId) => {
+    try {
+        await sql.connect(config)
+        let sqlStr = `select * from Activity.tJoinList
+        where fActivityId =${fActivityId} and fMemberId=${fMemberId} and fJoinTypeId=0
+        `
+        const result = await sql.query(sqlStr);
+        // console.log("============");
+        // console.dir(result.recordset)
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+    } catch (err) {
+        console.log(err);
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
+    }
+};
 
 
 //* ----------------------- 創建活動 ----------------------- //
@@ -366,20 +393,17 @@ const createAct = async (fActName, fCreatDate, fActivityDate, fActivityEndDate, 
         let findActID = `select fId,fActName
         from Activity.tActivity
         where fActName = '${fActName}'`
-        console.log("活動ID+名稱====" + findActID)
-
-        console.log(fLabelName)
         let findLabId = findTagName(fLabelName)
-        console.log("活動ID+名稱====" + findLabId)
+        // console.log("活動ID+名稱====" + findLabId)
         const result2 = await sql.query(findActID)
-        console.log("result2=====", result2)
+        // console.log("result2=====", result2)
         const result3 = await sql.query(findLabId)
-        console.log("result3=====", result3)
-        console.log("活動ID::::::" + result2.recordset[0].fId);
-        console.log("標籤ID::::::result3", result3.recordset[0]);
-        console.log("標籤ID::::::result3", result3.recordsets[1]);
-        console.log("標籤ID::::::result3---0---", result3.recordsets[0][0].fId);
-        console.log("標籤ID::::::result3---1---", result3.recordsets[1][0].fId);
+        // console.log("result3=====", result3)
+        // console.log("活動ID::::::" + result2.recordset[0].fId);
+        // console.log("標籤ID::::::result3", result3.recordset[0]);
+        // console.log("標籤ID::::::result3", result3.recordsets[1]);
+        // console.log("標籤ID::::::result3---0---", result3.recordsets[0][0].fId);
+        // console.log("標籤ID::::::result3---1---", result3.recordsets[1][0].fId);
 
 
         let actId = result2.recordset[0].fId
@@ -389,22 +413,13 @@ const createAct = async (fActName, fCreatDate, fActivityDate, fActivityEndDate, 
             resultHadLab += CreateHadTag5(actId, labelId[i][0].fId)
         }
 
-        // let sqlStr4 = CreateHadTag5(actId, labelId)
         const result4 = await sql.query(resultHadLab)
         console.log("resultHadLab=====" + resultHadLab)
 
-        // let idarr=[]
-        // idarr.append(data.recordset.fid)
         return {
             result: 1,
             msg: "請求成功"
         };
-        //新增:
-        //1.先拿社團id=>select * from Activity.tActivity where fActName=${fActName}
-        //2.5個標籤id=>for*5 select * from Activity.tActivityLabel where fActName=${fLabelName}=>insert 
-
-
-
 
         // 錯誤處理
     } catch (err) {
@@ -558,5 +573,6 @@ module.exports = {
     OrJoinAct,
     actCreaterType,
     OrActInitiator,
-    EditAct
+    EditAct,
+    likechecked,
 };

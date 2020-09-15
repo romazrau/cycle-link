@@ -671,7 +671,7 @@ function ClsActivity() {
         var selectactivelike = document.querySelectorAll(".active_card_heart");
         var removelike = document.querySelectorAll(".actlikecolor");
         // var active_card_heart = document.querySelectorAll(".active_card_heart");
-        console.log("cdcsd", removelike);
+        
         let nowtime = new Date();
         let date = nowtime.toLocaleDateString();
         let timesplit = nowtime.toTimeString().split(" ");
@@ -897,7 +897,6 @@ function ClsActivity() {
 
             //
             let heart_arr = document.querySelectorAll(".active_card_heart ")
-            console.log("card:", heart_arr)
 
             for (let i = 0; i < heart_arr.length - 3; i++) {
                 for (let j = 0; j < result.length; j++) {

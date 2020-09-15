@@ -18,7 +18,18 @@ function ClsActivityDetail() {
 
     }
     // console.log(actMap());
-
+    function creatActMapId() {
+        var map = L.map('creatActMapId')
+        var marker = L.marker([25.0360703, 121.4977054]).addTo(map);
+        map.setView(new L.LatLng(25.0360703, 121.4977054), 16);
+        var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        var osm = new L.TileLayer(osmUrl, {
+            minZoom: 8,
+            maxZoom: 20
+        });
+        map.addLayer(osm);
+    }
+    creatActMapId()
 
     // * -------------- 固定右側資訊 -------------- //
     // function boxMove2(y) {
@@ -111,8 +122,8 @@ function ClsActivityDetail() {
 
     const actDetail_participant_count = (o) => {
         return `<h5 id="activity_detail_participant_count">活動參與者(${o})</h5>
-        <a href="#">See All</a>
-        `;
+                <a href="#">See All</a>
+                `;
     };
 
     // * ---------------- 活動參與者 文字樣板 ---------------- //
@@ -120,14 +131,14 @@ function ClsActivityDetail() {
 
     const activity_detail_participant = (o) => {
         return `<div class="activity_detail_participant" onclick="location.hash='#personal-page/${o.fMemberId}'">
-    <div class="activity_detail_info_img_circle">
-        <div class="activity_detail_info_img_div">
-            <img src='http://localhost:3050/${o.fPhotoPath}' class="activity_detail_info_img">
-        </div>
-    </div>
-    <p>${o.fName}</p>
-    <span>Member</span>
-</div>`;
+                    <div class="activity_detail_info_img_circle">
+                        <div class="activity_detail_info_img_div">
+                            <img src='http://localhost:3050/${o.fPhotoPath}' class="activity_detail_info_img">
+                        </div>
+                    </div>
+                    <p>${o.fName}</p>
+                    <span>Member</span>
+                </div>`;
     };
     // --- 參與者匯入 --- //
     const display_actDetailJoin = (o) => {
@@ -213,19 +224,18 @@ function ClsActivityDetail() {
         o.map(
             (e, index) => {
                 activity_detail_TagBox.innerHTML += activity_detail_tag(e);
-
             }
         )
     }
 
-
-
     // --- 參與者人數匯入 --- //
     const display_actDetailJoinCount = (o) => {
         activity_detail_participant_count.innerHTML = "";
-        // console.log(o[0].JoinCount)
-        activity_detail_participant_count.innerHTML = actDetail_participant_count(o[0].JoinCount);
-
+        if (o.length == 0) {
+            activity_detail_participant_count.innerHTML = "";
+        } else {
+            activity_detail_participant_count.innerHTML = actDetail_participant_count(o[0].JoinCount);
+        }
     }
 
     // * ********************************** [ END ] 文字樣板 [ END ] ********************************** //
@@ -241,7 +251,7 @@ function ClsActivityDetail() {
                 method: "GET", // http request method
                 headers: {
                     // http headers
-                    "Content-Type": "application/json", // 請求的資料類型
+                    Authorization: localStorage.getItem("Cycle link token"), // 請求的資料類型
                 },
                 // 以下跟身分認證有關，後端要使用session 要帶這幾項
                 cache: "no-cache",
@@ -257,6 +267,11 @@ function ClsActivityDetail() {
             display_actDetailTag(result.data.tag);
             display_actDetailJoin(result.data.join);
             display_actDetailJoinCount(result.data.joinCount);
+            if(result.data.likes!=null)
+            {
+                
+                document.querySelector(".active_detail_card_heart").classList.add("actlikecolor");
+            }
         } catch (err) {
             console.log(err);
             // 錯誤處理
@@ -310,7 +325,6 @@ function ClsActivityDetail() {
         alert("創建成功");
         location.href = "#activity";
         location.reload();
-
     })
 
     // TODO: 創建完後資料表要清空 
@@ -419,7 +433,6 @@ function ClsActivityDetail() {
         if (fCommunityId > 0) {
             actCType()
             actInitiatorType.getElementsByTagName("option")[1].selected = true;
-            // document.querySelector("#createSelect").getElementsByTagName("option").setAttribute("value", fCommunityId).selected = true
         } else {
             actCreaterTypeSpan.setAttribute("style", "display:none")
         }
@@ -655,6 +668,86 @@ function ClsActivityDetail() {
     var ac_share_bg = document.getElementById("ac_share_bg");
     var ac_share_bg_div = document.getElementById("ac_share_bg_div");
     var ac_share_closeBtn = document.getElementById("ac_share_closeBtn");
+    //按讚功能
+    var activityselectlike=document.querySelector(".active_detail_card_heart")
+    var activitylikelink=document.querySelector(".active_detail_card_heart_link");
+
+    
+    
+    //預設跳轉取消
+    activitylikelink.addEventListener("click",function(e){
+        e.preventDefault();
+    })
+    //icon
+    activityselectlike.addEventListener("click",function(){
+        let nowtime = new Date();
+        let date = nowtime.toLocaleDateString();
+        let timesplit = nowtime.toTimeString().split(" ");
+        let time = timesplit[0];
+        let now = date + " " + time;
+        now = now.split("/").join(",");
+        let id=location.hash.split("/")[2]
+       
+        if (activityselectlike.classList.contains("actlikecolor") == true) {
+            activityselectlike.classList.remove("actlikecolor");
+            removeactlikesql(id,now);
+        } else {
+            activityselectlike.classList.add("actlikecolor");
+            addActLikeToSQL(id,now);
+        }
+    })
+    const addActLikeToSQL = async (activelikeid, now) => {
+        try {
+            var formdata = new FormData()
+            formdata.append("fActivityId", activelikeid);
+            formdata.append("fJoinTypeId", 0);
+            formdata.append("fJoinTime", now);
+            let response = await fetch(serverURL.addActLikeToSQL, {
+                method: "POST", // http request method 
+                headers: { // http headers
+                    //傳token
+                    Authorization: localStorage.getItem("Cycle link token"),
+                },
+                body: formdata,
+                cache: 'no-cache',
+                credentials: 'include',
+            });
+            let result = await response.json();
+            console.log(result);
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+        }
+    }
+
+    const removeactlikesql = async (activelikeid) => {
+        try {
+            console.log("================")
+            console.log("activelikeid:", activelikeid);
+            var formdata = new FormData();
+            formdata.append("fActivityId", activelikeid);
+            let response = await fetch(serverURL.removeactlikesql, {
+                method: "DELETE", // http request method
+                headers: {
+                    // http headers
+                    Authorization: localStorage.getItem("Cycle link token"),
+                },
+                body: formdata,
+                cache: "no-cache",
+                credentials: "include",
+            });
+            let result = await response.json();
+            console.log(result);
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+        }
+    }
+
+    
+
+
+
 
     ac_share_btn.onclick = function () {
         ac_share_bg.style.display = "block";
@@ -666,6 +759,13 @@ function ClsActivityDetail() {
         ac_share_bg_div.style.display = "none";
         // ac_share_bg.preventDefault();
     };
+
+
+
+
+
+
+
     this.actDetail = actDetail;
     this.OrJoinAct = OrJoinAct;
     this.OrActInitiator = OrActInitiator;
