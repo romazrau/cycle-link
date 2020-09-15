@@ -93,7 +93,7 @@
         <!-- * 聊天機器人 改成世界頻道囉 -->
         <div class="chat_robot_room_window hide">
             <img id="chat_robot_window_close" class="chat_window_close" src="./img/times-solid.svg" alt="X">
-            <div id="chat_message_window_title" class="chat_window_title">公開聊天室</div>
+            <div id="chat_message_window_title" class="chat_window_title"><span><i class="fas fa-globe-americas"></i>&nbsp;&nbsp;公開聊天室</span></div>
             <div id="chat_robot_message" class="chat_message">
                 訊息
             </div>
@@ -1281,7 +1281,7 @@
                                 <!-- 活動隸屬社團 -->
                             </div>
                             <!-- 留言區 -->
-                            <div class="massage">
+                            <div class="massage" style="display: none;">
                                 <div class="massageTop activity_detail_flex">
                                     <div class="massageTopText activity_detail_flex">
                                         <div class="massageTopTextTitle">留言</div>
@@ -1311,7 +1311,7 @@
                                     <div id="messageInputBoxCon"></div>
                                 </div>
                             </div>
-                            <h5 style="margin-top: 3rem;font-weight: bold;">為您推薦</h5>
+                            <h5 style="margin-top: 3rem;font-weight: bold;">瀏覽過的活動</h5>
                             <div id="activity_detail_see">
                             </div>
                         </div>
@@ -1322,7 +1322,7 @@
                                 <div class="activity_detail_right_top">
                                     <button id="joinActBtn">參加</button>
                                     <button id="cancelJoinActBtn" style="display: none;">取消</button>
-                                    <a href=""><img src="img/icon1.svg" alt="" class="activity_detail_right_love"></a>
+                                    <a href="" class="active_detail_card_heart_link"><i class="fas fa-heart fa-2x active_detail_card_heart"></i></a>
                                 </div>
                                 <div class="activity_detail_right_info">
                                     <!-- 活動右側內容 -->
@@ -2571,8 +2571,9 @@
                     <div id="personal-maneger-class4" class="container class">
                         <form action="" class="form_member">
                             <fieldset class="Memberfieldset">
-                                <legend class="Memberlegend"><h3>
-                                    會員資料
+                                <legend class="Memberlegend">
+                                    <h3>
+                                        會員資料
                                     </h3>
                                 </legend>
                                 <div class="datawrap">
@@ -2603,7 +2604,7 @@
 
                 </div>
             </div>
-           
+
             <!-- <div class="div_FavorActivity">
                 <div class="div_FavorActivity_Title">
                     <span class="span_FavorActivity_Title">關注的活動</span>
@@ -2692,6 +2693,8 @@
                                                 style="background-color: white;" id="create_active_local_tags"
                                                 name="fActLocation" />
                                         </div>
+                                        <div id="creatActMapId" style="width: 20rem;height: 20rem;"></div>
+
                                     </div>
                                 </div>
                                 <div class="create_active_basicInfo_div">
@@ -2757,7 +2760,7 @@
                                         <p>活動內容描述</p>
                                         <div class="create_active_flex">
                                             <!-- ! -->
-                                            <textarea id="create_active_text" cols="60" rows="5" maxlength="500"
+                                            <textarea id="create_active_text" cols="60" rows="10" maxlength="500"
                                                 name="fIntroduction"></textarea><br>
                                             <p class="create_active_flex_end create_active_ml"
                                                 id="create_active_text_count">0</p>

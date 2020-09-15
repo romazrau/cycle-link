@@ -26,11 +26,13 @@ router.get('/', async function (req, res, next) {
 
 router.get('/:id', async function (req, res, next) {
     try {
+        let fMemberId=req.user.fId;
         // *用 await 等待資料庫回應
         let ActDetailById = await Sql.ActDetailById(req.params.id);
         let TagById = await Sql.TagById(req.params.id);
         let JoinById = await Sql.JoinById(req.params.id);
         let JoinCount = await Sql.JoinCount(req.params.id);
+        let likechecked=await Sql.likechecked(fMemberId,req.params.id);
         // res.json(result);
         res.json({
             result: 1,
@@ -38,7 +40,8 @@ router.get('/:id', async function (req, res, next) {
                 detail: ActDetailById.data,
                 tag: TagById.data,
                 join: JoinById.data,
-                joinCount: JoinCount.data
+                joinCount: JoinCount.data,
+                likes:likechecked.data,
             }
         });
 
@@ -51,15 +54,6 @@ router.get('/:id', async function (req, res, next) {
 
 //* ----------------------- 新增活動 ----------------------- //
 router.post('/', async function (req, res, next) {
-
-    // if (!req.user) {
-    //     // 確認 JWT 有解析成功
-    //     res.json({
-    //         result: 0,
-    //         msg: "未登入"
-    //     });
-    //     return;
-    // }
 
     try {
         // 前端有 headers 才能抓到目前登入會員資料
@@ -85,7 +79,7 @@ router.post('/', async function (req, res, next) {
             fCommunityId
         } = req.body
 
-        let fImgPath="img/"+req.files[0].filename;
+        let fImgPath = "img/" + req.files[0].filename;
         // if (!fImgPath) {
         //     fImgPath = null;
         // }
@@ -278,32 +272,6 @@ router.put('/Edit', async function (req, res, next) {
         res.send(err);
     }
 });
-
-
-
-
-
-//* ----------------------- 新增標籤(已寫入創建活動中) ----------------------- //
-// router.post('/tag', async function (req, res, next) {
-//     try {
-//         // console.log(req.body);
-//         if (!req.body.fLabelName) {
-//             res.json({
-//                 result: 0,
-//                 msg: "???"
-//             });
-//             return;
-//         }
-
-//         let result = await Sql.createActTag(req.body.fLabelName);
-
-//         res.json(result);
-//     } catch (err) {
-//         console.log(err);
-//         res.send(err);
-//     }
-// })
-
 
 
 
