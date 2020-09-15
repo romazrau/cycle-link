@@ -122,8 +122,8 @@ function ClsActivityDetail() {
 
     const actDetail_participant_count = (o) => {
         return `<h5 id="activity_detail_participant_count">活動參與者(${o})</h5>
-        <a href="#">See All</a>
-        `;
+                <a href="#">See All</a>
+                `;
     };
 
     // * ---------------- 活動參與者 文字樣板 ---------------- //
@@ -131,14 +131,14 @@ function ClsActivityDetail() {
 
     const activity_detail_participant = (o) => {
         return `<div class="activity_detail_participant" onclick="location.hash='#personal-page/${o.fMemberId}'">
-    <div class="activity_detail_info_img_circle">
-        <div class="activity_detail_info_img_div">
-            <img src='http://localhost:3050/${o.fPhotoPath}' class="activity_detail_info_img">
-        </div>
-    </div>
-    <p>${o.fName}</p>
-    <span>Member</span>
-</div>`;
+                    <div class="activity_detail_info_img_circle">
+                        <div class="activity_detail_info_img_div">
+                            <img src='http://localhost:3050/${o.fPhotoPath}' class="activity_detail_info_img">
+                        </div>
+                    </div>
+                    <p>${o.fName}</p>
+                    <span>Member</span>
+                </div>`;
     };
     // --- 參與者匯入 --- //
     const display_actDetailJoin = (o) => {
@@ -224,19 +224,18 @@ function ClsActivityDetail() {
         o.map(
             (e, index) => {
                 activity_detail_TagBox.innerHTML += activity_detail_tag(e);
-
             }
         )
     }
 
-
-
     // --- 參與者人數匯入 --- //
     const display_actDetailJoinCount = (o) => {
         activity_detail_participant_count.innerHTML = "";
-        // console.log(o[0].JoinCount)
-        activity_detail_participant_count.innerHTML = actDetail_participant_count(o[0].JoinCount);
-
+        if (o.length == 0) {
+            activity_detail_participant_count.innerHTML = "";
+        } else {
+            activity_detail_participant_count.innerHTML = actDetail_participant_count(o[0].JoinCount);
+        }
     }
 
     // * ********************************** [ END ] 文字樣板 [ END ] ********************************** //
@@ -321,7 +320,6 @@ function ClsActivityDetail() {
         alert("創建成功");
         location.href = "#activity";
         location.reload();
-
     })
 
     // TODO: 創建完後資料表要清空 
@@ -430,7 +428,6 @@ function ClsActivityDetail() {
         if (fCommunityId > 0) {
             actCType()
             actInitiatorType.getElementsByTagName("option")[1].selected = true;
-            // document.querySelector("#createSelect").getElementsByTagName("option").setAttribute("value", fCommunityId).selected = true
         } else {
             actCreaterTypeSpan.setAttribute("style", "display:none")
         }
