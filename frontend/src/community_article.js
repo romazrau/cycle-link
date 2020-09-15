@@ -164,9 +164,12 @@ function ClsCommunityArticle() {
   //社團文章：資料放進文字樣板，匯入頁面
   const display_postDetail = (o) => {
     ArticleUl.innerHTML = "";
-    o.map((e, index) => {
-      ArticleUl.innerHTML += htmlCommunityArticle(e);
-      console.log(e.PostId);
+    o.map(async (e, index) => {
+      function goInside(e) {
+        ArticleUl.innerHTML += htmlCommunityArticle(e);
+      }
+      await goInside(e);
+      console.log(document.getElementById("Article_replyIconbyfId" + e.PostId));
       document
         .getElementById("Article_replyIconbyfId" + e.PostId)
         .addEventListener("click", function () {
@@ -209,10 +212,14 @@ function ClsCommunityArticle() {
       let response = await fetch(serverURL.articlereply);
       let result = await response.json();
       // console.log(result);
-      // console.log(x);
       // console.log(result.data);
-      if (postid == result.data.postid) {
-        display_replyDetail(result.data, postid);
+      for (let i = 0; i < result.data.length; i++) {
+        if (result.data[i].fPostId == postid) {
+          console.log(result.data[i].fPostId);
+          display_replyDetail(result.data, postid);
+        } else {
+          console.log(result.data[i].fPostId);
+        }
       }
     } catch (err) {
       console.log(err);
@@ -282,7 +289,7 @@ function ClsCommunityArticle() {
       let result = await response.json();
       // console.log(result);
       await display_postDetail(result.data);
-      Article_addClickEventToReply(result.data);
+      // Article_addClickEventToReply(result.data);
       //TODO典籍喜歡
       // Article_addClickEventToLike(result.data.length);
       const community_article_body = document.querySelectorAll(
