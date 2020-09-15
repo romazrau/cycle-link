@@ -27,7 +27,7 @@ function ClsCommunityMain() {
       } else {
         return `
         <div class="CM_timeline_body_img">
-      <img class="CM_timeline_body_img_img" src='${x}' />
+      <img class="CM_timeline_body_img_img" src='http://localhost:3050/${x}' />
       </div>`;
       }
     }
@@ -37,7 +37,7 @@ function ClsCommunityMain() {
     let result = "";
     k.map((e, index) => {
       result += `<div class="CM_timeline_body_img">
-    <img class="CM_timeline_body_img_img" src='${e}' />
+    <img class="CM_timeline_body_img_img" src='http://localhost:3050/${e}' />
     </div>`;
     });
     return result;
@@ -51,7 +51,7 @@ function ClsCommunityMain() {
         <a href="#community/detail/${x.CommunityId}" title="${
       x.CommunityName
     }" class="CM_groupIcon_wrap">
-          <img class="CM_groupIcon_img" src="${x.CommunityImgPath}" />
+          <img class="CM_groupIcon_img" src="http://localhost:3050/${x.CommunityImgPath}" />
         </a>
       </div>
       <div class="community_main_timeline_panel">
@@ -60,7 +60,7 @@ function ClsCommunityMain() {
           <div class="CM_timeline_heading_img_container" onclick="location.hash='#personal-page/${
             x.MemberId
           }'">
-            <img class="CM_timeline_heading_img" src="${
+            <img class="CM_timeline_heading_img" src="http://localhost:3050/${
               x.MemberImgPath
             }" onclick="location.hash='#personal-page/${x.MemberId}'"/>
           </div> </div>
@@ -105,7 +105,7 @@ function ClsCommunityMain() {
         <a href="#community/detail/${x.CommunityId}" title="${
       x.CommunityName
     }" class="CM_groupIcon_wrap">
-          <img class="CM_groupIcon_img" src="${x.CommunityImgPath}" />
+          <img class="CM_groupIcon_img" src="http://localhost:3050/${x.CommunityImgPath}" />
         </a>
       </div>
       <div class="community_main_timeline_panel">
@@ -114,7 +114,7 @@ function ClsCommunityMain() {
           <div class="CM_timeline_heading_img_container" onclick="location.hash='#personal-page/${
             x.MemberId
           }'">
-            <img class="CM_timeline_heading_img" src="${
+            <img class="CM_timeline_heading_img" src="http://localhost:3050/${
               x.MemberImgPath
             }" onclick="location.hash='#personal-page/${x.MemberId}'"/>
           </div> </div>
@@ -157,7 +157,7 @@ ${ImgIsNullOrNot(x.PostImg)}
         <div class="CM_reply_item_header_img_circle_border">
           <div class="CM_reply_item_header_img">
             <img
-              src="${x.ReplyMemberImg}"
+              src="http://localhost:3050/${x.ReplyMemberImg}"
               class="CM_reply_item_header_img_img"
             />
           </div>
@@ -192,7 +192,7 @@ ${ImgIsNullOrNot(x.PostImg)}
   const htmlCommunityCard = (x) => {
     return `<div class="CM_recommend_item" onclick="location.hash='#community/detail/${x.communityId}'">
     <div class="CM_recommend_item_img">
-        <img src="${x.communityImg}" class="CM_recommend_item_img_img">
+        <img src="http://localhost:3050/${x.communityImg}" class="CM_recommend_item_img_img">
     </div>
     <div class="CM_recommend_item_info">
         <p>${x.communityName}</p>

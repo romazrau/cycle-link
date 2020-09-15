@@ -10,7 +10,7 @@ function ClsCommunityArticle() {
           <div class="community_article_heading_img_container" onclick="location.hash='#personal-page/${
             x.MemberId
           }'">
-            <img class="community_article_heading_img" src="${
+            <img class="community_article_heading_img" src="http://localhost:3050/${
               x.MemberImgPath
             }" onclick="location.hash='#personal-page/${x.MemberId}'"/>
           </div> </div>
@@ -48,7 +48,7 @@ function ClsCommunityArticle() {
     return `
     <div class="community_article_user_img_circle_border">
     <div class="community_article_user_img_container" onclick="location.hash='#personal-page/${x.fId}'">
-      <img class="community_article_user_img" src="${x.fPhotoPath}" onclick="location.hash='#personal-page/${x.fId}'"/>
+      <img class="community_article_user_img" src="http://localhost:3050/${x.fPhotoPath}" onclick="location.hash='#personal-page/${x.fId}'"/>
     </div> </div>
   `;
   };
@@ -89,7 +89,7 @@ function ClsCommunityArticle() {
         <div class="CM_reply_item_header_img_circle_border">
           <div class="CM_reply_item_header_img">
             <img
-              src="${x.ReplyMemberImg}"
+              src="http://localhost:3050/${x.ReplyMemberImg}"
               class="CM_reply_item_header_img_img"
             />
           </div>
@@ -141,7 +141,7 @@ function ClsCommunityArticle() {
       } else {
         return `
         <div class="community_article_body_img">
-      <img class="community_article_body_img_img" src='${x}' />
+      <img class="community_article_body_img_img" src='http://localhost:3050/${x}' />
       </div>`;
       }
     }
@@ -152,7 +152,7 @@ function ClsCommunityArticle() {
     let result = "";
     k.map((e, index) => {
       result += `<div class="community_article_body_img">
-    <img class="community_article_body_img_img" src='${e}' />
+    <img class="community_article_body_img_img" src='http://localhost:3050/${e}' />
     </div>`;
     });
     return result;
@@ -164,9 +164,12 @@ function ClsCommunityArticle() {
   //社團文章：資料放進文字樣板，匯入頁面
   const display_postDetail = (o) => {
     ArticleUl.innerHTML = "";
-    o.map((e, index) => {
-      ArticleUl.innerHTML += htmlCommunityArticle(e);
-      console.log(e.PostId);
+    o.map(async (e, index) => {
+      function goInside(e) {
+        ArticleUl.innerHTML += htmlCommunityArticle(e);
+      }
+      await goInside(e);
+      console.log(document.getElementById("Article_replyIconbyfId" + e.PostId));
       document
         .getElementById("Article_replyIconbyfId" + e.PostId)
         .addEventListener("click", function () {
@@ -209,10 +212,14 @@ function ClsCommunityArticle() {
       let response = await fetch(serverURL.articlereply);
       let result = await response.json();
       // console.log(result);
-      // console.log(x);
       // console.log(result.data);
-      if (postid == result.data.postid) {
-        display_replyDetail(result.data, postid);
+      for (let i = 0; i < result.data.length; i++) {
+        if (result.data[i].fPostId == postid) {
+          console.log(result.data[i].fPostId);
+          display_replyDetail(result.data, postid);
+        } else {
+          console.log(result.data[i].fPostId);
+        }
       }
     } catch (err) {
       console.log(err);
@@ -282,7 +289,7 @@ function ClsCommunityArticle() {
       let result = await response.json();
       // console.log(result);
       await display_postDetail(result.data);
-      Article_addClickEventToReply(result.data);
+      // Article_addClickEventToReply(result.data);
       //TODO典籍喜歡
       // Article_addClickEventToLike(result.data.length);
       const community_article_body = document.querySelectorAll(

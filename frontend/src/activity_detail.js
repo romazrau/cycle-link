@@ -64,7 +64,7 @@ function ClsActivityDetail() {
         <div class="activity_detail_initiatorbox activity_detail_flex">
             <div class="activity_detail_info_img_circle" onclick="location.hash='#personal-page/${o.fMemberId}'">
                 <div class="activity_detail_info_img_div">
-                    <img src=${o.fPhotoPath} class="activity_detail_info_img">
+                    <img src='http://localhost:3050/${o.fPhotoPath}' class="activity_detail_info_img">
                 </div>
             </div>
             <div class="activity_detail_info_name">
@@ -82,7 +82,7 @@ function ClsActivityDetail() {
 
     const actDetail_img = (o) => {
         return `
-        <img class="activity_detail_leftImg" src=${o.fImgPath} alt="">
+        <img class="activity_detail_leftImg" src='http://localhost:3050/${o.fImgPath}' alt="">
         `;
     };
 
@@ -122,7 +122,7 @@ function ClsActivityDetail() {
         return `<div class="activity_detail_participant" onclick="location.hash='#personal-page/${o.fMemberId}'">
     <div class="activity_detail_info_img_circle">
         <div class="activity_detail_info_img_div">
-            <img src=${o.fPhotoPath} class="activity_detail_info_img">
+            <img src='http://localhost:3050/${o.fPhotoPath}' class="activity_detail_info_img">
         </div>
     </div>
     <p>${o.fName}</p>
@@ -146,7 +146,7 @@ function ClsActivityDetail() {
         return `<a href="#community/detail/${o.fCommunityId}" class="activity_detail_Societies_a">
                 <div class="activity_detail_Societies_img_circle" style="margin-left: 1rem;">
                     <div class="activity_detail_Societies_img_div">
-                        <img src=${o.CommuntyImgPath} class="activity_detail_Societies_img">
+                        <img src='http://localhost:3050/${o.CommuntyImgPath}' class="activity_detail_Societies_img">
                     </div>
                 </div>
                 <div class="activity_detail_Societies_info">
@@ -613,7 +613,7 @@ function ClsActivityDetail() {
         <div class="active_card" >
             <i class="fas fa-heart fa-lg active_card_heart"></i>
             <div class="active_card_div">
-                <img src="${o.imgPath}" alt="" class="active_card_img">
+                <img src="http://localhost:3050/${o.imgPath}" alt="" class="active_card_img">
             </div>
             <div class="active_card_info">
                 <p>${o.date}</p>

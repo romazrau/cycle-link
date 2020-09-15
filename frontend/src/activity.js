@@ -372,7 +372,7 @@ function ClsActivity() {
                          <i class="fas fa-heart fa-lg active_card_heart "></i>
                      </div>
                      <div class="active_card_div">
-                         <img src="${o.fImgPath}" alt="" class="active_card_img">
+                         <img src="http://localhost:3050/${o.fImgPath}" alt="" class="active_card_img">
                      </div>
                      
                      <div class="active_card_info">
@@ -434,7 +434,7 @@ function ClsActivity() {
                          <i class="fas fa-heart fa-lg active_card_heart actlikecolor "></i>
                      </div>
                      <div class="active_card_div">
-                         <img src="${o.fImgPath}" alt="" class="active_card_img">
+                         <img src="http://localhost:3050/${o.fImgPath}" alt="" class="active_card_img">
                      </div>
                      
                      <div class="active_card_info">
@@ -461,7 +461,7 @@ function ClsActivity() {
                          <i class="fas fa-heart fa-lg active_card_heart "></i>
                      </div>
                      <div class="active_card_div">
-                         <img src="${o.fImgPath}" alt="" class="active_card_img">
+                         <img src="http://localhost:3050/${o.fImgPath}" alt="" class="active_card_img">
                      </div>
                      
                      <div class="active_card_info">
@@ -513,7 +513,7 @@ function ClsActivity() {
             <div class="active_card" >
                 <i class="fas fa-heart fa-lg active_card_heart"></i>
                 <div class="active_card_div">
-                    <img src="${o.fImgPath}" alt="" class="active_card_img">
+                    <img src="http://localhost:3050/${o.fImgPath}" alt="" class="active_card_img">
                 </div>
                 <div class="active_card_info">
                     <p>${o.fActivityDate}</p>

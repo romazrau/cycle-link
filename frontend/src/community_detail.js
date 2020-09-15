@@ -416,7 +416,7 @@ function ClsCommuntityDetail() {
       }
 
       // TODO 錯誤處理
-      document.querySelector("#CommunityPic").src = result.data[0].fImgPath;
+      document.querySelector("#CommunityPic").src = "http://localhost:3050/"+result.data[0].fImgPath;
       document.querySelector("#CommunityName").innerHTML = result.data[0].fName;
       document.querySelector("#CommunityNumberOfPeople").innerHTML =
         result.data[0].totalNumber;
@@ -594,7 +594,7 @@ function ClsCommuntityDetail() {
           result.data[0].fName;
         document.querySelector("#selectStatus").value =
           result.data[0].fStatusId + "";
-        document.querySelector("#communityImg").src = result.data[0].fImgPath;
+        document.querySelector("#communityImg").src ="http://localhost:3050/"+result.data[0].fImgPath;
 
         // fetch舊資料_管理員基本資料
         let responseManager = await fetch(
@@ -799,7 +799,7 @@ function ClsCommuntityDetail() {
     // console.log(o.fPhotoPath);
     return `<div class="activity_detail_info_img_circle">
          <div class="activity_detail_info_img_div">
-             <img src="${o.fPhotoPath}" class="activity_detail_info_img">
+             <img src="http://localhost:3050/${o.fPhotoPath}" class="activity_detail_info_img">
          </div>
          </div>
          <div class="GroupRightInfo FlexContainer GroupRightInfoText">
@@ -813,7 +813,7 @@ function ClsCommuntityDetail() {
   const data2memImg = (o) => {
     return ` <div id="GroupMemberPicLessThan4" class="activity_detail_info_img_circle GroupMemberPic GroupMemberPicLessThan4">
         <div class="activity_detail_info_img_div">
-            <img class="activity_detail_info_img GoupRightInfoPhoto" src="${o.fPhotoPath}"
+            <img class="activity_detail_info_img GoupRightInfoPhoto" src="http://localhost:3050/${o.fPhotoPath}"
                 width="30">
         </div>
     </div>`;
@@ -827,7 +827,7 @@ function ClsCommuntityDetail() {
             <a href="#" class="DivForImg">
                 <div class="activity_detail_info_img_circle">
                     <div class="activity_detail_info_img_div">
-                        <img src=${o.fPhotoPath}
+                        <img src='http://localhost:3050/${o.fPhotoPath}'
                             class="activity_detail_info_img">
                     </div>
                 </div>
@@ -850,7 +850,7 @@ function ClsCommuntityDetail() {
   // 修改社團--管理員文字樣板
   const modifiedManager = (o) => {
     return ` <div class="create_community_check">
-        <img src = "${o.fPhotoPath}" 
+        <img src = "http://localhost:3050/${o.fPhotoPath}" 
         style = "border-radius: 50%; width:50px" />
             <p style="white-space:nowrap">${o.fName}</p>
             </div>`;
@@ -863,7 +863,7 @@ function ClsCommuntityDetail() {
     return `<div class="create_community_flex">
                 <input type="checkbox" style="align-self: center;" />
                 <div class="create_community_check">
-                    <img src ="${o.fPhotoPath}"
+                    <img src ="http://localhost:3050/${o.fPhotoPath}"
                     style = "border-radius: 50%; width:50px"/>
                     <p>${o.fName} </p>
                     </div>`;
