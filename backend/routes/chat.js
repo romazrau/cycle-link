@@ -44,6 +44,9 @@ module.exports = function (io) {
             console.log("Socket-- Disconnected: " + socket.userId + " " + socket.userName);
             Object.keys(socket.myRooms).map(key => {
                 if (typeof socket.myRooms[key] === "number") {
+
+                    // TODO 重複登入 離開時 不用發送
+
                     let chatroomId = socket.myRooms[key];
                     io.to(chatroomId).emit("friendOffline", chatroomId);
                     // console.log(chatroomId);
@@ -56,7 +59,7 @@ module.exports = function (io) {
         socket.on("joinRoom", ({ chatroomId }) => {
             console.log(`Socket-- A user join ${chatroomId} room: ${socket.userId} ${socket.userName}`);
             if (chatroomId != "world") {
-                io.to(chatroomId).emit("friendOnline", chatroomId);
+                io.to(chatroomId).emit("friendOnline", {chatroomId, userName: socket.userName});
             }
             socket.join(chatroomId); // *socket 房間功能，加入
             socket.myRooms = socket.rooms;
