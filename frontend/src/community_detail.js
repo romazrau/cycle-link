@@ -419,7 +419,7 @@ function ClsCommuntityDetail() {
     // ----------------------------------------------Ajax----------------------------------------------------//
 
     // 開啟特定社團頁面(社團id)
-    // todo開放或私密 用社團16做測試
+    // todo開放或私密 用社團16做測試 
     const renderPage = async (id) => {
 
         try {
@@ -835,7 +835,7 @@ function ClsCommuntityDetail() {
     // 送出資料
     document.querySelector("#fakeDoneBtn").addEventListener("click", async () => {
         try {
-            console.log("gooooooooooooooooooooooooooooooooooooooood");
+
 
             // 頁面拿到新的社團資料
             let form = document.querySelector("#formOfCreate"); // form element
@@ -843,11 +843,8 @@ function ClsCommuntityDetail() {
             formData.append("fCommunityId", fCommunityId)
             // 頁面拿到新的會員資料
             let formMem = document.querySelector("#formOfCreateMem");
-
             let formDataMem = new FormData(formMem);
-            formDataMem.append("fCommunityId", fCommunityId)
-
-
+            formDataMem.append("fCommunityId", fCommunityId);
 
             // fetch_修改tCommunity資料
             // let { fCommunityId, fName, fInfo, fStatusId, fImgPath } = req.body
@@ -871,20 +868,17 @@ function ClsCommuntityDetail() {
                 console.log(resultput);
             }
 
-
-            // todo
+            // todo 
             // if()
             // fetch_刪除成員
 
             // 如果有身份被修改
             // fetch_修改tMemberList
-
-            // todo  修改＿審核會員身份
-            // TODO 沒帶到FormData
+            // 1.修改審核會員
             let responseAccessRight = await fetch(serverURL.communityMember + fCommunityId, {
                 method: "PUT",
                 // Adding body or contents to send 
-                body: formMem,
+                body: formDataMem,
                 // Adding headers to the request 
                 headers: {
                     // formdata 不是用這種解析方式
@@ -894,25 +888,34 @@ function ClsCommuntityDetail() {
                 cache: "no-cache",
                 credentials: "include",
             })
-
             let resultAccessRight = await responseAccessRight.json();
 
             if (!resultAccessRight.result) {
                 console.log(resultAccessRight.result);
             }
 
+            // 如果有身份被修改
+            // fetch_修改tMemberList
+            // 2.社團剔除社員
+            // deletMemberOfCommunity = async (fDeletedArryId, fCommunityId)
 
-
-
-
-
-
-
-
-
-
-
-
+            // 頁面拿到新的社團資料
+            // todo continue 1. 被包在<form id="formOfCreateMem"> 裡 2. delete method
+            let formDel = document.querySelector(" "); // form element
+            let formDataDel = new FormData(formDel);
+            let responseDeleteMem = await fetch(serverURL.communityMemberAccessRight, {
+                method: "Delete",
+                // Adding body or contents to send 
+                body: formDataDel,
+                // Adding headers to the request 
+                headers: {
+                    // formdata 不是用這種解析方式
+                    // "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": localStorage.getItem("Cycle link token"),
+                },
+                cache: "no-cache",
+                credentials: "include",
+            })
 
 
 
@@ -1022,8 +1025,9 @@ function ClsCommuntityDetail() {
     // 修改社團--刪除會員文字樣板
     // 修改社團--增加管理員文字樣版
     const modifiedRemoveManager = (o) => {
+        // console.log(o);
         return `<div class="create_community_flex">
-                <input name="fId" type="checkbox" style="align-self: center;" />
+                <input name="fId" type="checkbox" value=${o.fMemberId} style="align-self: center;" />
                 <div class="create_community_check">
                     <img src ="${o.fPhotoPath}"
                     style = "border-radius: 50%; width:50px"/>

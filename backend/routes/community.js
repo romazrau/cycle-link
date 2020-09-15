@@ -410,14 +410,10 @@ router.delete('/members', async function (req, res, next) {
             res.json({ result: 0, msg: "token 遺失" });
             return;
         }
-        //todo 驗證社團管理員身分
-
-
-
         let resultDeletMemberOfCommunity = await Sql.deletMemberOfCommunity(fMemberIdArr, fCommunityId);
-
-        console.log((resultDeletMemberOfCommunity));
+        // console.log((resultDeletMemberOfCommunity));
         res.json(resultDeletMemberOfCommunity);
+
     } catch (err) {
         res.send({ result: 0, msg: "路由錯誤", data: err });
     }
