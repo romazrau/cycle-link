@@ -235,6 +235,8 @@
     height: 18rem;
     border-radius: 0.6rem;
     margin: 0 1rem;
+    box-shadow: 1px 1px 25px rgba(167, 167, 167, 0.384);
+
 }
 
 .active_card_img {
@@ -294,8 +296,8 @@
 } */
 
 /* 點讚後更換的顏色*/
-.actlikecolor{
-    color : var(--blue-color) !important;
+.actlikecolor {
+    color: var(--blue-color) !important;
 }
 
 
