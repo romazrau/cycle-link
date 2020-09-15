@@ -97,8 +97,20 @@ router.post("/add", async function (req, res, next) {
     let fCommunityId = req.body.fCommunityId;
     let fPostTime = req.body.fPostTime;
     let fContent = req.body.fContent;
-    let fImgPaths = req.body.fImgPaths;
-
+    // let fImgPaths = "qweq";
+    let fImgPaths = "";
+    for (let i = 0; i < req.files.length; i++) {
+      fImgPaths += "img/" + req.files[i].filename;
+      fImgPaths += ",,";
+    }
+    // let fImgPaths = "img/" + req.files[0].filename;
+    console.log("-----------------------------------");
+    // console.log(req.files);
+    // console.log(fImgPaths);
+    // let {
+    //   fContent,
+    //   f
+    // }
     let result = await Sql.addarticle(
       fPostMemberId,
       fCommunityId,

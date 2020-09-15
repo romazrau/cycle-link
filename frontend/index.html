@@ -2169,9 +2169,20 @@
                                         <div class="Group_detail_Societies_img_div">
                                             <!-- <img class="Group_detail_Societies_img" src="./img/id1.jpg" width="30"> -->
                                         </div>
-                                        <input class="AddArticleInput" type="text" placeholder="Post something...">
-                                        <img src="./img/icon_photo.svg" width="23" class="UploadImgforArticle">
-                                        <img src="./img/icon_send.svg" width="20" class="AddArticleinCommunity">
+                                        <form id="article_form">
+                                            <textarea class="AddArticleInput" name="fContent" placeholder="Post something..." cols=30 rows=2></textarea>
+                                            <lable src="./img/icon_photo.svg" class="AddArticleLabel">
+                                             <input type="file" name="fPhoto" id="articleImgInput" multiple="multiple" style="display: none;">
+                                             <!-- <img src="./img/icon_photo.svg" width="23" class="UploadImgforArticle"> -->
+                                             <i class="fas fa-images"></i>
+                                            </lable>
+                                            <label src="./img/icon_photo.svg" class="AddArticleLabel">
+                                             <input type="submit" id="articleImgsubmit" style="display: none;">
+                                             <!-- <img src="./img/icon_send.svg" width="20" class="AddArticleinCommunity" -->
+                                             <i class="far fa-paper-plane"></i>
+                                            </label>
+                                            <div class="AddArticleImgDisplay"></div>
+                                        </form>
                                     </div>
 
                                     <div class="community_article_container">

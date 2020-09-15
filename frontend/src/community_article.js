@@ -169,7 +169,7 @@ function ClsCommunityArticle() {
         ArticleUl.innerHTML += htmlCommunityArticle(e);
       }
       await goInside(e);
-      console.log(document.getElementById("Article_replyIconbyfId" + e.PostId));
+      // console.log(document.getElementById("Article_replyIconbyfId" + e.PostId));
       document
         .getElementById("Article_replyIconbyfId" + e.PostId)
         .addEventListener("click", function () {
@@ -217,6 +217,7 @@ function ClsCommunityArticle() {
         if (result.data[i].fPostId == postid) {
           console.log(result.data[i].fPostId);
           display_replyDetail(result.data, postid);
+          return;
         } else {
           console.log(result.data[i].fPostId);
         }
@@ -373,18 +374,12 @@ function ClsCommunityArticle() {
   };
   // getPostInSingleCommunity(getCommunityIdFromUrl());
 
-  //TODO點擊上傳圖片Icon時，上傳圖片至後端？
-  document
-    .querySelector(".UploadImgforArticle")
-    .addEventListener("click", function (e) {
-      // 上傳後該如何得到圖片路徑ㄋ？
-    });
-
   //點擊送出Icon時，抓取目前的資料發出文章內容給SQL
   document
     .querySelector(".AddArticleinCommunity")
     .addEventListener("click", function (e) {
       let addArticleInput = document.querySelector(".AddArticleInput").value;
+
       console.log(getCommunityIdFromUrl());
       addArticletoSQL(getCommunityIdFromUrl(), addArticleInput);
       getPostInSingleCommunity(getCommunityIdFromUrl());
@@ -397,6 +392,12 @@ function ClsCommunityArticle() {
     return x;
   }
 
+  document
+    .getElementById("articleImgsubmit")
+    .addEventListener("click", function (e) {
+      let addArticleInput = document.querySelector(".AddArticleInput").value;
+      addArticletoSQL(getCommunityIdFromUrl(), addArticleInput);
+    });
   //新增文章
   const addArticletoSQL = async (CommunityId, Content) => {
     try {
@@ -408,14 +409,13 @@ function ClsCommunityArticle() {
         ":" +
         timeFormatAdjust(nowtime.getMinutes());
 
-      console.log(addarticletime);
-
-      var articleFormdata = new FormData();
-      let imgTemp = "img/qwe";
+      let form = document.getElementById("article_form");
+      var articleFormdata = new FormData(form);
       articleFormdata.append("fCommunityId", CommunityId);
       articleFormdata.append("fPostTime", addarticletime);
       articleFormdata.append("fContent", Content);
-      articleFormdata.append("fImgPaths", imgTemp);
+
+      console.log(articleFormdata);
 
       let response = await fetch(serverURL.addarticle, {
         method: "POST",
@@ -423,8 +423,8 @@ function ClsCommunityArticle() {
           Authorization: localStorage.getItem("Cycle link token"),
         },
         body: articleFormdata,
-        cache: "no-cache",
-        credentials: "include",
+        // cache: "no-cache",
+        // credentials: "include",
       });
       let result = await response.json();
       console.log(result);
