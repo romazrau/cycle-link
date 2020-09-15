@@ -8,6 +8,8 @@ module.exports = function (io) {
     // src 資源
     const chatSql = require("../src/SQL/chat.js");
 
+    // TODO 重購: 私人聊天室直接向 使用者id 丟訊息就好 ， 不用再一個 chatroom 
+
     // socket middleware
     io.use((socket, next) => {
         try {
@@ -128,7 +130,7 @@ module.exports = function (io) {
 
             // TODO 身分查核
 
-            let result = await chatSql.myChatroomMessages(req.params.room);
+            let result = await chatSql.myChatroomMessages(req.params.room, req.user.fId);
 
             res.json(result);
         } catch (ex) {
