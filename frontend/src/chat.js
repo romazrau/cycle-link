@@ -186,7 +186,9 @@ function ClsChat() {
                     console.log("new Chatroom create");
                 })
 
-                socket.on("friendOnline", (chatroomId) => {
+                socket.on("friendOnline", ({chatroomId, userName}) => {
+                    if(userName === localStorage.getItem("Cycle link user data")) return;
+
                     let timer = setInterval(() => {
                         let result = isfriendOnline(chatroomId, true);
                         if (result) clearInterval(timer); 
