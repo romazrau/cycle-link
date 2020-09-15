@@ -227,7 +227,7 @@
 .chat_list_window {
   position: relative;
   margin-right: 2rem;
-  width: 10rem;
+  min-width: 10rem;
   height: 21.3rem;
   background-color: rgb(218, 218, 218);
   border-radius: 0.5rem;
@@ -261,10 +261,22 @@
 
 .chat_list_o {
   color: var(--lightblue-color);
-  padding-left: 0.5rem;
+  padding-left: 0.3rem;
+  font-size: 1rem;
+  line-height: 1rem;
+  animation: App-logo-spin infinite 3s ease-in-out;
+}
+
+.chat_list_online{
+  display: inline-block;
+  box-sizing: border-box;
+  color: var(--green-color);
+  width: 0.8rem;
+  padding:  0  0.2rem;
   font-size: 0.5rem;
   line-height: 1rem;
 }
+
 
 /* 以下聊天機器人 */
 .chat_robot_room_window {
@@ -282,7 +294,7 @@
 
 
 
-/* animation: App-logo-spin infinite 3s ease-in-out;
+
 
 @keyframes App-logo-spin {
   0% {
@@ -294,4 +306,4 @@
   100% {
     opacity: 0.5;
   }
-} */
+}

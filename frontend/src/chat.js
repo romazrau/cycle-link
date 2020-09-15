@@ -78,7 +78,7 @@ function ClsChat() {
     const reFlashChatroomList = (chatroomId, isMe = 0) => {
         let index = chatroomList.findIndex((item) => item.fId == chatroomId);
         let pop = chatroomList.splice(index, 1)[0];
-        pop.fIsReaded = isMe;   
+        pop.fIsReaded = isMe;
         chatroomList.unshift(pop);
 
         const chatList = document.querySelector(".chat_list");
@@ -91,6 +91,25 @@ function ClsChat() {
         // console.log(pop);
         // console.log(chatroomList);
         // console.groupEnd("reFlashChatroomList");
+    }
+    const isfriendOnline = (chatroomId, isOnline) => {
+        try {
+            let theChatList = document.querySelector(`#chat-list-${chatroomId} > .chat_list_online`);
+            let index = chatroomList.findIndex((item) => item.fId == chatroomId);
+
+            if (isOnline) {
+                chatroomList[index].isOnline = 1;
+                theChatList.innerHTML = "●";
+            }else{
+                chatroomList[index].isOnline = 0;
+                theChatList.innerHTML = "";
+            }
+            return true;
+        }
+        catch (ex) {
+            console.log(ex);
+            return false;
+        }
     }
 
     // 私人聊天室用
@@ -162,10 +181,36 @@ function ClsChat() {
                 })
                 // socket.removeAllListeners("newMessage");
 
-                socket.on("newChatroom", async () => {
+                socket.on("newChatroom", () => {
                     initChatroomList();
                     console.log("new Chatroom create");
                 })
+
+                socket.on("friendOnline", (chatroomId) => {
+                    let timer = setInterval(() => {
+                        let result = isfriendOnline(chatroomId, true);
+                        if (result) clearInterval(timer); 
+                    }, 3000);
+                    console.log("friend Online :)");
+                    socket.emit("FriendOnlineToo", chatroomId)
+                })
+
+                socket.on("friendOffline", (chatroomId) => {
+                    let timer = setInterval(() => {
+                        let result = isfriendOnline(chatroomId, false);
+                        if (result) clearInterval(timer); 
+                    }, 3000);
+                    console.log("friend Offline :(");
+                })
+
+                socket.on("friendOnlineTooYa", (chatroomId) => {
+                    let timer = setInterval(() => {
+                        let result = isfriendOnline(chatroomId, true);
+                        if (result) clearInterval(timer); 
+                    }, 3000);
+                    console.log("my friend online too :)");
+                })
+
 
 
             });
@@ -246,7 +291,11 @@ function ClsChat() {
     const data2cahtList = (array) => {
         let result = "";
         array.map((e) => {
-            result += `<li data-chatRoom-id=${e.fId} data-title=${e.fMemberName}>${e.fMemberName}<span class="chat_list_o">${e.fIsReaded ? "" : "●"}</span></li>`;
+            result += `<li id="chat-list-${e.fId}" data-chatRoom-id=${e.fId} data-title=${e.fMemberName}>
+                            <span class="chat_list_online">${e.isOnline ? "●" : ""}</span>
+                            ${e.fMemberName}
+                            <span class="chat_list_o">${e.fIsReaded ? "" : '<i class="far fa-comment-dots"></i>'}</span>
+                        </li>`;
         });
         return result;
     };

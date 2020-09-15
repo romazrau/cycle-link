@@ -26,6 +26,7 @@ module.exports = function (io) {
 
             socket.userId = payload.fId;
             socket.userName = payload.fName;
+            socket.myRooms = {};
             next();
         } catch (ex) {
             console.log("Socket-- io.use error");
@@ -41,17 +42,34 @@ module.exports = function (io) {
 
         socket.on('disconnect', () => {
             console.log("Socket-- Disconnected: " + socket.userId + " " + socket.userName);
+            Object.keys(socket.myRooms).map(key => {
+                if (typeof socket.myRooms[key] === "number") {
+                    let chatroomId = socket.myRooms[key];
+                    io.to(chatroomId).emit("friendOffline", chatroomId);
+                    // console.log(chatroomId);
+                }
+            })
+            socket.myRooms = {};
         })
 
         // 加入聊天室事件
         socket.on("joinRoom", ({ chatroomId }) => {
             console.log(`Socket-- A user join ${chatroomId} room: ${socket.userId} ${socket.userName}`);
+            if (chatroomId != "world") {
+                io.to(chatroomId).emit("friendOnline", chatroomId);
+            }
             socket.join(chatroomId); // *socket 房間功能，加入
+            socket.myRooms = socket.rooms;
         });
 
         socket.on("leaveRoom", ({ chatroomId }) => {
             console.log(`Socket-- A user leave ${chatroomId} room: ${socket.userId} ${socket.userName}`);
             socket.leave(chatroomId);
+            socket.myRooms = socket.rooms;
+        });
+
+        socket.on("FriendOnlineToo", ( chatroomId ) => {
+            io.to(chatroomId).emit("friendOnlineTooYa", chatroomId);
         });
 
         // 發送訊息事件
@@ -70,7 +88,7 @@ module.exports = function (io) {
 
                 if (chatroomId !== "world") {
                     let result = await chatSql.insertMessage(data);
-                    console.log(result);
+                    // console.log(result);
                 }
             }
         })
