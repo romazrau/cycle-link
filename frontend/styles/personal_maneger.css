@@ -170,7 +170,7 @@
     border: none;
 }
 .datawrap .dataContainer{
-    height: 600px;
+    height: 400px;
 }
 
 
@@ -486,7 +486,7 @@
 
 
 .protitle {
-    background-color: var(--lightblue-color);
+    /* background-color: var(--lightblue-color); */
     /* border: 0.5rem solid var(--lightgrey-color); */
 }
 
@@ -518,7 +518,8 @@
   }  
 
 .activestyle{
-    background-color:pink !important;
+    background-color:var(--lightblue-color) !important;
+    color:var(--blue-color) !important;
     z-index: 1000;
     display: block;
     /* background: linear-gradient(-35deg, transparent 45px, var(--pink-color) 0);
@@ -536,4 +537,20 @@
 
 .flex{
     display: flex;
+}
+
+.btnLaunchActPersonPage a:link{
+    color: var(--blue-color);
+}
+
+.btnLaunchActPersonPage a:visited{
+    color: var(--blue-color);
+}
+
+.save{
+    padding: 12px 25px;
+    border: none;
+    background-color: var(--blue-color);
+    color: white;
+    letter-spacing: 0.3rem;
 }

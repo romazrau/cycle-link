@@ -108,7 +108,7 @@ function getBannerTime(t, index) {
 const home_bannerimgs = (o) => {
   return `
   <div class="home_bannerbox">
-    <img src="${o.fImgPath}" alt=""> 
+    <img src="http://localhost:3050/${o.fImgPath}" alt=""> 
     <p class="home_top_event_p">${o.fActName}</p>  
     <p class="home_top_event_p2"></p>                 
   </div>`
@@ -122,7 +122,7 @@ const home_recent_activities = (o) => {
   return `
   <div class="home_recent_activity_item">
     <div class="home_recent_activity_item_img">
-    <a href="#activity/detail/${o.fId}"><img src="${o.fImgPath}"></a></div>
+    <a href="#activity/detail/${o.fId}"><img src="http://localhost:3050/${o.fImgPath}"></a></div>
     <div class="home_recent_activity_item_content">
         <a href="#activity/detail/${o.fId}">${o.fActName}</a>
         <p>${o.fActivityDate}</p>
@@ -151,29 +151,29 @@ const home_picturesItem = (o) => {
   return `
  <div class="home_showAct_left">
                         <div class="home_left_top">
-                        <a href="#activity/detail/${o[0].fId}"><img src=${o[0].fImgPath} class="home_left_top"></a>
+                        <a href="#activity/detail/${o[0].fId}"><img src='http://localhost:3050/${o[0].fImgPath}' class="home_left_top"></a>
                         </div>
                         <div class="home_left_bottom">
                             <div class="home_left_bottom_item1">
-                            <a href="#activity/detail/${o[1].fId}"><img src=${o[1].fImgPath}></a>
+                            <a href="#activity/detail/${o[1].fId}"><img src='http://localhost:3050/${o[1].fImgPath}'></a>
                             </div>
                             <div class="home_left_bottom_item2">
-                            <a href="#activity/detail/${o[2].fId}"><img src=${o[2].fImgPath}></a>
+                            <a href="#activity/detail/${o[2].fId}"><img src='http://localhost:3050/${o[2].fImgPath}'></a>
                             </div>
                         </div>
                     </div>
                     <div class="home_showAct_right">
                         <div class="home_right_left">
-                        <a href="#activity/detail/${o[3].fId}"><div class="home_right_sm"><img src=${o[3].fImgPath}></a>
+                        <a href="#activity/detail/${o[3].fId}"><div class="home_right_sm"><img src='http://localhost:3050/${o[3].fImgPath}'></a>
                         </div>
-                        <a href="#activity/detail/${o[4].fId}"><div class="home_right_lg"><img src=${o[4].fImgPath}></a></div>
+                        <a href="#activity/detail/${o[4].fId}"><div class="home_right_lg"><img src='http://localhost:3050/${o[4].fImgPath}'></a></div>
                         </div>
                         <div class="home_right_right">
                             <div class="home_right_lg">
-                            <a href="#activity/detail/${o[5].fId}"><img src=${o[5].fImgPath}></a>
+                            <a href="#activity/detail/${o[5].fId}"><img src='http://localhost:3050/${o[5].fImgPath}'></a>
                             </div>
                             <div class="home_right_sm">
-                            <a href="#activity/detail/${o[6].fId}"><img src=${o[6].fImgPath}></a></div>
+                            <a href="#activity/detail/${o[6].fId}"><img src='http://localhost:3050/${o[6].fImgPath}'></a></div>
                         </div>
                     </div>`
 }

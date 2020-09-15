@@ -30,16 +30,24 @@ function ClsChat() {
         room.innerHTML = data2chatRobotMessage(messages);
         room.scrollTo(0, room.scrollHeight);
     }
+    // world room 用
+    const worldRoomReconnect = () => {
+        if (!chatRobotWindow.classList.contains("hide")) {
+            console.log("世界頻道 open");
+            socket.emit("joinRoom", { chatroomId: "world" });
+        }
+    }
 
+    // 私人聊天室列表
     let chatroomList = [];
     const setChatroomList = (roomListObj) => {
         chatroomList.push(roomListObj);
-        document.querySelector(".chat_list").innerHTML = data2cahtList(chatroomList);
     }
     const initChatroomList = async () => {
+        chatroomList = [];
         const chatList = document.querySelector(".chat_list");
+        chatList.innerHTML = "";
         try {
-            chatList.innerHTML = "";
             let respones = await fetch(serverURL.getChatroom, {
                 cache: "no-cache",
                 headers: {
@@ -54,32 +62,64 @@ function ClsChat() {
 
             // console.group("chatroom List");
             result.data.map(item => {
+                item.fIsReaded = item.fIsMeLastChat
                 setChatroomList(item);
-
-                // TODO 處理未讀訊息
-
                 // console.log("joinRoom: " + item.fId);
                 socket.emit("joinRoom", { chatroomId: item.fId });
             })
 
-
-            // console.log(chatroomList);
             // console.groupEnd("chatroom List");
-
+            document.querySelector(".chat_list").innerHTML = data2cahtList(chatroomList);
         } catch (ex) {
             console.log(ex);
             chatList.innerHTML = `<div>連線錯誤</div>`;
         }
     }
+    const reFlashChatroomList = (chatroomId, isMe = 0) => {
+        let index = chatroomList.findIndex((item) => item.fId == chatroomId);
+        let pop = chatroomList.splice(index, 1)[0];
+        pop.fIsReaded = isMe;
+        chatroomList.unshift(pop);
+
+        const chatList = document.querySelector(".chat_list");
+        chatList.innerHTML = "";
+
+        document.querySelector(".chat_list").innerHTML = data2cahtList(chatroomList);
+
+        // console.group("reFlashChatroomList");
+        // console.log(index);
+        // console.log(pop);
+        // console.log(chatroomList);
+        // console.groupEnd("reFlashChatroomList");
+    }
+    const isfriendOnline = (chatroomId, isOnline) => {
+        try {
+            let theChatList = document.querySelector(`#chat-list-${chatroomId} > .chat_list_online`);
+            let index = chatroomList.findIndex((item) => item.fId == chatroomId);
+
+            if (isOnline) {
+                chatroomList[index].isOnline = 1;
+                theChatList.innerHTML = "●";
+            }else{
+                chatroomList[index].isOnline = 0;
+                theChatList.innerHTML = "";
+            }
+            return true;
+        }
+        catch (ex) {
+            console.log(ex);
+            return false;
+        }
+    }
 
     // 私人聊天室用
-    const  setMessagesTo = (chatroomId, msgObj) => {
-        let roomElement = document.querySelector(`#chatRoomId_${chatroomId}`); 
-        if(roomElement){
+    const setMessagesTo = (chatroomId, msgObj) => {
+        let roomElement = document.querySelector(`#chatRoomId_${chatroomId}`);
+        if (roomElement) {
             let messagesContainer = roomElement.querySelector('.chat_message');
             let prevDate = messagesContainer.dataset.prevDate;
             let msgDate = msgObj.time.split(" ")[0];
-            if(prevDate !== msgDate){
+            if (prevDate !== msgDate) {
                 messagesContainer.innerHTML += `<div class="chat_info_message">${msgDate}</div>`
             }
             messagesContainer.dataset.prevDate = msgDate;
@@ -97,7 +137,7 @@ function ClsChat() {
         console.log("%c" + title + "  " + msg, "color:green;font-size:16px;");
     }
 
-    // 設定 socket ---------------------------------------------------------------------
+    // *設定 socket ---------------------------------------------------------------------
     var setupSocket = () => {
         const token = localStorage.getItem('Cycle link token');
         // console.group("socket-----------");
@@ -111,14 +151,17 @@ function ClsChat() {
             // console.log(newSocket);
 
             newSocket.on("disconnect", () => {
-                setSocket(null);
-                setTimeout(setupSocket, 3000);
+                // setSocket(null);
+                // setTimeout(setupSocket, 3000);
                 makeToast("error", "Socket Disconnected!");
+                socket.removeAllListeners("newMessage");
             });
 
-
             newSocket.on("connect", () => {
+                setSocket(newSocket);
                 makeToast("success", "Socket Connected!");
+                initChatroomList();
+                worldRoomReconnect();
 
                 socket.on("newMessage", ({ message, userId, userName, time, chatroomId }) => {
                     console.log("get msg:" + message + " ||from: " + userName + " ||room: " + chatroomId);
@@ -131,15 +174,49 @@ function ClsChat() {
                     if (chatroomId === "world") {
                         setMessages(data);
                     } else {
+                        reFlashChatroomList(chatroomId, data.isMe);
                         setMessagesTo(chatroomId, data);
                     }
 
                 })
                 // socket.removeAllListeners("newMessage");
+
+                socket.on("newChatroom", () => {
+                    initChatroomList();
+                    console.log("new Chatroom create");
+                })
+
+                socket.on("friendOnline", (chatroomId) => {
+                    let timer = setInterval(() => {
+                        let result = isfriendOnline(chatroomId, true);
+                        if (result) clearInterval(timer); 
+                    }, 3000);
+                    console.log("friend Online :)");
+                    socket.emit("FriendOnlineToo", chatroomId)
+                })
+
+                socket.on("friendOffline", (chatroomId) => {
+                    let timer = setInterval(() => {
+                        let result = isfriendOnline(chatroomId, false);
+                        if (result) clearInterval(timer); 
+                    }, 3000);
+                    console.log("friend Offline :(");
+                })
+
+                socket.on("friendOnlineTooYa", (chatroomId) => {
+                    let timer = setInterval(() => {
+                        let result = isfriendOnline(chatroomId, true);
+                        if (result) clearInterval(timer); 
+                    }, 3000);
+                    console.log("my friend online too :)");
+                })
+
+
+
             });
 
-            setSocket(newSocket);
-
+        } else {
+            makeToast("", "Socket can't connect!");
         }
         // console.groupEnd("socket-----------");
     }
@@ -214,7 +291,11 @@ function ClsChat() {
     const data2cahtList = (array) => {
         let result = "";
         array.map((e) => {
-            result += `<li data-chatRoom-id=${e.fId}>${e.fMemberName}</li>`;
+            result += `<li id="chat-list-${e.fId}" data-chatRoom-id=${e.fId} data-title=${e.fMemberName}>
+                            <span class="chat_list_online">${e.isOnline ? "●" : ""}</span>
+                            ${e.fMemberName}
+                            <span class="chat_list_o">${e.fIsReaded ? "" : '<i class="far fa-comment-dots"></i>'}</span>
+                        </li>`;
         });
         return result;
     };
@@ -285,13 +366,13 @@ function ClsChat() {
 
 
     //文字樣板 -- 參考 html 中聊天機器人格式
-    const data2chatroom = (array, title, chatRoomId) => {        
+    const data2chatroom = (array, title, chatRoomId) => {
         let prevDate = "1911/01/01";
         let msgs = array.map((e) => {
             let date = e.time.split(" ")[0];
 
             let result = "";
-            if(prevDate !== date){
+            if (prevDate !== date) {
                 result += `<div class="chat_info_message">${date}</div>`
             }
             prevDate = date;
@@ -334,6 +415,8 @@ function ClsChat() {
         chatRoom.addEventListener("click", chatRoomClose);
         chatRoom.addEventListener("keydown", EventSendChatMessage);
 
+        e.target.querySelector(".chat_list_o").innerHTML = "";
+
         let response = await fetch(serverURL.getChatmessage + e.target.dataset.chatroomId, {
             method: "GET",
             cache: "no-cache",
@@ -343,11 +426,11 @@ function ClsChat() {
         })
 
         if (!response.ok) {
-            chatRoom.innerHTML = data2chatroom(cahtMessageData, e.target.innerHTML, e.target.dataset.chatroomId);
+            chatRoom.innerHTML = data2chatroom(cahtMessageData, e.target.dataset.title, e.target.dataset.chatroomId);
         } else {
             let result = await response.json();
             if (!result.result) {
-                chatRoom.innerHTML = data2chatroom([], e.target.innerHTML, e.target.dataset.chatroomId);  // {isMe: 0,msg: result.msg,time: ""}
+                chatRoom.innerHTML = data2chatroom([], e.target.dataset.title, e.target.dataset.chatroomId);  // {isMe: 0,msg: result.msg,time: ""}
             } else {
                 let messagesData = result.data.map((item) => ({
                     isMe: item.fName === localStorage.getItem("Cycle link user data"),
@@ -355,7 +438,7 @@ function ClsChat() {
                     time: item.fTime
                 })
                 )
-                chatRoom.innerHTML = data2chatroom(messagesData, e.target.innerHTML, e.target.dataset.chatroomId);
+                chatRoom.innerHTML = data2chatroom(messagesData, e.target.dataset.title, e.target.dataset.chatroomId);
             }
         }
 
@@ -451,7 +534,6 @@ function ClsChat() {
     }
     // TODO 登入後開啟
 
-    initChatroomList();
 }
 const Chat = new ClsChat();
 

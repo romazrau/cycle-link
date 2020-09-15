@@ -93,7 +93,7 @@
         <!-- * 聊天機器人 改成世界頻道囉 -->
         <div class="chat_robot_room_window hide">
             <img id="chat_robot_window_close" class="chat_window_close" src="./img/times-solid.svg" alt="X">
-            <div id="chat_message_window_title" class="chat_window_title">公開聊天室</div>
+            <div id="chat_message_window_title" class="chat_window_title"><span><i class="fas fa-globe-americas"></i>&nbsp;&nbsp;公開聊天室</span></div>
             <div id="chat_robot_message" class="chat_message">
                 訊息
             </div>
@@ -1281,7 +1281,7 @@
                                 <!-- 活動隸屬社團 -->
                             </div>
                             <!-- 留言區 -->
-                            <div class="massage">
+                            <div class="massage" style="display: none;">
                                 <div class="massageTop activity_detail_flex">
                                     <div class="massageTopText activity_detail_flex">
                                         <div class="massageTopTextTitle">留言</div>
@@ -1311,7 +1311,7 @@
                                     <div id="messageInputBoxCon"></div>
                                 </div>
                             </div>
-                            <h5 style="margin-top: 3rem;font-weight: bold;">為您推薦</h5>
+                            <h5 style="margin-top: 3rem;font-weight: bold;">瀏覽過的活動</h5>
                             <div id="activity_detail_see">
                             </div>
                         </div>
@@ -1322,7 +1322,7 @@
                                 <div class="activity_detail_right_top">
                                     <button id="joinActBtn">參加</button>
                                     <button id="cancelJoinActBtn" style="display: none;">取消</button>
-                                    <a href=""><img src="img/icon1.svg" alt="" class="activity_detail_right_love"></a>
+                                    <a href=""><i class="fas fa-heart fa-2x active_card_heart"></i></a>
                                 </div>
                                 <div class="activity_detail_right_info">
                                     <!-- 活動右側內容 -->
@@ -1438,7 +1438,7 @@
                                 </div>
                                 <div class="GroupLink" value="GroupDetailPage_Discussion">文
                                     章</div>
-                                <div id="Group_navlink_Picture" class="GroupLink" value="GroupDetailPage_Picture">照 片
+                                <div class="GroupLink" id="Group_navlink_Picture" value="GroupDetailPage_Picture">照 片
                                 </div>
                                 <div class="GroupLink" value="GroupDetailPage_Event">活
                                     動
@@ -2306,10 +2306,10 @@
                             </div>
                         </div>
                         <div class="peoplefilebox_left">
-                            <button><a href="#create-activity">發起活動</a></button>
+                            <button class="btnLaunchActPersonPage"><a href="#create-activity">發起活動</a></button>
 
                             <br>
-                            <button><a href="#create-community">建立社團</a></button>
+                            <button class="btnLaunchActPersonPage"><a href="#create-community">建立社團</a></button>
 
                         </div>
 
@@ -2560,7 +2560,11 @@
                     <div id="personal-maneger-class4" class="container class">
                         <form action="" class="form_member">
                             <fieldset class="Memberfieldset">
-                                <legend class="Memberlegend">會員資料</legend>
+                                <legend class="Memberlegend">
+                                    <h3>
+                                        會員資料
+                                    </h3>
+                                </legend>
                                 <div class="datawrap">
                                     <div class="dataContainer">
                                         <div class="dataItem"><label for="">姓名:</label><input type="text" name="Name"
@@ -2577,12 +2581,12 @@
 
                                         <div class="dataItem" id="Introduction"><label for="">介紹:</label>
                                             <br>
-                                            <textarea name="" cols="80" rows="10">範例</textarea>
+                                            <textarea name="" cols="80" rows="5">範例</textarea>
                                         </div>
                                     </div>
                                 </div>
                             </fieldset>
-                            <button type="button" id="member_submit">儲存</button>
+                            <button class="save" type="button" id="member_submit">儲存</button>
                         </form>
                     </div>
 
@@ -2729,7 +2733,7 @@
                                             <label class="ca_imgUpload_lbl">
                                                 <!-- ! -->
                                                 <input class="ca_imgUpload" style="display:none;" type="file"
-                                                    name="fImgPath">
+                                                    name="fPhoto">
                                                 <i class="fa fa-photo"></i> 上傳圖片
                                             </label>
                                             <div class="ca_imgUpload_div">
@@ -2743,7 +2747,7 @@
                                         <p>活動內容描述</p>
                                         <div class="create_active_flex">
                                             <!-- ! -->
-                                            <textarea id="create_active_text" cols="60" rows="8" maxlength="500"
+                                            <textarea id="create_active_text" cols="60" rows="5" maxlength="500"
                                                 name="fIntroduction"></textarea><br>
                                             <p class="create_active_flex_end create_active_ml"
                                                 id="create_active_text_count">0</p>

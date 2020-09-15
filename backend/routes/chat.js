@@ -8,6 +8,8 @@ module.exports = function (io) {
     // src 資源
     const chatSql = require("../src/SQL/chat.js");
 
+    // TODO 重購: 私人聊天室直接向 使用者id 丟訊息就好 ， 不用再一個 chatroom 
+
     // socket middleware
     io.use((socket, next) => {
         try {
@@ -24,6 +26,7 @@ module.exports = function (io) {
 
             socket.userId = payload.fId;
             socket.userName = payload.fName;
+            socket.myRooms = {};
             next();
         } catch (ex) {
             console.log("Socket-- io.use error");
@@ -35,43 +38,61 @@ module.exports = function (io) {
     // socket.io events ， 由 連線事件開始
     io.on("connection", function (socket) {
         console.log("Socket-- A user connected: " + socket.userId + " " + socket.userName);
+        socket.join(`user_${socket.userId}`);
 
         socket.on('disconnect', () => {
             console.log("Socket-- Disconnected: " + socket.userId + " " + socket.userName);
+            Object.keys(socket.myRooms).map(key => {
+                if (typeof socket.myRooms[key] === "number") {
+                    let chatroomId = socket.myRooms[key];
+                    io.to(chatroomId).emit("friendOffline", chatroomId);
+                    // console.log(chatroomId);
+                }
+            })
+            socket.myRooms = {};
         })
 
         // 加入聊天室事件
-        socket.on("joinRoom", ({chatroomId}) => {
+        socket.on("joinRoom", ({ chatroomId }) => {
             console.log(`Socket-- A user join ${chatroomId} room: ${socket.userId} ${socket.userName}`);
+            if (chatroomId != "world") {
+                io.to(chatroomId).emit("friendOnline", chatroomId);
+            }
             socket.join(chatroomId); // *socket 房間功能，加入
+            socket.myRooms = socket.rooms;
         });
 
-        socket.on("leaveRoom", ({chatroomId}) => {
+        socket.on("leaveRoom", ({ chatroomId }) => {
             console.log(`Socket-- A user leave ${chatroomId} room: ${socket.userId} ${socket.userName}`);
             socket.leave(chatroomId);
+            socket.myRooms = socket.rooms;
+        });
+
+        socket.on("FriendOnlineToo", ( chatroomId ) => {
+            io.to(chatroomId).emit("friendOnlineTooYa", chatroomId);
         });
 
         // 發送訊息事件
         socket.on("chatRoomMessage", async ({ chatroomId, message }) => {
-
             if (message.trim().length > 0) {
                 let data = {
                     message,
                     userId: socket.userId,
                     userName: socket.userName,
-                    time:  (new Date).toLocaleDateString("zh-TW") + " " + (new Date).toLocaleTimeString("zh-TW").split(":").slice(0,2).join(":"),
+                    time: (new Date).toLocaleDateString("zh-TW") + " " + (new Date).toLocaleTimeString("zh-TW").split(":").slice(0, 2).join(":"),
                     chatroomId,
                 }
                 console.log("Socket-- 向聊天室傳送訊息: " + chatroomId);
                 console.log(data);
                 io.to(chatroomId).emit("newMessage", data)  // *對特定房間發送事件
-                let result = await chatSql.insertMessage(data);
-                console.log(result);
+
+                if (chatroomId !== "world") {
+                    let result = await chatSql.insertMessage(data);
+                    // console.log(result);
+                }
             }
         })
 
-
-        // TODO 私有頻道
 
 
 
@@ -80,7 +101,7 @@ module.exports = function (io) {
 
 
 
-
+    // 取得聊天列表
     router.get("/", async (req, res, next) => {
         try {
             if (!req.user) {
@@ -117,7 +138,7 @@ module.exports = function (io) {
     })
 
 
-
+    // 取得聊天內容 by room
     router.get("/messages/:room", async (req, res, next) => {
         try {
             if (!req.user) {
@@ -127,7 +148,7 @@ module.exports = function (io) {
 
             // TODO 身分查核
 
-            let result = await chatSql.myChatroomMessages(req.params.room);
+            let result = await chatSql.myChatroomMessages(req.params.room, req.user.fId);
 
             res.json(result);
         } catch (ex) {
@@ -135,6 +156,33 @@ module.exports = function (io) {
             res.json({ result: 0, msg: "路由錯誤", data: ex });
         }
     })
+
+
+    // 新增聊天室
+    router.post("/:id", async (req, res, next) => {
+        try {
+            if (!req.user) {
+                res.json({ result: 0, msg: "尚未登入" });
+                return;
+            }
+
+            // TODO 身分查核
+
+            let result = await chatSql.insertChatroom(req.user.fId, req.params.id);
+
+            if (result.result) {
+                io.to(`user_${req.params.id}`).emit("newChatroom", {})  // *對特定房間發送事件
+            }
+
+            res.json(result);
+        } catch (ex) {
+            console.log(ex);
+            res.json({ result: 0, msg: "路由錯誤", data: ex });
+        }
+    })
+
+
+
 
     return router;
 }
