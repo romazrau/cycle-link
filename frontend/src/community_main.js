@@ -51,7 +51,9 @@ function ClsCommunityMain() {
         <a href="#community/detail/${x.CommunityId}" title="${
       x.CommunityName
     }" class="CM_groupIcon_wrap">
-          <img class="CM_groupIcon_img" src="http://localhost:3050/${x.CommunityImgPath}" />
+          <img class="CM_groupIcon_img" src="http://localhost:3050/${
+            x.CommunityImgPath
+          }" />
         </a>
       </div>
       <div class="community_main_timeline_panel">
@@ -105,7 +107,9 @@ function ClsCommunityMain() {
         <a href="#community/detail/${x.CommunityId}" title="${
       x.CommunityName
     }" class="CM_groupIcon_wrap">
-          <img class="CM_groupIcon_img" src="http://localhost:3050/${x.CommunityImgPath}" />
+          <img class="CM_groupIcon_img" src="http://localhost:3050/${
+            x.CommunityImgPath
+          }" />
         </a>
       </div>
       <div class="community_main_timeline_panel">
@@ -245,7 +249,7 @@ ${ImgIsNullOrNot(x.PostImg)}
   //套所社團卡片：路由撈資料
   const getExploreCommunity = async () => {
     try {
-      console.log(serverURL.explorecommunity);
+      // console.log(serverURL.explorecommunity);
       let response = await fetch(serverURL.explorecommunity, {
         method: "GET",
         headers: {

@@ -312,6 +312,30 @@ const OrActInitiator = async (fActivityId, fMemberId) => {
         };
     }
 };
+/*--------------判斷是否按過愛心-------------- */
+const likechecked = async (fActivityId, fMemberId) => {
+    try {
+        await sql.connect(config)
+        let sqlStr = `select * from Activity.tJoinList
+        where fActivityId =${fActivityId} and fMemberId=${fMemberId} and fJoinTypeId=0
+        `
+        const result = await sql.query(sqlStr);
+        // console.log("============");
+        // console.dir(result.recordset)
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
+    } catch (err) {
+        console.log(err);
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
+    }
+};
 
 
 //* ----------------------- 創建活動 ----------------------- //
@@ -549,5 +573,6 @@ module.exports = {
     OrJoinAct,
     actCreaterType,
     OrActInitiator,
-    EditAct
+    EditAct,
+    likechecked,
 };

@@ -212,7 +212,6 @@ function ClsActivity() {
             $("#search_citydetial").fadeOut("5000");
             btncitydetial.classList.add("search_hidden");
             btncity.classList.remove("search_hidden");
-          
             btncitytext.innerHTML = this.textContent;
 
             //判斷目前活動是否符合進階搜尋的城市
@@ -886,7 +885,6 @@ function ClsActivity() {
 
             //
             let heart_arr = document.querySelectorAll(".active_card_heart ")
-            console.log("card:", heart_arr)
 
             for (let i = 0; i < heart_arr.length - 3; i++) {
                 for (let j = 0; j < result.length; j++) {

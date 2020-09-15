@@ -39,7 +39,7 @@ const myChatroomList = async (id) => {
         return { result: 1, msg: "你的聊天室來囉", data: result.recordset };
     } catch (err) {
         console.log(err);
-        return { result: 0, msg: "SQL 問題", data: result };
+        return { result: 0, msg: "SQL 問題", data: err };
     }
 };
 

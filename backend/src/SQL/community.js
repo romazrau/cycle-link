@@ -463,6 +463,7 @@ const ChangeMemberAccessRight = async (fId, fCommunityId) => {
     // console.log(sqlStr);
 
     const result = await sql.query(sqlStr);
+    
 
     return {
       result: 1,
@@ -586,15 +587,15 @@ const updateCommunity = async (
 // !前端抓fCommunityId
 // TODO 刪除tMemberList資料by社員id,社團id CONTINUE
 // 社團12做測試
-const deletMemberOfCommunity = async (fDeletedArryId, fCommunityId) => {
+const deletMemberOfCommunity = async (fId, fCommunityId) => {
   try {
     await sql.connect(config);
 
     // 字串處理  '1,2,3'
-    let arrayId = fDeletedArryId.split(","); // [1 , 2 , 3]
+    let arrayId = fId.split(","); // [1 , 2 , 3]
     let arrayStr = arrayId.map((e) => `fMemberId = ${e}`); // [ 'fMemberId = 1' ,'fMemberId =  2 ', 'fMemberId = 3']
     let StrFin = arrayStr.join(" or "); // 'fMemberId = 1  or  fMemberId =  2   or  fMemberId = 3'
-    console.log(StrFin);
+    // console.log(StrFin);
 
     let sqlStr = `DELETE FROM Community.tMemberList
         WHERE ( ${StrFin} ) and  fCommunityId = ${fCommunityId}                               
@@ -602,12 +603,13 @@ const deletMemberOfCommunity = async (fDeletedArryId, fCommunityId) => {
 
     const result = await sql.query(sqlStr);
 
+    // console.log(result);
     // if(result.recordset[0]) => 沒東西就會是undefined
     // console.dir(result.recordset[0]);
     if (!result.rowsAffected[0]) {
       return { result: 0, msg: "無法刪除" };
     }
-    console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+    // console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
     return { result: 1, msg: "請求成功" };
   } catch (err) {
