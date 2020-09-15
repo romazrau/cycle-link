@@ -76,7 +76,6 @@ router.post('/', async function (req, res, next) {
             fActivityDate,
             fActivityEndDate,
             fIntroduction,
-            fImgPath,
             fActLabelId,
             fMaxLimit,
             fMinLimit,
@@ -86,9 +85,10 @@ router.post('/', async function (req, res, next) {
             fCommunityId
         } = req.body
 
-        if (!fImgPath) {
-            fImgPath = null;
-        }
+        let fImgPath="img/"+req.files[0].filename;
+        // if (!fImgPath) {
+        //     fImgPath = null;
+        // }
         if (!fMaxLimit) {
             fMaxLimit = null;
         }
@@ -109,7 +109,7 @@ router.post('/', async function (req, res, next) {
         let fMemberId = req.user.fId;
         // console.log(fMemberId)
         let result = await Sql.createAct(fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation, fLabelName, fCommunityId);
-        // console.log(result.result);
+        console.log(result);
 
         if (!result.result) {
             res.json(result.data);

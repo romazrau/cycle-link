@@ -35,7 +35,7 @@ const activesql = async () => {
         // left join jo as J
         // on A.fId = J.fActivityId
         // `
-        let sqlStr =`select top(6)  * from Activity.tActivity order by  newid()`
+        let sqlStr =`select top(6)  * from Activity.tActivity where fActLabelId = 3 order by  newid()`
         // todo where j.fMemberId = ${}
         
         const result = await sql.query(sqlStr)

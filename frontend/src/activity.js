@@ -372,7 +372,7 @@ function ClsActivity() {
                          <i class="fas fa-heart fa-lg active_card_heart "></i>
                      </div>
                      <div class="active_card_div">
-                         <img src="${o.fImgPath}" alt="" class="active_card_img">
+                         <img src="http://localhost:3050/${o.fImgPath}" alt="" class="active_card_img">
                      </div>
                      
                      <div class="active_card_info">
@@ -434,7 +434,7 @@ function ClsActivity() {
                          <i class="fas fa-heart fa-lg active_card_heart actlikecolor "></i>
                      </div>
                      <div class="active_card_div">
-                         <img src="${o.fImgPath}" alt="" class="active_card_img">
+                         <img src="http://localhost:3050/${o.fImgPath}" alt="" class="active_card_img">
                      </div>
                      
                      <div class="active_card_info">
@@ -461,7 +461,7 @@ function ClsActivity() {
                          <i class="fas fa-heart fa-lg active_card_heart "></i>
                      </div>
                      <div class="active_card_div">
-                         <img src="${o.fImgPath}" alt="" class="active_card_img">
+                         <img src="http://localhost:3050/${o.fImgPath}" alt="" class="active_card_img">
                      </div>
                      
                      <div class="active_card_info">
@@ -513,7 +513,7 @@ function ClsActivity() {
             <div class="active_card" >
                 <i class="fas fa-heart fa-lg active_card_heart"></i>
                 <div class="active_card_div">
-                    <img src="${o.fImgPath}" alt="" class="active_card_img">
+                    <img src="http://localhost:3050/${o.fImgPath}" alt="" class="active_card_img">
                 </div>
                 <div class="active_card_info">
                     <p>${o.fActivityDate}</p>
@@ -532,9 +532,11 @@ function ClsActivity() {
     //* ------------------------------------- 文字樣板 -------------------------------------
     const display_active = (o) => {
         // console.group("----------------");
+        
         o.map(
             (e, index) => {
                 // console.log(e);
+                //todo 
                 ActCard.innerHTML += htmlActCard(e);
             }
         )
@@ -818,6 +820,7 @@ function ClsActivity() {
           }
     }
     
+    
 
     //AJAX
 
@@ -860,6 +863,15 @@ function ClsActivity() {
         local: "烏石港"
     }
     ]
+
+    let nowtime = new Date();
+        let date = nowtime.toLocaleDateString();
+        let timesplit = nowtime.toTimeString().split(" ");
+        let time = timesplit[0];
+        let now = date + " " + time;
+        console.log(now);
+        // now = now.split("/").join(",");
+   
 
     ActCardData2.map(
         (e, index) => {

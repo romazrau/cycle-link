@@ -222,7 +222,7 @@ const htmlPerCard = o =>
         return `<div class="personal_detail_Societies_img_circle">
                 <a href="#community/detail/${o.fCommunityId}">
                     <div class="personal_detail_Societies_img_div">
-                        <img src="${o.fImgPath}" class="personal_detail_Societies_img">
+                        <img src="http://localhost:3050/${o.fImgPath}" class="personal_detail_Societies_img">
                     </div>
                     </a>
                 </div>
@@ -236,7 +236,7 @@ const htmlPerCard = o =>
     const htmlPerImgCard = o =>
    {    
         return `
-             <img src="${o.fPhotoPath}" alt="">
+             <img src="http://localhost:3050/${o.fPhotoPath}" alt="">
             `
   
     }
