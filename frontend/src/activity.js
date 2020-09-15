@@ -532,9 +532,11 @@ function ClsActivity() {
     //* ------------------------------------- 文字樣板 -------------------------------------
     const display_active = (o) => {
         // console.group("----------------");
+        
         o.map(
             (e, index) => {
                 // console.log(e);
+                //todo 
                 ActCard.innerHTML += htmlActCard(e);
             }
         )
@@ -818,6 +820,7 @@ function ClsActivity() {
           }
     }
     
+    
 
     //AJAX
 
@@ -860,6 +863,15 @@ function ClsActivity() {
         local: "烏石港"
     }
     ]
+
+    let nowtime = new Date();
+        let date = nowtime.toLocaleDateString();
+        let timesplit = nowtime.toTimeString().split(" ");
+        let time = timesplit[0];
+        let now = date + " " + time;
+        console.log(now);
+        // now = now.split("/").join(",");
+   
 
     ActCardData2.map(
         (e, index) => {
