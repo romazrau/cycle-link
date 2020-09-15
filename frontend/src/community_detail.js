@@ -780,22 +780,29 @@ function ClsCommuntityDetail() {
                 AddManagerContainer.innerHTML = "";
                 deletMemberContainer.innerHTML = "";
                 if (resultMember.result) {
-                    console.log(resultMember.data);
-                    console.log(resultAccessRight.data);
+                    if (!resultAccessRight.data) {
+
+                    }
+                    // console.log(resultMember.data);
+                    // console.log(resultAccessRight.data);
                     resultMember.data.forEach((o) => {
                         //不是管理員
                         if (o.ifManager == 0) {
                             // is  Normal member
                             let isNormalMember = true;
-                            for (let x of resultAccessRight.data) {
-                                if (o.fMemberId == x.fMemberId) {
-                                    isNormalMember = false;
-                                    break;
+                            if (resultAccessRight.result == 1) {
+                                for (let x of resultAccessRight.data) {
+                                    if (o.fMemberId == x.fMemberId) {
+                                        isNormalMember = false;
+                                        break;
+                                    }
                                 }
                             }
+
                             if (isNormalMember) {
                                 AddManagerContainer.innerHTML += modifiedRemoveManager(o);
                                 deletMemberContainer.innerHTML += modifiedRemoveManager(o);
+
                             }
                         }
 
@@ -842,10 +849,10 @@ function ClsCommuntityDetail() {
             let formData = new FormData(form); // FormData
             formData.append("fCommunityId", fCommunityId)
             // 頁面拿到新的會員資料
-            let formMem = document.querySelector("#formOfCreateMem");
+            // todo 待測新formdata
+            let formMem = document.querySelector("#formPending");
             let formDataMem = new FormData(formMem);
             formDataMem.append("fCommunityId", fCommunityId);
-
             // fetch_修改tCommunity資料
             // let { fCommunityId, fName, fInfo, fStatusId, fImgPath } = req.body
             let responseput = await fetch("http://localhost:3050/community/", {
@@ -868,12 +875,11 @@ function ClsCommuntityDetail() {
                 console.log(resultput);
             }
 
-            // todo 
-            // if()
-            // fetch_刪除成員
-
+         
             // 如果有身份被修改
             // fetch_修改tMemberList
+            
+            // todo沒抓到 
             // 1.修改審核會員
             let responseAccessRight = await fetch(serverURL.communityMember + fCommunityId, {
                 method: "PUT",
@@ -900,9 +906,12 @@ function ClsCommuntityDetail() {
             // deletMemberOfCommunity = async (fDeletedArryId, fCommunityId)
 
             // 頁面拿到新的社團資料
-            // todo continue 1. 被包在<form id="formOfCreateMem"> 裡 2. delete method
-            let formDel = document.querySelector(" "); // form element
+            // todo continue 1. 被包在<form id="formDelMember"> 裡 2. 抓錯東西 把Formdata分開包(包完)
+            
+            let formDel = document.querySelector("#formDelMember"); // form element
             let formDataDel = new FormData(formDel);
+            formDataDel.append("fCommunityId", fCommunityId);
+
             let responseDeleteMem = await fetch(serverURL.communityMemberAccessRight, {
                 method: "Delete",
                 // Adding body or contents to send 
@@ -916,6 +925,13 @@ function ClsCommuntityDetail() {
                 cache: "no-cache",
                 credentials: "include",
             })
+            let resultDeleteMem = await responseDeleteMem.json();
+
+            console.log(resultDeleteMem);
+            if (!resultDeleteMem.result) {
+                console.log(resultDeleteMem);
+            }
+
 
 
 
@@ -1024,6 +1040,7 @@ function ClsCommuntityDetail() {
     // 修改社團--刪除管理員文字樣板
     // 修改社團--刪除會員文字樣板
     // 修改社團--增加管理員文字樣版
+    // 修改社團--審核會員文字樣板
     const modifiedRemoveManager = (o) => {
         // console.log(o);
         return `<div class="create_community_flex">
