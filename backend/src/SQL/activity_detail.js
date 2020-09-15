@@ -317,6 +317,8 @@ const OrActInitiator = async (fActivityId, fMemberId) => {
 // TODO: [待修正] ----- 只有一個標籤會錯誤 map is not a function ----- //
 const CreateTag5 = (x) => {
     let result = ""
+    console.log("Tag5===" + x.index)
+    // if(x.length)
     x.map((e, index) => {
         result += `insert into Activity.tActivityLabel (fLabelName)
     values ('${e}')`
@@ -331,13 +333,19 @@ const createAct = async (fActName, fCreatDate, fActivityDate, fActivityEndDate, 
         await sql.connect(config)
         let sqlStr = `
         insert into Activity.tActivity(fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation,fCommunityId)
-values ('${fActName}', '${fCreatDate}','${fActivityDate}', '${fActivityEndDate}', ${fMemberId}, '${fIntroduction}', '${fImgPath}', ${fActLabelId}, ${fMaxLimit}, ${fMinLimit}, ${fActAttestId},${fActTypeId},'${fActLocation}',${fCommunityId});
-${CreateTag5(fLabelName)}`
+        values ('${fActName}', '${fCreatDate}','${fActivityDate}', '${fActivityEndDate}', ${fMemberId}, '${fIntroduction}', '${fImgPath}', ${fActLabelId}, ${fMaxLimit}, ${fMinLimit}, ${fActAttestId},${fActTypeId},'${fActLocation}',${fCommunityId});
+        ${CreateTag5(fLabelName)}`
         console.log(sqlStr);
         const result = await sql.query(sqlStr)
         // console.dir(result)
-        // let sqlStr2 = ``
-        // const result2 = await sql.query(sqlStr2)
+        let sqlStr2 = `select fId,fActName
+        from Activity.tActivity
+        where fActName = '${fActName}'
+        select fId,fLabelName
+        from Activity.tActivityLabel
+        where fLabelName = '${fLabelName}'`
+        console.log(sqlStr2)
+        const result2 = await sql.query(sqlStr2)
 
         return {
             result: 1,
@@ -346,7 +354,7 @@ ${CreateTag5(fLabelName)}`
         //新增:
         //1.先拿社團id=>select * from Activity.tActivity where fActName=${fActName}
         //2.5個標籤id=>for*5 select * from Activity.tActivityLabel where fActName=${fLabelName}=>insert 
-        
+
 
 
 
@@ -360,6 +368,8 @@ ${CreateTag5(fLabelName)}`
         };
     }
 };
+// fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation, fLabelName, fCommunityId
+createAct('Label_TEST', '2020-09-01', '2020-10-01 08:00', '2020-10-01 10:00', 6, 'introduction', '', 0, 50, 10, 3, 1, 'taipei', ['#label01', '#label02'], 1)
 
 //* ----------------------- 創建活動 以個人或社團 ----------------------- //
 const actCreaterType = async (fMemberId) => {
