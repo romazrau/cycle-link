@@ -18,7 +18,18 @@ function ClsActivityDetail() {
 
     }
     // console.log(actMap());
-
+    function creatActMapId() {
+        var map = L.map('creatActMapId')
+        var marker = L.marker([25.0360703, 121.4977054]).addTo(map);
+        map.setView(new L.LatLng(25.0360703, 121.4977054), 16);
+        var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        var osm = new L.TileLayer(osmUrl, {
+            minZoom: 8,
+            maxZoom: 20
+        });
+        map.addLayer(osm);
+    }
+    creatActMapId()
 
     // * -------------- 固定右側資訊 -------------- //
     // function boxMove2(y) {
