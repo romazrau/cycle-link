@@ -49,7 +49,7 @@ router.get('/:id', async function (req, res, next) {
 
         //----創變數(最後會包入data回傳使用者身分):管理員 社員 非社員(含訪客)
         let user = "";
-
+        
         //訪客的id 是 2
         let memberId = 2;
         //token
@@ -111,6 +111,9 @@ router.get('/:id', async function (req, res, next) {
         console.log(err);
         res.send({ result: 0, msg: "路由錯誤", data: err });
     }
+
+
+
 });
 
 // 查詢社團管理員byId
@@ -524,6 +527,17 @@ router.delete('/:id', async function (req, res, next) {
     }
 
 })
+//照片牆
+router.get('/communitypicture/:id', async function (req, res, next) {
+    try {
+        let result = await Sql.Community_GetPictures(req.params.id);
+        
+
+        res.json(result);
+    } catch (err) {
+        res.send({ result: 0, msg: "路由錯誤", data: err });
+    }
+});
 
 
 // 匯出方法

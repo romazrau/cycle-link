@@ -453,7 +453,7 @@
                 </div>
                 <!-------------------------------------- 活動 -------------------------------------->
                 <div id="activity_card_ALL">
-                    <h3>主題活動</h3>
+                    <h3 id="act_tag_main">主題活動</h3>
                     <div class="activity_event" id="activity_event_top">
                     </div>
                     <h3>為您推薦</h3>
@@ -2789,7 +2789,7 @@
 
                                         <div class="create_active_flex">
                                             <!-- ! -->
-                                            <select name="fActLabelId">
+                                            <select name="fActLabelId" id="ac_detail_type">
                                                 <option value="0">其他</option>
                                                 <option value="1">志工活動</option>
                                                 <option value="2">環境清潔</option>
@@ -3315,7 +3315,7 @@
     <script type="module" src="./src/map.js"></script>
     <script src='./src/router.js'></script>
     <!-- page -->
-    <script type="module" src="./src/activity.js"></script>
+    <script src="./src/activity.js"></script>
     <script src="./src/home.js"></script>
     <script type="module" src="./src/login.js"></script>
     <script src="./src/singUp.js"></script>
@@ -3323,15 +3323,15 @@
     <script src="./src/personalPage.js"></script>
     <script src="./src/personal_maneger.js"></script>
     <script src="./src/aboutUs.js"></script>
-    <script src="./src/activity_detail.js"></script>
+    <script type="module" src="./src/activity_detail.js"></script>
     <script type="module" src="./src/community_main.js"></script>
     <script type="module" src="./src/community_article.js"></script>
     <script type="module" src="./src/activity_detail.js"></script>
+    <script src="./src/create_activities.js"></script>
     <script src="./src/community_main.js"></script>
     <script src="./src/community.js"></script>
     <!-- community_detail.js有import檔案所以被使用的時候要加type="module" -->
     <script type="module" src="./src/community_detail.js"></script>
-    <script src="./src/create_activities.js"></script>
     <script type="module" src="./src/create_community.js"></script>
     <script type="module" src="./src/personalPage.js"></script>
     <script type="module" src="./src/home.js"></script>

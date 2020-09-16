@@ -214,6 +214,7 @@ function map_GetActivityList(o){
     
     
     function map_ChangeDistance(){
+      clearcheckbox();
       cleanMarker();
       L.marker([ OriginalPlacelat, OriginalPlacelng], {icon: myIcon},{title:"現在位置"}).addTo(map);
       
