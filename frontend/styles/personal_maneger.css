@@ -155,7 +155,8 @@
 }
 
 .dataContainer{
-    width: 33%;
+    width: 80vw;
+    max-width: 20rem;
 }
 .dataItem{
     margin: 0.8rem;
@@ -173,6 +174,9 @@
     height: 400px;
 }
 
+.form_member{
+    padding-left: 10vw;
+}
 
 
 
@@ -319,34 +323,44 @@
 }
 
 .personal-maneger-header {
-    width: 1240px;
+    width: 100%;
+    max-width: 1240px;
     background-color: var(--lightgrey-color);
     margin: auto;
+    display: flex;
+    justify-content: center;
 }
 
 .headerbox {
     width: 100%;
+    max-width: 1240px;
     display: flex;
+    justify-content: center;
 }
 
 .imgbox {
-    width: 45%;
+    width: 50%;
     display: flex;
     border-right: 0.1rem solid #979494;
 }
 
 .imgbox img {
     width: 10rem;
-    margin: 2rem;
+    margin: 2rem 2vw;
 }
 
 .titlebox {
     padding-top: 2rem;
-    padding-left: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .titlebox h3 {
     margin: 1rem 0;
+    margin-top: 0;
 }
 
 .titlebox h4 {
@@ -357,23 +371,36 @@
     padding-right: 1rem;
 }
 
-.imgfile {
-    margin: 1rem 0;
-}
+/* .imgfile {
+    margin: 0rem 0;
+} */
 
 .peoplefilebox {
-    width: 45%;
+    width: 50%;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.peoplefilebox_right_items{
+.peoplefilebox_right{
+    box-sizing: border-box;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    height: 100%;
+    padding-left: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+/* .peoplefilebox_right_items{
     margin-top: 2rem;
     margin-left: 2rem;
-}
-.peoplefilebox_left{
-    margin-top: 3rem;
-    margin-left: 8rem;
-}
+} */
+/* .peoplefilebox_left{
+ 
+} */
 .peoplefilebox_left button{
     margin-bottom: 2rem;
     border: 0 solid transparent;
@@ -475,7 +502,11 @@
 .procontent {
     /* width: 70%;
     margin: 20px 40px; */
+    display: flex;
+    justify-content: space-evenly;
+    min-height: 60vh;
     border: 0.5rem solid var(--lightgrey-color);
+    margin-bottom: 10px;
 }
 /*------------商品-------------*/
 
@@ -554,3 +585,6 @@
     color: white;
     letter-spacing: 0.3rem;
 }
+
+
+

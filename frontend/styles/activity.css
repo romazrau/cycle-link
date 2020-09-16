@@ -328,22 +328,27 @@
 
 .search_box {
     width: 150px;
-    height: 150px;
-    background-color: rgb(103, 160, 197);
+    /* height: 150px; */
+    /* background-color: rgb(103, 160, 197); */
+    /* background-color: rgba(103, 160, 197, 0.384); */
+    border-radius: 10;
     /* transition: width 2s ease-out 10s; */
 }
-
+.search_dbox{
+    width: 150px;
+    /* background-color: rgba(103, 160, 197, 0.384); */
+}
 .search_hidden {
     display: none;
 }
 
 .search_citytext {
     text-align: center;
-    line-height: 150px;
+    /* line-height: 150px; */
 }
 
 .search_city_detail {
-    background-color: rgb(95, 160, 111);
+    /* background-color: rgba(103, 160, 197, 0.384); */
     /* justify-content: center; */
     text-align: center;
 }
@@ -356,6 +361,14 @@
     list-style: none;
     /* text-align: center; */
     margin: 1rem 2.5rem 1rem 1rem;
+}
+
+.search_datetext{
+    text-align: center;
+}
+
+.bccolorwhite{
+    background-color: white !important;
 }
 
 #activity_card_ALL {

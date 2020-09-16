@@ -231,6 +231,69 @@ function ClsPersonalManeger() {
         $(this).siblings().css("opacity", "1");
     })
 
+
+
+
+    // rander 畫面
+    const renderPersonalDetail = async () => {
+        try {
+
+            let response = await fetch(serverURL.userDetail, {
+                method: "GET",
+                cache: "no-cache", // 不准使用快取
+                headers: {
+                    // *攜帶 http request headers
+                    Authorization: localStorage.getItem("Cycle link token"), // *這個屬性帶 JWT
+                },
+            });
+            let result = await response.json();
+
+            console.log(result);
+            document.querySelector("#personal-manege-img").src = serverURL.root + "/" + result.data.fPhotoPath;
+            document.querySelector("#personal-manege-name").innerHTML = result.data.fName;
+            document.querySelector("#personal-manege-coin").innerHTML = result.data.fCoins;
+            document.querySelector("#personal-manege-act-count").innerHTML = result.data.fActiviteCount;
+            document.querySelector("#personal-manege-account-type").innerHTML = result.data.fAccountType;
+            
+            document.querySelector("#personal-maneger-input-name").value = result.data.fName;
+            document.querySelector("#personal-maneger-input-birth").value = result.data.fBirthdate;
+            document.querySelector("#personal-maneger-input-address").value = result.data.fCity;
+            document.querySelector("#personal-maneger-input-phone").value = result.data.fCeilphoneNumber;
+            document.querySelector("#personal-maneger-input-introduction").value = result.data.fIntroduction;
+
+
+            
+            
+
+
+
+        } catch (ex) {
+            console.log(ex);
+        }
+
+
+    }
+
+
+    this.render = () => {
+        console.log("+++++++++++++++++++");
+        renderPersonalDetail();
+    }
 }
 const PersonalManeger = new ClsPersonalManeger();
+
+const personalManegerHash = () => {
+    if (location.hash === "#personal-maneger") {
+        PersonalManeger.render();
+    }
+}
+
+
+window.addEventListener("hashchange", personalManegerHash);
+window.addEventListener("load", personalManegerHash);
+
+
+
+
+
 document.getElementsByClassName("testbtn")[0].click();

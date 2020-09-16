@@ -1,6 +1,6 @@
-import {
-    serverURL
-} from "./api.js";
+// import {
+//     serverURL
+// } from "./api.js";
 
 function ClsActivity() {
 
@@ -212,6 +212,7 @@ function ClsActivity() {
             $("#search_citydetial").fadeOut("5000");
             btncitydetial.classList.add("search_hidden");
             btncity.classList.remove("search_hidden");
+            btncity.classList.add("bccolorwhite");
             btncitytext.innerHTML = this.textContent;
 
             //判斷目前活動是否符合進階搜尋的城市
@@ -233,6 +234,7 @@ function ClsActivity() {
 
         $("#search_datedetial").fadeIn("5000");
         btndatedetial.classList.remove("search_hidden");
+
     });
 
 
@@ -277,6 +279,7 @@ function ClsActivity() {
                 var dateAsString = dateText; //the first parameter of this function
                 var dateAsObject = $(this).datepicker('getDate'); //the getDate method
                 getenddate(dateAsString);
+
                 // displaydate();
             },
             //顯示上個月日期 及下個月日期 ，但是不可選的。
@@ -305,7 +308,7 @@ function ClsActivity() {
     //抓取時間
     function getstartdate(startdate) {
         var startdatetext = document.getElementById("search_date_text");
-        startdatetext.innerHTML = "起始日 <br>" + startdate + '<br>';
+        startdatetext.innerHTML = "起始日" + "  " + startdate;
     }
 
 
@@ -342,7 +345,7 @@ function ClsActivity() {
     //)
     function getenddate(enddate) {
         var enddatetext = document.getElementById("search_date_text");
-        enddatetext.innerHTML += "結束日 <br>" + enddate;
+        enddatetext.innerHTML += "結束日" + "  " + enddate;
         dateend = enddate;
         dateendarr = dateend.split("/");
         newdateend = dateendarr[2] + dateendarr[0] + dateendarr[1];
@@ -353,13 +356,13 @@ function ClsActivity() {
         $("#search_datedetial").fadeOut("5000");
         btndatedetial.classList.add("search_hidden");
         btndate.classList.remove("search_hidden");
+        btndate.classList.add("bccolorwhite");
     }
-        
     let nowtime = new Date();
-        let date = nowtime.toLocaleDateString();
-        let timesplit = nowtime.toTimeString().split(" ");
-        let time = timesplit[0];
-        let now = date;
+    let date = nowtime.toLocaleDateString();
+    let timesplit = nowtime.toTimeString().split(" ");
+    let time = timesplit[0];
+    let now = date;
 
 
     // 活動樣板
@@ -532,13 +535,16 @@ function ClsActivity() {
     //* ------------------------------------- 文字樣板 -------------------------------------
     const display_active = (o) => {
         // console.group("----------------");
-
+        ActCard.innerHTML = "";
+        // console.log("o:", o);
         o.map(
             (e, index) => {
                 // console.log(e);
                 //todo 
-                {ActCard.innerHTML += htmlActCard(e);}
-                
+                {
+                    ActCard.innerHTML += htmlActCard(e);
+                }
+
             }
         )
         // console.groupEnd("----------------");
@@ -673,11 +679,10 @@ function ClsActivity() {
         let nowtime = new Date();
         let date = nowtime.toLocaleDateString();
         let datearr = date.split("/");
-        if(datearr[1]<10)
-        {
-            datearr[1]="0"+datearr[1];
+        if (datearr[1] < 10) {
+            datearr[1] = "0" + datearr[1];
         }
-        let newdate = datearr[0]+"/"+datearr[1]+"/"+datearr[2];
+        let newdate = datearr[0] + "/" + datearr[1] + "/" + datearr[2];
         let timesplit = nowtime.toTimeString().split(" ");
         let time = timesplit[0];
         let now = newdate + " " + time;
@@ -717,7 +722,7 @@ function ClsActivity() {
 
         function remove(activelikeid) {
             removeactlikesql(activelikeid);
-           
+
         }
         // let actremoveid;
         // for(let i=0;i<removelike.length;i++)
@@ -857,10 +862,10 @@ function ClsActivity() {
         }
     ]
 
-    
-        
-        // now = now.split("/").join(",");
-   
+
+
+    // now = now.split("/").join(",");
+
 
     ActCardData2.map(
         (e, index) => {
@@ -920,9 +925,10 @@ function ClsActivity() {
     this.render = () => {
         activeseenAwait()
     };
+    this.display_active = display_active;
 }
 
-let Activity = new ClsActivity();
+const ActivityIndex = new ClsActivity();
 
 //* 利用 hash , 如下
 
@@ -930,7 +936,7 @@ let Activity = new ClsActivity();
 
 const activityChangeHash = () => {
     if (location.hash === "#activity") {
-        Activity.render();
+        ActivityIndex.render();
     }
 }
 

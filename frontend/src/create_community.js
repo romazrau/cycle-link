@@ -1,7 +1,7 @@
-import {
-    serverURL,
-    checkLogin
-} from "./api.js";
+// import {
+//     serverURL,
+//     checkLogin
+// } from "./api.js";
 
 // ----------- 頁面轉換 -----------
 $(".create_community_basicInfo").eq(0).css("display", "block").siblings().css("display", "none");

@@ -112,6 +112,42 @@ const memberById = async (id) => {
 };
 
 
+// 搜尋 member 詳細版
+const memberDetailById = async (id) => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+
+        await sql.connect(config)
+        const sqlString = `
+        with actConut as (
+            select  fMemberId, count(fActivityId) as 'fActiviteCount'
+            from Activity.tJoinList
+            where fMemberId = ${id}
+            group by fMemberId
+        )
+        select M.fId, M.fName, M.fCity, M.fCoins, M.fBirthdate, M.fCeilphoneNumber, C.fActiviteCount , T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority' , M.fIntroduction, M.fPhotoPath, M.fLastTime
+                from Member.tMember as M
+                LEFT join Member.tAccountType as T
+                on M.fAccountTypeId = T.fId
+                LEFT join actConut as C
+                on C.fMemberId = M.fId
+                where M.fId = ${id}`;
+
+        console.log(sqlString);
+        const result = await sql.query(sqlString);
+        // console.dir(result);
+
+        if (!result.rowsAffected[0]) {
+            return { result: 0, msg: "查無結果" }
+        }
+        return { result: 1, msg: "查詢成功", data: result.recordset[0]};
+    } catch (err) {
+        console.log(err);
+        return { result: 0, msg: "SQL 問題" };
+    }
+};
+
+
 // 搜尋 member
 const memberByNameOrAccount = async (str) => {
     try {
@@ -304,4 +340,4 @@ const MemberLike = async (fAccount, fPassword, fName, fBirthdate, fMail,
 };
 
 
-module.exports = { test, login, changeDetail, memberById, memberList, memberByNameOrAccount, memberByAccount, memberByAccountAndEmail, createMember, changePassword };
+module.exports = { test, login, changeDetail, memberById, memberList, memberDetailById, memberByNameOrAccount, memberByAccount, memberByAccountAndEmail, createMember, changePassword };

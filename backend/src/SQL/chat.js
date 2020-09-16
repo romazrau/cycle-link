@@ -21,7 +21,7 @@ const myChatroomList = async (id) => {
         // make sure that any items are correctly URL encoded in the connection string
         await sql.connect(config)
         const sqlString = `
-        select C.* , M.fName as 'fMember1Name', M2.fName as 'fMember2Name',  d.fIsReaded, IIF( d.fMemberId = 3 , 1, 0 ) as fIsMeLastChat
+        select C.* , M.fName as 'fMember1Name', M2.fName as 'fMember2Name',  d.fIsReaded, IIF( d.fMemberId = ${id} or d.fMemberId is null , 1, 0 ) as fIsMeLastChat
         from Chat.tChatroom as C
         left join Member.tMember as M
         on C.fMemberId1 = M.fId

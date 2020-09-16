@@ -1,6 +1,6 @@
-import {
-  serverURL
-} from "./api.js";
+// import {
+//   serverURL
+// } from "./api.js";
 
 const GetHomePageBannerActivity = async () => {
   try {
@@ -22,11 +22,13 @@ const GetHomePageBannerActivity = async () => {
     let imgs = result.data.imgs;
     home_picturesbox.innerHTML = home_picturesItem(imgs)
     //大圖匯入
+    document.querySelector(".home_top_event").innerHTML="";
     banner.map(function (e, index) {
       document.querySelector(".home_top_event").innerHTML += home_bannerimgs(e)
     })
     //輪播
-    CarouselBanner(banner);      
+    CarouselBanner(banner);
+    recent_activities.innerHTML="";      
     recent.map(
       (e, index) => {
         recent_activities.innerHTML += home_recent_activities(e);
@@ -55,14 +57,8 @@ const GetHomePageWeather = async () => {
     // 用變數接 fetch結果的資料內容， 要用await等。
     let result = await response.json();
     
-    let city=result.records.locations[0].locationsName;
-    //區域:District
-    let District=result.records.locations[0].location[7].locationName
-    
-    // let District=city.location[7]
-    console.log(result.records.locations[0].location[7]);
     //顯示天氣
-    // weathershow();
+    HomePageWeather(result);
 
 
 
@@ -73,7 +69,43 @@ const GetHomePageWeather = async () => {
 }
 
 GetHomePageWeather();
-// weathershow
+function HomePageWeather(data)
+{
+  let city=data.records.locations[0].locationsName;
+    let WeatherTitle=document.querySelector(".home_recent_weather_title h2");
+    WeatherTitle.innerHTML=city;
+    //區域:District 大安區
+    let District=data.records.locations[0].location[7].locationName;
+    WeatherTitle.innerHTML+=District;
+    //大安區 天氣篩選 wx天氣,PoP12h降雨機率,T溫度
+    let locationData=data.records.locations[0].location[7];
+    let neededElements=[];
+    const weatherElements = locationData.weatherElement.reduce(
+      (neededElements, item) => {
+        if (['Wx', 'PoP12h', 'T','WS','RH'].includes(item.elementName)) 
+        {
+          neededElements[item.elementName] = item
+        }
+        return neededElements;
+      },
+      {}
+    );
+    console.log("weatherElements:",weatherElements.Wx);
+    var day_list = ['日', '一', '二', '三', '四', '五', '六'];
+    let nowtime = new Date();
+    let date = nowtime.toLocaleDateString();
+    let timesplit = nowtime.toTimeString().split(" ");
+    let time = timesplit[0];
+    let day=nowtime.getDay();
+    let hour= time.split(":")[0];
+    let WeatherTitle2=document.querySelector(".home_recent_weather_title p");
+    WeatherTitle2.innerHTML="星期"+day_list[day]+" "
+    WeatherTitle2.innerHTML+=hour+"時<br/>"
+    WeatherTitle2.innerHTML+=weatherElements.Wx.time[0].elementValue[0].value
+    //天氣描述:weatherElements.Wx.time[0].elementValue[0].value
+    //代碼:weatherElements.Wx.time[0].elementValue[1].value
+
+  }
 
 
 var bannerdata

@@ -1,6 +1,6 @@
-import {
-    serverURL
-} from "./api.js";
+// import {
+//     serverURL
+// } from "./api.js";
 
 //用class包起來
 
@@ -17,11 +17,11 @@ function ClsActivityDetail() {
         map.addLayer(osm);
 
     }
-    // console.log(actMap());
-    function creatActMapId() {
+
+    function actMapEdit(x, y) {
         var map = L.map('creatActMapId')
-        var marker = L.marker([25.0360703, 121.4977054]).addTo(map);
-        map.setView(new L.LatLng(25.0360703, 121.4977054), 16);
+        var marker = L.marker([x, y]).addTo(map);
+        map.setView(new L.LatLng(x, y), 16);
         var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
         var osm = new L.TileLayer(osmUrl, {
             minZoom: 8,
@@ -29,7 +29,19 @@ function ClsActivityDetail() {
         });
         map.addLayer(osm);
     }
-    creatActMapId()
+    // console.log(actMap());
+    // function creatActMapId() {
+    //     var map = L.map('creatActMapId')
+    //     var marker = L.marker([25.0360703, 121.4977054]).addTo(map);
+    //     map.setView(new L.LatLng(25.0360703, 121.4977054), 16);
+    //     var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    //     var osm = new L.TileLayer(osmUrl, {
+    //         minZoom: 8,
+    //         maxZoom: 20
+    //     });
+    //     map.addLayer(osm);
+    // }
+    // creatActMapId()
 
     // * -------------- 固定右側資訊 -------------- //
     // function boxMove2(y) {
@@ -64,7 +76,7 @@ function ClsActivityDetail() {
     const activity_detail_participant_All = document.querySelector(".activity_detail_participant_flex");
     const activity_detail_participant_count = document.querySelector("#activity_detail_participant_count");
     const actDetailSocieties = document.querySelector(".activity_detail_Societies");
-
+    const activity_detail_Edit_tag = document.querySelector("#act5Tag")
 
     // * ---------------- 發起人 文字樣板 ---------------- //
 
@@ -274,13 +286,14 @@ function ClsActivityDetail() {
                 tagFroBtn[i].addEventListener('click', (e) => {
                     e.preventDefault();
                     let a = e.target.text.substr(1)
-                    console.log(a);
+                    // console.log(a);
                     tagSearch(a)
                 })
             }
 
             // * -------------------------------- 加入最愛判斷 -------------------------------- //
-            if (result.data.likes != null) {
+            // console.log("result.data.likes:", result.data.likes)
+            if (result.data.likes.length != 0) {
                 document.querySelector(".active_detail_card_heart").classList.add("actlikecolor");
             }
 
@@ -289,7 +302,27 @@ function ClsActivityDetail() {
             // 錯誤處理
         }
     };
+    // * -------------------------------- 標籤搜尋 -------------------------------- //
+    const tagSearch = async (tag) => {
+        try {
+            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+            // *用變數接 fetch 結果 ，要用await等。
+            let response = await fetch(serverURL.actDetail + `tagSearch/${tag}`, {
+                method: "GET",
+                cache: "no-cache",
+                credentials: "include",
+            });
+            let result = await response.json();
+            // console.log(result.data);
+            location.href = "#activity"
+            document.querySelector("#act_tag_main").innerHTML = "標籤活動";
+            ActivityIndex.display_active(result.data.tagSearch)
 
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+        }
+    };
 
     // * -------------------------------- 創建活動 -------------------------------- //
     const CreateActivity = async () => {
@@ -326,27 +359,7 @@ function ClsActivityDetail() {
         }
     }
 
-    // * -------------------------------- 標籤搜尋 -------------------------------- //
-    const tagSearch = async (tag) => {
-        try {
-            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
-            // *用變數接 fetch 結果 ，要用await等。
-            let response = await fetch(serverURL.actDetail + `tagSearch/${tag}`, {
-                method: "GET",
-                cache: "no-cache",
-                credentials: "include",
-            });
-            let result = await response.json();
-            console.log(result.data);
-            location.href = "#activity"
-            // display_actDetail(result.data.detail);
-            // TODO: 跳轉後寫入符合標籤活動卡
 
-        } catch (err) {
-            console.log(err);
-            // 錯誤處理
-        }
-    };
 
 
     // ! ************************ [ END ] actDetail ajax [ END ] ************************ //
@@ -420,6 +433,21 @@ function ClsActivityDetail() {
     // TODO: -------------------------------- 刪除活動 -------------------------------- //
 
 
+    //* --- 編輯時寫入標籤 --- //
+    const EditActByTag = (o) => {
+        return `<div class="create_active_tag">${o.fLabelName}<button class="actRemoveTag"><i class="fas fa-times"></i></button>`
+    }
+    const display_EditTag = (o) => {
+        activity_detail_Edit_tag.innerHTML = ""
+        o.map((e, index) => {
+            activity_detail_Edit_tag.innerHTML += EditActByTag(e)
+        })
+    }
+    //* --- 編輯時寫入地圖座標 --- //
+    const display_EditMap = (o) => {
+        actMapEdit(o.fCoordinateX, o.fCoordinateY)
+    }
+
     // TODO: -------------------------------- 編輯活動 ( 缺標籤寫入及地圖座標? ) -------------------------------- //
     let InitiatorEditBTN = document.querySelector("#InitiatorEdit")
     InitiatorEditBTN.addEventListener("click", async (actDetailId) => {
@@ -456,6 +484,13 @@ function ClsActivityDetail() {
         document.querySelector("#ac_date_from_div").setAttribute("style", "display:block")
         document.querySelector("#ac_date_to_div").setAttribute("style", "display:block")
 
+        document.querySelector(".ca_img_avatar").src = `${result.data.detail[0].fImgPath}`
+
+        let fTypeId = result.data.detail[0].fActLabelId
+        let fTypeSelect = document.querySelector("#ac_detail_type")
+        console.log("fActLabelId : ", fTypeId);
+        fTypeSelect.getElementsByTagName("option")[fTypeId].selected = true
+
         document.querySelector("#actMinPeople").value = result.data.detail[0].fMinLimit
         document.querySelector("#actMaxPeople").value = result.data.detail[0].fMaxLimit
 
@@ -463,6 +498,11 @@ function ClsActivityDetail() {
         document.querySelector("#create_active_btn_done_edit").setAttribute("style", "display:block")
 
         console.log(result.data.detail[0])
+        console.log(result.data.tag);
+
+        display_EditTag(result.data.tag)
+        display_EditMap(result.data.detail[0])
+
 
         if (fCommunityId > 0) {
             actCType()
@@ -502,9 +542,6 @@ function ClsActivityDetail() {
 
         })
     })
-
-
-
 
 
     // * -------------------------------- 是否為活動發起者 -------------------------------- //

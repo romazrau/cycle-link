@@ -1,4 +1,4 @@
-import { serverURL } from "./api.js";
+// import { serverURL } from "./api.js";
 
 function ClsCommunityArticle() {
   //社團文章文字樣板
