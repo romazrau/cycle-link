@@ -17,15 +17,21 @@ checkLogin()
 
             window.localStorage.setItem("Cycle link token", res.token);
             window.localStorage.setItem("Cycle link user data", res.data.fName);
+            window.localStorage.setItem("Cycle link user id", res.data.fId);
         } else {
             window.localStorage.removeItem("Cycle link token")
             window.localStorage.removeItem("Cycle link user data");
+            window.localStorage.removeItem("Cycle link user id");
+
         }
     })
-    .catch((err) => { 
-               window.localStorage.removeItem("Cycle link token")
-               window.localStorage.removeItem("Cycle link user data");
-        console.log(err) });
+    .catch((err) => {
+        window.localStorage.removeItem("Cycle link token")
+        window.localStorage.removeItem("Cycle link user data");
+        window.localStorage.removeItem("Cycle link user id");
+
+        console.log(err)
+    });
 
 
 

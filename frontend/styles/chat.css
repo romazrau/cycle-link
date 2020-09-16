@@ -43,7 +43,6 @@
 
 
 .chat_icon_talk_dot{
-  animation: App-logo-spin infinite 2s ease-in;
   font-size: 0.7rem;
   color: red;
   opacity: 0.8;
@@ -51,6 +50,7 @@
   left: -0.2rem;
   top: 0.5rem;
   transition: all 1s;
+  animation: App-logo-spin infinite 2s ease-in;
 }
 
 .chat_icon_main {
@@ -60,18 +60,20 @@
 }
 
 .chat_icon {
-  border-radius: 50%;
+  /* border-radius: 50%; */
   width: 4rem;
   height: 4rem;
   transition: all 1s;
+  margin-top: 0.5rem;
 }
 
 .chat_icon:hover {
-  transform: rotate(330deg) scale(1.5);
+  transform: rotate(330deg) scale(1.3);
   cursor: pointer;
 
   /* 變形:轉度  縮放 */
 }
+
 
 /* 聊天標題 */
 .chat_window_title {

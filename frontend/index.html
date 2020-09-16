@@ -16,16 +16,16 @@
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 
-    <!-- 內部引用資料 -->
-    <link rel="shortcut icon" href="./img/海龜幣.png" type="image/x-icon">
-    <link rel="stylesheet" href="./styles/main.css">
-
     <!-- 行事曆 -->
     <link rel="stylesheet" type="text/css" href="./calendar/lib/main.css" rel="external nofollow">
     <script src='./calendar/lib/main.js'></script>
 
     <!-- 其他套件 -->
     <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>
+
+    <!-- 內部引用資料 -->
+    <link rel="shortcut icon" href="./img/海龜幣.png" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/main.css">
 
 
     <title>小海龜</title>
@@ -87,9 +87,9 @@
                 <img src="./img/icons8-sms-64.png" class="chat_icon_main" alt="聊天">
             </div>
 
-            <img id="chat_robot_icon" src="./img/icons8-world-map-100.png" class="chat_icon widthAndHeight2Zero"
+            <img id="chat_robot_icon" src="./img/megaphone-svgrepo-com.svg" class="chat_icon widthAndHeight2Zero"
                 alt="群聊">
-            <img id="chat_friend_icon" src="./img/icons8-user-group-100.png" class="chat_icon widthAndHeight2Zero"
+            <img id="chat_friend_icon" src="./img/icons8-smiling-face-with-heart-96.png" class="chat_icon widthAndHeight2Zero"
                 alt="我的聯絡人">
         </div>
 
@@ -2324,12 +2324,13 @@
             <div class="personal-maneger-header">
                 <div class="headerbox">
                     <div class="imgbox">
-                        <img class="avatar" src="./img/images1.jpg" alt="">
+                        <img id="personal-manege-img" class="avatar" src="./img/images1.jpg" alt="">
                         <div class="titlebox">
-                            <h3>您好</h3>
-                            <h4>勒克萊爾</h4>
-                            <span>會員編號</span>
-                            <span>39917029</span>
+                            <div>
+                                <h3>您好</h3>
+                                <h4 id="personal-manege-name">勒克萊爾</h4>
+                            </div>
+
                             <div class="imgfile">
                                 <input class='input_pictureUpload' id="input_pictureUpload" type="file" value=''>
                             </div>
@@ -2337,23 +2338,23 @@
                     </div>
                     <div class="peoplefilebox">
                         <div class="peoplefilebox_right">
+                            <div class="peoplefilebox_right_items">帳號權限：
+                                <span id="personal-manege-account-type">普通會員</span>
+                            </div>
                             <div class="peoplefilebox_right_items">積分：
-                                <span>1300</span>
+                                <span id="personal-manege-coin">1300</span>
                             </div>
                             <div class="peoplefilebox_right_items">參與活動次數：
-                                <span>79</span>
-                            </div>
-                            <div class="peoplefilebox_right_items">發表文章：
-                                <span>23</span>
+                                <span id="personal-manege-act-count">79</span>
                             </div>
                         </div>
-                        <div class="peoplefilebox_left">
+                        <!-- <div class="peoplefilebox_left">
                             <button class="btnLaunchActPersonPage"><a href="#create-activity">發起活動</a></button>
 
                             <br>
                             <button class="btnLaunchActPersonPage"><a href="#create-community">建立社團</a></button>
 
-                        </div>
+                        </div> -->
 
                     </div>
                 </div>
@@ -2610,20 +2611,20 @@
                                 <div class="datawrap">
                                     <div class="dataContainer">
                                         <div class="dataItem"><label for="">姓名:</label><input type="text" name="Name"
-                                                id="Name" value="小龜"></div>
+                                                id="personal-maneger-input-name" value="小龜"></div>
                                         <div class="dataItem"><label for="">生日:</label><input type="text" name="Birth"
-                                                id="Birth" value=""></div>
-                                        <div class="dataItem"><label for="">住址:</label><input type="text" name="Address"
-                                                id="Address" value="台北市大安區和平東路二段106號"> </div>
+                                                id="personal-maneger-input-birth" value=""></div>
+                                        <div class="dataItem"><label for="">居住城市:</label><input type="text"
+                                                name="Address" id="personal-maneger-input-address"
+                                                value="台北市大安區和平東路二段106號"> </div>
                                         <div class="dataItem"><label for="">聯絡電話:</label><input type="text" name="Phone"
-                                                id="Phone" value="0999123456">
+                                                id="personal-maneger-input-phone" value="0999123456">
                                         </div>
-                                        <div class="dataItem"><label for="">學歷:</label><input type="text"
-                                                name="Education" id="Education" value="大學"></div>
 
-                                        <div class="dataItem" id="Introduction"><label for="">介紹:</label>
+                                        <div class="dataItem"><label for="">介紹:</label>
                                             <br>
-                                            <textarea name="" cols="80" rows="5">範例</textarea>
+                                            <textarea id="personal-maneger-input-introduction" name="" cols="80"
+                                                rows="5">範例</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -3081,7 +3082,7 @@
                             </div>
                         </form>
 
-                        <!-- ------------- 審核 --------------- -->
+                     
 
                         <div id="approveMember" class="create_community_basicInfo hide">
                             <h2 id="approveCommunityTitle">社團加入審核</h2>
