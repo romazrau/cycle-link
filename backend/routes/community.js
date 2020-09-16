@@ -136,34 +136,41 @@ router.get('/communityById_communityMember/:id', async function (req, res, next)
         //權限:使用社團Id查詢社團SQL function
         let resultOftStatus = await Sql.communityById_communityDetail(req.params.id);
 
-        // console.log("++++++++++++++++++++++");
+     
         // console.log(resultOftStatus.data[0].fStatusId);
-        // console.log(result.data);
-        // console.log(resultStatus.data);
+
 
         if (result.result && resultStatus.result) {
             result.data.forEach(items => {
-                resultStatus.data.forEach(element => {
+                for (let element of resultStatus.data) {
 
                     if (items.fMemberId == element.fId) {
+        
+                        console.log(items.fMemberId);
                         console.log(element.fId);
                         items["ifManager"] = 1;
-                    }
-                    else {
+                        element["ifManager"] = 1;
+               
+
+                        break;
+                    }else{
                         items["ifManager"] = 0;
+                        element["ifManager"] = 0;
                     }
-                })
+
+                }
             })
 
         } else {
             if (result.result) {
                 result.data.forEach(items => {
                     items["ifManager"] = 0;
+                    element["ifManager"] = 0;
+
                 })
             }
         }
-        // console.log("++++++++++++++++++++++");
-        // console.log(result.data);
+    
         // console.log("----------------------------");
         // console.log(result.data);
 
@@ -182,7 +189,8 @@ router.get('/communityById_communityMember/:id', async function (req, res, next)
             // 用filter代替以下?
             result.data.forEach((element, i) => {
                 if (element.fMemberId == req.user.fId) {
-                    // console.log("**");
+                    console.log("**");
+                    console.log(result);
                     res.json(result);
                 }
                 else {
@@ -191,7 +199,7 @@ router.get('/communityById_communityMember/:id', async function (req, res, next)
                 }
             })
         }
-        // console.log("----------------------------");
+        // console.log("*******************************");
         // console.log(result.data);
         //顯示在頁面上 
         res.json(result);
@@ -229,12 +237,10 @@ router.post('/', async function (req, res, next) {
         }
 
         // es6 物件解構
-        console.log("===================");
-        console.log(req.body);
+        // console.log("===================");
+        // console.log(req.body);
         let { fName, fStatusId, fInfo } = req.body;
 
-        // TODO 照片上傳
-        let fImgPath = 'gg.jpg'
 
         //時間"物件"
         let dateObj = new Date();
@@ -295,7 +301,7 @@ router.put('/communityById_communityMember/:id', async function (req, res, next)
         // 修改fAccessright
         let result = await Sql.ChangeMemberAccessRight(fId, fCommunityId);
         res.json(result);
-       
+
 
     } catch (err) {
         res.send({
@@ -337,15 +343,15 @@ router.put('/', async function (req, res, next) {
         //todo 驗證社團管理員身分
 
 
-        // TODO 照片處理
+        // 照片處理
         console.log(req.files);
-        
-        let  fImgPath = "";
-        if(req.files.length > 0){
-            fImgPath =  "img/" + req.files[0].filename;
-            console.log(fImgPath);
+
+        let fImgPath = "";
+        if (req.files.length > 0) {
+            fImgPath = "img/" + req.files[0].filename;
+            // console.log(fImgPath);
         }
-        
+
 
 
         //todo 假裝是
@@ -420,10 +426,16 @@ router.delete('/members', async function (req, res, next) {
             res.json({ result: 0, msg: "token 遺失" });
             return;
         }
+        if (!fId) {
+            res.json({ result: 0, msg: "沒有fId" });
+            return;
+        }
+
+
         let resultDeletMemberOfCommunity = await Sql.deletMemberOfCommunity(fId, fCommunityId);
         // console.log((resultDeletMemberOfCommunity));
-        res.json(resultDeletMemberOfCommunity);
 
+        res.json(resultDeletMemberOfCommunity);
     } catch (err) {
         res.send({ result: 0, msg: "路由錯誤", data: err });
     }
@@ -432,6 +444,7 @@ router.delete('/members', async function (req, res, next) {
 // 社團成員身分修改 : SQL查詢tMemberList是否為管理員by社團id,社員id 
 router.put('/members', async function (req, res, next) {
     try {
+
         // es6 物件解構
         let { fCommunityId, fId } = req.body
         // console.log("----------------------");
@@ -445,27 +458,40 @@ router.put('/members', async function (req, res, next) {
         //todo 驗證社團管理員身分
 
         //todo 假裝是
-
-        let resultSearchMemberCommunity = await Sql.searchMemInCom(fId, fCommunityId);
-        console.log(resultSearchMemberCommunity);
-        if (!resultSearchMemberCommunity.result) {
-            res.json(resultSearchMemberCommunity);
-            // console.log("*************************");
+        if (!fId) { 
+            res.json({ result: 0, msg: "沒有fId" }); 
             return;
         }
+        // console.log("++++++++++++!!!!++++++++++++++");
 
-        let ifManager;
-        if (resultSearchMemberCommunity.data.fAccessRightId == 3) {
-            ifManager = 1;
-        }
-        else {
-            ifManager = 0;
-        }
+        //     console.log(fId);
+        //     console.log(fCommunityId);
 
-        let resultUpdatatMemberList = await Sql.updatatMemberList(fMemberId, fCommunityId, ifManager);
-        console.log((resultUpdatatMemberList));
 
-        res.json(resultUpdatatMemberList);
+            let resultSearchMemberCommunity = await Sql.searchMemInCom(fId, fCommunityId);
+            // console.log(resultSearchMemberCommunity);
+            // console.log("++++++++++++!!!!++++++++++++++");
+            if (!resultSearchMemberCommunity.result) {
+                // console.log("+++++++++++");
+                res.json(resultSearchMemberCommunity);
+                return;
+            }
+
+            let ifManager;
+            if (resultSearchMemberCommunity.data.fAccessRightId == 3) {
+                ifManager = 1;
+            }
+            else {
+                ifManager = 0;
+            }
+            console.log(ifManager);
+
+            let resultUpdatatMemberList = await Sql.updatatMemberList(fId, fCommunityId, ifManager);
+            // console.log((resultUpdatatMemberList));
+            // console.log("-----------------------------");
+
+            res.json(resultUpdatatMemberList);
+      
     } catch (err) {
         console.log(err);
         res.send({ result: 0, msg: "路由錯誤", data: err });
@@ -495,8 +521,8 @@ router.get('/members/:id', async function (req, res, next) {
             res.json({ result: 0, msg: "沒有待審核會員" })
             return;
         }
-        console.log("========================!!!!!!");
-        console.log(resultPendingMember);
+        // console.log("========================!!!!!!");
+        // console.log(resultPendingMember);
         res.json(resultPendingMember);
 
     } catch (err) {
