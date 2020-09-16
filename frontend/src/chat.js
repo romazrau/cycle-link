@@ -62,8 +62,13 @@ function ClsChat() {
 
             // console.group("chatroom List");
             result.data.map(item => {
+                if(item.fIsMeLastChat){
                 item.fIsReaded = item.fIsMeLastChat
+                }
                 setChatroomList(item);
+                if(!item.fIsReaded){
+                    setChatAlert(1);
+                }
                 // console.log("joinRoom: " + item.fId);
                 socket.emit("joinRoom", { chatroomId: item.fId });
             })
@@ -92,7 +97,7 @@ function ClsChat() {
         // console.log(chatroomList);
         // console.groupEnd("reFlashChatroomList");
     }
-    const isfriendOnline = (chatroomId, isOnline) => {
+    const setFriendOnline = (chatroomId, isOnline) => {
         try {
             let theChatList = document.querySelector(`#chat-list-${chatroomId} > .chat_list_online`);
             let index = chatroomList.findIndex((item) => item.fId == chatroomId);
@@ -100,7 +105,7 @@ function ClsChat() {
             if (isOnline) {
                 chatroomList[index].isOnline = 1;
                 theChatList.innerHTML = "●";
-            }else{
+            } else {
                 chatroomList[index].isOnline = 0;
                 theChatList.innerHTML = "";
             }
@@ -130,6 +135,17 @@ function ClsChat() {
 
         // TODO 未讀訊息
 
+    }
+
+    // 小紅點提醒
+    const setChatAlert = (show = 1) => {
+        let dot = document.querySelector(".chat_icon_talk_dot");
+        let isChatListHide = [...document.querySelector(".chat_list_window").classList].includes("hide");
+        if (show && isChatListHide) {
+            dot.classList.remove("hide");
+        } else {
+            dot.classList.add("hide");
+        }
     }
 
 
@@ -174,6 +190,7 @@ function ClsChat() {
                     if (chatroomId === "world") {
                         setMessages(data);
                     } else {
+                        setChatAlert(1);
                         reFlashChatroomList(chatroomId, data.isMe);
                         setMessagesTo(chatroomId, data);
                     }
@@ -186,30 +203,30 @@ function ClsChat() {
                     console.log("new Chatroom create");
                 })
 
-                socket.on("friendOnline", ({chatroomId, userName}) => {
-                    if(userName === localStorage.getItem("Cycle link user data")) return;
+                socket.on("friendOnline", ({ chatroomId, userName }) => {
+                    if (userName === localStorage.getItem("Cycle link user data")) return;
 
                     let timer = setInterval(() => {
-                        let result = isfriendOnline(chatroomId, true);
-                        if (result) clearInterval(timer); 
-                    }, 3000);
+                        let result = setFriendOnline(chatroomId, true);
+                        if (result) clearInterval(timer);
+                    }, 1500);
                     console.log("friend Online :)");
                     socket.emit("FriendOnlineToo", chatroomId)
                 })
 
                 socket.on("friendOffline", (chatroomId) => {
                     let timer = setInterval(() => {
-                        let result = isfriendOnline(chatroomId, false);
-                        if (result) clearInterval(timer); 
-                    }, 3000);
+                        let result = setFriendOnline(chatroomId, false);
+                        if (result) clearInterval(timer);
+                    }, 1500);
                     console.log("friend Offline :(");
                 })
 
                 socket.on("friendOnlineTooYa", (chatroomId) => {
                     let timer = setInterval(() => {
-                        let result = isfriendOnline(chatroomId, true);
-                        if (result) clearInterval(timer); 
-                    }, 3000);
+                        let result = setFriendOnline(chatroomId, true);
+                        if (result) clearInterval(timer);
+                    }, 1500);
                     console.log("my friend online too :)");
                 })
 
@@ -252,10 +269,12 @@ function ClsChat() {
     // *圖片開關
     const chatIconContainer = document.querySelector(".chat_icon_container");
     const chatMainIcon = document.querySelector(".chat_icon_main");
+    const chatAlertDot = document.querySelector(".chat_icon_talk_dot");
     const chatIcons = document.querySelectorAll(".chat_icon");
 
     chatIconContainer.addEventListener("mouseenter", () => {
         chatMainIcon.classList.add("widthAndHeight2Zero");
+        chatAlertDot.classList.add("widthAndHeight2Zero");
         chatIcons.forEach((item) => {
             item.classList.remove("widthAndHeight2Zero");
         });
@@ -263,6 +282,7 @@ function ClsChat() {
 
     chatIconContainer.addEventListener("mouseleave", () => {
         chatMainIcon.classList.remove("widthAndHeight2Zero");
+        chatAlertDot.classList.remove("widthAndHeight2Zero");
         chatIcons.forEach((item) => {
             item.classList.add("widthAndHeight2Zero");
         });
@@ -306,6 +326,7 @@ function ClsChat() {
     const chatListWindow = document.querySelector(".chat_list_window");
     document.querySelector("#chat_friend_icon").addEventListener("click", () => {
         chatListWindow.classList.toggle("hide");
+        setChatAlert(0);
     });
 
 

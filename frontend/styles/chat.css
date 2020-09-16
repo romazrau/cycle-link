@@ -34,6 +34,23 @@
   justify-content: end;
   align-items: flex-end;
   flex-direction: column;
+  position: relative;
+}
+
+.chat_icon_talk{
+  position: relative;
+}
+
+
+.chat_icon_talk_dot{
+  animation: App-logo-spin infinite 2s ease-in;
+  font-size: 0.7rem;
+  color: red;
+  opacity: 0.8;
+  position: absolute;
+  left: -0.2rem;
+  top: 0.5rem;
+  transition: all 1s;
 }
 
 .chat_icon_main {

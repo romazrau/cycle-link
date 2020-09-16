@@ -2,9 +2,34 @@
 // 套件引用
 var express = require('express');
 var router = express.Router();
+
+//天氣api
+
+var request = require('request');
+
 // *檔案引用
 let homesql =  require('../src/SQL/home');
 
+
+
+
+router.get('/weather', async function(req, res, next) {
+  try{
+   
+    // setInterval(function () {
+      let weather;
+      request('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-063?Authorization=CWB-DFCC2695-9C94-49DF-BE65-118069C9A954&format=JSON&sort=time', { encoding: 'utf-8' }, function (err, response, body) {
+        
+        
+        weather=JSON.parse(body);
+        res.json(weather)
+      });
+      
+    // }, 60000)
+  }catch(err){
+    res.send(err);
+  } 
+});
 
 
 
@@ -30,7 +55,6 @@ router.get('/', async function(req, res, next) {
     res.send(err);
   } 
 });
-
 
 
 

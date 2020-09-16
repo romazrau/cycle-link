@@ -91,6 +91,7 @@ body::-webkit-scrollbar {
 .widthAndHeight2Zero {
   width: 0rem;
   height: 0rem;
+  font-size: 0rem;
 }
 
 .transYsWidthTo0 {
@@ -108,7 +109,7 @@ body::-webkit-scrollbar {
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 .focus {
