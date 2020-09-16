@@ -212,6 +212,7 @@ function ClsActivity() {
             $("#search_citydetial").fadeOut("5000");
             btncitydetial.classList.add("search_hidden");
             btncity.classList.remove("search_hidden");
+            btncity.classList.add("bccolorwhite");
             btncitytext.innerHTML = this.textContent;
 
             //判斷目前活動是否符合進階搜尋的城市
@@ -233,6 +234,7 @@ function ClsActivity() {
 
         $("#search_datedetial").fadeIn("5000");
         btndatedetial.classList.remove("search_hidden");
+        
     });
 
 
@@ -277,6 +279,7 @@ function ClsActivity() {
                 var dateAsString = dateText; //the first parameter of this function
                 var dateAsObject = $(this).datepicker('getDate'); //the getDate method
                 getenddate(dateAsString);
+
                 // displaydate();
             },
             //顯示上個月日期 及下個月日期 ，但是不可選的。
@@ -305,7 +308,7 @@ function ClsActivity() {
     //抓取時間
     function getstartdate(startdate) {
         var startdatetext = document.getElementById("search_date_text");
-        startdatetext.innerHTML = "起始日 <br>" + startdate + '<br>';
+        startdatetext.innerHTML = "起始日" + "  "+startdate ;
     }
 
 
@@ -342,7 +345,7 @@ function ClsActivity() {
     //)
     function getenddate(enddate) {
         var enddatetext = document.getElementById("search_date_text");
-        enddatetext.innerHTML += "結束日 <br>" + enddate;
+        enddatetext.innerHTML += "結束日"+"  "+ enddate;
         dateend = enddate;
         dateendarr = dateend.split("/");
         newdateend = dateendarr[2] + dateendarr[0] + dateendarr[1];
@@ -353,8 +356,8 @@ function ClsActivity() {
         $("#search_datedetial").fadeOut("5000");
         btndatedetial.classList.add("search_hidden");
         btndate.classList.remove("search_hidden");
+        btndate.classList.add("bccolorwhite");
     }
-        
     let nowtime = new Date();
         let date = nowtime.toLocaleDateString();
         let timesplit = nowtime.toTimeString().split(" ");
