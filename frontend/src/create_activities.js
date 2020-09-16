@@ -210,3 +210,50 @@ $("#actMinPeopleCk").click(function () {
         ttt22.removeAttribute("value")
     }
 })
+
+
+// -- 取得目前位置
+function geoFindMe() {
+    var output = document.getElementById("out");
+    document.querySelector("#createActMapId").setAttribute("style", "display:block")
+    if (!navigator.geolocation) {
+        output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+        return;
+    }
+
+    function success(position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+
+        output.innerHTML = `<input type="text" name="fCoordinateX" value="${latitude}"><input type="text" name="fCoordinateY" value="${longitude}">`;
+
+        creatActMapId(latitude, longitude)
+        // var img = new Image();
+        // img.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude +
+        //     "&zoom=13&size=300x300&sensor=false";
+
+        // output.appendChild(img);
+    };
+
+    function error() {
+        output.innerHTML = "Unable to retrieve your location";
+    };
+
+    // output.innerHTML = "<p>Locating…</p>";
+
+    navigator.geolocation.getCurrentPosition(success, error);
+}
+
+// -- 地圖
+function creatActMapId(x, y) {
+    var map = L.map('createActMapId')
+    var marker = L.marker([x, y]).addTo(map);
+    map.setView(new L.LatLng(x, y), 16);
+    var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    var osm = new L.TileLayer(osmUrl, {
+        minZoom: 8,
+        maxZoom: 20
+    });
+    map.addLayer(osm);
+}
+// creatActMapId()
