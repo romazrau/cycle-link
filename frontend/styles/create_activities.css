@@ -306,13 +306,14 @@
   margin-top: 0.3rem;
   font-size: 1.1rem;
   border-radius: 0.5rem;
-  border: 1px solid var(--lightblue-color);
-  /* background-color: var(--lightblue-color); */
-  color: var(--lightblue-color);
+  border: 1px solid var(--blue-color);
+  color: var(--blue-color);
 }
 
 .actShowLocation:hover {
   border: 1px solid var(--blue-color);
+  background-color: var(--blue-color);
+  color: white;
   transition: all 0.5s;
   cursor: pointer;
 }
