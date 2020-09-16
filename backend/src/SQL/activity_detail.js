@@ -180,12 +180,21 @@ const JoinCount = async (fid) => {
 
 //* ----------------------- 標籤搜尋 ----------------------- //
 
-const TagSearch = async (text) => {
+const TagSearch = async (tag) => {
     try {
         await sql.connect(config)
-        let sqlStr = `select fActName
-        from Activity.tActivity
-        where fActName like '%${text}%'`
+        let sqlStr = `WITH act as (
+            select tActivity.fId, fActName, fActivityLabelId
+            from Activity.tActivity
+            LEFT JOIN Activity.tActivityHadLabel
+            on tActivity.fId = tActivityHadLabel.fActivityId
+            )
+            select act.*,tActivityLabel.fLabelName
+            from act
+            LEFT JOIN Activity.tActivityLabel
+            on act.fActivityLabelId = tActivityLabel.fId
+            where fLabelName like '%${tag}%'
+            `
         const result = await sql.query(sqlStr);
         console.dir(result.recordset)
         return {
@@ -202,7 +211,7 @@ const TagSearch = async (text) => {
         };
     }
 };
-// TagSearch('2020')
+// TagSearch('#守護海洋')
 
 //* ----------------------- 參加活動 ----------------------- //
 const JoinAct = async (fActivityId, fMemberId, fJoinTime, fJoinTypeId) => {
@@ -521,31 +530,6 @@ const EditAct = async (fId, fActName, fIntroduction, fMinLimit, fMaxLimit, fComm
 
 
 
-//* ----------------------- 新增標籤(已寫入創建活動中) ----------------------- //
-// const createActTag = async (fLabelName) => {
-//     try {
-//         await sql.connect(config)
-//         let sqlStr = `
-//         insert into Activity.tActivityLabel (fLabelName)
-//         values ('${fLabelName}')`
-//         const result = await sql.query(sqlStr)
-//         // console.dir(result)
-//         return {
-//             result: 1,
-//             msg: "請求成功"
-//         };
-//         // 錯誤處理
-//     } catch (err) {
-//         console.log(err);
-//         console.log(fLabelName);
-//         return {
-//             result: 0,
-//             msg: "SQL 錯誤",
-//             data: err.message
-//         };
-//     }
-// };
-
 
 
 //直接測試用 func ， node src/SQL/test.js
@@ -567,7 +551,7 @@ module.exports = {
     JoinById,
     JoinCount,
     createAct,
-    // TagSearch,
+    TagSearch,
     JoinAct,
     CancelJoinAct,
     OrJoinAct,

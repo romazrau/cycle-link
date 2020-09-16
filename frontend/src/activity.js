@@ -332,7 +332,6 @@ function ClsActivity() {
                 let endtime = Date.parse(newdateend);
                 if (acttime > satrttime && acttime < endtime) {
                     resultdate_arr.push(datearr[i]);
-
                 }
 
             }
@@ -671,12 +670,17 @@ function ClsActivity() {
         var selectactivelike = document.querySelectorAll(".active_card_heart");
         var removelike = document.querySelectorAll(".actlikecolor");
         // var active_card_heart = document.querySelectorAll(".active_card_heart");
-        
         let nowtime = new Date();
         let date = nowtime.toLocaleDateString();
+        let datearr = date.split("/");
+        if(datearr[1]<10)
+        {
+            datearr[1]="0"+datearr[1];
+        }
+        let newdate = datearr[0]+"/"+datearr[1]+"/"+datearr[2];
         let timesplit = nowtime.toTimeString().split(" ");
         let time = timesplit[0];
-        let now = date + " " + time;
+        let now = newdate + " " + time;
         now = now.split("/").join(",");
 
         let activeseenId;
@@ -685,7 +689,6 @@ function ClsActivity() {
                 let ahref = selectactive[i].href;
                 var hrefsplit = ahref.split("/");
                 activeseenId = hrefsplit[hrefsplit.length - 1];
-                console.log(activeseenId);
                 activeinsertseensql(activeseenId, now);
             }
 
@@ -714,7 +717,7 @@ function ClsActivity() {
 
         function remove(activelikeid) {
             removeactlikesql(activelikeid);
-            console.log("0 0 ");
+           
         }
         // let actremoveid;
         // for(let i=0;i<removelike.length;i++)
@@ -733,21 +736,6 @@ function ClsActivity() {
         //             }
 
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     // activeinsertseenSQL 瀏覽過的資料寫入資料庫
