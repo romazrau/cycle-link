@@ -87,6 +87,7 @@
 }
 
 .home_recent_weather {
+  border: 1px solid red;
   height: 100%;
   max-width: 700px;
   flex-grow: 1;

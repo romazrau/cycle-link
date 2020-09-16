@@ -32,7 +32,7 @@ router.get('/:id', async function (req, res, next) {
         let TagById = await Sql.TagById(req.params.id);
         let JoinById = await Sql.JoinById(req.params.id);
         let JoinCount = await Sql.JoinCount(req.params.id);
-        let likechecked = await Sql.likechecked(fMemberId, req.params.id);
+        let likechecked = await Sql.likechecked( req.params.id,fMemberId);
         // res.json(result);
         res.json({
             result: 1,

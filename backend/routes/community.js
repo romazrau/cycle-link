@@ -272,7 +272,7 @@ router.post('/', async function (req, res, next) {
 
 
 
-// TODO 加入社團_審核 
+
 router.put('/communityById_communityMember/:id', async function (req, res, next) {
     try {
         // -- 是否有Token(驗證機制) 是會員才會有Token才能增加社團
@@ -295,7 +295,7 @@ router.put('/communityById_communityMember/:id', async function (req, res, next)
         // 修改fAccessright
         let result = await Sql.ChangeMemberAccessRight(fId, fCommunityId);
         res.json(result);
-        console.log("有進來Router++++++++++++++++++++++++++++++++++++++++");
+       
 
     } catch (err) {
         res.send({
@@ -307,8 +307,7 @@ router.put('/communityById_communityMember/:id', async function (req, res, next)
 });
 
 
-// //!多切一個社團編輯頁面
-// TODO 修改社團
+// 修改社團
 // 這是restful.API 風格
 // SQL修改tCommunity資料by社團id:
 // 修改社團照片
@@ -323,7 +322,6 @@ router.put('/', async function (req, res, next) {
             fName,
             fInfo,
             fStatusId,
-            fImgPath
         } = req.body
         // console.log("----------------------");
         // console.log(req.body);
@@ -337,6 +335,18 @@ router.put('/', async function (req, res, next) {
         }
 
         //todo 驗證社團管理員身分
+
+
+        // TODO 照片處理
+        console.log(req.files);
+        
+        let  fImgPath = "";
+        if(req.files.length > 0){
+            fImgPath =  "img/" + req.files[0].filename;
+            console.log(fImgPath);
+        }
+        
+
 
         //todo 假裝是
         let resultUpdateCommunity = await Sql.updateCommunity(fCommunityId, fName, fInfo, fStatusId, fImgPath);

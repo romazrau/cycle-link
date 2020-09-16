@@ -482,7 +482,7 @@ function ClsCommuntityDetail() {
 
 
             // TODO 錯誤處理
-            document.querySelector("#CommunityPic").src = result.data[0].fImgPath;
+            document.querySelector("#CommunityPic").src = serverURL.root + "/" + result.data[0].fImgPath;
             document.querySelector("#CommunityName").innerHTML = result.data[0].fName;
             document.querySelector("#CommunityNumberOfPeople").innerHTML = result.data[0].totalNumber;
 
@@ -840,6 +840,8 @@ function ClsCommuntityDetail() {
     // 完成按鈕Onclik
     // 放進資料
     // 送出資料
+    // 通知使用者修改資料成功
+    // todo continue 刷新頁面
     document.querySelector("#fakeDoneBtn").addEventListener("click", async () => {
         try {
 
@@ -849,7 +851,6 @@ function ClsCommuntityDetail() {
             let formData = new FormData(form); // FormData
             formData.append("fCommunityId", fCommunityId)
             // 頁面拿到新的會員資料
-            // todo 待測新formdata
             let formMem = document.querySelector("#formPending");
             let formDataMem = new FormData(formMem);
             formDataMem.append("fCommunityId", fCommunityId);
@@ -879,7 +880,7 @@ function ClsCommuntityDetail() {
             // 如果有身份被修改
             // fetch_修改tMemberList
             
-            // todo沒抓到 
+            
             // 1.修改審核會員
             let responseAccessRight = await fetch(serverURL.communityMember + fCommunityId, {
                 method: "PUT",
@@ -905,9 +906,7 @@ function ClsCommuntityDetail() {
             // 2.社團剔除社員
             // deletMemberOfCommunity = async (fDeletedArryId, fCommunityId)
 
-            // 頁面拿到新的社團資料
-            // todo continue 1. 被包在<form id="formDelMember"> 裡 2. 抓錯東西 把Formdata分開包(包完)
-            
+            // 頁面拿到新的社團資料        
             let formDel = document.querySelector("#formDelMember"); // form element
             let formDataDel = new FormData(formDel);
             formDataDel.append("fCommunityId", fCommunityId);
@@ -932,7 +931,9 @@ function ClsCommuntityDetail() {
                 console.log(resultDeleteMem);
             }
 
-
+            alert("資料修改成功!");
+            //刷新頁面
+            window.location.hash = `#community/detail/${fCommunityId}`;
 
 
         }
@@ -980,7 +981,7 @@ function ClsCommuntityDetail() {
         // console.log(o.fPhotoPath);
         return `<div class="activity_detail_info_img_circle">
          <div class="activity_detail_info_img_div">
-             <img src="${o.fPhotoPath}" class="activity_detail_info_img">
+             <img src="${serverURL.root}/${o.fPhotoPath}" class="activity_detail_info_img">
          </div>
          </div>
          <div class="GroupRightInfo FlexContainer GroupRightInfoText">
@@ -994,7 +995,7 @@ function ClsCommuntityDetail() {
     const data2memImg = (o) => {
         return ` <div id="GroupMemberPicLessThan4" class="activity_detail_info_img_circle GroupMemberPic GroupMemberPicLessThan4">
         <div class="activity_detail_info_img_div">
-            <img class="activity_detail_info_img GoupRightInfoPhoto" src="${o.fPhotoPath}"
+            <img class="activity_detail_info_img GoupRightInfoPhoto" src="${serverURL.root}/${o.fPhotoPath}"
                 width="30">
         </div>
     </div>`
@@ -1008,7 +1009,7 @@ function ClsCommuntityDetail() {
             <a href="#" class="DivForImg">
                 <div class="activity_detail_info_img_circle">
                     <div class="activity_detail_info_img_div">
-                        <img src=${o.fPhotoPath}
+                        <img src=${serverURL.root}/${o.fPhotoPath}
                             class="activity_detail_info_img">
                     </div>
                 </div>
@@ -1031,7 +1032,7 @@ function ClsCommuntityDetail() {
     // 修改社團--管理員文字樣板
     const modifiedManager = (o) => {
         return ` <div class="create_community_check">
-        <img src = "${o.fPhotoPath}" 
+        <img src = "${serverURL.root}/${o.fPhotoPath}" 
         style = "border-radius: 50%; width:50px" />
             <p style="white-space:nowrap">${o.fName}</p>
             </div>`;
@@ -1046,7 +1047,7 @@ function ClsCommuntityDetail() {
         return `<div class="create_community_flex">
                 <input name="fId" type="checkbox" value=${o.fMemberId} style="align-self: center;" />
                 <div class="create_community_check">
-                    <img src ="${o.fPhotoPath}"
+                    <img src ="${serverURL.root}/${o.fPhotoPath}"
                     style = "border-radius: 50%; width:50px"/>
                     <p>${o.fName} </p>
                     </div>`;

@@ -564,8 +564,16 @@ const updateCommunity = async (
   try {
     await sql.connect(config);
 
+    let setStr;
+    if(fImgPath){
+      setStr = `fName = '${fName}', fInfo = '${fInfo}', fStatusId = ${fStatusId}, fImgPath='${fImgPath}'`
+    }else{
+      setStr = `fName = '${fName}', fInfo = '${fInfo}', fStatusId = ${fStatusId}`
+    }
+
+
     let sqlStr = `UPDATE Community.tCommunity
-        SET fName = '${fName}', fInfo = '${fInfo}', fStatusId = ${fStatusId}, fImgPath='${fImgPath}' 
+        SET  ${setStr}
         WHERE fId = ${fCommunityId}`;
     console.log(sqlStr);
 
