@@ -18,7 +18,18 @@ function ClsActivityDetail() {
 
     }
     // console.log(actMap());
-
+    function creatActMapId() {
+        var map = L.map('creatActMapId')
+        var marker = L.marker([25.0360703, 121.4977054]).addTo(map);
+        map.setView(new L.LatLng(25.0360703, 121.4977054), 16);
+        var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        var osm = new L.TileLayer(osmUrl, {
+            minZoom: 8,
+            maxZoom: 20
+        });
+        map.addLayer(osm);
+    }
+    creatActMapId()
 
     // * -------------- 固定右側資訊 -------------- //
     // function boxMove2(y) {
@@ -104,15 +115,15 @@ function ClsActivityDetail() {
 
     const activity_detail_tag = (o) => {
         return `<div class="activity_detail_tag">
-                    <a href="#">${o.fLabelName}</a>
+                    <a href="#" class="activityTag">${o.fLabelName}</a>
                 </div>`;
     };
     // * ---------------- 活動參與者數量 文字樣板 ---------------- //
 
     const actDetail_participant_count = (o) => {
         return `<h5 id="activity_detail_participant_count">活動參與者(${o})</h5>
-        <a href="#">See All</a>
-        `;
+                <a href="#">See All</a>
+                `;
     };
 
     // * ---------------- 活動參與者 文字樣板 ---------------- //
@@ -120,14 +131,14 @@ function ClsActivityDetail() {
 
     const activity_detail_participant = (o) => {
         return `<div class="activity_detail_participant" onclick="location.hash='#personal-page/${o.fMemberId}'">
-    <div class="activity_detail_info_img_circle">
-        <div class="activity_detail_info_img_div">
-            <img src='http://localhost:3050/${o.fPhotoPath}' class="activity_detail_info_img">
-        </div>
-    </div>
-    <p>${o.fName}</p>
-    <span>Member</span>
-</div>`;
+                    <div class="activity_detail_info_img_circle">
+                        <div class="activity_detail_info_img_div">
+                            <img src='http://localhost:3050/${o.fPhotoPath}' class="activity_detail_info_img">
+                        </div>
+                    </div>
+                    <p>${o.fName}</p>
+                    <span>Member</span>
+                </div>`;
     };
     // --- 參與者匯入 --- //
     const display_actDetailJoin = (o) => {
@@ -213,19 +224,18 @@ function ClsActivityDetail() {
         o.map(
             (e, index) => {
                 activity_detail_TagBox.innerHTML += activity_detail_tag(e);
-
             }
         )
     }
 
-
-
     // --- 參與者人數匯入 --- //
     const display_actDetailJoinCount = (o) => {
-        // activity_detail_participant_count.innerHTML = "";
-        // console.log(o[0].JoinCount)
-        activity_detail_participant_count.innerHTML = actDetail_participant_count(o[0].JoinCount);
-
+        activity_detail_participant_count.innerHTML = "";
+        if (o.length == 0) {
+            activity_detail_participant_count.innerHTML = "";
+        } else {
+            activity_detail_participant_count.innerHTML = actDetail_participant_count(o[0].JoinCount);
+        }
     }
 
     // * ********************************** [ END ] 文字樣板 [ END ] ********************************** //
@@ -241,7 +251,7 @@ function ClsActivityDetail() {
                 method: "GET", // http request method
                 headers: {
                     // http headers
-                    "Content-Type": "application/json", // 請求的資料類型
+                    Authorization: localStorage.getItem("Cycle link token"), // 請求的資料類型
                 },
                 // 以下跟身分認證有關，後端要使用session 要帶這幾項
                 cache: "no-cache",
@@ -257,35 +267,29 @@ function ClsActivityDetail() {
             display_actDetailTag(result.data.tag);
             display_actDetailJoin(result.data.join);
             display_actDetailJoinCount(result.data.joinCount);
+
+            // * -------------------------------- 標籤搜尋 -------------------------------- //
+            let tagFroBtn = document.querySelectorAll(".activityTag")
+            for (let i = 0; i < tagFroBtn.length; i++) {
+                tagFroBtn[i].addEventListener('click', (e) => {
+                    e.preventDefault();
+                    let a = e.target.text.substr(1)
+                    console.log(a);
+                    tagSearch(a)
+                })
+            }
+
+            // * -------------------------------- 加入最愛判斷 -------------------------------- //
+            if (result.data.likes != null) {
+                document.querySelector(".active_detail_card_heart").classList.add("actlikecolor");
+            }
+
         } catch (err) {
             console.log(err);
             // 錯誤處理
         }
     };
 
-    // const actDetailPost = async () => {
-    //     try {
-    //         // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
-    //         // *用變數接 fetch 結果 ，要用await等。
-    //         let actForm = document.querySelector("#creatAct_form");
-    //         let actFormData = new FormData(actForm);
-    //         let response = await fetch(serverURL.actDetail, {
-    //             method: "POST", // http request method 
-    //             headers: { // http headers
-    //                 'Content-Type': 'application/json' // 請求的資料類型
-    //             },
-    //             body: actFormData,
-    //             // 以下跟身分認證有關，後端要使用session 要帶這幾項
-    //             cache: 'no-cache',
-    //             credentials: 'include',
-    //         });
-    //         // 用變數接 fetch結果的資料內容， 要用await等。
-    //         let result = await response.json();
-    //     } catch (err) {
-    //         console.log(err);
-    //         // 錯誤處理
-    //     }
-    // }
 
     // * -------------------------------- 創建活動 -------------------------------- //
     const CreateActivity = async () => {
@@ -321,6 +325,30 @@ function ClsActivityDetail() {
             console.log(err);
         }
     }
+
+    // * -------------------------------- 標籤搜尋 -------------------------------- //
+    const tagSearch = async (tag) => {
+        try {
+            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+            // *用變數接 fetch 結果 ，要用await等。
+            let response = await fetch(serverURL.actDetail + `tagSearch/${tag}`, {
+                method: "GET",
+                cache: "no-cache",
+                credentials: "include",
+            });
+            let result = await response.json();
+            console.log(result.data);
+            location.href = "#activity"
+            // display_actDetail(result.data.detail);
+            // TODO: 跳轉後寫入符合標籤活動卡
+
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+        }
+    };
+
+
     // ! ************************ [ END ] actDetail ajax [ END ] ************************ //
 
 
@@ -333,7 +361,6 @@ function ClsActivityDetail() {
         alert("創建成功");
         location.href = "#activity";
         location.reload();
-
     })
 
     // TODO: 創建完後資料表要清空 
@@ -387,15 +414,13 @@ function ClsActivityDetail() {
         return `<option value="${o.fCommunityId}">${o.fName}</option>`
     }
 
+    // TODO: -------------------------------- textarea 會爆版 -------------------------------- //
 
     // TODO: -------------------------------- 創建活動 地圖座標 -------------------------------- //
-    // TODO: -------------------------------- 創建活動 標籤寫入hadLabel -------------------------------- //
     // TODO: -------------------------------- 刪除活動 -------------------------------- //
-    // TODO: -------------------------------- 加入最愛活動 -------------------------------- //
-    // TODO: -------------------------------- 標籤搜尋 -------------------------------- //
 
 
-    // TODO: -------------------------------- 編輯活動 -------------------------------- //
+    // TODO: -------------------------------- 編輯活動 ( 缺標籤寫入及地圖座標? ) -------------------------------- //
     let InitiatorEditBTN = document.querySelector("#InitiatorEdit")
     InitiatorEditBTN.addEventListener("click", async (actDetailId) => {
 
@@ -416,7 +441,6 @@ function ClsActivityDetail() {
         });
         let result = await response.json();
         // console.log(result);
-
         let fActivityDate = result.data.detail[0].fActivityDate.split(" ")
         let fActivityEndDate = result.data.detail[0].fActivityEndDate.split(" ")
         let fCommunityId = result.data.detail[0].fCommunityId
@@ -426,8 +450,8 @@ function ClsActivityDetail() {
         document.querySelector("#create_active_text").value = result.data.detail[0].fIntroduction
         document.querySelector("#ac_date_from").value = fActivityDate[0]
         document.querySelector("#ac_date_to").value = fActivityEndDate[0]
-        document.querySelector("#ac_date_from_time").value = fActivityDate[1]
-        document.querySelector("#ac_date_to_time").value = fActivityEndDate[1]
+        document.querySelector("#ac_date_from_time").value = fActivityDate[1].substring(0, 5)
+        document.querySelector("#ac_date_to_time").value = fActivityEndDate[1].substring(0, 5)
 
         document.querySelector("#ac_date_from_div").setAttribute("style", "display:block")
         document.querySelector("#ac_date_to_div").setAttribute("style", "display:block")
@@ -443,7 +467,6 @@ function ClsActivityDetail() {
         if (fCommunityId > 0) {
             actCType()
             actInitiatorType.getElementsByTagName("option")[1].selected = true;
-            // document.querySelector("#createSelect").getElementsByTagName("option").setAttribute("value", fCommunityId).selected = true
         } else {
             actCreaterTypeSpan.setAttribute("style", "display:none")
         }
@@ -606,58 +629,8 @@ function ClsActivityDetail() {
 
 
 
-    //  TODO: -------------------------------- 為您推薦 文字樣板 -------------------------------- //
-    this.htmlActCard = (o) => {
-        return ` 
-    <div class="active_card_container">
-        <div class="active_card" >
-            <i class="fas fa-heart fa-lg active_card_heart"></i>
-            <div class="active_card_div">
-                <img src="http://localhost:3050/${o.imgPath}" alt="" class="active_card_img">
-            </div>
-            <div class="active_card_info">
-                <p>${o.date}</p>
-                <p class="active_card_title">${o.title}</p>
-                <div class="active_card_location_div">
-                    <img src="img/929497.svg" class="active_card_location">
-                    <p>${o.local}</p>
-                </div>
-            </div>
-        </div>
-    </div>`;
-    };
 
-    const ActCard = document.querySelector("#activity_detail_see");
 
-    let ActCardData = [{
-            imgPath: "img/event6.png",
-            date: "2020/09/15",
-            title: "世界環境清潔日 - 相約海洋淨灘",
-            count: 100,
-            member: "王曉明",
-            local: "新金山海灘",
-        },
-        {
-            imgPath: "img/event3.jpg",
-            date: "2020/09/26",
-            title: "魚取漁囚 - 守護海洋行動體驗特展",
-            count: 99,
-            member: "洲仔於",
-            local: "布袋漁港",
-        },
-        {
-            imgPath: "img/event7.jpg",
-            date: "2020/09/06",
-            title: "臉部平權運動臺北國道馬拉松",
-            count: 500,
-            member: "時間管理大師",
-            local: "中山高速公路五股 - 汐止高架段",
-        },
-    ];
-
-    ActCardData.map((e, index) => {
-        ActCard.innerHTML += this.htmlActCard(e);
-    });
 
     // * -------------------------------- 留言區 -------------------------------- //
     //get the btn element by id
@@ -729,11 +702,13 @@ function ClsActivityDetail() {
     }
 
     // * -------------------------------- 分享功能 -------------------------------- //
-
     var ac_share_btn = document.getElementById("ac_share_btn");
     var ac_share_bg = document.getElementById("ac_share_bg");
     var ac_share_bg_div = document.getElementById("ac_share_bg_div");
     var ac_share_closeBtn = document.getElementById("ac_share_closeBtn");
+    //按讚功能
+    var activityselectlike = document.querySelector(".active_detail_card_heart")
+    var activitylikelink = document.querySelector(".active_detail_card_heart_link");
 
     ac_share_btn.onclick = function () {
         ac_share_bg.style.display = "block";
@@ -745,6 +720,81 @@ function ClsActivityDetail() {
         ac_share_bg_div.style.display = "none";
         // ac_share_bg.preventDefault();
     };
+
+
+    // * -------------------------------- 加入最愛活動 -------------------------------- //
+    //預設跳轉取消
+    activitylikelink.addEventListener("click", function (e) {
+        e.preventDefault();
+    })
+    //icon
+    activityselectlike.addEventListener("click", function () {
+        let nowtime = new Date();
+        let date = nowtime.toLocaleDateString();
+        let timesplit = nowtime.toTimeString().split(" ");
+        let time = timesplit[0];
+        let now = date + " " + time;
+        now = now.split("/").join(",");
+        let id = location.hash.split("/")[2]
+
+        if (activityselectlike.classList.contains("actlikecolor") == true) {
+            activityselectlike.classList.remove("actlikecolor");
+            removeactlikesql(id, now);
+        } else {
+            activityselectlike.classList.add("actlikecolor");
+            addActLikeToSQL(id, now);
+        }
+    })
+    const addActLikeToSQL = async (activelikeid, now) => {
+        try {
+            var formdata = new FormData()
+            formdata.append("fActivityId", activelikeid);
+            formdata.append("fJoinTypeId", 0);
+            formdata.append("fJoinTime", now);
+            let response = await fetch(serverURL.addActLikeToSQL, {
+                method: "POST", // http request method 
+                headers: { // http headers
+                    //傳token
+                    Authorization: localStorage.getItem("Cycle link token"),
+                },
+                body: formdata,
+                cache: 'no-cache',
+                credentials: 'include',
+            });
+            let result = await response.json();
+            console.log(result);
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+        }
+    }
+
+    const removeactlikesql = async (activelikeid) => {
+        try {
+            console.log("================")
+            console.log("activelikeid:", activelikeid);
+            var formdata = new FormData();
+            formdata.append("fActivityId", activelikeid);
+            let response = await fetch(serverURL.removeactlikesql, {
+                method: "DELETE", // http request method
+                headers: {
+                    // http headers
+                    Authorization: localStorage.getItem("Cycle link token"),
+                },
+                body: formdata,
+                cache: "no-cache",
+                credentials: "include",
+            });
+            let result = await response.json();
+            console.log(result);
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+        }
+    }
+
+
+
     this.actDetail = actDetail;
     this.OrJoinAct = OrJoinAct;
     this.OrActInitiator = OrActInitiator;

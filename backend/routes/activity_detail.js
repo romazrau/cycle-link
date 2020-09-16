@@ -23,14 +23,16 @@ router.get('/', async function (req, res, next) {
     }
 });
 
-
+//* ----------------------- 活動頁面抓資料匯入 ----------------------- //
 router.get('/:id', async function (req, res, next) {
     try {
+        let fMemberId = req.user.fId;
         // *用 await 等待資料庫回應
         let ActDetailById = await Sql.ActDetailById(req.params.id);
         let TagById = await Sql.TagById(req.params.id);
         let JoinById = await Sql.JoinById(req.params.id);
         let JoinCount = await Sql.JoinCount(req.params.id);
+        let likechecked = await Sql.likechecked(fMemberId, req.params.id);
         // res.json(result);
         res.json({
             result: 1,
@@ -38,7 +40,8 @@ router.get('/:id', async function (req, res, next) {
                 detail: ActDetailById.data,
                 tag: TagById.data,
                 join: JoinById.data,
-                joinCount: JoinCount.data
+                joinCount: JoinCount.data,
+                likes: likechecked.data,
             }
         });
 
@@ -48,18 +51,28 @@ router.get('/:id', async function (req, res, next) {
 });
 
 
+//* ----------------------- 標籤搜尋活動 ----------------------- //
+router.get('/tagSearch/:tag', async function (req, res, next) {
+    try {
+        let tagSearch = await Sql.TagSearch(req.params.tag);
+        // res.json(result);
+        res.json({
+            result: 1,
+            msg: "請求成功",
+            data: {
+                tagSearch: tagSearch.data,
+            }
+        });
+
+    } catch (err) {
+        console.log(err);
+        res.send(err);
+    }
+});
+
 
 //* ----------------------- 新增活動 ----------------------- //
 router.post('/', async function (req, res, next) {
-
-    // if (!req.user) {
-    //     // 確認 JWT 有解析成功
-    //     res.json({
-    //         result: 0,
-    //         msg: "未登入"
-    //     });
-    //     return;
-    // }
 
     try {
         // 前端有 headers 才能抓到目前登入會員資料
@@ -85,7 +98,7 @@ router.post('/', async function (req, res, next) {
             fCommunityId
         } = req.body
 
-        let fImgPath="img/"+req.files[0].filename;
+        let fImgPath = "img/" + req.files[0].filename;
         // if (!fImgPath) {
         //     fImgPath = null;
         // }
@@ -126,10 +139,6 @@ router.post('/', async function (req, res, next) {
         res.send(err);
     }
 })
-
-// TODO:----------------------- 創建活動 讓標籤隸屬在活動底下 ----------------------- //
-
-
 
 
 //* ----------------------- 參加活動 ----------------------- //
@@ -261,49 +270,18 @@ router.put('/Edit', async function (req, res, next) {
             fMaxLimit,
             fCommunityId
         } = req.body
-        // console.log("===== req.body ======" + req.body);
-        // console.log(fActName);
         let result = await Sql.EditAct(fId, fActName, fIntroduction, fMinLimit, fMaxLimit, fCommunityId);
-
-        // console.log("====== result =====" + result);
-
 
         res.json({
             result: 1,
             msg: "編輯成功",
         });
-        // console.log("=== EditAct ===" + EditAct);
+
     } catch (err) {
         console.log(err);
         res.send(err);
     }
 });
-
-
-
-
-
-//* ----------------------- 新增標籤(已寫入創建活動中) ----------------------- //
-// router.post('/tag', async function (req, res, next) {
-//     try {
-//         // console.log(req.body);
-//         if (!req.body.fLabelName) {
-//             res.json({
-//                 result: 0,
-//                 msg: "???"
-//             });
-//             return;
-//         }
-
-//         let result = await Sql.createActTag(req.body.fLabelName);
-
-//         res.json(result);
-//     } catch (err) {
-//         console.log(err);
-//         res.send(err);
-//     }
-// })
-
 
 
 

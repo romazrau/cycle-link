@@ -449,8 +449,8 @@ const communityAdd = async (fId, fCommunityId, fDate) => {
   }
 };
 
-// todo SQL待測試
 //** 修改社員身份by社員id 社團id
+// 審核會員fAccessRightId = 2
 const ChangeMemberAccessRight = async (fId, fCommunityId) => {
   try {
     await sql.connect(config);
@@ -458,11 +458,12 @@ const ChangeMemberAccessRight = async (fId, fCommunityId) => {
     let sqlStr = `
         UPDATE Community.tMemberList
         SET fAccessRightId = 2
-        WHERE fId = ${fId} and fCommunityId = ${fCommunityId}
+        WHERE fMemberId = ${fId} and fCommunityId = ${fCommunityId}
              `;
     // console.log(sqlStr);
 
     const result = await sql.query(sqlStr);
+    
 
     return {
       result: 1,
@@ -477,7 +478,7 @@ const ChangeMemberAccessRight = async (fId, fCommunityId) => {
   }
 };
 
-// todo SQL待寫
+
 //** 搜尋待審核社員 by社員id 社團id
 const SearchMemberAccessRight = async (fCommunityId) => {
   try {
@@ -584,17 +585,17 @@ const updateCommunity = async (
 };
 
 // !前端抓fCommunityId
-// TODO 刪除tMemberList資料by社員id,社團id
+// TODO 刪除tMemberList資料by社員id,社團id CONTINUE
 // 社團12做測試
-const deletMemberOfCommunity = async (fDeletedArryId, fCommunityId) => {
+const deletMemberOfCommunity = async (fId, fCommunityId) => {
   try {
     await sql.connect(config);
 
     // 字串處理  '1,2,3'
-    let arrayId = fDeletedArryId.split(","); // [1 , 2 , 3]
+    let arrayId = fId.split(","); // [1 , 2 , 3]
     let arrayStr = arrayId.map((e) => `fMemberId = ${e}`); // [ 'fMemberId = 1' ,'fMemberId =  2 ', 'fMemberId = 3']
     let StrFin = arrayStr.join(" or "); // 'fMemberId = 1  or  fMemberId =  2   or  fMemberId = 3'
-    console.log(StrFin);
+    // console.log(StrFin);
 
     let sqlStr = `DELETE FROM Community.tMemberList
         WHERE ( ${StrFin} ) and  fCommunityId = ${fCommunityId}                               
@@ -602,12 +603,13 @@ const deletMemberOfCommunity = async (fDeletedArryId, fCommunityId) => {
 
     const result = await sql.query(sqlStr);
 
+    // console.log(result);
     // if(result.recordset[0]) => 沒東西就會是undefined
     // console.dir(result.recordset[0]);
     if (!result.rowsAffected[0]) {
       return { result: 0, msg: "無法刪除" };
     }
-    console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+    // console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
     return { result: 1, msg: "請求成功" };
   } catch (err) {

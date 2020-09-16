@@ -295,7 +295,7 @@ router.put('/communityById_communityMember/:id', async function (req, res, next)
         // 修改fAccessright
         let result = await Sql.ChangeMemberAccessRight(fId, fCommunityId);
         res.json(result);
-        console.log("有進來Router");
+        console.log("有進來Router++++++++++++++++++++++++++++++++++++++++");
 
     } catch (err) {
         res.send({
@@ -401,8 +401,8 @@ router.post('/members', async function (req, res, next) {
 router.delete('/members', async function (req, res, next) {
     try {
         // es6 物件解構
-        let { fCommunityId, fMemberIdArr } = req.body
-        // console.log("----------------------");
+        let { fId, fCommunityId } = req.body
+        // console.log("88888888888888888888888888888888888888888888");
         // console.log(req.body);
 
         //token
@@ -410,14 +410,10 @@ router.delete('/members', async function (req, res, next) {
             res.json({ result: 0, msg: "token 遺失" });
             return;
         }
-        //todo 驗證社團管理員身分
-
-
-
-        let resultDeletMemberOfCommunity = await Sql.deletMemberOfCommunity(fMemberIdArr, fCommunityId);
-
-        console.log((resultDeletMemberOfCommunity));
+        let resultDeletMemberOfCommunity = await Sql.deletMemberOfCommunity(fId, fCommunityId);
+        // console.log((resultDeletMemberOfCommunity));
         res.json(resultDeletMemberOfCommunity);
+
     } catch (err) {
         res.send({ result: 0, msg: "路由錯誤", data: err });
     }
@@ -427,7 +423,7 @@ router.delete('/members', async function (req, res, next) {
 router.put('/members', async function (req, res, next) {
     try {
         // es6 物件解構
-        let { fCommunityId, fMemberId } = req.body
+        let { fCommunityId, fId } = req.body
         // console.log("----------------------");
         // console.log(req.body);
         //token
@@ -440,7 +436,7 @@ router.put('/members', async function (req, res, next) {
 
         //todo 假裝是
 
-        let resultSearchMemberCommunity = await Sql.searchMemInCom(fMemberId, fCommunityId);
+        let resultSearchMemberCommunity = await Sql.searchMemInCom(fId, fCommunityId);
         console.log(resultSearchMemberCommunity);
         if (!resultSearchMemberCommunity.result) {
             res.json(resultSearchMemberCommunity);

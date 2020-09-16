@@ -20,40 +20,60 @@ const GetHomePageBannerActivity = async () => {
     let banner = result.data.banner;
     let recent = result.data.recent;
     let imgs = result.data.imgs;
-
     home_picturesbox.innerHTML = home_picturesItem(imgs)
-
     //大圖匯入
     banner.map(function (e, index) {
       document.querySelector(".home_top_event").innerHTML += home_bannerimgs(e)
     })
     //輪播
-    CarouselBanner(banner);
-    
-     
-   
-
+    CarouselBanner(banner);      
     recent.map(
       (e, index) => {
         recent_activities.innerHTML += home_recent_activities(e);
       }
     )
+  } catch (err) {
+    console.log(err);
+    // 錯誤處理
+  }
+}
+GetHomePageBannerActivity();
+
+const GetHomePageWeather = async () => {
+  try {
+    // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+    // *用變數接 fetch 結果 ，要用await等。
+    let response = await fetch(serverURL.homePages+"weather", {
+      method: "GET", // http request method 
+      headers: { // http headers
+        'Content-Type': 'application/json' // 請求的資料類型
+      },
+      // 以下跟身分認證有關，後端要使用session 要帶這幾項
+      cache: 'no-cache',
+      credentials: 'include',
+    });
+    // 用變數接 fetch結果的資料內容， 要用await等。
+    let result = await response.json();
+    
+    let city=result.records.locations[0].locationsName;
+    //區域:District
+    let District=result.records.locations[0].location[7].locationName
+    
+    // let District=city.location[7]
+    console.log(result.records.locations[0].location[7]);
+    //顯示天氣
+    // weathershow();
 
 
 
 
   } catch (err) {
     console.log(err);
-    // 錯誤處理
-
   }
 }
 
-
-
-GetHomePageBannerActivity();
-
-
+GetHomePageWeather();
+// weathershow
 
 
 var bannerdata

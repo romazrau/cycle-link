@@ -35,9 +35,11 @@ const activesql = async () => {
         // left join jo as J
         // on A.fId = J.fActivityId
         // `
-        let sqlStr =`select top(6)  * from Activity.tActivity order by  newid()`
+        let sqlStr =`select top(6)  * from Activity.tActivity  as A
+        where A.fActivityDate > convert(char, getdate(), 111) and A.fActLabelId = 3
+        order by  newid()`
         // todo where j.fMemberId = ${}
-        
+
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
         console.dir(result.recordset)
@@ -77,7 +79,7 @@ const activemainlevelsql = async () => {
         };
         // 錯誤處理
     } catch (err) {
-        
+
         return {
             result: 0,
             msg: "SQL 錯誤",
@@ -126,8 +128,9 @@ const activeforyousql = async () => {
         await sql.connect(config)
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
         let sqlStr = `select top(6) * from Activity.tActivity as A 
-        where A.fImgPath is not null
-        order by newid() `
+        select top(6)  * from Activity.tActivity  as A
+        where A.fActivityDate > convert(char, getdate(), 111) 
+        order by  newid()`
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
         // console.dir(result)
@@ -223,7 +226,8 @@ const activeseensql = async (id) => {
             select top(6) S.*, J.fJoinTypeId  
             from active123 as S
             LEFT JOIN  mylist  as J
-            on  S.fActivityId  = J.fActivityId; `
+            on  S.fActivityId  = J.fActivityId
+            order by S.fId desc; `
 
         // todo  登入功能可使用時需換成判斷id where S.fMemberId = ${id}
         const result = await sql.query(sqlStr)
@@ -262,7 +266,10 @@ const activeinsertseensql = async (fActivityId, fMemberId, fSearchTime) => {
 
 
         if (searchresult.recordset[0]) {
-            return   { result: 0, msg: "had" };
+            return {
+                result: 0,
+                msg: "had"
+            };
         }
 
 
@@ -333,11 +340,19 @@ const removeactlikesql = async (fActivityId, fMemberId) => {
         WHERE fActivityId=${fActivityId} AND fMemberId=${fMemberId}
         `;
         const result = await sql.query(sqlString);
-         console.dir(result);
+        console.dir(result);
 
-        return { result: 1, msg: "刪除成功", data: result.recordset };
+        return {
+            result: 1,
+            msg: "刪除成功",
+            data: result.recordset
+        };
     } catch (err) {
-        return { result: 0, msg: "SQL 問題", data: result };
+        return {
+            result: 0,
+            msg: "SQL 問題",
+            data: result
+        };
     }
 };
 /*-------------------------*/
@@ -350,11 +365,19 @@ const likeListSQL = async (fJoinTypeId, fMemberId) => {
         WHERE fJoinTypeId=${fJoinTypeId} AND fMemberId=${fMemberId}
         `;
         const result = await sql.query(sqlString);
-         console.dir(result);
+        console.dir(result);
 
-        return { result: 1, msg: "刪除成功", data: result.recordset };
+        return {
+            result: 1,
+            msg: "刪除成功",
+            data: result.recordset
+        };
     } catch (err) {
-        return { result: 0, msg: "SQL 問題", data: result };
+        return {
+            result: 0,
+            msg: "SQL 問題",
+            data: result
+        };
     }
 };
 
@@ -375,5 +398,5 @@ module.exports = {
     addActLikeTosql,
     removeactlikesql,
     likeListSQL,
-    
+
 };
