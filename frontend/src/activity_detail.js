@@ -278,9 +278,9 @@ function ClsActivityDetail() {
                     tagSearch(a)
                 })
             }
-
+            console.log("result.data.likes:",result.data.likes)
             // * -------------------------------- 加入最愛判斷 -------------------------------- //
-            if (result.data.likes != null) {
+            if (result.data.likes.length != 0) {
                 document.querySelector(".active_detail_card_heart").classList.add("actlikecolor");
             }
 

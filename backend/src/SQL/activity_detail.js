@@ -329,8 +329,8 @@ const likechecked = async (fActivityId, fMemberId) => {
         where fActivityId =${fActivityId} and fMemberId=${fMemberId} and fJoinTypeId=0
         `
         const result = await sql.query(sqlStr);
-        // console.log("============");
-        // console.dir(result.recordset)
+        
+       
         return {
             result: 1,
             msg: "請求成功",
