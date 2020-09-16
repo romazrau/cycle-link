@@ -96,7 +96,7 @@ router.post("/login", async function (req, res, next) {
         { algorithm: "HS256" } // 加密方式
       );
 
-    console.log("user:", result);
+    // console.log("user:", result);
     res.json({ ...result, token: token }); // 把 SQL 從帳號撈出對應資料與 JWT 回傳
   } catch (err) {
     console.log(err);
@@ -366,6 +366,28 @@ router.get("/:id", async function (req, res, next) {
     res.send(err);
   }
 });
+
+// 搜尋特定id 詳細版
+router.get("/detail/me", async function (req, res, next) {
+  try {
+    if (!req.user) {
+      // 確認 JWT 有解析成功
+      res.json({ result: 0, msg: "未登入" });
+      return;
+    }
+
+    // *用 await 等待資料庫回應
+    let result = await memberSql.memberDetailById(req.user.fId);
+    // 物件用json格式回傳
+    // 可以整理一下，刪掉不必要的資料再回傳
+    res.json(result);
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
+});
+
+
 
 // 搜尋 by name or account
 router.get("/searchByAccountOrName/:str", async function (req, res, next) {

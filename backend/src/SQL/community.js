@@ -552,7 +552,7 @@ const communityDelet = async (fId) => {
   }
 };
 
-// TODO  修改tCommunity資料by社團id
+// 修改tCommunity資料by社團id
 //　自己可以更新自己社團同名
 const updateCommunity = async (
   fCommunityId,
@@ -593,7 +593,7 @@ const updateCommunity = async (
 };
 
 // !前端抓fCommunityId
-// TODO 刪除tMemberList資料by社員id,社團id CONTINUE
+// 刪除tMemberList資料by社員id,社團id
 // 社團12做測試
 const deletMemberOfCommunity = async (fId, fCommunityId) => {
   try {
@@ -626,8 +626,8 @@ const deletMemberOfCommunity = async (fId, fCommunityId) => {
   }
 };
 
-// TODO 修改tMemberList資料by社團id,社員id ( 增加社團管理員 去除社團管理員 : 更改會員 fAccessRightId )
-const updatatMemberList = async (fMemberManagerId, fCommunityId, ifManager) => {
+// 修改tMemberList資料by社團id,社員id ( 增加社團管理員 去除社團管理員 : 更改會員 fAccessRightId )
+const updatatMemberList = async (fId, fCommunityId, ifManager) => {
   try {
     await sql.connect(config);
 
@@ -638,13 +638,13 @@ const updatatMemberList = async (fMemberManagerId, fCommunityId, ifManager) => {
     if (ifManager) {
       sqlStr = ` UPDATE Community.tMemberList
             SET fAccessRightId = 2
-            WHERE  fCommunityId = ${fCommunityId} and fMemberId = ${fMemberManagerId}                               
+            WHERE  fCommunityId = ${fCommunityId} and fMemberId = ${fId}                               
           `;
       // console.log("------------------");
     } else {
       sqlStr = ` UPDATE Community.tMemberList
             SET fAccessRightId = 3
-            WHERE  fCommunityId = ${fCommunityId} and fMemberId = ${fMemberManagerId}                               
+            WHERE  fCommunityId = ${fCommunityId} and fMemberId = ${fId}                               
           `;
     }
 
@@ -663,6 +663,27 @@ const updatatMemberList = async (fMemberManagerId, fCommunityId, ifManager) => {
     return { result: 0, msg: "updatatMemberListSQL錯誤", data: err };
   }
 };
+
+//照片牆
+const Community_GetPictures = async (fCommunityId) => {
+  try {
+    await sql.connect(config);
+    let sqlStr = `select fId,fImgPaths,fContent from Community.tPost
+    where fCommunityId=${fCommunityId}                               
+        `;
+    const result = await sql.query(sqlStr);
+    if (!result.rowsAffected[0]) {
+      return { result: 0, msg: "無照片" };
+    }
+    return { result: 1, msg: "請求成功", data:result };
+  } catch (err) {
+    console.dir(err);
+    return { result: 0, msg: "SQL錯誤", data: err };
+  }
+};
+
+
+
 
 // const communityModified = async (fId) => {
 //     try {
@@ -699,4 +720,5 @@ module.exports = {
   communityAdd,
   ChangeMemberAccessRight,
   SearchMemberAccessRight,
+  Community_GetPictures,
 };

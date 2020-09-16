@@ -218,131 +218,175 @@ function ClsCommuntityDetail() {
 
 
 
-
+    // let photoFlowData;
+    var photoFlowData1=[];
 
     // *照片牆---------------------------------------------
+    const CommunityOfPictures = async (id) => {
+        try {
+
+            let response = await fetch(serverURL.community+"communitypicture/"+id, {
+                method: "GET", // http request method
+                // 以下跟身分認證有關，後端要使用session 要帶這幾項
+                cache: "no-cache",
+                credentials: "include",
+            });          
+            let result = await response.json();
+            
+            let picture_data=result.data.recordset
+            console.log("picture_data:",picture_data);
+            for(let i=0;i<picture_data.length;i++)
+            {               
+                if(picture_data[i].fImgPaths==null)
+                    continue;
+                let imgpath_arr=picture_data[i].fImgPaths.split(",,")
+                if(imgpath_arr.length>1)
+                {
+                    for(let j=0;j<imgpath_arr.length;j++)
+                    {
+                        let obj={
+                            fId:picture_data[i].fId,
+                            fImgPaths:imgpath_arr[j],
+                            fContent:picture_data[i].fContent
+                        }
+                        photoFlowData1.push(obj)
+                    }
+                }else{       
+                    photoFlowData1.push(picture_data[i])
+                }
+
+            }
+            console.log("arr:",photoFlowData1);
+        } catch (err) {
+            console.log(err);
+        }
+
+
+
+    }
+
     //假資料
-    let photoFlowData = [{
-        id: 1,
-        msg: "春吶善後",
-        src: "01.jpg"
-    },
-    {
-        id: 1,
-        msg: "社員交流",
-        src: "02.jpg"
-    },
-    {
-        id: 1,
-        msg: "市集",
-        src: "03.jpg"
-    },
-    {
-        id: 1,
-        msg: "朔溪",
-        src: "04.jpg"
-    },
-    {
-        id: 1,
-        msg: "嘉南平原",
-        src: "05.jpg"
-    },
-    {
-        id: 1,
-        msg: "杉林溪",
-        src: "06.jpg"
-    },
-    {
-        id: 1,
-        msg: "聚餐",
-        src: "07.jpg"
-    },
-    {
-        id: 1,
-        msg: "談笑風生",
-        src: "08.jpg"
-    },
-    {
-        id: 1,
-        msg: "彩虹勝利趴",
-        src: "09.jpg"
-    },
-    {
-        id: 1,
-        msg: "大稻埕煙火",
-        src: "10.jpg"
-    },
-    {
-        id: 1,
-        msg: "喝酒囉",
-        src: "11.jpg"
-    },
-    {
-        id: 1,
-        msg: "最後的中餐",
-        src: "12.jpg"
-    },
-    {
-        id: 1,
-        msg: "中二病",
-        src: "13.jpg"
-    },
-    {
-        id: 1,
-        msg: "海洋圍觀",
-        src: "14.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "01.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "06.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "01.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "02.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "03.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "04.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "02.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "06.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "01.jpg"
-    },
-    {
-        id: 1,
-        msg: "哈哈哈",
-        src: "02.jpg"
-    },
-    ]
+    // photoFlowData = [{
+    //     id: 1,
+    //     msg: "春吶善後",
+    //     src: "01.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "社員交流",
+    //     src: "02.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "市集",
+    //     src: "03.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "朔溪",
+    //     src: "04.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "嘉南平原",
+    //     src: "05.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "杉林溪",
+    //     src: "06.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "聚餐",
+    //     src: "07.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "談笑風生",
+    //     src: "08.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "彩虹勝利趴",
+    //     src: "09.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "大稻埕煙火",
+    //     src: "10.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "喝酒囉",
+    //     src: "11.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "最後的中餐",
+    //     src: "12.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "中二病",
+    //     src: "13.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "海洋圍觀",
+    //     src: "14.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "哈哈哈",
+    //     src: "01.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "哈哈哈",
+    //     src: "06.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "哈哈哈",
+    //     src: "01.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "哈哈哈",
+    //     src: "02.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "哈哈哈",
+    //     src: "03.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "哈哈哈",
+    //     src: "04.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "哈哈哈",
+    //     src: "02.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "哈哈哈",
+    //     src: "06.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "哈哈哈",
+    //     src: "01.jpg"
+    // },
+    // {
+    //     id: 1,
+    //     msg: "哈哈哈",
+    //     src: "02.jpg"
+    // },
+    // ]
 
     //有幾條col
     const myPhotoFlowCols = [
@@ -358,10 +402,11 @@ function ClsCommuntityDetail() {
     //文字樣板
     const data2PhotoFlowCard = obj => {
         let result = "";
+        let t=obj.fContent.substring(0,4);
         result += `<div class="photo_flow_card">
-            <img class="photo_flow_card_img" src="./img/community_demo/${obj.src}" alt="">
+            <img class="photo_flow_card_img" src="${obj.fImgPaths}" alt="">
             <div class="photo_flow_card_wrapper">
-            <div class="photo_flow_card_msg">${obj.msg}</div>
+            <div class="photo_flow_card_msg">${t}</div>
             </div>
             </div>`
         return result;
@@ -381,9 +426,9 @@ function ClsCommuntityDetail() {
 
 
     const loadingPhotoFlow = async function loop() {
-        for (let i = 0; i < photoFlowData.length; i++) {
+        for (let i = 0; i < photoFlowData1.length; i++) {
             await new Promise(resolve => {
-                whoIsShortest(myPhotoFlowCols).innerHTML += data2PhotoFlowCard(photoFlowData[i]);
+                whoIsShortest(myPhotoFlowCols).innerHTML += data2PhotoFlowCard(photoFlowData1[i]);
                 setTimeout(resolve, 10)
             });
         }
@@ -395,6 +440,7 @@ function ClsCommuntityDetail() {
         () => {
             if (!isPhotoFlowLoaded) {
                 loadingPhotoFlow();
+
                 isPhotoFlowLoaded = 1;
             }
         }
@@ -481,7 +527,7 @@ function ClsCommuntityDetail() {
 
 
 
-            // TODO 錯誤處理
+          
             document.querySelector("#CommunityPic").src = serverURL.root + "/" + result.data[0].fImgPath;
             document.querySelector("#CommunityName").innerHTML = result.data[0].fName;
             document.querySelector("#CommunityNumberOfPeople").innerHTML = result.data[0].totalNumber;
@@ -667,7 +713,7 @@ function ClsCommuntityDetail() {
                     cache: "no-cache",
                     credentials: "include",
                 });
-                console.log("resultAccessRight+++++++++++");
+                // console.log("resultAccessRight+++++++++++");
 
                 let result = await response.json();
                 // console.log(result.data[0]);
@@ -713,7 +759,8 @@ function ClsCommuntityDetail() {
                 // console.log(resultManager);
 
                 // 把舊資料放入前端頁面_管理員基本資料
-
+                // 管理員管理員
+                // 去除管理員
                 let ManagerContainer = document.querySelector("#ManagerContainer");
                 let ManagerRemoveContainer = document.querySelector("#re");
 
@@ -722,10 +769,12 @@ function ClsCommuntityDetail() {
                 if (resultManager.result) {
 
                     resultManager.data.forEach((items) => {
+                        console.log(items);
+                        console.log("-----------------------------------!!!!!!!!!!!!!!!!!!");
                         ManagerContainer.innerHTML += modifiedManager(items);
 
                         if (resultManager.data.length > 1) {
-                            ManagerRemoveContainer.innerHTML += modifiedRemoveManager(items);
+                            ManagerRemoveContainer.innerHTML += modifiedRemoveManagerThis(items);
                         }
 
                     })
@@ -772,22 +821,31 @@ function ClsCommuntityDetail() {
                     credentials: "include",
                 });
                 let resultMember = await responseMember.json();
+                // resultMember會員帶的資料
+                // console.log(resultMember);
+                // fJoinDate: "2020/7/18"
+                // fMemberId: 10
+                // fName: "過激貓"
+                // fPhotoPath: "img/member/id6.png"
+                // ifManager: 0
 
                 // 把舊資料放入前端頁面_社員基本資料
                 // 用How to Save the World by 2030 社團測試
+                // 新增管理員
+                // 刪除成員
                 let AddManagerContainer = document.querySelector("#addManager");
                 let deletMemberContainer = document.querySelector("#deletMem");
                 AddManagerContainer.innerHTML = "";
                 deletMemberContainer.innerHTML = "";
                 if (resultMember.result) {
-                    if (!resultAccessRight.data) {
-
-                    }
-                    // console.log(resultMember.data);
+                
                     // console.log(resultAccessRight.data);
                     resultMember.data.forEach((o) => {
                         //不是管理員
                         if (o.ifManager == 0) {
+                            // console.log(o);
+                            // console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                            // console.log(resultMember.data);
                             // is  Normal member
                             let isNormalMember = true;
                             if (resultAccessRight.result == 1) {
@@ -800,7 +858,10 @@ function ClsCommuntityDetail() {
                             }
 
                             if (isNormalMember) {
-                                AddManagerContainer.innerHTML += modifiedRemoveManager(o);
+                                // 新增管理員
+                                // 刪除管理員
+                         
+                                AddManagerContainer.innerHTML += modifiedAddManager(o);
                                 deletMemberContainer.innerHTML += modifiedRemoveManager(o);
 
                             }
@@ -841,9 +902,10 @@ function ClsCommuntityDetail() {
     // 放進資料
     // 送出資料
     // 通知使用者修改資料成功
-    // todo continue 刷新頁面
+    // 刷新頁面
     document.querySelector("#fakeDoneBtn").addEventListener("click", async () => {
         try {
+
 
 
             // 頁面拿到新的社團資料
@@ -854,8 +916,7 @@ function ClsCommuntityDetail() {
             let formMem = document.querySelector("#formPending");
             let formDataMem = new FormData(formMem);
             formDataMem.append("fCommunityId", fCommunityId);
-            // fetch_修改tCommunity資料
-            // let { fCommunityId, fName, fInfo, fStatusId, fImgPath } = req.body
+            //** */ fetch_修改tCommunity資料
             let responseput = await fetch("http://localhost:3050/community/", {
                 method: "PUT",
                 // Adding body or contents to send 
@@ -876,12 +937,10 @@ function ClsCommuntityDetail() {
                 console.log(resultput);
             }
 
-         
+        
             // 如果有身份被修改
             // fetch_修改tMemberList
-            
-            
-            // 1.修改審核會員
+            //** */ 1.修改審核會員
             let responseAccessRight = await fetch(serverURL.communityMember + fCommunityId, {
                 method: "PUT",
                 // Adding body or contents to send 
@@ -901,16 +960,12 @@ function ClsCommuntityDetail() {
                 console.log(resultAccessRight.result);
             }
 
-            // 如果有身份被修改
-            // fetch_修改tMemberList
-            // 2.社團剔除社員
-            // deletMemberOfCommunity = async (fDeletedArryId, fCommunityId)
 
-            // 頁面拿到新的社團資料        
+            //** */ 2.社團剔除社員
+            // 頁面拿到新的剔除社員資料        
             let formDel = document.querySelector("#formDelMember"); // form element
             let formDataDel = new FormData(formDel);
             formDataDel.append("fCommunityId", fCommunityId);
-
             let responseDeleteMem = await fetch(serverURL.communityMemberAccessRight, {
                 method: "Delete",
                 // Adding body or contents to send 
@@ -926,10 +981,79 @@ function ClsCommuntityDetail() {
             })
             let resultDeleteMem = await responseDeleteMem.json();
 
-            console.log(resultDeleteMem);
+            // console.log(resultDeleteMem);
             if (!resultDeleteMem.result) {
                 console.log(resultDeleteMem);
             }
+
+
+            //** */ 3.修改增加管理員 
+
+            // 寫錯方向
+            // let selectedMem = document.querySelector(".js_checkBoxClass");
+            // console.log(selectedMem.value);
+            // let promoted; 
+            // // console.log(selectedMem.checked );
+            //  if(selectedMem.checked){
+            //     promoted = selectedMem.value;
+            //  }
+            // //  console.log(promoted);
+            let formAddManager =  document.querySelector("#formAddManager");
+            let formDataAdd = new FormData(formAddManager);
+            formDataAdd.append("fCommunityId", fCommunityId);
+
+            let responseAddManager = await fetch(serverURL.communityMemberAccessRight,{
+                method: "PUT",
+                // Adding body or contents to send 
+                body: formDataAdd,
+                // Adding headers to the request 
+                headers: {
+                    // formdata 不是用這種解析方式
+                    // "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": localStorage.getItem("Cycle link token"),
+                },
+                cache: "no-cache",
+                credentials: "include",
+            })
+            let resultAddManager = await responseAddManager.json();
+
+            console.log(resultAddManager);
+            if (!resultAddManager.result) {
+                console.log(resultAddManager);
+            }
+
+
+            //** */ 修改去除管理員
+
+            let formRemoveManager = document.querySelector("#formDelManager");
+            let formDataRemove = new FormData(formRemoveManager);
+            formDataRemove.append("fCommunityId", fCommunityId);
+
+            let responseRemoveManager = await fetch(serverURL.communityMemberAccessRight,{
+                method: "PUT",
+                // Adding body or contents to send 
+                body: formDataRemove,
+                // Adding headers to the request 
+                headers: {
+                    // formdata 不是用這種解析方式
+                    // "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": localStorage.getItem("Cycle link token"),
+                },
+                cache: "no-cache",
+                credentials: "include",
+            })
+            let resultRemoveManager = await responseRemoveManager.json();
+
+            console.log(resultRemoveManager);
+            if (!resultRemoveManager.result) {
+                console.log(resultRemoveManager);
+            } 
+            
+
+
+
+
+
 
             alert("資料修改成功!");
             //刷新頁面
@@ -992,6 +1116,7 @@ function ClsCommuntityDetail() {
     };
 
     // 介紹分頁-- 會員頭像的文字樣板
+    // 照片路徑存取後端資料夾
     const data2memImg = (o) => {
         return ` <div id="GroupMemberPicLessThan4" class="activity_detail_info_img_circle GroupMemberPic GroupMemberPicLessThan4">
         <div class="activity_detail_info_img_div">
@@ -1040,7 +1165,6 @@ function ClsCommuntityDetail() {
 
     // 修改社團--刪除管理員文字樣板
     // 修改社團--刪除會員文字樣板
-    // 修改社團--增加管理員文字樣版
     // 修改社團--審核會員文字樣板
     const modifiedRemoveManager = (o) => {
         // console.log(o);
@@ -1053,13 +1177,35 @@ function ClsCommuntityDetail() {
                     </div>`;
     }
 
+    const modifiedRemoveManagerThis = (o) => {
+        // console.log(o);
+        return `<div class="create_community_flex">
+                <input name="fId" type="checkbox" value=${o.fId} style="align-self: center;" />
+                <div class="create_community_check">
+                    <img src ="${serverURL.root}/${o.fPhotoPath}"
+                    style = "border-radius: 50%; width:50px"/>
+                    <p>${o.fName} </p>
+                    </div>`;
+    }
+
+    // 修改社團--增加管理員文字樣版
+    const modifiedAddManager = (o) => {
+        // console.log(o);
+        return `<div class="create_community_flex">
+                <input class="js_checkBoxClass" name="fId" type="checkbox" value=${o.fMemberId} style="align-self: center;" />
+                <div class="create_community_check">
+                    <img src ="${serverURL.root}/${o.fPhotoPath}"
+                    style = "border-radius: 50%; width:50px"/>
+                    <p>${o.fName} </p>
+                    </div>`;
+    }
 
 
     // this 指的是 ClsCommuntityDetail
     this.renderMainCommunityInfo = renderPage;
     this.renderManagerListInfo = renderPageManager;
     this.renderMemberListInfo = renderPageMember;
-
+    this.CommunityOfPictures=CommunityOfPictures;
 }
 
 
@@ -1078,6 +1224,7 @@ const communityDetailChangeHash = () => {
         CommuntityDetail.renderManagerListInfo(cumDetailId);
         CommuntityDetail.renderMemberListInfo(cumDetailId);
         CommuntityDetail.cumDetailId = cumDetailId;
+        CommuntityDetail.CommunityOfPictures(cumDetailId);
     }
 
 }

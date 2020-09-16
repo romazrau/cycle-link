@@ -26,6 +26,7 @@ const map_GetAllActivity = async () => {
         from Activity.tActivity as a
         left join Activity.tActivityMainLabel as ML
         on ML.fId=a.fActLabelId
+        Where fActivityDate >GETDATE()
         `
         const result = await sql.query(sqlString);
         if (!result.rowsAffected[0]) {
