@@ -1,7 +1,7 @@
-import {
-    checkLogin,
-    serverURL
-} from "./api.js";
+// import {
+//     checkLogin,
+//     serverURL
+// } from "./api.js";
 
 function ClsCommuntityDetail() {
 

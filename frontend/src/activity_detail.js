@@ -1,6 +1,6 @@
-import {
-    serverURL
-} from "./api.js";
+// import {
+//     serverURL
+// } from "./api.js";
 
 //用class包起來
 

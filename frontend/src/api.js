@@ -94,4 +94,4 @@ const checkLogin = async () => {
 };
 // checkLogin()
 
-export { serverURL, checkLogin };
+// export { serverURL, checkLogin };

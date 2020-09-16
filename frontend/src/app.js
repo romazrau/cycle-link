@@ -1,8 +1,8 @@
 // *此檔案是babel 、 webpack 進入點
 //引入
-import {
-    checkLogin
-} from "./api.js";
+// import {
+//     checkLogin
+// } from "./api.js";
 
 
 
