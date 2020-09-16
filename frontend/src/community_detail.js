@@ -403,12 +403,12 @@ function ClsCommuntityDetail() {
     const data2PhotoFlowCard = obj => {
         let result = "";
         let t=obj.fContent.substring(0,4);
-        result += `<div class="photo_flow_card">
+        result += `<a href="${obj.fId}"><div class="photo_flow_card">
             <img class="photo_flow_card_img" src="${obj.fImgPaths}" alt="">
             <div class="photo_flow_card_wrapper">
             <div class="photo_flow_card_msg">${t}</div>
             </div>
-            </div>`
+            </div></a>`
         return result;
     }
 

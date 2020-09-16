@@ -123,5 +123,23 @@ document.querySelector(".Login_CloseLink").addEventListener("click", (e) => {
     document.querySelector(".Login_checkviewcontainer").style.display = "none";
     document.querySelector(".Login_backgroundview").style.display = "none";
 })
+/*忘記密碼彈框 */
 
+var Forgotpasswordwindow = document.getElementById('myModal');
 
+var spanforclose = document.querySelector('.close');
+spanforclose.onclick = function () {
+    Forgotpasswordwindow.style.display = "none";
+}
+
+/*其他地方點擊 */
+window.onclick = function (event) {
+    if (event.target == Forgotpasswordwindow) {
+        Forgotpasswordwindow.style.display = "none";
+    }
+}
+
+document.querySelector(".Forgotpassword").addEventListener("click",function(e){
+    e.preventDefault();
+    Forgotpasswordwindow.style.display = "block";
+})
