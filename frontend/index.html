@@ -60,7 +60,7 @@
             </div>
             <div class="div_container_login">
                 <div class="navebar_msg_icons hide">
-                    <i id="navbar_msg" class="fas fa-bullhorn login_bullhorn"></i>
+                    <!-- <i id="navbar_msg" class="fas fa-bullhorn login_bullhorn"></i> -->
                     <i id="navbar_logout" class="fas fa-sign-out-alt login_bullhorn"></i>
                 </div>
 
@@ -82,7 +82,11 @@
     <div class="chat_container">
 
         <div class="chat_icon_container">
-            <img src="img/talk.png" class="chat_icon_main" alt="聊天">
+            <div class="chat_icon_talk"> 
+                <i class="fas fa-circle chat_icon_talk_dot hide"></i>
+                <img src="./img/icons8-sms-64.png" class="chat_icon_main" alt="聊天">
+            </div>
+
             <img id="chat_robot_icon" src="./img/icons8-world-map-100.png" class="chat_icon widthAndHeight2Zero"
                 alt="群聊">
             <img id="chat_friend_icon" src="./img/icons8-user-group-100.png" class="chat_icon widthAndHeight2Zero"
@@ -1323,7 +1327,8 @@
                                 <div class="activity_detail_right_top">
                                     <button id="joinActBtn">參加</button>
                                     <button id="cancelJoinActBtn" style="display: none;">取消</button>
-                                    <a href="" class="active_detail_card_heart_link"><i class="fas fa-heart fa-2x active_detail_card_heart"></i></a>
+                                    <a href="" class="active_detail_card_heart_link"><i
+                                            class="fas fa-heart fa-2x active_detail_card_heart"></i></a>
                                 </div>
                                 <div class="activity_detail_right_info">
                                     <!-- 活動右側內容 -->
@@ -2171,16 +2176,18 @@
                                             <!-- <img class="Group_detail_Societies_img" src="./img/id1.jpg" width="30"> -->
                                         </div>
                                         <form id="article_form">
-                                            <textarea class="AddArticleInput" name="fContent" placeholder="Post something..." cols=30 rows=2></textarea>
+                                            <textarea class="AddArticleInput" name="fContent"
+                                                placeholder="Post something..." cols=30 rows=2></textarea>
                                             <lable src="./img/icon_photo.svg" class="AddArticleLabel">
-                                             <input type="file" name="fPhoto" id="articleImgInput" multiple="multiple" style="display: none;">
-                                             <!-- <img src="./img/icon_photo.svg" width="23" class="UploadImgforArticle"> -->
-                                             <i class="fas fa-images"></i>
+                                                <input type="file" name="fPhoto" id="articleImgInput"
+                                                    multiple="multiple" style="display: none;">
+                                                <!-- <img src="./img/icon_photo.svg" width="23" class="UploadImgforArticle"> -->
+                                                <i class="fas fa-images"></i>
                                             </lable>
                                             <label src="./img/icon_photo.svg" class="AddArticleLabel">
-                                             <input type="submit" id="articleImgsubmit" style="display: none;">
-                                             <!-- <img src="./img/icon_send.svg" width="20" class="AddArticleinCommunity" -->
-                                             <i class="far fa-paper-plane"></i>
+                                                <input type="submit" id="articleImgsubmit" style="display: none;">
+                                                <!-- <img src="./img/icon_send.svg" width="20" class="AddArticleinCommunity" -->
+                                                <i class="far fa-paper-plane"></i>
                                             </label>
                                             <div class="AddArticleImgDisplay"></div>
                                         </form>
