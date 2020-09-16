@@ -3,6 +3,8 @@ const rootURL = "http://localhost:3050";
 const serverURL = {
   root: rootURL,
   login: `${rootURL}/users/login`,
+  users: `${rootURL}/users/`,
+  userDetail: `${rootURL}/users/detail/me`,
   test: `${rootURL}/test/`,
   postslist: `${rootURL}/posts/`,
   article: `${rootURL}/article/`,

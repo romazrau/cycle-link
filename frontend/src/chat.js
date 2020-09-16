@@ -138,10 +138,11 @@ function ClsChat() {
     }
 
     // 小紅點提醒
-    const setChatAlert = (show = 1) => {
+    const setChatAlert = (show = 1, chatroomId = "false") => {
         let dot = document.querySelector(".chat_icon_talk_dot");
         let isChatListHide = [...document.querySelector(".chat_list_window").classList].includes("hide");
-        if (show && isChatListHide) {
+        let isChatroomOpen = document.querySelector(`#chatRoomId_${chatroomId}`);
+        if (show && isChatListHide && !isChatroomOpen) {
             dot.classList.remove("hide");
         } else {
             dot.classList.add("hide");
@@ -190,7 +191,7 @@ function ClsChat() {
                     if (chatroomId === "world") {
                         setMessages(data);
                     } else {
-                        setChatAlert(1);
+                        setChatAlert(1, chatroomId);
                         reFlashChatroomList(chatroomId, data.isMe);
                         setMessagesTo(chatroomId, data);
                     }
