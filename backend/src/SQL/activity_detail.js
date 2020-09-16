@@ -184,7 +184,7 @@ const TagSearch = async (tag) => {
     try {
         await sql.connect(config)
         let sqlStr = `WITH act as (
-            select tActivity.fId, fActName, fActivityLabelId
+            select tActivity.fId, fActName, fActivityDate,fActLocation,fImgPath, fActivityLabelId
             from Activity.tActivity
             LEFT JOIN Activity.tActivityHadLabel
             on tActivity.fId = tActivityHadLabel.fActivityId
@@ -329,8 +329,8 @@ const likechecked = async (fActivityId, fMemberId) => {
         where fActivityId =${fActivityId} and fMemberId=${fMemberId} and fJoinTypeId=0
         `
         const result = await sql.query(sqlStr);
-        
-       
+
+
         return {
             result: 1,
             msg: "請求成功",
