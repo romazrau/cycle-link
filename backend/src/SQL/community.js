@@ -664,6 +664,27 @@ const updatatMemberList = async (fMemberManagerId, fCommunityId, ifManager) => {
   }
 };
 
+//照片牆
+const Community_GetPictures = async (fCommunityId) => {
+  try {
+    await sql.connect(config);
+    let sqlStr = `select fId,fImgPaths,fContent from Community.tPost
+    where fCommunityId=${fCommunityId}                               
+        `;
+    const result = await sql.query(sqlStr);
+    if (!result.rowsAffected[0]) {
+      return { result: 0, msg: "無照片" };
+    }
+    return { result: 1, msg: "請求成功", data:result };
+  } catch (err) {
+    console.dir(err);
+    return { result: 0, msg: "SQL錯誤", data: err };
+  }
+};
+
+
+
+
 // const communityModified = async (fId) => {
 //     try {
 //         await sql.connect(config)
@@ -699,4 +720,5 @@ module.exports = {
   communityAdd,
   ChangeMemberAccessRight,
   SearchMemberAccessRight,
+  Community_GetPictures,
 };

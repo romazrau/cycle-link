@@ -22,11 +22,13 @@ const GetHomePageBannerActivity = async () => {
     let imgs = result.data.imgs;
     home_picturesbox.innerHTML = home_picturesItem(imgs)
     //大圖匯入
+    document.querySelector(".home_top_event").innerHTML="";
     banner.map(function (e, index) {
       document.querySelector(".home_top_event").innerHTML += home_bannerimgs(e)
     })
     //輪播
-    CarouselBanner(banner);      
+    CarouselBanner(banner);
+    recent_activities.innerHTML="";      
     recent.map(
       (e, index) => {
         recent_activities.innerHTML += home_recent_activities(e);
@@ -82,7 +84,6 @@ function HomePageWeather(data)
       (neededElements, item) => {
         if (['Wx', 'PoP12h', 'T','WS','RH'].includes(item.elementName)) 
         {
-          console.log(item);
           neededElements[item.elementName] = item
         }
         return neededElements;
@@ -103,7 +104,7 @@ function HomePageWeather(data)
     WeatherTitle2.innerHTML+=weatherElements.Wx.time[0].elementValue[0].value
     //天氣描述:weatherElements.Wx.time[0].elementValue[0].value
     //代碼:weatherElements.Wx.time[0].elementValue[1].value
-    
+
   }
 
 
