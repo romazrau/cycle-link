@@ -1,151 +1,185 @@
-:root{
-    --green-color:#499854;
-    --blue-color:#31708E;
-    --lightblue-color:#8FC1E3;
-    --pink-color:#D9AAB7;
+:root {
+    --green-color: #499854;
+    --blue-color: #31708E;
+    --lightblue-color: #8FC1E3;
+    --pink-color: #D9AAB7;
     --lightgrey-color: #f1f1f1;
-    --grey-color:#979494;
-    --black-color:#000000;
-    --white-color:#FFFFFF;
+    --grey-color: #979494;
+    --black-color: #000000;
+    --white-color: #FFFFFF;
     /*使用方法 background-color: var(--black-color);*/
 }
-*{
-    margin:0;
+
+* {
+    margin: 0;
     padding: 0;
 }
 
+/* .mapInfo {
+    width: 18.5vw;
+} */
 
-#map_cityspan{
+.mapInfoImg {
+    width: 100%;
+}
+
+.mapInfoTitle {
+    margin: 0;
+    font-size: 16px;
+    width: 17rem;
+}
+
+#map_cityspan {
     background-color: var(--blue-color);
-    color:var(--white-color);
+    color: var(--white-color);
     width: 100%;
     display: block;
 
 }
 
 
-.map_container{
+.map_container {
     position: fixed;
-    top:5rem;
+    top: 5rem;
     width: 100vw;
     height: 100vh;
     display: flex;
-    
+
 }
-#mapid{
-    width: 80vw;
+
+#mapid {
+    width: 100vw;
     height: 91.5vh;
 }
 
-.map_controllList{
+.map_controllList {
     position: fixed;
-    width: 20vw;
-    height: 100%;
-    top:5rem;
-    right:0;
+    width: 16vw;
+    /* height: 100%; */
+    top: 5rem;
+    right: 0;
     z-index: 1000;
-    background-color: #fff;
-    background-color: var(--lightgrey-color);
+    /* background-color: #fff; */
+    background-color: transparent;
     text-align: center;
-
+    margin: 1rem 1rem 0 0;
 }
 
-.map_controlltitle{
+.map_controlltitle {
     text-align: center;
     font-size: large;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     line-height: 2.5rem;
+    border-bottom: 1px solid grey;
+    background-color: #31708E;
+    color: #FFFFFF;
+    border-radius: 15px 15px 0 0;
 }
 
+.map_controlltitle a {
+    color: white;
+}
+
+.map_controlltitle_div {
+    padding: 1rem 0;
+}
 
 
 
 /*城市選單*/
 .map_citymenu {
-    
+
     display: none;
-    width:19rem;
-    height:150px;
-    overflow-y:auto;
+    width: 16vw;
+    height: 150px;
+    overflow-y: auto;
     position: fixed;
     z-index: 2;
 }
 
 .map_citymenu a {
-    
-    background-color:var(--white-color);
-    color:black;
-    display:block;
-    
-    padding:12px;
-    text-decoration:none;
+
+    background-color: var(--white-color);
+    color: black;
+    display: block;
+
+    padding: 12px;
+    text-decoration: none;
 }
 
 .map_citymenu a:hover {
-    background-color:var(--lightblue-color);
+    background-color: var(--lightblue-color);
 }
-.map_controllBar
-{
-    
-    border-bottom: var(--grey-color) 1px solid;
-    width:100% ;
+
+.map_controllBar {
+
+    /* border-bottom: var(--grey-color) 1px solid; */
+    width: 100%;
+    /* height: 20vh; */
+    /* border: 1px solid grey; */
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    background-color: white;
+    box-shadow: 1px 1px 25px rgba(167, 167, 167, 0.384);
+
 }
 
 
 
 /*類別選單*/
-.map_typeBox{
+.map_typeBox {
 
     display: flex;
 
 }
 
-.map_typeBtn{
+.map_typeBtn {
     width: 33%;
     text-align: center;
-    background-color:var(--grey-color);
-    margin:0.05rem;
-    
+    background-color: var(--grey-color);
+    margin: 0.05rem;
+
 }
 
 
-.map_imgbox{
+.map_imgbox {
     width: 86%;
     height: auto;
-    
+
 }
-#map_activityintroduction{
-    margin:1rem 0.5rem 0 0.5rem;
+
+#map_activityintroduction {
+    margin: 1rem 0.5rem 0 0.5rem;
     line-height: 1.5rem;
     color: var(--green-color);
 }
 
-.checkbox_container
-{
+.checkbox_container {
     position: absolute;
-    top:6rem;
+    top: 6rem;
     z-index: 500;
 }
-.checkbox_container
-{
+
+.checkbox_container {
     display: flex;
     position: absolute;
-    top:1rem;
+    top: 1rem;
     left: 6rem;
     z-index: 500;
 }
-.map_ckeck{
-    margin:0.3rem;
-    
+
+.map_ckeck {
+    margin: 0.3rem;
+
     border-radius: 10%;
     background-color: #fff;
 }
-.map_ckeck input
-{
+
+.map_ckeck input {
     padding: 1rem;
-    margin:0.3rem;
+    margin: 0.3rem;
 }
-.map_ckeck label
-{
-    margin:0 0.3rem 0 0;
+
+.map_ckeck label {
+    margin: 0 0.3rem 0 0;
 }
