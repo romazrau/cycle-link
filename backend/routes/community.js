@@ -33,7 +33,7 @@ router.get('/', async function (req, res, next) {
 router.get('/communityByMemberId/', async function (req, res, next) {
     try {
 
-        
+
         // console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++!!");
         //token Id
         // console.log(req.user.fId);
@@ -95,21 +95,26 @@ router.get('/:id', async function (req, res, next) {
         // console.log(memberOfCommunity.data);
         //----把社員id拿出放進一個array
         let MemberIdArray = [];
-        memberOfCommunity.data.forEach(element => {
-            MemberIdArray.push(element.fMemberId)
-        });
+        if(memberOfCommunity.result){
+            memberOfCommunity.data.forEach(element => {
+                MemberIdArray.push(element.fMemberId)
+            });
+        }
+        
 
         //----比對會員id是否在array內 if true : 判斷是否為管理員 else 會員 
 
+        let isResponse = 0;
         if (MemberIdArray.includes(memberId)) {
 
             let Managers = await Sql.communityById_communityManager(req.params.id);
-
             // 管理員Id
             let idarr = [];
-            Managers.data.forEach(e => {
-                idarr.push(e.fId);
-            })
+            if (Managers.result) {
+                Managers.data.forEach(e => {
+                    idarr.push(e.fId);
+                })
+            }
 
             if (idarr.includes(memberId)) {
                 user = "管理員";
@@ -117,19 +122,17 @@ router.get('/:id', async function (req, res, next) {
             } else {
                 pendingMem.data.forEach(
                     (o) => {
-          
-    
+
                         if (o.fMemberId == req.user.fId) {
-
-
-                                result.data[0].user = "待審核會員";
-                                res.json(result);
-                                return;
-                            }
-                     
-          
+                            result.data[0].user = "待審核會員";
+                            res.json(result);
+                            isResponse = 1;
+                            return;
                         }
-                    )
+
+
+                    }
+                )
             }
         }
         else {
@@ -139,26 +142,31 @@ router.get('/:id', async function (req, res, next) {
                     // console.log(o);
 
                     if (o.fMemberId == req.user.fId) {
-                            result.data[0].user = "待審核會員";
-                            res.json(result);
-                            return;
-                        }
-                        // console.log("++++++++++++++++++++++++++++++++++++++++++++++++!!");
-                        // console.log(o);
-                        else {
-                            result.data[0].user = "非社員";
-                            res.json(result);
-                            return;
-                        }
+                        result.data[0].user = "待審核會員";
+                        res.json(result);
+                        isResponse = 1;
+                        return;
                     }
-                )
+                    // console.log("++++++++++++++++++++++++++++++++++++++++++++++++!!");
+                    // console.log(o);
+                    else {
+                        result.data[0].user = "非社員";
+                        res.json(result);
+                        isResponse = 1;
+                        return;
+                    }
+                }
+            )
             // user = "非社員";
         }
+
+        if(isResponse) return;
         //----把user放進result.data裡用res.json()回傳
         result.data[0].user = user;
         // console.log('++++++++++++++++++');
         // console.log(result.data[0]);
         res.json(result);
+        return;
     } catch (err) {
         console.log(err);
         res.send({ result: 0, msg: "路由錯誤", data: err });
@@ -220,8 +228,7 @@ router.get('/communityById_communityMember/:id', async function (req, res, next)
             if (result.result) {
                 result.data.forEach(items => {
                     items["ifManager"] = 0;
-                    element["ifManager"] = 0;
-
+                    // element["ifManager"] = 0;
                 })
             }
         }
@@ -247,6 +254,7 @@ router.get('/communityById_communityMember/:id', async function (req, res, next)
                     console.log("**");
                     console.log(result);
                     res.json(result);
+                    return;
                 }
                 else {
                     let newResultArr = result.data.filter(item => item.ifManager == 1)
