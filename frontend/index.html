@@ -849,15 +849,17 @@
                 <!-- 弹窗内容 -->
                 <div class="modal-content">
                     <span class="forgot-password-close">&times;</span>
-                    
+
                     <main>
                         <h2>忘記密碼</h2>
-                        <form action="">
-                            
-                   <input class="login_input_item_input" type="text" name="fAccount" placeholder="Account">
-                  <input class="login_input_item_input" type="text" name="fMail" placeholder="E-Mail">
+                        <form id="forgot-password-form">
 
-                        <input id="forgot-password-submit" type="submit">
+                            <input class="login_input_item_input" id="login_input_account" type="text" name="fAccount"
+                                placeholder="Account">
+                            <input class="login_input_item_input" id="login_input_mail" type="text" name="fMail"
+                                placeholder="E-Mail">
+
+                            <input id="forgot-password-submit" type="submit">
                         </form>
                     </main>
                 </div>
@@ -2263,8 +2265,7 @@
             <div class="container">
                 <div class="bar-block">
                     <a href="javascript:void(0)" class="bar-item button tablink activefocus personal-maneger-navlink"
-                        data-cls='personal-maneger-class4'
-                       >
+                        data-cls='personal-maneger-class4'>
                         <div class="baritembox">My Profile</div>
                     </a>
                     <!-- <a href="javascript:void(0)" class="bar-item button tablink  testbtn"
@@ -2272,19 +2273,17 @@
                         <div class="baritembox">My
                             Shop</div>
                     </a> -->
-                    <a href="javascript:void(0)" class="bar-item button tablink testbtn activefocus personal-maneger-navlink"
-                    data-cls='personal-maneger-class1'
-                       >
+                    <a href="javascript:void(0)"
+                        class="bar-item button tablink testbtn activefocus personal-maneger-navlink"
+                        data-cls='personal-maneger-class1'>
                         <div class="baritembox">My Follow</div>
                     </a>
                     <a href="javascript:void(0)" class="bar-item button tablink activefocus personal-maneger-navlink"
-                    data-cls='personal-maneger-class2'
-                       >
+                        data-cls='personal-maneger-class2'>
                         <div class="baritembox">My Event</div>
                     </a>
                     <a href="javascript:void(0)" class="bar-item button tablink activefocus personal-maneger-navlink"
-                    data-cls='personal-maneger-class3'
-                        >
+                        data-cls='personal-maneger-class3'>
                         <div class="baritembox">My Community</div>
                     </a>
                 </div>
