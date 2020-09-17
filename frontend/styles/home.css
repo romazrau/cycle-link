@@ -22,9 +22,9 @@
 }
 
 .home_recent_activity_item_content_btn button:hover {
-  border: 1px solid var(--blue-color);
-  background-color: white;
-  color: var(--blue-color);
+  border: 1px solid var(--lightblue-color);
+  background-color: var(--lightblue-color);
+  color: white;
   transition: all 0.5s;
   cursor: pointer;
 }
@@ -80,19 +80,19 @@
 .home_top_text_wrapper {
   width: 100%;
   height: 400px;
+  display: flex;
+  justify-content: flex-end;
   /* margin-bottom: 100px; */
 }
 
-.home_top_text {
-  width: 50%;
-  margin: 0rem 5rem;
-  float: right;
-}
+
 
 .home_top_text_content {
   font-size: 2rem;
   font-weight: 700;
   text-align: right;
+  width: 50vw;
+  margin-right: 3rem;
 }
 
 .home_recent_container {
@@ -510,6 +510,7 @@
   background-color: rgba(100, 66, 87, 1);
   color: white;
 }
+
 /*----------------------*/
 .Forgotpasswordwindow {
   display: none;
@@ -524,18 +525,19 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content{
+.modal-content {
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
   width: 30%;
-  
+
 }
-.modal-content main
-{
+
+.modal-content main {
   text-align: center;
 }
+
 .close {
   color: #aaa;
   float: right;
@@ -550,7 +552,7 @@
   cursor: pointer;
 }
 
-.login_input_item{
+.login_input_item {
   margin-top: 1.5rem;
 }
 
