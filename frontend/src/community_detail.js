@@ -1085,7 +1085,7 @@ function ClsCommuntityDetail() {
 
     // 介紹分頁-- 管理員頭像的文字樣板
     const data2manageImg = (o) => {
-        // console.log(o.fPhotoPath);
+        console.log(o);
         return `<div class="activity_detail_info_img_circle">
          <div class="activity_detail_info_img_div">
              <img src="${serverURL.root}/${o.fPhotoPath}" class="activity_detail_info_img">
@@ -1093,14 +1093,15 @@ function ClsCommuntityDetail() {
          </div>
          <div class="GroupRightInfo FlexContainer GroupRightInfoText">
          <a id="CommunityManager" href="#" class="GroupHolderName">${o.fName}</a>
-         <a class="GroupEnglishFont GroupRightInfoM" href="#">
-         <img src="./img/icon_chat.svg" width="20"></a>
+         <a class="GroupEnglishFont GroupRightInfoM" >
+         <img data-user-id=${o.fId} class="lets-talk"  src="./img/icon_chat.svg" width="20"></a>
          </div>`;
     };
 
     // 介紹分頁-- 會員頭像的文字樣板
     // 照片路徑存取後端資料夾
     const data2memImg = (o) => {
+        // console.log(o);
         return ` <div id="GroupMemberPicLessThan4" class="activity_detail_info_img_circle GroupMemberPic GroupMemberPicLessThan4">
         <div class="activity_detail_info_img_div">
             <img class="activity_detail_info_img GoupRightInfoPhoto" src="${serverURL.root}/${o.fPhotoPath}"
@@ -1130,8 +1131,8 @@ function ClsCommuntityDetail() {
                 </div>
             </div>
         </div>
-        <a href="#">
-            <img class="Size20IconMarginRight" src="./img/icon_chat.svg"
+        <a >
+            <img data-user-id=${o.fMemberId} class="lets-talk" class="Size20IconMarginRight" src="./img/icon_chat.svg"
                 width="20">
         </a>
     </div>`;

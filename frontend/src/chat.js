@@ -62,11 +62,11 @@ function ClsChat() {
 
             // console.group("chatroom List");
             result.data.map(item => {
-                if(item.fIsMeLastChat){
-                item.fIsReaded = item.fIsMeLastChat
+                if (item.fIsMeLastChat) {
+                    item.fIsReaded = item.fIsMeLastChat
                 }
                 setChatroomList(item);
-                if(!item.fIsReaded){
+                if (!item.fIsReaded) {
                     setChatAlert(1);
                 }
                 // console.log("joinRoom: " + item.fId);
@@ -556,7 +556,48 @@ function ClsChat() {
     if (localStorage.getItem('Cycle link token')) {
         setupSocket();
     }
-    // TODO 登入後開啟
+
+
+    document.addEventListener("click", async (e) => {
+
+        if (![...e.target.classList].includes("lets-talk") || !e.target.dataset.userId || !typeof e.target.dataset.userId === "undefined" ) {
+            return;
+        }
+
+        let response = await fetch(serverURL.getChatroom + e.target.dataset.userId, {
+            method: "POST",
+            headers: {
+                // *攜帶 http request headers
+                Authorization: localStorage.getItem("Cycle link token"), // *這個屬性帶 JWT
+            },
+        })
+
+        if (!response.ok) {
+            alert("請求連線失敗");
+            return;
+        }
+
+        try {
+            let result = await response.json();
+            alert(result.msg);
+            console.log(result);
+
+            if (result.result) {
+                await initChatroomList();
+                chatListWindow.classList.remove("hide");
+                // TODO 最新的空資料庫要放最上面
+            }
+
+        } catch (ex) {
+            console.log(ex);
+            alert("回傳錯誤");
+            return;
+        }
+
+
+    })
+
+
 
 }
 const Chat = new ClsChat();
