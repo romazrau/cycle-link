@@ -125,23 +125,24 @@ document.querySelector(".Login_CloseLink").addEventListener("click", (e) => {
     document.querySelector(".Login_checkviewcontainer").style.display = "none";
     document.querySelector(".Login_backgroundview").style.display = "none";
 })
+
+
 /*忘記密碼彈框 */
+var Forgotpasswordwindow = document.getElementById('forgot-password-modal');
 
-var Forgotpasswordwindow = document.getElementById('myModal');
-
-var spanforclose = document.querySelector('.close');
+var spanforclose = document.querySelector('.forgot-password-close');
 spanforclose.onclick = function () {
-    Forgotpasswordwindow.style.display = "none";
+    Forgotpasswordwindow.classList.add("hide");
 }
 
 /*其他地方點擊 */
-window.onclick = function (event) {
+window.addEventListener("click", function (event) {
     if (event.target == Forgotpasswordwindow) {
-        Forgotpasswordwindow.style.display = "none";
+    Forgotpasswordwindow.classList.add("hide");
     }
-}
+})
 
-document.querySelector(".Forgotpassword").addEventListener("click",function(e){
+document.querySelector("#forgot-password").addEventListener("click", function (e) {
     e.preventDefault();
-    Forgotpasswordwindow.style.display = "block";
+    Forgotpasswordwindow.classList.remove("hide");
 })
