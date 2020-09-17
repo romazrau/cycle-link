@@ -191,10 +191,12 @@ function ClsCommuntityDetail() {
       let result = await response.json();
 
       let picture_data = result.data.recordset;
-      console.log("picture_data:", picture_data);
+      photoFlowData1=[];
       for (let i = 0; i < picture_data.length; i++) {
+        
         if (picture_data[i].fImgPaths == null) continue;
         let imgpath_arr = picture_data[i].fImgPaths.split(",,");
+        
         if (imgpath_arr.length > 1) {
           for (let j = 0; j < imgpath_arr.length; j++) {
             let obj = {
@@ -208,7 +210,7 @@ function ClsCommuntityDetail() {
           photoFlowData1.push(picture_data[i]);
         }
       }
-      console.log("arr:", photoFlowData1);
+      
     } catch (err) {
       console.log(err);
     }
@@ -351,8 +353,7 @@ function ClsCommuntityDetail() {
     const data2PhotoFlowCard = obj => {
         let result = "";
         let t=obj.fContent.substring(0,4);
-        console.log("obj:",obj.fImgPaths)
-        result += `<a href="${obj.fId}"><div class="photo_flow_card">
+        result += `<a class="photo_flow_card_link" href="${obj.fId}"><div class="photo_flow_card">
             <img class="photo_flow_card_img" src="http://localhost:3050/${obj.fImgPaths}" alt="">
             <div class="photo_flow_card_wrapper">
             <div class="photo_flow_card_msg">${t}</div>
@@ -373,11 +374,36 @@ function ClsCommuntityDetail() {
         return result;
     }
     const loadingPhotoFlow = async function loop() {
+      whoIsShortest(myPhotoFlowCols).innerHTML ="";
       for (let i = 0; i < photoFlowData1.length; i++) {
           await new Promise(resolve => {
               whoIsShortest(myPhotoFlowCols).innerHTML += data2PhotoFlowCard(photoFlowData1[i]);
               setTimeout(resolve, 10)
           });
+      }
+      //製作圖片跳轉文章
+      let community_picturecard=document.querySelectorAll(".photo_flow_card_link")
+      for(let i=0;i<community_picturecard.length;i++)
+      {
+          community_picturecard[i].addEventListener("click",function(e)
+        {   e.preventDefault();
+            //觸發點擊文章
+            $('#Group_navlink_Post').trigger('click');
+            let Target_postId=community_picturecard[i].href.split("/")[3]
+            let CommunityOfPosts=document.querySelectorAll(".PostIdLink_Community")
+            let Target_Top;
+            
+            for(let i=0;i<CommunityOfPosts.length;i++)
+            {
+              console.log("CommunityOfPosts[i].href:",CommunityOfPosts[i].href);
+              if(CommunityOfPosts[i].href.split("st/")[1]==Target_postId)
+                {
+                  Target_Top = CommunityOfPosts[i].parentNode.offsetTop;
+                  console.log(Target_Top);
+                  $('html, body').scrollTop(Target_Top)
+                }
+            }
+        })
       }
     }
     let isPhotoFlowLoaded = 0;
@@ -391,7 +417,9 @@ function ClsCommuntityDetail() {
         }
       });
   
-  
+
+      
+     
   };
   
 
@@ -1124,8 +1152,10 @@ const communityDetailChangeHash = () => {
     CommuntityDetail.renderMemberListInfo(cumDetailId);
     CommuntityDetail.cumDetailId = cumDetailId;
     CommuntityDetail.CommunityOfPictures(cumDetailId);
+    
   }
 };
 
 window.addEventListener("hashchange", communityDetailChangeHash);
 window.addEventListener("load", communityDetailChangeHash);
+

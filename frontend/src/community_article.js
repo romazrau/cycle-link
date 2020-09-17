@@ -18,7 +18,7 @@ function ClsCommunityArticle() {
              <a href="#personal-page/${x.MemberId}"><p>${
       x.PostMemberName
     }</p></a>
-             <a href="#community/post/${x.PostId}"><span>${
+             <a class="PostIdLink_Community" href="#community/post/${x.PostId}"><span>${
       x.fPostTime
     }</span></a>
           </div>
