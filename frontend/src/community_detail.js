@@ -1130,7 +1130,7 @@ function ClsCommuntityDetail() {
          <a id="CommunityManager" href="#" class="GroupHolderName">${o.fName}</a>
          </div>
          <a class="FlexContainer GroupEnglishFont GroupRightInfoM" href="#">
-         <img src="./img/icon_chat.svg" width="20">
+         <img data-user-id=${o.fId} class="lets-talk" src="./img/icon_chat.svg" width="20">
          </a>
          </div>`;
     };
@@ -1168,7 +1168,7 @@ function ClsCommuntityDetail() {
             </div>
         </div>
         <a href="#">
-            <img class="Size20IconMarginRight" src="./img/icon_chat.svg"
+            <img data-user-id=${o.fMemberId} class="lets-talk" class="Size20IconMarginRight" src="./img/icon_chat.svg"
                 width="20">
         </a>
     </div>`;

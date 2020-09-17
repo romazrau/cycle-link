@@ -270,9 +270,11 @@ router.put('/Edit', async function (req, res, next) {
             fIntroduction,
             fMinLimit,
             fMaxLimit,
-            fCommunityId
+            fCommunityId,
+            fActivityDate,
+            fActivityEndDate
         } = req.body
-        let result = await Sql.EditAct(fId, fActName, fIntroduction, fMinLimit, fMaxLimit, fCommunityId);
+        let result = await Sql.EditAct(fId, fActName, fIntroduction, fMinLimit, fMaxLimit, fCommunityId, fActivityDate, fActivityEndDate);
 
         res.json({
             result: 1,

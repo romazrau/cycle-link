@@ -128,7 +128,6 @@ const activeforyousql = async () => {
         await sql.connect(config)
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
         let sqlStr = `select top(6) * from Activity.tActivity as A 
-        select top(6)  * from Activity.tActivity  as A
         where A.fActivityDate > convert(char, getdate(), 111) 
         order by  newid()`
         const result = await sql.query(sqlStr)
