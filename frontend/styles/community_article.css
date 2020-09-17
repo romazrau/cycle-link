@@ -172,3 +172,12 @@
   align-items: center;
   box-sizing: border-box;
 }
+.Post_Community_preIcon{
+  position: relative;
+  top: 14.75rem;
+}
+.Post_Community_nextIcon{
+  position: relative;
+  left: 43.5rem;
+  bottom: 17rem;
+}
