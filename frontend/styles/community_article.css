@@ -77,7 +77,8 @@
 
 .community_article_body_img {
   width: 100%;
-  max-height: 20rem;
+
+  max-height: 30rem;
   overflow: hidden;
 }
 
