@@ -293,3 +293,27 @@
   display: none;
   margin-right: 1rem;
 }
+
+#createActMapId,
+#actMapEdit {
+  width: 20rem;
+  height: 20rem;
+}
+
+.actShowLocation {
+  width: 10rem;
+  padding: 0.3rem;
+  margin-top: 0.3rem;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--blue-color);
+  color: var(--blue-color);
+}
+
+.actShowLocation:hover {
+  border: 1px solid var(--blue-color);
+  background-color: var(--blue-color);
+  color: white;
+  transition: all 0.5s;
+  cursor: pointer;
+}

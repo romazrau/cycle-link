@@ -368,22 +368,30 @@ function ClsCommunityArticle() {
           }
         });
       }
+      //TODO 我到底註解了三小
+      //*----------必須要在這裡面，點擊送出Icon時，抓取目前的資料發出文章內容給SQL
+      // document
+      //   .getElementById("articleImgsubmit")
+      //   .addEventListener("click", function (e) {
+      //     let addArticleInput = document.querySelector(".AddArticleInput")
+      //       .value;
+      //     addArticletoSQL(getCommunityIdFromUrl(), addArticleInput);
+      //     getPostInSingleCommunity(getCommunityIdFromUrl());
+      //   });
+      // document
+      // .querySelector(".AddArticleinCommunity")
+      // .addEventListener("click", function (e) {
+      //   let addArticleInput = document.querySelector(".AddArticleInput")
+      //     .value;
+      //   addArticletoSQL(getCommunityIdFromUrl(), addArticleInput);
+      //   getPostInSingleCommunity(getCommunityIdFromUrl());
+      // });
     } catch (err) {
       console.log(err);
     }
   };
+  // 不用他ㄌ，拿去外面呼喚就好
   // getPostInSingleCommunity(getCommunityIdFromUrl());
-
-  //點擊送出Icon時，抓取目前的資料發出文章內容給SQL
-  document
-    .querySelector(".AddArticleinCommunity")
-    .addEventListener("click", function (e) {
-      let addArticleInput = document.querySelector(".AddArticleInput").value;
-
-      console.log(getCommunityIdFromUrl());
-      addArticletoSQL(getCommunityIdFromUrl(), addArticleInput);
-      getPostInSingleCommunity(getCommunityIdFromUrl());
-    });
 
   function timeFormatAdjust(x) {
     if (x < 10) {
@@ -391,13 +399,30 @@ function ClsCommunityArticle() {
     }
     return x;
   }
-
+  //點擊上傳照片的Icon觸發事件
   document
-    .getElementById("articleImgsubmit")
+    .getElementById("articleImgInput")
     .addEventListener("click", function (e) {
+      console.log("我有被點到唷");
       let addArticleInput = document.querySelector(".AddArticleInput").value;
       addArticletoSQL(getCommunityIdFromUrl(), addArticleInput);
+      getPostInSingleCommunity(getCommunityIdFromUrl());
     });
+  //TODO圖片載入測試中
+  document
+    .getElementById("articleImgInput")
+    .addEventListener("change", function () {
+      let addArticleImgFile = document.getElementById("articleImgInput")[0]
+        .files[0];
+      let addArticleImgReader = new FileReader();
+      addArticleImgReader.onload = function (e) {
+        document
+          .querySelector(".AddArticleImgDisplay_img")
+          .attributes("src", e.target.result);
+      };
+      addArticleImgReader.readAsDataURL(addArticleImgFile);
+    });
+
   //新增文章
   const addArticletoSQL = async (CommunityId, Content) => {
     try {
@@ -408,7 +433,6 @@ function ClsCommunityArticle() {
         timeFormatAdjust(nowtime.getHours()) +
         ":" +
         timeFormatAdjust(nowtime.getMinutes());
-
       let form = document.getElementById("article_form");
       var articleFormdata = new FormData(form);
       articleFormdata.append("fCommunityId", CommunityId);

@@ -19,7 +19,7 @@ function ClsActivityDetail() {
     }
 
     function actMapEdit(x, y) {
-        var map = L.map('creatActMapId')
+        var map = L.map('actMapEdit')
         var marker = L.marker([x, y]).addTo(map);
         map.setView(new L.LatLng(x, y), 16);
         var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -31,7 +31,7 @@ function ClsActivityDetail() {
     }
     // console.log(actMap());
     // function creatActMapId() {
-    //     var map = L.map('creatActMapId')
+    //     var map = L.map('createActMapId')
     //     var marker = L.marker([25.0360703, 121.4977054]).addTo(map);
     //     map.setView(new L.LatLng(25.0360703, 121.4977054), 16);
     //     var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -315,7 +315,7 @@ function ClsActivityDetail() {
             let result = await response.json();
             // console.log(result.data);
             location.href = "#activity"
-            document.querySelector("#act_tag_main").innerHTML = "標籤活動";
+            document.querySelector("#act_tag_main").innerHTML = `#${tag}`;
             ActivityIndex.display_active(result.data.tagSearch)
 
         } catch (err) {
@@ -455,6 +455,9 @@ function ClsActivityDetail() {
         window.location.hash = "#create-activity"
 
         document.querySelector("#creatActTitle").innerHTML = "編輯活動"
+        document.querySelector("#actMapEdit").setAttribute("style", "display:block")
+        document.querySelector("#createActMapId").setAttribute("style", "display:none")
+
 
         let fActivityId = this.actDetailId;
         // console.log(fActivityId)
@@ -484,7 +487,7 @@ function ClsActivityDetail() {
         document.querySelector("#ac_date_from_div").setAttribute("style", "display:block")
         document.querySelector("#ac_date_to_div").setAttribute("style", "display:block")
 
-        document.querySelector(".ca_img_avatar").src = `${result.data.detail[0].fImgPath}`
+        document.querySelector(".ca_img_avatar").src = `http://localhost:3050/${result.data.detail[0].fImgPath}`
 
         let fTypeId = result.data.detail[0].fActLabelId
         let fTypeSelect = document.querySelector("#ac_detail_type")

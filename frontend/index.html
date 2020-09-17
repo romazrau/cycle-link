@@ -89,8 +89,8 @@
 
             <img id="chat_robot_icon" src="./img/megaphone-svgrepo-com.svg" class="chat_icon widthAndHeight2Zero"
                 alt="群聊">
-            <img id="chat_friend_icon" src="./img/icons8-smiling-face-with-heart-96.png" class="chat_icon widthAndHeight2Zero"
-                alt="我的聯絡人">
+            <img id="chat_friend_icon" src="./img/icons8-smiling-face-with-heart-96.png"
+                class="chat_icon widthAndHeight2Zero" alt="我的聯絡人">
         </div>
 
 
@@ -1350,8 +1350,8 @@
                                 <div class="activity_detail_right_top">
                                     <button id="joinActBtn">參加</button>
                                     <button id="cancelJoinActBtn" style="display: none;">取消</button>
-                                    <a href="" class="active_detail_card_heart_link"><i
-                                            class="fas fa-heart fa-2x active_detail_card_heart"></i></a>
+                                    <div href="" class="active_detail_card_heart_link"><i
+                                            class="fas fa-heart fa-2x active_detail_card_heart"></i></div>
                                 </div>
                                 <div class="activity_detail_right_info">
                                     <!-- 活動右側內容 -->
@@ -2201,18 +2201,20 @@
                                         <form id="article_form">
                                             <textarea class="AddArticleInput" name="fContent"
                                                 placeholder="Post something..." cols=30 rows=2></textarea>
-                                            <lable src="./img/icon_photo.svg" class="AddArticleLabel">
+                                            <lable class="articleImgInput_lbl">
                                                 <input type="file" name="fPhoto" id="articleImgInput"
                                                     multiple="multiple" style="display: none;">
                                                 <!-- <img src="./img/icon_photo.svg" width="23" class="UploadImgforArticle"> -->
                                                 <i class="fas fa-images"></i>
                                             </lable>
-                                            <label src="./img/icon_photo.svg" class="AddArticleLabel">
+                                            <label class="AddArticleLabel">
                                                 <input type="submit" id="articleImgsubmit" style="display: none;">
                                                 <!-- <img src="./img/icon_send.svg" width="20" class="AddArticleinCommunity" -->
                                                 <i class="far fa-paper-plane"></i>
                                             </label>
-                                            <div class="AddArticleImgDisplay"></div>
+                                            <div class="AddArticleImgDisplay">
+                                                <img src="" class="AddArticleImgDisplay_img">
+                                            </div>
                                         </form>
                                     </div>
 
@@ -2726,8 +2728,10 @@
                                                 name="fActLocation" />
                                         </div>
                                         <br>
-                                        <div id="creatActMapId" style="width: 20rem;height: 20rem;"></div>
-
+                                        <div id="createActMapId" style="display: none;"></div>
+                                        <div id="actMapEdit" style="display: none;"></div>
+                                        <div onclick="geoFindMe()" class="actShowLocation">Show my location</div>
+                                        <div id="out"></div>
                                     </div>
                                 </div>
                                 <div class="create_active_basicInfo_div">
@@ -3082,7 +3086,7 @@
                             </div>
                         </form>
 
-                     
+
 
                         <div id="approveMember" class="create_community_basicInfo hide">
                             <h2 id="approveCommunityTitle">社團加入審核</h2>

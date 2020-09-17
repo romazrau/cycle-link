@@ -125,3 +125,49 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+/* 新增文章的東C */
+.MessageBox {
+  background-color: var(--white-color);
+  padding: 1rem 1rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+  /* justify-content: space-between; */
+  align-items: center;
+  cursor: pointer;
+}
+
+.AddArticleInput {
+  /* width: 360px;*/
+  /* height: 50px; */
+  font-size: 23px;
+  margin-top: 15px;
+  color: black;
+  background-color: var(--lightgrey-color);
+  border: 1px solid var(--grey-color);
+  border-radius: 4px;
+  color: var(--grey-color);
+  /* padding-left: 10px; */
+  margin-left: 20px;
+  resize: none;
+  overflow-y: auto;
+}
+
+.AddArticleLabel {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(209, 209, 209);
+  background-color: white;
+  color: var(--blue-color);
+  margin-right: 1rem;
+}
+
+.SearchBox {
+  background-color: #e4e3e3;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}

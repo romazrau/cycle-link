@@ -10,6 +10,25 @@
   /*使用方法 background-color: var(--black-color);*/
 }
 
+
+.home_recent_activity_item_content_btn button {
+  border: 1px solid var(--blue-color);
+  border-radius: 0.8rem;
+  padding: 0.7rem 2rem;
+  /* margin-bottom: 1rem; */
+  background-color: var(--blue-color);
+  color: white;
+  font-size: 20px;
+}
+
+.home_recent_activity_item_content_btn button:hover {
+  border: 1px solid var(--blue-color);
+  background-color: white;
+  color: var(--blue-color);
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
 /* ------------- nav ------------- */
 .home_main {
   margin: 1rem 5rem;
@@ -20,7 +39,7 @@
   position: relative;
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
   overflow: hidden;
   width: 100vw;
   height: 100vh;
@@ -47,8 +66,8 @@
   text-align: right;
   text-shadow: 0.05em 0.05em 0.1em rgb(83, 83, 83)
 }
-.home_top_event_p2
-{
+
+.home_top_event_p2 {
   position: absolute;
   right: 4rem;
   top: 20rem;
@@ -61,12 +80,12 @@
 .home_top_text_wrapper {
   width: 100%;
   height: 400px;
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
 }
 
 .home_top_text {
   width: 50%;
-  margin: 5rem;
+  margin: 0rem 5rem;
   float: right;
 }
 
@@ -101,6 +120,7 @@
 }
 
 .home_recent_activities {
+  margin-top: 15rem;
   max-width: 700px;
   flex-grow: 1;
   height: 100%;
@@ -114,7 +134,7 @@
 }
 
 .home_recent_activity_item {
-  
+
   max-height: 13rem;
   width: 100%;
   display: flex;
@@ -123,7 +143,7 @@
 
 .home_recent_activity_item_img {
   width: 50%;
-  min-height:13rem;
+  min-height: 13rem;
   max-height: 12.33rem;
 }
 
@@ -174,6 +194,7 @@
 }
 
 .home_show_activities_wrapper {
+  margin-top: 18rem;
   width: 100%;
   height: 900px;
   display: flex;

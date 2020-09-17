@@ -389,12 +389,12 @@ const findTagName = (x) => {
 
 
 // TODO: [待修正] ----- 沒選擇社團會傳入undefined ----- //
-const createAct = async (fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation, fLabelName, fCommunityId) => {
+const createAct = async (fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation, fLabelName, fCommunityId, fCoordinateX, fCoordinateY) => {
     try {
         await sql.connect(config)
         let sqlStr = `
-        insert into Activity.tActivity(fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation,fCommunityId)
-        values ('${fActName}', '${fCreatDate}','${fActivityDate}', '${fActivityEndDate}', ${fMemberId}, '${fIntroduction}', '${fImgPath}', ${fActLabelId}, ${fMaxLimit}, ${fMinLimit}, ${fActAttestId},${fActTypeId},'${fActLocation}',${fCommunityId});
+        insert into Activity.tActivity(fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation,fCommunityId,fCoordinateX,fCoordinateY)
+        values ('${fActName}', '${fCreatDate}','${fActivityDate}', '${fActivityEndDate}', ${fMemberId}, '${fIntroduction}', '${fImgPath}', ${fActLabelId}, ${fMaxLimit}, ${fMinLimit}, ${fActAttestId},${fActTypeId},'${fActLocation}',${fCommunityId},'${fCoordinateX}','${fCoordinateY}');
         ${CreateTag5(fLabelName)}`
         console.log(sqlStr);
         const result = await sql.query(sqlStr)
