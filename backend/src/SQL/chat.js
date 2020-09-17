@@ -30,7 +30,7 @@ const myChatroomList = async (id) => {
         left join  Chat.tChatData as d
         on C.fLastDataId = d.fId
         where fMemberId1 = ${id} OR fMemberId2 = ${id}
-        order by fLastDataId desc;
+        order by fLastDataId desc, fId desc;
         `;
         const result = await sql.query(sqlString);
         if (!result.rowsAffected[0]) {

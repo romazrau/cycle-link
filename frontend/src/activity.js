@@ -236,10 +236,6 @@ function ClsActivity() {
         btndatedetial.classList.remove("search_hidden");
 
     });
-
-
-
-
     // 抓時間
     $(function () {
 
