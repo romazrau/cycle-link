@@ -317,10 +317,6 @@ const home_weather_t = (o)=>{
 
 
 
-
-
-
-
 // const NewsRightBox=document.querySelector(".home_div_news")
 
 // const HomePage_NewsRightBox= (o)=>{

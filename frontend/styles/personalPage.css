@@ -22,8 +22,8 @@
 }
 
 .personal_imgbox img {
-  width: 550px;
-  height: 500px;
+  max-width: 550px;
+  width: 100%;
 }
 
 .personal_wrapper {
@@ -206,4 +206,9 @@
 
   /* 推不到 ???????????????????????*/
   margin-right: 50px;
+}
+
+.personal_title_line{
+  display: flex;
+  justify-content: space-between;
 }

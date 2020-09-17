@@ -22,9 +22,9 @@
 }
 
 .home_recent_activity_item_content_btn button:hover {
-  border: 1px solid var(--blue-color);
-  background-color: white;
-  color: var(--blue-color);
+  border: 1px solid var(--lightblue-color);
+  background-color: var(--lightblue-color);
+  color: white;
   transition: all 0.5s;
   cursor: pointer;
 }
@@ -64,13 +64,13 @@
   font-size: 72px;
   color: var(--white-color);
   text-align: right;
-  text-shadow: 0.05em 0.05em 0.1em rgb(83, 83, 83)
+  text-shadow: 0.05em 0.05em 0.1em rgb(83, 83, 83);
 }
 
 .home_top_event_p2 {
   position: absolute;
   right: 4rem;
-  top: 20rem;
+  top: 30rem;
   font-size: 72px;
   color: var(--white-color);
   text-align: right;
@@ -80,19 +80,19 @@
 .home_top_text_wrapper {
   width: 100%;
   height: 400px;
+  display: flex;
+  justify-content: flex-end;
   /* margin-bottom: 100px; */
 }
 
-.home_top_text {
-  width: 50%;
-  margin: 0rem 5rem;
-  float: right;
-}
+
 
 .home_top_text_content {
   font-size: 2rem;
   font-weight: 700;
   text-align: right;
+  width: 50vw;
+  margin-right: 3rem;
 }
 
 .home_recent_container {
@@ -136,21 +136,23 @@
 
 .home_recent_activity_item {
 
-  max-height: 13rem;
+  /* max-height: 13rem; */
   width: 100%;
   display: flex;
   margin-bottom: 2rem;
+  border-bottom: 1px solid rgb(167, 167, 167)
 }
 
 .home_recent_activity_item_img {
   width: 50%;
-  min-height: 13rem;
-  max-height: 12.33rem;
+  padding: 0 0 2rem 0;
+  /* min-height: 13rem;
+  max-height: 12.33rem; */
 }
 
 .home_recent_activity_item img {
   width: 100%;
-  max-height: 12.33rem;
+  /* max-height: 12.33rem; */
   overflow: hidden;
   object-fit: cover;
 }
@@ -158,26 +160,35 @@
 .home_recent_activity_item_content {
   width: 100%;
   height: 100%;
-  min-height: 12.33rem;
+  /* min-height: 12.33rem; */
   padding-left: 2rem;
 }
 
 .home_recent_activity_item_content a {
   font-size: 1.5rem;
   font-weight: 600;
-  margin: 0 10px;
+  /* margin: 0 10px; */
   line-height: 2rem;
+  color: var(--blue-color);
 }
+
+.home_recent_activity_item_content a:hover {
+  color: var(--lightblue-color);
+  transition: all 0.3s;
+}
+
 
 .home_recent_activity_item_content p {
   font-size: 1rem;
-  margin: 0 10px;
+  margin: 2.5rem 0 0 0;
+  color: #aaa;
+
 }
 
 .home_recent_activity_item_content_btn {
   display: flex;
   height: 45%;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -511,6 +522,7 @@
   background-color: rgba(100, 66, 87, 1);
   color: white;
 }
+
 /*----------------------*/
 .Forgotpasswordwindow {
   display: none;
@@ -525,18 +537,19 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content{
+.modal-content {
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
   width: 30%;
-  
+
 }
-.modal-content main
-{
+
+.modal-content main {
   text-align: center;
 }
+
 .close {
   color: #aaa;
   float: right;
@@ -551,7 +564,7 @@
   cursor: pointer;
 }
 
-.login_input_item{
+.login_input_item {
   margin-top: 1.5rem;
 }
 .Wcontainer{

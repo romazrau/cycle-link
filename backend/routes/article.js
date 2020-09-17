@@ -80,6 +80,29 @@ router.get("/explore", async function (req, res, next) {
   }
 });
 
+//首頁文字搜尋：社團小卡
+router.get("/txtsearchcard/:txtsearch", async function (req, res, next) {
+  try {
+    let CommunityCardResult = await Sql.txtSearchCommunityCard(
+      req.params.txtsearch
+    );
+    res.json(CommunityCardResult);
+  } catch (err) {
+    res.send(err);
+  }
+});
+//首頁文字搜尋：該社團文章
+router.get("/txtsearcharticle/:txtsearch", async function (req, res, next) {
+  try {
+    let CommunityArticleResult = await Sql.txtSearchCommunityArticle(
+      req.params.txtsearch
+    );
+    res.json(CommunityArticleResult);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
 //****搜尋文章（這個之後的路徑不能用/xxx，不然會被蓋掉）
 router.get("/:searchinput", async function (req, res, next) {
   try {
@@ -97,7 +120,6 @@ router.post("/add", async function (req, res, next) {
     let fCommunityId = req.body.fCommunityId;
     let fPostTime = req.body.fPostTime;
     let fContent = req.body.fContent;
-    // let fImgPaths = "qweq";
     let fImgPaths = "";
     for (let i = 0; i < req.files.length; i++) {
       fImgPaths += "img/" + req.files[i].filename;

@@ -146,6 +146,8 @@ const communityByFullString = async (fName) => {
   }
 };
 
+
+
 //** 會員Id查詢社團(ex.會員頁面用)
 const searchByMemberId = async (fid) => {
   try {
@@ -178,8 +180,8 @@ const searchByMemberId = async (fid) => {
 
     const result = await sql.query(sqlStr);
     // 結果看上
-    // console.log("+++++++++++++++++++++++++++++++++");
-    // console.log(result);
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    console.log(result);
 
     if (!result.rowsAffected[0]) {
       return { result: 0, msg: "查無結果" };
@@ -302,6 +304,7 @@ const communityById_communityDetail = async (fid) => {
     return { result: 0, msg: "SQL 錯誤", data: err };
   }
 };
+
 
 //** 社團id查詢社團管理員
 const communityById_communityManager = async (fid) => {
@@ -428,7 +431,8 @@ const communityCreate = async (fName, fStatusId, fImgPath, fInfo, fDate) => {
   }
 };
 
-// todo routes還沒做
+
+// todo 
 //**加入社團by社員id 社團id
 // fAccessRightId為審核中
 const communityAdd = async (fId, fCommunityId, fDate) => {

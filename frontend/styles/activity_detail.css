@@ -189,9 +189,9 @@
 }
 
 .activity_detail_right_top button:hover {
-  border: 1px solid var(--blue-color);
-  background-color: white;
-  color: var(--blue-color);
+  border: 1px solid var(--lightblue-color);
+  background-color: var(--lightblue-color);
+  color: white;
   transition: all 0.5s;
 }
 
@@ -222,6 +222,10 @@
   display: flex;
   align-items: center;
   margin-bottom: 0.6rem;
+}
+
+.activity_detail_right_info p {
+  margin: 0
 }
 
 .activity_detail_right_map {
@@ -502,8 +506,7 @@
   position: absolute;
   left: 35vw;
   top: 30vh;
-  width: 25rem;
-  height: 13rem;
+  width: 28rem;
   padding: 1rem;
   border-radius: 1rem;
   background-color: white;
@@ -523,15 +526,28 @@
   cursor: pointer;
 }
 
+.ac_share_title {
+  display: flex;
+  justify-content: space-between;
+}
+
 .ac_share_info {
-  display: block;
+  /* display: block; */
   justify-content: space-between;
 }
 
 .ac_share_info_icon {
   display: flex;
   justify-content: space-around;
-  margin: 1.5rem 0;
+  margin: 1rem 0;
+}
+
+.ac_share_info_icon div {
+  text-align: center;
+}
+
+.ac_share_info_icon p {
+  color: grey;
 }
 
 .ac_share_info a {
@@ -546,7 +562,15 @@
 
 .ac_share_info_link {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+
+.ac_share_info_link input {
+  width: 100%;
+  border: 0;
 }
 
 .ac_share_info_link button {
@@ -560,4 +584,8 @@
 
 .ac_share_info_link button:hover {
   cursor: pointer;
+  /* border: 1px solid var(--lightblue-color); */
+  background-color: var(--lightblue-color);
+  color: white;
+  transition: all 0.5s;
 }

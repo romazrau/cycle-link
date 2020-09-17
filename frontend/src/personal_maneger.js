@@ -1,7 +1,7 @@
 function ClsPersonalManeger() {
 
     //可惡這只是變色
-    this.openClass = (evt, className) => {
+    const openClass = (evt, className) => {
         var i, x, tablinks;
         x = document.getElementsByClassName("class");
         for (i = 0; i < x.length; i++) {
@@ -16,6 +16,13 @@ function ClsPersonalManeger() {
         evt.currentTarget.classList.add("activestyle");
 
     }
+
+    document.querySelectorAll(".personal-maneger-navlink").forEach(item => {
+        item.addEventListener("click", (e) => {
+            openClass(e, e.currentTarget.dataset.cls);
+        })
+    })
+
 
     var btnactions = document.querySelectorAll(".activefocus");
     // console.log('btnactions', btnactions);
@@ -248,36 +255,108 @@ function ClsPersonalManeger() {
             });
             let result = await response.json();
 
-            console.log(result);
+            // console.log("+++++++++++++++++++");
+            // console.log(result);
             document.querySelector("#personal-manege-img").src = serverURL.root + "/" + result.data.fPhotoPath;
             document.querySelector("#personal-manege-name").innerHTML = result.data.fName;
             document.querySelector("#personal-manege-coin").innerHTML = result.data.fCoins;
             document.querySelector("#personal-manege-act-count").innerHTML = result.data.fActiviteCount;
             document.querySelector("#personal-manege-account-type").innerHTML = result.data.fAccountType;
-            
+
             document.querySelector("#personal-maneger-input-name").value = result.data.fName;
             document.querySelector("#personal-maneger-input-birth").value = result.data.fBirthdate;
             document.querySelector("#personal-maneger-input-address").value = result.data.fCity;
             document.querySelector("#personal-maneger-input-phone").value = result.data.fCeilphoneNumber;
             document.querySelector("#personal-maneger-input-introduction").value = result.data.fIntroduction;
 
-
-            
-            
-
-
-
         } catch (ex) {
             console.log(ex);
         }
+    }
 
+
+    // TODO  render 活動
+
+
+    
+
+
+
+    // 社團文字樣板
+    let data2CommunitiesCard = (o) => {
+        return `<div class="ItemBox ">
+        <a href="#community/detail/${o.fCommunityId}">
+        <div class="procontent_imgbox">
+        <img src="${o.fImgPath}" class="event_img" alt="">
+        </div>
+        <div class="procontent_menu">
+        <p>${o.fDate}</p>
+        <h3>${o.fName}</h3>
+        </div></a></div>`
+    }
+
+    const renderCommunities = async () => {
+        try {
+            let response = await fetch(serverURL.communityList,
+                {
+                    method: "GET", // http request method
+                    //token
+                    headers: {
+                        Authorization: localStorage.getItem("Cycle link token"),
+                    },
+                    cache: "no-cache",
+                    credentials: "include",
+                }
+            );
+            let result = await response.json();
+            if (!result.result) {
+                alert(result.msg);
+                return;
+            }
+
+            let CommunityManager = document.querySelector("#ItemContainerCommunityManager");
+            let Community = document.querySelector("#ItemContainerCommunity")
+            CommunityManager.innerHTML = "";
+            Community.innerHTML = "";
+
+            result.data.forEach((o) => {
+                // console.log(o);
+                if (o.fAccessRightId == 3) {
+                    // document.querySelector("#ItemContainerCommunityManager").innerHTML += "NO";
+                    CommunityManager.innerHTML += data2CommunitiesCard(o);
+                    // console.log("++++++++++++++++++++++++++++++");  
+                }
+                else {
+                    //  document.querySelector("#ItemContainerCommunity").innerHTML += "OK";
+                    Community.innerHTML += data2CommunitiesCard(o);
+                    // console.log("-----------------------");
+
+                }
+            });
+
+            if (CommunityManager.innerHTML === "") {
+                CommunityManager.innerHTML = `<div class="personal-maneger-com-card">沒有管理的社團喔</div>`
+            }
+
+            if (Community.innerHTML === "") {
+                Community.innerHTML = `<div class="personal-maneger-com-card">快去加入社團吧</div>`
+            }
+        } catch (ex) {
+            alert("連線錯誤");
+            console.log(ex);
+            return;
+        }
 
     }
 
 
+
+
+    // TODO  render 社團
+    // 畫面更新放這裡
     this.render = () => {
-        console.log("+++++++++++++++++++");
         renderPersonalDetail();
+        renderCommunities();
     }
 }
 const PersonalManeger = new ClsPersonalManeger();
@@ -291,9 +370,6 @@ const personalManegerHash = () => {
 
 window.addEventListener("hashchange", personalManegerHash);
 window.addEventListener("load", personalManegerHash);
-
-
-
 
 
 document.getElementsByClassName("testbtn")[0].click();

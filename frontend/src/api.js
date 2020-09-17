@@ -5,6 +5,7 @@ const serverURL = {
   login: `${rootURL}/users/login`,
   users: `${rootURL}/users/`,
   userDetail: `${rootURL}/users/detail/me`,
+  forgetPassword: `${rootURL}/users/Forget/Password`,
   test: `${rootURL}/test/`,
   postslist: `${rootURL}/posts/`,
   article: `${rootURL}/article/`,
@@ -23,11 +24,14 @@ const serverURL = {
   addarticle: `${rootURL}/article/add`,
   hottiestcommunity: `${rootURL}/article/hottiest/`,
   explorecommunity: `${rootURL}/article/explore`,
+  txtsearchcommunitycard: `${rootURL}/article/txtsearchcard/`,
+  txtsearchcommunityarticle: `${rootURL}/article/txtsearcharticle/`,
   homePages: `${rootURL}/home/`,
   community: `${rootURL}/community/`,
   communityManager: `${rootURL}/community/communityManager/`,
   communityMember: `${rootURL}/community/communityById_communityMember/`,
   communityMemberAccessRight: `${rootURL}/community/members/`,
+  communityList:`${rootURL}/community/communityByMemberId/`,
   creatCommunity: `${rootURL}/`,
   activeinsertseensql: `${rootURL}/active/activeinsertseensql/`,
   activeforyou: `${rootURL}/active/activeforyou/`,
@@ -38,7 +42,7 @@ const serverURL = {
   addReply: `${rootURL}/reply`,
   removeactlikesql: `${rootURL}/active/removeactlikesql`,
   getChatroom: `${rootURL}/chat/`,
-  getChatmessage: `${rootURL}/chat/messages/`
+  getChatmessage: `${rootURL}/chat/messages/`,
 };
 
 const postlist = async () => {

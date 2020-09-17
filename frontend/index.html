@@ -549,6 +549,8 @@
                     <ul class="community_main_ul_timeline"></ul>
                 </div>
             </div>
+            <div class="popUpforEdit">
+            </div>
             <!-- ///達達切的讚讚社團首頁就給活動用ㄅ -->
             <!-- <div id="community_navbar" class="page_navbar">
                 <div class="container page_navbar_row">
@@ -583,36 +585,38 @@
                     </div>
                     <div class="map_controllBar">
                         <div class="map_controlltitle">設定距離</div>
-                        <input type="range" value="0" min="0" max="20" id="map_Setdistance" /><br />
-                        附近<label for="" id="Activitydistance"></label>
-                        <span>公里的活動</span>
+                        <div class="map_controlltitle_div">
+                            <input type="range" value="0" min="0" max="20" id="map_Setdistance" />
+                            <p>附近<label for="" id="Activitydistance"></label>
+                                <span>公里的活動</span></p>
+                        </div>
                     </div>
 
-                    <div class="map_introductionBox">
+                    <!-- <div class="map_introductionBox">
 
                         <div class="map_controlltitle">簡介</div>
                         <a class="map_link" href="#activity/detail"><img class="map_imgbox" src="" alt=""></a>
                         <p id="map_activityintroduction"></p>
 
+                    </div> -->
+
+                    <div class="map_controllBar">
+                        <div class="map_controlltitle">選擇分類</div>
+                        <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type1"
+                                value="其他"><label for="type1">其他</label></div>
+                        <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type2"
+                                value="志工活動"><label for="type2">志工活動</label></div>
+                        <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type3"
+                                value="環境清潔"><label for="type3">環境清潔</label></div>
+                        <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type4"
+                                value="自然教育"><label for="type4">自然教育</label></div>
+                        <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type5"
+                                value="二手市集"><label for="type5">二手市集</label></div>
+                        <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type6"
+                                value="運動"><label for="type6">運動</label></div>
+
                     </div>
                 </div>
-                <div class="checkbox_container">
-
-                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type1" value="其他"><label
-                            for="type1">其他</label></div>
-                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type2" value="志工活動"><label
-                            for="type2">志工活動</label></div>
-                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type3" value="環境清潔"><label
-                            for="type3">環境清潔</label></div>
-                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type4" value="自然教育"><label
-                            for="type4">自然教育</label></div>
-                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type5" value="二手市集"><label
-                            for="type5">二手市集</label></div>
-                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type6" value="運動"><label
-                            for="type6">運動</label></div>
-
-                </div>
-
 
 
 
@@ -816,7 +820,7 @@
                                 <div class="Login_CheckBox" id="Login_CheckBox"></div>
                             </a><span>我不是機器人</span>
                         </div>
-                        <a href="#" class="Forgotpassword">Forgot your password?</a>
+                        <a href="#" id="forgot-password" class="Forgotpassword">Forgot your password?</a>
 
                         <button id="loginSubmit">Sign In</button>
                     </form>
@@ -851,23 +855,26 @@
                             class="fab fa-linkedin"></i></a>
                 </div>
             </div> -->
-            <div id="myModal" class="Forgotpasswordwindow">
+            <div id="forgot-password-modal" class="Forgotpasswordwindow hide">
 
                 <!-- 弹窗内容 -->
                 <div class="modal-content">
-                    <span class="close">&times;</span>
-                    
+                    <span class="forgot-password-close">&times;</span>
+
                     <main>
-                        <h2>請輸入資料</h2>
-                        <form action="">
-                            
-                        <div class="login_input_item"><label for="">帳號 :</label><input type="text" name="fAccount"></div>
-                        <div class="login_input_item"><label for="">信箱 :</label><input type="text" name="fMail"></div>
-                        <input type="submit">
+                        <h2>忘記密碼</h2>
+                        <form id="forgot-password-form">
+
+                            <input class="login_input_item_input" id="login_input_account" type="text" name="fAccount"
+                                placeholder="Account">
+                            <input class="login_input_item_input" id="login_input_mail" type="text" name="fMail"
+                                placeholder="E-Mail">
+
+                            <input id="forgot-password-submit" type="submit">
                         </form>
                     </main>
                 </div>
-        
+
             </div>
 
 
@@ -931,110 +938,6 @@
             </div> -->
         </div>
 
-        <!-- * sign up  ****************      ****************       ****************   -->
-        <div id='page_sign-Up' class='page page_signUp hide'>
-            <div class="signUp_top">
-                <h1>加入我們</h1>
-                <p></p>
-            </div>
-
-            <div>
-                <form class="form_signUp" action="" method="POST" enctype="text/plain">
-
-                    <div class="form_signUp_left">
-                        <div class="signUp_inputBlock">
-                            <label for="account">註冊帳號: </label>
-                            <input type="text" name="account" placeholder="">
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="password">密碼: </label>
-                            <input type="password" name="password" autocomplete="off" placeholder="">
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="passwordCheck">確認密碼: </label>
-                            <input type="password" name="passwordCheck" autocomplete="off" placeholder="">
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="name">真實姓名: </label>
-                            <input type="text" name="name" placeholder="">
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="email">電子信箱: </label>
-                            <input type="text" name="email" placeholder="">
-                        </div>
-
-                    </div>
-
-                    <div class="form_signUp_right">
-
-                        <div class="signUp_inputBlock">
-                            <label for="bithday">生日: </label>
-                            <div class="signUp_bithday">
-                                <select name="dateYear" id="signUp_dateYear" size="1">
-                                    <option value="2020">2020</option>
-                                </select>
-                                <span>年</span>
-                                <select name="dateMM" id="signUp_dateMM" size="1">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
-                                <span>月</span>
-                                <select name="dateDD" id="signUp_dateDD" size="1">
-                                    <option value="1">1</option>
-                                </select>
-                                <span>日</span>
-                            </div>
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="city">居住城市: </label>
-                            <select type="text" name="city" placeholder="">
-                                <option value="taipei" selected>台北市</option>
-                                <option value="">基隆</option>
-
-                            </select>
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="adress">居住地址: </label>
-                            <input type="text" name="adress" placeholder="">
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="phoneNumber">手機號碼: </label>
-                            <input type="text" name="phoneNumber" placeholder="">
-                        </div>
-
-
-                        <div class="signUp_submit">
-                            <input type="submit" value="註冊">
-                        </div>
-
-                        <div class="text_switch2signIn">
-                            <span>已經有帳號了嗎?</span>&nbsp;&nbsp;<a id="switch2signIn" href="#log-in">登入帳號</a>
-                        </div>
-
-                    </div>
-
-
-
-                </form>
-            </div>
-        </div>
 
 
         <!-- * Personal page  ****************      ****************       ****************   -->
@@ -1474,7 +1377,7 @@
                             <div class="FlexContainer LinkBar Group_FlexJustifyContentSB">
                                 <div class="GroupLink GroupLinkFocus" value="GroupDetailPage_home">介 紹
                                 </div>
-                                <div class="GroupLink" value="GroupDetailPage_Discussion">文
+                                <div class="GroupLink" id="Group_navlink_Post"value="GroupDetailPage_Discussion">文
                                     章</div>
                                 <div class="GroupLink" id="Group_navlink_Picture" value="GroupDetailPage_Picture">照 片
                                 </div>
@@ -1489,11 +1392,12 @@
                         </div>
 
                         <div class="GroupDiveBtn FlexContainer">
-                            <div class=" FlexContainer statusBtn">
+                            <div id="statusBtn" class=" FlexContainer statusBtn">
                                 <img src="./img/icon_setting.svg" width="25px">
-                                <div href="#community/detail/" id="ApplyBtn" class="GroupDiveBtnText">&nbsp;&nbsp;加入社團
-                                </div>
+                                <div id="ApplyBtn" href="#community/detail/" class="GroupDiveBtnText">&nbsp;&nbsp;加入社團</div>
                                 <div id="ManagerBtn" class="GroupDiveBtnText hide">&nbsp&nbsp管理員</div>
+                                <div id="PendingBtn" class="GroupDiveBtnText hide">&nbsp&nbsp審核中</div>
+    
                                 <div id="MemberBtn" class="GroupNavBtn GroupDiveBtnText hide">我是社員</div>
                                 <!-- <img src="./img/icon_triangle_downside.svg" width="25px"> -->
                                 <div class="dropdown-triangle hide"></div>
@@ -1501,11 +1405,11 @@
                                     <div>退出社團</div>
                                 </div>
                                 <!-- <div class="dropdown">
-                                    <div>編輯社團</div>
-                                </div> -->
-
+                                        <div>編輯社團</div>
+                                    </div> -->
+    
                             </div>
-
+    
                             <!-- <div class="GroupNavBtn FlexContainer">
                                 <img src="./img/icon_user.svg" width="25px">
                                 <div class="GroupDiveBtnText">退出社團</div>
@@ -2217,7 +2121,7 @@
                                                 <i class="fas fa-images"></i>
                                             </lable>
                                             <label class="AddArticleLabel">
-                                                <input type="submit" id="articleImgsubmit" style="display: none;">
+                                                <input type="submit" id="articleSubmitIcon" style="display: none;">
                                                 <!-- <img src="./img/icon_send.svg" width="20" class="AddArticleinCommunity" -->
                                                 <i class="far fa-paper-plane"></i>
                                             </label>
@@ -2372,8 +2276,8 @@
             </div>
             <div class="container">
                 <div class="bar-block">
-                    <a href="javascript:void(0)" class="bar-item button tablink activefocus "
-                        onclick="PersonalManeger.openClass(event, 'personal-maneger-class4')">
+                    <a href="javascript:void(0)" class="bar-item button tablink activefocus personal-maneger-navlink"
+                        data-cls='personal-maneger-class4'>
                         <div class="baritembox">My Profile</div>
                     </a>
                     <!-- <a href="javascript:void(0)" class="bar-item button tablink  testbtn"
@@ -2381,16 +2285,17 @@
                         <div class="baritembox">My
                             Shop</div>
                     </a> -->
-                    <a href="javascript:void(0)" class="bar-item button tablink testbtn activefocus"
-                        onclick="PersonalManeger.openClass(event, 'personal-maneger-class1')" ,>
+                    <a href="javascript:void(0)"
+                        class="bar-item button tablink testbtn activefocus personal-maneger-navlink"
+                        data-cls='personal-maneger-class1'>
                         <div class="baritembox">My Follow</div>
                     </a>
-                    <a href="javascript:void(0)" class="bar-item button tablink activefocus"
-                        onclick="PersonalManeger.openClass(event, 'personal-maneger-class2')">
+                    <a href="javascript:void(0)" class="bar-item button tablink activefocus personal-maneger-navlink"
+                        data-cls='personal-maneger-class2'>
                         <div class="baritembox">My Event</div>
                     </a>
-                    <a href="javascript:void(0)" class="bar-item button tablink activefocus"
-                        onclick="PersonalManeger.openClass(event, 'personal-maneger-class3')">
+                    <a href="javascript:void(0)" class="bar-item button tablink activefocus personal-maneger-navlink"
+                        data-cls='personal-maneger-class3'>
                         <div class="baritembox">My Community</div>
                     </a>
                 </div>
@@ -2564,7 +2469,7 @@
                         <div class="protitle">
                             <h3>所屬社團</h3>
                         </div>
-                        <div class="ItemContainer">
+                        <div id="ItemContainerCommunity" class="ItemContainer">
                             <div class="ItemBox ">
                                 <a href="">
                                     <div class="procontent_imgbox">
@@ -2593,7 +2498,7 @@
                         <div class="protitle">
                             <h3>管理社團</h3>
                         </div>
-                        <div class="ItemContainer">
+                        <div id="ItemContainerCommunityManager" class="ItemContainer">
                             <div class="ItemBox ">
                                 <a href="">
                                     <div class="procontent_imgbox">
@@ -3349,7 +3254,6 @@
     <script src="./src/activity.js"></script>
     <script type="module" src="./src/home.js"></script>
     <script type="module" src="./src/login.js"></script>
-    <script src="./src/singUp.js"></script>
     <script src="./src/news_detial.js"></script>
     <script src="./src/personalPage.js"></script>
     <script src="./src/personal_maneger.js"></script>

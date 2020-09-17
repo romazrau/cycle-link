@@ -753,6 +753,7 @@ function ClsActivityDetail() {
     ac_share_btn.onclick = function () {
         ac_share_bg.style.display = "block";
         ac_share_bg_div.style.display = "block";
+        shareLink()
     };
 
     ac_share_closeBtn.onclick = function () {
@@ -761,6 +762,11 @@ function ClsActivityDetail() {
         // ac_share_bg.preventDefault();
     };
 
+    function shareLink() {
+        let link = location.hash
+        console.log(link);
+        document.querySelector("#ac_share_info_link").setAttribute("value", `http://127.0.0.1:5500/index.html${link}`)
+    }
 
     // * -------------------------------- 加入最愛活動 -------------------------------- //
     //預設跳轉取消
