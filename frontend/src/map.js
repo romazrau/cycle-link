@@ -227,9 +227,9 @@ function ClsMap() {
     map_cities[i].addEventListener("click", (e) => {
       e.preventDefault();
       //清空類型搜索
-      clearcheckbox()
+      clearcheckbox();
 
-      document.getElementById("map_cityspan").innerHTML =
+      document.querySelector(".map_cityspan").innerHTML =
         map_cities[i].textContent;
 
       /*移動地圖----城市 */
@@ -477,8 +477,7 @@ function ClsMap() {
     }
   }
 
-
-
+ 
 
   //設定markingicon
   const ActivityIcon = L.icon({
