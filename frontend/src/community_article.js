@@ -137,7 +137,12 @@ function ClsCommunityArticle() {
         let imgArr = x.split(",,");
         // console.log(imgArr);
         var a = Article_multiImgArr(imgArr);
-        return `<a class="Post_preIcon" href=""><</a>${a}<a class="Post_nextIcon"href="">></a>`;
+        return `<a class="Post_preIcon" href="">
+                  <i class="fas fa-chevron-left fa-2x" style="color:white"></i>
+                </a>${a}
+                <a class="Post_nextIcon" id="Post_nextIcon2"href="">
+                  <i class="fas fa-chevron-right fa-2x" style="color:white"></i>
+                </a>`;
       } else {
         return `
         <div class="community_article_body_img">
@@ -218,8 +223,6 @@ function ClsCommunityArticle() {
           console.log(result.data[i].fPostId);
           display_replyDetail(result.data, postid);
           return;
-        } else {
-          console.log(result.data[i].fPostId);
         }
       }
     } catch (err) {
@@ -250,6 +253,7 @@ function ClsCommunityArticle() {
   //   });
   //   console.log("典籍感測");
   // }
+
   //喜歡文章：愛心function，字串樣板輸入完畢後執行
   function Article_addClickEventToLike(x) {
     let Postlikeflag = false;
@@ -276,6 +280,16 @@ function ClsCommunityArticle() {
       });
     }
   }
+  //*------發表文章：Submit Icon加入點擊事件(抓取輸入ㄉ文章內容給SQL)
+  document
+    .getElementById("articleSubmitIcon")
+    .addEventListener("click", function (e) {
+      e.preventDefault();
+      addArticletoSQL(getCommunityIdFromUrl());
+      getPostInSingleCommunity(getCommunityIdFromUrl());
+      document.querySelector(".AddArticleInput").value = "";
+    });
+
   //社團文章：路由撈資料
   const getPostInSingleCommunity = async (x) => {
     try {
@@ -288,8 +302,8 @@ function ClsCommunityArticle() {
         credentials: "include",
       });
       let result = await response.json();
-      // console.log(result);
       await display_postDetail(result.data);
+
       // Article_addClickEventToReply(result.data);
       //TODO典籍喜歡
       // Article_addClickEventToLike(result.data.length);
@@ -368,24 +382,6 @@ function ClsCommunityArticle() {
           }
         });
       }
-      //TODO 我到底註解了三小
-      //*----------必須要在這裡面，點擊送出Icon時，抓取目前的資料發出文章內容給SQL
-      // document
-      //   .getElementById("articleImgsubmit")
-      //   .addEventListener("click", function (e) {
-      //     let addArticleInput = document.querySelector(".AddArticleInput")
-      //       .value;
-      //     addArticletoSQL(getCommunityIdFromUrl(), addArticleInput);
-      //     getPostInSingleCommunity(getCommunityIdFromUrl());
-      //   });
-      // document
-      // .querySelector(".AddArticleinCommunity")
-      // .addEventListener("click", function (e) {
-      //   let addArticleInput = document.querySelector(".AddArticleInput")
-      //     .value;
-      //   addArticletoSQL(getCommunityIdFromUrl(), addArticleInput);
-      //   getPostInSingleCommunity(getCommunityIdFromUrl());
-      // });
     } catch (err) {
       console.log(err);
     }
@@ -400,31 +396,31 @@ function ClsCommunityArticle() {
     return x;
   }
   //點擊上傳照片的Icon觸發事件
-  document
-    .getElementById("articleImgInput")
-    .addEventListener("click", function (e) {
-      console.log("我有被點到唷");
-      let addArticleInput = document.querySelector(".AddArticleInput").value;
-      addArticletoSQL(getCommunityIdFromUrl(), addArticleInput);
-      getPostInSingleCommunity(getCommunityIdFromUrl());
-    });
+  // document
+  //   .getElementById("articleImgInput")
+  //   .addEventListener("click", function (e) {
+  //     console.log("我有被點到唷");
+  //     let addArticleInput = document.querySelector(".AddArticleInput").value;
+  //     addArticletoSQL(getCommunityIdFromUrl(), addArticleInput);
+  //     getPostInSingleCommunity(getCommunityIdFromUrl());
+  //   });
   //TODO圖片載入測試中
-  document
-    .getElementById("articleImgInput")
-    .addEventListener("change", function () {
-      let addArticleImgFile = document.getElementById("articleImgInput")[0]
-        .files[0];
-      let addArticleImgReader = new FileReader();
-      addArticleImgReader.onload = function (e) {
-        document
-          .querySelector(".AddArticleImgDisplay_img")
-          .attributes("src", e.target.result);
-      };
-      addArticleImgReader.readAsDataURL(addArticleImgFile);
-    });
+  // document
+  //   .getElementById("articleImgInput")
+  //   .addEventListener("change", function () {
+  //     let addArticleImgFile = document.getElementById("articleImgInput")[0]
+  //       .files[0];
+  //     let addArticleImgReader = new FileReader();
+  //     addArticleImgReader.onload = function (e) {
+  //       document
+  //         .querySelector(".AddArticleImgDisplay_img")
+  //         .attributes("src", e.target.result);
+  //     };
+  //     addArticleImgReader.readAsDataURL(addArticleImgFile);
+  //   });
 
   //新增文章
-  const addArticletoSQL = async (CommunityId, Content) => {
+  const addArticletoSQL = async (CommunityId) => {
     try {
       let nowtime = new Date();
       let addarticletime =
@@ -437,7 +433,6 @@ function ClsCommunityArticle() {
       var articleFormdata = new FormData(form);
       articleFormdata.append("fCommunityId", CommunityId);
       articleFormdata.append("fPostTime", addarticletime);
-      articleFormdata.append("fContent", Content);
 
       console.log(articleFormdata);
 
