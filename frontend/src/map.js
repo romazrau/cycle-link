@@ -240,6 +240,11 @@ function ClsMap() {
           OriginalPlacelat = CityList[j].lat;
           OriginalPlacelng = CityList[j].lng;
           map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng), 11);
+          L.marker([OriginalPlacelat, OriginalPlacelng], {
+            icon: myIcon
+          }, {
+            title: "現在位置"
+          }).addTo(map);
           document.getElementById("map_activityintroduction").innerHTML = CityList[j].introduction;
           document.querySelector(".map_imgbox").src = CityList[j].src;
         }
@@ -369,7 +374,7 @@ function ClsMap() {
       resultList.forEach(function (item, index, array) {
         var layer = new L.marker([item.fCoordinateX, item.fCoordinateY], {
           icon: elseIcon
-        }, ).addTo(map).bindPopup(item.fActName).addEventListener("click", function (event) {
+        }, ).addTo(map).bindPopup(MapMessageCardContent(item)).addEventListener("click", function (event) {
 
           var marker = event.target;
           var latlng = marker.getLatLng();
@@ -387,7 +392,7 @@ function ClsMap() {
       resultList.forEach(function (item, index, array) {
         var layer = new L.marker([item.fCoordinateX, item.fCoordinateY], {
           icon: SeaIcon
-        }, ).addTo(map).bindPopup(item.fActName).addEventListener("click", function (event) {
+        }, ).addTo(map).bindPopup(MapMessageCardContent(item)).addEventListener("click", function (event) {
 
           var marker = event.target;
           var latlng = marker.getLatLng();
@@ -405,7 +410,7 @@ function ClsMap() {
       resultList.forEach(function (item, index, array) {
         var layer = new L.marker([item.fCoordinateX, item.fCoordinateY], {
           icon: RunningIcon
-        }, ).addTo(map).bindPopup(item.fActName).addEventListener("click", function (event) {
+        }, ).addTo(map).bindPopup(MapMessageCardContent(item)).addEventListener("click", function (event) {
           var marker = event.target;
           var latlng = marker.getLatLng();
           map_setInformation(latlng.lat, latlng.lng);
@@ -420,7 +425,7 @@ function ClsMap() {
       resultList.forEach(function (item, index, array) {
         var layer = new L.marker([item.fCoordinateX, item.fCoordinateY], {
           icon: edIcon
-        }, ).addTo(map).bindPopup(item.fActName).addEventListener("click", function (event) {
+        }, ).addTo(map).bindPopup(MapMessageCardContent(item)).addEventListener("click", function (event) {
           var marker = event.target;
           var latlng = marker.getLatLng();
           map_setInformation(latlng.lat, latlng.lng);
@@ -435,7 +440,7 @@ function ClsMap() {
       resultList.forEach(function (item, index, array) {
         var layer = new L.marker([item.fCoordinateX, item.fCoordinateY], {
           icon: marketIcon
-        }, ).addTo(map).bindPopup(`<a href='#activity/detail/${item.fId}'><img class="mapInfoImg" src='http://localhost:3050/${item.fImgPath}'></a><p class="mapInfoTitle">${item.fActName}</p>`).addEventListener("click", function (event) {
+        }, ).addTo(map).bindPopup().addEventListener("click", function (event) {
           var marker = event.target;
           var latlng = marker.getLatLng();
           map_setInformation(latlng.lat, latlng.lng);
@@ -450,7 +455,7 @@ function ClsMap() {
       resultList.forEach(function (item, index, array) {
         var layer = new L.marker([item.fCoordinateX, item.fCoordinateY], {
           icon: evIcon
-        }, ).addTo(map).bindPopup(item.fActName).addEventListener("click", function (event) {
+        }, ).addTo(map).bindPopup(MapMessageCardContent(item)).addEventListener("click", function (event) {
           var marker = event.target;
           var latlng = marker.getLatLng();
           map_setInformation(latlng.lat, latlng.lng);
@@ -464,6 +469,11 @@ function ClsMap() {
 
 
   }
+  const MapMessageCardContent=(o)=>{
+    return `<a href='#activity/detail/${o.fId}'><img class="mapInfoImg" 
+    src='http://localhost:3050/${o.fImgPath}'></a><p class="mapInfoTitle">${o.fActName}</p>`
+  }
+
 
 
   function map_setInformation(lat, lng) {

@@ -1151,7 +1151,7 @@ function ClsCommuntityDetail() {
         return ` <div
         class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
         <div class="FlexContainer">
-            <a href="#" class="DivForImg">
+            <a href="#personal-page/${o.fMemberId}" class="DivForImg">
                 <div class="activity_detail_info_img_circle">
                     <div class="activity_detail_info_img_div">
                         <img src=${serverURL.root}/${o.fPhotoPath}
@@ -1160,7 +1160,7 @@ function ClsCommuntityDetail() {
                 </div>
             </a>
             <div class="GroupMemberCardInfo">
-                <a href="#">${o.fName}</a>
+                <a href="#personal-page/${o.fMemberId}">${o.fName}</a>
                 <div class="FlexContainer">
                     <div>${o.fJoinDate}</div>
                     <div>&nbsp;&nbsp;&nbsp;&nbsp;加入此社團</div>
