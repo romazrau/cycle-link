@@ -807,7 +807,7 @@
                                 <div class="Login_CheckBox" id="Login_CheckBox"></div>
                             </a><span>我不是機器人</span>
                         </div>
-                        <a href="#" class="Forgotpassword">Forgot your password?</a>
+                        <a href="#" id="forgot-password" class="Forgotpassword">Forgot your password?</a>
 
                         <button id="loginSubmit">Sign In</button>
                     </form>
@@ -842,19 +842,20 @@
                             class="fab fa-linkedin"></i></a>
                 </div>
             </div> -->
-            <div id="myModal" class="Forgotpasswordwindow">
+            <div id="forgot-password-modal" class="Forgotpasswordwindow hide">
 
                 <!-- 弹窗内容 -->
                 <div class="modal-content">
-                    <span class="close">&times;</span>
+                    <span class="forgot-password-close">&times;</span>
                     
                     <main>
-                        <h2>請輸入資料</h2>
+                        <h2>忘記密碼</h2>
                         <form action="">
                             
-                        <div class="login_input_item"><label for="">帳號 :</label><input type="text" name="fAccount"></div>
-                        <div class="login_input_item"><label for="">信箱 :</label><input type="text" name="fMail"></div>
-                        <input type="submit">
+                   <input class="login_input_item_input" type="text" name="fAccount" placeholder="Account">
+                  <input class="login_input_item_input" type="text" name="fMail" placeholder="E-Mail">
+
+                        <input id="forgot-password-submit" type="submit">
                         </form>
                     </main>
                 </div>
@@ -922,110 +923,6 @@
             </div> -->
         </div>
 
-        <!-- * sign up  ****************      ****************       ****************   -->
-        <div id='page_sign-Up' class='page page_signUp hide'>
-            <div class="signUp_top">
-                <h1>加入我們</h1>
-                <p></p>
-            </div>
-
-            <div>
-                <form class="form_signUp" action="" method="POST" enctype="text/plain">
-
-                    <div class="form_signUp_left">
-                        <div class="signUp_inputBlock">
-                            <label for="account">註冊帳號: </label>
-                            <input type="text" name="account" placeholder="">
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="password">密碼: </label>
-                            <input type="password" name="password" autocomplete="off" placeholder="">
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="passwordCheck">確認密碼: </label>
-                            <input type="password" name="passwordCheck" autocomplete="off" placeholder="">
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="name">真實姓名: </label>
-                            <input type="text" name="name" placeholder="">
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="email">電子信箱: </label>
-                            <input type="text" name="email" placeholder="">
-                        </div>
-
-                    </div>
-
-                    <div class="form_signUp_right">
-
-                        <div class="signUp_inputBlock">
-                            <label for="bithday">生日: </label>
-                            <div class="signUp_bithday">
-                                <select name="dateYear" id="signUp_dateYear" size="1">
-                                    <option value="2020">2020</option>
-                                </select>
-                                <span>年</span>
-                                <select name="dateMM" id="signUp_dateMM" size="1">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
-                                <span>月</span>
-                                <select name="dateDD" id="signUp_dateDD" size="1">
-                                    <option value="1">1</option>
-                                </select>
-                                <span>日</span>
-                            </div>
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="city">居住城市: </label>
-                            <select type="text" name="city" placeholder="">
-                                <option value="taipei" selected>台北市</option>
-                                <option value="">基隆</option>
-
-                            </select>
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="adress">居住地址: </label>
-                            <input type="text" name="adress" placeholder="">
-                        </div>
-
-                        <div class="signUp_inputBlock">
-                            <label for="phoneNumber">手機號碼: </label>
-                            <input type="text" name="phoneNumber" placeholder="">
-                        </div>
-
-
-                        <div class="signUp_submit">
-                            <input type="submit" value="註冊">
-                        </div>
-
-                        <div class="text_switch2signIn">
-                            <span>已經有帳號了嗎?</span>&nbsp;&nbsp;<a id="switch2signIn" href="#log-in">登入帳號</a>
-                        </div>
-
-                    </div>
-
-
-
-                </form>
-            </div>
-        </div>
 
 
         <!-- * Personal page  ****************      ****************       ****************   -->
@@ -3340,7 +3237,6 @@
     <script src="./src/activity.js"></script>
     <script src="./src/home.js"></script>
     <script type="module" src="./src/login.js"></script>
-    <script src="./src/singUp.js"></script>
     <script src="./src/news_detial.js"></script>
     <script src="./src/personalPage.js"></script>
     <script src="./src/personal_maneger.js"></script>
