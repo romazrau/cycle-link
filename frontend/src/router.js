@@ -115,6 +115,8 @@ function ClsRouter() {
 
                 case "create-community":
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
+                    console.log( document.querySelector(`#page_${hashTitle}`));
+
                     break;
 
 

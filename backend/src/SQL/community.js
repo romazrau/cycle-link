@@ -147,7 +147,7 @@ const communityByFullString = async (fName) => {
 };
 
 
-// todo use this
+
 //** 會員Id查詢社團(ex.會員頁面用)
 const searchByMemberId = async (fid) => {
   try {
@@ -431,7 +431,8 @@ const communityCreate = async (fName, fStatusId, fImgPath, fInfo, fDate) => {
   }
 };
 
-// todo routes還沒做
+
+// todo 
 //**加入社團by社員id 社團id
 // fAccessRightId為審核中
 const communityAdd = async (fId, fCommunityId, fDate) => {

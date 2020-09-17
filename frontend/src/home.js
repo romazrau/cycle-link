@@ -231,10 +231,6 @@ const home_picturesItem = (o) => {
 
 
 
-
-
-
-
 // const NewsRightBox=document.querySelector(".home_div_news")
 
 // const HomePage_NewsRightBox= (o)=>{
