@@ -137,10 +137,10 @@ function ClsCommunityArticle() {
         let imgArr = x.split(",,");
         // console.log(imgArr);
         var a = Article_multiImgArr(imgArr);
-        return `<a class="Post_preIcon" href="">
+        return `<a class="Post_Community_preIcon" href="">
                   <i class="fas fa-chevron-left fa-2x" style="color:white"></i>
                 </a>${a}
-                <a class="Post_nextIcon" id="Post_nextIcon2"href="">
+                <a class="Post_Community_nextIcon" id="Post_nextIcon2"href="">
                   <i class="fas fa-chevron-right fa-2x" style="color:white"></i>
                 </a>`;
       } else {
@@ -323,7 +323,7 @@ function ClsCommunityArticle() {
         }
       }
       //下一張
-      var allNextIcon = document.querySelectorAll(".Post_nextIcon");
+      var allNextIcon = document.querySelectorAll(".Post_Community_nextIcon");
       for (let i = 0; i < allNextIcon.length; i++) {
         allNextIcon[i].addEventListener("click", function (e) {
           e.preventDefault();
@@ -354,7 +354,7 @@ function ClsCommunityArticle() {
         });
       }
       //上一張
-      var allPreIcon = document.querySelectorAll(".Post_preIcon");
+      var allPreIcon = document.querySelectorAll(".Post_Community_preIcon");
       for (let i = 0; i < allPreIcon.length; i++) {
         allPreIcon[i].addEventListener("click", function (e) {
           e.preventDefault();
