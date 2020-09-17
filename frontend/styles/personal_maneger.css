@@ -502,8 +502,8 @@
 .procontent {
     /* width: 70%;
     margin: 20px 40px; */
-    display: flex;
-    justify-content: space-evenly;
+    /* display: flex;
+    justify-content: space-evenly; */
     min-height: 60vh;
     border: 0.5rem solid var(--lightgrey-color);
     margin-bottom: 10px;
@@ -587,4 +587,7 @@
 }
 
 
+.personal-maneger-com-card{
+    margin-left: 3rem;
+}
 

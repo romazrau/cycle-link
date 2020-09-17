@@ -18,7 +18,7 @@ function ClsPersonalManeger() {
     }
 
     document.querySelectorAll(".personal-maneger-navlink").forEach(item => {
-        item.addEventListener("click", (e)=>{
+        item.addEventListener("click", (e) => {
             openClass(e, e.currentTarget.dataset.cls);
         })
     })
@@ -278,12 +278,14 @@ function ClsPersonalManeger() {
     // TODO  render 活動
 
 
+    
+
+
 
     // 社團文字樣板
-    let data2CommunitiesCard = (o)=>{
-        
+    let data2CommunitiesCard = (o) => {
         return `<div class="ItemBox ">
-        <a href="">
+        <a href="#community/detail/${o.fCommunityId}">
         <div class="procontent_imgbox">
         <img src="${o.fImgPath}" class="event_img" alt="">
         </div>
@@ -294,46 +296,58 @@ function ClsPersonalManeger() {
     }
 
     const renderCommunities = async () => {
-        let response= await fetch(serverURL.communityList,
-            {
-              method: "GET", // http request method
-              //token
-              headers: {
-                Authorization: localStorage.getItem("Cycle link token"),
-              },
-              cache: "no-cache",
-              credentials: "include",
-            }
-          );
-          let result = await response.json();
-         console.log(result.data);
-         document.querySelector("#ItemContainerCommunityManager").innerHTML ="";
-         document.querySelector("#ItemContainerCommunity").innerHTML="";
-
-         result.data.forEach((o)=>{
-            // console.log(o);
-            if(o.fAccessRightId==3){
-                // document.querySelector("#ItemContainerCommunityManager").innerHTML += "NO";
-                document.querySelector("#ItemContainerCommunityManager").innerHTML += data2CommunitiesCard(o);
-
-            // console.log("++++++++++++++++++++++++++++++");
-          
-            
-            }
-            else{
-                //  document.querySelector("#ItemContainerCommunity").innerHTML += "OK";
-                 document.querySelector("#ItemContainerCommunity").innerHTML += data2CommunitiesCard(o);
-
-            // console.log("-----------------------");
-         
-
+        try {
+            let response = await fetch(serverURL.communityList,
+                {
+                    method: "GET", // http request method
+                    //token
+                    headers: {
+                        Authorization: localStorage.getItem("Cycle link token"),
+                    },
+                    cache: "no-cache",
+                    credentials: "include",
+                }
+            );
+            let result = await response.json();
+            if (!result.result) {
+                alert(result.msg);
+                return;
             }
 
-        });
+            let CommunityManager = document.querySelector("#ItemContainerCommunityManager");
+            let Community = document.querySelector("#ItemContainerCommunity")
+            CommunityManager.innerHTML = "";
+            Community.innerHTML = "";
+
+            result.data.forEach((o) => {
+                // console.log(o);
+                if (o.fAccessRightId == 3) {
+                    // document.querySelector("#ItemContainerCommunityManager").innerHTML += "NO";
+                    CommunityManager.innerHTML += data2CommunitiesCard(o);
+                    // console.log("++++++++++++++++++++++++++++++");  
+                }
+                else {
+                    //  document.querySelector("#ItemContainerCommunity").innerHTML += "OK";
+                    Community.innerHTML += data2CommunitiesCard(o);
+                    // console.log("-----------------------");
+
+                }
+            });
+
+            if (CommunityManager.innerHTML === "") {
+                CommunityManager.innerHTML = `<div class="personal-maneger-com-card">沒有管理的社團喔</div>`
+            }
+
+            if (Community.innerHTML === "") {
+                Community.innerHTML = `<div class="personal-maneger-com-card">快去加入社團吧</div>`
+            }
+        } catch (ex) {
+            alert("連線錯誤");
+            console.log(ex);
+            return;
+        }
+
     }
-
-
-
 
 
 
@@ -356,9 +370,6 @@ const personalManegerHash = () => {
 
 window.addEventListener("hashchange", personalManegerHash);
 window.addEventListener("load", personalManegerHash);
-
-
-
 
 
 document.getElementsByClassName("testbtn")[0].click();
