@@ -166,14 +166,14 @@
                             <p></p>
 
                         </div>
-                        <div   class="weather_img_css" style="width:100px; height:100px">
-                            <img id="weather_img"  src="" alt="">
+                        <div class="weather_img_css" style="width:100px; height:100px">
+                            <img id="weather_img" src="" alt="">
                         </div>
                         <div class="Wcontainer home_weather_dflex">
-                            
+
                         </div>
                         <div class="WTcontainer ">
-                            
+
                         </div>
                     </div>
                     <div class="home_recent_activities">
@@ -818,7 +818,8 @@
                         <div class="Login_CheckContainer">
                             <a href="">
                                 <div class="Login_CheckBox" id="Login_CheckBox"></div>
-                            </a><span>我不是機器人</span>
+                            </a>
+                            <p>我不是機器人</p>
                         </div>
                         <a href="#" id="forgot-password" class="Forgotpassword">Forgot your password?</a>
 
@@ -880,24 +881,26 @@
 
 
             <div class="Login_checkviewcontainer">
-                <a href="" class="Login_CloseLink">X</a>
+                <!-- <a href="" class="Login_CloseLink"><img src="./img/times-solid.svg" width="20" alt=""></a> -->
                 <div class="Login_checkviewtitle">
-                    <h2>請勾選出下面圖片含有路牌</h2>
+                    <h3>請勾選出下面圖片含有路牌</h3>
                 </div>
-                <div class="Login_imgLine">
-                    <div class="Login_checkimgbox"><img src="" alt=""></div>
-                    <div class="Login_checkimgbox"><img src="" alt=""></div>
-                    <div class="Login_checkimgbox"><img src="" alt=""></div>
-                </div>
-                <div class="Login_imgLine">
-                    <div class="Login_checkimgbox"><img src="" alt=""></div>
-                    <div class="Login_checkimgbox"><img src="" alt=""></div>
-                    <div class="Login_checkimgbox"><img src="" alt=""></div>
-                </div>
-                <div class="Login_imgLine">
-                    <div class="Login_checkimgbox"><img src="" alt=""></div>
-                    <div class="Login_checkimgbox"><img src="" alt=""></div>
-                    <div class="Login_checkimgbox"><img src="" alt=""></div>
+                <div class="Login_checkviewdiv">
+                    <div class="Login_imgLine">
+                        <div class="Login_checkimgbox"><img src="" alt=""></div>
+                        <div class="Login_checkimgbox"><img src="" alt=""></div>
+                        <div class="Login_checkimgbox"><img src="" alt=""></div>
+                    </div>
+                    <div class="Login_imgLine">
+                        <div class="Login_checkimgbox"><img src="" alt=""></div>
+                        <div class="Login_checkimgbox"><img src="" alt=""></div>
+                        <div class="Login_checkimgbox"><img src="" alt=""></div>
+                    </div>
+                    <div class="Login_imgLine">
+                        <div class="Login_checkimgbox"><img src="" alt=""></div>
+                        <div class="Login_checkimgbox"><img src="" alt=""></div>
+                        <div class="Login_checkimgbox"><img src="" alt=""></div>
+                    </div>
                 </div>
                 <div class="Login_checkfooter"><input type="button" value="驗證" class="Login_answerBtn"></div>
             </div>
@@ -1195,8 +1198,9 @@
                                 </div>
                             </div>
                             <div class="ac_share_info_link">
-                                <input type="text"  id="ac_share_info_link"/>
-                                <button data-clipboard-target="#ac_share_info_link" id="ac_share_info_link_btn">Copy</button>
+                                <input type="text" id="ac_share_info_link" />
+                                <button data-clipboard-target="#ac_share_info_link"
+                                    id="ac_share_info_link_btn">Copy</button>
                             </div>
                         </div>
                     </div>
@@ -1392,7 +1396,7 @@
                             <div class="FlexContainer LinkBar Group_FlexJustifyContentSB">
                                 <div class="GroupLink GroupLinkFocus" value="GroupDetailPage_home">介 紹
                                 </div>
-                                <div class="GroupLink" id="Group_navlink_Post"value="GroupDetailPage_Discussion">文
+                                <div class="GroupLink" id="Group_navlink_Post" value="GroupDetailPage_Discussion">文
                                     章</div>
                                 <div class="GroupLink" id="Group_navlink_Picture" value="GroupDetailPage_Picture">照 片
                                 </div>
@@ -1409,10 +1413,11 @@
                         <div class="GroupDiveBtn FlexContainer">
                             <div id="statusBtn" class=" FlexContainer statusBtn">
                                 <img src="./img/icon_setting.svg" width="25px">
-                                <div id="ApplyBtn" href="#community/detail/" class="GroupDiveBtnText">&nbsp;&nbsp;加入社團</div>
+                                <div id="ApplyBtn" href="#community/detail/" class="GroupDiveBtnText">&nbsp;&nbsp;加入社團
+                                </div>
                                 <div id="ManagerBtn" class="GroupDiveBtnText hide">&nbsp&nbsp管理員</div>
                                 <div id="PendingBtn" class="GroupDiveBtnText hide">&nbsp&nbsp審核中</div>
-    
+
                                 <div id="MemberBtn" class="GroupNavBtn GroupDiveBtnText hide">我是社員</div>
                                 <!-- <img src="./img/icon_triangle_downside.svg" width="25px"> -->
                                 <div class="dropdown-triangleLeave"></div>
@@ -1422,9 +1427,9 @@
                                 <!-- <div class="dropdown">
                                         <div>編輯社團</div>
                                     </div> -->
-    
+
                             </div>
-    
+
                             <!-- <div class="GroupNavBtn FlexContainer">
                                 <img src="./img/icon_user.svg" width="25px">
                                 <div class="GroupDiveBtnText">退出社團</div>

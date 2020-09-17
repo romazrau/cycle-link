@@ -6,20 +6,20 @@ function ClsLogin() {
         async (e) => {
             e.preventDefault();
             // console.log(e);
-            let form = document.querySelector("#form_signIn");  // 抓登入 form element
-            let formData = new FormData(form);                  // 打包成 FormData
+            let form = document.querySelector("#form_signIn"); // 抓登入 form element
+            let formData = new FormData(form); // 打包成 FormData
 
             try {
                 let resopne = await fetch(serverURL.login, {
-                    method: "POST",     // POST
-                    body: formData,     // *攜帶的 FormData
+                    method: "POST", // POST
+                    body: formData, // *攜帶的 FormData
                     cache: 'no-cache',
                     credentials: 'include',
                     mode: 'cors',
                     referrer: "client",
                 })
 
-                let result = await resopne.json()  // 解析回傳的物件
+                let result = await resopne.json() // 解析回傳的物件
 
                 console.log(result);
                 if (result.result == "1") {
@@ -28,7 +28,7 @@ function ClsLogin() {
                     // document.querySelector('.navebar_msg_icons').classList.remove("hide");
                     // location.hash = "#personal-maneger";
 
-                    window.localStorage.setItem("Cycle link token", result.token);   // *存前端來的 JWT 進 localStorage 裡
+                    window.localStorage.setItem("Cycle link token", result.token); // *存前端來的 JWT 進 localStorage 裡
                     window.localStorage.setItem("Cycle link user data", result.data.fName);
                     window.localStorage.setItem("Cycle link user id", result.data.fId);
 
@@ -91,8 +91,7 @@ function ClsLogin() {
                 count[i]--;
             }
             console.log(count);
-        }
-        )
+        })
     }
     document.querySelector(".Login_answerBtn").addEventListener("click", () => {
 
@@ -104,7 +103,7 @@ function ClsLogin() {
 
             document.querySelector(".Login_checkviewcontainer").style.display = "none";
             document.querySelector(".Login_backgroundview").style.display = "none";
-            document.querySelector(".Login_CheckBox").innerHTML = 1;
+            document.querySelector(".Login_CheckBox").innerHTML = `<i class="fas fa-check"></i>`;
         }
 
     })
@@ -119,8 +118,7 @@ function ClsLogin() {
     document.getElementById("Login_CheckBox").addEventListener("click", (e) => {
         document.querySelector(".Login_checkviewcontainer").style.display = "block";
         document.querySelector(".Login_backgroundview").style.display = "block";
-    }
-    )
+    })
     document.querySelector(".Login_CloseLink").addEventListener("click", (e) => {
         e.preventDefault();
         document.querySelector(".Login_checkviewcontainer").style.display = "none";
