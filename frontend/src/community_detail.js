@@ -614,7 +614,7 @@ function ClsCommuntityDetail() {
     let fCommunityId;
     document.querySelectorAll(".js_editCommunity").forEach((items) => {
         items.addEventListener("click", async () => {
-            //   console.group("修改社團");
+              console.group("修改社團");
             try {
                 // 導向社團編輯頁面
                 // -----# >>> 前端路由導向

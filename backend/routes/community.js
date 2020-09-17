@@ -135,12 +135,11 @@ router.get('/:id', async function (req, res, next) {
                 )
             }
         }
-        else {
+        else if(pendingMem.result) {
             pendingMem.data.forEach(
                 (o) => {
                     // console.log("++++++++++++++++++++++++++++++++++++++++++++++++!!");
                     // console.log(o);
-
                     if (o.fMemberId == req.user.fId) {
                         result.data[0].user = "待審核會員";
                         res.json(result);
@@ -149,12 +148,6 @@ router.get('/:id', async function (req, res, next) {
                     }
                     // console.log("++++++++++++++++++++++++++++++++++++++++++++++++!!");
                     // console.log(o);
-                    else {
-                        result.data[0].user = "非社員";
-                        res.json(result);
-                        isResponse = 1;
-                        return;
-                    }
                 }
             )
             // user = "非社員";
@@ -162,7 +155,7 @@ router.get('/:id', async function (req, res, next) {
 
         if(isResponse) return;
         //----把user放進result.data裡用res.json()回傳
-        result.data[0].user = user;
+        result.data[0].user = "非社員";
         // console.log('++++++++++++++++++');
         // console.log(result.data[0]);
         res.json(result);
