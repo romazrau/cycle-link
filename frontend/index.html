@@ -1158,19 +1158,34 @@
                     </div>
                     <div id="ac_share_bg"></div>
                     <div id="ac_share_bg_div">
-                        <button id="ac_share_closeBtn">
-                            <img src="./img/times-solid.svg" width="20">
-                        </button>
+                        <div class="ac_share_title">
+                            <p>分享</p>
+                            <button id="ac_share_closeBtn">
+                                <img src="./img/times-solid.svg" width="20">
+                            </button>
+                        </div>
                         <div class="ac_share_info">
                             <div class="ac_share_info_icon">
-                                <a href="#"><i class="fab fa-facebook fa-3x"></i></a>
-                                <a href="#"><i class="fab fa-instagram fa-3x"></i></a>
-                                <a href="#"><i class="fab fa-twitter fa-3x"></i></a>
-                                <a href="#"><i class="fab fa-youtube fa-3x"></i></a>
+                                <div>
+                                    <a href="#"><i class="fab fa-facebook fa-3x"></i></a>
+                                    <p>Facebook</p>
+                                </div>
+                                <div>
+                                    <a href="#"><i class="fab fa-instagram fa-3x"></i></a>
+                                    <p>Instagram</p>
+                                </div>
+                                <div>
+                                    <a href="#"><i class="fab fa-twitter fa-3x"></i></a>
+                                    <p>Twitter</p>
+                                </div>
+                                <div>
+                                    <a href="#"><i class="fab fa-youtube fa-3x"></i></a>
+                                    <p>Youtube</p>
+                                </div>
                             </div>
                             <div class="ac_share_info_link">
-                                <input type="text" />
-                                <button>Copy</button>
+                                <input type="text"  id="ac_share_info_link"/>
+                                <button data-clipboard-target="#ac_share_info_link" id="ac_share_info_link_btn">Copy</button>
                             </div>
                         </div>
                     </div>
@@ -2634,7 +2649,7 @@
                                         <div id="createActMapId" style="display: none;"></div>
                                         <div id="actMapEdit" style="display: none;"></div>
                                         <div onclick="geoFindMe()" class="actShowLocation">Show my location</div>
-                                        <div id="out"></div>
+                                        <div id="out" style="display: none;"></div>
                                     </div>
                                 </div>
                                 <div class="create_active_basicInfo_div">
@@ -3222,7 +3237,8 @@
     <!-- *外部引用 -->
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/8bc7da0888.js" crossorigin="anonymous"></script>
-
+    <!-- Copy -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <!--  -->
     <!-- ----------- CDN ----------- -->
     <script src="https://kit.fontawesome.com/8bc7da0888.js" crossorigin="anonymous"></script>
