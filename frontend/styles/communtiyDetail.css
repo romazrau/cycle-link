@@ -1070,3 +1070,14 @@ hr {
   background-color: white;
   margin: 10% 37%;
 }
+/*照片*/
+.Post_Community_preIcon {
+  position: relative;
+  top: 20.75rem;
+  background-color: black;
+}
+.Post_Community_nextIcon {
+  position: relative;
+  left: 39.5rem;
+  bottom: 10.75rem;
+}

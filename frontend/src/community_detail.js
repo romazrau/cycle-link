@@ -351,15 +351,16 @@ function ClsCommuntityDetail() {
     const data2PhotoFlowCard = obj => {
         let result = "";
         let t=obj.fContent.substring(0,4);
+        console.log("obj:",obj.fImgPaths)
         result += `<a href="${obj.fId}"><div class="photo_flow_card">
-            <img class="photo_flow_card_img" src="${obj.fImgPaths}" alt="">
+            <img class="photo_flow_card_img" src="http://localhost:3050/${obj.fImgPaths}" alt="">
             <div class="photo_flow_card_wrapper">
             <div class="photo_flow_card_msg">${t}</div>
             </div>
             </div></a>`
         return result;
     }
-
+    
     //判斷哪條col最短
     const whoIsShortest = (array) => {
         let result;
@@ -371,18 +372,28 @@ function ClsCommuntityDetail() {
         // console.log(result.offsetHeight, result);
         return result;
     }
-  };
-
-  let isPhotoFlowLoaded = 0;
-  document
-    .querySelector("#Group_navlink_Picture")
-    .addEventListener("click", () => {
-      if (!isPhotoFlowLoaded) {
-        loadingPhotoFlow();
-
-        isPhotoFlowLoaded = 1;
+    const loadingPhotoFlow = async function loop() {
+      for (let i = 0; i < photoFlowData1.length; i++) {
+          await new Promise(resolve => {
+              whoIsShortest(myPhotoFlowCols).innerHTML += data2PhotoFlowCard(photoFlowData1[i]);
+              setTimeout(resolve, 10)
+          });
       }
-    });
+    }
+    let isPhotoFlowLoaded = 0;
+    document
+      .querySelector("#Group_navlink_Picture")
+      .addEventListener("click", () => {
+        if (!isPhotoFlowLoaded) {
+          loadingPhotoFlow();
+  
+          isPhotoFlowLoaded = 1;
+        }
+      });
+  
+  
+  };
+  
 
   //文章發文
 
