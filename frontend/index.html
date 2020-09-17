@@ -2363,8 +2363,9 @@
             </div>
             <div class="container">
                 <div class="bar-block">
-                    <a href="javascript:void(0)" class="bar-item button tablink activefocus "
-                        onclick="PersonalManeger.openClass(event, 'personal-maneger-class4')">
+                    <a href="javascript:void(0)" class="bar-item button tablink activefocus personal-maneger-navlink"
+                        data-cls='personal-maneger-class4'
+                       >
                         <div class="baritembox">My Profile</div>
                     </a>
                     <!-- <a href="javascript:void(0)" class="bar-item button tablink  testbtn"
@@ -2372,16 +2373,19 @@
                         <div class="baritembox">My
                             Shop</div>
                     </a> -->
-                    <a href="javascript:void(0)" class="bar-item button tablink testbtn activefocus"
-                        onclick="PersonalManeger.openClass(event, 'personal-maneger-class1')" ,>
+                    <a href="javascript:void(0)" class="bar-item button tablink testbtn activefocus personal-maneger-navlink"
+                    data-cls='personal-maneger-class1'
+                       >
                         <div class="baritembox">My Follow</div>
                     </a>
-                    <a href="javascript:void(0)" class="bar-item button tablink activefocus"
-                        onclick="PersonalManeger.openClass(event, 'personal-maneger-class2')">
+                    <a href="javascript:void(0)" class="bar-item button tablink activefocus personal-maneger-navlink"
+                    data-cls='personal-maneger-class2'
+                       >
                         <div class="baritembox">My Event</div>
                     </a>
-                    <a href="javascript:void(0)" class="bar-item button tablink activefocus"
-                        onclick="PersonalManeger.openClass(event, 'personal-maneger-class3')">
+                    <a href="javascript:void(0)" class="bar-item button tablink activefocus personal-maneger-navlink"
+                    data-cls='personal-maneger-class3'
+                        >
                         <div class="baritembox">My Community</div>
                     </a>
                 </div>
@@ -2555,7 +2559,7 @@
                         <div class="protitle">
                             <h3>所屬社團</h3>
                         </div>
-                        <div class="ItemContainer">
+                        <div id="ItemContainerCommunity" class="ItemContainer">
                             <div class="ItemBox ">
                                 <a href="">
                                     <div class="procontent_imgbox">
@@ -2584,7 +2588,7 @@
                         <div class="protitle">
                             <h3>管理社團</h3>
                         </div>
-                        <div class="ItemContainer">
+                        <div id="ItemContainerCommunityManager" class="ItemContainer">
                             <div class="ItemBox ">
                                 <a href="">
                                     <div class="procontent_imgbox">

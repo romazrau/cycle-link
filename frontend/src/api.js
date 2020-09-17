@@ -28,6 +28,7 @@ const serverURL = {
   communityManager: `${rootURL}/community/communityManager/`,
   communityMember: `${rootURL}/community/communityById_communityMember/`,
   communityMemberAccessRight: `${rootURL}/community/members/`,
+  communityList:`${rootURL}/community/communityByMemberId/`,
   creatCommunity: `${rootURL}/`,
   activeinsertseensql: `${rootURL}/active/activeinsertseensql/`,
   activeforyou: `${rootURL}/active/activeforyou/`,
