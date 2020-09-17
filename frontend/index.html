@@ -574,36 +574,38 @@
                     </div>
                     <div class="map_controllBar">
                         <div class="map_controlltitle">設定距離</div>
-                        <input type="range" value="0" min="0" max="20" id="map_Setdistance" /><br />
-                        附近<label for="" id="Activitydistance"></label>
-                        <span>公里的活動</span>
+                        <div class="map_controlltitle_div">
+                            <input type="range" value="0" min="0" max="20" id="map_Setdistance" />
+                            <p>附近<label for="" id="Activitydistance"></label>
+                                <span>公里的活動</span></p>
+                        </div>
                     </div>
 
-                    <div class="map_introductionBox">
+                    <!-- <div class="map_introductionBox">
 
                         <div class="map_controlltitle">簡介</div>
                         <a class="map_link" href="#activity/detail"><img class="map_imgbox" src="" alt=""></a>
                         <p id="map_activityintroduction"></p>
 
+                    </div> -->
+
+                    <div class="map_controllBar">
+                        <div class="map_controlltitle">選擇分類</div>
+                        <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type1"
+                                value="其他"><label for="type1">其他</label></div>
+                        <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type2"
+                                value="志工活動"><label for="type2">志工活動</label></div>
+                        <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type3"
+                                value="環境清潔"><label for="type3">環境清潔</label></div>
+                        <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type4"
+                                value="自然教育"><label for="type4">自然教育</label></div>
+                        <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type5"
+                                value="二手市集"><label for="type5">二手市集</label></div>
+                        <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type6"
+                                value="運動"><label for="type6">運動</label></div>
+
                     </div>
                 </div>
-                <div class="checkbox_container">
-
-                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type1" value="其他"><label
-                            for="type1">其他</label></div>
-                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type2" value="志工活動"><label
-                            for="type2">志工活動</label></div>
-                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type3" value="環境清潔"><label
-                            for="type3">環境清潔</label></div>
-                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type4" value="自然教育"><label
-                            for="type4">自然教育</label></div>
-                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type5" value="二手市集"><label
-                            for="type5">二手市集</label></div>
-                    <div class="map_ckeck"><input class="map_ckeckinput" type="checkbox" id="type6" value="運動"><label
-                            for="type6">運動</label></div>
-
-                </div>
-
 
 
 
@@ -847,18 +849,20 @@
                 <!-- 弹窗内容 -->
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    
+
                     <main>
                         <h2>請輸入資料</h2>
                         <form action="">
-                            
-                        <div class="login_input_item"><label for="">帳號 :</label><input type="text" name="fAccount"></div>
-                        <div class="login_input_item"><label for="">信箱 :</label><input type="text" name="fMail"></div>
-                        <input type="submit">
+
+                            <div class="login_input_item"><label for="">帳號 :</label><input type="text" name="fAccount">
+                            </div>
+                            <div class="login_input_item"><label for="">信箱 :</label><input type="text" name="fMail">
+                            </div>
+                            <input type="submit">
                         </form>
                     </main>
                 </div>
-        
+
             </div>
 
 
