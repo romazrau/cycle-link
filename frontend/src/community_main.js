@@ -203,6 +203,16 @@ ${ImgIsNullOrNot(x.PostImg)}
     </div>
 </div>`;
   };
+  const D = (x) => {
+    return `<div class="CM_recommend_item" onclick="location.hash='#community/detail/${x.CommunityId}'">
+    <div class="CM_recommend_item_img">
+        <img src="http://localhost:3050/${x.CommunityImgPath}" class="CM_recommend_item_img_img">
+    </div>
+    <div class="CM_recommend_item_info">
+        <p>${x.CommunityName}</p>
+    </div>
+</div>`;
+  };
 
   //社團首頁：社團卡片字串匯入點
   const CM_recommend = document.querySelector(".CM_recommend_container");
@@ -215,6 +225,12 @@ ${ImgIsNullOrNot(x.PostImg)}
     CM_recommend.innerHTML = "";
     o.map((e, index) => {
       CM_recommend.innerHTML += htmlCommunityCard(e);
+    });
+  };
+  const display_recommendCommunity_txt = (o) => {
+    CM_recommend.innerHTML = "";
+    o.map((e, index) => {
+      CM_recommend.innerHTML += htmlCommunityCardfortxt(e);
     });
   };
 
@@ -284,6 +300,81 @@ ${ImgIsNullOrNot(x.PostImg)}
     });
   };
 
+  function MultiImgFunction() {
+    let CM_timeline_body = document.querySelectorAll(".CM_timeline_body");
+    //處理超過2張照片
+    for (let i = 0; i < CM_timeline_body.length; i++) {
+      if (CM_timeline_body[i].getElementsByTagName("img").length > 1) {
+        let PostImgs = CM_timeline_body[i].querySelectorAll(
+          ".CM_timeline_body_img"
+        );
+        for (let j = 0; j < PostImgs.length; j++) {
+          if (j > 0) PostImgs[j].style.display = "none";
+        }
+      }
+    }
+    //下一張
+    var allNextIcon = document.querySelectorAll(".Post_nextIcon");
+    for (let i = 0; i < allNextIcon.length; i++) {
+      allNextIcon[i].addEventListener("click", function (e) {
+        e.preventDefault();
+        //this取a物件>再取父層>父層下所有div
+        // this.parentNode.getElementsByTagName('div')
+        let thisImgBox = this.parentNode.getElementsByTagName("div");
+        var position = 0;
+        for (let p = 0; p < thisImgBox.length; p++) {
+          let display = thisImgBox[p].style.display;
+          if (display != "none") {
+            position = p;
+          }
+        }
+        position++;
+
+        if (position > thisImgBox.length - 1) {
+          position = 0;
+        }
+
+        for (let j = 0; j < thisImgBox.length; j++) {
+          // console.log("j:",j);
+          if (position == j) {
+            thisImgBox[j].style.display = "block";
+          } else {
+            thisImgBox[j].style.display = "none";
+          }
+        }
+      });
+    }
+    //上一張
+    var allPreIcon = document.querySelectorAll(".Post_preIcon");
+    for (let i = 0; i < allPreIcon.length; i++) {
+      allPreIcon[i].addEventListener("click", function (e) {
+        e.preventDefault();
+        //this取a物件>再取父層>父層下所有div
+        // this.parentNode.getElementsByTagName('div')
+        let thisImgBox = this.parentNode.getElementsByTagName("div");
+        //判斷postion位置
+        var position = 0;
+        for (let p = 0; p < thisImgBox.length; p++) {
+          let display = thisImgBox[p].style.display;
+          if (display != "none") {
+            position = p;
+          }
+        }
+        position--;
+        if (position < 0) {
+          position = thisImgBox.length - 1;
+        }
+        for (let j = 0; j < thisImgBox.length; j++) {
+          if (position == j) {
+            thisImgBox[j].style.display = "block";
+          } else {
+            thisImgBox[j].style.display = "none";
+          }
+        }
+      });
+    }
+  }
+
   //文章：路由撈資料
   const getCommunityPost = async () => {
     try {
@@ -291,81 +382,10 @@ ${ImgIsNullOrNot(x.PostImg)}
       let response = await fetch(serverURL.articlepost);
       let result = await response.json();
       await display_postDetail(result.data);
-      // 這三小啊為何會有這個showReplyContainer();
+
       addClickEventToReply(result.data.length);
       addClickEventToLike(result.data.length);
-      const CM_timeline_body = document.querySelectorAll(".CM_timeline_body");
-      //處理超過2張照片
-      for (let i = 0; i < CM_timeline_body.length; i++) {
-        if (CM_timeline_body[i].getElementsByTagName("img").length > 1) {
-          let PostImgs = CM_timeline_body[i].querySelectorAll(
-            ".CM_timeline_body_img"
-          );
-          for (let j = 0; j < PostImgs.length; j++) {
-            if (j > 0) PostImgs[j].style.display = "none";
-          }
-        }
-      }
-      //下一張
-      var allNextIcon = document.querySelectorAll(".Post_nextIcon");
-      for (let i = 0; i < allNextIcon.length; i++) {
-        allNextIcon[i].addEventListener("click", function (e) {
-          e.preventDefault();
-          //this取a物件>再取父層>父層下所有div
-          // this.parentNode.getElementsByTagName('div')
-          let thisImgBox = this.parentNode.getElementsByTagName("div");
-          var position = 0;
-          for (let p = 0; p < thisImgBox.length; p++) {
-            let display = thisImgBox[p].style.display;
-            if (display != "none") {
-              position = p;
-            }
-          }
-          position++;
-
-          if (position > thisImgBox.length - 1) {
-            position = 0;
-          }
-
-          for (let j = 0; j < thisImgBox.length; j++) {
-            // console.log("j:",j);
-            if (position == j) {
-              thisImgBox[j].style.display = "block";
-            } else {
-              thisImgBox[j].style.display = "none";
-            }
-          }
-        });
-      }
-      //上一張
-      var allPreIcon = document.querySelectorAll(".Post_preIcon");
-      for (let i = 0; i < allPreIcon.length; i++) {
-        allPreIcon[i].addEventListener("click", function (e) {
-          e.preventDefault();
-          //this取a物件>再取父層>父層下所有div
-          // this.parentNode.getElementsByTagName('div')
-          let thisImgBox = this.parentNode.getElementsByTagName("div");
-          //判斷postion位置
-          var position = 0;
-          for (let p = 0; p < thisImgBox.length; p++) {
-            let display = thisImgBox[p].style.display;
-            if (display != "none") {
-              position = p;
-            }
-          }
-          position--;
-          if (position < 0) {
-            position = thisImgBox.length - 1;
-          }
-          for (let j = 0; j < thisImgBox.length; j++) {
-            if (position == j) {
-              thisImgBox[j].style.display = "block";
-            } else {
-              thisImgBox[j].style.display = "none";
-            }
-          }
-        });
-      }
+      MultiImgFunction();
       //尋找有按過讚的文章使其愛心變色
       MemberLikePost();
     } catch (err) {
@@ -427,30 +447,47 @@ ${ImgIsNullOrNot(x.PostImg)}
     }
   }
 
-  //搜尋Icon點擊觸動function
+  //*-----------社團首頁搜尋Icon：加入點擊事件，跑出搜尋結果
   document
     .getElementById("CM_search_click")
     .addEventListener("click", function () {
       let input_text = document.querySelector(".CM_banner_searchbar_text")
         .value;
-      checksearchtext(input_text);
+      txtsearchCommunityCard(input_text);
+      txtsearchCommunityArticle(input_text);
     });
 
-  //搜尋撈資料
-  const checksearchtext = async (x) => {
+  //*-----------社團首頁文字搜尋：社團小卡(從路由撈資料，執行display)
+  const txtsearchCommunityCard = async (x) => {
     try {
-      let response = await fetch(serverURL.articlesearch + x, {
+      let response = await fetch(serverURL.txtsearchcommunitycard + x, {
         method: "GET",
         headers: {
-          // http headers
-          "Content-Type": "application/json", // 請求的資料類型
+          "Content-Type": "application/json",
         },
-        // 以下跟身分認證有關，後端要使用session 要帶這幾項
+        cache: "no-cache",
+        credentials: "include",
+      });
+      let result = await response.json();
+      display_recommendCommunity(result.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  //*-----------社團首頁文字搜尋：該社團文章顯示(從路由撈資料，執行display)
+  const txtsearchCommunityArticle = async (x) => {
+    try {
+      let response = await fetch(serverURL.txtsearchcommunityarticle + x, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
         cache: "no-cache",
         credentials: "include",
       });
       let result = await response.json();
       display_postDetail(result.data);
+      MultiImgFunction();
     } catch (err) {
       console.log(err);
     }

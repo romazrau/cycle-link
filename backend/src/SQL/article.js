@@ -251,7 +251,27 @@ const explore4community = async () => {
   }
 };
 
-const searcharticle = async (x) => {
+//社團首頁：文字搜尋社團，顯示該社團
+const txtSearchCommunityCard = async (x) => {
+  try {
+    await sql.connect(config);
+    let str = `select c.fName as communityName, c.fImgPath as communityImg
+    from Community.tCommunity as c
+    where c.fName like '%${x}%'
+    `;
+    const result = await sql.query(str);
+    return {
+      result: 1,
+      msg: "請求成功",
+      data: result.recordset,
+    };
+  } catch (err) {
+    return { result: 0, msg: "SQL錯誤", data: err };
+  }
+};
+
+//社團首頁：文字搜尋社團，顯示該社團文章
+const txtSearchCommunityArticle = async (x) => {
   try {
     await sql.connect(config);
     let str = `WITH PostMember AS(select p.fMemberId, p.fCommunityId, p.fPostTime, p.fImgPaths as PostImg, p.fId as PostId, p.fContent as PostContent, m.fName as PostMemberName, m.fId as MemberId, m.fPhotoPath as MemberImgPath
@@ -284,8 +304,7 @@ const searcharticle = async (x) => {
       
       select *
       from PostDetail as c
-      where c.CommunityName like '%${x}%'
-      or c.PostContent like '%${x}%'`;
+      where c.CommunityName like '%${x}%'`;
 
     const result = await sql.query(str);
     return {
@@ -316,9 +335,10 @@ module.exports = {
   articlelist,
   articleInCommunity,
   replylist,
-  searcharticle,
   addarticle,
   ShowUserInfo,
   the4hottiest,
   explore4community,
+  txtSearchCommunityCard,
+  txtSearchCommunityArticle,
 };
