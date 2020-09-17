@@ -125,7 +125,7 @@ function ClsActivity() {
     function getsearchdata(arr) {
         search_result_arr = arr;
         console.log(search_result_arr);
-        likelistfromsql();
+        
     }
 
 
@@ -223,7 +223,7 @@ function ClsActivity() {
             display_search_go(result_arr);
             //將搜尋結果另外存一個陣列給日期使用
             datearr = result_arr;
-            likelistfromsql();
+            // likelistfromsql();
         })
     }
     // ----------------------------------------------------------------
@@ -236,10 +236,6 @@ function ClsActivity() {
         btndatedetial.classList.remove("search_hidden");
 
     });
-
-
-
-
     // 抓時間
     $(function () {
 
@@ -601,7 +597,7 @@ function ClsActivity() {
             let result = await response.json();
 
             display_active(result.data);
-
+            likelistfromsql();
             // getactid();
         } catch (err) {
             console.log(err);
@@ -627,6 +623,7 @@ function ClsActivity() {
             let result = await response.json();
 
             display_active_foryou(result.data);
+
             getactid();
             likelistfromsql();
         } catch (err) {
@@ -886,15 +883,14 @@ function ClsActivity() {
                 credentials: "include",
             });
             let result = await response.json();
-
-
-            //
+            
+            // console.log("result:",result);
             let heart_arr = document.querySelectorAll(".active_card_heart ")
-
-            for (let i = 0; i < heart_arr.length - 3; i++) {
+            
+            for (let i = 0; i < heart_arr.length; i++) {
                 for (let j = 0; j < result.length; j++) {
                     if (heart_arr[i].parentNode.parentNode.parentNode.parentNode.href.split("il/")[1] == result[j].fId) {
-                        console.log("有愛心:", heart_arr[i])
+                       
                         heart_arr[i].classList.add("actlikecolor");
                     }
                 }
