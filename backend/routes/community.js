@@ -26,12 +26,18 @@ router.get('/', async function (req, res, next) {
 });
 
 
-
+// todo usethis
 // 查詢社團by社員ID
-router.get('/communityByMemberId/:id', async function (req, res, next) {
+router.get('/communityByMemberId/', async function (req, res, next) {
     try {
-        let result = await Sql.searchByMemberId(req.params.id);
+
+        //TODO 有進來
+        console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++!!");
+        //token Id
+        console.log(req.user.fId);
+        let result = await Sql.searchByMemberId(req.user.fId);
         res.json(result);
+        console.log(result);
 
     } catch (err) {
         res.send({ result: 0, msg: "路由錯誤", data: err })
