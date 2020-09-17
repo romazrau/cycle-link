@@ -224,6 +224,10 @@
   margin-bottom: 0.6rem;
 }
 
+.activity_detail_right_info p {
+  margin: 0
+}
+
 .activity_detail_right_map {
   height: 12.8rem;
 }
@@ -503,7 +507,6 @@
   left: 35vw;
   top: 30vh;
   width: 28rem;
-  height: 13rem;
   padding: 1rem;
   border-radius: 1rem;
   background-color: white;
@@ -537,6 +540,14 @@
   display: flex;
   justify-content: space-around;
   margin: 1rem 0;
+}
+
+.ac_share_info_icon div {
+  text-align: center;
+}
+
+.ac_share_info_icon p {
+  color: grey;
 }
 
 .ac_share_info a {
@@ -573,4 +584,8 @@
 
 .ac_share_info_link button:hover {
   cursor: pointer;
+  /* border: 1px solid var(--lightblue-color); */
+  background-color: var(--lightblue-color);
+  color: white;
+  transition: all 0.5s;
 }
