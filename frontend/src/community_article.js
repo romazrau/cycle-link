@@ -137,7 +137,12 @@ function ClsCommunityArticle() {
         let imgArr = x.split(",,");
         // console.log(imgArr);
         var a = Article_multiImgArr(imgArr);
-        return `<a class="Post_preIcon" href=""><</a>${a}<a class="Post_nextIcon"href="">></a>`;
+        return `<a class="Post_preIcon" href="">
+                  <i class="fas fa-chevron-left fa-2x" style="color:white"></i>
+                </a>${a}
+                <a class="Post_nextIcon" id="Post_nextIcon2"href="">
+                  <i class="fas fa-chevron-right fa-2x" style="color:white"></i>
+                </a>`;
       } else {
         return `
         <div class="community_article_body_img">

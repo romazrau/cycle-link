@@ -23,7 +23,7 @@ function ClsCommunityMain() {
         let imgArr = x.split(",,");
         // console.log(imgArr);
         var a = multiImgArr(imgArr);
-        return `<a class="Post_preIcon" href=""><</a>${a}<a class="Post_nextIcon"href="">></a>`;
+        return `<a class="Post_preIcon" href=""><i class="fas fa-chevron-left fa-2x" style="color:white"></i></a>${a}<a class="Post_nextIcon"href=""><i class="fas fa-chevron-right fa-2x" style="color:white"></i></a>`;
       } else {
         return `
         <div class="CM_timeline_body_img">
@@ -616,6 +616,7 @@ ${ImgIsNullOrNot(x.PostImg)}
       target.innerHTML = parseInt(target.innerHTML) + 1;
     }
   }
+
   function likesMinusCount(e) {
     let target = e.parentNode.getElementsByTagName("span")[0];
     if (target.innerHTML == "1") {
