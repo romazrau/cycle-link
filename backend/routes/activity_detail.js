@@ -32,7 +32,7 @@ router.get('/:id', async function (req, res, next) {
         let TagById = await Sql.TagById(req.params.id);
         let JoinById = await Sql.JoinById(req.params.id);
         let JoinCount = await Sql.JoinCount(req.params.id);
-        let likechecked = await Sql.likechecked( req.params.id,fMemberId);
+        let likechecked = await Sql.likechecked(req.params.id, fMemberId);
         // res.json(result);
         res.json({
             result: 1,
@@ -95,7 +95,9 @@ router.post('/', async function (req, res, next) {
             fActAttestId,
             fActLocation,
             fLabelName,
-            fCommunityId
+            fCommunityId,
+            fCoordinateX,
+            fCoordinateY
         } = req.body
 
         let fImgPath = "img/" + req.files[0].filename;
@@ -121,7 +123,7 @@ router.post('/', async function (req, res, next) {
 
         let fMemberId = req.user.fId;
         // console.log(fMemberId)
-        let result = await Sql.createAct(fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation, fLabelName, fCommunityId);
+        let result = await Sql.createAct(fActName, fCreatDate, fActivityDate, fActivityEndDate, fMemberId, fIntroduction, fImgPath, fActLabelId, fMaxLimit, fMinLimit, fActAttestId, fActTypeId, fActLocation, fLabelName, fCommunityId, fCoordinateX, fCoordinateY);
         console.log(result);
 
         if (!result.result) {
