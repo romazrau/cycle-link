@@ -95,15 +95,13 @@ router.get('/:id', async function (req, res, next) {
         // console.log(memberOfCommunity.data);
         //----把社員id拿出放進一個array
         let MemberIdArray = [];
-        if(memberOfCommunity.result){
+        if (memberOfCommunity.result) {
             memberOfCommunity.data.forEach(element => {
                 MemberIdArray.push(element.fMemberId)
             });
         }
-        
 
         //----比對會員id是否在array內 if true : 判斷是否為管理員 else 會員 
-
         let isResponse = 0;
         if (MemberIdArray.includes(memberId)) {
 
@@ -119,7 +117,8 @@ router.get('/:id', async function (req, res, next) {
             if (idarr.includes(memberId)) {
                 user = "管理員";
 
-            } else {
+            } else if (pendingMem.result) {
+
                 pendingMem.data.forEach(
                     (o) => {
 
@@ -129,35 +128,40 @@ router.get('/:id', async function (req, res, next) {
                             isResponse = 1;
                             return;
                         }
-
-
                     }
                 )
             }
-        }
-        else if(pendingMem.result) {
-            pendingMem.data.forEach(
-                (o) => {
-                    // console.log("++++++++++++++++++++++++++++++++++++++++++++++++!!");
-                    // console.log(o);
-                    if (o.fMemberId == req.user.fId) {
-                        result.data[0].user = "待審核會員";
-                        res.json(result);
-                        isResponse = 1;
-                        return;
-                    }
-                    // console.log("++++++++++++++++++++++++++++++++++++++++++++++++!!");
-                    // console.log(o);
-                }
-            )
-            // user = "非社員";
-        }
 
-        if(isResponse) return;
+            if (!result.data[0].user) {
+                result.data[0].user = "社員"
+                res.json(result);
+                isResponse = 1;
+                return;
+            }
+
+
+        }
+        // else if(pendingMem.result) {
+        //     pendingMem.data.forEach(
+        //         (o) => {
+        //             // console.log("++++++++++++++++++++++++++++++++++++++++++++++++!!");
+        //             // console.log(o);
+        //             if (o.fMemberId == req.user.fId) {
+        //                 result.data[0].user = "待審核會員";
+        //                 res.json(result);
+        //                 isResponse = 1;
+        //                 return;
+        //             }
+        //             // console.log("++++++++++++++++++++++++++++++++++++++++++++++++!!");
+        //             // console.log(o);
+        //         }
+        //     )
+        //     // user = "非社員";
+        // }
+
+        if (isResponse) return;
         //----把user放進result.data裡用res.json()回傳
         result.data[0].user = "非社員";
-        // console.log('++++++++++++++++++');
-        // console.log(result.data[0]);
         res.json(result);
         return;
     } catch (err) {
@@ -426,7 +430,7 @@ router.put('/', async function (req, res, next) {
 });
 
 
-// todo 加入社團_要求 by使用者id,社團id （ fAccessright = 1 審核中 ）
+// 加入社團_要求 by使用者id,社團id （ fAccessright = 1 審核中 ）
 router.post('/members', async function (req, res, next) {
     try {
         // console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++99999999999999999999!!!!!!!");
@@ -499,6 +503,38 @@ router.delete('/members', async function (req, res, next) {
         res.send({ result: 0, msg: "路由錯誤", data: err });
     }
 });
+
+// todo 退出社團
+router.delete('/communityById_communityMember', async function (req, res, next) {
+    try {
+
+        let fId = req.user.fId;
+        // es6 物件解構
+        let {fCommunityId } = req.body
+        console.log("88888888888888888888888888888888888888888888");
+        console.log(req.body);
+
+        //token
+        if (!req.user) {
+            res.json({ result: 0, msg: "token 遺失" });
+            return;
+        }
+        if (!fId) {
+            res.json({ result: 0, msg: "沒有fId" });
+            return;
+        }
+
+
+        let resultDeletMemberOfCommunity = await Sql.deletMemberOfCommunity( fId + "", fCommunityId);
+        // console.log((resultDeletMemberOfCommunity));
+        res.json(resultDeletMemberOfCommunity);
+    } catch (err) {
+        res.send({ result: 0, msg: "路由錯誤", data: err });
+    }
+});
+
+
+
 
 // 社團成員身分修改 : SQL查詢tMemberList是否為管理員by社團id,社員id 
 router.put('/members', async function (req, res, next) {

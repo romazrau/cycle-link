@@ -1075,26 +1075,63 @@ function ClsCommuntityDetail() {
         } catch (err) {
             console.log(err);
         }
-
-
-
     });
 
+    // todo 退出社團 continue 無法Click 有bug
+    console.log(document.querySelector("#leaveCommunityBtn"));
+    document.querySelector("#leaveCommunityBtn").addEventListener("click", async () => {
+        try{
+        
+        confirm("確定要退出社團?");
+        let fCommunityId = this.cumDetailId;    
+        
+        let responseDeleteMem = await fetch (
+            serverURL.communityMember,
+            {
+                method: "Delete",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: localStorage.getItem("Cycle link token"),
+                },
+                credentials: "include",
+                body: JSON.stringify({fCommunityId: fCommunityId}),
+                cache: "no-cache",
+            }
+        );
+        let resultDeleteMem = await responseDeleteMem.json();
+
+        // console.log(resultDeleteMem);
+        if (!resultDeleteMem.result) {
+            console.log(resultDeleteMem);
+            return;
+        }
 
 
+        alert("退出社團成功!");
+        location.reload();
+
+    }catch (err) {
+        console.log(err);
+    }
+
+    })
 
     // 介紹分頁-- 管理員頭像的文字樣板
     const data2manageImg = (o) => {
         // console.log(o.fPhotoPath);
-        return `<div class="activity_detail_info_img_circle">
+        return `
+        <div class="FlexContainer Group_FlexJustifyContentSB groupManagerMarginTop">
+         <div class="GroupRightInfo FlexContainer GroupRightInfoText">
+         <div class="activity_detail_info_img_circle">
          <div class="activity_detail_info_img_div">
              <img src="${serverURL.root}/${o.fPhotoPath}" class="activity_detail_info_img">
          </div>
          </div>
-         <div class="GroupRightInfo FlexContainer GroupRightInfoText">
          <a id="CommunityManager" href="#" class="GroupHolderName">${o.fName}</a>
-         <a class="GroupEnglishFont GroupRightInfoM" href="#">
-         <img src="./img/icon_chat.svg" width="20"></a>
+         </div>
+         <a class="FlexContainer GroupEnglishFont GroupRightInfoM" href="#">
+         <img src="./img/icon_chat.svg" width="20">
+         </a>
          </div>`;
     };
 
