@@ -75,7 +75,7 @@ const PersonalPageOfData = async (fMemberId) => {
         FROM Activity.tJoinList AS JL
         LEFT JOIN Activity.tActivity AS A
         ON fActivityId=A.fId
-        WHERE fJoinTypeId=0 AND A.fMemberId=${fMemberId}
+        WHERE fJoinTypeId=0 AND JL.fMemberId=${fMemberId}
         order by fJoinTime)
         
         SELECT JLA.*,m.fName 
@@ -88,7 +88,7 @@ const PersonalPageOfData = async (fMemberId) => {
         FROM Activity.tJoinList AS JL
         LEFT JOIN Activity.tActivity AS A
         ON fActivityId=A.fId
-        WHERE fJoinTypeId=6 AND A.fMemberId=${fMemberId}
+        WHERE fJoinTypeId=6 AND JL.fMemberId=${fMemberId}
         order by fJoinTime)
 
         SELECT JLA.*,m.fName 
@@ -100,7 +100,7 @@ const PersonalPageOfData = async (fMemberId) => {
         FROM Activity.tJoinList AS JL
         LEFT JOIN Activity.tActivity AS A
         ON fActivityId=A.fId
-        WHERE fJoinTypeId=2 AND fActivityDate<GETDATE() AND A.fMemberId=${fMemberId}
+        WHERE fJoinTypeId=2 AND fActivityDate<GETDATE() AND JL.fMemberId=${fMemberId}
         order by fJoinTime) 
 
         SELECT JLA.*,m.fName 
@@ -112,7 +112,7 @@ const PersonalPageOfData = async (fMemberId) => {
         FROM Activity.tJoinList AS JL
         LEFT JOIN Activity.tActivity AS A
         ON fActivityId=A.fId
-        WHERE fJoinTypeId=2 AND fActivityDate>GETDATE() AND A.fMemberId=${fMemberId}
+        WHERE fJoinTypeId=2 AND fActivityDate>GETDATE() AND JL.fMemberId=${fMemberId}
         order by fJoinTime) 
 
         SELECT JLA.*,m.fName 
