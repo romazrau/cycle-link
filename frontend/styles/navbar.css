@@ -4,6 +4,8 @@
   background-color: rgba(255, 255, 255, 0.8);
   width: 100%;
   max-width: 100%;
+  box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.712);
+
 
   position: fixed;
   top: 0;
@@ -61,6 +63,12 @@
   align-items: center;
 }
 
+.navebar_add_icons{
+  display: flex;
+  justify-items: flex-end;
+  align-items: center;
+  width: 2rem;
+}
 
 .login_bullhorn {
   margin-left: 1rem;
