@@ -103,6 +103,75 @@ router.get("/txtsearcharticle/:txtsearch", async function (req, res, next) {
   }
 });
 
+//編輯文章：step1. 顯示指定postId文章
+router.get("/edit/display/:postid", async function (req, res, next) {
+  try {
+    let DisplayArticleResult = await Sql.displayArticleForEdit(
+      req.params.postid
+    );
+    res.json(DisplayArticleResult);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+//編輯文章：step2. 更新指定postId文章
+// router.post("/edit", async function (req, res, next) {
+//   try {
+//     let fPostId = req.body.fPostId;
+//     let fPostTime = req.body.fPostTime;
+//     let fContent = req.body.fContent;
+//     let fImgPaths = "";
+//     for (let i = 0; i < req.files.length; i++) {
+//       fImgPaths += "img/" + req.files[i].filename;
+//       fImgPaths += ",,";
+//     }
+
+//     let result = await Sql.updateEdited(
+//       fContent,
+//       fImgPaths,
+//       fPostTime,
+//       fPostId
+//     );
+//     res.json(result);
+//   } catch (err) {
+//     res.send(err);
+//   }
+// });
+
+//* ----------------------- 編輯活動 ----------------------- //
+router.put('/edit', async function (req, res, next) {
+  try {
+      let {
+        fPostId,
+        fPostTime,
+        fContent,
+      } = req.body
+
+      let fImgPaths = "";
+      for (let i = 0; i < req.files.length; i++) {
+        fImgPaths += "img/" + req.files[i].filename;
+        fImgPaths += ",,";
+      }
+      
+      let result = await Sql.updateEdited(
+        fContent,
+        fImgPaths,
+        fPostTime,
+        fPostId);
+
+      res.json({
+          result: 1,
+          msg: "編輯成功",
+      });
+
+  } catch (err) {
+      console.log(err);
+      res.send(err);
+  }
+});
+
+
 //****搜尋文章（這個之後的路徑不能用/xxx，不然會被蓋掉）
 router.get("/:searchinput", async function (req, res, next) {
   try {
@@ -125,14 +194,9 @@ router.post("/add", async function (req, res, next) {
       fImgPaths += "img/" + req.files[i].filename;
       fImgPaths += ",,";
     }
-    // let fImgPaths = "img/" + req.files[0].filename;
+
     console.log("-----------------------------------");
-    // console.log(req.files);
-    // console.log(fImgPaths);
-    // let {
-    //   fContent,
-    //   f
-    // }
+
     let result = await Sql.addarticle(
       fPostMemberId,
       fCommunityId,
