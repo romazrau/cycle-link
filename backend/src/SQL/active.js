@@ -368,7 +368,7 @@ const likeListSQL = async (fJoinTypeId, fMemberId) => {
 
         return {
             result: 1,
-            msg: "刪除成功",
+            msg: " 查詢成功",
             data: result.recordset
         };
     } catch (err) {

@@ -60,7 +60,7 @@ const GetHomePageWeather = async () => {
 
     console.group("----------------")
     //顯示天氣
-    console.log(result)
+    // console.log(result)
     HomePageWeather(result);
 
     console.groupEnd("----------------")
@@ -94,7 +94,7 @@ function HomePageWeather(data) {
       return neededElements;
     }, {}
   );
-  console.log("weatherElements:", weatherElements);
+  // console.log("weatherElements:", weatherElements);
 
   var day_list = ['日', '一', '二', '三', '四', '五', '六'];
   let nowtime = new Date();
@@ -110,7 +110,7 @@ function HomePageWeather(data) {
   WeatherTitle2.innerHTML += hour + "時<br/>"
   WeatherTitle2.innerHTML += weatherElements.Wx.time[0].elementValue[0].value;
   let weitherid = weatherElements.Wx.time[0].elementValue[1].value;
-  console.log(weitherid);
+  // console.log(weitherid);
   if(weitherid == '01'|| weitherid == '02' || weitherid == '03')
   {
     WeatherTitleimg.src = "/img/sun.svg" ;
@@ -240,17 +240,17 @@ const home_picturesItem = (o) => {
 }
 //todo
 const display_home_weather = (o,t) =>{
-  console.log("sdasdasdasda",o);
-  console.log(o.time)
+  // console.log("sdasdasdasda",o);
+  // console.log(o.time)
   o.time.map((e,index) =>{ 
-    console.log(e.elementValue[1].value,index)
+    // console.log(e.elementValue[1].value,index)
     if(index%2 == 0) 
     document.querySelector(".Wcontainer").innerHTML+= home_weather(e.elementValue[1].value);
     }
     
   ),
   t.time.map((e,index) =>{
-    console.log(e.elementValue[0].value);
+    // console.log(e.elementValue[0].value);
     // if(index%2 == 0) 
     document.querySelector(".WTcontainer").innerHTML+= home_weather_t(e.elementValue[0].value);
   })
