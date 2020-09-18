@@ -611,7 +611,6 @@ function ClsCommuntityDetail() {
             console.log(err);
         }
     };
-
     const renderPageManager = async (id) => {
         try {
             let response = await fetch(serverURL.communityManager + id, {
@@ -651,6 +650,8 @@ function ClsCommuntityDetail() {
             });
 
             let result = await response.json();
+            console.log("+++++++++++++++++++++++++++++++++++++++");
+            console.log(result.data);
 
             //----------------------------------成員---------------------------------------
 
@@ -670,6 +671,13 @@ function ClsCommuntityDetail() {
                     }
                 });
             }
+
+            //如果按了filter
+            // document.querySelector("#memberFilter").addEventListener("click",()=>{
+            //     result.data.sort(function (a, b) {
+            //         return a.Year < b.Year ? 1 : -1;
+            //        });
+            // })
 
             //----------------------------------介紹---------------------------------------
             let MemberContainer = document.querySelector("#CommunityMember");
@@ -1250,7 +1258,7 @@ function ClsCommuntityDetail() {
         o.map(
             (e, index) => {
                 
-                //todo 
+          
                 {
                     actcommunity.innerHTML += htmlcommunitydetial(e);
                 }
@@ -1261,6 +1269,9 @@ function ClsCommuntityDetail() {
 
     }
      
+  
+
+
 
     // 介紹分頁-- 管理員頭像的文字樣板
     const data2manageImg = (o) => {
@@ -1384,6 +1395,8 @@ function ClsCommuntityDetail() {
        
     </div>`
     }
+
+
 
     // this 指的是 ClsCommuntityDetail
     this.renderMainCommunityInfo = renderPage;
