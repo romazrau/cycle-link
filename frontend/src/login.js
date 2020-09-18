@@ -119,11 +119,11 @@ function ClsLogin() {
         document.querySelector(".Login_checkviewcontainer").style.display = "block";
         document.querySelector(".Login_backgroundview").style.display = "block";
     })
-    document.querySelector(".Login_CloseLink").addEventListener("click", (e) => {
-        e.preventDefault();
-        document.querySelector(".Login_checkviewcontainer").style.display = "none";
-        document.querySelector(".Login_backgroundview").style.display = "none";
-    })
+    // document.querySelector(".Login_CloseLink").addEventListener("click", (e) => {
+    //     e.preventDefault();
+    //     document.querySelector(".Login_checkviewcontainer").style.display = "none";
+    //     document.querySelector(".Login_backgroundview").style.display = "none";
+    // })
 
 
     /*忘記密碼彈框 */

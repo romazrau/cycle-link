@@ -317,6 +317,49 @@ const txtSearchCommunityArticle = async (x) => {
   }
 };
 
+//編輯文章：1. 顯示
+const displayArticleForEdit = async (x) => {
+  try {
+    await sql.connect(config);
+    let str = `WITH EditPostMember AS(select p.fMemberId, p.fCommunityId, p.fPostTime, p.fImgPaths as PostImg, p.fId as PostId, p.fContent as PostContent, m.fName as PostMemberName, m.fId as MemberId, m.fPhotoPath as MemberImgPath
+      from Community.tPost as p
+      left join Member.tMember as m
+      on p.fMemberId=m.fId)
+      select *
+      from EditPostMember
+      where PostId=${x}`;
+
+    const result = await sql.query(str);
+    return {
+      result: 1,
+      msg: "請求成功",
+      data: result.recordset,
+    };
+  } catch (err) {
+    return { result: 0, msg: "SQL錯誤", data: err };
+  }
+};
+
+//編輯文章：2. 更新資料
+const updateEdited = async (fContent, fImgPaths, fPostTime, fPostId) => {
+  try {
+    await sql.connect(config);
+    let str = `UPDATE Community.tPost
+    SET fContent='${fContent}',fImgPaths='${fImgPaths}', fPostTime='${fPostTime}'
+    WHERE fId = ${fPostId}`;
+
+    console.log(str);
+    const result = await sql.query(str);
+    return {
+      result: 1,
+      msg: "請求成功",
+      data: result.recordset,
+    };
+  } catch (err) {
+    return { result: 0, msg: "SQL錯誤", data: err };
+  }
+}
+
 // const deletearticle = async(fId) => {
 //   try{
 
@@ -341,4 +384,6 @@ module.exports = {
   explore4community,
   txtSearchCommunityCard,
   txtSearchCommunityArticle,
+  displayArticleForEdit,
+  updateEdited
 };
