@@ -245,6 +245,7 @@ hr {
   padding: 15px;
   border-radius: 5px;
   cursor: pointer;
+  position: relative;
 }
 
 .statusBtn:hover {
@@ -343,6 +344,39 @@ hr {
   /* z-index: 100; */
 }
 
+.dropdown-triangleLeave {
+  margin-top: 1rem;
+  pointer-events: none;
+  width: 0px;
+  height: 0px;
+  border-width: 15px;
+  right: 18px;
+  top: 20px;
+  border-style: solid;
+  border-color: transparent transparent var(--grey-color) transparent;
+  position: absolute;
+  z-index: 100;
+
+}
+
+.dropdownLeave {
+  margin-top: 1rem;
+  position: absolute;
+  /* border: 1px solid black; */
+  /* box-shadow: 0px 0px 20px 0.00001px #908888; */
+  padding: 1rem 2rem;
+  /* width: 200px; */
+  /* height: 100px; */
+  top: 50px;
+  right: -30px;
+  background-color: var(--grey-color);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+
+  /* z-index: 100; */
+}
+
 .dropdown-triangle {
   pointer-events: none;
   width: 0px;
@@ -355,6 +389,16 @@ hr {
   position: absolute;
   z-index: 100;
 }
+
+
+
+
+
+
+
+
+
+
 
 .dropdownR {
   position: absolute;
@@ -605,6 +649,10 @@ hr {
 
 .GroupHolderName {
   margin-right: 0.5rem;
+  margin-left: 2rem;
+}
+.groupManagerMarginTop{
+  margin-top: 1rem;
 }
 
 .card {
@@ -692,6 +740,9 @@ hr {
   margin-right: 0.5rem;
 }
 
+.MemberTemplateFlexDirection{
+  flex-direction: column;
+}
 /******************* BOTTOM ******************/
 
 .body-community-detail-discussion {

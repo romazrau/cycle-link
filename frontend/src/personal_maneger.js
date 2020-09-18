@@ -349,6 +349,109 @@ function ClsPersonalManeger() {
 
     }
 
+    const renderActivitylike = async () => {
+        try {
+            let response = await fetch(serverURL.personalPages,
+                {
+                    method: "GET", // http request method
+                    //token
+                    headers: {
+                        Authorization: localStorage.getItem("Cycle link token"),
+                    },
+                    cache: "no-cache",
+                    credentials: "include",
+                }
+            );
+            let result = await response.json();
+            document.querySelector("#likeContainer").innerHTML="";
+            for(let i=0;i<result.data.likes.length;i++)
+            {
+                document.querySelector("#likeContainer").innerHTML+=ActivityCardPersonal(result.data.likes[i]);
+            }
+        } catch (ex) {
+            alert("連線錯誤");
+            console.log(ex);
+            return;
+        }
+    }
+    /**舉辦and 參加 */
+    const renderActivityattend = async () => {
+        try {
+            let response = await fetch(serverURL.personalPages,
+                {
+                    method: "GET", // http request method
+                    //token
+                    headers: {
+                        Authorization: localStorage.getItem("Cycle link token"),
+                    },
+                    cache: "no-cache",
+                    credentials: "include",
+                }
+            );
+            let result = await response.json();
+            document.querySelector("#attendContainer").innerHTML="";
+            for(let i=0;i<result.data.creates.length;i++)
+            {
+                document.querySelector("#attendContainer").innerHTML+=ActivityCardPersonal(result.data.creates[i]);
+            }
+            for(let i=0;i<result.data.attendedlist.length;i++)
+            {
+                document.querySelector("#attendContainer").innerHTML+=ActivityCardPersonal(result.data.attendedlist[i]);
+            }
+          
+        } catch (ex) {
+            alert("連線錯誤");
+            console.log(ex);
+            return;
+        }
+    }
+    const renderActivityattended = async () => {
+        try {
+            let response = await fetch(serverURL.personalPages,
+                {
+                    method: "GET", // http request method
+                    //token
+                    headers: {
+                        Authorization: localStorage.getItem("Cycle link token"),
+                    },
+                    cache: "no-cache",
+                    credentials: "include",
+                }
+            );
+            let result = await response.json();
+            console.log("Expiredattended:",result.data.Expiredattended);
+            document.querySelector("#ExpiredattendedContainer").innerHTML="";
+            for(let i=0;i<result.data.Expiredattended.length;i++)
+            {
+                document.querySelector("#ExpiredattendedContainer").innerHTML+=ActivityCardPersonal(result.data.Expiredattended[i]);
+            }
+            
+
+        } catch (ex) {
+            alert("連線錯誤");
+            console.log(ex);
+            return;
+        }
+    }
+    
+
+
+    const ActivityCardPersonal=(o)=>{
+       
+        console.log("o:",o)
+          return  `<div class="ItemBox ">
+                        <a href="#activity/detail/${o.fActivityId}">
+                            <div class="procontent_imgbox">
+                                <img src="http://localhost:3050/${o.fImgPath}" class="event_img" alt="">
+                            </div>
+                            <div class="procontent_menu">
+                                <p>${o.fActivityDate}</p>
+                                <h3>${o.fActName}</h3>
+                                <img src="" class="icon" alt=""><span>發起人</span><span>${o.fName}</span>
+                            </div>
+                        </a>
+                 </div>`
+    }           
 
 
 
@@ -357,6 +460,10 @@ function ClsPersonalManeger() {
     this.render = () => {
         renderPersonalDetail();
         renderCommunities();
+        renderActivitylike();
+        renderActivityattend();
+        renderActivityattended();
+
     }
 }
 const PersonalManeger = new ClsPersonalManeger();

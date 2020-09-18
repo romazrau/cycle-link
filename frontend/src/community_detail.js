@@ -1077,10 +1077,44 @@ function ClsCommuntityDetail() {
         } catch (err) {
             console.log(err);
         }
-
-
-
     });
+
+    // todo 退出社團 continue 無法Click 有bug
+    console.log(document.querySelector("#leaveCommunityBtn"));
+    document.querySelector("#leaveCommunityBtn").addEventListener("click", async () => {
+        try{
+        
+        confirm("確定要退出社團?");
+        let fCommunityId = this.cumDetailId;    
+        
+        let responseDeleteMem = await fetch (
+            serverURL.communityMember,
+            {
+                method: "Delete",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: localStorage.getItem("Cycle link token"),
+                },
+                credentials: "include",
+                body: JSON.stringify({fCommunityId: fCommunityId}),
+                cache: "no-cache",
+            }
+        );
+        let resultDeleteMem = await responseDeleteMem.json();
+
+        // console.log(resultDeleteMem);
+        if (!resultDeleteMem.result) {
+            console.log(resultDeleteMem);
+            return;
+        }
+        alert("退出社團成功!");
+        location.reload();
+
+    }catch (err) {
+        console.log(err);
+    }
+
+    })
 
     const activeAwait = async () => {
         try {
@@ -1125,26 +1159,30 @@ function ClsCommuntityDetail() {
         // console.groupEnd("----------------");
 
     }
+     
 
     // 介紹分頁-- 管理員頭像的文字樣板
     const data2manageImg = (o) => {
-        console.log(o);
-        return `<div class="activity_detail_info_img_circle">
+        // console.log(o.fPhotoPath);
+        return `
+        <div class="FlexContainer Group_FlexJustifyContentSB groupManagerMarginTop">
+         <div class="GroupRightInfo FlexContainer GroupRightInfoText">
+         <div class="activity_detail_info_img_circle">
          <div class="activity_detail_info_img_div">
              <img src="${serverURL.root}/${o.fPhotoPath}" class="activity_detail_info_img">
          </div>
          </div>
-         <div class="GroupRightInfo FlexContainer GroupRightInfoText">
          <a id="CommunityManager" href="#" class="GroupHolderName">${o.fName}</a>
-         <a class="GroupEnglishFont GroupRightInfoM" >
-         <img data-user-id=${o.fId} class="lets-talk"  src="./img/icon_chat.svg" width="20"></a>
+         </div>
+         <a class="FlexContainer GroupEnglishFont GroupRightInfoM" href="#">
+         <img data-user-id=${o.fId} class="lets-talk" src="./img/icon_chat.svg" width="20">
+         </a>
          </div>`;
     };
 
     // 介紹分頁-- 會員頭像的文字樣板
     // 照片路徑存取後端資料夾
     const data2memImg = (o) => {
-        // console.log(o);
         return ` <div id="GroupMemberPicLessThan4" class="activity_detail_info_img_circle GroupMemberPic GroupMemberPicLessThan4">
         <div class="activity_detail_info_img_div">
             <img class="activity_detail_info_img GoupRightInfoPhoto" src="${serverURL.root}/${o.fPhotoPath}"
@@ -1158,7 +1196,7 @@ function ClsCommuntityDetail() {
         return ` <div
         class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
         <div class="FlexContainer">
-            <a href="#" class="DivForImg">
+            <a href="#personal-page/${o.fMemberId}" class="DivForImg">
                 <div class="activity_detail_info_img_circle">
                     <div class="activity_detail_info_img_div">
                         <img src=${serverURL.root}/${o.fPhotoPath}
@@ -1167,14 +1205,14 @@ function ClsCommuntityDetail() {
                 </div>
             </a>
             <div class="GroupMemberCardInfo">
-                <a href="#">${o.fName}</a>
+                <a href="#personal-page/${o.fMemberId}">${o.fName}</a>
                 <div class="FlexContainer">
                     <div>${o.fJoinDate}</div>
                     <div>&nbsp;&nbsp;&nbsp;&nbsp;加入此社團</div>
                 </div>
             </div>
         </div>
-        <a >
+        <a href="#">
             <img data-user-id=${o.fMemberId} class="lets-talk" class="Size20IconMarginRight" src="./img/icon_chat.svg"
                 width="20">
         </a>

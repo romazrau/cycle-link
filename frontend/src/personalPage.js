@@ -26,6 +26,7 @@ function ClsPersonalPage() {
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
             let data = result.data;
+            console.log("data",data);
             display_information(data);
 
 
@@ -40,9 +41,11 @@ function ClsPersonalPage() {
     }
     function display_information(data) {
         personalpage_information.innerHTML = htmlPerCard(data[0]);
-        personal_community.innerHTML = "";
+        personal_community.innerHTML = ` <span class="personal_file_title">加入的社團</span>
+        <span class="personal_file_middle">:</span>
+        <span class="personal_file_text"></span>`;
         data.map(function (e, index) {
-
+            
             personal_community.innerHTML += htmlPerCommunityCard(e);
         })
         personal_imgbox.innerHTML = htmlPerImgCard(data[0])
@@ -188,9 +191,9 @@ function ClsPersonalPage() {
                     <ul>
                         
                         <li>
-                            <span class="personal_file_title">上次登入時間</span>
+                            <span class="personal_file_title">海龜幣</span>
                             <span class="personal_file_middle">:</span>
-                            <span class="personal_file_text">${o.fLastTime}</span>
+                            <span class="personal_file_text">${o.fCoins}</span>
                         </li>
                         <li>
                             <span class="personal_file_title">所在縣市</span>
@@ -202,11 +205,7 @@ function ClsPersonalPage() {
                             <span class="personal_file_middle">:</span>
                             <span class="personal_file_text">${o.fAccountType}</span>
                         </li>
-                        <li>
-                            <span class="personal_file_title">加入的社團</span>
-                            <span class="personal_file_middle">:</span>
-                            <span class="personal_file_text"></span>
-                        </li>
+
                     </ul>
                 </div>
                 `;
@@ -219,6 +218,7 @@ function ClsPersonalPage() {
 
 
     const htmlPerCommunityCard = o => {
+        
 
         return `<div class="personal_detail_Societies_img_circle">
                 <a href="#community/detail/${o.fCommunityId}">

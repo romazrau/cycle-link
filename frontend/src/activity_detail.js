@@ -29,19 +29,6 @@ function ClsActivityDetail() {
         });
         map.addLayer(osm);
     }
-    // console.log(actMap());
-    // function creatActMapId() {
-    //     var map = L.map('createActMapId')
-    //     var marker = L.marker([25.0360703, 121.4977054]).addTo(map);
-    //     map.setView(new L.LatLng(25.0360703, 121.4977054), 16);
-    //     var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    //     var osm = new L.TileLayer(osmUrl, {
-    //         minZoom: 8,
-    //         maxZoom: 20
-    //     });
-    //     map.addLayer(osm);
-    // }
-    // creatActMapId()
 
     // * -------------- 固定右側資訊 -------------- //
     // function boxMove2(y) {
@@ -376,15 +363,13 @@ function ClsActivityDetail() {
         location.reload();
     })
 
-    // TODO: 創建完後資料表要清空 
-
 
     // * -------------------------------- 創建活動 以個人或社團 -------------------------------- //
     let actInitiatorType = document.querySelector("#actCreaterType")
     actInitiatorType.addEventListener('change', async (e) => {
         if (actInitiatorType.value == 1) {
             actCType();
-        } else {
+        } else if (actInitiatorType.value == 0) {
             actCreaterTypeSpan.setAttribute("style", "display:none")
         }
     })
@@ -429,7 +414,6 @@ function ClsActivityDetail() {
 
     // TODO: -------------------------------- textarea 會爆版 -------------------------------- //
 
-    // TODO: -------------------------------- 創建活動 地圖座標 -------------------------------- //
     // TODO: -------------------------------- 刪除活動 -------------------------------- //
 
 
@@ -448,7 +432,7 @@ function ClsActivityDetail() {
         actMapEdit(o.fCoordinateX, o.fCoordinateY)
     }
 
-    // TODO: -------------------------------- 編輯活動 ( 缺標籤寫入及地圖座標? ) -------------------------------- //
+    // * -------------------------------- 編輯活動 -------------------------------- //
     let InitiatorEditBTN = document.querySelector("#InitiatorEdit")
     InitiatorEditBTN.addEventListener("click", async (actDetailId) => {
 
@@ -519,12 +503,30 @@ function ClsActivityDetail() {
         createActEditDone.addEventListener("click", async (e) => {
             e.preventDefault();
             alert("編輯成功");
-            // location.href = "#activity";
-            // location.reload();
+            location.href = "#activity";
+            location.reload();
+
+            let fd = document.querySelector("#ac_date_from").value;
+            let fdt = document.querySelector("#ac_date_from_time").value;
+            let ed = document.querySelector("#ac_date_to").value;
+            let edt = document.querySelector("#ac_date_to_time").value;
+            let actFromDate = fd + " " + fdt;
+            let actEndDate = ed + " " + edt;
+            // console.log(localStorage.getItem("Cycle link token"));
+            // let nowtime = new Date();
+            // let date = nowtime.toLocaleDateString();
+
+            // let form = document.querySelector("#creatAct_form");
+            // let formData = new FormData(form);
+            // formData.append('fCreatDate', date);
+
+
 
             let form = document.querySelector("#creatAct_form");
             let formData = new FormData(form);
             formData.append('fId', fActivityId);
+            formData.append('fActivityDate', actFromDate);
+            formData.append('fActivityEndDate', actEndDate);
             // console.log("fActivityId === " + fActivityId)
             try {
                 let response = await fetch(serverURL.actDetail + "Edit", {
@@ -768,6 +770,10 @@ function ClsActivityDetail() {
         document.querySelector("#ac_share_info_link").setAttribute("value", `http://127.0.0.1:5500/index.html${link}`)
     }
 
+    document.querySelector("#ac_share_info_link_btn").addEventListener("click", () => {
+        alert("複製成功")
+    })
+
     // * -------------------------------- 加入最愛活動 -------------------------------- //
     //預設跳轉取消
     activitylikelink.addEventListener("click", function (e) {
@@ -866,3 +872,7 @@ const actDetailChangeHash = () => {
 
 window.addEventListener("hashchange", actDetailChangeHash);
 window.addEventListener("load", actDetailChangeHash);
+
+
+// * 複製文字
+new ClipboardJS("[data-clipboard-target]");

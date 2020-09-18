@@ -166,14 +166,14 @@
                             <p></p>
 
                         </div>
-                        <div   class="weather_img_css" style="width:100px; height:100px">
-                            <img id="weather_img"  src="" alt="">
+                        <div class="weather_img_css" style="width:100px; height:100px">
+                            <img id="weather_img" src="" alt="">
                         </div>
                         <div class="Wcontainer home_weather_dflex">
-                            
+
                         </div>
                         <div class="WTcontainer ">
-                            
+
                         </div>
                     </div>
                     <div class="home_recent_activities">
@@ -571,8 +571,8 @@
                 <div id="mapid"></div>
                 <div class="map_controllList">
                     <div class="map_controllBar">
-                        <div class="map_controlltitle"><a href="">請選擇城市</a></div>
-                        <span id="map_cityspan">待選</span>
+                        <div class="map_controlltitle"><a href="" class="map_cityspan">請選擇城市</a></div>
+                        <!-- <span id="map_cityspan">待選</span> -->
                         <div class="map_citymenu">
                             <a href="#" class="map_city">台北</a>
                             <a href="#" class="map_city">台中</a>
@@ -818,7 +818,8 @@
                         <div class="Login_CheckContainer">
                             <a href="">
                                 <div class="Login_CheckBox" id="Login_CheckBox"></div>
-                            </a><span>我不是機器人</span>
+                            </a>
+                            <p>我不是機器人</p>
                         </div>
                         <a href="#" id="forgot-password" class="Forgotpassword">Forgot your password?</a>
 
@@ -880,24 +881,26 @@
 
 
             <div class="Login_checkviewcontainer">
-                <a href="" class="Login_CloseLink">X</a>
+                <!-- <a href="" class="Login_CloseLink"><img src="./img/times-solid.svg" width="20" alt=""></a> -->
                 <div class="Login_checkviewtitle">
-                    <h2>請勾選出下面圖片含有路牌</h2>
+                    <h3>請勾選出下面圖片含有路牌</h3>
                 </div>
-                <div class="Login_imgLine">
-                    <div class="Login_checkimgbox"><img src="" alt=""></div>
-                    <div class="Login_checkimgbox"><img src="" alt=""></div>
-                    <div class="Login_checkimgbox"><img src="" alt=""></div>
-                </div>
-                <div class="Login_imgLine">
-                    <div class="Login_checkimgbox"><img src="" alt=""></div>
-                    <div class="Login_checkimgbox"><img src="" alt=""></div>
-                    <div class="Login_checkimgbox"><img src="" alt=""></div>
-                </div>
-                <div class="Login_imgLine">
-                    <div class="Login_checkimgbox"><img src="" alt=""></div>
-                    <div class="Login_checkimgbox"><img src="" alt=""></div>
-                    <div class="Login_checkimgbox"><img src="" alt=""></div>
+                <div class="Login_checkviewdiv">
+                    <div class="Login_imgLine">
+                        <div class="Login_checkimgbox"><img src="" alt=""></div>
+                        <div class="Login_checkimgbox"><img src="" alt=""></div>
+                        <div class="Login_checkimgbox"><img src="" alt=""></div>
+                    </div>
+                    <div class="Login_imgLine">
+                        <div class="Login_checkimgbox"><img src="" alt=""></div>
+                        <div class="Login_checkimgbox"><img src="" alt=""></div>
+                        <div class="Login_checkimgbox"><img src="" alt=""></div>
+                    </div>
+                    <div class="Login_imgLine">
+                        <div class="Login_checkimgbox"><img src="" alt=""></div>
+                        <div class="Login_checkimgbox"><img src="" alt=""></div>
+                        <div class="Login_checkimgbox"><img src="" alt=""></div>
+                    </div>
                 </div>
                 <div class="Login_checkfooter"><input type="button" value="驗證" class="Login_answerBtn"></div>
             </div>
@@ -1169,19 +1172,35 @@
                     </div>
                     <div id="ac_share_bg"></div>
                     <div id="ac_share_bg_div">
-                        <button id="ac_share_closeBtn">
-                            <img src="./img/times-solid.svg" width="20">
-                        </button>
+                        <div class="ac_share_title">
+                            <p>分享</p>
+                            <button id="ac_share_closeBtn">
+                                <img src="./img/times-solid.svg" width="20">
+                            </button>
+                        </div>
                         <div class="ac_share_info">
                             <div class="ac_share_info_icon">
-                                <a href="#"><i class="fab fa-facebook fa-3x"></i></a>
-                                <a href="#"><i class="fab fa-instagram fa-3x"></i></a>
-                                <a href="#"><i class="fab fa-twitter fa-3x"></i></a>
-                                <a href="#"><i class="fab fa-youtube fa-3x"></i></a>
+                                <div>
+                                    <a href="#"><i class="fab fa-facebook fa-3x"></i></a>
+                                    <p>Facebook</p>
+                                </div>
+                                <div>
+                                    <a href="#"><i class="fab fa-instagram fa-3x"></i></a>
+                                    <p>Instagram</p>
+                                </div>
+                                <div>
+                                    <a href="#"><i class="fab fa-twitter fa-3x"></i></a>
+                                    <p>Twitter</p>
+                                </div>
+                                <div>
+                                    <a href="#"><i class="fab fa-youtube fa-3x"></i></a>
+                                    <p>Youtube</p>
+                                </div>
                             </div>
                             <div class="ac_share_info_link">
-                                <input type="text" />
-                                <button>Copy</button>
+                                <input type="text" id="ac_share_info_link" />
+                                <button data-clipboard-target="#ac_share_info_link"
+                                    id="ac_share_info_link_btn">Copy</button>
                             </div>
                         </div>
                     </div>
@@ -1377,7 +1396,7 @@
                             <div class="FlexContainer LinkBar Group_FlexJustifyContentSB">
                                 <div class="GroupLink GroupLinkFocus" value="GroupDetailPage_home">介 紹
                                 </div>
-                                <div class="GroupLink" id="Group_navlink_Post"value="GroupDetailPage_Discussion">文
+                                <div class="GroupLink" id="Group_navlink_Post" value="GroupDetailPage_Discussion">文
                                     章</div>
                                 <div class="GroupLink" id="Group_navlink_Picture" value="GroupDetailPage_Picture">照 片
                                 </div>
@@ -1394,22 +1413,23 @@
                         <div class="GroupDiveBtn FlexContainer">
                             <div id="statusBtn" class=" FlexContainer statusBtn">
                                 <img src="./img/icon_setting.svg" width="25px">
-                                <div id="ApplyBtn" href="#community/detail/" class="GroupDiveBtnText">&nbsp;&nbsp;加入社團</div>
+                                <div id="ApplyBtn" href="#community/detail/" class="GroupDiveBtnText">&nbsp;&nbsp;加入社團
+                                </div>
                                 <div id="ManagerBtn" class="GroupDiveBtnText hide">&nbsp&nbsp管理員</div>
                                 <div id="PendingBtn" class="GroupDiveBtnText hide">&nbsp&nbsp審核中</div>
-    
+
                                 <div id="MemberBtn" class="GroupNavBtn GroupDiveBtnText hide">我是社員</div>
                                 <!-- <img src="./img/icon_triangle_downside.svg" width="25px"> -->
-                                <div class="dropdown-triangle hide"></div>
-                                <div class="dropdown hide">
-                                    <div>退出社團</div>
+                                <div class="dropdown-triangleLeave"></div>
+                                <div class="dropdownLeave">
+                                    <div id="leaveCommunityBtn">退出社團</div>
                                 </div>
                                 <!-- <div class="dropdown">
                                         <div>編輯社團</div>
                                     </div> -->
-    
+
                             </div>
-    
+
                             <!-- <div class="GroupNavBtn FlexContainer">
                                 <img src="./img/icon_user.svg" width="25px">
                                 <div class="GroupDiveBtnText">退出社團</div>
@@ -1542,7 +1562,7 @@
                                         <div class="dropdownDR js_editCommunity">編輯管理員名單</div>
                                     </div>
                                 </div>
-                                <div id="MemberTemplate" class="FlexContainer GroupRight">
+                                <div id="MemberTemplate" class="FlexContainer GroupRight MemberTemplateFlexDirection">
                                     <div class="activity_detail_info_img_circle">
                                         <div class="activity_detail_info_img_div">
                                             <img src="./img/id2.jpg" class="activity_detail_info_img">
@@ -2177,7 +2197,7 @@
                         <div class="protitle">
                             <h3>追蹤活動</h3>
                         </div>
-                        <div class="ItemContainer">
+                        <div class="ItemContainer" id="likeContainer">
                             <div class="ItemBox ">
                                 <a href="">
                                     <div class="procontent_imgbox">
@@ -2230,9 +2250,9 @@
                     </div>
                     <div id="personal-maneger-class2" class=" class">
                         <div class="protitle">
-                            <h3>我所舉辦的活動</h3>
+                            <h3>正在參加活動</h3>
                         </div>
-                        <div class="ItemContainer">
+                        <div class="ItemContainer" id="attendContainer">
                             <div class="ItemBox ">
                                 <a href="">
                                     <div class="procontent_imgbox">
@@ -2251,38 +2271,9 @@
                             </div>
                         </div>
                         <div class="protitle">
-                            <h3>候補中的活動</h3>
-                        </div>
-                        <div class="ItemContainer">
-                            <div class="ItemBox ">
-                                <a href="">
-                                    <div class="procontent_imgbox">
-                                        <img src="./img/Activity2.jpg" class="event_img" alt="">
-                                    </div>
-                                    <div class="procontent_menu">
-                                        <p>Sunday, July 30,2020,10:30</p>
-                                        <h3>潛水撿垃圾，愛海洋！</h3>
-                                        <img src="" class="icon" alt=""><span>發起人</span><span>999</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="ItemBox ">
-                                <a href="">
-                                    <div class="procontent_imgbox">
-                                        <img src="./img/Activity2.jpg" class="event_img" alt="">
-                                    </div>
-                                    <div class="procontent_menu">
-                                        <p>Sunday, July 30,2020,10:30</p>
-                                        <h3>潛水撿垃圾，愛海洋！</h3>
-                                        <img src="" class="icon" alt=""><span>發起人</span><span>999</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="protitle">
                             <h3>曾經參與的活動</h3>
                         </div>
-                        <div class="ItemContainer">
+                        <div class="ItemContainer" id="ExpiredattendedContainer">
                             <div class="ItemBox ">
                                 <a href="">
                                     <div class="procontent_imgbox">
@@ -2517,7 +2508,7 @@
                                         <div id="createActMapId" style="display: none;"></div>
                                         <div id="actMapEdit" style="display: none;"></div>
                                         <div onclick="geoFindMe()" class="actShowLocation">Show my location</div>
-                                        <div id="out"></div>
+                                        <div id="out" style="display: none;"></div>
                                     </div>
                                 </div>
                                 <div class="create_active_basicInfo_div">
@@ -3105,7 +3096,8 @@
     <!-- *外部引用 -->
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/8bc7da0888.js" crossorigin="anonymous"></script>
-
+    <!-- Copy -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
     <!--  -->
     <!-- ----------- CDN ----------- -->
     <!-- <script src="https://kit.fontawesome.com/8bc7da0888.js" crossorigin="anonymous"></script> -->

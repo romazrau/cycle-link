@@ -500,12 +500,12 @@ values (${fActivityId},${fActivityLabelId})`
 };
 
 //* ----------------------- 編輯活動 ----------------------- //
-const EditAct = async (fId, fActName, fIntroduction, fMinLimit, fMaxLimit, fCommunityId) => {
+const EditAct = async (fId, fActName, fIntroduction, fMinLimit, fMaxLimit, fCommunityId, fActivityDate, fActivityEndDate) => {
     try {
         await sql.connect(config)
         let sqlStr = `
             update Activity.tActivity
-            set fActName = '${fActName}', fIntroduction = '${fIntroduction}',fMinLimit=${fMinLimit},fMaxLimit=${fMaxLimit},fCommunityId=${fCommunityId}
+            set fActName = '${fActName}', fIntroduction = '${fIntroduction}',fMinLimit=${fMinLimit},fMaxLimit=${fMaxLimit},fCommunityId=${fCommunityId},fActivityDate='${fActivityDate}',fActivityEndDate='${fActivityEndDate}'
             where fId=${fId}`
         console.log(sqlStr);
         const result = await sql.query(sqlStr)
