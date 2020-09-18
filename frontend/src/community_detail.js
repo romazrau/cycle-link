@@ -469,7 +469,7 @@ function ClsCommuntityDetail() {
 
     // ----------------------------------------------Ajax----------------------------------------------------//
 
-    // todo開放或私密 用社團16做測試
+    // 開放或私密 用社團16(私密)做測試
     // 開啟特定社團頁面(社團id)
     // 顯示狀態按鈕顯示管理button
     // 是否為管理員,顯示編輯社團
@@ -477,11 +477,6 @@ function ClsCommuntityDetail() {
     // 判斷是否私密,私密的話進一步判斷否為會員
     // --會員的話都顯示
     // 不是的話顯示私密HTML
-
-
-
-
-
     const renderPage = async (id) => {
         try {
             let response = await fetch(serverURL.community + id, {
@@ -592,7 +587,7 @@ function ClsCommuntityDetail() {
           
             if (result.data[0].fSatusName == "私密") {
 
-                // todo continue 判斷是否為會員
+                // 判斷是否為會員
                 if(user=="非社員"){
                 document.querySelector("#CommunityMember").classList.add("hide");
                 document.querySelector("#DiscussionLeft").classList.add("hide");
@@ -602,12 +597,20 @@ function ClsCommuntityDetail() {
                 document.querySelector(".BottomRightSearchList").classList.add("hide")
                 }
             }
+            else{
+                document.querySelectorAll(".CommunityMemberNone").forEach((o)=>{ o.classList.add("hide");})
+                document.querySelector("#CommunityMember").classList.remove("hide");
+                document.querySelector("#DiscussionLeft").classList.remove("hide");
+                document.querySelector(".DiscussionRight").classList.remove("hide");
+                document.querySelector(".photo_flow_container").classList.remove("hide");
+                document.querySelector(".BottomRightSearchList").classList.remove("hide")
+            }
+        
 
         } catch (err) {
             console.log(err);
         }
     };
-
     const renderPageManager = async (id) => {
         try {
             let response = await fetch(serverURL.communityManager + id, {
@@ -647,6 +650,8 @@ function ClsCommuntityDetail() {
             });
 
             let result = await response.json();
+            console.log("+++++++++++++++++++++++++++++++++++++++");
+            console.log(result.data);
 
             //----------------------------------成員---------------------------------------
 
@@ -666,6 +671,13 @@ function ClsCommuntityDetail() {
                     }
                 });
             }
+
+            //如果按了filter
+            // document.querySelector("#memberFilter").addEventListener("click",()=>{
+            //     result.data.sort(function (a, b) {
+            //         return a.Year < b.Year ? 1 : -1;
+            //        });
+            // })
 
             //----------------------------------介紹---------------------------------------
             let MemberContainer = document.querySelector("#CommunityMember");
@@ -1165,12 +1177,19 @@ function ClsCommuntityDetail() {
         }
     });
 
-    // todo 退出社團 continue 無法Click 有bug
+    // 退出社團 continue 無法Click 有bug
+    // 按待審核與我是社員按鈕顯示退出社團
+    document.querySelectorAll(".js_forLeave_btn").forEach((o)=>{
+        o.addEventListener("click",()=>{
+            document.querySelector(".js_leaveDropDown").classList.toggle("hide");
+        })
+    })
+    // 按下按鈕退出社團
     console.log(document.querySelector("#leaveCommunityBtn"));
-    document.querySelector("#leaveCommunityBtn").addEventListener("click", async () => {
+    document.querySelector(".js_leaveDropDown").addEventListener("click", async () => {
         try {
 
-            confirm("確定要退出社團?");
+            if(confirm("確定要退出社團?")==true){
             let fCommunityId = this.cumDetailId;
 
             let responseDeleteMem = await fetch(
@@ -1197,6 +1216,8 @@ function ClsCommuntityDetail() {
 
             alert("退出社團成功!");
             location.reload();
+        }
+        document.querySelector(".js_leaveDropDown").classList.add("hide");
 
         } catch (err) {
             console.log(err);
@@ -1237,7 +1258,7 @@ function ClsCommuntityDetail() {
         o.map(
             (e, index) => {
                 
-                //todo 
+          
                 {
                     actcommunity.innerHTML += htmlcommunitydetial(e);
                 }
@@ -1248,6 +1269,9 @@ function ClsCommuntityDetail() {
 
     }
      
+  
+
+
 
     // 介紹分頁-- 管理員頭像的文字樣板
     const data2manageImg = (o) => {
@@ -1373,6 +1397,8 @@ function ClsCommuntityDetail() {
        
     </div>`
     }
+
+
 
     // this 指的是 ClsCommuntityDetail
     this.renderMainCommunityInfo = renderPage;

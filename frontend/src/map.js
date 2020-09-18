@@ -226,6 +226,7 @@ function ClsMap() {
   for (let i = 0; i < map_cities.length; i++) {
     map_cities[i].addEventListener("click", (e) => {
       e.preventDefault();
+      document.querySelector(".map_citymenu").style.display = "none";
       //清空類型搜索
       clearcheckbox();
 
@@ -281,7 +282,11 @@ function ClsMap() {
     }).addTo(map);
 
     let val = document.getElementById("map_Setdistance").value;
-    document.getElementById("Activitydistance").innerHTML = val;
+    if (val == 0) {
+      document.getElementById("Activitydistance").innerHTML = "距離不能為 0 !!!"
+    } else {
+      document.getElementById("Activitydistance").innerHTML = "附近 " + val + " 公里的活動";
+    }
 
     map_NearbyMarkShow(val, ActivityList);
   }
@@ -302,7 +307,7 @@ function ClsMap() {
 
       L.marker([item.fCoordinateX, item.fCoordinateY], {
         icon: ActivityIcon
-      }).addTo(map).bindPopup(item.fActName).addEventListener("click", function (event) {
+      }).addTo(map).bindPopup(MapMessageCardContent(item)).addEventListener("click", function (event) {
         var marker = event.target;
         var latlng = marker.getLatLng();
         map_setInformation(latlng.lat, latlng.lng);
@@ -469,7 +474,7 @@ function ClsMap() {
 
 
   }
-  const MapMessageCardContent=(o)=>{
+  const MapMessageCardContent = (o) => {
     return `<a href='#activity/detail/${o.fId}'><img class="mapInfoImg" 
     src='http://localhost:3050/${o.fImgPath}'></a><p class="mapInfoTitle">${o.fActName}</p>`
   }
@@ -487,7 +492,7 @@ function ClsMap() {
     }
   }
 
- 
+
 
   //設定markingicon
   const ActivityIcon = L.icon({

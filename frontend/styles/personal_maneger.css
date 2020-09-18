@@ -113,7 +113,14 @@
     float: right;
 }
 
+.procontent_menu p {
+    color: grey;
+}
 
+.procontent_menu span {
+    color: grey;
+    margin-right: 1rem;
+}
 
 
 
