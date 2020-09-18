@@ -383,9 +383,11 @@ function ClsPersonalManeger() {
             let result = await response.json();
             document.querySelector("#attendContainer").innerHTML = "";
             for (let i = 0; i < result.data.creates.length; i++) {
+                console.log("創建囉", result.data.creates[i]);
                 document.querySelector("#attendContainer").innerHTML += ActivityCardPersonal(result.data.creates[i]);
             }
             for (let i = 0; i < result.data.attendedlist.length; i++) {
+                console.log("參加囉", result.data.attendedlist[i]);
                 document.querySelector("#attendContainer").innerHTML += ActivityCardPersonal(result.data.attendedlist[i]);
             }
 
@@ -395,6 +397,7 @@ function ClsPersonalManeger() {
             return;
         }
     }
+
     const renderActivityattended = async () => {
         try {
             let response = await fetch(serverURL.personalPages, {

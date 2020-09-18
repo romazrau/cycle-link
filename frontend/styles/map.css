@@ -51,9 +51,11 @@
     width: 100vw;
     height: 91.5vh;
 }
+
 .map_citymenu::-webkit-scrollbar {
     display: none;
-  }
+}
+
 .map_controllList {
     position: fixed;
     width: 16vw;
@@ -83,7 +85,7 @@
 }
 
 .map_controlltitle_div {
-    padding: 1rem 0;
+    padding: 1rem;
 }
 
 

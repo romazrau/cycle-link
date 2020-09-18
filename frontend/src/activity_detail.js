@@ -307,7 +307,7 @@ function ClsActivityDetail() {
             location.href = "#activity"
             document.querySelector("#act_tag_main").innerHTML = `#${tag}`;
             ActivityIndex.display_active(result.data.tagSearch)
-            location.reload();
+            // location.reload();
         } catch (err) {
             console.log(err);
             // 錯誤處理

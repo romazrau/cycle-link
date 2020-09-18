@@ -944,7 +944,7 @@ function ClsActivity() {
 
         activity_main.style.display = 'flex';
 
-        searchtext.value = "";
+        // searchtext.value = "";
         activity_option.value = ""
     }
 }
