@@ -29,11 +29,26 @@ function ClsActivity() {
     var activity_main = document.querySelector(".activity_main");
     var activity_option = document.getElementById("activity_option");
     var searchtext = document.getElementById("search_txt");
+    let searchAnsContainer = document.querySelector("#activesearchresult");
+
 
     activity_search_go.addEventListener('click', function () {
         var typeId = activity_option.value;
         var searchtxt = searchtext.value;
-        activity_card_ALL.style.display = 'none';
+
+        if (!searchtxt) {
+            activity_card_ALL.classList.remove("hide");
+            searchAnsContainer.classList.add("hide");
+            search_container.classList.add("search_hidden");
+
+            activity_main.style.display = 'flex';
+
+            return;
+        }
+
+        activity_card_ALL.classList.add("hide");
+        searchAnsContainer.classList.remove("hide");
+
         activity_main.style.display = 'block';
         activeSearchGoAwait(typeId, searchtxt);
         //點擊go後 顯示進階搜尋
@@ -125,7 +140,7 @@ function ClsActivity() {
     function getsearchdata(arr) {
         search_result_arr = arr;
         console.log(search_result_arr);
-        
+
     }
 
 
@@ -479,7 +494,8 @@ function ClsActivity() {
         }
 
     }
-    
+
+
     // //為您推薦樣板
     // const htmlActCard2 = (o) => {
     //     return ` <a  href="#activity/detail/${o.fId}" class="activecard2">
@@ -547,9 +563,8 @@ function ClsActivity() {
     }
 
 
-    const ActSeen = document.getElementById("activity_event_history");
-    const actDetailSeen = document.getElementById("activity_detail_see");
-    const actcommunity = document.getElementById("actcommunity");
+    const ActSeen = document.getElementById("activity_event_history")
+    const actDetailSeen = document.getElementById("activity_detail_see")
 
     const display_active_seen = (o) => {
         ActSeen.innerHTML = "";
@@ -557,7 +572,6 @@ function ClsActivity() {
         o.map((e, index) => {
             ActSeen.innerHTML += htmlActCardseen(e);
             actDetailSeen.innerHTML += htmlActCardseen(e);
-            
         })
     }
 
@@ -572,7 +586,7 @@ function ClsActivity() {
         )
 
     }
-//todo
+
     const display_search_go = (o) => {
         ActSearchresult.innerHTML = "";
         o.map((e, index) => {
@@ -581,7 +595,6 @@ function ClsActivity() {
         })
     }
 
-    
     const activeAwait = async () => {
         try {
             // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
@@ -885,14 +898,14 @@ function ClsActivity() {
                 credentials: "include",
             });
             let result = await response.json();
-            
+
             // console.log("result:",result);
             let heart_arr = document.querySelectorAll(".active_card_heart ")
-            
+
             for (let i = 0; i < heart_arr.length; i++) {
                 for (let j = 0; j < result.length; j++) {
                     if (heart_arr[i].parentNode.parentNode.parentNode.parentNode.href.split("il/")[1] == result[j].fId) {
-                       
+
                         heart_arr[i].classList.add("actlikecolor");
                     }
                 }
@@ -924,9 +937,19 @@ function ClsActivity() {
         activeseenAwait()
     };
     this.display_active = display_active;
+    this.reRender = () => {
+        activity_card_ALL.classList.remove("hide");
+        searchAnsContainer.classList.add("hide");
+        search_container.classList.add("search_hidden");
+
+        activity_main.style.display = 'flex';
+
+        searchtext.value = "";
+        activity_option.value = ""
+    }
 }
 
-const ActivityIndex = new ClsActivity();
+let ActivityIndex;
 
 //* 利用 hash , 如下
 
@@ -934,7 +957,9 @@ const ActivityIndex = new ClsActivity();
 
 const activityChangeHash = () => {
     if (location.hash === "#activity") {
-        ActivityIndex.render();
+        // ActivityIndex.render();
+        ActivityIndex = new ClsActivity();
+        ActivityIndex.reRender();
     }
 }
 
