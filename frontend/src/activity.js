@@ -479,8 +479,7 @@ function ClsActivity() {
         }
 
     }
-
-
+    
     // //為您推薦樣板
     // const htmlActCard2 = (o) => {
     //     return ` <a  href="#activity/detail/${o.fId}" class="activecard2">
@@ -548,8 +547,9 @@ function ClsActivity() {
     }
 
 
-    const ActSeen = document.getElementById("activity_event_history")
-    const actDetailSeen = document.getElementById("activity_detail_see")
+    const ActSeen = document.getElementById("activity_event_history");
+    const actDetailSeen = document.getElementById("activity_detail_see");
+    const actcommunity = document.getElementById("actcommunity");
 
     const display_active_seen = (o) => {
         ActSeen.innerHTML = "";
@@ -557,6 +557,7 @@ function ClsActivity() {
         o.map((e, index) => {
             ActSeen.innerHTML += htmlActCardseen(e);
             actDetailSeen.innerHTML += htmlActCardseen(e);
+            
         })
     }
 
@@ -571,7 +572,7 @@ function ClsActivity() {
         )
 
     }
-
+//todo
     const display_search_go = (o) => {
         ActSearchresult.innerHTML = "";
         o.map((e, index) => {
@@ -580,6 +581,7 @@ function ClsActivity() {
         })
     }
 
+    
     const activeAwait = async () => {
         try {
             // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
