@@ -82,11 +82,22 @@ const PersonalPageOfData = async (fMemberId) => {
         LEFT JOIN Member.tMember as m
         ON JLA.fMemberId=M.fId
             `
+        let Expiredattendedlist = `WITH JLA as(SELECT TOP(6) JL.fActivityId,A.fActName,A.fActivityDate,fImgPath,A.fMemberId
+        FROM Activity.tJoinList AS JL
+        LEFT JOIN Activity.tActivity AS A
+        ON fActivityId=A.fId
+        WHERE fJoinTypeId=2 AND fActivityDate<GETDATE() AND JL.fMemberId=${fMemberId}) 
+
+        SELECT JLA.*,m.fName 
+        from JLA
+        LEFT JOIN Member.tMember as m
+        ON JLA.fMemberId=M.fId
+            `
         let attendedlist = `WITH JLA as(SELECT TOP(6) JL.fActivityId,A.fActName,A.fActivityDate,fImgPath,A.fMemberId
         FROM Activity.tJoinList AS JL
         LEFT JOIN Activity.tActivity AS A
         ON fActivityId=A.fId
-        WHERE fJoinTypeId=5 AND JL.fMemberId=${fMemberId})
+        WHERE fJoinTypeId=2 AND fActivityDate>GETDATE() AND JL.fMemberId=${fMemberId}) 
 
         SELECT JLA.*,m.fName 
         from JLA
@@ -94,19 +105,29 @@ const PersonalPageOfData = async (fMemberId) => {
         ON JLA.fMemberId=M.fId
             `
 
+        
+
 
 
 
             
         const likelist_result = await sql.query(likelist)
         const createlist_result = await sql.query(createlist)
+        const Expiredattendedlist_result = await sql.query(Expiredattendedlist)
         const attendedlist_result = await sql.query(attendedlist)
         // 看一下回傳結果
-        console.dir(likelist_result)
-        console.dir(createlist_result)
-        console.dir(attendedlist_result)
+       
+        console.dir(Expiredattendedlist_result);
+
         if (!likelist_result.rowsAffected[0]) {
-            return { result: 0, msg: "沒有喜愛活動" }
+            return { result: 1, msg: "沒有喜愛活動" , data: 
+            {
+                likes:likelist_result.recordset,
+                creates:createlist_result.recordset,
+                Expiredattended:Expiredattendedlist_result.recordset,
+                attendedlist:attendedlist_result.recordset,
+            } 
+            }
         }
 
 
@@ -117,7 +138,8 @@ const PersonalPageOfData = async (fMemberId) => {
             {
                 likes:likelist_result.recordset,
                 creates:createlist_result.recordset,
-                attended:attendedlist_result.recordset,
+                Expiredattended:Expiredattendedlist_result.recordset,
+                attendedlist:attendedlist_result.recordset,
             } 
         };
         // 錯誤處理
