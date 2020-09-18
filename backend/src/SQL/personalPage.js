@@ -8,12 +8,12 @@ const config = {
     user: process.env.SQLSERVER_USER || 'sa',
     password: process.env.SQLSERVER_PASSWORD || 'everybodycanuse',
     server: process.env.SQLSERVER_SERVER || 'localhost', // You can use 'localhost\\instance' to connect to named instance
-    database: process.env.SQLSERVER_DATABASE ||'SeaTurtleOnTheWay',
+    database: process.env.SQLSERVER_DATABASE || 'SeaTurtleOnTheWay',
     options: {
         enableArithAbort: true,
         encrypt: true
-      },
-      port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
+    },
+    port: parseInt(process.env.SQLSERVER_POST, 10) || 1433,
 }
 
 
@@ -43,14 +43,25 @@ const PersonalPage = async (id) => {
         console.dir(result)
 
         if (!result.rowsAffected[0]) {
-            return { result: 0, msg: "查無結果" }
+            return {
+                result: 0,
+                msg: "查無結果"
+            }
         }
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
-        return { result: 1, msg: "請求成功", data: result.recordset };
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: result.recordset
+        };
         // 錯誤處理
     } catch (err) {
         console.log(err);
-        return { result: 0, msg: "SQL 錯誤", data: err };
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
     }
 };
 /**完成=5 感興趣=0 發起=6 */
@@ -64,18 +75,21 @@ const PersonalPageOfData = async (fMemberId) => {
         FROM Activity.tJoinList AS JL
         LEFT JOIN Activity.tActivity AS A
         ON fActivityId=A.fId
-        WHERE fJoinTypeId=0 AND JL.fMemberId=${fMemberId})
+        WHERE fJoinTypeId=0 AND JL.fMemberId=${fMemberId}
+        order by fJoinTime)
         
         SELECT JLA.*,m.fName 
         from JLA
         LEFT JOIN Member.tMember as m
         ON JLA.fMemberId=M.fId
+        
             `
         let createlist = `WITH JLA as(SELECT TOP(6) JL.fActivityId,A.fActName,A.fActivityDate,fImgPath,A.fMemberId
         FROM Activity.tJoinList AS JL
         LEFT JOIN Activity.tActivity AS A
         ON fActivityId=A.fId
-        WHERE fJoinTypeId=6 AND JL.fMemberId=${fMemberId})
+        WHERE fJoinTypeId=6 AND JL.fMemberId=${fMemberId}
+        order by fJoinTime)
 
         SELECT JLA.*,m.fName 
         from JLA
@@ -86,7 +100,8 @@ const PersonalPageOfData = async (fMemberId) => {
         FROM Activity.tJoinList AS JL
         LEFT JOIN Activity.tActivity AS A
         ON fActivityId=A.fId
-        WHERE fJoinTypeId=2 AND fActivityDate<GETDATE() AND JL.fMemberId=${fMemberId}) 
+        WHERE fJoinTypeId=2 AND fActivityDate<GETDATE() AND JL.fMemberId=${fMemberId}
+        order by fJoinTime) 
 
         SELECT JLA.*,m.fName 
         from JLA
@@ -97,7 +112,8 @@ const PersonalPageOfData = async (fMemberId) => {
         FROM Activity.tJoinList AS JL
         LEFT JOIN Activity.tActivity AS A
         ON fActivityId=A.fId
-        WHERE fJoinTypeId=2 AND fActivityDate>GETDATE() AND JL.fMemberId=${fMemberId}) 
+        WHERE fJoinTypeId=2 AND fActivityDate>GETDATE() AND JL.fMemberId=${fMemberId}
+        order by fJoinTime) 
 
         SELECT JLA.*,m.fName 
         from JLA
@@ -105,47 +121,54 @@ const PersonalPageOfData = async (fMemberId) => {
         ON JLA.fMemberId=M.fId
             `
 
-        
 
 
 
 
-            
+
+
         const likelist_result = await sql.query(likelist)
         const createlist_result = await sql.query(createlist)
         const Expiredattendedlist_result = await sql.query(Expiredattendedlist)
         const attendedlist_result = await sql.query(attendedlist)
         // 看一下回傳結果
-       
+
         console.dir(Expiredattendedlist_result);
 
         if (!likelist_result.rowsAffected[0]) {
-            return { result: 1, msg: "沒有喜愛活動" , data: 
-            {
-                likes:likelist_result.recordset,
-                creates:createlist_result.recordset,
-                Expiredattended:Expiredattendedlist_result.recordset,
-                attendedlist:attendedlist_result.recordset,
-            } 
+            return {
+                result: 1,
+                msg: "沒有喜愛活動",
+                data: {
+                    likes: likelist_result.recordset,
+                    creates: createlist_result.recordset,
+                    Expiredattended: Expiredattendedlist_result.recordset,
+                    attendedlist: attendedlist_result.recordset,
+                }
             }
         }
 
 
 
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
-        return { result: 1, msg: "請求成功", 
-            data: 
-            {
-                likes:likelist_result.recordset,
-                creates:createlist_result.recordset,
-                Expiredattended:Expiredattendedlist_result.recordset,
-                attendedlist:attendedlist_result.recordset,
-            } 
+        return {
+            result: 1,
+            msg: "請求成功",
+            data: {
+                likes: likelist_result.recordset,
+                creates: createlist_result.recordset,
+                Expiredattended: Expiredattendedlist_result.recordset,
+                attendedlist: attendedlist_result.recordset,
+            }
         };
         // 錯誤處理
     } catch (err) {
         console.log(err);
-        return { result: 0, msg: "SQL 錯誤", data: err };
+        return {
+            result: 0,
+            msg: "SQL 錯誤",
+            data: err
+        };
     }
 };
 
@@ -158,4 +181,7 @@ const PersonalPageOfData = async (fMemberId) => {
 
 
 // *匯出方法 ， 多個方法包在{}裡， ex: {func1, func2}
-module.exports = { PersonalPage,PersonalPageOfData}
+module.exports = {
+    PersonalPage,
+    PersonalPageOfData
+}

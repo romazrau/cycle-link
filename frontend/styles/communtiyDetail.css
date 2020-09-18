@@ -1131,3 +1131,19 @@ hr {
   margin: 10% 37%;
 }
 /*照片*/
+
+
+
+/* 日曆相關 */
+.fc-event-title:hover{
+  /* max-width: max-content; */
+  white-space: pre-wrap;
+  overflow: visible;
+  background-color: rgb(55, 136, 216);
+  height: max-content;
+  display: inline-block;
+  padding-right: 2px;
+  border-radius: 3px;
+  z-index: 900;
+}
+
