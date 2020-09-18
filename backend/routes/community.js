@@ -115,7 +115,12 @@ router.get('/:id', async function (req, res, next) {
             }
 
             if (idarr.includes(memberId)) {
-                user = "管理員";
+                // user = "管理員";
+                result.data[0].user = "管理員";
+                res.json(result);
+                isResponse = 1;
+                return;
+
 
             } else if (pendingMem.result) {
 
@@ -510,7 +515,7 @@ router.delete('/communityById_communityMember', async function (req, res, next) 
 
         let fId = req.user.fId;
         // es6 物件解構
-        let {fCommunityId } = req.body
+        let { fCommunityId } = req.body
         console.log("88888888888888888888888888888888888888888888");
         console.log(req.body);
 
@@ -525,7 +530,7 @@ router.delete('/communityById_communityMember', async function (req, res, next) 
         }
 
 
-        let resultDeletMemberOfCommunity = await Sql.deletMemberOfCommunity( fId + "", fCommunityId);
+        let resultDeletMemberOfCommunity = await Sql.deletMemberOfCommunity(fId + "", fCommunityId);
         // console.log((resultDeletMemberOfCommunity));
         res.json(resultDeletMemberOfCommunity);
     } catch (err) {

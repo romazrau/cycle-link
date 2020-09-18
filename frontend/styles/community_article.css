@@ -172,6 +172,38 @@
   align-items: center;
   box-sizing: border-box;
 }
+
+.popUpforEdit {
+  position: fixed;
+  top: 20%;
+  left: 59%;
+  z-index: 2000;
+  width: 600px;
+  height: 700px;
+  background-color: var(--white-color);
+  border: 1px solid var(--lightgrey-color);
+  border-radius: 5px;
+  overflow-y: scroll;
+}
+
+.popUpforEdit_disappear {
+  display: none;
+}
+
+.EditArticleInput{
+  width: 80%;
+  margin: 10% 0;
+  background-color: var(--white-color);
+}
+
+.EditArticleImgDisplay{
+  width: 80%;
+  margin: 10% 0;
+}
+
+.EditArticleImgDisplay_img{
+  width:100%;
+}
 .Post_Community_preIcon{
   position: relative;
   top: 14.75rem;
