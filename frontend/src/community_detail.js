@@ -431,8 +431,19 @@ function ClsCommuntityDetail() {
 
     // ----------------------------------------------Ajax----------------------------------------------------//
 
-    // 開啟特定社團頁面(社團id)
     // todo開放或私密 用社團16做測試
+    // 開啟特定社團頁面(社團id)
+    // 顯示狀態按鈕顯示管理button
+    // 是否為管理員,顯示編輯社團
+
+    // 判斷是否私密,私密的話進一步判斷否為會員
+    // --會員的話都顯示
+    // 不是的話顯示私密HTML
+
+
+
+
+
     const renderPage = async (id) => {
         try {
             let response = await fetch(serverURL.community + id, {
@@ -449,7 +460,7 @@ function ClsCommuntityDetail() {
             let result = await response.json();
 
             // 錯誤處理:沒有回傳資料導回原頁面
-            console.log(result);
+            // console.log(result);
             if (!result.result) {
                 //# >>> 前端路由導向
                 alert(result.msg)
@@ -457,41 +468,7 @@ function ClsCommuntityDetail() {
                 return;
             }
 
-            // //for debug
-            // console.log("%c +++++++++++++", "color: green");
-            // console.log(result);
-
-            // 訪者身分
-            // ----從result取出訪者身分
-            // ----抓三個btnElement把CLS屬性設隱藏
-            // ----sitch 打開要得btn
-            let user = result.data[0].user;
-            //   console.log("+++++++++++++++++++++++++++++++++++++++***************************************");
-            //   console.log(user);
-
-            document.querySelector("#ApplyBtn").setAttribute("class", "hide");
-            document.querySelector("#ManagerBtn").setAttribute("class", "hide");
-            document.querySelector("#MemberBtn").setAttribute("class", "hide");
-            document.querySelector("#PendingBtn").setAttribute("class", "hide");
-
-
-            // console.log(user);
-            // 管理員 社員 非社員(含訪客) 待審核會員
-            switch (user) {
-                case "管理員":
-                    document.querySelector("#ManagerBtn").classList.remove("hide");
-                    break;
-                case "社員":
-                    document.querySelector("#MemberBtn").classList.remove("hide");
-                    break;
-                case "非社員":
-                    document.querySelector("#ApplyBtn").classList.remove("hide");
-                    break;
-                case "待審核會員":
-                    document.querySelector("#PendingBtn").classList.remove("hide");
-                    break;
-            }
-
+            // 社團基本資料
             document.querySelector("#CommunityPic").src =
                 serverURL.root + "/" + result.data[0].fImgPath;
             document.querySelector("#CommunityName").innerHTML = result.data[0].fName;
@@ -509,14 +486,85 @@ function ClsCommuntityDetail() {
                 result.data[0].fSatusName;
             document.querySelector("#CommunityAboutUs").innerHTML =
                 result.data[0].fInfo;
-
             // console.log("+++++++++++++++++++++++++++");
             // console.log(result.data);
 
-            //todo
-            //result.data[0].fStatusId: 2    or   result.data[0]."私密"
-            //私密的話把 let MemberContainer = document.querySelector("#CommunityMember") 增加隱藏Class
-            //移除 <div id="CommunityMemberNone" class="CommunityMemberNone">
+            // console.log("%c +++++++++++++", "color: green");
+            // console.log(result.data[0]);
+
+
+
+            // 使用者身分
+            // ----從result取出訪者身分
+            // ----抓三個btnElement把CLS屬性設隱藏
+            // ----sitch 打開要得btn
+            let user = result.data[0].user;
+            //   console.log("+++++++++++++++++++++++++++++++++++++++***************************************");
+            //   console.log(user);
+
+            // 狀態按鈕
+            document.querySelector("#ApplyBtn").setAttribute("class", "hide");
+            document.querySelector("#ManagerBtn").setAttribute("class", "hide");
+            document.querySelector("#MemberBtn").setAttribute("class", "hide");
+            document.querySelector("#PendingBtn").setAttribute("class", "hide");
+            // console.log(user);
+            // 管理員 社員 非社員(含訪客) 待審核會員
+            switch (user) {
+                case "管理員":
+                    document.querySelector("#ManagerBtn").classList.remove("hide");
+                    break;
+                case "社員":
+                    document.querySelector("#MemberBtn").classList.remove("hide");
+                    break;
+                case "非社員":
+                    document.querySelector("#ApplyBtn").classList.remove("hide");
+                    break;
+                case "待審核會員":
+                    document.querySelector("#PendingBtn").classList.remove("hide");
+                    break;
+            }
+
+            // DropDown Menu 藏起來
+            document.querySelectorAll(".DropDownMenu").forEach((o) => {
+                o.classList.add("hide");
+            })
+            document.querySelectorAll(".settingIcon").forEach((o) => {
+                o.classList.add("hide");
+            })
+
+
+            // DropDown Menu 是管理員的話打開
+            if (user == "管理員") {
+
+                document.querySelectorAll(".settingIcon").forEach((o) => {
+                    o.classList.remove("hide");
+                    o.addEventListener("click",(e)=>{
+                        console.log(e.target.dataset.openName);
+                        console.log([...document.querySelector(`#${e.target.dataset.openName}`).classList].includes("hide"));
+                        if([...document.querySelector(`#${e.target.dataset.openName}`).classList].includes("hide")){
+                        document.querySelector(`#${e.target.dataset.openName}`).classList.remove("hide");
+                        }
+                        else{
+                        document.querySelector(`#${e.target.dataset.openName}`).classList.add("hide");
+                        }
+                    })
+                })
+            }
+
+          
+            if (result.data[0].fSatusName == "私密") {
+
+                // todo continue 判斷是否為會員
+                if(user=="非社員"){
+                document.querySelector("#CommunityMember").classList.add("hide");
+                document.querySelector("#DiscussionLeft").classList.add("hide");
+                document.querySelectorAll(".CommunityMemberNone").forEach((o)=>{ o.classList.remove("hide");})
+                document.querySelector(".DiscussionRight").classList.add("hide");
+                document.querySelector(".photo_flow_container").classList.add("hide");
+                document.querySelector(".BottomRightSearchList").classList.add("hide")
+                }
+            }
+
         } catch (err) {
             console.log(err);
         }
@@ -614,7 +662,7 @@ function ClsCommuntityDetail() {
     let fCommunityId;
     document.querySelectorAll(".js_editCommunity").forEach((items) => {
         items.addEventListener("click", async () => {
-              console.group("修改社團");
+            console.group("修改社團");
             try {
                 // 導向社團編輯頁面
                 // -----# >>> 前端路由導向
@@ -1080,39 +1128,39 @@ function ClsCommuntityDetail() {
     // todo 退出社團 continue 無法Click 有bug
     console.log(document.querySelector("#leaveCommunityBtn"));
     document.querySelector("#leaveCommunityBtn").addEventListener("click", async () => {
-        try{
-        
-        confirm("確定要退出社團?");
-        let fCommunityId = this.cumDetailId;    
-        
-        let responseDeleteMem = await fetch (
-            serverURL.communityMember,
-            {
-                method: "Delete",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    Authorization: localStorage.getItem("Cycle link token"),
-                },
-                credentials: "include",
-                body: JSON.stringify({fCommunityId: fCommunityId}),
-                cache: "no-cache",
+        try {
+
+            confirm("確定要退出社團?");
+            let fCommunityId = this.cumDetailId;
+
+            let responseDeleteMem = await fetch(
+                serverURL.communityMember,
+                {
+                    method: "Delete",
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8",
+                        Authorization: localStorage.getItem("Cycle link token"),
+                    },
+                    credentials: "include",
+                    body: JSON.stringify({ fCommunityId: fCommunityId }),
+                    cache: "no-cache",
+                }
+            );
+            let resultDeleteMem = await responseDeleteMem.json();
+
+            // console.log(resultDeleteMem);
+            if (!resultDeleteMem.result) {
+                console.log(resultDeleteMem);
+                return;
             }
-        );
-        let resultDeleteMem = await responseDeleteMem.json();
 
-        // console.log(resultDeleteMem);
-        if (!resultDeleteMem.result) {
-            console.log(resultDeleteMem);
-            return;
+
+            alert("退出社團成功!");
+            location.reload();
+
+        } catch (err) {
+            console.log(err);
         }
-
-
-        alert("退出社團成功!");
-        location.reload();
-
-    }catch (err) {
-        console.log(err);
-    }
 
     })
 
@@ -1231,7 +1279,7 @@ const CommuntityDetail = new ClsCommuntityDetail();
 
 // * 利用 hash , 如下
 // * -------------------------------- hash -------------------------------- //
-const communityDetailChangeHash =  () => {
+const communityDetailChangeHash = () => {
     //!Window物件方法偵測URL改變 執行rederPage function
     let cumDetailArr = window.location.hash.split("/"); // #community/detail/3  -> [ #community, detail, 3 ]
     let cumDetailId = cumDetailArr[2];

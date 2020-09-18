@@ -108,6 +108,8 @@ body::-webkit-scrollbar {
 
 .hide {
   display: none !important;
+  /* opacity: 0;
+  pointer-events: none; */
 }
 
 .focus {
