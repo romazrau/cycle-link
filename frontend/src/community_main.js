@@ -203,16 +203,6 @@ ${ImgIsNullOrNot(x.PostImg)}
     </div>
 </div>`;
   };
-  const D = (x) => {
-    return `<div class="CM_recommend_item" onclick="location.hash='#community/detail/${x.CommunityId}'">
-    <div class="CM_recommend_item_img">
-        <img src="http://localhost:3050/${x.CommunityImgPath}" class="CM_recommend_item_img_img">
-    </div>
-    <div class="CM_recommend_item_info">
-        <p>${x.CommunityName}</p>
-    </div>
-</div>`;
-  };
 
   //社團首頁：社團卡片字串匯入點
   const CM_recommend = document.querySelector(".CM_recommend_container");
@@ -403,12 +393,12 @@ ${ImgIsNullOrNot(x.PostImg)}
         ).innerHTML += htmlCommunityMainReply(e);
       }
     });
-    //匯入我要留言區
+    // 匯入我要留言區
     showReplyInput(x);
     // 增加發出訊息的事件
     document
       .getElementById("ReplySend" + x)
-      .addEventListener("click", function () {
+      .addEventListener("click", () => {
         // 抓取Text內容
         let content = document.getElementById("ReplyText" + x).value;
         addReplyToSQL(x, content);

@@ -549,8 +549,6 @@
                     <ul class="community_main_ul_timeline"></ul>
                 </div>
             </div>
-            <div class="popUpforEdit">
-            </div>
             <!-- ///達達切的讚讚社團首頁就給活動用ㄅ -->
             <!-- <div id="community_navbar" class="page_navbar">
                 <div class="container page_navbar_row">
@@ -587,8 +585,8 @@
                         <div class="map_controlltitle">設定距離</div>
                         <div class="map_controlltitle_div">
                             <input type="range" value="0" min="0" max="20" id="map_Setdistance" />
-                            <p>附近<label for="" id="Activitydistance"></label>
-                                <span>公里的活動</span></p>
+                            <label for="" id="Activitydistance">請選擇所在位置</label>
+                                
                         </div>
                     </div>
 
@@ -1331,8 +1329,8 @@
                         <div class="GroupTopLeft ">
                             <div class="GroupTopMainPicDivForImg">
                                 <img id="CommunityPic" src="./img/水下攝影與淨海.jpg" alt="cover pic of diving" width="100%">
-                                <img class="GroupImgSeeMoreIcon" src="./img/icon_seemore.svg" width="25px">
-                                <div class="DropDownMenu">
+                                <img class="GroupImgSeeMoreIcon settingIcon" data-open-name="DropDownMenu_photo" src="./img/icon_seemore.svg" width="25px">
+                                <div class="DropDownMenu" id="DropDownMenu_photo">
                                     <div class="dropdown-triangle"></div>
                                     <div class="dropdown js_editCommunity">編輯照片</div>
                                 </div>
@@ -1345,8 +1343,8 @@
                             <div class="GroupTopEventName">
                                 <p id="CommunityName">週末北海岸
                                     水下攝影fit淨海</p>
-                                <img class="GroupTopRightImgIcon" src="./img/icon_seemore.svg" width="25px">
-                                <div class="DropDownMenu">
+                                <img class="GroupTopRightImgIcon settingIcon" data-open-name="DropDownMenu_name" src="./img/icon_seemore.svg" width="25px">
+                                <div class="DropDownMenu" id="DropDownMenu_name">
                                     <div class="dropdown-triangleR "></div>
                                     <div class="dropdownR js_editCommunity">編輯名稱</div>
                                 </div>
@@ -1420,9 +1418,12 @@
 
                                 <div id="MemberBtn" class="GroupNavBtn GroupDiveBtnText hide">我是社員</div>
                                 <!-- <img src="./img/icon_triangle_downside.svg" width="25px"> -->
+                                <div class="DropDownMenu">
                                 <div class="dropdown-triangleLeave"></div>
                                 <div class="dropdownLeave">
+                                
                                     <div id="leaveCommunityBtn">退出社團</div>
+                                </div>
                                 </div>
                                 <!-- <div class="dropdown">
                                         <div>編輯社團</div>
@@ -1453,10 +1454,10 @@
                                     <div class="FlexContainer Group_FlexJustifyContentSB">
                                         <div class="FontSectionTitle">關於我們</div>
                                         <div class="GroupAboutUsDivImg">
-                                            <img class="GroupAboutUsImg " src="/img/icon_seemore.svg" width="25px">
+                                            <img class="GroupAboutUsImg settingIcon" data-open-name="DropDownMenu_edit" src="/img/icon_seemore.svg" width="25px">
                                         </div>
                                     </div>
-                                    <div class="DropDownMenu">
+                                    <div class="DropDownMenu" id="DropDownMenu_edit">
                                         <div class="dropdown-triangleD"></div>
                                         <div class="dropdownD js_editCommunity">編輯</div>
                                     </div>
@@ -1555,9 +1556,9 @@
 
                                     <div class="FlexContainer Group_FlexJustifyContentSB">
                                         <div class="FontSectionTitle">社團管理員</div>
-                                        <img class="GroupBottomRightSetImg" src="/img/icon_seemore.svg" width="25px">
+                                        <img class="GroupBottomRightSetImg settingIcon" data-open-name="DropDownMenu_List" src="/img/icon_seemore.svg" width="25px">
                                     </div>
-                                    <div class="DropdownMenu">
+                                    <div class="DropDownMenu" id="DropDownMenu_List">
                                         <div class="dropdown-triangleDR"></div>
                                         <div class="dropdownDR js_editCommunity">編輯管理員名單</div>
                                     </div>
@@ -1584,15 +1585,15 @@
                                             <div class="GroupComingEvent FontSectionTitle">社團成員</div>
                                             <div id="NumOfMem" class="FontSectionTitle">(4)</div>
                                         </div>
-                                        <img class="GroupComingEventImg" src="/img/icon_seemore.svg" width="25px">
+                                        <img class="GroupComingEventImg settingIcon" data-open-name="DropDownMenu_memList" src="/img/icon_seemore.svg" width="25px">
                                         <!-- <a href="#" class="SeeAllRight FontSectionTitle">see all</a> -->
                                     </div>
-                                    <div class="DropdownMenu">
+                                    <div class="DropDownMenu" id="DropDownMenu_memList">
                                         <div class="dropdown-triangleDR"></div>
                                         <div class="dropdownDR js_editCommunity">編輯會員名單</div>
                                     </div>
                                 </div>
-                                <div id="CommunityMember" class="hide FlexContainer GroupRightInfoPhotoContainer
+                                <div id="CommunityMember" class="FlexContainer GroupRightInfoPhotoContainer
                                 Group_FlexJustifyContentSB">
                                     <div class="activity_detail_info_img_circle GroupMemberPic">
                                         <div class="activity_detail_info_img_div">
@@ -1618,8 +1619,9 @@
                                                 width="30"></div>
                                     </div>
                                 </div>
-                                <div id="CommunityMemberNone" class="CommunityMemberNone">
-
+                                <div id="CommunityMemberNone" class="CommunityMemberNone FlexContainer hide">
+                                    <img src="./img/icon_lock.svg" width="20px" class="iconlock">
+                                    <div>私密社團</div>
                                 </div>
 
 
@@ -1980,6 +1982,10 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div id="CommunityMemberNone" class="CommunityMemberNone FlexContainer hide">
+                                    <img src="./img/icon_lock.svg" width="20px" class="iconlock">
+                                    <div>私密社團</div>
+                                </div>
                                 <!---------------------/////////////// 下層Main cls tag /////////////////------------------------->
                             </div>
 
@@ -1998,7 +2004,7 @@
 
                             <!------------------------/// Left part ///  ------------------------>
                             <div class="FlexContainer">
-                                <div class="DiscussionLeft">
+                                <div id="DiscussionLeft" class="DiscussionLeft">
                                     <div class="FlexContainer MessageBox">
                                         <div class="Group_detail_Societies_img_div">
                                             <!-- <img class="Group_detail_Societies_img" src="./img/id1.jpg" width="30"> -->
@@ -2006,12 +2012,12 @@
                                         <form id="article_form">
                                             <textarea class="AddArticleInput" name="fContent"
                                                 placeholder="Post something..." cols=30 rows=2></textarea>
-                                            <lable class="articleImgInput_lbl">
+                                            <label class="AddArticleLabel">
                                                 <input type="file" name="fPhoto" id="articleImgInput"
                                                     multiple="multiple" style="display: none;">
                                                 <!-- <img src="./img/icon_photo.svg" width="23" class="UploadImgforArticle"> -->
                                                 <i class="fas fa-images"></i>
-                                            </lable>
+                                            </label>
                                             <label class="AddArticleLabel">
                                                 <input type="submit" id="articleSubmitIcon" style="display: none;">
                                                 <!-- <img src="./img/icon_send.svg" width="20" class="AddArticleinCommunity" -->
@@ -2058,6 +2064,14 @@
                                     </div> -->
 
                                     <!-- <a href="#" class="GroupMemberSeeAllBtn">see all</a>  -->
+                                </div>
+                                <div id="CommunityMemberNone" class="CommunityMemberNone FlexContainer hide">
+                                    <img src="./img/icon_lock.svg" width="20px" class="iconlock">
+                                    <div>私密社團</div>
+                                </div>
+
+                                <div class="popUpforEdit popUpforEdit_disappear">
+
                                 </div>
                                 <!------------------------/// Right part///  ------------------------>
                                 <div class="DiscussionRight ">
@@ -2112,6 +2126,10 @@
                                     <!-- <div class="photo_flow_card"><img class="photo_flow_card_img" src="./img/05.jpg" alt=""></div> -->
                                 </div>
 
+                            </div>
+                            <div id="CommunityMemberNone" class="CommunityMemberNone FlexContainer hide">
+                                <img src="./img/icon_lock.svg" width="20px" class="iconlock">
+                                <div>私密社團</div>
                             </div>
 
                         </div>

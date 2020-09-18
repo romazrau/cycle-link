@@ -588,9 +588,18 @@ hr {
 /******************* MIDDLE ******************/
 
 .CommunityMemberNone {
-  background-color: #939393;
+  background-color: lightgray;
   height: 200px;
   width: 100%;
+  justify-content: center;
+  align-items: center;
+  color:gray;
+  margin-top: 1rem;
+
+}
+
+.iconlock{
+  opacity: 50%;
 }
 
 .dropdown-relative-container {
@@ -930,7 +939,7 @@ hr {
 }
 
 .GroupRightInfo {
-  margin-left: 15px;
+  /* margin-left: 15px; */
   font-size: 1rem;
 }
 
