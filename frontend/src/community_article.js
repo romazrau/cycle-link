@@ -74,11 +74,11 @@ function ClsCommunityArticle() {
     }</p>
     <p>${x.fPostTime}</p>
         </div>
-        <label class="AddArticleLabel">
+        <label class="EditArticleLabel">
         <input type="file" name="fPhoto" id="editArticleImgInput" multiple="multiple" style="display: none;">
         <i class="fas fa-images"></i>
       </label>
-      <label class="AddArticleLabel">
+      <label class="EditArticleLabel">
         <input type="submit" id="editArticleSubmitIcon" style="display: none;">
         <i class="far fa-paper-plane"></i>
       </label>

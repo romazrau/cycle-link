@@ -262,8 +262,9 @@ const home_weather = (o) => {
   let day = nowtime.getDay();
   if (o == '01' || o == '02' || o == '03') {
     return `
+    
     <div class="divtest_weather" >
-        <div>${o}</div>
+        <div></div>
         <div class="weather_img_css" style="width:50px; height:50px ; margin:10px 0" >
           <img id="" src="/img/sun.svg"" alt="">
         </div>
@@ -272,7 +273,7 @@ const home_weather = (o) => {
   } else if (o == '04' || o == '05' || o == '06' || o == '07') {
     return `
     <div class="divtest_weather" >
-        <div>${o}</div>
+        <div></div>
         <div class="weather_img_css" style="width:50px; height:50px ; margin:10px 0" >
           <img id="" src="/img/cloud.svg"" alt="">
         </div>
@@ -281,7 +282,7 @@ const home_weather = (o) => {
   } else {
     return `
     <div class="divtest_weather" >
-        <div>${o}</div>
+        <div></div>
         <div class="weather_img_css" style="width:50px; height:50px ; margin:10px 0" >
           <img id="" src="/img/rain.svg"" alt="">
         </div>
@@ -291,6 +292,11 @@ const home_weather = (o) => {
 
 }
 
+
+//todo 折線圖
+const home_weather_line = (o) => {
+  return ``
+}
 const home_weather_t = (o) => {
   return `
     <div class="divtest_Tweather">
@@ -305,13 +311,6 @@ const home_weather_t = (o) => {
 // ${o.T.time.elementValue.value}
 
 
-function reloaaa() {
-  setTimeout(function () {
-
-    location.reload()
-
-  }, 1000)
-}
 
 
 // const NewsRightBox=document.querySelector(".home_div_news")

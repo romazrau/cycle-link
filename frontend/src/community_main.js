@@ -386,6 +386,9 @@ ${ImgIsNullOrNot(x.PostImg)}
 
   //社團首頁：留言字串匯入function
   const display_replyDetail = (o, x) => {
+    document.getElementById(
+      "bindPostReplybyfId" + x
+    ).innerHTML ="";
     o.map((e, index) => {
       if (e.fPostId == x) {
         document.getElementById(
@@ -553,6 +556,8 @@ ${ImgIsNullOrNot(x.PostImg)}
         credentials: "include",
       });
       let result = await res.json();
+      //重新載入留言
+      getCommunityReply(postid);
       // console.log(result);
     } catch (err) {
       console.log(err);
@@ -632,8 +637,6 @@ ${ImgIsNullOrNot(x.PostImg)}
     }
   };
 
-  //TODO 新增文章
-  //TODO 編輯文章
   //TODO 刪除文章
   function likesPlusCount(e) {
     let target = e.parentNode.getElementsByTagName("span")[0];
@@ -749,5 +752,19 @@ ${ImgIsNullOrNot(x.PostImg)}
   //     replyCount: 7,
   //   },
   // ];
+  // this.GetAllPosts = getCommunityPost;
+  // this.SearchtxtCommunity = document.querySelector(".CM_banner_searchbar_text").value;
+  // this.SearchCardCommunity = document.querySelector(".CM_recommend_container").innerHTML;
 }
 const CommunityMain = new ClsCommunityMain();
+
+// const communityMainChanging123 = () => {
+//   if (location.hash.includes("#community")) {
+//     CommunityMain.GetAllPosts();
+//     CommunityMain.SearchtxtCommunity = "";
+//     CommunityMain.SearchCardCommunity = "";
+//     console.log("yyyyyyyyyy");
+//   }
+// };
+// window.addEventListener("hashchange", communityMainChanging123);
+// window.addEventListener("load", communityMainChanging123);
