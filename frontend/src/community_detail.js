@@ -611,7 +611,6 @@ function ClsCommuntityDetail() {
             console.log(err);
         }
     };
-
     const renderPageManager = async (id) => {
         try {
             let response = await fetch(serverURL.communityManager + id, {
@@ -651,6 +650,8 @@ function ClsCommuntityDetail() {
             });
 
             let result = await response.json();
+            console.log("+++++++++++++++++++++++++++++++++++++++");
+            console.log(result.data);
 
             //----------------------------------成員---------------------------------------
 
@@ -670,6 +671,13 @@ function ClsCommuntityDetail() {
                     }
                 });
             }
+
+            //如果按了filter
+            // document.querySelector("#memberFilter").addEventListener("click",()=>{
+            //     result.data.sort(function (a, b) {
+            //         return a.Year < b.Year ? 1 : -1;
+            //        });
+            // })
 
             //----------------------------------介紹---------------------------------------
             let MemberContainer = document.querySelector("#CommunityMember");
@@ -1250,7 +1258,7 @@ function ClsCommuntityDetail() {
         o.map(
             (e, index) => {
                 
-                //todo 
+          
                 {
                     actcommunity.innerHTML += htmlcommunitydetial(e);
                 }
@@ -1261,6 +1269,9 @@ function ClsCommuntityDetail() {
 
     }
      
+  
+
+
 
     // 介紹分頁-- 管理員頭像的文字樣板
     const data2manageImg = (o) => {
@@ -1270,14 +1281,14 @@ function ClsCommuntityDetail() {
          <div class="GroupRightInfo FlexContainer GroupRightInfoText">
          <div class="activity_detail_info_img_circle">
          <div class="activity_detail_info_img_div">
+        <a href="#personal-page/${o.fId}">
              <img src="${serverURL.root}/${o.fPhotoPath}" class="activity_detail_info_img">
+             </a>
          </div>
          </div>
-         <a id="CommunityManager" href="#" class="GroupHolderName">${o.fName}</a>
+         <a id="CommunityManager" href="#personal-page/${o.fId}" class="GroupHolderName">${o.fName}</a>
          </div>
-         <a class="FlexContainer GroupEnglishFont GroupRightInfoM" href="#">
          <img data-user-id=${o.fId} class="lets-talk" src="./img/icon_chat.svg" width="20">
-         </a>
          </div>`;
     };
 
@@ -1286,8 +1297,10 @@ function ClsCommuntityDetail() {
     const data2memImg = (o) => {
         return ` <div id="GroupMemberPicLessThan4" class="activity_detail_info_img_circle GroupMemberPic GroupMemberPicLessThan4">
         <div class="activity_detail_info_img_div">
+        <a href="#personal-page/${o.fMemberId}">
             <img class="activity_detail_info_img GoupRightInfoPhoto" src="${serverURL.root}/${o.fPhotoPath}"
                 width="30">
+                </a>
         </div>
     </div>`;
     };
@@ -1313,7 +1326,7 @@ function ClsCommuntityDetail() {
                 </div>
             </div>
         </div>
-        <a href="#">
+        <a>
             <img data-user-id=${o.fMemberId} class="lets-talk" class="Size20IconMarginRight" src="./img/icon_chat.svg"
                 width="20">
         </a>
@@ -1384,6 +1397,8 @@ function ClsCommuntityDetail() {
        
     </div>`
     }
+
+
 
     // this 指的是 ClsCommuntityDetail
     this.renderMainCommunityInfo = renderPage;
