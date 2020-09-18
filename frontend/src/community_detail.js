@@ -672,12 +672,23 @@ function ClsCommuntityDetail() {
                 });
             }
 
-            //如果按了filter
-            // document.querySelector("#memberFilter").addEventListener("click",()=>{
+            // //如果按了filter
+            // document.querySelector("#memberFilter").addEventListener("click",(e)=>{
+            //     e.preventDefault();
             //     result.data.sort(function (a, b) {
-            //         return a.Year < b.Year ? 1 : -1;
+            //         let run1 =  a.fJoinDate.split()[0] < b.fJoinDate.split()[0]
+                
+
+            //         let run2 =  a.fJoinDate.split()[1] < b.fJoinDate.split()[1]
+                
             //        });
             // })
+
+            result.data.forEach(
+                (o)=>{
+                    console.log(o);
+                }
+            )
 
             //----------------------------------介紹---------------------------------------
             let MemberContainer = document.querySelector("#CommunityMember");
