@@ -18,11 +18,13 @@ function ClsCommunityArticle() {
              <a href="#personal-page/${x.MemberId}"><p>${
       x.PostMemberName
     }</p></a>
-             <a class="PostIdLink_Community" href="#community/post/${x.PostId}"><span>${
-      x.fPostTime
-    }</span></a>
+             <a class="PostIdLink_Community" href="#community/post/${
+               x.PostId
+             }"><span>${x.fPostTime}</span></a>
           </div>
-          <i class="fas fa-ellipsis-v editIconforArticle"></i>
+          <i class="fas fa-ellipsis-v editIconforArticle" id="editIcon${
+            x.PostId
+          }"></i>
         </div>
         <div class="community_article_body">
           <p>${x.PostContent}</p>
@@ -52,6 +54,114 @@ function ClsCommunityArticle() {
     </div> </div>
   `;
   };
+
+  //編輯文章：文字樣板
+  const htmlCommunityEditArticle = (x) => {
+    return `
+    <form id="edit_article_form">
+    <div class="community_article_heading">
+        <div class="community_article_heading_img_circle_border">
+          <div class="community_article_heading_img_container" onclick="location.hash='#personal-page/${
+            x.MemberId
+          }'">
+            <img class="community_article_heading_img" src="http://localhost:3050/${
+              x.MemberImgPath
+            }" onclick="location.hash='#personal-page/${x.MemberId}'"/>
+          </div> </div>
+          <div class="community_article_heading_userinfo">
+             <p>${
+      x.PostMemberName
+    }</p>
+    <p>${x.fPostTime}</p>
+        </div>
+        <label class="AddArticleLabel">
+        <input type="file" name="fPhoto" id="editArticleImgInput" multiple="multiple" style="display: none;">
+        <i class="fas fa-images"></i>
+      </label>
+      <label class="AddArticleLabel">
+        <input type="submit" id="editArticleSubmitIcon" style="display: none;">
+        <i class="far fa-paper-plane"></i>
+      </label>
+    </div>
+        <textarea class="EditArticleInput" name="fContent" cols=30 rows=2>${x.PostContent}</textarea>
+        ${Edit_ImgIsNullOrNot(x.PostImg)}
+      </form>
+ 
+  `;
+  };
+
+  //*-------------編輯文章：匯入點
+  let EditArticlePopUP = document.querySelector(".popUpforEdit");
+  //*-------------編輯文章：資料放進文字樣板，匯入頁面
+  const display_EditArticle = (o) => {
+    o.map((e,index)=>{EditArticlePopUP.innerHTML = htmlCommunityEditArticle(e);})
+
+    document
+  .getElementById("editArticleSubmitIcon")
+  .addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log(o[0].PostId);
+    editArticletoSQL(o[0].PostId);
+    getPostInSingleCommunity(getCommunityIdFromUrl());
+    EditArticlePopUP.innerHTML = "";
+    popUpEditDiv.classList.add("popUpforEdit_disappear");
+  });
+  };
+
+  //*-------------編輯文章：從路由抓取資料
+  const getPostforEdit = async (x) => {
+    try{
+      let response = await fetch(serverURL.displayarticleforedit + x, {
+          method: "GET",
+          headers: {
+            Authorization: localStorage.getItem("Cycle link token"),
+          }
+        });
+        let result = await response.json();
+        console.log(result.data);
+        await display_EditArticle(result.data);
+        //編輯文章：Submit Icon加入點擊事件(抓取輸入ㄉ文章內容給SQL)
+  
+      }catch (err) {
+        console.log(err);
+      }
+    }
+
+   //編輯文章
+   const editArticletoSQL = async (postid) => {
+    try {
+      let nowtime = new Date();
+      let editarticletime =
+        nowtime.toLocaleDateString() +
+        " " +
+        timeFormatAdjust(nowtime.getHours()) +
+        ":" +
+        timeFormatAdjust(nowtime.getMinutes());
+
+      let form = document.getElementById("edit_article_form");
+      var editFormdata = new FormData(form);
+      editFormdata.append("fPostId", postid);
+      editFormdata.append("fPostTime", editarticletime);
+
+      console.log(editFormdata);
+
+      let response = await fetch(serverURL.editarticle, {
+        method: "PUT",
+        headers: {
+          Authorization: localStorage.getItem("Cycle link token"),
+        },
+        body: editFormdata,
+        // cache: "no-cache",
+        // credentials: "include",
+      });
+      let result = await response.json();
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  
+
   //使用者頭像：匯入點
   let UserImgOnArticleAdd = document.querySelector(
     ".Group_detail_Societies_img_div"
@@ -143,6 +253,24 @@ function ClsCommunityArticle() {
                 <a class="Post_nextIcon" id="Post_nextIcon2"href="">
                   <i class="fas fa-chevron-right fa-2x" style="color:white"></i>
                 </a>`;
+      } else {
+        return `
+        <div class="community_article_body_img">
+      <img class="community_article_body_img_img" src='http://localhost:3050/${x}' />
+      </div>`;
+      }
+    }
+  };
+  const Edit_ImgIsNullOrNot = (x) => {
+    if (x === null) {
+      return ``;
+    } else {
+      var y = x.includes(",,");
+      if (y) {
+        let imgArr = x.split(",,");
+        // console.log(imgArr);
+        var a = Article_multiImgArr(imgArr);
+        return a;
       } else {
         return `
         <div class="community_article_body_img">
@@ -290,6 +418,11 @@ function ClsCommunityArticle() {
       document.querySelector(".AddArticleInput").value = "";
     });
 
+
+
+let popUpEditDiv = "";
+
+
   //社團文章：路由撈資料
   const getPostInSingleCommunity = async (x) => {
     try {
@@ -303,6 +436,19 @@ function ClsCommunityArticle() {
       });
       let result = await response.json();
       await display_postDetail(result.data);
+
+      //TODO編輯點擊事件
+      // 抓PostID，對編輯Icon增加點擊事件
+      result.data.map((e, index) => {
+        document
+          .getElementById("editIcon" + e.PostId)
+          .addEventListener("click", function () {
+            console.log("被點到ㄌ");
+            popUpEditDiv = document.querySelector(".popUpforEdit");
+            popUpEditDiv.classList.remove("popUpforEdit_disappear");
+            getPostforEdit(e.PostId);
+          });
+      });
 
       // Article_addClickEventToReply(result.data);
       //TODO典籍喜歡
@@ -408,6 +554,7 @@ function ClsCommunityArticle() {
   // document
   //   .getElementById("articleImgInput")
   //   .addEventListener("change", function () {
+  //     console.log("12313123123");
   //     let addArticleImgFile = document.getElementById("articleImgInput")[0]
   //       .files[0];
   //     let addArticleImgReader = new FileReader();
@@ -419,7 +566,7 @@ function ClsCommunityArticle() {
   //     addArticleImgReader.readAsDataURL(addArticleImgFile);
   //   });
 
-  //新增文章
+  //*------------------新增文章
   const addArticletoSQL = async (CommunityId) => {
     try {
       let nowtime = new Date();
