@@ -278,7 +278,7 @@ function ClsPersonalManeger() {
     // TODO  render 活動
 
 
-    
+
 
 
 
@@ -297,17 +297,15 @@ function ClsPersonalManeger() {
 
     const renderCommunities = async () => {
         try {
-            let response = await fetch(serverURL.communityList,
-                {
-                    method: "GET", // http request method
-                    //token
-                    headers: {
-                        Authorization: localStorage.getItem("Cycle link token"),
-                    },
-                    cache: "no-cache",
-                    credentials: "include",
-                }
-            );
+            let response = await fetch(serverURL.communityList, {
+                method: "GET", // http request method
+                //token
+                headers: {
+                    Authorization: localStorage.getItem("Cycle link token"),
+                },
+                cache: "no-cache",
+                credentials: "include",
+            });
             let result = await response.json();
             if (!result.result) {
                 alert(result.msg);
@@ -325,8 +323,7 @@ function ClsPersonalManeger() {
                     // document.querySelector("#ItemContainerCommunityManager").innerHTML += "NO";
                     CommunityManager.innerHTML += data2CommunitiesCard(o);
                     // console.log("++++++++++++++++++++++++++++++");  
-                }
-                else {
+                } else {
                     //  document.querySelector("#ItemContainerCommunity").innerHTML += "OK";
                     Community.innerHTML += data2CommunitiesCard(o);
                     // console.log("-----------------------");
@@ -351,22 +348,19 @@ function ClsPersonalManeger() {
 
     const renderActivitylike = async () => {
         try {
-            let response = await fetch(serverURL.personalPages,
-                {
-                    method: "GET", // http request method
-                    //token
-                    headers: {
-                        Authorization: localStorage.getItem("Cycle link token"),
-                    },
-                    cache: "no-cache",
-                    credentials: "include",
-                }
-            );
+            let response = await fetch(serverURL.personalPages, {
+                method: "GET", // http request method
+                //token
+                headers: {
+                    Authorization: localStorage.getItem("Cycle link token"),
+                },
+                cache: "no-cache",
+                credentials: "include",
+            });
             let result = await response.json();
-            document.querySelector("#likeContainer").innerHTML="";
-            for(let i=0;i<result.data.likes.length;i++)
-            {
-                document.querySelector("#likeContainer").innerHTML+=ActivityCardPersonal(result.data.likes[i]);
+            document.querySelector("#likeContainer").innerHTML = "";
+            for (let i = 0; i < result.data.likes.length; i++) {
+                document.querySelector("#likeContainer").innerHTML += ActivityCardPersonal(result.data.likes[i]);
             }
         } catch (ex) {
             alert("連線錯誤");
@@ -377,28 +371,24 @@ function ClsPersonalManeger() {
     /**舉辦and 參加 */
     const renderActivityattend = async () => {
         try {
-            let response = await fetch(serverURL.personalPages,
-                {
-                    method: "GET", // http request method
-                    //token
-                    headers: {
-                        Authorization: localStorage.getItem("Cycle link token"),
-                    },
-                    cache: "no-cache",
-                    credentials: "include",
-                }
-            );
+            let response = await fetch(serverURL.personalPages, {
+                method: "GET", // http request method
+                //token
+                headers: {
+                    Authorization: localStorage.getItem("Cycle link token"),
+                },
+                cache: "no-cache",
+                credentials: "include",
+            });
             let result = await response.json();
-            document.querySelector("#attendContainer").innerHTML="";
-            for(let i=0;i<result.data.creates.length;i++)
-            {
-                document.querySelector("#attendContainer").innerHTML+=ActivityCardPersonal(result.data.creates[i]);
+            document.querySelector("#attendContainer").innerHTML = "";
+            for (let i = 0; i < result.data.creates.length; i++) {
+                document.querySelector("#attendContainer").innerHTML += ActivityCardPersonal(result.data.creates[i]);
             }
-            for(let i=0;i<result.data.attendedlist.length;i++)
-            {
-                document.querySelector("#attendContainer").innerHTML+=ActivityCardPersonal(result.data.attendedlist[i]);
+            for (let i = 0; i < result.data.attendedlist.length; i++) {
+                document.querySelector("#attendContainer").innerHTML += ActivityCardPersonal(result.data.attendedlist[i]);
             }
-          
+
         } catch (ex) {
             alert("連線錯誤");
             console.log(ex);
@@ -407,25 +397,22 @@ function ClsPersonalManeger() {
     }
     const renderActivityattended = async () => {
         try {
-            let response = await fetch(serverURL.personalPages,
-                {
-                    method: "GET", // http request method
-                    //token
-                    headers: {
-                        Authorization: localStorage.getItem("Cycle link token"),
-                    },
-                    cache: "no-cache",
-                    credentials: "include",
-                }
-            );
+            let response = await fetch(serverURL.personalPages, {
+                method: "GET", // http request method
+                //token
+                headers: {
+                    Authorization: localStorage.getItem("Cycle link token"),
+                },
+                cache: "no-cache",
+                credentials: "include",
+            });
             let result = await response.json();
-            console.log("Expiredattended:",result.data.Expiredattended);
-            document.querySelector("#ExpiredattendedContainer").innerHTML="";
-            for(let i=0;i<result.data.Expiredattended.length;i++)
-            {
-                document.querySelector("#ExpiredattendedContainer").innerHTML+=ActivityCardPersonal(result.data.Expiredattended[i]);
+            console.log("Expiredattended:", result.data.Expiredattended);
+            document.querySelector("#ExpiredattendedContainer").innerHTML = "";
+            for (let i = 0; i < result.data.Expiredattended.length; i++) {
+                document.querySelector("#ExpiredattendedContainer").innerHTML += ActivityCardPersonal(result.data.Expiredattended[i]);
             }
-            
+
 
         } catch (ex) {
             alert("連線錯誤");
@@ -433,13 +420,13 @@ function ClsPersonalManeger() {
             return;
         }
     }
-    
 
 
-    const ActivityCardPersonal=(o)=>{
-       
-        console.log("o:",o)
-          return  `<div class="ItemBox ">
+
+    const ActivityCardPersonal = (o) => {
+
+        console.log("o:", o)
+        return `<div class="ItemBox ">
                         <a href="#activity/detail/${o.fActivityId}">
                             <div class="procontent_imgbox">
                                 <img src="http://localhost:3050/${o.fImgPath}" class="event_img" alt="">
@@ -447,11 +434,11 @@ function ClsPersonalManeger() {
                             <div class="procontent_menu">
                                 <p>${o.fActivityDate}</p>
                                 <h3>${o.fActName}</h3>
-                                <img src="" class="icon" alt=""><span>發起人</span><span>${o.fName}</span>
+                                <img src="" class="icon" alt=""><div><span>發起人</span><span>${o.fName}</span></div>
                             </div>
                         </a>
                  </div>`
-    }           
+    }
 
 
 
