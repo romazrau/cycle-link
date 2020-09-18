@@ -350,7 +350,7 @@ const removeactlikesql = async (fActivityId, fMemberId) => {
         return {
             result: 0,
             msg: "SQL 問題",
-            data: result
+            data: err
         };
     }
 };
@@ -368,17 +368,47 @@ const likeListSQL = async (fJoinTypeId, fMemberId) => {
 
         return {
             result: 1,
-            msg: "刪除成功",
+            msg: " 查詢成功",
             data: result.recordset
         };
     } catch (err) {
+        console.log(err);
         return {
             result: 0,
             msg: "SQL 問題",
-            data: result
+            data: err
         };
     }
 };
+
+
+
+const getActByCommunityId = async (id) => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        await sql.connect(config)
+        const sqlString = `
+        select fId, fActName, fActivityDate, fActivityEndDate
+        from Activity.tActivity
+        where fCommunityId = ${id}
+        `;
+        const result = await sql.query(sqlString);
+
+        if(result.recordset[0]){
+            return {result: 1, msg: "搜尋成功", data: result.recordset};
+        }
+    
+        return {result:0, msg:"查無結果"};
+    } catch (err) {
+        console.log(err);
+        return {
+            result: 0,
+            msg: "SQL 問題",
+            data: err
+        };
+    }
+};
+
 
 
 //直接測試用 func ， node src/SQL/test.js
@@ -397,5 +427,5 @@ module.exports = {
     addActLikeTosql,
     removeactlikesql,
     likeListSQL,
-
+    getActByCommunityId
 };

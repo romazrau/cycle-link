@@ -57,14 +57,20 @@ const GetHomePageWeather = async () => {
     // 用變數接 fetch結果的資料內容， 要用await等。
     let result = await response.json();
 
+
+    console.group("----------------")
     //顯示天氣
+    // console.log(result)
     HomePageWeather(result);
 
+    console.groupEnd("----------------")
 
 
 
   } catch (err) {
     console.log(err);
+    console.groupEnd("----------------")
+
   }
 }
 
@@ -88,7 +94,8 @@ function HomePageWeather(data) {
       return neededElements;
     }, {}
   );
-  console.log("weatherElements:", weatherElements.Wx);
+  // console.log("weatherElements:", weatherElements);
+
   var day_list = ['日', '一', '二', '三', '四', '五', '六'];
   let nowtime = new Date();
   let date = nowtime.toLocaleDateString();
@@ -96,19 +103,37 @@ function HomePageWeather(data) {
   let time = timesplit[0];
   let day = nowtime.getDay();
   let hour = time.split(":")[0];
+  
   let WeatherTitle2 = document.querySelector(".home_recent_weather_title p");
+  let WeatherTitleimg = document.getElementById("weather_img");
   WeatherTitle2.innerHTML = "星期" + day_list[day] + " "
   WeatherTitle2.innerHTML += hour + "時<br/>"
-  WeatherTitle2.innerHTML += weatherElements.Wx.time[0].elementValue[0].value
+  WeatherTitle2.innerHTML += weatherElements.Wx.time[0].elementValue[0].value;
+  let weitherid = weatherElements.Wx.time[0].elementValue[1].value;
+  // console.log(weitherid);
+  if(weitherid == '01'|| weitherid == '02' || weitherid == '03')
+  {
+    WeatherTitleimg.src = "/img/sun.svg" ;
+  }
+  else if(weitherid == '04'|| weitherid == '05' || weitherid == '06')
+  {
+    WeatherTitleimg.src = "/img/cloud.svg" ;
+  }
+  else
+  {
+    WeatherTitleimg.src = "/img/rain.svg" ;
+  }
+  
+  display_home_weather(weatherElements.Wx,weatherElements.T);
   //天氣描述:weatherElements.Wx.time[0].elementValue[0].value
   //代碼:weatherElements.Wx.time[0].elementValue[1].value
+
+
 
 }
 
 
 var bannerdata
-
-
 
 function CarouselBanner(data) {
   let home_bannerboxs = $(".home_bannerbox")
@@ -125,8 +150,6 @@ function CarouselBanner(data) {
   }, 5000)
 }
 setInterval(getBannerTime, 1000)
-
-
 
 
 function getBannerTime(t, index) {
@@ -150,9 +173,6 @@ function getBannerTime(t, index) {
 
 }
 
-
-
-
 //---------------------------字串樣板--------------------------//
 const home_bannerimgs = (o) => {
   return `
@@ -162,9 +182,6 @@ const home_bannerimgs = (o) => {
     <p class="home_top_event_p2"></p>                 
   </div>`
 }
-
-
-
 
 const home_recent_activities = (o) => {
 
@@ -184,15 +201,10 @@ const home_recent_activities = (o) => {
   </div>`
 }
 
-
-
-
-
 const recent_activities = document.querySelector(".home_recent_activities");
 
-
 //------------------------------圖片---------------------------
-const home_picturesbox = document.querySelector(".home_show_activities_wrapper")
+const home_picturesbox = document.querySelector(".home_show_activities_wrapper");
 
 
 const home_picturesItem = (o) => {
@@ -226,6 +238,80 @@ const home_picturesItem = (o) => {
                         </div>
                     </div>`
 }
+//todo
+const display_home_weather = (o,t) =>{
+  // console.log("sdasdasdasda",o);
+  // console.log(o.time)
+  o.time.map((e,index) =>{ 
+    // console.log(e.elementValue[1].value,index)
+    if(index%2 == 0) 
+    document.querySelector(".Wcontainer").innerHTML+= home_weather(e.elementValue[1].value);
+    }
+    
+  ),
+  t.time.map((e,index) =>{
+    // console.log(e.elementValue[0].value);
+    // if(index%2 == 0) 
+    document.querySelector(".WTcontainer").innerHTML+= home_weather_t(e.elementValue[0].value);
+  })
+};
+ 
+  // o.T.map((e,index) =>{ 
+  //   document.querySelector(".Wcontainer").innerHTML+= home_weather(e);
+  //   }
+  // )}
+
+const home_weather = (o) =>{
+  var day_list = ['日', '一', '二', '三', '四', '五', '六'];
+  let nowtime = new Date();
+  let day = nowtime.getDay();
+  if(o == '01'|| o == '02'|| o == '03'  )
+  {
+    return`
+    <div class="divtest_weather" >
+        <div>${o}</div>
+        <div class="weather_img_css" style="width:50px; height:50px ; margin:10px 0" >
+          <img id="" src="/img/sun.svg"" alt="">
+        </div>
+    </div>
+    `
+  }
+  else if ( o == '04'|| o == '05'|| o == '06' || o == '07' )
+  {
+    return`
+    <div class="divtest_weather" >
+        <div>${o}</div>
+        <div class="weather_img_css" style="width:50px; height:50px ; margin:10px 0" >
+          <img id="" src="/img/cloud.svg"" alt="">
+        </div>
+    </div>
+    `
+  }
+  else{
+    return`
+    <div class="divtest_weather" >
+        <div>${o}</div>
+        <div class="weather_img_css" style="width:50px; height:50px ; margin:10px 0" >
+          <img id="" src="/img/rain.svg"" alt="">
+        </div>
+    </div>
+    `
+  }
+  
+}
+
+const home_weather_t = (o)=>{
+  return`
+    <div class="divtest_Tweather">
+      <div>${o}℃</div>
+    </div>
+  `
+}
+  // <div class="weather_img_css" style="width:50px; height:50px">
+  //       <img  src="" alt="" >
+  //     </div>
+//${o.Wx.time.elementValue[1].value}
+  // ${o.T.time.elementValue.value}
 
 
 

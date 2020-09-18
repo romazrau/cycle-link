@@ -622,7 +622,7 @@
 
 .Post_nextIcon {
   position: relative;
-  left: 28.5rem;
+  left: 27.75rem;
   bottom: 10.75rem;
 }
 
@@ -631,11 +631,7 @@
   top: 12rem;
 }*/
 
-#Post_nextIcon2 {
-  /* position: relative; */
-  left: 35rem;
-  bottom: 20rem;
-}
+
 
 /* 要讓編輯Icon消失ㄉClass */
 .editIconDisappear {

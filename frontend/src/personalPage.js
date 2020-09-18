@@ -8,13 +8,13 @@
 
 
 
-function ClsPersonalPage(){
- 
+function ClsPersonalPage() {
+
     const GetPersonalPageMember = async (id) => {
         try {
             // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
             // *用變數接 fetch 結果 ，要用await等。
-            let response = await fetch(serverURL.personalPages+id, {
+            let response = await fetch(serverURL.personalPages + id, {
                 method: "GET", // http request method 
                 headers: { // http headers
                     'Content-Type': 'application/json' // 請求的資料類型
@@ -26,35 +26,37 @@ function ClsPersonalPage(){
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
             let data = result.data;
+            console.log("data",data);
             display_information(data);
-            
-            
-    
-           
-      
+
+
+
+
+
         } catch (err) {
             console.log(err);
             // 錯誤處理
-      
+
         }
     }
-    function display_information(data)
-    {
-        personalpage_information.innerHTML=htmlPerCard(data[0]);
-        personal_community.innerHTML="";
-        data.map(function(e,index){
-           
-            personal_community.innerHTML+=htmlPerCommunityCard(e);
+    function display_information(data) {
+        personalpage_information.innerHTML = htmlPerCard(data[0]);
+        personal_community.innerHTML = ` <span class="personal_file_title">加入的社團</span>
+        <span class="personal_file_middle">:</span>
+        <span class="personal_file_text"></span>`;
+        data.map(function (e, index) {
+            
+            personal_community.innerHTML += htmlPerCommunityCard(e);
         })
-        personal_imgbox.innerHTML=htmlPerImgCard(data[0])
+        personal_imgbox.innerHTML = htmlPerImgCard(data[0])
     }
-   
-    
-   
-    this.openClass= function(evt, className) {
+
+
+
+    this.openClass = function (evt, className) {
         var i, x, tablinks;
 
-       
+
         // x抓取頁面中的class="class"
         x = document.getElementsByClassName("personal_class");
         //將所有的personal_class的display變成none
@@ -68,7 +70,7 @@ function ClsPersonalPage(){
             tablinks[i].classList.remove("personal_barcolor");
         }
         //document.getElementById=className(函數帶進來的參數)樣式設定為display:block; 當前點擊的a link執行function 顯示出來對應的內容。
-        
+
         var main = document.querySelector(".personal_event");
         main.innerHTML = "";
 
@@ -84,111 +86,114 @@ function ClsPersonalPage(){
 
         //並對當前點擊的 a link 新增“red” 這個class
         evt.currentTarget.classList.add("personal_barcolor");
-    }   
+    }
 
 
 
-// 字串樣板
-// const htmlPerCard = o =>
-//     {
-//         return ` 
-//         <div>
-//         <img src="${o.imgPath}" class="personal_event_img" alt="">
-//         <p>${o.date}</p>
-//         <h3>${o.title}</h3>
-//         <img src="img/icon1.svg" class="personal_icon" alt=""><span>${o.count}</span>
-//         </div>`;
+    // 字串樣板
+    // const htmlPerCard = o =>
+    //     {
+    //         return ` 
+    //         <div>
+    //         <img src="${o.imgPath}" class="personal_event_img" alt="">
+    //         <p>${o.date}</p>
+    //         <h3>${o.title}</h3>
+    //         <img src="img/icon1.svg" class="personal_icon" alt=""><span>${o.count}</span>
+    //         </div>`;
 
-//     }
+    //     }
 
-//    const GetSqlData = (classname) =>{
-//     if(classname == "class1")
-//     {
-//         return [
-//             {
-//                 imgPath:"img/event1.jpeg",
-//                 date: "Sunday, July 30,2020,10:30",
-//                 title: "潛水撿垃圾，愛海洋！",
-//                 count: classname,
-//             },
-//             {
-//                 imgPath:"img/event1.jpeg",
-//                 date: "Sunday, July 30,2020,10:30",
-//                 title: "潛水撿垃圾，愛海洋！",
-//                 count: 999,
-//             },
-//             {
-//                 imgPath:"img/event1.jpeg",
-//                 date: "Sunday, July 30,2020,10:30",
-//                 title: "潛水撿垃圾，愛海洋！",
-//                 count: 999,
-//             }
-//         ]
-//     }
-//     else if(classname == "class2"){
-//         return [
-//             {
-//                 imgPath:"img/event1.jpeg",
-//                 date: "Sunday, July 30,2020,10:30",
-//                 title: "潛水撿垃圾，愛海洋！",
-//                 count: classname,
-//             },
-//             {
-//                 imgPath:"img/event1.jpeg",
-//                 date: "Sunday, July 30,2020,10:30",
-//                 title: "潛水撿垃圾，愛海洋！",
-//                 count: 999,
-//             },
-//             {
-//                 imgPath:"img/event1.jpeg",
-//                 date: "Sunday, July 30,2020,10:30",
-//                 title: "潛水撿垃圾，愛海洋！",
-//                 count: 999,
-//             }
-//         ]
-//     }
-//     else if(classname == "class3"){
-//         return [
-//             {
-//                 imgPath:"img/event1.jpeg",
-//                 date: "Sunday, July 30,2020,10:30",
-//                 title: "潛水撿垃圾，愛海洋！",
-//                 count: classname,
-//             },
-//             {
-//                 imgPath:"img/event1.jpeg",
-//                 date: "Sunday, July 30,2020,10:30",
-//                 title: "潛水撿垃圾，愛海洋！",
-//                 count: 999,
-//             },
-//             {
-//                 imgPath:"img/event1.jpeg",
-//                 date: "Sunday, July 30,2020,10:30",
-//                 title: "潛水撿垃圾，愛海洋！",
-//                 count: 999,
-//             }
-//         ]
-//     }
-//    }
-
-
-const personalpage_information=document.querySelector(".personal_information")
+    //    const GetSqlData = (classname) =>{
+    //     if(classname == "class1")
+    //     {
+    //         return [
+    //             {
+    //                 imgPath:"img/event1.jpeg",
+    //                 date: "Sunday, July 30,2020,10:30",
+    //                 title: "潛水撿垃圾，愛海洋！",
+    //                 count: classname,
+    //             },
+    //             {
+    //                 imgPath:"img/event1.jpeg",
+    //                 date: "Sunday, July 30,2020,10:30",
+    //                 title: "潛水撿垃圾，愛海洋！",
+    //                 count: 999,
+    //             },
+    //             {
+    //                 imgPath:"img/event1.jpeg",
+    //                 date: "Sunday, July 30,2020,10:30",
+    //                 title: "潛水撿垃圾，愛海洋！",
+    //                 count: 999,
+    //             }
+    //         ]
+    //     }
+    //     else if(classname == "class2"){
+    //         return [
+    //             {
+    //                 imgPath:"img/event1.jpeg",
+    //                 date: "Sunday, July 30,2020,10:30",
+    //                 title: "潛水撿垃圾，愛海洋！",
+    //                 count: classname,
+    //             },
+    //             {
+    //                 imgPath:"img/event1.jpeg",
+    //                 date: "Sunday, July 30,2020,10:30",
+    //                 title: "潛水撿垃圾，愛海洋！",
+    //                 count: 999,
+    //             },
+    //             {
+    //                 imgPath:"img/event1.jpeg",
+    //                 date: "Sunday, July 30,2020,10:30",
+    //                 title: "潛水撿垃圾，愛海洋！",
+    //                 count: 999,
+    //             }
+    //         ]
+    //     }
+    //     else if(classname == "class3"){
+    //         return [
+    //             {
+    //                 imgPath:"img/event1.jpeg",
+    //                 date: "Sunday, July 30,2020,10:30",
+    //                 title: "潛水撿垃圾，愛海洋！",
+    //                 count: classname,
+    //             },
+    //             {
+    //                 imgPath:"img/event1.jpeg",
+    //                 date: "Sunday, July 30,2020,10:30",
+    //                 title: "潛水撿垃圾，愛海洋！",
+    //                 count: 999,
+    //             },
+    //             {
+    //                 imgPath:"img/event1.jpeg",
+    //                 date: "Sunday, July 30,2020,10:30",
+    //                 title: "潛水撿垃圾，愛海洋！",
+    //                 count: 999,
+    //             }
+    //         ]
+    //     }
+    //    }
 
 
-const htmlPerCard = o =>
-    {
+    const personalpage_information = document.querySelector(".personal_information")
+
+
+    const htmlPerCard = o => {
         return `
                 <div>
+                <div class="personal_title_line" >
                     <h3>${o.fName}(${o.fAccount})</h3>
+                    <img data-user-id=${o.fId} class="lets-talk"  src="./img/icon_chat.svg" width="25">
+                    <span></span>
+                </div>
                     <p>${o.fIntroduction}</p>
                 </div>
                 <div class="personal_pro_file">
                     <ul>
                         
                         <li>
-                            <span class="personal_file_title">上次登入時間</span>
+                            <span class="personal_file_title">海龜幣</span>
                             <span class="personal_file_middle">:</span>
-                            <span class="personal_file_text">${o.fLastTime}</span>
+                            <span class="personal_file_text">${o.fCoins}</span>
                         </li>
                         <li>
                             <span class="personal_file_title">所在縣市</span>
@@ -200,11 +205,7 @@ const htmlPerCard = o =>
                             <span class="personal_file_middle">:</span>
                             <span class="personal_file_text">${o.fAccountType}</span>
                         </li>
-                        <li>
-                            <span class="personal_file_title">加入的社團</span>
-                            <span class="personal_file_middle">:</span>
-                            <span class="personal_file_text"></span>
-                        </li>
+
                     </ul>
                 </div>
                 `;
@@ -213,12 +214,12 @@ const htmlPerCard = o =>
 
 
 
-   const personal_community=document.querySelector(".personal_Flex")
-   
+    const personal_community = document.querySelector(".personal_Flex")
 
-   const htmlPerCommunityCard = o =>
-   {    
-      
+
+    const htmlPerCommunityCard = o => {
+        
+
         return `<div class="personal_detail_Societies_img_circle">
                 <a href="#community/detail/${o.fCommunityId}">
                     <div class="personal_detail_Societies_img_div">
@@ -227,20 +228,19 @@ const htmlPerCard = o =>
                     </a>
                 </div>
                 `
-  
+
     }
 
-    const personal_imgbox=document.querySelector(".personal_imgbox")
+    const personal_imgbox = document.querySelector(".personal_imgbox")
 
 
-    const htmlPerImgCard = o =>
-   {    
+    const htmlPerImgCard = o => {
         return `
              <img src="http://localhost:3050/${o.fPhotoPath}" alt="">
             `
-  
+
     }
-    
+
     this.GetPersonalPageMember = GetPersonalPageMember;
 }
 
@@ -253,11 +253,11 @@ const PersonalPage = new ClsPersonalPage();
 
 const personalChangeHash = () => {
 
-    let  personalArr = location.hash.split('/');
+    let personalArr = location.hash.split('/');
     let personalId = personalArr[1];
-    
+
     if (location.hash.includes("#personal-page/")) {
-        
+
         PersonalPage.GetPersonalPageMember(personalId);
 
 

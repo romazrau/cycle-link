@@ -19,8 +19,20 @@ router.get('/:id', async function(req, res, next) {
     res.send(err);
   } 
 });
+/**感興趣活動 */
+router.get('/', async function(req, res, next) {
+  try{
+    let fMemberId=req.user.fId;
+    // *用 await 等待資料庫回應
+    let result = await Sql.PersonalPageOfData(fMemberId);
+    // 物件用json格式回傳
+    // 可以整理一下，刪掉不必要的資料再回傳
+    res.json(result);
 
-
+  }catch(err){
+    res.send(err);
+  } 
+});
 
 
 

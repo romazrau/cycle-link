@@ -1,3 +1,8 @@
+.lets-talk{
+  cursor: pointer
+}
+
+
 /* ------------- 右下聊天機器人 ------------- */
 .chat_container {
   position: fixed;

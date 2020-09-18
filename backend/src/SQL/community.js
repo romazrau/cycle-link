@@ -432,7 +432,6 @@ const communityCreate = async (fName, fStatusId, fImgPath, fInfo, fDate) => {
 };
 
 
-// todo 
 //**加入社團by社員id 社團id
 // fAccessRightId為審核中
 const communityAdd = async (fId, fCommunityId, fDate) => {

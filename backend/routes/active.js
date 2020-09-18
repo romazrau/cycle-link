@@ -1,5 +1,6 @@
 
 
+const { json } = require('express');
 // 套件引用
 var express = require('express');
 var router = express.Router();
@@ -169,6 +170,23 @@ router.get('/likeListSQL', async function(req, res, next) {
     res.send({result:0, msg:"路由錯誤", data:err});
   } 
 });
+
+
+
+// get Active By CommunityId
+router.get('/by/community/:id', async (req, res)=>{
+  if(!req.params.id){
+    res.json({result: 0, msg: "未帶社團ID"});
+    return;
+  }
+
+  let result = await activesql.getActByCommunityId(req.params.id);
+
+  res.json(result);
+})
+
+
+
 
 // 匯出方法
 module.exports = router;
