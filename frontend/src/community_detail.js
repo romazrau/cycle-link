@@ -604,6 +604,8 @@ function ClsCommuntityDetail() {
         } catch (err) {
             console.log(err);
         }
+
+
     };
 
     // 修改社團
@@ -1080,8 +1082,49 @@ function ClsCommuntityDetail() {
 
     });
 
+    const activeAwait = async () => {
+        try {
+            // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+            // *用變數接 fetch 結果 ，要用await等。
+            let response = await fetch(serverURL.active, {
+                method: "GET", // http request method 
+                headers: { // http headers
+                    'Content-Type': 'application/json' // 請求的資料類型
+                },
+                // 以下跟身分認證有關，後端要使用session 要帶這幾項
+                cache: 'no-cache',
+                credentials: 'include',
+            });
+            // 用變數接 fetch結果的資料內容， 要用await等。
+            let result = await response.json();
+            console.log("test",result);
+            display_active_community(result.data);
+            // getactid();
+        } catch (err) {
+            console.log(err);
+            // 錯誤處理
+        }
+    }
+    activeAwait();
+    const actcommunity = document.getElementById("actcommunity");
+    const display_active_community = (o) => {
+       
+        // console.group("----------------");
+        actcommunity.innerHTML = "";
+        // console.log("o:", o);
+        o.map(
+            (e, index) => {
+                
+                //todo 
+                {
+                    actcommunity.innerHTML += htmlcommunitydetial(e);
+                }
 
+            }
+        )
+        // console.groupEnd("----------------");
 
+    }
 
     // 介紹分頁-- 管理員頭像的文字樣板
     const data2manageImg = (o) => {
@@ -1183,6 +1226,25 @@ function ClsCommuntityDetail() {
                     <p>${o.fName} </p>
                     </div>`;
     };
+    //todo 活動傳資料到社團
+    const htmlcommunitydetial = (o)=>{
+        console.log("test1",o);
+        return`
+        <div class="card">
+        <div class="GroupBottomCardTime">${o.fActivityDate}</div>
+        <div class="GroupBottomCardEventName">${o.fActName}</div>
+        <div class="FlexContainer">
+            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+            <div class="GroupBottomCardLocation ">${o.fActLocation}</div>
+        </div>
+        <div class="GroupBottomCardDD">${o.fIntroduction}</div>
+        
+            <button class="GroupCardBtn">
+            <a href="#activity/detail/${o.fId}">參加 </a>
+    </button>
+       
+    </div>`
+    }
 
     // this 指的是 ClsCommuntityDetail
     this.renderMainCommunityInfo = renderPage;
