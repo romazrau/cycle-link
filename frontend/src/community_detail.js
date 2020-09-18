@@ -4,72 +4,110 @@
 // } from "./api.js";
 
 function ClsCommuntityDetail() {
+
+    const getActByCommunityId = async (id) =>{
+        let response = await fetch(serverURL.getActByCommunityId + id);
+        if(!response.ok){
+            return {result:0, msg:"連線錯誤"};
+        }
+
+        try{
+            let result = await response.json();
+            return result;
+        }catch(ex){
+            console.log(ex);
+            return {result:0, msg:"連線回傳錯誤"};
+        }
+    }
+
+    const data2calenderData = (data) => {
+        return data.map(item => {
+            let result= {};
+            result.title = item.fActName;
+            result.url = `#activity/detail/${item.fId}`;
+            result.start = item.fActivityDate.split(" ")[0].split("/").join("-");
+            result.end = item.fActivityEndDate.split(" ")[0].split("/").join("-");
+
+            return result;
+        })
+    }
+
     //calendar
-    const calenderRander = (array) => {
+    const calenderRander = async (array) => {
         var calendarEl = document.getElementById("calendar");
+        let fetchActData = await getActByCommunityId(this.cumDetailId);
+        console.log("object");
+        console.log(fetchActData);
+
+        let activityData = [];
+        if(fetchActData.result){
+            activityData = data2calenderData(fetchActData.data);
+        }
+
+        let calendarFakeData = [
+            {
+                title: "All Day Event",
+                start: "2020-09-01",
+            },
+            {
+                title: "Long Event",
+                start: "2020-09-07",
+                end: "2020-09-10",
+            },
+            {
+                groupId: 999,
+                title: "Repeating Event",
+                start: "2020-09-09T16:00:00",
+            },
+            {
+                groupId: 999,
+                title: "Repeating Event",
+                start: "2020-09-16T16:00:00",
+            },
+            {
+                title: "Conference",
+                start: "2020-09-11",
+                end: "2020-09-13",
+            },
+            {
+                title: "Meeting",
+                start: "2020-09-12T10:30:00",
+                end: "2020-09-12T12:30:00",
+            },
+            {
+                title: "Lunch",
+                start: "2020-09-12T12:00:00",
+            },
+            {
+                title: "Meeting",
+                start: "2020-09-12T14:30:00",
+            },
+            {
+                title: "Happy Hour",
+                start: "2020-09-12T17:30:00",
+            },
+            {
+                title: "Dinner",
+                start: "2020-09-12T20:00:00",
+            },
+            {
+                title: "Birthday Party",
+                start: "2020-09-13T07:00:00",
+            },
+            {
+                title: "Click for Google",
+                url: "#123",
+                start: "2020-09-28",
+            },
+        ]
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialDate: "2020-06-12",
+            initialDate: (new Date).toJSON("zh-TW").split("T")[0],
             editable: true,
             selectable: true,
             businessHours: true,
             dayMaxEvents: true, // allow "more" link when too many events
-            events: [
-                {
-                    title: "All Day Event",
-                    start: "2020-06-01",
-                },
-                {
-                    title: "Long Event",
-                    start: "2020-06-07",
-                    end: "2020-06-10",
-                },
-                {
-                    groupId: 999,
-                    title: "Repeating Event",
-                    start: "2020-06-09T16:00:00",
-                },
-                {
-                    groupId: 999,
-                    title: "Repeating Event",
-                    start: "2020-06-16T16:00:00",
-                },
-                {
-                    title: "Conference",
-                    start: "2020-06-11",
-                    end: "2020-06-13",
-                },
-                {
-                    title: "Meeting",
-                    start: "2020-06-12T10:30:00",
-                    end: "2020-06-12T12:30:00",
-                },
-                {
-                    title: "Lunch",
-                    start: "2020-06-12T12:00:00",
-                },
-                {
-                    title: "Meeting",
-                    start: "2020-06-12T14:30:00",
-                },
-                {
-                    title: "Happy Hour",
-                    start: "2020-06-12T17:30:00",
-                },
-                {
-                    title: "Dinner",
-                    start: "2020-06-12T20:00:00",
-                },
-                {
-                    title: "Birthday Party",
-                    start: "2020-06-13T07:00:00",
-                },
-                {
-                    title: "Click for Google",
-                    url: "http://google.com/",
-                    start: "2020-06-28",
-                },
-            ],
+            events: activityData ,
         });
 
         calendar.render();
