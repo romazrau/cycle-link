@@ -650,8 +650,8 @@ function ClsCommuntityDetail() {
             });
 
             let result = await response.json();
-            console.log("+++++++++++++++++++++++++++++++++++++++");
-            console.log(result.data);
+            // console.log("+++++++++++++++++++++++++++++++++++++++!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            // console.log(result.data);
 
             //----------------------------------成員---------------------------------------
 
@@ -672,12 +672,23 @@ function ClsCommuntityDetail() {
                 });
             }
 
-            //如果按了filter
-            // document.querySelector("#memberFilter").addEventListener("click",()=>{
+            // //如果按了filter
+            // document.querySelector("#memberFilter").addEventListener("click",(e)=>{
+            //     e.preventDefault();
             //     result.data.sort(function (a, b) {
-            //         return a.Year < b.Year ? 1 : -1;
+            //         let run1 =  a.fJoinDate.split()[0] < b.fJoinDate.split()[0]
+                
+
+            //         let run2 =  a.fJoinDate.split()[1] < b.fJoinDate.split()[1]
+                
             //        });
             // })
+
+            result.data.forEach(
+                (o)=>{
+                    console.log(o);
+                }
+            )
 
             //----------------------------------介紹---------------------------------------
             let MemberContainer = document.querySelector("#CommunityMember");
@@ -931,18 +942,18 @@ function ClsCommuntityDetail() {
     });
 
     // 處理使用者輸入Null值
-    document.querySelector("#create_community_name").addEventListener("input", () => {
-        if (document.querySelector("#create_community_name").value == 0) {
-            // done Btn 失靈 放棄
-            // document.querySelector("#create_community_btn_done").disabled = true;
-            document.querySelector("#fakeDoneBtn").addEventListener("click", () => {
-                alert("請輸入社團名稱!");
-            });
-        } else {
-            // document.querySelector("#create_community_btn_done").disabled = false;
-            console.log("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-        }
-    });
+    // document.querySelector("#create_community_name").addEventListener("input", () => {
+    //     if (!document.querySelector("#create_community_name").value) {
+    //         // done Btn 失靈 放棄
+    //         // document.querySelector("#create_community_btn_done").disabled = true;
+    //         document.querySelector("#fakeDoneBtn").addEventListener("click", () => {
+    //             alert("請輸入社團名稱!");
+    //         });
+    //     } else {
+    //         // document.querySelector("#create_community_btn_done").disabled = false;
+    //         console.log("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+    //     }
+    // });
 
     // 完成按鈕Onclik
     // 放進資料

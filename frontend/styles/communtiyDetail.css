@@ -546,6 +546,7 @@ hr {
 }
 
 .GroupTopEventName {
+  padding-right: 1rem;
   width: 100%;
   font-size: 2.5rem;
   font-family: monospace;
