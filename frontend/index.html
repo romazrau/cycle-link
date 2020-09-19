@@ -60,7 +60,16 @@
             </div>
             <div class="div_container_login">
                 <div class="navebar_add_icons">
-                    <i class="fas fa-plus"></i>
+                    <div class="navebar_add_postition_icons">
+                        <i id="navebar_plus_icon" class="fas fa-plus navebar_plus_icon"></i>
+                        <i id="navebar_down_icon" class="fas fa-angle-down"></i>
+
+                        <div id="navebar_down_list" class="navebar_down_list foldingCurtainUp">
+                            <button class="" onclick="location.hash = '#create-activity'">創建活動</button>
+                            <button id="changeBack" class="" onclick="location.hash = '#create-community'">創建社團</button>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="navebar_msg_icons hide">
@@ -69,14 +78,14 @@
                 </div>
 
                 <div id="navbar_log-in" class="li_menutitle header_nav"><a id="header_link_login" href="#log-in">Log
-                    in<br>登入</a></div>
-                
+                        in<br>登入</a></div>
+
 
 
             </div>
-            </div>
 
 
+            <!-- 漢堡鍵 -->
             <div class="navbar_menu">
                 <div></div>
                 <div></div>
@@ -84,21 +93,6 @@
             </div>
         </nav>
     </header>
-
-    <div id="activity_navbar" class="page_navbar transYsWidthTo0Bottom">
-        <div class="container page_navbar_row">
-
-            <div></div>
-
-            <div>
-                <button class="page_navbar_btn" onclick="location.hash = '#create-activity'">創建活動</button>
-                <!-- <i class="fas fa-plus"></i>Event<br> -->
-                <button id="changeBack" class="page_navbar_btn"
-                    onclick="location.hash = '#create-community'">創建社團</button>
-                    <!-- <i class="fas fa-plus"></i>Group<br> -->
-            </div>
-        </div>
-    </div>
 
     <div class="upTop"><i class="far fa-arrow-alt-circle-up fa-2x"></i></div>
     <!-- * 懸浮icon -->
@@ -158,7 +152,7 @@
         <!-- * loading  ****************      ****************       ****************   -->
         <div id='page_loading' class='page'>
             <div class="loading_backgroung">
-                <img src="./img/Bean-Eater-1s-200px.svg" alt="loading.svg">
+                <img src="./img/Discuss-1s-250px.svg" alt="loading.svg">
                 <!-- <img src="./img/Ball-1s-300px.svg" alt="loading.svg"> -->
             </div>
         </div>
@@ -1855,8 +1849,8 @@
                                                     <div class="Size20IconMarginRight Size20IconOpacity"><img
                                                             src="./img/icon_arrowDropdown.svg" width="20"></div>
                                                 </a>
-                                                <a href="#" id="memberFilter" >
-                                                    <div class="Size20IconMarginRight Size20IconOpacity Rotate90" ><img
+                                                <a href="#" id="memberFilter">
+                                                    <div class="Size20IconMarginRight Size20IconOpacity Rotate90"><img
                                                             src="./img/icon_arrow.svg" width="20">
                                                     </div>
                                                 </a>
