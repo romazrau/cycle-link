@@ -29,7 +29,7 @@
     padding-left: 20px;
     height: 60px;
     width: 500px;
-    font-size: 30px;
+    font-size: 1rem;
     border: 1px solid var(--lightgrey-color);
     border-radius: 10px;
 }
@@ -135,7 +135,7 @@
     background-color: var(--blue-color);
     border: 0px;
     border-radius: 10px;
-    font-size: 36px;
+    font-size: 1.2rem;
     color: white;
     text-align: center;
 }
@@ -211,6 +211,8 @@
     text-decoration: none;
     color: white;
 }
+
+/* 社團活動卡片 */
 
 
 
