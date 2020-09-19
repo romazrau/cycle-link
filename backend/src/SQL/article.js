@@ -1,4 +1,6 @@
-const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require("constants");
+const {
+  SSL_OP_SSLEAY_080_CLIENT_DH_BUG
+} = require("constants");
 const sql = require("mssql");
 
 const config = {
@@ -57,10 +59,18 @@ const articlelist = async () => {
     // console.dir(result.recordset);
     // console.dir(result.rowsAffected[0]);
     // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
-    return { result: 1, msg: "請求成功", data: result.recordset };
+    return {
+      result: 1,
+      msg: "請求成功",
+      data: result.recordset
+    };
   } catch (err) {
     console.log(err);
-    return { result: 0, msg: "SQL錯誤", data: err };
+    return {
+      result: 0,
+      msg: "SQL錯誤",
+      data: err
+    };
   }
 };
 // articlelist();
@@ -101,10 +111,18 @@ const articleInCommunity = async (communityId) => {
       order by Convert(datetime, fPostTime) DESC`;
     const result = await sql.query(str);
     // console.dir(result);
-    return { result: 1, msg: "請求成功", data: result.recordset };
+    return {
+      result: 1,
+      msg: "請求成功",
+      data: result.recordset
+    };
   } catch (err) {
     console.log(err);
-    return { result: 0, msg: "SQL錯誤", data: err };
+    return {
+      result: 0,
+      msg: "SQL錯誤",
+      data: err
+    };
   }
 };
 // articleInCommunity(2);
@@ -129,7 +147,11 @@ on r.fReplyMemberId=m.fId
       data: result.recordset,
     };
   } catch (err) {
-    return { result: 0, msg: "SQL錯誤", data: err };
+    return {
+      result: 0,
+      msg: "SQL錯誤",
+      data: err
+    };
   }
 };
 // replylist();
@@ -150,7 +172,7 @@ const addarticle = async (
    values (${fPostMemberId}, ${fCommunityId} ,'${fPostTime}', '${fContent}', '${fImgPaths}')
    `;
       const result = await sql.query(str);
-      console.dir(result);
+      // console.dir(result);
 
       if (result.recordset[0])
         return {
@@ -159,10 +181,18 @@ const addarticle = async (
           data: result.recordset,
         };
     } else {
-      return { result: 0, msg: "錯誤:請輸入內容", data: result.recordset };
+      return {
+        result: 0,
+        msg: "錯誤:請輸入內容",
+        data: result.recordset
+      };
     }
   } catch (err) {
-    return { result: 0, msg: "SQL錯誤", data: result };
+    return {
+      result: 0,
+      msg: "SQL錯誤",
+      data: result
+    };
   }
 };
 // addarticle(17, 1, "2020/09/02 20:11", "SQL語法測試儀下唷", "imgpaht");
@@ -178,15 +208,23 @@ const ShowUserInfo = async (fMemberId) => {
    `;
     const result = await sql.query(str);
     // console.log(result);
-    return { result: 1, msg: "請求成功", data: result.recordset[0] };
+    return {
+      result: 1,
+      msg: "請求成功",
+      data: result.recordset[0]
+    };
   } catch (err) {
-    return { result: 0, msg: "SQL錯誤", data: err };
+    return {
+      result: 0,
+      msg: "SQL錯誤",
+      data: err
+    };
   }
 };
 // ShowUserInfo(4);
 
-function getCommunityPostbyIdStr(x){
-  return`
+function getCommunityPostbyIdStr(x) {
+  return `
   WITH PostMember AS(select p.fMemberId, p.fCommunityId, p.fPostTime, p.fImgPaths as PostImg, p.fId as PostId, p.fContent as PostContent, m.fName as PostMemberName, m.fId as MemberId, m.fPhotoPath as MemberImgPath
     from Community.tPost as p
     left join Member.tMember as m
@@ -219,17 +257,18 @@ function getCommunityPostbyIdStr(x){
     order by Convert(datetime, fPostTime) DESC`
 }
 
-function multipleornot(x){
-  if(typeof (x) == 'string'){
+function multipleornot(x) {
+  if (typeof (x) == 'string') {
     return x;
-}else{
-  let result ="";
-  x.map((e,index)=>{
-    result += e + " or CommunityId = ";
-  })
-  let result2 = result.substring(0,(result.length-18));
-  return result2;
-}}
+  } else {
+    let result = "";
+    x.map((e, index) => {
+      result += e + " or CommunityId = ";
+    })
+    let result2 = result.substring(0, (result.length - 18));
+    return result2;
+  }
+}
 
 //* ---------------------------------------------------------- 熱門社團搜尋
 const the4hottiest = async (x) => {
@@ -262,14 +301,18 @@ const the4hottiest = async (x) => {
     const gethottiest_Result = await sql.query(gethottiestStr);
     // let getpostbyidStr = ``
     // console.log(gethottiest_Result.recordset[0].CommunityId);
-   
+
     return {
       result: 1,
       msg: "請求成功",
       data: gethottiest_Result.recordset,
     };
   } catch (err) {
-    return { result: 0, msg: "SQL錯誤", data: err };
+    return {
+      result: 0,
+      msg: "SQL錯誤",
+      data: err
+    };
   }
 };
 
@@ -317,7 +360,11 @@ const explore4community = async () => {
       data: getexplore_Result.recordset,
     };
   } catch (err) {
-    return { result: 0, msg: "SQL錯誤", data: err };
+    return {
+      result: 0,
+      msg: "SQL錯誤",
+      data: err
+    };
   }
 };
 
@@ -346,7 +393,11 @@ const txtSearchCommunityCard = async (x) => {
       data: result.recordset,
     };
   } catch (err) {
-    return { result: 0, msg: "SQL錯誤", data: err };
+    return {
+      result: 0,
+      msg: "SQL錯誤",
+      data: err
+    };
   }
 };
 
@@ -393,7 +444,11 @@ const txtSearchCommunityArticle = async (x) => {
       data: result.recordset,
     };
   } catch (err) {
-    return { result: 0, msg: "SQL錯誤", data: err };
+    return {
+      result: 0,
+      msg: "SQL錯誤",
+      data: err
+    };
   }
 };
 
@@ -416,7 +471,11 @@ const displayArticleForEdit = async (x) => {
       data: result.recordset,
     };
   } catch (err) {
-    return { result: 0, msg: "SQL錯誤", data: err };
+    return {
+      result: 0,
+      msg: "SQL錯誤",
+      data: err
+    };
   }
 };
 
@@ -436,7 +495,11 @@ const updateEdited = async (fContent, fImgPaths, fPostTime, fPostId) => {
       data: result.recordset,
     };
   } catch (err) {
-    return { result: 0, msg: "SQL錯誤", data: err };
+    return {
+      result: 0,
+      msg: "SQL錯誤",
+      data: err
+    };
   }
 }
 

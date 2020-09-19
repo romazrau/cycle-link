@@ -309,6 +309,7 @@ function ClsActivityDetail() {
             // console.log(result.data);
             location.href = "#activity"
             document.querySelector("#act_tag_main").innerHTML = `#${tag}`;
+
             ActivityIndex.display_active(result.data.tagSearch)
             // location.reload();
         } catch (err) {
@@ -852,8 +853,8 @@ function ClsActivityDetail() {
 
     const removeactlikesql = async (activelikeid) => {
         try {
-            console.log("================")
-            console.log("activelikeid:", activelikeid);
+            // console.log("================")
+            // console.log("activelikeid:", activelikeid);
             var formdata = new FormData();
             formdata.append("fActivityId", activelikeid);
             let response = await fetch(serverURL.removeactlikesql, {
@@ -874,11 +875,43 @@ function ClsActivityDetail() {
         }
     }
 
+    const inputDemoBTN = document.querySelector("#inputDemo");
+    inputDemoBTN.addEventListener("click", function () {
+        console.log("hi");
+        document.querySelector("#create_active_name").value = "大安淨街慢跑 Plogg";
+        // document.querySelector("#actCreaterType").value = 1
+        document.querySelector("#create_active_text").value =
+            `你聽過淨街慢跑（Plogging）嗎？這在歐美正火紅！它是結合慢跑和撿垃圾的新運動。
+但到底該怎麼開始？快跟著我們一起 Plogging 吧，練體力、救市容就是這麼簡單！
+
+鍛鍊身體的同時，也能救市容！淨街慢跑 (Plogging) 是一種環保又健康的創新運動。
+
+在嘉義，一群迪卡儂夜跑團的熱血市民們，已經開始這項運動。
+他們邊跑步，練心肺耐力；蹲下撿垃圾，還鍛鍊了肌肉！更重要的是，
+他們成為救市容的無名英雄。他們到底怎麼做？
+
+「在乾淨的環境中，擁有健康的身體！」這是淨街慢跑者的座右銘。
+
+那什麼淨街慢跑者？也就是從事淨街慢跑的運動者！
+            
+淨街慢跑又是什麼？你沒有聽過嗎？別擔心，不認識淨街慢跑是很正常的事，
+因為這是項非常新的運動潮流。
+
+淨街慢跑運動開始於 2016 年，但直到 2018 年才成立法國淨街慢跑的 Instagram 頁面；
+而淨街慢跑源自位於法國北方的好鄰居：瑞典。
+
+淨街慢跑（Plogging）這個詞彙，是由慢跑（jogging）和 瑞典語中的撿垃圾（plocka upp）
+兩個單詞組合而成。因此，plogging 也就是所謂的淨街慢跑。`
+        document.querySelector("#actMinPeople").value = "5"
+        document.querySelector("#actMaxPeople").value = "20"
+
+    })
 
 
     this.actDetail = actDetail;
     this.OrJoinAct = OrJoinAct;
     this.OrActInitiator = OrActInitiator;
+    this.inputDemo = inputDemo;
 }
 const ActivityDetail = new ClsActivityDetail();
 
