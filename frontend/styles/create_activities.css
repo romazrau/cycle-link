@@ -320,3 +320,16 @@
   transition: all 0.5s;
   cursor: pointer;
 }
+
+.activity_detail_text_detail pre {
+  font-size: medium;
+  /* overflow: scroll; */
+  /* overflow: auto;
+  width: 700px;
+  overflow-X: none;
+  overflow-y: none;
+  display: block; */
+  /* word-wrap: break-word; */
+  text-align: justify;
+  white-space: pre-wrap;
+}

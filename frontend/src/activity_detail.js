@@ -100,7 +100,7 @@ function ClsActivityDetail() {
 
     const actDetail_textDetail = (o) => {
         return `
-        <p>${o.fIntroduction}</p>
+        <pre>${o.fIntroduction}</pre>
         `;
     };
 
@@ -353,6 +353,12 @@ function ClsActivityDetail() {
 
 
     // ! ************************ [ END ] actDetail ajax [ END ] ************************ //
+    // --- textarea ---
+    // function textareaReplace() {
+    //     let acTextarea = document.querySelector("#create_active_text")
+    //     acTextarea.value.replace(' ', "<br/>")
+    //     console.log(acTextarea.value);
+    // }
 
 
 
@@ -810,11 +816,11 @@ function ClsActivityDetail() {
         if (activityselectlike.classList.contains("actlikecolor") == true) {
             activityselectlike.classList.remove("actlikecolor");
             removeactlikesql(id, now);
-            alert('已取消追蹤活動');
+            // alert('已取消追蹤活動');
         } else {
             activityselectlike.classList.add("actlikecolor");
             addActLikeToSQL(id, now);
-            alert('已追蹤活動');
+            // alert('已追蹤活動');
         }
     })
     const addActLikeToSQL = async (activelikeid, now) => {
