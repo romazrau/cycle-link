@@ -52,12 +52,12 @@ router.get("/reply", async function (req, res, next) {
 router.get("/hottiest/:nowMonth", async function (req, res, next) {
   try {
     let hottiestResult = await Sql.the4hottiest(req.params.nowMonth);
-    for (let i = 0; i < hottiestResult.data.length; i++) {
-      if (!hottiestResult.data[i].communityImg) {
-        hottiestResult.data[i].communityImg =
-          "img/community/community-default.png";
-      }
-    }
+    // for (let i = 0; i < hottiestResult.data.length; i++) {
+    //   if (!hottiestResult.data[i].communityImg) {
+    //     hottiestResult.data[i].communityImg =
+    //       "img/community/community-default.png";
+    //   }
+    // }
     res.json(hottiestResult);
   } catch (err) {
     res.send(err);
@@ -68,12 +68,13 @@ router.get("/explore", async function (req, res, next) {
   try {
     let exploreResult = await Sql.explore4community();
     //判斷社團照片為空值時，帶入預設圖片
-    for (let i = 0; i < exploreResult.data.length; i++) {
-      if (!exploreResult.data[i].communityImg) {
-        exploreResult.data[i].communityImg =
-          "img/community/community-default.png";
-      }
-    }
+    // for (let i = 0; i < exploreResult.data.length; i++) {
+    //   if (!exploreResult.data[i].communityImg) {
+    //     exploreResult.data[i].communityImg =
+    //       "img/community/community-default.png";
+    //   }
+    // }
+    // console.log(exploreResult);
     res.json(exploreResult);
   } catch (err) {
     res.send(err);

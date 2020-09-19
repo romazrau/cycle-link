@@ -302,10 +302,21 @@ const the4hottiest = async (x) => {
     // let getpostbyidStr = ``
     // console.log(gethottiest_Result.recordset[0].CommunityId);
 
+    let communityidArr = [];
+    for (let i = 0; i<gethottiest_Result.recordset.length; i++){
+      communityidArr.push(gethottiest_Result.recordset[i].CommunityId)
+    }
+
+    const gethottiestpost_Result = await sql.query(getCommunityPostbyIdStr(communityidArr));
+
+
     return {
       result: 1,
       msg: "請求成功",
-      data: gethottiest_Result.recordset,
+      data: {hottiestCard: gethottiest_Result.recordset,
+        hottiestPost: gethottiestpost_Result.recordset,
+      
+      }
     };
   } catch (err) {
     return {
@@ -335,29 +346,26 @@ const explore4community = async () => {
       on cs.CommunityId = ms.fId
       order by NEWID()`;
     const getexplore_Result = await sql.query(getexploreStr);
-    // console.log(result.recordset[0].CommunityId);
     // console.log(getexplore_Result.recordset[0].CommunityId);
     // console.log(getexplore_Result.recordset[1].CommunityId);
     // console.log(getexplore_Result.recordset[2].CommunityId);
     // console.log(getexplore_Result.recordset[3].CommunityId);
     // console.log(getexplore_Result.recordset.length);
 
+    let communityidArr = [];
+    for (let i = 0; i<getexplore_Result.recordset.length; i++){
+      communityidArr.push(getexplore_Result.recordset[i].CommunityId)
+    }
 
-
-    // let communityidArr = [];
-    // for (let i = 0; i<getexplore_Result.recordset.length; i++){
-    //   communityidArr.push(getexplore_Result.recordset[i].CommunityId)
-    // }
-
-
-    // const getexplorepost_Result = await sql.query(getCommunityPostbyIdStr(communityidArr));
+    const getexplorepost_Result = await sql.query(getCommunityPostbyIdStr(communityidArr));
     // console.log(getexplorepost_Result.recordset);
-
 
     return {
       result: 1,
       msg: "請求成功",
-      data: getexplore_Result.recordset,
+      data: {exploreCard: getexplore_Result.recordset,
+        explorePost:  getexplorepost_Result.recordset
+      }
     };
   } catch (err) {
     return {
