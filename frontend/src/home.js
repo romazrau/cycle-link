@@ -159,8 +159,14 @@ function getBannerTime(t, index) {
 
     let sec = parseInt(offsetTime % 60); // 秒
     let min = parseInt((offsetTime / 60) % 60); // 分 ex: 90秒
-    let hr = parseInt(offsetTime / 60 / 60) % 60; // 時
-    let day = parseInt((offsetTime / 60 / 60) % 24)
+    let hr = parseInt(offsetTime / 60 / 60/60) ; // 時
+    let day = parseInt((offsetTime / 60 / 60) / 24)
+    if(hr<10)
+    {hr="0"+hr}
+    if(min<10)
+    {min="0"+min}
+    if(sec<10)
+    {sec="0"+sec}
 
     $(".home_top_event_p2").eq(i).html(`倒數${day}天${hr}時${min}分${sec}秒`)
 
