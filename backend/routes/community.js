@@ -206,6 +206,8 @@ router.get('/communityById_communityMember/:id', async function (req, res, next)
 
 
         if (result.result && resultStatus.result) {
+
+            let isOver = 0;
             result.data.forEach(items => {
                 for (let element of resultStatus.data) {
 
@@ -216,8 +218,6 @@ router.get('/communityById_communityMember/:id', async function (req, res, next)
                         items["ifManager"] = 1;
                         element["ifManager"] = 1;
 
-
-                        break;
                     } else {
                         items["ifManager"] = 0;
                         element["ifManager"] = 0;
@@ -263,12 +263,14 @@ router.get('/communityById_communityMember/:id', async function (req, res, next)
 
             let newResultArr = result.data.filter(item => item.ifManager == 1)
             result.data = newResultArr;
+            console.log("!!!!!!!!!!!!!!*******************************!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            console.log(result.data);
             res.json(result);
             isResponse = 1;
             return;
         }
-        // console.log("*******************************");
-        // console.log(result.data);
+        console.log("*******************************!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        console.log(result.data);
         //顯示在頁面上 
         if (isResponse) return;
         res.json(result);

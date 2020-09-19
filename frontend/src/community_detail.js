@@ -543,6 +543,8 @@ function ClsCommuntityDetail() {
             // console.log("+++++++++++++++++++++++++++++++++++++++!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             // console.log(result.data);
 
+        // console.log(result.data);
+
             //----------------------------------成員---------------------------------------
 
             document.querySelector("#MemberPageTemplateContainer").innerHTML = "";
