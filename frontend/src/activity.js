@@ -15,18 +15,18 @@ function ClsActivity() {
     var activity_option = document.getElementById("activity_option");
     var searchtext = document.getElementById("search_txt");
     let searchAnsContainer = document.querySelector("#activesearchresult");
-    var activity_searchtext=7;
-    activity_option.addEventListener("click",function(){
-        
-        activity_searchtext=activity_option.value
-        console.log("activity_searchtext:",activity_searchtext);
+    var activity_searchtext = 7;
+    activity_option.addEventListener("click", function () {
+
+        activity_searchtext = activity_option.value
+        console.log("activity_searchtext:", activity_searchtext);
     })
 
 
     activity_search_go.addEventListener('click', function () {
         //丟進
         var typeId = activity_searchtext;
-        console.log("typeId:",typeId);
+        console.log("typeId:", typeId);
 
 
         var searchtxt = searchtext.value;
@@ -92,7 +92,7 @@ function ClsActivity() {
             display_active_main_level(result.data);
 
             console.log(object);
-            
+
             // for(let i=0;i<ActivitySearchOption.length;i++)
             // {
             //     console.log("ActivitySearchOption[i]:",ActivitySearchOption[i].innerHTML);
@@ -101,7 +101,7 @@ function ClsActivity() {
             //         console.log("activity_searchtext",activity_searchtext)
             //     })
             // }
-            
+
             // *用 result  do something ...
 
         } catch (err) {
@@ -134,7 +134,7 @@ function ClsActivity() {
             // *用 result  do something ...
             getsearchdata(result.data);
 
-            
+
 
             // search_result_arr =  result.data ; 
 
@@ -289,7 +289,7 @@ function ClsActivity() {
             maxDate: "+1m",
 
             onclick: function () {
-               
+
             }
         });
 
@@ -329,7 +329,7 @@ function ClsActivity() {
     //抓取時間
     function getstartdate(startdate) {
         var startdatetext = document.getElementById("search_date_text");
-        startdatetext.innerHTML = "起始日" + "  " + startdate+ "  " ;
+        startdatetext.innerHTML = "起始日" + "  " + startdate + "  ";
     }
 
 
@@ -414,7 +414,7 @@ function ClsActivity() {
                  </div>
              </a>
              </div>`;
-        
+
     }
 
 
@@ -527,12 +527,12 @@ function ClsActivity() {
     //ActCardData
     //* ------------------------------------- 文字樣板 -------------------------------------
     const display_active = (o) => {
-      
+
         ActCard.innerHTML = "";
-        
+
         o.map(
             (e, index) => {
-                
+
                 //todo 
                 {
                     ActCard.innerHTML += htmlActCard(e);
@@ -540,7 +540,7 @@ function ClsActivity() {
 
             }
         )
-        
+
     }
 
 
@@ -716,7 +716,7 @@ function ClsActivity() {
             removeactlikesql(activelikeid);
 
         }
-      
+
     };
 
 

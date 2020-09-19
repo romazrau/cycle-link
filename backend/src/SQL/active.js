@@ -35,15 +35,15 @@ const activesql = async () => {
         // left join jo as J
         // on A.fId = J.fActivityId
         // `
-        let sqlStr =`select top(6)  * from Activity.tActivity  as A
+        let sqlStr = `select top(6)  * from Activity.tActivity  as A
         where A.fActivityDate > convert(char, getdate(), 111) and A.fActLabelId = 3
         order by  newid()`
         // todo where j.fMemberId = ${}
 
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
-        console.dir(result.recordset)
-        console.log("============");
+        // console.dir(result.recordset)
+        // console.log("============");
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
         return {
             result: 1,
@@ -95,17 +95,16 @@ const activegosearchsql = async (fid, text) => {
         await sql.connect(config)
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
         var sqlStr = "";
-        if(fid!=7)
-        {
-        sqlStr = `
+        if (fid != 7) {
+            sqlStr = `
         select A.fId, A.fActName , A.fActivityDate,A.fActivityEndDate , A.fImgPath,A.fActLocation
         from Activity.tActivity as A 
         left join Activity.tActivityMainLabel as S
         on A.fActLabelId = S.fId
         where S.fId = ${fid} and A.fActName like '%${text}%';`
-        
-        }else{
-           sqlStr = `
+
+        } else {
+            sqlStr = `
             select A.fId, A.fActName , A.fActivityDate,A.fActivityEndDate , A.fImgPath,A.fActLocation
             from Activity.tActivity as A 
             left join Activity.tActivityMainLabel as S
@@ -117,7 +116,7 @@ const activegosearchsql = async (fid, text) => {
         // 看一下回傳結果'
         // console.dir(result)
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性
-       console.log("-------------------",result)
+        //    console.log("-------------------",result)
         return {
             result: 1,
             msg: "請求成功",
@@ -377,7 +376,7 @@ const likeListSQL = async (fJoinTypeId, fMemberId) => {
         WHERE fJoinTypeId=${fJoinTypeId} AND fMemberId=${fMemberId}
         `;
         const result = await sql.query(sqlString);
-        console.dir(result);
+        // console.dir(result);
 
         return {
             result: 1,
@@ -407,11 +406,18 @@ const getActByCommunityId = async (id) => {
         `;
         const result = await sql.query(sqlString);
 
-        if(result.recordset[0]){
-            return {result: 1, msg: "搜尋成功", data: result.recordset};
+        if (result.recordset[0]) {
+            return {
+                result: 1,
+                msg: "搜尋成功",
+                data: result.recordset
+            };
         }
-    
-        return {result:0, msg:"查無結果"};
+
+        return {
+            result: 0,
+            msg: "查無結果"
+        };
     } catch (err) {
         console.log(err);
         return {

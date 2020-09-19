@@ -597,3 +597,17 @@
   margin-bottom: 3rem;
   font-weight: bold;
 }
+
+#inputDemo {
+  border: 1px solid var(--blue-color);
+  border-radius: 5px;
+  background-color: var(--blue-color);
+  color: white;
+  padding: 0.3rem;
+  position: absolute;
+  bottom: 1rem;
+}
+
+#inputDemo:hover {
+  cursor: pointer;
+}
