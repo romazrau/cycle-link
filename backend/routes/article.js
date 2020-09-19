@@ -91,6 +91,7 @@ router.get("/txtsearchcard/:txtsearch", async function (req, res, next) {
     res.send(err);
   }
 });
+
 //首頁文字搜尋：該社團文章
 router.get("/txtsearcharticle/:txtsearch", async function (req, res, next) {
   try {
@@ -114,30 +115,6 @@ router.get("/edit/display/:postid", async function (req, res, next) {
     res.send(err);
   }
 });
-
-//編輯文章：step2. 更新指定postId文章
-// router.post("/edit", async function (req, res, next) {
-//   try {
-//     let fPostId = req.body.fPostId;
-//     let fPostTime = req.body.fPostTime;
-//     let fContent = req.body.fContent;
-//     let fImgPaths = "";
-//     for (let i = 0; i < req.files.length; i++) {
-//       fImgPaths += "img/" + req.files[i].filename;
-//       fImgPaths += ",,";
-//     }
-
-//     let result = await Sql.updateEdited(
-//       fContent,
-//       fImgPaths,
-//       fPostTime,
-//       fPostId
-//     );
-//     res.json(result);
-//   } catch (err) {
-//     res.send(err);
-//   }
-// });
 
 //* ----------------------- 編輯活動 ----------------------- //
 router.put('/edit', async function (req, res, next) {

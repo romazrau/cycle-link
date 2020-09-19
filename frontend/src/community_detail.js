@@ -1278,10 +1278,15 @@ function ClsCommuntityDetail() {
                     <p>${o.fName} </p>
                     </div>`;
     };
+
     //todo 活動傳資料到社團
     const htmlcommunitydetial = (o)=>{
+        // console.log("test1",o);
         return`
         <div class="card">
+        <div class="communityCard">
+        <img src="http://localhost:3050/${o.fImgPath}" alt="" style="width:100%">
+        </div>
         <div class="GroupBottomCardTime">${o.fActivityDate}</div>
         <div class="GroupBottomCardEventName">${o.fActName}</div>
         <div class="FlexContainer">
@@ -1296,6 +1301,66 @@ function ClsCommuntityDetail() {
        
     </div>`
     }
+
+
+    // 活動樣板
+    // const htmlcommunitydetial = (o) => {
+
+    //         return ` 
+    //             <div class="">
+    //             <a  href="#activity/detail/${o.fId}" class="activecard">
+    //                  <div class="active_card_container">
+    //                  <div class="active_card" >
+    //                      <div class="addlike">
+    //                          <i class="fas fa-heart fa-lg active_card_heart "></i>
+    //                      </div>
+    //                      <div class="active_card_div">
+    //                          <img src="http://localhost:3050/${o.fImgPath}" alt="" class="active_card_img">
+    //                      </div>
+                         
+    //                      <div class="active_card_info">
+    //                          <p>${o.fActivityDate}</p>
+    //                          <p class="active_card_title">${o.fActName}</p>
+                     
+    //                      <div class="active_card_location_div">
+    //                          <img src="img/929497.svg" class="active_card_location">
+    //                          <p>${o.fActLocation}</p>
+    //                      </div>
+    //                  </div>
+    //                  </div>
+    //                  </div>
+    //              </a>
+    //              </div>`;
+    //         // if(o.fJoinTypeId == 0)
+    //         // {
+    //         //     return ` 
+    //         //     <div class="">
+    //         //     <a  href="#activity/detail/${o.fId}" class="activecard">
+    //         //          <div class="active_card_container">
+    //         //          <div class="active_card" >
+    //         //              <div class="addlike">
+    //         //                  <i class="fas fa-heart fa-lg active_card_heart actlikecolor "></i>
+    //         //              </div>
+    //         //              <div class="active_card_div">
+    //         //                  <img src="${o.fImgPath}" alt="" class="active_card_img">
+    //         //              </div>
+    
+    //         //              <div class="active_card_info">
+    //         //                  <p>${o.fActivityDate}</p>
+    //         //                  <p class="active_card_title">${o.fActName}</p>
+    
+    //         //              <div class="active_card_location_div">
+    //         //                  <img src="img/929497.svg" class="active_card_location">
+    //         //                  <p>${o.fActLocation}</p>
+    //         //              </div>
+    //         //          </div>
+    //         //          </div>
+    //         //          </div>
+    //         //      </a>
+    //         //      </div>`;
+    //         // }
+    //         // else{
+    //     }
 
 
 

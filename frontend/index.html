@@ -438,7 +438,7 @@
 
                 </div>
 
-                <button id="activity_search_go">GO</button>
+                <button id="activity_search_go">GO!</button>
             </div>
             <!-------------------------------------- main -------------------------------------->
             <div class="activity_main">
@@ -531,7 +531,7 @@
                                 <!-- </a> -->
                             </div>
                         </div>
-                        <div class="CM_recommend_container"></div>
+                        
                         <!--社團類別選項刪除 
                             <div class="CM_appearCategory_item_container">
                             <div class="CM_appearCategory_item">
@@ -549,6 +549,7 @@
                         <img src="img/mountain(衰熊版).svg" />
                     </div>
                 </div>
+                <div class="CM_recommend_container CM_recommend_container_disappear"></div>
                 <div class="community_main_timeline">
                     <ul class="community_main_ul_timeline"></ul>
                 </div>
@@ -1346,8 +1347,8 @@
                         <div class="GroupTopRight FlexContainer">
 
                             <div class="GroupTopEventName">
-                                <p id="CommunityName">週末北海岸
-                                    水下攝影fit淨海</p>
+                                <h2 id="CommunityName" class="h2">週末北海岸
+                                    水下攝影fit淨海</h2>
                                 <img class="GroupTopRightImgIcon settingIcon" data-open-name="DropDownMenu_name"
                                     src="./img/icon_seemore.svg" width="25px">
                                 <div class="DropDownMenu" id="DropDownMenu_name">
@@ -1390,8 +1391,43 @@
                     </div>
                 </div>
 
-                <hr class="DividedLine PositionRalative">
+                <!-- <hr class="DividedLine PositionRalative"> -->
 
+
+                    <!-- page -->
+                    <div class="aboutMe">
+                        <div class="Container">
+                            
+                            <!---------------------下層關於我---------------------->
+                            <div class="dropdown-relative-container">
+                                <div class="FlexContainer Group_FlexJustifyContentSB">
+                                    <div class="FontSectionTitle">關於我們</div>
+                                    <div class="GroupAboutUsDivImg">
+                                        <img class="GroupAboutUsImg settingIcon" data-open-name="DropDownMenu_edit"
+                                            src="/img/icon_seemore.svg" width="25px">
+                                    </div>
+                                </div>
+                                <div class="DropDownMenu" id="DropDownMenu_edit">
+                                    <div class="dropdown-triangleD"></div>
+                                    <div class="dropdownD js_editCommunity">編輯</div>
+                                </div>
+                            </div>
+                            <div id="CommunityAboutUs" class="FontSectionText">
+                                當您已完成潛水課程，成為一位合格的潛水員後，當然水世界潛水會為您安排接續探索水下風光的活動！
+                                剛結訓的學員基本上對台灣海域不熟悉、也不知道該從哪裡開始玩起，也擔心沒人準備後勤作業，也沒有同伴一起分享。
+                                水世界潛水俱樂部可以帶領喜愛潛水的同好，更重要的就是可以找到志同道合的潛友成為彼此的潛伴，一同下水遊覽美麗的海底世界；「水世界潛水俱樂部」是由專業導潛、資深教練、資深潛友、潛水新手聚集而成的團體，帶您體驗大自然。
+                                您要如何加入會員
+                                資格：
+                                (1) 水世界潛水結訓的學員 或
+                                (2) 於水世界潛水購買整套重裝者
+                                俱樂部會員權益與義務
+                                1.入會費
+                                入會費為$1000元，您將獲的一張會員卡及10張氣瓶卷(有效期為當年有效)。而會籍是終身有效。
+                                *當年度於水世界潛水結訓之學員，享免年費優惠，只需繳交$1,000元入會費即可享有會員權益。
+                            </div>
+
+                        </div>
+                </div>
                 <!------------------------------------- 中間nav bar ----------------------------------->
                 <div class="Container">
                     <div class="FlexContainer MiddleNavBar">
@@ -1447,45 +1483,21 @@
                 </div>
 
 
-                <!-- page -->
-                <div class="GrayBackGround">
-                    <div class="Container">
-                        <!----------------------------------------////// 下層＿主頁 ////////---------------------------------------->
-                        <div class="GroupBottomMain FlexContainer GroupDetailPage" id="GroupDetailPage_home">
+            
 
+
+
+
+                        <div class="GrayBackGround">
+
+                    <div class="Container">
+
+              <!----------------------------------------////// 下層＿主頁 ////////---------------------------------------->
+              <div class="GroupBottomMain FlexContainer GroupDetailPage" id="GroupDetailPage_home">
+                            <!-- <a class="ReadMoreLink GroupEnglishFont" href="#">read more</a> -->
+                            <!-- 沒抓到  -->
                             <!----------------------------------下層左----------------------------------->
                             <div class="GroupBottomLeft">
-                                <!---------------------下層關於我---------------------->
-                                <div class="dropdown-relative-container">
-                                    <div class="FlexContainer Group_FlexJustifyContentSB">
-                                        <div class="FontSectionTitle">關於我們</div>
-                                        <div class="GroupAboutUsDivImg">
-                                            <img class="GroupAboutUsImg settingIcon" data-open-name="DropDownMenu_edit"
-                                                src="/img/icon_seemore.svg" width="25px">
-                                        </div>
-                                    </div>
-                                    <div class="DropDownMenu" id="DropDownMenu_edit">
-                                        <div class="dropdown-triangleD"></div>
-                                        <div class="dropdownD js_editCommunity">編輯</div>
-                                    </div>
-                                </div>
-                                <div id="CommunityAboutUs" class="FontSectionText">
-                                    當您已完成潛水課程，成為一位合格的潛水員後，當然水世界潛水會為您安排接續探索水下風光的活動！
-                                    剛結訓的學員基本上對台灣海域不熟悉、也不知道該從哪裡開始玩起，也擔心沒人準備後勤作業，也沒有同伴一起分享。
-                                    水世界潛水俱樂部可以帶領喜愛潛水的同好，更重要的就是可以找到志同道合的潛友成為彼此的潛伴，一同下水遊覽美麗的海底世界；「水世界潛水俱樂部」是由專業導潛、資深教練、資深潛友、潛水新手聚集而成的團體，帶您體驗大自然。
-                                    您要如何加入會員
-                                    資格：
-                                    (1) 水世界潛水結訓的學員 或
-                                    (2) 於水世界潛水購買整套重裝者
-                                    俱樂部會員權益與義務
-                                    1.入會費
-                                    入會費為$1000元，您將獲的一張會員卡及10張氣瓶卷(有效期為當年有效)。而會籍是終身有效。
-                                    *當年度於水世界潛水結訓之學員，享免年費優惠，只需繳交$1,000元入會費即可享有會員權益。
-                                </div>
-
-                                <!-- <a class="ReadMoreLink GroupEnglishFont" href="#">read more</a> -->
-                                <!-- 沒抓到  -->
-
                                 <!-------------------下層即將到來活動------------------>
                                 <div class="FlexContainer FontSectionTitle">
                                     <div class="GroupComingEvent">近期活動</div>
@@ -1519,7 +1531,7 @@
                                 <!------ 一張卡 --------->
 
                                 <!-------------------下層活動照片------------------>
-                                <div class="FlexContainer FontSectionTitle">
+                                <!-- <div class="FlexContainer FontSectionTitle">
                                     <div class="FlexContainer">
                                         <div class="GroupComingEvent">社團照片</div>
                                         <div>(450)</div>
@@ -1536,7 +1548,7 @@
                                         <img class="Photo" src="./img/event05.jpg">
                                         <img class="Photo" src="./img/event06.jpg">
                                     </div>
-                                </div>
+                                </div> -->
 
 
                             </div>
@@ -1603,8 +1615,7 @@
                                         <div class="dropdownDR js_editCommunity">編輯會員名單</div>
                                     </div>
                                 </div>
-                                <div id="CommunityMember" class="FlexContainer GroupRightInfoPhotoContainer
-                                Group_FlexJustifyContentSB">
+                                <div id="CommunityMember" class="FlexContainer GroupRightInfoPhotoContainer">
                                     <div class="activity_detail_info_img_circle GroupMemberPic">
                                         <div class="activity_detail_info_img_div">
                                             <img class="activity_detail_info_img GoupRightInfoPhoto" src="./img/id1.jpg"

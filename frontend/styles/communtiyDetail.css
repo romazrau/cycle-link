@@ -103,8 +103,8 @@ hr {
 }
 
 .Group_FontFamily {
-  font-family: monospace;
-  margin-top: 8rem;
+  /* font-family: monospace; */
+  margin-top: 6rem;
 }
 
 .Group_reply {
@@ -117,15 +117,15 @@ hr {
 }
 
 .FontSectionTitle {
-  font-family: monospace;
+  /* font-family: monospace; */
   font-weight: 300;
   font-size: 1.8rem;
   margin-top: 50px;
   justify-content: space-between;
 }
 .FontSectionText {
-  font-family: monospace;
-  font-size: 1.2rem;
+  /* font-family: monospace; */
+  /* font-size: 1.2rem; */
   letter-spacing: 0.1rem;
   margin-top: 30px;
 }
@@ -529,6 +529,7 @@ hr {
   width: 40%;
   position: relative;
   box-sizing: border-box;
+  padding-top: 2.5rem;
   padding-left: 60px;
   flex-direction: column;
   justify-content: space-between;
@@ -729,7 +730,7 @@ hr {
   border: 1px solid var(--white-color);
   border-radius: 10px;
   padding: 10px 15px;
-  color: var(--white-color);
+  color: var(--white-color)!important; 
   font-size: 1rem;
   margin-top: 25px;
   padding: 0.5rem 2rem;
@@ -769,6 +770,11 @@ hr {
   padding: 0.5rem 1rem;
   border-radius: 20px;
 }
+.communityCard{
+  height: 300px;
+  overflow: hidden;
+  width: 100%;
+}
 
 .GroupRightHash {
   margin-top: 2rem;
@@ -779,7 +785,7 @@ hr {
 }
 
 .GroupBottomLeft {
-  max-width: 60%;
+  width: 60%;
   box-sizing: border-box;
   padding-right: 0rem;
 }
@@ -787,7 +793,7 @@ hr {
 .GroupBottomRight {
   width: 40%;
   /* margin-left: 1px */
-  padding-left: 50px;
+  padding-left: 60px;
 }
 
 .EventBottomLeft {
@@ -1148,3 +1154,16 @@ hr {
   z-index: 900;
 }
 
+
+.h2{
+  font-size: 1.8rem;
+  font-weight: bold !important;
+  font-family: "Noto Sans TC", sans-serif!important;
+}
+
+.aboutMe{
+  background-color: var(--blue-color);
+  color: #ffffff;
+  padding-bottom: 5rem;
+  margin: 2rem 0;
+}
