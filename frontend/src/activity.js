@@ -15,10 +15,20 @@ function ClsActivity() {
     var activity_option = document.getElementById("activity_option");
     var searchtext = document.getElementById("search_txt");
     let searchAnsContainer = document.querySelector("#activesearchresult");
+    var activity_searchtext=7;
+    activity_option.addEventListener("click",function(){
+        
+        activity_searchtext=activity_option.value
+        console.log("activity_searchtext:",activity_searchtext);
+    })
 
 
     activity_search_go.addEventListener('click', function () {
-        var typeId = activity_option.value;
+        //丟進
+        var typeId = activity_searchtext;
+        console.log("typeId:",typeId);
+
+
         var searchtxt = searchtext.value;
 
         if (!searchtxt) {
@@ -48,7 +58,7 @@ function ClsActivity() {
 
     const htmlActSearch = (o) => {
         return ` 
-        <option value="${o.fId}">${o.fLabelName}</option>`;
+        <option class="ActivitySearchOption" value="${o.fId}">${o.fLabelName}</option>`;
     }
     const ActSearch = document.querySelector("#activity_option");
 
@@ -80,6 +90,18 @@ function ClsActivity() {
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
             display_active_main_level(result.data);
+
+            console.log(object);
+            
+            // for(let i=0;i<ActivitySearchOption.length;i++)
+            // {
+            //     console.log("ActivitySearchOption[i]:",ActivitySearchOption[i].innerHTML);
+            //     ActivitySearchOption[i].addEventListener("click",function(){
+            //         activity_searchtext= ActivitySearchOption[i].innerHTML;
+            //         console.log("activity_searchtext",activity_searchtext)
+            //     })
+            // }
+            
             // *用 result  do something ...
 
         } catch (err) {
@@ -111,6 +133,9 @@ function ClsActivity() {
             display_search_go(result.data);
             // *用 result  do something ...
             getsearchdata(result.data);
+
+            
+
             // search_result_arr =  result.data ; 
 
         } catch (err) {
