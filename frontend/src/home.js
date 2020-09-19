@@ -241,8 +241,7 @@ const home_picturesItem = (o) => {
 }
 //todo
 const display_home_weather = (o, t) => {
-  // console.log("sdasdasdasda",o);
-  // console.log(o.time)
+
   o.time.map((e, index) => {
         // console.log(e.elementValue[1].value,index)
         if (index % 2 == 0)
@@ -266,6 +265,7 @@ const home_weather = (o) => {
   var day_list = ['日', '一', '二', '三', '四', '五', '六'];
   let nowtime = new Date();
   let day = nowtime.getDay();
+  console.log(day);
   if (o == '01' || o == '02' || o == '03') {
     return `
     
@@ -297,7 +297,6 @@ const home_weather = (o) => {
   }
 
 }
-
 
 //todo 折線圖
 const home_weather_line = (o) => {
