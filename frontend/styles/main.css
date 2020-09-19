@@ -19,6 +19,8 @@
 @import "./create_community.css";
 @import "./community_main.css";
 @import "./community_article.css";
+@import "./personalManager.css";
+
 /*  其他 */
 @import "./chat.css";
 @import "./map.css";
@@ -67,7 +69,7 @@ body::-webkit-scrollbar {
   transform: scaleY(0);
 }
 
-.rotate45{
+.rotate45 {
   transform: rotate(45deg);
 }
 

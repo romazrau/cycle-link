@@ -363,9 +363,9 @@
 
 
 /* memberpro-------------------------------------------- */
-#page_personal-maneger input {
+/* #page_personal-maneger input {
     width: 10rem;
-}
+} */
 
 #page_personal-maneger input:focus {
     border: 0.1rem black solid;

@@ -2168,7 +2168,74 @@
     <!-- * 會員頁面  ****************      ****************       ****************   -->
     <div id="page_personal-maneger" class="page hide">
 
-        <div class="personal-maneger-header">
+        <div class="personalManager_banner">
+            <!-- <p>hello</p> -->
+        </div>
+        <div class="personalManager_left">
+            <div class="personalManager_left_Info">
+                <img src="https://fakeimg.pl/300x300/" class="personalManager_left_Info_img">
+                <button>上傳圖片</button>
+                <h3>饒孝天</h3>
+                <h4>Romazrau</h4>
+                <p><img src="img/海龜幣.png" alt="" class="personalManager_SeaTurtleCoin"> 海龜積分：300</p>
+                <p>會員等級：白鯨會員</p>
+                <p>參與活動次數：13</p>
+                <p>追蹤活動：5</p>
+                <p>參加社團：6</p>
+            </div>
+        </div>
+        <div class="personalManager_right">
+            <div class="personalManager_right_title">
+                <div class="personalManager_right_title_btn">
+                    <p><i class="fas fa-user-alt"></i>基本資料</p>
+                </div>
+                <div class="personalManager_right_title_btn">
+                    <p><i class="fa fa-gratipay" aria-hidden="true"></i></i>追蹤活動</p>
+                </div>
+                <div class="personalManager_right_title_btn">
+                    <p><i class="fa fa-check-circle" aria-hidden="true"></i>我的活動</p>
+                </div>
+                <div class="personalManager_right_title_btn">
+                    <p><i class="fa fa-users" aria-hidden="true"></i></i>我的社團</p>
+                </div>
+            </div>
+
+            <div class="personalManager_right_content">
+                <h2>基本資料</h2>
+                <div class="personalManager_right_content_infoBasic">
+                    <p>姓名：<input type="text" value="饒孝天"></p>
+                    <p>帳號：<input type="text" value="Romazrau"></p>
+                    <p>Email：<input type="text" value="aaabbbb@gmail.com"></p>
+                    <p>密碼：<input type="text" value="*********"></p>
+                    <p>生日：<input type="text" value="1998/01/01"></p>
+                    <p>地址：<input type="text" value="台北市大安區復興南路復興園"></p>
+                    <p>電話：<input type="text" value="0956368956"></p>
+                    <button>修改</button>
+                </div>
+                <h2>我的活動</h2>
+                <div class=" personalManager_right_content_info">
+                    <img class="personalManager_right_content_info_img" src="https://fakeimg.pl/200x200/">
+                    <div class="personalManager_right_content_infoText">
+                        <h3>Plogging河濱樂跑團</h3>
+                        <p><i class="fas fa-map-marker-alt fa-2x"></i>地點：台北河濱</p>
+                        <p><i class="fas fa-clock fa-2x"></i>開始時間：2020/10/07 19:00</p>
+                        <p><img src="img/海龜幣.png" alt="" class="personalManager_SeaTurtleCoin">海龜積分：500</p>
+                    </div>
+                </div>
+                <div class="personalManager_right_content_info">
+                    <img class="personalManager_right_content_info_img" src="https://fakeimg.pl/200x200/">
+                    <div class="personalManager_right_content_infoText">
+                        <h3>Plogging河濱樂跑團</h3>
+                        <p><i class="fas fa-map-marker-alt fa-2x"></i>地點：台北河濱</p>
+                        <p><i class="fas fa-clock fa-2x"></i>開始時間：2020/10/07 19:00</p>
+                        <p><img src="img/海龜幣.png" alt="" class="personalManager_SeaTurtleCoin">海龜積分：500</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- **** ---------------------- 舊版個人頁面分隔線 ---------------------- **** -->
+        <div class="personal-maneger-header hide">
             <div class="headerbox">
                 <div class="imgbox">
                     <img id="personal-manege-img" class="avatar" src="./img/images1.jpg" alt="">
@@ -2199,28 +2266,15 @@
                             <span id="personal-manege-act-count">79</span>
                         </div>
                     </div>
-                    <!-- <div class="peoplefilebox_left">
-                            <button class="btnLaunchActPersonPage"><a href="#create-activity">發起活動</a></button>
-
-                            <br>
-                            <button class="btnLaunchActPersonPage"><a href="#create-community">建立社團</a></button>
-
-                        </div> -->
-
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container hide">
             <div class="bar-block">
                 <a href="javascript:void(0)" class="bar-item button tablink activefocus personal-maneger-navlink"
                     data-cls='personal-maneger-class4'>
                     <div class="baritembox">基本資料</div>
                 </a>
-                <!-- <a href="javascript:void(0)" class="bar-item button tablink  testbtn"
-                        onclick="PersonalManeger.openClass(event, 'personal-maneger-class1')">
-                        <div class="baritembox">My
-                            Shop</div>
-                    </a> -->
                 <a href="javascript:void(0)"
                     class="bar-item button tablink testbtn activefocus personal-maneger-navlink"
                     data-cls='personal-maneger-class1'>
