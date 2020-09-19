@@ -44,7 +44,6 @@
     color: gray;
     border: 1px solid #ffffff;
     outline: none;
-
 }
 
 #activity_option option {
@@ -347,16 +346,19 @@
 }
 
 .search_box {
+    margin-left:0 1rem;
     width: 150px;
-    /* height: 150px; */
-    /* background-color: rgb(103, 160, 197); */
-    /* background-color: rgba(103, 160, 197, 0.384); */
-    border-radius: 10;
-    /* transition: width 2s ease-out 10s; */
+    border: 1px solid black;
+    border-radius: 10px;
+    height: min-content ;
+    
 }
 
 .search_dbox {
     width: 150px;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: min-content ;
     /* background-color: rgba(103, 160, 197, 0.384); */
 }
 
@@ -366,6 +368,7 @@
 
 .search_citytext {
     text-align: center;
+    padding-top: 2px;
     /* line-height: 150px; */
 }
 

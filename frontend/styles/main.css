@@ -30,6 +30,14 @@
   text-decoration: none !important;
 }
 
+/*隱藏滾輪*/
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.page::-webkit-scrollbar {
+  display: none;
+}
 
 .page_container {
   margin-top: 5rem;
@@ -69,8 +77,6 @@
 
 .hide {
   display: none !important;
-  /* opacity: 0;
-  pointer-events: none; */
 }
 
 .focus {
