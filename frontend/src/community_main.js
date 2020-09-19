@@ -1,17 +1,6 @@
 // import { serverURL } from "./api.js";
 
 function ClsCommunityMain() {
-  // *second nav bar
-  let pageY = window.pageYOffset;
-  const communityNavbar = document.querySelector("#community_navbar");
-  window.addEventListener("scroll", () => {
-    if (window.pageYOffset - pageY > 0) {
-      communityNavbar.classList.remove("transYsWidthTo0Bottom");
-    } else {
-      communityNavbar.classList.add("transYsWidthTo0Bottom");
-    }
-    pageY = window.pageYOffset;
-  });
 
   //判斷是否有圖片，沒有就不匯入div
   const ImgIsNullOrNot = (x) => {

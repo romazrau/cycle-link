@@ -4,22 +4,7 @@
 
 function ClsActivity() {
 
-    // *second nav bar
-    let pageY = window.pageYOffset;
-    const activityNavbar = document.querySelector("#activity_navbar");
-    window.addEventListener(
-        'scroll',
-        () => {
-            if (window.pageYOffset - pageY > 0) {
-                activityNavbar.classList.remove("transYsWidthTo0Bottom");
-            } else {
-                activityNavbar.classList.add("transYsWidthTo0Bottom");
 
-            }
-
-            pageY = window.pageYOffset;
-        }
-    );
 
 
     // * --------------- GO搜尋結果 ----------------

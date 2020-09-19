@@ -59,14 +59,20 @@
                 </div>
             </div>
             <div class="div_container_login">
-                <div id="navbar_log-in" class="li_menutitle header_nav"><a id="header_link_login" href="#log-in">Log
-                    in<br>登入</a></div>
+                <div class="navebar_add_icons">
+                    <i class="fas fa-plus"></i>
+                </div>
+
                 <div class="navebar_msg_icons hide">
                     <!-- <i id="navbar_msg" class="fas fa-bullhorn login_bullhorn"></i> -->
                     <i id="navbar_logout" class="fas fa-sign-out-alt login_bullhorn"></i>
                 </div>
 
+                <div id="navbar_log-in" class="li_menutitle header_nav"><a id="header_link_login" href="#log-in">Log
+                    in<br>登入</a></div>
                 
+
+
             </div>
             </div>
 
@@ -78,6 +84,22 @@
             </div>
         </nav>
     </header>
+
+    <div id="activity_navbar" class="page_navbar transYsWidthTo0Bottom">
+        <div class="container page_navbar_row">
+
+            <div></div>
+
+            <div>
+                <button class="page_navbar_btn" onclick="location.hash = '#create-activity'">創建活動</button>
+                <!-- <i class="fas fa-plus"></i>Event<br> -->
+                <button id="changeBack" class="page_navbar_btn"
+                    onclick="location.hash = '#create-community'">創建社團</button>
+                    <!-- <i class="fas fa-plus"></i>Group<br> -->
+            </div>
+        </div>
+    </div>
+
     <div class="upTop"><i class="far fa-arrow-alt-circle-up fa-2x"></i></div>
     <!-- * 懸浮icon -->
     <div class="chat_container">
@@ -347,17 +369,6 @@
 
         <!-- * activity  ****************      ****************       ****************   -->
         <div id="page_activity" class="page hide">
-            <div id="activity_navbar" class="page_navbar">
-                <div class="container page_navbar_row">
-
-                    <div></div>
-
-                    <div>
-                        <button class="page_navbar_btn" onclick="location.hash = '#create-activity'">創建活動</button>
-                    </div>
-                </div>
-            </div>
-
             <!---------------------------------- 主要活動顯示 ---------------------------------->
             <div class="activity_top">
                 <img src="img/eventTop_01.svg">
@@ -494,15 +505,6 @@
         <!-- * Community  ****************      ****************       ****************   -->
 
         <div id="page_community" class="page hide">
-            <div id="community_navbar" class="page_navbar">
-                <div class="container page_navbar_row">
-                    <div></div>
-                    <div>
-                        <button id="changeBack" class="page_navbar_btn"
-                            onclick="location.hash = '#create-community'">創建社團</button>
-                    </div>
-                </div>
-            </div>
 
             <div class="community_main_container">
                 <div class="community_main_banner">
@@ -588,7 +590,7 @@
                         <div class="map_controlltitle_div">
                             <input type="range" value="0" min="0" max="20" id="map_Setdistance" />
                             <label for="" id="Activitydistance">請選擇所在位置</label>
-                                
+
                         </div>
                     </div>
 
@@ -1331,7 +1333,8 @@
                         <div class="GroupTopLeft ">
                             <div class="GroupTopMainPicDivForImg">
                                 <img id="CommunityPic" src="./img/水下攝影與淨海.jpg" alt="cover pic of diving" width="100%">
-                                <img class="GroupImgSeeMoreIcon settingIcon" data-open-name="DropDownMenu_photo" src="./img/icon_seemore.svg" width="25px">
+                                <img class="GroupImgSeeMoreIcon settingIcon" data-open-name="DropDownMenu_photo"
+                                    src="./img/icon_seemore.svg" width="25px">
                                 <div class="DropDownMenu" id="DropDownMenu_photo">
                                     <div class="dropdown-triangle"></div>
                                     <div class="dropdown js_editCommunity">編輯照片</div>
@@ -1345,7 +1348,8 @@
                             <div class="GroupTopEventName">
                                 <p id="CommunityName">週末北海岸
                                     水下攝影fit淨海</p>
-                                <img class="GroupTopRightImgIcon settingIcon" data-open-name="DropDownMenu_name" src="./img/icon_seemore.svg" width="25px">
+                                <img class="GroupTopRightImgIcon settingIcon" data-open-name="DropDownMenu_name"
+                                    src="./img/icon_seemore.svg" width="25px">
                                 <div class="DropDownMenu" id="DropDownMenu_name">
                                     <div class="dropdown-triangleR "></div>
                                     <div class="dropdownR js_editCommunity">編輯名稱</div>
@@ -1418,13 +1422,14 @@
                                 <div id="ManagerBtn" class="GroupDiveBtnText hide">&nbsp&nbsp管理員</div>
                                 <div id="PendingBtn" class="js_forLeave_btn GroupDiveBtnText hide">&nbsp&nbsp審核中</div>
 
-                                <div id="MemberBtn" class="js_forLeave_btn GroupNavBtn GroupDiveBtnText hide">&nbsp&nbsp我是社員</div>
+                                <div id="MemberBtn" class="js_forLeave_btn GroupNavBtn GroupDiveBtnText hide">
+                                    &nbsp&nbsp我是社員</div>
                                 <!-- <img src="./img/icon_triangle_downside.svg" width="25px"> -->
                                 <div class="DropDownMenu js_leaveDropDown">
-                                <div class="dropdown-triangleLeave"></div>
-                                <div class="dropdownLeave">
-                                    <div id="leaveCommunityBtn">退出社團</div>
-                                </div>
+                                    <div class="dropdown-triangleLeave"></div>
+                                    <div class="dropdownLeave">
+                                        <div id="leaveCommunityBtn">退出社團</div>
+                                    </div>
                                 </div>
                                 <!-- <div class="dropdown">
                                         <div>編輯社團</div>
@@ -1455,7 +1460,8 @@
                                     <div class="FlexContainer Group_FlexJustifyContentSB">
                                         <div class="FontSectionTitle">關於我們</div>
                                         <div class="GroupAboutUsDivImg">
-                                            <img class="GroupAboutUsImg settingIcon" data-open-name="DropDownMenu_edit" src="/img/icon_seemore.svg" width="25px">
+                                            <img class="GroupAboutUsImg settingIcon" data-open-name="DropDownMenu_edit"
+                                                src="/img/icon_seemore.svg" width="25px">
                                         </div>
                                     </div>
                                     <div class="DropDownMenu" id="DropDownMenu_edit">
@@ -1487,7 +1493,7 @@
                                 <!-- !!!!!!!!!!!!需要再切沒有活動的小格!!!!!!!!!!!!!!!! -->
                                 <!------ 一張卡 ------->
                                 <div id="actcommunity">
-                                   
+
                                 </div>
 
                                 <!------ 一張卡 ------->
@@ -1557,7 +1563,8 @@
 
                                     <div class="FlexContainer Group_FlexJustifyContentSB">
                                         <div class="FontSectionTitle">社團管理員</div>
-                                        <img class="GroupBottomRightSetImg settingIcon" data-open-name="DropDownMenu_List" src="/img/icon_seemore.svg" width="25px">
+                                        <img class="GroupBottomRightSetImg settingIcon"
+                                            data-open-name="DropDownMenu_List" src="/img/icon_seemore.svg" width="25px">
                                     </div>
                                     <div class="DropDownMenu" id="DropDownMenu_List">
                                         <div class="dropdown-triangleDR"></div>
@@ -1586,7 +1593,9 @@
                                             <div class="GroupComingEvent FontSectionTitle">社團成員</div>
                                             <div id="NumOfMem" class="FontSectionTitle">(4)</div>
                                         </div>
-                                        <img class="GroupComingEventImg settingIcon" data-open-name="DropDownMenu_memList" src="/img/icon_seemore.svg" width="25px">
+                                        <img class="GroupComingEventImg settingIcon"
+                                            data-open-name="DropDownMenu_memList" src="/img/icon_seemore.svg"
+                                            width="25px">
                                         <!-- <a href="#" class="SeeAllRight FontSectionTitle">see all</a> -->
                                     </div>
                                     <div class="DropDownMenu" id="DropDownMenu_memList">
@@ -1827,8 +1836,8 @@
                             id="GroupDetailPage_Member">
                             <div class="MemberBottomLeft GroupBottomMainMember">
                                 <div class="BottomLeftInfoCard LeftSwitchCard">
-                                    <a id="allMember" class="LO" >所有成員</a>
-                                    <a id="rankingMember" class="LO" >管理員</a>
+                                    <a id="allMember" class="LO">所有成員</a>
+                                    <a id="rankingMember" class="LO">管理員</a>
                                 </div>
                             </div>
 
@@ -2158,9 +2167,10 @@
                             </div>
                             <div class="imgfile">
                                 <label class="ca_imgUpload_lbl">
-                                <input class='input_pictureUpload' id="input_pictureUpload" type="file" value=''style="display:none;">
-                                <i class="fa fa-photo"></i> 上傳圖片
-                            </label>
+                                    <input class='input_pictureUpload' id="input_pictureUpload" type="file" value=''
+                                        style="display:none;">
+                                    <i class="fa fa-photo"></i> 上傳圖片
+                                </label>
                             </div>
                         </div>
                     </div>
