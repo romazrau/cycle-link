@@ -60,7 +60,16 @@
             </div>
             <div class="div_container_login">
                 <div class="navebar_add_icons">
-                    <i class="fas fa-plus"></i>
+                    <div class="navebar_add_postition_icons">
+                        <i id="navebar_plus_icon" class="fas fa-plus navebar_plus_icon"></i>
+                        <i id="navebar_down_icon" class="fas fa-angle-down"></i>
+
+                        <div id="navebar_down_list" class="navebar_down_list foldingCurtainUp">
+                            <button class="" onclick="location.hash = '#create-activity'">創建活動</button>
+                            <button id="changeBack" class="" onclick="location.hash = '#create-community'">創建社團</button>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="navebar_msg_icons hide">
@@ -69,14 +78,14 @@
                 </div>
 
                 <div id="navbar_log-in" class="li_menutitle header_nav"><a id="header_link_login" href="#log-in">Log
-                    in<br>登入</a></div>
-                
+                        in<br>登入</a></div>
+
 
 
             </div>
-            </div>
 
 
+            <!-- 漢堡鍵 -->
             <div class="navbar_menu">
                 <div></div>
                 <div></div>
@@ -84,21 +93,6 @@
             </div>
         </nav>
     </header>
-
-    <div id="activity_navbar" class="page_navbar transYsWidthTo0Bottom">
-        <div class="container page_navbar_row">
-
-            <div></div>
-
-            <div>
-                <button class="page_navbar_btn" onclick="location.hash = '#create-activity'">創建活動</button>
-                <!-- <i class="fas fa-plus"></i>Event<br> -->
-                <button id="changeBack" class="page_navbar_btn"
-                    onclick="location.hash = '#create-community'">創建社團</button>
-                    <!-- <i class="fas fa-plus"></i>Group<br> -->
-            </div>
-        </div>
-    </div>
 
     <div class="upTop"><i class="far fa-arrow-alt-circle-up fa-2x"></i></div>
     <!-- * 懸浮icon -->
@@ -158,7 +152,7 @@
         <!-- * loading  ****************      ****************       ****************   -->
         <div id='page_loading' class='page'>
             <div class="loading_backgroung">
-                <img src="./img/Bean-Eater-1s-200px.svg" alt="loading.svg">
+                <img src="./img/Discuss-1s-250px.svg" alt="loading.svg">
                 <!-- <img src="./img/Ball-1s-300px.svg" alt="loading.svg"> -->
             </div>
         </div>
@@ -268,7 +262,7 @@
                         <ul class="small-block-grid-2 medium-block-grid-3 home_go2_flip_cards">
                             <li ontouchstart="this.classList.toggle('hover');">
                                 <div class="home_card_large home_card_button home_card_front">
-                                    <a href="#community">淨灘</a>
+                                    <a href="#community">環境清潔</a>
                                     <i class="fas fa-broom home_card_icon"></i>
                                 </div>
                                 <div class="home_card_panel home_card_back">
@@ -281,7 +275,7 @@
                             </li>
                             <li ontouchstart="this.classList.toggle('hover');">
                                 <div class="home_card_large home_card_button home_card_front">
-                                    <a href="#community">路跑</a>
+                                    <a href="#community">運動</a>
                                     <i class="fas fa-running home_card_icon"></i>
                                 </div>
                                 <div class="home_card_panel home_card_back">
@@ -294,7 +288,7 @@
                             </li>
                             <li ontouchstart="this.classList.toggle('hover');">
                                 <div class="home_card_large home_card_button home_card_front">
-                                    <a href="#community">教育</a>
+                                    <a href="#community">自然教育</a>
                                     <i class="fas fa-book home_card_icon"></i>
                                 </div>
                                 <div class="home_card_panel home_card_back">
@@ -307,14 +301,14 @@
                             </li>
                             <li ontouchstart="this.classList.toggle('hover');">
                                 <div class="home_card_large home_card_button home_card_front">
-                                    <a href="#community">海洋</a>
+                                    <a href="#community">志工</a>
                                     <i class="fas fa-water home_card_icon"></i>
                                 </div>
                                 <div class="home_card_panel home_card_back">
                                     <div class="home_hub_info">
-                                        <a href="#community">海洋環境</a>
+                                        <a href="#community">關渡自然公園志工招募</a>
                                         <i class="fas fa-water home_card_icon"></i>
-                                        <p>今年世界海洋日的主題為「海洋生命Oceans of Life」，希望喚起人們對海洋生物多樣性的認識，透過選出自己喜愛的海洋生物，並一起行動來保護他們。
+                                        <p>關渡自然公園長久以來希望從實際體驗及接觸，來讓民眾提高對濕地生態保育的關心。 透過不同的方式，邀請對自然環境有興趣，且也願意學習服務的你，一同加入我們的行列。
                                         </p>
                                     </div>
                                 </div>
@@ -322,7 +316,7 @@
 
                             <li ontouchstart="this.classList.toggle('hover');">
                                 <div class="home_card_large home_card_button home_card_front">
-                                    <a href="#community">二手換物</a>
+                                    <a href="#community">二手市集</a>
                                     <i class="fas fa-cookie-bite home_card_icon"></i>
                                 </div>
                                 <div class="home_card_panel home_card_back">
@@ -336,14 +330,14 @@
 
                             <li ontouchstart="this.classList.toggle('hover');">
                                 <div class="home_card_large home_card_button home_card_front">
-                                    <a href="#community">森林</a>
+                                    <a href="#community">線上活動</a>
                                     <i class="fas fa-tree home_card_icon"></i>
                                 </div>
                                 <div class="home_card_panel home_card_back">
                                     <div class="home_hub_info">
-                                        <a href="#community">森林保育</a>
+                                        <a href="#community"></a>
                                         <i class="fas fa-tree home_card_icon"></i>
-                                        <p>台灣大規模伐木，以1912年第一列運材火車自二萬坪駛出為嚆矢，數十萬年來守護著美麗之島的蒼鬱森林在數十年內被無情砍伐。</p>
+                                        <p></p>
                                     </div>
                                 </div>
                             </li>
@@ -438,7 +432,7 @@
 
                 </div>
 
-                <button id="activity_search_go">GO</button>
+                <button id="activity_search_go">GO!</button>
             </div>
             <!-------------------------------------- main -------------------------------------->
             <div class="activity_main">
@@ -816,7 +810,7 @@
                             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                         <span>or use your account</span>
-                        <input name="fAccount" type="text" placeholder="Email" />
+                        <input name="fAccount" type="text" placeholder="Account" />
                         <input name="fPassword" type="password" placeholder="Password" />
                         <div class="Login_CheckContainer">
                             <a href="">
@@ -1224,7 +1218,7 @@
                                     <!-- 活動標籤 -->
                                 </div>
                             </div>
-                            <h5 style="margin-top: 1rem;font-weight: bold;">Detail</h5>
+                            <h5 style="margin-top: 1rem;font-weight: bold;">詳細內容</h5>
                             <div class="activity_detail_text_detail">
                                 <!-- 活動內文 -->
                             </div>
@@ -1347,8 +1341,8 @@
                         <div class="GroupTopRight FlexContainer">
 
                             <div class="GroupTopEventName">
-                                <p id="CommunityName">週末北海岸
-                                    水下攝影fit淨海</p>
+                                <h2 id="CommunityName" class="h2">週末北海岸
+                                    水下攝影fit淨海</h2>
                                 <img class="GroupTopRightImgIcon settingIcon" data-open-name="DropDownMenu_name"
                                     src="./img/icon_seemore.svg" width="25px">
                                 <div class="DropDownMenu" id="DropDownMenu_name">
@@ -1391,15 +1385,50 @@
                     </div>
                 </div>
 
-                <hr class="DividedLine PositionRalative">
+                <!-- <hr class="DividedLine PositionRalative"> -->
 
+
+                    <!-- page -->
+                    <div class="aboutMe">
+                        <div class="Container">
+                            
+                            <!---------------------下層關於我---------------------->
+                            <div class="dropdown-relative-container">
+                                <div class="FlexContainer Group_FlexJustifyContentSB">
+                                    <div class="FontSectionTitle">關於我們</div>
+                                    <div class="GroupAboutUsDivImg">
+                                        <img class="GroupAboutUsImg settingIcon" data-open-name="DropDownMenu_edit"
+                                            src="/img/icon_seemore.svg" width="25px">
+                                    </div>
+                                </div>
+                                <div class="DropDownMenu" id="DropDownMenu_edit">
+                                    <div class="dropdown-triangleD"></div>
+                                    <div class="dropdownD js_editCommunity">編輯</div>
+                                </div>
+                            </div>
+                            <div id="CommunityAboutUs" class="FontSectionText">
+                                當您已完成潛水課程，成為一位合格的潛水員後，當然水世界潛水會為您安排接續探索水下風光的活動！
+                                剛結訓的學員基本上對台灣海域不熟悉、也不知道該從哪裡開始玩起，也擔心沒人準備後勤作業，也沒有同伴一起分享。
+                                水世界潛水俱樂部可以帶領喜愛潛水的同好，更重要的就是可以找到志同道合的潛友成為彼此的潛伴，一同下水遊覽美麗的海底世界；「水世界潛水俱樂部」是由專業導潛、資深教練、資深潛友、潛水新手聚集而成的團體，帶您體驗大自然。
+                                您要如何加入會員
+                                資格：
+                                (1) 水世界潛水結訓的學員 或
+                                (2) 於水世界潛水購買整套重裝者
+                                俱樂部會員權益與義務
+                                1.入會費
+                                入會費為$1000元，您將獲的一張會員卡及10張氣瓶卷(有效期為當年有效)。而會籍是終身有效。
+                                *當年度於水世界潛水結訓之學員，享免年費優惠，只需繳交$1,000元入會費即可享有會員權益。
+                            </div>
+
+                        </div>
+                </div>
                 <!------------------------------------- 中間nav bar ----------------------------------->
                 <div class="Container">
                     <div class="FlexContainer MiddleNavBar">
                         <div class="GroupTopLeftW60">
 
                             <div class="FlexContainer LinkBar Group_FlexJustifyContentSB">
-                                <div class="GroupLink GroupLinkFocus" value="GroupDetailPage_home">介 紹
+                                <div class="GroupLink GroupLinkFocus" id="Group_navlink_info" value="GroupDetailPage_home">介 紹
                                 </div>
                                 <div class="GroupLink" id="Group_navlink_Post" value="GroupDetailPage_Discussion">文
                                     章</div>
@@ -1448,45 +1477,21 @@
                 </div>
 
 
-                <!-- page -->
-                <div class="GrayBackGround">
-                    <div class="Container">
-                        <!----------------------------------------////// 下層＿主頁 ////////---------------------------------------->
-                        <div class="GroupBottomMain FlexContainer GroupDetailPage" id="GroupDetailPage_home">
+            
 
+
+
+
+                        <div class="GrayBackGround">
+
+                    <div class="Container">
+
+              <!----------------------------------------////// 下層＿主頁 ////////---------------------------------------->
+              <div class="GroupBottomMain FlexContainer GroupDetailPage" id="GroupDetailPage_home">
+                            <!-- <a class="ReadMoreLink GroupEnglishFont" href="#">read more</a> -->
+                            <!-- 沒抓到  -->
                             <!----------------------------------下層左----------------------------------->
                             <div class="GroupBottomLeft">
-                                <!---------------------下層關於我---------------------->
-                                <div class="dropdown-relative-container">
-                                    <div class="FlexContainer Group_FlexJustifyContentSB">
-                                        <div class="FontSectionTitle">關於我們</div>
-                                        <div class="GroupAboutUsDivImg">
-                                            <img class="GroupAboutUsImg settingIcon" data-open-name="DropDownMenu_edit"
-                                                src="/img/icon_seemore.svg" width="25px">
-                                        </div>
-                                    </div>
-                                    <div class="DropDownMenu" id="DropDownMenu_edit">
-                                        <div class="dropdown-triangleD"></div>
-                                        <div class="dropdownD js_editCommunity">編輯</div>
-                                    </div>
-                                </div>
-                                <div id="CommunityAboutUs" class="FontSectionText">
-                                    當您已完成潛水課程，成為一位合格的潛水員後，當然水世界潛水會為您安排接續探索水下風光的活動！
-                                    剛結訓的學員基本上對台灣海域不熟悉、也不知道該從哪裡開始玩起，也擔心沒人準備後勤作業，也沒有同伴一起分享。
-                                    水世界潛水俱樂部可以帶領喜愛潛水的同好，更重要的就是可以找到志同道合的潛友成為彼此的潛伴，一同下水遊覽美麗的海底世界；「水世界潛水俱樂部」是由專業導潛、資深教練、資深潛友、潛水新手聚集而成的團體，帶您體驗大自然。
-                                    您要如何加入會員
-                                    資格：
-                                    (1) 水世界潛水結訓的學員 或
-                                    (2) 於水世界潛水購買整套重裝者
-                                    俱樂部會員權益與義務
-                                    1.入會費
-                                    入會費為$1000元，您將獲的一張會員卡及10張氣瓶卷(有效期為當年有效)。而會籍是終身有效。
-                                    *當年度於水世界潛水結訓之學員，享免年費優惠，只需繳交$1,000元入會費即可享有會員權益。
-                                </div>
-
-                                <!-- <a class="ReadMoreLink GroupEnglishFont" href="#">read more</a> -->
-                                <!-- 沒抓到  -->
-
                                 <!-------------------下層即將到來活動------------------>
                                 <div class="FlexContainer FontSectionTitle">
                                     <div class="GroupComingEvent">近期活動</div>
@@ -1520,7 +1525,7 @@
                                 <!------ 一張卡 --------->
 
                                 <!-------------------下層活動照片------------------>
-                                <div class="FlexContainer FontSectionTitle">
+                                <!-- <div class="FlexContainer FontSectionTitle">
                                     <div class="FlexContainer">
                                         <div class="GroupComingEvent">社團照片</div>
                                         <div>(450)</div>
@@ -1537,7 +1542,7 @@
                                         <img class="Photo" src="./img/event05.jpg">
                                         <img class="Photo" src="./img/event06.jpg">
                                     </div>
-                                </div>
+                                </div> -->
 
 
                             </div>
@@ -1604,8 +1609,7 @@
                                         <div class="dropdownDR js_editCommunity">編輯會員名單</div>
                                     </div>
                                 </div>
-                                <div id="CommunityMember" class="FlexContainer GroupRightInfoPhotoContainer
-                                Group_FlexJustifyContentSB">
+                                <div id="CommunityMember" class="FlexContainer GroupRightInfoPhotoContainer">
                                     <div class="activity_detail_info_img_circle GroupMemberPic">
                                         <div class="activity_detail_info_img_div">
                                             <img class="activity_detail_info_img GoupRightInfoPhoto" src="./img/id1.jpg"
@@ -1856,8 +1860,8 @@
                                                     <div class="Size20IconMarginRight Size20IconOpacity"><img
                                                             src="./img/icon_arrowDropdown.svg" width="20"></div>
                                                 </a>
-                                                <a href="#" id="memberFilter" >
-                                                    <div class="Size20IconMarginRight Size20IconOpacity Rotate90" ><img
+                                                <a href="#" id="memberFilter">
+                                                    <div class="Size20IconMarginRight Size20IconOpacity Rotate90"><img
                                                             src="./img/icon_arrow.svg" width="20">
                                                     </div>
                                                 </a>
@@ -2500,9 +2504,7 @@
                         <form id="creatAct_form" method="POST">
                             <div class="create_active_basicInfo">
                                 <h2>基本資料</h2>
-                                <p>Name your event and tell event-goers why they should come. Add
-                                    details that highlight what makes it unique.
-                                </p>
+                                
                                 <div class="create_active_basicInfo_div">
                                     <div class="create_active_basicInfo_div2 ">
                                         <p>活動名稱</p>
@@ -2540,7 +2542,7 @@
                                         <br>
                                         <div id="createActMapId" style="display: none;"></div>
                                         <div id="actMapEdit" style="display: none;"></div>
-                                        <div onclick="geoFindMe()" class="actShowLocation">Show my location</div>
+                                        <div onclick="geoFindMe()" class="actShowLocation">定位目前位置</div>
                                         <div id="out" style="display: none;"></div>
                                     </div>
                                 </div>
@@ -2548,21 +2550,21 @@
                                     <div class="create_active_basicInfo_div2">
                                         <p>活動日期</p>
                                         <div class="actDateDiv create_active_flex">
-                                            <label for="ac_date_from">Start</label>
+                                            <label for="ac_date_from">開始日期</label>
                                             <!-- ! fActivityDate-->
                                             <input type="text" id="ac_date_from" name="" autocomplete="off" />
                                             <div id="ac_date_from_div" style="display: none;">
-                                                <label for="">Start Time</label>
+                                                <label for="">開始時間</label>
                                                 <select name="ac_date_from_time" id="ac_date_from_time">
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="actDateDiv create_active_flex">
-                                            <label for="ac_date_to">End&nbsp;&nbsp;</label>
+                                            <label for="ac_date_to">結束日期</label>
                                             <!-- ! fActivityEndDate-->
                                             <input type="text" id="ac_date_to" name="" autocomplete="off" />
                                             <div id="ac_date_to_div" style="display: none;">
-                                                <label for="">End Time</label>
+                                                <label for="">結束時間</label>
                                                 <select name="ac_date_to_time" id="ac_date_to_time">
                                                     <!-- <option value="07:30">07:30</option>
                                             <option value="08:00">08:00</option> -->
@@ -2572,7 +2574,7 @@
                                     </div>
                                 </div>
                                 <div class="create_active_basicInfo_div3">
-                                    <button id="create_active_btn_next">Next</button>
+                                    <button id="create_active_btn_next">下一步</button>
                                 </div>
                             </div>
 
@@ -2580,10 +2582,6 @@
 
                             <div class="create_active_basicInfo">
                                 <h2>詳細資料</h2>
-                                <p>
-                                    Name your event and tell event-goers why they should come. Add
-                                    details that highlight what makes it unique.
-                                </p>
 
                                 <div class="create_active_basicInfo_div">
 
@@ -2661,11 +2659,11 @@
                                     </div>
                                 </div>
                                 <div class="create_active_basicInfo_div3">
-                                    <button id="create_active_btn_pre">Pre</button>
+                                    <button id="create_active_btn_pre">上一步</button>
                                     <button type="submit" id="create_active_btn_done"
-                                        style="display:block">Done</button>
+                                        style="display:block">送出</button>
                                     <button type="submit" id="create_active_btn_done_edit"
-                                        style="display: none;">Done</button>
+                                        style="display: none;">送出</button>
                                 </div>
 
                             </div>

@@ -1,25 +1,30 @@
 function ClsNavbar() {
 
-    // *second nav bar
-    let pageY2 = window.pageYOffset;
-    console.log("---------");
-    const activityNavbar = document.querySelector("#activity_navbar");
-    window.addEventListener(
-        'scroll',
-        () => {
-            if (window.pageYOffset - pageY2 > 0) {
-                console.log("hiiiiiiiii");
-                activityNavbar.classList.remove("transYsWidthTo0Bottom");
-            } else {
-                console.log("hZZZZZZ");
-                activityNavbar.classList.add("transYsWidthTo0Bottom");
 
-            }
+    // 下拉新增選項
+    const setCreateListBtns = (isCanShow = 1) =>{
+        let createListContainer = document.querySelector("#navebar_down_list");
+        let createListBtn = document.querySelectorAll("#navebar_down_list > button");
+        let createPlusBtn = document.querySelector("#navebar_plus_icon");
 
-            pageY2 = window.pageYOffset;
+        if ([...createListBtn[0].classList].includes("foldingCurtain")) {
+            createListContainer.classList.add("foldingCurtainUp");
+            createListContainer.classList.remove("foldingCurtain");
+            createListBtn.forEach(item => item.classList.remove("foldingCurtain"));
+            createListBtn.forEach(item => item.classList.add("foldingCurtainUp"));
+            createPlusBtn.classList.remove("rotate45");
+        } else if(isCanShow) {
+            createListContainer.classList.remove("foldingCurtainUp");
+            createListContainer.classList.add("foldingCurtain");
+            createListBtn.forEach(item => item.classList.add("foldingCurtain"));
+            createListBtn.forEach(item => item.classList.remove("foldingCurtainUp"));
+            createPlusBtn.classList.add("rotate45");
         }
-    );
-
+    }
+    document.querySelector("#navebar_down_icon").addEventListener("click", setCreateListBtns);
+    document.querySelectorAll("#navebar_down_list > button").forEach(item => item.addEventListener("click", ()=>{
+        setCreateListBtns(0);
+    }))
 
 
     //menu switch
@@ -53,6 +58,8 @@ function ClsNavbar() {
             if (window.pageYOffset - pageY > 0) {
                 navbarMain.classList.add("transYsWidthTo0");
                 this.closeShowMenu();
+                // 關閉新增系列按鈕
+                setCreateListBtns(0);
             } else {
                 navbarMain.classList.remove("transYsWidthTo0");
             }

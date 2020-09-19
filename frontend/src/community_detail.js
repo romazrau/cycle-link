@@ -216,6 +216,23 @@ function ClsCommuntityDetail() {
 
     // *照片牆---------------------------------------------
     const CommunityOfPictures = async (id) => {
+        
+        //有幾條col
+        const myPhotoFlowCols = [
+            "photo_flow_col_1",
+            "photo_flow_col_2",
+            "photo_flow_col_3",
+            "photo_flow_col_4",
+            "photo_flow_col_5",
+        ]
+
+        myPhotoFlowCols.map(item => {
+            document.querySelector(`#${item}`).innerHTML = "";
+        })
+
+
+        photoFlowData1 = [];
+
         try {
             let response = await fetch(
                 serverURL.community + "communitypicture/" + id,
@@ -229,7 +246,9 @@ function ClsCommuntityDetail() {
             let result = await response.json();
 
             let picture_data = result.data.recordset;
-            photoFlowData1 = [];
+
+          
+
             for (let i = 0; i < picture_data.length; i++) {
 
                 if (picture_data[i].fImgPaths == null) continue;
@@ -249,141 +268,13 @@ function ClsCommuntityDetail() {
                 }
             }
 
+            console.groupEnd("------------------");
+
+
         } catch (err) {
             console.log(err);
         }
 
-        //假資料
-        // photoFlowData = [{
-        //     id: 1,
-        //     msg: "春吶善後",
-        //     src: "01.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "社員交流",
-        //     src: "02.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "市集",
-        //     src: "03.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "朔溪",
-        //     src: "04.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "嘉南平原",
-        //     src: "05.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "杉林溪",
-        //     src: "06.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "聚餐",
-        //     src: "07.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "談笑風生",
-        //     src: "08.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "彩虹勝利趴",
-        //     src: "09.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "大稻埕煙火",
-        //     src: "10.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "喝酒囉",
-        //     src: "11.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "最後的中餐",
-        //     src: "12.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "中二病",
-        //     src: "13.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "海洋圍觀",
-        //     src: "14.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "01.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "06.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "01.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "02.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "03.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "04.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "02.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "06.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "01.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "02.jpg"
-        // },
-        // ]
-
-        //有幾條col
-        const myPhotoFlowCols = [
-            "photo_flow_col_1",
-            "photo_flow_col_2",
-            "photo_flow_col_3",
-            "photo_flow_col_4",
-            "photo_flow_col_5",
-        ]
 
 
 
@@ -412,7 +303,6 @@ function ClsCommuntityDetail() {
             return result;
         }
         const loadingPhotoFlow = async function loop() {
-            whoIsShortest(myPhotoFlowCols).innerHTML = "";
             for (let i = 0; i < photoFlowData1.length; i++) {
                 await new Promise(resolve => {
                     whoIsShortest(myPhotoFlowCols).innerHTML += data2PhotoFlowCard(photoFlowData1[i]);
@@ -1251,7 +1141,6 @@ function ClsCommuntityDetail() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-            console.log("test",result);
             display_active_community(result.data);
             // getactid();
         } catch (err) {
@@ -1389,11 +1278,15 @@ function ClsCommuntityDetail() {
                     <p>${o.fName} </p>
                     </div>`;
     };
+
     //todo 活動傳資料到社團
     const htmlcommunitydetial = (o)=>{
-        console.log("test1",o);
+        // console.log("test1",o);
         return`
         <div class="card">
+        <div class="communityCard">
+        <img src="http://localhost:3050/${o.fImgPath}" alt="" style="width:100%">
+        </div>
         <div class="GroupBottomCardTime">${o.fActivityDate}</div>
         <div class="GroupBottomCardEventName">${o.fActName}</div>
         <div class="FlexContainer">
@@ -1408,6 +1301,66 @@ function ClsCommuntityDetail() {
        
     </div>`
     }
+
+
+    // 活動樣板
+    // const htmlcommunitydetial = (o) => {
+
+    //         return ` 
+    //             <div class="">
+    //             <a  href="#activity/detail/${o.fId}" class="activecard">
+    //                  <div class="active_card_container">
+    //                  <div class="active_card" >
+    //                      <div class="addlike">
+    //                          <i class="fas fa-heart fa-lg active_card_heart "></i>
+    //                      </div>
+    //                      <div class="active_card_div">
+    //                          <img src="http://localhost:3050/${o.fImgPath}" alt="" class="active_card_img">
+    //                      </div>
+                         
+    //                      <div class="active_card_info">
+    //                          <p>${o.fActivityDate}</p>
+    //                          <p class="active_card_title">${o.fActName}</p>
+                     
+    //                      <div class="active_card_location_div">
+    //                          <img src="img/929497.svg" class="active_card_location">
+    //                          <p>${o.fActLocation}</p>
+    //                      </div>
+    //                  </div>
+    //                  </div>
+    //                  </div>
+    //              </a>
+    //              </div>`;
+    //         // if(o.fJoinTypeId == 0)
+    //         // {
+    //         //     return ` 
+    //         //     <div class="">
+    //         //     <a  href="#activity/detail/${o.fId}" class="activecard">
+    //         //          <div class="active_card_container">
+    //         //          <div class="active_card" >
+    //         //              <div class="addlike">
+    //         //                  <i class="fas fa-heart fa-lg active_card_heart actlikecolor "></i>
+    //         //              </div>
+    //         //              <div class="active_card_div">
+    //         //                  <img src="${o.fImgPath}" alt="" class="active_card_img">
+    //         //              </div>
+    
+    //         //              <div class="active_card_info">
+    //         //                  <p>${o.fActivityDate}</p>
+    //         //                  <p class="active_card_title">${o.fActName}</p>
+    
+    //         //              <div class="active_card_location_div">
+    //         //                  <img src="img/929497.svg" class="active_card_location">
+    //         //                  <p>${o.fActLocation}</p>
+    //         //              </div>
+    //         //          </div>
+    //         //          </div>
+    //         //          </div>
+    //         //      </a>
+    //         //      </div>`;
+    //         // }
+    //         // else{
+    //     }
 
 
 
@@ -1435,5 +1388,8 @@ const communityDetailChangeHash = () => {
     }
 };
 
-window.addEventListener("hashchange", communityDetailChangeHash);
+window.addEventListener("hashchange", ()=>{ 
+    communityDetailChangeHash();
+    document.querySelector("#Group_navlink_info").click();
+});
 window.addEventListener("load", communityDetailChangeHash);

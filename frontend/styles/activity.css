@@ -29,7 +29,7 @@
     padding-left: 20px;
     height: 60px;
     width: 500px;
-    font-size: 30px;
+    font-size: 1rem;
     border: 1px solid var(--lightgrey-color);
     border-radius: 10px;
 }
@@ -44,7 +44,6 @@
     color: gray;
     border: 1px solid #ffffff;
     outline: none;
-
 }
 
 #activity_option option {
@@ -135,7 +134,7 @@
     background-color: var(--blue-color);
     border: 0px;
     border-radius: 10px;
-    font-size: 36px;
+    font-size: 1.2rem;
     color: white;
     text-align: center;
 }
@@ -211,6 +210,8 @@
     text-decoration: none;
     color: white;
 }
+
+/* 社團活動卡片 */
 
 
 
@@ -347,16 +348,19 @@
 }
 
 .search_box {
+    margin-left:0 1rem;
     width: 150px;
-    /* height: 150px; */
-    /* background-color: rgb(103, 160, 197); */
-    /* background-color: rgba(103, 160, 197, 0.384); */
-    border-radius: 10;
-    /* transition: width 2s ease-out 10s; */
+    border: 1px solid black;
+    border-radius: 10px;
+    height: min-content ;
+    
 }
 
 .search_dbox {
     width: 150px;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: min-content ;
     /* background-color: rgba(103, 160, 197, 0.384); */
 }
 
@@ -366,6 +370,7 @@
 
 .search_citytext {
     text-align: center;
+    padding-top: 2px;
     /* line-height: 150px; */
 }
 
