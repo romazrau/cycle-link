@@ -348,19 +348,20 @@
 }
 
 .search_box {
-    margin-left:0 1rem;
+    margin:0 2rem 0 2rem;
     width: 150px;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: min-content ;
+ 
+}
+
+.search_dbox {
+    width: 350px;
     border: 1px solid black;
     border-radius: 10px;
     height: min-content ;
     
-}
-
-.search_dbox {
-    width: 150px;
-    border: 1px solid black;
-    border-radius: 10px;
-    height: min-content ;
     /* background-color: rgba(103, 160, 197, 0.384); */
 }
 
@@ -392,10 +393,18 @@
 
 .search_datetext {
     text-align: center;
+    padding: 0 1rem
 }
 
 .bccolorwhite {
     background-color: white !important;
+}
+
+#ac_date_start_from{
+    border-radius: 10px;
+}
+#ac_date_end_from{
+    border-radius: 10px;
 }
 
 #activity_card_ALL {

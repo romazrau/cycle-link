@@ -304,7 +304,7 @@ function ClsActivity() {
     //抓取時間
     function getstartdate(startdate) {
         var startdatetext = document.getElementById("search_date_text");
-        startdatetext.innerHTML = "起始日" + "  " + startdate;
+        startdatetext.innerHTML = "起始日" + "  " + startdate+ "  " ;
     }
 
 
