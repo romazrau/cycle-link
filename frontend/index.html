@@ -262,7 +262,7 @@
                         <ul class="small-block-grid-2 medium-block-grid-3 home_go2_flip_cards">
                             <li ontouchstart="this.classList.toggle('hover');">
                                 <div class="home_card_large home_card_button home_card_front">
-                                    <a href="#community">淨灘</a>
+                                    <a href="#community">環境清潔</a>
                                     <i class="fas fa-broom home_card_icon"></i>
                                 </div>
                                 <div class="home_card_panel home_card_back">
@@ -275,7 +275,7 @@
                             </li>
                             <li ontouchstart="this.classList.toggle('hover');">
                                 <div class="home_card_large home_card_button home_card_front">
-                                    <a href="#community">路跑</a>
+                                    <a href="#community">運動</a>
                                     <i class="fas fa-running home_card_icon"></i>
                                 </div>
                                 <div class="home_card_panel home_card_back">
@@ -288,7 +288,7 @@
                             </li>
                             <li ontouchstart="this.classList.toggle('hover');">
                                 <div class="home_card_large home_card_button home_card_front">
-                                    <a href="#community">教育</a>
+                                    <a href="#community">自然教育</a>
                                     <i class="fas fa-book home_card_icon"></i>
                                 </div>
                                 <div class="home_card_panel home_card_back">
@@ -301,14 +301,16 @@
                             </li>
                             <li ontouchstart="this.classList.toggle('hover');">
                                 <div class="home_card_large home_card_button home_card_front">
-                                    <a href="#community">海洋</a>
-                                    <i class="fas fa-water home_card_icon"></i>
+                                    <a href="#community">志工活動</a>
+                                    <!-- <i class="fas fa-water home_card_icon"></i> -->
+                                    <i class="fas fa-hands-helping home_card_icon"></i>
                                 </div>
                                 <div class="home_card_panel home_card_back">
                                     <div class="home_hub_info">
-                                        <a href="#community">海洋環境</a>
-                                        <i class="fas fa-water home_card_icon"></i>
-                                        <p>今年世界海洋日的主題為「海洋生命Oceans of Life」，希望喚起人們對海洋生物多樣性的認識，透過選出自己喜愛的海洋生物，並一起行動來保護他們。
+                                        <a href="#community">關渡自然公園志工招募</a>
+                                        <!-- <i class="fas fa-water home_card_icon"></i> -->
+                                        <i class="fas fa-hands-helping home_card_icon"></i>
+                                        <p>關渡自然公園長久以來希望從實際體驗及接觸，來讓民眾提高對濕地生態保育的關心。 透過不同的方式，邀請對自然環境有興趣，且也願意學習服務的你，一同加入我們的行列。
                                         </p>
                                     </div>
                                 </div>
@@ -316,7 +318,7 @@
 
                             <li ontouchstart="this.classList.toggle('hover');">
                                 <div class="home_card_large home_card_button home_card_front">
-                                    <a href="#community">二手換物</a>
+                                    <a href="#community">二手市集</a>
                                     <i class="fas fa-cookie-bite home_card_icon"></i>
                                 </div>
                                 <div class="home_card_panel home_card_back">
@@ -330,14 +332,18 @@
 
                             <li ontouchstart="this.classList.toggle('hover');">
                                 <div class="home_card_large home_card_button home_card_front">
-                                    <a href="#community">森林</a>
-                                    <i class="fas fa-tree home_card_icon"></i>
+                                    <a href="#community">線上活動</a>
+                                    <!-- <i class="fas fa-tree home_card_icon"></i> -->
+                                    <i class="fas fa-globe-americas home_card_icon"></i>
                                 </div>
                                 <div class="home_card_panel home_card_back">
                                     <div class="home_hub_info">
-                                        <a href="#community">森林保育</a>
-                                        <i class="fas fa-tree home_card_icon"></i>
-                                        <p>台灣大規模伐木，以1912年第一列運材火車自二萬坪駛出為嚆矢，數十萬年來守護著美麗之島的蒼鬱森林在數十年內被無情砍伐。</p>
+                                        <a href="#community"></a>
+                                        <i class="fas fa-globe-americas home_card_icon"></i>
+                                        <p>
+                                            今年，誠摯邀請你一起展開 21 天的綠行動旅程、養成綠色習慣，為氣候帶來可能的改變，
+	                                        而「宣告」，就是今年的第一個動作。
+                                        </p>
                                     </div>
                                 </div>
                             </li>
@@ -369,7 +375,7 @@
                 <div class="activity_search_container">
                     <div class="active_main_search">
                         <input id="search_txt" type="text">
-                        <select name="type" id="activity_option">
+                        <select name="type" id="activity_option" style="font-size: 1.3rem;">
                         </select>
                     </div>
 
@@ -432,7 +438,7 @@
 
                 </div>
 
-                <button id="activity_search_go">GO</button>
+                <button id="activity_search_go">GO!</button>
             </div>
             <!-------------------------------------- main -------------------------------------->
             <div class="activity_main">
@@ -458,7 +464,7 @@
                     </div>
                     <div id="search_datedetial" class="search_datetext search_hidden">
                         <label for="ac_date_start_from">Startdate</label>
-                        <input type="text" id="ac_date_start_from" name="ac_date_start_from" autocomplete="off"
+                        <input type="text" id="ac_date_start_from"  name="ac_date_start_from" autocomplete="off"
                             onchange="getstartdate(this.id)" />
                         <label for="ac_date_end_from">Enddate</label>
                         <input type="text" id="ac_date_end_from" name="ac_date_end_from" autocomplete="off" />
@@ -525,7 +531,7 @@
                                 <!-- </a> -->
                             </div>
                         </div>
-                        <div class="CM_recommend_container"></div>
+                        
                         <!--社團類別選項刪除 
                             <div class="CM_appearCategory_item_container">
                             <div class="CM_appearCategory_item">
@@ -543,6 +549,7 @@
                         <img src="img/mountain(衰熊版).svg" />
                     </div>
                 </div>
+                <div class="CM_recommend_container CM_recommend_container_disappear"></div>
                 <div class="community_main_timeline">
                     <ul class="community_main_ul_timeline"></ul>
                 </div>
@@ -1266,7 +1273,7 @@
                                     <div id="messageInputBoxCon"></div>
                                 </div>
                             </div>
-                            <h5 style="margin-top: 3rem;font-weight: bold;">瀏覽過的活動</h5>
+                            <h5 style="margin-top: 3rem;margin-bottom:1.5rem;font-weight: bold;">瀏覽過的活動</h5>
                             <div id="activity_detail_see">
                             </div>
                         </div>
@@ -1327,12 +1334,12 @@
                         <div class="GroupTopLeft ">
                             <div class="GroupTopMainPicDivForImg">
                                 <img id="CommunityPic" src="./img/水下攝影與淨海.jpg" alt="cover pic of diving" width="100%">
-                                <img class="GroupImgSeeMoreIcon settingIcon" data-open-name="DropDownMenu_photo"
-                                    src="./img/icon_seemore.svg" width="25px">
-                                <div class="DropDownMenu" id="DropDownMenu_photo">
+                                <!-- <img class="GroupImgSeeMoreIcon settingIcon" data-open-name="DropDownMenu_photo"
+                                    src="./img/icon_seemore.svg" width="25px"> -->
+                                <!-- <div class="DropDownMenu" id="DropDownMenu_photo">
                                     <div class="dropdown-triangle"></div>
                                     <div class="dropdown js_editCommunity">編輯照片</div>
-                                </div>
+                                </div> -->
 
                             </div>
                         </div>
@@ -1340,21 +1347,22 @@
                         <div class="GroupTopRight FlexContainer">
 
                             <div class="GroupTopEventName">
-                                <p id="CommunityName">週末北海岸
-                                    水下攝影fit淨海</p>
-                                <img class="GroupTopRightImgIcon settingIcon" data-open-name="DropDownMenu_name"
+                                <h2 id="CommunityName" class="h2">週末北海岸
+                                    水下攝影fit淨海</h2>
+                                <!-- <img class="GroupTopRightImgIcon settingIcon" data-open-name="DropDownMenu_name"
                                     src="./img/icon_seemore.svg" width="25px">
                                 <div class="DropDownMenu" id="DropDownMenu_name">
                                     <div class="dropdown-triangleR "></div>
                                     <div class="dropdownR js_editCommunity">編輯名稱</div>
-                                </div>
+                                </div> -->
                             </div>
                             <!-- <div class="FlexContainer GroupTopRightEventInfoBox">
                     <div class="Size20IconMarginRight"><img src="./img/icon_gps.svg" width="20"></div>
                     <div>台北,台灣</div>
                 </div> -->
 
-                            <div class="FlexContainer rightTopInfoFlexColume">
+                            <div class="FlexContainer Group_FlexJustifyContentSB">
+                                <div >        
                                 <div class="FlexContainer GroupTopRightEventInfoBox">
                                     <div class="Size20IconMarginRight"><img src="./img/icon_group.svg" width="20"></div>
                                     <div>社團人數&nbsp;<span id="CommunityNumberOfPeople">50</span>&nbsp;人</div>
@@ -1366,9 +1374,6 @@
                                     </div>
                                 </div>
 
-
-
-
                                 <div class="FlexContainer ">
                                     <div class="Boldtitle">Share:</div>
                                     <div class="Size20IconMarginLeft Size20IconMarginRight"><img
@@ -1378,14 +1383,55 @@
                                     <div class="Size20IconMarginRight"><img src="./img/icon_instagram.svg" width="20">
                                     </div>
                                 </div>
+                                </div>
+                                <button class="divForRightPartInfo" id="community_edit">
+                                    <img src="img/edit-regular.svg" width="20px">
+                                </button>
+                            </div>
+
                             </div>
 
                         </div>
                     </div>
                 </div>
 
-                <hr class="DividedLine PositionRalative">
+                <!-- <hr class="DividedLine PositionRalative"> -->
 
+
+                    <!-- page -->
+                    <div class="aboutMe">
+                        <div class="Container">
+                            
+                            <!---------------------下層關於我---------------------->
+                            <div class="dropdown-relative-container">
+                                <div class="FlexContainer Group_FlexJustifyContentSB">
+                                    <div class="FontSectionTitle">關於我們</div>
+                                    <!-- <div class="GroupAboutUsDivImg">
+                                        <img class="GroupAboutUsImg settingIcon" data-open-name="DropDownMenu_edit"
+                                            src="/img/icon_seemore.svg" width="25px">
+                                    </div> -->
+                                </div>
+                                <!-- <div class="DropDownMenu" id="DropDownMenu_edit">
+                                    <div class="dropdown-triangleD"></div>
+                                    <div class="dropdownD js_editCommunity">編輯</div>
+                                </div> -->
+                            </div>
+                            <div id="CommunityAboutUs" class="FontSectionText">
+                                當您已完成潛水課程，成為一位合格的潛水員後，當然水世界潛水會為您安排接續探索水下風光的活動！
+                                剛結訓的學員基本上對台灣海域不熟悉、也不知道該從哪裡開始玩起，也擔心沒人準備後勤作業，也沒有同伴一起分享。
+                                水世界潛水俱樂部可以帶領喜愛潛水的同好，更重要的就是可以找到志同道合的潛友成為彼此的潛伴，一同下水遊覽美麗的海底世界；「水世界潛水俱樂部」是由專業導潛、資深教練、資深潛友、潛水新手聚集而成的團體，帶您體驗大自然。
+                                您要如何加入會員
+                                資格：
+                                (1) 水世界潛水結訓的學員 或
+                                (2) 於水世界潛水購買整套重裝者
+                                俱樂部會員權益與義務
+                                1.入會費
+                                入會費為$1000元，您將獲的一張會員卡及10張氣瓶卷(有效期為當年有效)。而會籍是終身有效。
+                                *當年度於水世界潛水結訓之學員，享免年費優惠，只需繳交$1,000元入會費即可享有會員權益。
+                            </div>
+
+                        </div>
+                </div>
                 <!------------------------------------- 中間nav bar ----------------------------------->
                 <div class="Container">
                     <div class="FlexContainer MiddleNavBar">
@@ -1419,10 +1465,10 @@
                                 <div id="MemberBtn" class="js_forLeave_btn GroupNavBtn GroupDiveBtnText hide">
                                     &nbsp&nbsp我是社員</div>
                                 <!-- <img src="./img/icon_triangle_downside.svg" width="25px"> -->
-                                <div class="DropDownMenu js_leaveDropDown">
+                                <div class="DropDownMenu js_leaveDropDown " id="leaveCommunityBtn">
                                     <div class="dropdown-triangleLeave"></div>
                                     <div class="dropdownLeave">
-                                        <div id="leaveCommunityBtn">退出社團</div>
+                                        <div>退出社團</div>
                                     </div>
                                 </div>
                                 <!-- <div class="dropdown">
@@ -1441,45 +1487,21 @@
                 </div>
 
 
-                <!-- page -->
-                <div class="GrayBackGround">
-                    <div class="Container">
-                        <!----------------------------------------////// 下層＿主頁 ////////---------------------------------------->
-                        <div class="GroupBottomMain FlexContainer GroupDetailPage" id="GroupDetailPage_home">
+            
 
+
+
+
+                        <div class="GrayBackGround">
+
+                    <div class="Container">
+
+              <!----------------------------------------////// 下層＿主頁 ////////---------------------------------------->
+              <div class="GroupBottomMain FlexContainer GroupDetailPage" id="GroupDetailPage_home">
+                            <!-- <a class="ReadMoreLink GroupEnglishFont" href="#">read more</a> -->
+                            <!-- 沒抓到  -->
                             <!----------------------------------下層左----------------------------------->
                             <div class="GroupBottomLeft">
-                                <!---------------------下層關於我---------------------->
-                                <div class="dropdown-relative-container">
-                                    <div class="FlexContainer Group_FlexJustifyContentSB">
-                                        <div class="FontSectionTitle">關於我們</div>
-                                        <div class="GroupAboutUsDivImg">
-                                            <img class="GroupAboutUsImg settingIcon" data-open-name="DropDownMenu_edit"
-                                                src="/img/icon_seemore.svg" width="25px">
-                                        </div>
-                                    </div>
-                                    <div class="DropDownMenu" id="DropDownMenu_edit">
-                                        <div class="dropdown-triangleD"></div>
-                                        <div class="dropdownD js_editCommunity">編輯</div>
-                                    </div>
-                                </div>
-                                <div id="CommunityAboutUs" class="FontSectionText">
-                                    當您已完成潛水課程，成為一位合格的潛水員後，當然水世界潛水會為您安排接續探索水下風光的活動！
-                                    剛結訓的學員基本上對台灣海域不熟悉、也不知道該從哪裡開始玩起，也擔心沒人準備後勤作業，也沒有同伴一起分享。
-                                    水世界潛水俱樂部可以帶領喜愛潛水的同好，更重要的就是可以找到志同道合的潛友成為彼此的潛伴，一同下水遊覽美麗的海底世界；「水世界潛水俱樂部」是由專業導潛、資深教練、資深潛友、潛水新手聚集而成的團體，帶您體驗大自然。
-                                    您要如何加入會員
-                                    資格：
-                                    (1) 水世界潛水結訓的學員 或
-                                    (2) 於水世界潛水購買整套重裝者
-                                    俱樂部會員權益與義務
-                                    1.入會費
-                                    入會費為$1000元，您將獲的一張會員卡及10張氣瓶卷(有效期為當年有效)。而會籍是終身有效。
-                                    *當年度於水世界潛水結訓之學員，享免年費優惠，只需繳交$1,000元入會費即可享有會員權益。
-                                </div>
-
-                                <!-- <a class="ReadMoreLink GroupEnglishFont" href="#">read more</a> -->
-                                <!-- 沒抓到  -->
-
                                 <!-------------------下層即將到來活動------------------>
                                 <div class="FlexContainer FontSectionTitle">
                                     <div class="GroupComingEvent">近期活動</div>
@@ -1513,7 +1535,7 @@
                                 <!------ 一張卡 --------->
 
                                 <!-------------------下層活動照片------------------>
-                                <div class="FlexContainer FontSectionTitle">
+                                <!-- <div class="FlexContainer FontSectionTitle">
                                     <div class="FlexContainer">
                                         <div class="GroupComingEvent">社團照片</div>
                                         <div>(450)</div>
@@ -1530,7 +1552,7 @@
                                         <img class="Photo" src="./img/event05.jpg">
                                         <img class="Photo" src="./img/event06.jpg">
                                     </div>
-                                </div>
+                                </div> -->
 
 
                             </div>
@@ -1557,13 +1579,13 @@
 
                                     <div class="FlexContainer Group_FlexJustifyContentSB">
                                         <div class="FontSectionTitle">社團管理員</div>
-                                        <img class="GroupBottomRightSetImg settingIcon"
-                                            data-open-name="DropDownMenu_List" src="/img/icon_seemore.svg" width="25px">
+                                        <!-- <img class="GroupBottomRightSetImg settingIcon"
+                                            data-open-name="DropDownMenu_List" src="/img/icon_seemore.svg" width="25px"> -->
                                     </div>
-                                    <div class="DropDownMenu" id="DropDownMenu_List">
+                                    <!-- <div class="DropDownMenu" id="DropDownMenu_List">
                                         <div class="dropdown-triangleDR"></div>
                                         <div class="dropdownDR js_editCommunity">編輯管理員名單</div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div id="MemberTemplate" class="FlexContainer GroupRight MemberTemplateFlexDirection">
                                     <div class="activity_detail_info_img_circle">
@@ -1587,18 +1609,17 @@
                                             <div class="GroupComingEvent FontSectionTitle">社團成員</div>
                                             <div id="NumOfMem" class="FontSectionTitle">(4)</div>
                                         </div>
-                                        <img class="GroupComingEventImg settingIcon"
+                                        <!-- <img class="GroupComingEventImg settingIcon"
                                             data-open-name="DropDownMenu_memList" src="/img/icon_seemore.svg"
-                                            width="25px">
+                                            width="25px"> -->
                                         <!-- <a href="#" class="SeeAllRight FontSectionTitle">see all</a> -->
                                     </div>
-                                    <div class="DropDownMenu" id="DropDownMenu_memList">
+                                    <!-- <div class="DropDownMenu" id="DropDownMenu_memList">
                                         <div class="dropdown-triangleDR"></div>
                                         <div class="dropdownDR js_editCommunity">編輯會員名單</div>
-                                    </div>
+                                    </div> -->
                                 </div>
-                                <div id="CommunityMember" class="FlexContainer GroupRightInfoPhotoContainer
-                                Group_FlexJustifyContentSB">
+                                <div id="CommunityMember" class="FlexContainer GroupRightInfoPhotoContainer">
                                     <div class="activity_detail_info_img_circle GroupMemberPic">
                                         <div class="activity_detail_info_img_div">
                                             <img class="activity_detail_info_img GoupRightInfoPhoto" src="./img/id1.jpg"
@@ -2789,10 +2810,10 @@
                         <form id="formOfCreate">
                             <div class="create_community_basicInfo">
                                 <h2>基本資料</h2>
-                                <p>
+                                <!-- <p>
                                     Name your event and tell event-goers why they should come. Add
                                     details that highlight what makes it unique.
-                                </p>
+                                </p> -->
                                 <div class="create_community_basicInfo_div">
                                     <div class="create_community_basicInfo_div2">
                                         <p>社團名稱</p>
@@ -2806,7 +2827,7 @@
                                 </div>
                                 <div class="create_community_basicInfo_div">
                                     <div class="create_community_basicInfo_div2">
-                                        <p>Privacy Settings</p>
+                                        <!-- <p>Privacy Settings</p> -->
                                         <select name="fStatusId" id="selectStatus">
                                             <option value="1">公開</option>
                                             <option value="2">私人</option>
@@ -2834,10 +2855,10 @@
 
                             <div id="detailBlock" name="formDetails" class="create_community_basicInfo">
                                 <h2>詳細資料</h2>
-                                <p>
+                                <!-- <p>
                                     Name your event and tell event-goers why they should come. Add
                                     details that highlight what makes it unique.
-                                </p>
+                                </p> -->
                                 <div class="create_community_basicInfo_div">
                                     <div class="create_community_basicInfo_div2">
                                         <p>社團首頁圖片</p>
@@ -2887,10 +2908,10 @@
 
                         <div id="approveMember" class="create_community_basicInfo hide">
                             <h2 id="approveCommunityTitle">社團加入審核</h2>
-                            <p>
+                            <!-- <p>
                                 Name your event and tell event-goers why they should come. Add
                                 details that highlight what makes it unique.
-                            </p>
+                            </p> -->
 
                             <div id="managerBlcok" class="create_community_basicInfo_div ">
                                 <div class="create_community_basicInfo_div2 managerBlcokShow">

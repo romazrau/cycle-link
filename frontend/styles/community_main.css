@@ -45,7 +45,7 @@
   padding-left: 20px;
   height: 60px;
   width: 450px;
-  font-size: 30px;
+  font-size: 1.3rem;
   border: none;
   border-radius: 10px;
 }
@@ -93,10 +93,13 @@
 }
 
 .CM_recommend_container {
-  margin-top: 30px;
-  width: 600px;
-  height: 200px;
+  margin: 30px auto;
+  width: 90em;
+  height: 260px;
   display: flex;
+}
+.CM_recommend_container_disappear{
+  display: none;
 }
 
 .CM_recommend_item {
@@ -105,6 +108,7 @@
   background-color: var(--white-color);
   border-radius: 10px;
   margin-right: 2%;
+  border-radius: 5px;
 }
 
 .CM_recommend_item:hover {
@@ -112,36 +116,31 @@
   transition: all 0.5s;
 }
 
-.CM_recommend_item_img {
-  margin: 10px;
-}
-
 .CM_recommend_item_img_img {
   width: 100%;
-  height: 100px;
+  height: 180px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   overflow: hidden;
 }
 
 .CM_recommend_item_info {
-  text-align: center;
-  margin: auto 10px;
+  margin-left: 20px; 
+  margin-top: 8px; 
 }
 
-/*
-社團類別選項刪除
-.CM_appearCategory_item_container {
-  display: flex;
+.CM_recommend_item_info p{
+  font-size: 1.4rem;
+  margin-bottom:5px;
 }
 
-.CM_appearCategory_item {
-  padding: 10px 20px;
-  margin: 10px;
-  background-color: var(--green-color);
-  color: white;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.212);
-} */
+.CM_recommend_item_info i{
+  margin-right: 10px;
+  color: var(--blue-color);
+}
+.CM_recommend_item_info span{
+  color: var(--grey-color);
+}
 
 .community_main_container {
   width: 100%;

@@ -80,7 +80,7 @@ function ClsActivityDetail() {
                 </div>
             </div>
             <div class="activity_detail_info_name">
-                <p class="activity_detail_info_name_H">Hosted By</p>
+                <p class="activity_detail_info_name_H">發起者</p>
                 <div class=" activity_detail_flex">
                     <a href="#personal-page/${o.fMemberId}">${o.MemberName}</a>
                     <img src="./img/tick.svg" alt="tickIcon" class="activity_detail_info_status">
@@ -100,7 +100,7 @@ function ClsActivityDetail() {
 
     const actDetail_textDetail = (o) => {
         return `
-        <p>${o.fIntroduction}</p>
+        <pre>${o.fIntroduction}</pre>
         `;
     };
 
@@ -155,7 +155,9 @@ function ClsActivityDetail() {
     // * ---------------- 活動隸屬社團 文字樣板 ---------------- //
 
     const actDetailSocietiesALL = (o) => {
-        return `<a href="#community/detail/${o.fCommunityId}" class="activity_detail_Societies_a">
+        return `<h5 style="margin-top: 2rem;margin-bottom:1.5rem;font-weight: bold;">活動所屬社團</h5>
+                <div class="activity_detail_Societies2">
+                <a href="#community/detail/${o.fCommunityId}" class="activity_detail_Societies_a">
                 <div class="activity_detail_Societies_img_circle" style="margin-left: 1rem;">
                     <div class="activity_detail_Societies_img_div">
                         <img src='http://localhost:3050/${o.CommuntyImgPath}' class="activity_detail_Societies_img">
@@ -166,7 +168,8 @@ function ClsActivityDetail() {
                     <p>see more events</p>
                 </div>
                 <img src="img/right.svg" alt="" width="20vw">
-                </a>`;
+                </a>
+                </div>`;
     };
 
     // * ---------------- 活動右側內容 文字樣板 ---------------- //
@@ -210,7 +213,7 @@ function ClsActivityDetail() {
 
                 if (e.CommuntyName !== null) {
                     actDetailSocieties.innerHTML = actDetailSocietiesALL(e);
-                    actDetailSocieties.style.display = "flex";
+                    actDetailSocieties.style.display = "block";
                 } else {
                     actDetailSocieties.style.display = "none";
                 }
@@ -353,6 +356,12 @@ function ClsActivityDetail() {
 
 
     // ! ************************ [ END ] actDetail ajax [ END ] ************************ //
+    // --- textarea ---
+    // function textareaReplace() {
+    //     let acTextarea = document.querySelector("#create_active_text")
+    //     acTextarea.value.replace(' ', "<br/>")
+    //     console.log(acTextarea.value);
+    // }
 
 
 
@@ -810,11 +819,11 @@ function ClsActivityDetail() {
         if (activityselectlike.classList.contains("actlikecolor") == true) {
             activityselectlike.classList.remove("actlikecolor");
             removeactlikesql(id, now);
-            alert('已取消追蹤活動');
+            // alert('已取消追蹤活動');
         } else {
             activityselectlike.classList.add("actlikecolor");
             addActLikeToSQL(id, now);
-            alert('已追蹤活動');
+            // alert('已追蹤活動');
         }
     })
     const addActLikeToSQL = async (activelikeid, now) => {

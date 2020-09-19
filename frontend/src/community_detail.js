@@ -448,30 +448,33 @@ function ClsCommuntityDetail() {
             }
 
             // DropDown Menu 藏起來
-            document.querySelectorAll(".DropDownMenu").forEach((o) => {
-                o.classList.add("hide");
-            })
-            document.querySelectorAll(".settingIcon").forEach((o) => {
-                o.classList.add("hide");
-            })
+            // 編輯按鈕藏起來
+            document.getElementById("leaveCommunityBtn").classList.add("hide");
+            document.getElementById("community_edit").classList.add("hide");
+            // document.querySelectorAll(".DropDownMenu").forEach((o) => {
+            //     o.classList.add("hide");
+            // })
+            // document.querySelectorAll(".settingIcon").forEach((o) => {
+            //     o.classList.add("hide");
+            // })
 
 
             // DropDown Menu 是管理員的話打開
             if (user == "管理員") {
-
-                document.querySelectorAll(".settingIcon").forEach((o) => {
-                    o.classList.remove("hide");
-                    o.addEventListener("click",(e)=>{
-                        console.log(e.target.dataset.openName);
-                        console.log([...document.querySelector(`#${e.target.dataset.openName}`).classList].includes("hide"));
-                        if([...document.querySelector(`#${e.target.dataset.openName}`).classList].includes("hide")){
-                        document.querySelector(`#${e.target.dataset.openName}`).classList.remove("hide");
-                        }
-                        else{
-                        document.querySelector(`#${e.target.dataset.openName}`).classList.add("hide");
-                        }
-                    })
-                })
+                document.querySelector("#community_edit").classList.remove("hide");
+                // document.querySelectorAll(".settingIcon").forEach((o) => {
+                //     o.classList.remove("hide");
+                //     o.addEventListener("click",(e)=>{
+                //         console.log(e.target.dataset.openName);
+                //         console.log([...document.querySelector(`#${e.target.dataset.openName}`).classList].includes("hide"));
+                //         if([...document.querySelector(`#${e.target.dataset.openName}`).classList].includes("hide")){
+                //         document.querySelector(`#${e.target.dataset.openName}`).classList.remove("hide");
+                //         }
+                //         else{
+                //         document.querySelector(`#${e.target.dataset.openName}`).classList.add("hide");
+                //         }
+                //     })
+                // })
             }
 
           
@@ -543,6 +546,8 @@ function ClsCommuntityDetail() {
             // console.log("+++++++++++++++++++++++++++++++++++++++!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             // console.log(result.data);
 
+        // console.log(result.data);
+
             //----------------------------------成員---------------------------------------
 
             document.querySelector("#MemberPageTemplateContainer").innerHTML = "";
@@ -613,9 +618,8 @@ function ClsCommuntityDetail() {
     // 撈資料放進資料
     // 抓到fCommunityId放進去formdata
     let fCommunityId;
-    document.querySelectorAll(".js_editCommunity").forEach((items) => {
-        items.addEventListener("click", async () => {
-            console.group("修改社團");
+    document.querySelector("#community_edit").addEventListener("click", async () => {
+            // console.group("修改社團");
             try {
                 // 導向社團編輯頁面
                 // -----# >>> 前端路由導向
@@ -827,8 +831,8 @@ function ClsCommuntityDetail() {
             } catch (err) {
                 console.log(err);
             }
-            console.groupEnd("修改社團");
-        });
+            // console.groupEnd("修改社團");
+        
     });
 
     // 處理使用者輸入Null值
@@ -1278,10 +1282,15 @@ function ClsCommuntityDetail() {
                     <p>${o.fName} </p>
                     </div>`;
     };
+
     //todo 活動傳資料到社團
     const htmlcommunitydetial = (o)=>{
+        // console.log("test1",o);
         return`
         <div class="card">
+        <div class="communityCard">
+        <img src="http://localhost:3050/${o.fImgPath}" alt="" style="width:100%">
+        </div>
         <div class="GroupBottomCardTime">${o.fActivityDate}</div>
         <div class="GroupBottomCardEventName">${o.fActName}</div>
         <div class="FlexContainer">
@@ -1296,6 +1305,66 @@ function ClsCommuntityDetail() {
        
     </div>`
     }
+
+
+    // 活動樣板
+    // const htmlcommunitydetial = (o) => {
+
+    //         return ` 
+    //             <div class="">
+    //             <a  href="#activity/detail/${o.fId}" class="activecard">
+    //                  <div class="active_card_container">
+    //                  <div class="active_card" >
+    //                      <div class="addlike">
+    //                          <i class="fas fa-heart fa-lg active_card_heart "></i>
+    //                      </div>
+    //                      <div class="active_card_div">
+    //                          <img src="http://localhost:3050/${o.fImgPath}" alt="" class="active_card_img">
+    //                      </div>
+                         
+    //                      <div class="active_card_info">
+    //                          <p>${o.fActivityDate}</p>
+    //                          <p class="active_card_title">${o.fActName}</p>
+                     
+    //                      <div class="active_card_location_div">
+    //                          <img src="img/929497.svg" class="active_card_location">
+    //                          <p>${o.fActLocation}</p>
+    //                      </div>
+    //                  </div>
+    //                  </div>
+    //                  </div>
+    //              </a>
+    //              </div>`;
+    //         // if(o.fJoinTypeId == 0)
+    //         // {
+    //         //     return ` 
+    //         //     <div class="">
+    //         //     <a  href="#activity/detail/${o.fId}" class="activecard">
+    //         //          <div class="active_card_container">
+    //         //          <div class="active_card" >
+    //         //              <div class="addlike">
+    //         //                  <i class="fas fa-heart fa-lg active_card_heart actlikecolor "></i>
+    //         //              </div>
+    //         //              <div class="active_card_div">
+    //         //                  <img src="${o.fImgPath}" alt="" class="active_card_img">
+    //         //              </div>
+    
+    //         //              <div class="active_card_info">
+    //         //                  <p>${o.fActivityDate}</p>
+    //         //                  <p class="active_card_title">${o.fActName}</p>
+    
+    //         //              <div class="active_card_location_div">
+    //         //                  <img src="img/929497.svg" class="active_card_location">
+    //         //                  <p>${o.fActLocation}</p>
+    //         //              </div>
+    //         //          </div>
+    //         //          </div>
+    //         //          </div>
+    //         //      </a>
+    //         //      </div>`;
+    //         // }
+    //         // else{
+    //     }
 
 
 

@@ -103,10 +103,10 @@ function HomePageWeather(data) {
   let time = timesplit[0];
   let day = nowtime.getDay();
   let hour = time.split(":")[0];
-
+    
   let WeatherTitle2 = document.querySelector(".home_recent_weather_title p");
   let WeatherTitleimg = document.getElementById("weather_img");
-  WeatherTitle2.innerHTML = "星期" + day_list[day] + " "
+  WeatherTitle2.innerHTML = date +" 星期" + day_list[day] + " "
   WeatherTitle2.innerHTML += hour + "時<br/>"
   WeatherTitle2.innerHTML += weatherElements.Wx.time[0].elementValue[0].value;
   let weitherid = weatherElements.Wx.time[0].elementValue[1].value;
@@ -252,7 +252,7 @@ const display_home_weather = (o, t) => {
     t.time.map((e, index) => {
       // console.log(e.elementValue[0].value);
       // if(index%2 == 0) 
-      document.querySelector(".WTcontainer").innerHTML += home_weather_t(e.elementValue[0].value);
+      document.querySelector(".WTcontainer").innerHTML += home_weather_t(e.elementValue[0].value,index);
     })
 };
 
@@ -261,11 +261,12 @@ const display_home_weather = (o, t) => {
 //   }
 // )}
 
-const home_weather = (o) => {
+const home_weather = (o,index) => {
   var day_list = ['日', '一', '二', '三', '四', '五', '六'];
   let nowtime = new Date();
   let day = nowtime.getDay();
-  console.log(day);
+  console.log(index);
+  
   if (o == '01' || o == '02' || o == '03') {
     return `
     
