@@ -241,6 +241,12 @@ hr {
 
 /******************* TOP ******************/
 
+.divForRightPartInfo{
+  padding: 0.3rem 1rem;
+    background-color: white;
+    border-radius: 5px;
+}
+
 .statusBtn {
   padding: 15px;
   border-radius: 5px;
@@ -725,6 +731,8 @@ hr {
   outline: 0;
 }
 
+
+
 .GroupCardBtn:hover {
   background-color: var(--blue-color);
   border: 1px solid var(--white-color);
@@ -754,6 +762,8 @@ hr {
 .MemberTemplateFlexDirection{
   flex-direction: column;
 }
+
+
 /******************* BOTTOM ******************/
 
 .body-community-detail-discussion {

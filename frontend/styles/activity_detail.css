@@ -284,14 +284,15 @@
 }
 
 /* 所屬社團 */
-.activity_detail_Societies {
+
+.activity_detail_Societies2 {
   display: flex;
   /*  justify-items: center;*/
   align-items: center;
   /* width: 50vw; */
   /* height: 15vh; */
   max-width: 800px;
-  margin-top: 3rem;
+  margin-top: 1rem;
   padding: 1.5rem;
   border-radius: 1rem;
   background-color: white;
@@ -360,7 +361,7 @@
   align-content: stretch;
   justify-content: space-around;
   /* max-width: 800px; */
-  margin: 3rem auto;
+  margin: 1rem auto;
 }
 
 /* *留言區 */
@@ -588,4 +589,11 @@
   background-color: var(--lightblue-color);
   color: white;
   transition: all 0.5s;
+}
+
+
+.activity_detail_title {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  font-weight: bold;
 }

@@ -1273,7 +1273,7 @@
                                     <div id="messageInputBoxCon"></div>
                                 </div>
                             </div>
-                            <h5 style="margin-top: 3rem;font-weight: bold;">瀏覽過的活動</h5>
+                            <h5 style="margin-top: 3rem;margin-bottom:1.5rem;font-weight: bold;">瀏覽過的活動</h5>
                             <div id="activity_detail_see">
                             </div>
                         </div>
@@ -1334,12 +1334,12 @@
                         <div class="GroupTopLeft ">
                             <div class="GroupTopMainPicDivForImg">
                                 <img id="CommunityPic" src="./img/水下攝影與淨海.jpg" alt="cover pic of diving" width="100%">
-                                <img class="GroupImgSeeMoreIcon settingIcon" data-open-name="DropDownMenu_photo"
-                                    src="./img/icon_seemore.svg" width="25px">
-                                <div class="DropDownMenu" id="DropDownMenu_photo">
+                                <!-- <img class="GroupImgSeeMoreIcon settingIcon" data-open-name="DropDownMenu_photo"
+                                    src="./img/icon_seemore.svg" width="25px"> -->
+                                <!-- <div class="DropDownMenu" id="DropDownMenu_photo">
                                     <div class="dropdown-triangle"></div>
                                     <div class="dropdown js_editCommunity">編輯照片</div>
-                                </div>
+                                </div> -->
 
                             </div>
                         </div>
@@ -1349,19 +1349,20 @@
                             <div class="GroupTopEventName">
                                 <h2 id="CommunityName" class="h2">週末北海岸
                                     水下攝影fit淨海</h2>
-                                <img class="GroupTopRightImgIcon settingIcon" data-open-name="DropDownMenu_name"
+                                <!-- <img class="GroupTopRightImgIcon settingIcon" data-open-name="DropDownMenu_name"
                                     src="./img/icon_seemore.svg" width="25px">
                                 <div class="DropDownMenu" id="DropDownMenu_name">
                                     <div class="dropdown-triangleR "></div>
                                     <div class="dropdownR js_editCommunity">編輯名稱</div>
-                                </div>
+                                </div> -->
                             </div>
                             <!-- <div class="FlexContainer GroupTopRightEventInfoBox">
                     <div class="Size20IconMarginRight"><img src="./img/icon_gps.svg" width="20"></div>
                     <div>台北,台灣</div>
                 </div> -->
 
-                            <div class="FlexContainer rightTopInfoFlexColume">
+                            <div class="FlexContainer Group_FlexJustifyContentSB">
+                                <div >        
                                 <div class="FlexContainer GroupTopRightEventInfoBox">
                                     <div class="Size20IconMarginRight"><img src="./img/icon_group.svg" width="20"></div>
                                     <div>社團人數&nbsp;<span id="CommunityNumberOfPeople">50</span>&nbsp;人</div>
@@ -1373,9 +1374,6 @@
                                     </div>
                                 </div>
 
-
-
-
                                 <div class="FlexContainer ">
                                     <div class="Boldtitle">Share:</div>
                                     <div class="Size20IconMarginLeft Size20IconMarginRight"><img
@@ -1385,6 +1383,12 @@
                                     <div class="Size20IconMarginRight"><img src="./img/icon_instagram.svg" width="20">
                                     </div>
                                 </div>
+                                </div>
+                                <button class="divForRightPartInfo" id="community_edit">
+                                    <img src="img/edit-regular.svg" width="20px">
+                                </button>
+                            </div>
+
                             </div>
 
                         </div>
@@ -1402,15 +1406,15 @@
                             <div class="dropdown-relative-container">
                                 <div class="FlexContainer Group_FlexJustifyContentSB">
                                     <div class="FontSectionTitle">關於我們</div>
-                                    <div class="GroupAboutUsDivImg">
+                                    <!-- <div class="GroupAboutUsDivImg">
                                         <img class="GroupAboutUsImg settingIcon" data-open-name="DropDownMenu_edit"
                                             src="/img/icon_seemore.svg" width="25px">
-                                    </div>
+                                    </div> -->
                                 </div>
-                                <div class="DropDownMenu" id="DropDownMenu_edit">
+                                <!-- <div class="DropDownMenu" id="DropDownMenu_edit">
                                     <div class="dropdown-triangleD"></div>
                                     <div class="dropdownD js_editCommunity">編輯</div>
-                                </div>
+                                </div> -->
                             </div>
                             <div id="CommunityAboutUs" class="FontSectionText">
                                 當您已完成潛水課程，成為一位合格的潛水員後，當然水世界潛水會為您安排接續探索水下風光的活動！
@@ -1461,10 +1465,10 @@
                                 <div id="MemberBtn" class="js_forLeave_btn GroupNavBtn GroupDiveBtnText hide">
                                     &nbsp&nbsp我是社員</div>
                                 <!-- <img src="./img/icon_triangle_downside.svg" width="25px"> -->
-                                <div class="DropDownMenu js_leaveDropDown">
+                                <div class="DropDownMenu js_leaveDropDown " id="leaveCommunityBtn">
                                     <div class="dropdown-triangleLeave"></div>
                                     <div class="dropdownLeave">
-                                        <div id="leaveCommunityBtn">退出社團</div>
+                                        <div>退出社團</div>
                                     </div>
                                 </div>
                                 <!-- <div class="dropdown">
@@ -1575,13 +1579,13 @@
 
                                     <div class="FlexContainer Group_FlexJustifyContentSB">
                                         <div class="FontSectionTitle">社團管理員</div>
-                                        <img class="GroupBottomRightSetImg settingIcon"
-                                            data-open-name="DropDownMenu_List" src="/img/icon_seemore.svg" width="25px">
+                                        <!-- <img class="GroupBottomRightSetImg settingIcon"
+                                            data-open-name="DropDownMenu_List" src="/img/icon_seemore.svg" width="25px"> -->
                                     </div>
-                                    <div class="DropDownMenu" id="DropDownMenu_List">
+                                    <!-- <div class="DropDownMenu" id="DropDownMenu_List">
                                         <div class="dropdown-triangleDR"></div>
                                         <div class="dropdownDR js_editCommunity">編輯管理員名單</div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div id="MemberTemplate" class="FlexContainer GroupRight MemberTemplateFlexDirection">
                                     <div class="activity_detail_info_img_circle">
@@ -1605,15 +1609,15 @@
                                             <div class="GroupComingEvent FontSectionTitle">社團成員</div>
                                             <div id="NumOfMem" class="FontSectionTitle">(4)</div>
                                         </div>
-                                        <img class="GroupComingEventImg settingIcon"
+                                        <!-- <img class="GroupComingEventImg settingIcon"
                                             data-open-name="DropDownMenu_memList" src="/img/icon_seemore.svg"
-                                            width="25px">
+                                            width="25px"> -->
                                         <!-- <a href="#" class="SeeAllRight FontSectionTitle">see all</a> -->
                                     </div>
-                                    <div class="DropDownMenu" id="DropDownMenu_memList">
+                                    <!-- <div class="DropDownMenu" id="DropDownMenu_memList">
                                         <div class="dropdown-triangleDR"></div>
                                         <div class="dropdownDR js_editCommunity">編輯會員名單</div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div id="CommunityMember" class="FlexContainer GroupRightInfoPhotoContainer">
                                     <div class="activity_detail_info_img_circle GroupMemberPic">
@@ -2806,10 +2810,10 @@
                         <form id="formOfCreate">
                             <div class="create_community_basicInfo">
                                 <h2>基本資料</h2>
-                                <p>
+                                <!-- <p>
                                     Name your event and tell event-goers why they should come. Add
                                     details that highlight what makes it unique.
-                                </p>
+                                </p> -->
                                 <div class="create_community_basicInfo_div">
                                     <div class="create_community_basicInfo_div2">
                                         <p>社團名稱</p>
@@ -2823,7 +2827,7 @@
                                 </div>
                                 <div class="create_community_basicInfo_div">
                                     <div class="create_community_basicInfo_div2">
-                                        <p>Privacy Settings</p>
+                                        <!-- <p>Privacy Settings</p> -->
                                         <select name="fStatusId" id="selectStatus">
                                             <option value="1">公開</option>
                                             <option value="2">私人</option>
@@ -2851,10 +2855,10 @@
 
                             <div id="detailBlock" name="formDetails" class="create_community_basicInfo">
                                 <h2>詳細資料</h2>
-                                <p>
+                                <!-- <p>
                                     Name your event and tell event-goers why they should come. Add
                                     details that highlight what makes it unique.
-                                </p>
+                                </p> -->
                                 <div class="create_community_basicInfo_div">
                                     <div class="create_community_basicInfo_div2">
                                         <p>社團首頁圖片</p>
@@ -2904,10 +2908,10 @@
 
                         <div id="approveMember" class="create_community_basicInfo hide">
                             <h2 id="approveCommunityTitle">社團加入審核</h2>
-                            <p>
+                            <!-- <p>
                                 Name your event and tell event-goers why they should come. Add
                                 details that highlight what makes it unique.
-                            </p>
+                            </p> -->
 
                             <div id="managerBlcok" class="create_community_basicInfo_div ">
                                 <div class="create_community_basicInfo_div2 managerBlcokShow">
