@@ -1,3 +1,4 @@
+const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require("constants");
 const sql = require("mssql");
 
 const config = {
@@ -176,7 +177,7 @@ const ShowUserInfo = async (fMemberId) => {
       where fId =${fMemberId}
    `;
     const result = await sql.query(str);
-    console.log(result);
+    // console.log(result);
     return { result: 1, msg: "請求成功", data: result.recordset[0] };
   } catch (err) {
     return { result: 0, msg: "SQL錯誤", data: err };
@@ -184,32 +185,69 @@ const ShowUserInfo = async (fMemberId) => {
 };
 // ShowUserInfo(4);
 
-// const editarticle = async(fId)=>{
-//   try{
-//     await sql.connect(config);
-//     let str = `UPDATE Community.tPost
-//     SET fContent = '${fContent}', fImgPaths = '${fImgPath}'
-//     WHERE fId = ${fId}`
-//     const result = await sql.query(str);
-//     return{
-//       result: 1,
-//       msg: "請求成功",
-//      }
-//   }
-//   catch(err){
-//     return { result: 0, msg: "SQL錯誤"};
-//   }
-// }
+function getCommunityPostbyIdStr(x){
+  return`
+  WITH PostMember AS(select p.fMemberId, p.fCommunityId, p.fPostTime, p.fImgPaths as PostImg, p.fId as PostId, p.fContent as PostContent, m.fName as PostMemberName, m.fId as MemberId, m.fPhotoPath as MemberImgPath
+    from Community.tPost as p
+    left join Member.tMember as m
+    on p.fMemberId=m.fId)
+    , PostCommunity AS(select p.fId as PostId, c.fId as CommunityId, c.fName as CommunityName, c.fImgPath as CommunityImgPath
+    from Community.tPost as p
+    left join Community.tCommunity as c
+    on p.fCommunityId=c.fId)
+    , PostDetail AS(select pm.*, pc.CommunityId, pc.CommunityName, pc.CommunityImgPath
+    from PostMember as pm
+    left join PostCommunity as pc
+    on pm.PostId=pc.PostId)
+    , PostReplyCount AS(select r.fPostId , count(r.fId) as HowMuchReply
+    from Community.tReply as r
+    group by r.fPostId)
+    , PostLikeCount AS(select l.fPostId, count(l.fId) as HowMuchLike
+    from Community.tLike as l  
+    group by l.fPostId)
+    , PostAndReply AS(select pd.*, r.HowMuchReply
+    from PostDetail as pd
+    left join PostReplyCount as r
+    on pd.PostId = r.fPostId)
+    , PostAndReplyAndLike AS(select par.*, l.HowMuchLike
+    from PostAndReply as par
+    left join PostLikeCount as l
+    on par.PostId = l.fPostId)
+    select *
+    from PostAndReplyAndLike
+    where CommunityId = ${multipleornot(x)}
+    order by Convert(datetime, fPostTime) DESC`
+}
 
-// 熱門社團搜尋
+function multipleornot(x){
+  if(typeof (x) == 'string'){
+    return x;
+}else{
+  let result ="";
+  x.map((e,index)=>{
+    result += e + " or CommunityId = ";
+  })
+  let result2 = result.substring(0,(result.length-18));
+  return result2;
+}}
+
+//* ---------------------------------------------------------- 熱門社團搜尋
 const the4hottiest = async (x) => {
   try {
     await sql.connect(config);
-    let str = `with PostCommunity as(
-      select distinct p.fCommunityId as communityId, c.fName as communityName, c.fImgPath as communityImg
-      from Community.tPost as p
-      left join Community.tCommunity as c
-      on c.fId =  p.fCommunityId)
+    let gethottiestStr = `with CommunityStatus as (select c.fId as CommunityId, c.fName as CommunityName, c.fImgPath as CommunityImg, s.fName as CommunityAccessType
+      from Community.tCommunity as c
+      left join Community.tStatus as s
+      on s.fId = c.fStatusId)
+      , CommunityMemberCount as (select c.fId, count(m.fMemberId) as MemberCount
+      from Community.tCommunity as c
+      left join Community.tMemberList as m
+      on c.fId = m.fCommunityId
+      group by c.fId)
+      , CommunityDetail as (select *
+      from CommunityStatus as cs
+      left join CommunityMemberCount as ms
+      on cs.CommunityId = ms.fId)
       , FilterbyPost as(
       select TOP(4) p.fCommunityId, count(p.fId) as PostCount
       from Community.tPost as p
@@ -218,47 +256,89 @@ const the4hottiest = async (x) => {
       order by PostCount DESC)
       select *
       from FilterbyPost as fp
-      left join PostCommunity as pc
-      on fp.fCommunityId = pc.communityId
+      left join CommunityDetail as cd
+      on fp.fCommunityId = cd.CommunityId
     `;
-    const result = await sql.query(str);
+    const gethottiest_Result = await sql.query(gethottiestStr);
+    // let getpostbyidStr = ``
+    // console.log(gethottiest_Result.recordset[0].CommunityId);
+   
     return {
       result: 1,
       msg: "請求成功",
-      data: result.recordset,
+      data: gethottiest_Result.recordset,
     };
   } catch (err) {
     return { result: 0, msg: "SQL錯誤", data: err };
   }
 };
 
-//探索社團
+//* ---------------------------------------------------------- 探索社團
 const explore4community = async () => {
   try {
     await sql.connect(config);
-    let str = `select top(4) c.fId as communityId, c.fName as communityName, c.fImgPath as communityImg
-    from Community.tCommunity as c
-    order by NEWID()
-    `;
-    const result = await sql.query(str);
+    let getexploreStr = `with CommunityStatus as (select c.fId as CommunityId, c.fName as CommunityName, c.fImgPath as CommunityImg, s.fName as CommunityAccessType
+      from Community.tCommunity as c
+      left join Community.tStatus as s
+      on s.fId = c.fStatusId)
+      , CommunityMemberCount as (select c.fId, count(m.fMemberId) as MemberCount
+      from Community.tCommunity as c
+      left join Community.tMemberList as m
+      on c.fId = m.fCommunityId
+      group by c.fId)
+      select top(4) *
+      from CommunityStatus as cs
+      left join CommunityMemberCount as ms
+      on cs.CommunityId = ms.fId
+      order by NEWID()`;
+    const getexplore_Result = await sql.query(getexploreStr);
+    // console.log(result.recordset[0].CommunityId);
+    // console.log(getexplore_Result.recordset[0].CommunityId);
+    // console.log(getexplore_Result.recordset[1].CommunityId);
+    // console.log(getexplore_Result.recordset[2].CommunityId);
+    // console.log(getexplore_Result.recordset[3].CommunityId);
+    // console.log(getexplore_Result.recordset.length);
+
+
+
+    // let communityidArr = [];
+    // for (let i = 0; i<getexplore_Result.recordset.length; i++){
+    //   communityidArr.push(getexplore_Result.recordset[i].CommunityId)
+    // }
+
+
+    // const getexplorepost_Result = await sql.query(getCommunityPostbyIdStr(communityidArr));
+    // console.log(getexplorepost_Result.recordset);
+
+
     return {
       result: 1,
       msg: "請求成功",
-      data: result.recordset,
+      data: getexplore_Result.recordset,
     };
   } catch (err) {
     return { result: 0, msg: "SQL錯誤", data: err };
   }
 };
 
-//社團首頁：文字搜尋社團，顯示該社團
+//* ---------------------------------------------------------- 社團首頁：文字搜尋社團，顯示該社團
 const txtSearchCommunityCard = async (x) => {
   try {
     await sql.connect(config);
-    let str = `select c.fName as communityName, c.fImgPath as communityImg
-    from Community.tCommunity as c
-    where c.fName like '%${x}%'
-    `;
+    let str = `With CommunityStatus as (select c.fId as CommunityId, c.fName as CommunityName, c.fImgPath as CommunityImg, s.fName as CommunityAccessType
+      from Community.tCommunity as c
+      left join Community.tStatus as s
+      on s.fId = c.fStatusId)
+      , CommunityMemberCount as (select c.fId, count(m.fMemberId) as MemberCount
+      from Community.tCommunity as c
+      left join Community.tMemberList as m
+      on c.fId = m.fCommunityId
+      group by c.fId)
+      select *
+      from CommunityStatus as cs
+      left join CommunityMemberCount as ms
+      on cs.CommunityId = ms.fId
+      where cs.CommunityName like '%${x}%`;
     const result = await sql.query(str);
     return {
       result: 1,
@@ -359,20 +439,6 @@ const updateEdited = async (fContent, fImgPaths, fPostTime, fPostId) => {
     return { result: 0, msg: "SQL錯誤", data: err };
   }
 }
-
-// const deletearticle = async(fId) => {
-//   try{
-
-//   }
-// }
-
-// const addlike
-
-// const removelike
-
-// const addreply
-
-// const removereply
 
 module.exports = {
   articlelist,

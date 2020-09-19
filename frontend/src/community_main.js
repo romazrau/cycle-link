@@ -183,12 +183,14 @@ ${ImgIsNullOrNot(x.PostImg)}
 
   //社團首頁：社團卡片文字樣板for搜尋結果
   const htmlCommunityCard = (x) => {
-    return `<div class="CM_recommend_item" onclick="location.hash='#community/detail/${x.communityId}'">
+    return `<div class="CM_recommend_item" onclick="location.hash='#community/detail/${x.CommunityId}'">
     <div class="CM_recommend_item_img">
-        <img src="http://localhost:3050/${x.communityImg}" class="CM_recommend_item_img_img">
+        <img src="http://localhost:3050/${x.CommunityImg}" class="CM_recommend_item_img_img">
     </div>
     <div class="CM_recommend_item_info">
-        <p>${x.communityName}</p>
+        <p>${x.CommunityName}</p>
+        <i class="fas fa-lock"><span> ${x.CommunityAccessType}社團</span></i>
+        <i class="fas fa-user-friends"><span> ${x.MemberCount}</span></i>
     </div>
 </div>`;
   };
@@ -201,15 +203,10 @@ ${ImgIsNullOrNot(x.PostImg)}
 
   //社團卡片字串匯入function
   const display_recommendCommunity = (o) => {
+    CM_recommend.classList.remove("CM_recommend_container_disappear");
     CM_recommend.innerHTML = "";
     o.map((e, index) => {
       CM_recommend.innerHTML += htmlCommunityCard(e);
-    });
-  };
-  const display_recommendCommunity_txt = (o) => {
-    CM_recommend.innerHTML = "";
-    o.map((e, index) => {
-      CM_recommend.innerHTML += htmlCommunityCardfortxt(e);
     });
   };
 
@@ -254,7 +251,7 @@ ${ImgIsNullOrNot(x.PostImg)}
         credentials: "include",
       });
       let result = await response.json();
-      console.log(result.data);
+      // console.log(result.data);
       display_recommendCommunity(result.data);
     } catch (err) {
       console.log(err);
@@ -659,88 +656,6 @@ ${ImgIsNullOrNot(x.PostImg)}
   //   }
   // });
 
-  //POST假資料
-  // let CommunityMainFakeData = [{
-  //     communityName: "種樹社團",
-  //     communityIconPath: "img/sprout.png",
-  //     userImgPath: "img/user01.jpg",
-  //     userName: "新垣結衣",
-  //     postTimeAgo: "1小時前",
-  //     postContent: "好久沒有見到大家了！這次的活動是種台灣原生種牛樟樹的樹苗，讓原生樹種適地適木、複層造林，不僅種下在地居民的健康，也讓野生動物有長長久久的棲息地。",
-  //     postImgPath: "<img src='img/user01_post.jpg' />",
-  //     likeCount: 43,
-  //     replyCount: 3,
-  //   },
-  //   {
-  //     isRight: "class='community_main_timeline_inverted'",
-  //     communityName: "二手換物",
-  //     communityIconPath: "img/market.png",
-  //     userImgPath: "img/user02.jpg",
-  //     userName: "鞋貓劍客",
-  //     postTimeAgo: "2小時前",
-  //     postContent: "周末的市集超好玩！寶寶用不到的東西都清出去了，而且總算見到@王威比本尊，爽拉！",
-  //     postImgPath: "<img src='img/user02_post.jpg' />",
-  //     likeCount: 13,
-  //     replyCount: 1,
-  //   },
-  //   {
-  //     communityName: "神聖淨山ㄉ力量",
-  //     communityIconPath: "img/mountain.png",
-  //     userImgPath: "img/user04.jpg",
-  //     userName: "吉他啦",
-  //     postTimeAgo: "3小時前",
-  //     postContent: "哥淨的不是山，是靈魂R",
-  //     postImgPath: "<img src='img/user04_post.jpg' />",
-  //     likeCount: 3,
-  //     replyCount: null,
-  //   },
-  //   {
-  //     isRight: "class='community_main_timeline_inverted'",
-  //     communityName: "走啦去淨攤啦",
-  //     communityIconPath: "img/reef.png",
-  //     userImgPath: "img/user07.jpg",
-  //     userName: "子瑜Tzu-yu",
-  //     postTimeAgo: "4小時前",
-  //     postContent: "今天跟達達出去逛街好開心唷！好期待下次的約會～",
-  //     postImgPath: "<img src='img/user07_post.jpg' />",
-  //     likeCount: 230,
-  //     replyCount: 7,
-  //   },
-  //   {
-  //     communityName: "二手換物",
-  //     communityIconPath: "img/market.png",
-  //     userImgPath: "img/user05.jpg",
-  //     userName: "大安阿基師",
-  //     postTimeAgo: "4小時前",
-  //     postContent: "想要煮好吃的飯飯QQ，有沒有換友有鑄鐵鍋想拿出來交換的呀～",
-  //     postImgPath: "<img src='img/user05_post.jpg' />",
-  //     likeCount: 64,
-  //     replyCount: 4,
-  //   },
-  //   {
-  //     isRight: "class='community_main_timeline_inverted'",
-  //     communityName: "走啦去淨攤啦",
-  //     communityIconPath: "img/reef.png",
-  //     userImgPath: "img/user03.jpg",
-  //     userName: "無敵可愛8+9",
-  //     postTimeAgo: "6小時前",
-  //     postContent: "宵夜！！！有沒有人要吃宵夜！！！在線等！！！",
-  //     postImgPath: "",
-  //     likeCount: 2,
-  //     replyCount: 7,
-  //   },
-  //   {
-  //     communityName: "種樹社團",
-  //     communityIconPath: "img/sprout.png",
-  //     userImgPath: "img/user06.jpg",
-  //     userName: "甜食怪",
-  //     postTimeAgo: "5小時前",
-  //     postContent: "不是我在說，我家薄荷長得真是頭好壯壯<3",
-  //     postImgPath: "<img src='img/user06_post.jpg' />",
-  //     likeCount: 39,
-  //     replyCount: 7,
-  //   },
-  // ];
   // this.GetAllPosts = getCommunityPost;
   // this.SearchtxtCommunity = document.querySelector(".CM_banner_searchbar_text").value;
   // this.SearchCardCommunity = document.querySelector(".CM_recommend_container").innerHTML;
