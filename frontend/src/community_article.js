@@ -1,7 +1,223 @@
 // import { serverURL } from "./api.js";
 
 function ClsCommunityArticle() {
-  //社團文章文字樣板
+
+  //*----------------------------------------奇形怪狀的方法們----------------------------------------*//
+  //從網址抓取社團ID給大家用
+const getCommunityIdFromUrl = () => {
+  let whereAmI = window.location.hash.split("/");
+  let getCommunityId = whereAmI[2];
+  return getCommunityId;
+};
+
+  //調整時間格式：補0
+function timeFormatAdjust(x) {
+  if (x < 10) {
+    x = "0" + x;
+  }
+  return x;
+}
+
+//社團頁面：文章字串判斷是否有圖片，沒有就不匯入div
+const Article_ImgIsNullOrNot = (x) => {
+  if (x === null) {
+    return ``;
+  } else {
+    var y = x.includes(",,");
+    if (y) {
+      let imgArr = x.split(",,");
+      // console.log(imgArr);
+      var a = Article_multiImgArr(imgArr);
+      return `<a class="ArticlePost_preIcon" href="">
+                <i class="fas fa-chevron-left fa-2x" style="color:white"></i>
+              </a>${a}
+              <a class="ArticlePost_nextIcon" href="">
+                <i class="fas fa-chevron-right fa-2x" style="color:white"></i>
+              </a>`;
+    } else {
+      return `
+      <div class="community_article_body_img">
+    <img class="community_article_body_img_img" src='http://localhost:3050/${x}' />
+    </div>`;
+    }
+  }
+};
+
+//社團頁面：如果是多張圖片，則以陣列匯入div
+const Article_multiImgArr = (k) => {
+  let result = "";
+  k.map((e, index) => {
+    result += `<div class="community_article_body_img">
+  <img class="community_article_body_img_img" src='http://localhost:3050/${e}' />
+  </div>`;
+  });
+  return result;
+};
+
+ //多張照片：輪播式呈現function
+ function Article_MultiImgFunction() {
+  let community_article_body = document.querySelectorAll(".community_article_body");
+  //處理超過2張照片
+  for (let i = 0; i < community_article_body.length; i++) {
+    if (community_article_body[i].getElementsByTagName("img").length > 1) {
+      let PostImgs = community_article_body[i].querySelectorAll(
+        ".community_article_body_img"
+      );
+      for (let j = 0; j < PostImgs.length; j++) {
+        if (j > 0) PostImgs[j].style.display = "none";
+      }
+    }
+  }
+  //下一張
+  var allNextIcon = document.querySelectorAll(".ArticlePost_nextIcon");
+  for (let i = 0; i < allNextIcon.length; i++) {
+    allNextIcon[i].addEventListener("click", function (e) {
+      e.preventDefault();
+      //this取a物件>再取父層>父層下所有div
+      // this.parentNode.getElementsByTagName('div')
+      let thisImgBox = this.parentNode.getElementsByTagName("div");
+      var position = 0;
+      for (let p = 0; p < thisImgBox.length; p++) {
+        let display = thisImgBox[p].style.display;
+        if (display != "none") {
+          position = p;
+        }
+      }
+      position++;
+
+      if (position > thisImgBox.length - 1) {
+        position = 0;
+      }
+
+      for (let j = 0; j < thisImgBox.length; j++) {
+        // console.log("j:",j);
+        if (position == j) {
+          thisImgBox[j].style.display = "block";
+        } else {
+          thisImgBox[j].style.display = "none";
+        }
+      }
+    });
+  }
+  //上一張
+  var allPreIcon = document.querySelectorAll(".ArticlePost_preIcon");
+  for (let i = 0; i < allPreIcon.length; i++) {
+    allPreIcon[i].addEventListener("click", function (e) {
+      e.preventDefault();
+      //this取a物件>再取父層>父層下所有div
+      // this.parentNode.getElementsByTagName('div')
+      let thisImgBox = this.parentNode.getElementsByTagName("div");
+      //判斷postion位置
+      var position = 0;
+      for (let p = 0; p < thisImgBox.length; p++) {
+        let display = thisImgBox[p].style.display;
+        if (display != "none") {
+          position = p;
+        }
+      }
+      position--;
+      if (position < 0) {
+        position = thisImgBox.length - 1;
+      }
+      for (let j = 0; j < thisImgBox.length; j++) {
+        if (position == j) {
+          thisImgBox[j].style.display = "block";
+        } else {
+          thisImgBox[j].style.display = "none";
+        }
+      }
+    });
+  }
+}
+
+  //社團頁面留言：Icon點擊觸動function寫入留言內容
+  function Article_addClickEventToReply(pIds) {
+    pIds.map((e, index)=>{
+      let TheReplyIcon = document.getElementById("Article_replyIconbyfId" + e)
+        TheReplyIcon.addEventListener("click", function () {
+          e.preventDefault();
+          Article_showReplyInput(e);
+        });
+    })
+  }
+
+  //社團頁面喜歡：Icon點擊觸動function寫入留言內容
+  function Article_addClickEventToLike(pIds) {
+    pIds.map((e,index)=>{
+      let TheLikeIcon = document.getElementById("Article_likeIconbyfId" + e);
+      TheLikeIcon.addEventListener("click", function () {
+        if (
+          TheLikeIcon.classList.contains("far") &&
+          TheLikeIcon.classList.contains("fas")
+        ) {
+          TheLikeIcon.classList.remove("fas");
+          TheLikeIcon.classList.add("far");
+          Article_removeLikeToSQL(e);
+          Article_likesMinusCount(this);
+        } else if (TheLikeIcon.classList.contains("far")) {
+          TheLikeIcon.classList.remove("far");
+          TheLikeIcon.classList.add("fas");
+          Article_addLikeToSQL(e);
+          Article_likesPlusCount(this);
+        } else {
+          TheLikeIcon.classList.remove("fas");
+          TheLikeIcon.classList.add("far");
+          Article_removeLikeToSQL(e);
+          Article_likesMinusCount(this);
+        }
+      });
+    })
+  }
+
+  //喜歡增加：顯示數量增加
+  function Article_likesPlusCount(e) {
+    let target = e.parentNode.getElementsByTagName("span")[0];
+    if (target.innerHTML == "") {
+      target.innerHTML = 1;
+    } else {
+      target.innerHTML = parseInt(target.innerHTML) + 1;
+    }
+  }
+
+  //喜歡減少：顯示數量減少
+  function Article_likesMinusCount(e) {
+    let target = e.parentNode.getElementsByTagName("span")[0];
+    if (target.innerHTML == "1") {
+      target.innerHTML = "";
+    } else {
+      target.innerHTML = parseInt(target.innerHTML) - 1;
+    }
+  }
+
+  //留言區：顯示我要留言區(不需要撈資料庫)
+  function Article_showReplyInput(x) {
+    document.getElementById(
+      "Article_bindPostReplybyfId" + x
+    ).innerHTML += htmlCommunityArticleReplyInput(x);
+  }
+
+//TODO編輯文章：判斷是否有圖片，沒有就不匯入div
+const Edit_ImgIsNullOrNot = (x) => {
+  if (x === null) {
+    return ``;
+  } else {
+    var y = x.includes(",,");
+    if (y) {
+      let imgArr = x.split(",,");
+      // console.log(imgArr);
+      var a = Article_multiImgArr(imgArr);
+      return a;
+    } else {
+      return `
+      <div class="community_article_body_img">
+    <img class="community_article_body_img_img" src='http://localhost:3050/${x}' />
+    </div>`;
+    }
+  }
+};
+
+  //*----------------------------------------文字樣板----------------------------------------*//
+  //社團頁面：文章文字樣板
   const htmlCommunityArticle = (x) => {
     return `
       <div class="community_article_wrap">
@@ -45,7 +261,7 @@ function ClsCommunityArticle() {
 `;
   };
 
-  //新增文章使用者頭像：文字樣板
+  //新增文章處(使用者頭像)：文字樣板
   const htmlCommunityAddArticleImg = (x) => {
     return `
     <div class="community_article_user_img_circle_border">
@@ -85,17 +301,119 @@ function ClsCommunityArticle() {
     </div>
         <textarea class="EditArticleInput" name="fContent" cols=30 rows=2>${x.PostContent}</textarea>
         ${Edit_ImgIsNullOrNot(x.PostImg)}
-      </form>
- 
-  `;
+      </form>`;
   };
 
-  //*-------------編輯文章：匯入點
+//TODO社團留言：文字樣板
+const htmlCommunityMainReply = (x) => {
+  return `
+  <div class="CM_reply_item">
+  <div class="CM_reply_item_header">
+    <div class="CM_reply_item_header_img_container">
+      <div class="CM_reply_item_header_img_circle_border">
+        <div class="CM_reply_item_header_img">
+          <img
+            src="http://localhost:3050/${x.ReplyMemberImg}"
+            class="CM_reply_item_header_img_img"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="CM_reply_item_header_content">
+      <div class="CM_reply_item_header_content_info">
+        <span>${x.ReplyMemberName}</span>
+        <span>${x.fReplyTime}</span>
+        <i class="fas fa-stream editIconforReply"></i>
+      </div>
+      <div class="CM_reply_item_header_content_text">
+        <span
+          >${x.fContent}</span
+        >
+      </div>
+    </div>
+  </div>
+  <div class="CM_reply_item_content" id=""></div>
+</div>`;
+};
+
+//TODO社團：我要留言：文字樣板
+const htmlCommunityArticleReplyInput = (x) => {
+  return `<div class="CM_reply_input_container">
+  <input type="text" id="ArticleReplyText${x}"/>
+  <div class="ReplySendClass" id="ArticleReplySend${x}"><i class="fas fa-paper-plane"></i></div>
+</div>`;
+};
+  //*------------------------------Index已經存在的東西，增加他們ㄉ點擊事件------------------------------*//
+  //發表文章：點擊觸發
+  document
+    .getElementById("articleSubmitIcon")
+    .addEventListener("click", function (e) {
+      e.preventDefault();
+      addArticletoSQL(getCommunityIdFromUrl());
+      getPostInSingleCommunity(getCommunityIdFromUrl());
+      document.querySelector(".AddArticleInput").value = "";
+    });
+
+  //*----------------------------------資料陣列匯入文字樣板function----------------------------------*//
+      //社團頁面：使用者頭像字串匯入點
+      let UserImgOnArticleAdd = document.querySelector(
+        ".Group_detail_Societies_img_div"
+      );
+
+      //社團頁面：使用者頭像字串匯入function
+      const display_UserImg = (e) => {
+        UserImgOnArticleAdd.innerHTML += htmlCommunityAddArticleImg(e);
+      };
+
+      //社團文章：匯入點
+       const ArticleUl = document.querySelector(".community_article_ul");
+
+  //社團頁面：文章字串匯入function
+  const display_postDetail = (o) => {
+    ArticleUl.innerHTML = "";
+    o.map(async (e, index) => {
+      function goInside(e) {
+        ArticleUl.innerHTML += htmlCommunityArticle(e);
+      }
+      await goInside(e);
+      // console.log(document.getElementById("Article_replyIconbyfId" + e.PostId));
+      document
+        .getElementById("Article_replyIconbyfId" + e.PostId)
+        .addEventListener("click", function () {
+          console.log("icon event has been added!");
+          getArticleReply(e.PostId);
+        });
+    });
+  };
+
+//社團頁面：留言字串匯入function
+const display_replyDetail = (o, x) => {
+  o.map((e, index) => {
+    if (e.fPostId == x) {
+      document.getElementById(
+        "Article_bindPostReplybyfId" + x
+      ).innerHTML += htmlCommunityMainReply(e);
+    }
+  });
+  //匯入我要留言區
+  Article_showReplyInput(x);
+  // 此時增加留言發出的點擊事件
+  document.getElementById("ArticleReplySend" + x).addEventListener("click", () => {
+    // 抓取Text內容
+    let content = document.getElementById("ArticleReplyText" + x).value;
+    Article_addReplyToSQL(x, content);
+  });
+
+  
+};
+
+  //編輯文章：字串匯入點
   let EditArticlePopUP = document.querySelector(".popUpforEdit");
-  //*-------------編輯文章：資料放進文字樣板，匯入頁面
+  let popUpEditDiv = "";
+
+  //編輯文章：資料放進文字樣板，匯入頁面
   const display_EditArticle = (o) => {
     o.map((e,index)=>{EditArticlePopUP.innerHTML = htmlCommunityEditArticle(e);})
-
     document
   .getElementById("editArticleSubmitIcon")
   .addEventListener("click", (e) => {
@@ -108,69 +426,8 @@ function ClsCommunityArticle() {
   });
   };
 
-  //*-------------編輯文章：從路由抓取資料
-  const getPostforEdit = async (x) => {
-    try{
-      let response = await fetch(serverURL.displayarticleforedit + x, {
-          method: "GET",
-          headers: {
-            Authorization: localStorage.getItem("Cycle link token"),
-          }
-        });
-        let result = await response.json();
-        console.log(result.data);
-        await display_EditArticle(result.data);
-        //編輯文章：Submit Icon加入點擊事件(抓取輸入ㄉ文章內容給SQL)
-  
-      }catch (err) {
-        console.log(err);
-      }
-    }
-
-   //編輯文章
-   const editArticletoSQL = async (postid) => {
-    try {
-      let nowtime = new Date();
-      let editarticletime =
-        nowtime.toLocaleDateString() +
-        " " +
-        timeFormatAdjust(nowtime.getHours()) +
-        ":" +
-        timeFormatAdjust(nowtime.getMinutes());
-
-      let form = document.getElementById("edit_article_form");
-      var editFormdata = new FormData(form);
-      editFormdata.append("fPostId", postid);
-      editFormdata.append("fPostTime", editarticletime);
-
-      console.log(editFormdata);
-
-      let response = await fetch(serverURL.editarticle, {
-        method: "PUT",
-        headers: {
-          Authorization: localStorage.getItem("Cycle link token"),
-        },
-        body: editFormdata,
-        // cache: "no-cache",
-        // credentials: "include",
-      });
-      let result = await response.json();
-      console.log(result);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  
-
-  //使用者頭像：匯入點
-  let UserImgOnArticleAdd = document.querySelector(
-    ".Group_detail_Societies_img_div"
-  );
-  //使用者頭像：資料放進文字樣板，匯入頁面
-  const display_UserImg = (e) => {
-    UserImgOnArticleAdd.innerHTML += htmlCommunityAddArticleImg(e);
-  };
-  //使用者頭像：路由撈資料
+  //*----------------------------------------路由撈資料區----------------------------------------*//
+  //使用者頭像：路由撈資料 & 執行display
   const showUserImg = async () => {
     try {
       let response = await fetch(serverURL.articleuser, {
@@ -190,240 +447,7 @@ function ClsCommunityArticle() {
   };
   showUserImg();
 
-  //TODO社團留言：文字樣板
-  const htmlCommunityMainReply = (x) => {
-    return `
-    <div class="CM_reply_item">
-    <div class="CM_reply_item_header">
-      <div class="CM_reply_item_header_img_container">
-        <div class="CM_reply_item_header_img_circle_border">
-          <div class="CM_reply_item_header_img">
-            <img
-              src="http://localhost:3050/${x.ReplyMemberImg}"
-              class="CM_reply_item_header_img_img"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="CM_reply_item_header_content">
-        <div class="CM_reply_item_header_content_info">
-          <span>${x.ReplyMemberName}</span>
-          <span>${x.fReplyTime}</span>
-          <i class="fas fa-stream editIconforReply"></i>
-        </div>
-        <div class="CM_reply_item_header_content_text">
-          <span
-            >${x.fContent}</span
-          >
-        </div>
-      </div>
-    </div>
-    <div class="CM_reply_item_content" id=""></div>
-  </div>`;
-  };
-
-  //TODO社團：我要留言：文字樣板
-  const htmlCommunityMainReplyInput = (x) => {
-    return `<div class="CM_reply_input_container">
-    <input type="text" id="ReplyText${x}"/>
-    <div class="ReplySendClass" id="ReplySend${x}"><i class="fas fa-paper-plane"></i></div>
-  </div>`;
-  };
-
-  //抓取社團ID給大家用
-  const getCommunityIdFromUrl = () => {
-    let whereAmI = window.location.hash.split("/");
-    let getCommunityId = whereAmI[2];
-    return getCommunityId;
-  };
-
-  //社團文章：文字樣板用方法，判斷是否有圖片，沒有就不匯入div
-  const Article_ImgIsNullOrNot = (x) => {
-    if (x === null) {
-      return ``;
-    } else {
-      var y = x.includes(",,");
-      if (y) {
-        let imgArr = x.split(",,");
-        // console.log(imgArr);
-        var a = Article_multiImgArr(imgArr);
-        return `<a class="Post_Community_preIcon" href="">
-                  <i class="fas fa-chevron-left fa-2x" style="color:white"></i>
-                </a>${a}
-                <a class="Post_Community_nextIcon" id="Post_nextIcon2"href="">
-                  <i class="fas fa-chevron-right fa-2x" style="color:white"></i>
-                </a>`;
-      } else {
-        return `
-        <div class="community_article_body_img">
-      <img class="community_article_body_img_img" src='http://localhost:3050/${x}' />
-      </div>`;
-      }
-    }
-  };
-  const Edit_ImgIsNullOrNot = (x) => {
-    if (x === null) {
-      return ``;
-    } else {
-      var y = x.includes(",,");
-      if (y) {
-        let imgArr = x.split(",,");
-        // console.log(imgArr);
-        var a = Article_multiImgArr(imgArr);
-        return a;
-      } else {
-        return `
-        <div class="community_article_body_img">
-      <img class="community_article_body_img_img" src='http://localhost:3050/${x}' />
-      </div>`;
-      }
-    }
-  };
-
-  //社團文章：多張照片匯入樣板
-  const Article_multiImgArr = (k) => {
-    let result = "";
-    k.map((e, index) => {
-      result += `<div class="community_article_body_img">
-    <img class="community_article_body_img_img" src='http://localhost:3050/${e}' />
-    </div>`;
-    });
-    return result;
-  };
-
-  //社團文章：匯入點
-  const ArticleUl = document.querySelector(".community_article_ul");
-
-  //社團文章：資料放進文字樣板，匯入頁面
-  const display_postDetail = (o) => {
-    ArticleUl.innerHTML = "";
-    o.map(async (e, index) => {
-      function goInside(e) {
-        ArticleUl.innerHTML += htmlCommunityArticle(e);
-      }
-      await goInside(e);
-      // console.log(document.getElementById("Article_replyIconbyfId" + e.PostId));
-      document
-        .getElementById("Article_replyIconbyfId" + e.PostId)
-        .addEventListener("click", function () {
-          console.log("icon event has been added!");
-          getArticleReply(e.PostId);
-        });
-    });
-  };
-
-  //留言區：顯示我要留言區(不需要撈資料庫)
-  function showReplyInput(x) {
-    document.getElementById(
-      "Article_bindPostReplybyfId" + x
-    ).innerHTML += htmlCommunityMainReplyInput(x);
-  }
-  //留言：資料放進文字樣板，匯入頁面
-  const display_replyDetail = (o, x) => {
-    o.map((e, index) => {
-      if (e.fPostId == x) {
-        document.getElementById(
-          "Article_bindPostReplybyfId" + x
-        ).innerHTML += htmlCommunityMainReply(e);
-      }
-    });
-    //匯入我要留言區
-    showReplyInput(x);
-    // 增加發出訊息的事件
-    // document
-    //   .getElementById("ReplySend" + x)
-    //   .addEventListener("click", function () {
-    //     // 抓取Text內容
-    //     let content = document.getElementById("ReplyText" + x).value;
-    //     addReplyToSQL(x, content);
-    //   });
-  };
-
-  //留言：路由撈資料
-  const getArticleReply = async (postid) => {
-    try {
-      let response = await fetch(serverURL.articlereply);
-      let result = await response.json();
-      // console.log(result);
-      // console.log(result.data);
-      for (let i = 0; i < result.data.length; i++) {
-        if (result.data[i].fPostId == postid) {
-          console.log(result.data[i].fPostId);
-          display_replyDetail(result.data, postid);
-          return;
-        }
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  //留言：新增點擊事件給留言Icon
-  // function Article_addClickEventToReply(o, x) {
-
-  //   let singleReplyIcon = document.getElementById("Article_replyIconbyfId"+x);
-  //   let replyInputPlace = document.getElementById("Article_bindPostReplybyfId"+x);
-  //   singleReplyIcon.addEventListener("click", (e)=>{
-  //     e.preventDefault();
-  //     replyInputPlace.innerHTML += "";
-
-  //     CM_recommend.innerHTML = "";
-  //   o.map((e, index) => {
-  //     CM_recommend.innerHTML += htmlCommunityCard(e);
-  //   });
-  //   })
-
-  //   let replyIcons = document.querySelectorAll(".Article_replyIcon");
-  //   replyIcons.forEach((i) => {
-  //     i.addEventListener("click", function (e) {
-  //       getArticleReply(i.);
-  //     });
-  //   });
-  //   console.log("典籍感測");
-  // }
-
-  //喜歡文章：愛心function，字串樣板輸入完畢後執行
-  function Article_addClickEventToLike(x) {
-    let Postlikeflag = false;
-    for (let i = 1; i < x + 1; i++) {
-      let LikeIconItems = document.getElementById("Article_likeIconbyfId" + i);
-      LikeIconItems.addEventListener("click", function () {
-        if (Postlikeflag == false) {
-          LikeIconItems.classList.remove("far");
-          LikeIconItems.classList.add("fas");
-          //取ID增點讚
-          let id_arr = this.id.split("fId");
-          addLikeToSQL(id_arr[1]);
-          Postlikeflag = true;
-        } else {
-          LikeIconItems.classList.remove("fas");
-          LikeIconItems.classList.add("far");
-
-          Postlikeflag = false;
-          let id_arr = this.id.split("fId");
-          console.log(id_arr[1]);
-          removeLikeToSQL(id_arr[1]);
-          // console.log("愛心又被點了");
-        }
-      });
-    }
-  }
-  //*------發表文章：Submit Icon加入點擊事件(抓取輸入ㄉ文章內容給SQL)
-  document
-    .getElementById("articleSubmitIcon")
-    .addEventListener("click", function (e) {
-      e.preventDefault();
-      addArticletoSQL(getCommunityIdFromUrl());
-      getPostInSingleCommunity(getCommunityIdFromUrl());
-      document.querySelector(".AddArticleInput").value = "";
-    });
-
-
-
-let popUpEditDiv = "";
-
-
-  //社團文章：路由撈資料
+  //社團頁面文章：路由撈資料 & 執行display
   const getPostInSingleCommunity = async (x) => {
     try {
       let response = await fetch(serverURL.articlebycommunity + x, {
@@ -436,8 +460,21 @@ let popUpEditDiv = "";
       });
       let result = await response.json();
       await display_postDetail(result.data);
+      // console.log(result.data);
 
-      //TODO編輯點擊事件
+      //*-----每個路由撈文章ㄉ地方都值得來一套-----*//
+      let postidArr=[];
+      for(let i = 0; i<result.data.length; i++){
+        postidArr.push(result.data[i].PostId);
+      }
+      Article_addClickEventToReply(postidArr);
+      Article_addClickEventToLike(postidArr);
+      addClickEventToEdit(postidArr);
+      Article_MultiImgFunction();
+      Article_MemberLikePost();
+      //*--------------------------------------*//
+
+      
       // 抓PostID，對編輯Icon增加點擊事件
       result.data.map((e, index) => {
         document
@@ -451,83 +488,9 @@ let popUpEditDiv = "";
       });
 
       // Article_addClickEventToReply(result.data);
+      //TODO編輯點擊事件
       //TODO典籍喜歡
       // Article_addClickEventToLike(result.data.length);
-      const community_article_body = document.querySelectorAll(
-        ".community_article_body"
-      );
-
-      //處理超過2張照片
-      for (let i = 0; i < community_article_body.length; i++) {
-        if (community_article_body[i].getElementsByTagName("img").length > 1) {
-          let PostImgs = community_article_body[i].querySelectorAll(
-            ".community_article_body_img"
-          );
-          for (let j = 0; j < PostImgs.length; j++) {
-            if (j > 0) PostImgs[j].style.display = "none";
-          }
-        }
-      }
-      //下一張
-      var allNextIcon = document.querySelectorAll(".Post_Community_nextIcon");
-      for (let i = 0; i < allNextIcon.length; i++) {
-        allNextIcon[i].addEventListener("click", function (e) {
-          e.preventDefault();
-          //this取a物件>再取父層>父層下所有div
-          // this.parentNode.getElementsByTagName('div')
-          let thisImgBox = this.parentNode.getElementsByTagName("div");
-          var position = 0;
-          for (let p = 0; p < thisImgBox.length; p++) {
-            let display = thisImgBox[p].style.display;
-            if (display != "none") {
-              position = p;
-            }
-          }
-          position++;
-
-          if (position > thisImgBox.length - 1) {
-            position = 0;
-          }
-
-          for (let j = 0; j < thisImgBox.length; j++) {
-            // console.log("j:",j);
-            if (position == j) {
-              thisImgBox[j].style.display = "block";
-            } else {
-              thisImgBox[j].style.display = "none";
-            }
-          }
-        });
-      }
-      //上一張
-      var allPreIcon = document.querySelectorAll(".Post_Community_preIcon");
-      for (let i = 0; i < allPreIcon.length; i++) {
-        allPreIcon[i].addEventListener("click", function (e) {
-          e.preventDefault();
-          //this取a物件>再取父層>父層下所有div
-          // this.parentNode.getElementsByTagName('div')
-          let thisImgBox = this.parentNode.getElementsByTagName("div");
-          //判斷postion位置
-          var position = 0;
-          for (let p = 0; p < thisImgBox.length; p++) {
-            let display = thisImgBox[p].style.display;
-            if (display != "none") {
-              position = p;
-            }
-          }
-          position--;
-          if (position < 0) {
-            position = thisImgBox.length - 1;
-          }
-          for (let j = 0; j < thisImgBox.length; j++) {
-            if (position == j) {
-              thisImgBox[j].style.display = "block";
-            } else {
-              thisImgBox[j].style.display = "none";
-            }
-          }
-        });
-      }
     } catch (err) {
       console.log(err);
     }
@@ -535,38 +498,152 @@ let popUpEditDiv = "";
   // 不用他ㄌ，拿去外面呼喚就好
   // getPostInSingleCommunity(getCommunityIdFromUrl());
 
-  function timeFormatAdjust(x) {
-    if (x < 10) {
-      x = "0" + x;
-    }
-    return x;
-  }
-  //點擊上傳照片的Icon觸發事件
-  // document
-  //   .getElementById("articleImgInput")
-  //   .addEventListener("click", function (e) {
-  //     console.log("我有被點到唷");
-  //     let addArticleInput = document.querySelector(".AddArticleInput").value;
-  //     addArticletoSQL(getCommunityIdFromUrl(), addArticleInput);
-  //     getPostInSingleCommunity(getCommunityIdFromUrl());
-  //   });
-  //TODO圖片載入測試中
-  // document
-  //   .getElementById("articleImgInput")
-  //   .addEventListener("change", function () {
-  //     console.log("12313123123");
-  //     let addArticleImgFile = document.getElementById("articleImgInput")[0]
-  //       .files[0];
-  //     let addArticleImgReader = new FileReader();
-  //     addArticleImgReader.onload = function (e) {
-  //       document
-  //         .querySelector(".AddArticleImgDisplay_img")
-  //         .attributes("src", e.target.result);
-  //     };
-  //     addArticleImgReader.readAsDataURL(addArticleImgFile);
-  //   });
+    //留言：路由撈資料 & 執行display
+    const getArticleReply = async (postid) => {
+      try {
+        let response = await fetch(serverURL.articlereply);
+        let result = await response.json();
+        // console.log(result);
+        // console.log(result.data);
+        for (let i = 0; i < result.data.length; i++) {
+          if (result.data[i].fPostId == postid) {
+            console.log(result.data[i].fPostId);
+            display_replyDetail(result.data, postid);
+            return;
+          }
+        }
 
-  //*------------------新增文章
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+  //編輯文章：路由撈資料 & 執行display
+  const getPostforEdit = async (x) => {
+    try{
+      let response = await fetch(serverURL.displayarticleforedit + x, {
+          method: "GET",
+          headers: {
+            Authorization: localStorage.getItem("Cycle link token"),
+          }
+        });
+        let result = await response.json();
+        console.log(result.data);
+        await display_EditArticle(result.data);
+        //編輯文章：Submit Icon加入點擊事件(抓取輸入ㄉ文章內容給SQL)
+      }catch (err) {
+        console.log(err);
+      }
+    }
+
+  //*----------------------------------------路由送回資料區----------------------------------------*//
+  //新增留言：資料送回SQL
+  const Article_addReplyToSQL = async (postid, content) => {
+    try {
+      let nowtime = new Date();
+      let replytime =
+        nowtime.toLocaleDateString() +
+        " " +
+        timeFormatAdjust(nowtime.getHours()) +
+        ":" +
+        timeFormatAdjust(nowtime.getMinutes());
+
+      let replyFormdata = new FormData();
+      replyFormdata.append("fPostId", postid);
+      replyFormdata.append("fContent", content);
+      replyFormdata.append("fReplyTime", replytime);
+
+      let res = await fetch(serverURL.addReply, {
+        method: "POST",
+        headers: {
+          Authorization: localStorage.getItem("Cycle link token"),
+        },
+        body: replyFormdata,
+        cache: "no-cache",
+        credentials: "include",
+      });
+      let result = await res.json();
+      //重新載入留言
+      getArticleReply(postid);
+      // console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  //獲讚清單：資料送回SQL
+  const Article_MemberLikePost = async (P) => {
+    try {
+      let response = await fetch(serverURL.likes, {
+        method: "Get", // http request method
+        headers: {
+          // http headers
+          Authorization: localStorage.getItem("Cycle link token"),
+        },
+        cache: "no-cache",
+        credentials: "include",
+      });
+      let result = await response.json();
+      let hearts_arr = document.querySelectorAll(".fa-heart");
+      for (let i = 0; i < hearts_arr.length; i++) {
+        for (let j = 0; j < result.data.length; j++)
+          if (hearts_arr[i].id.split("Id")[1] == result.data[j].fPostId) {
+            hearts_arr[i].classList.add("fas");
+          }
+      }
+    } catch (err) {
+      console.log(err);
+      // 錯誤處理
+    }
+  }; 
+
+  //新增喜歡：資料送回SQL
+  const Article_addLikeToSQL = async (P) => {
+    try {
+      var formdata = new FormData();
+      formdata.append("fPostId", P);
+      let response = await fetch(serverURL.addlikes, {
+        method: "POST", // http request method
+        headers: {
+          // http headers
+          Authorization: localStorage.getItem("Cycle link token"),
+        },
+        body: formdata,
+        cache: "no-cache",
+        credentials: "include",
+      });
+      let result = await response.json();
+    } catch (err) {
+      console.log(err);
+      // 錯誤處理
+    }
+  };
+
+  //刪除喜歡：資料送回SQL
+  const Article_removeLikeToSQL = async (P) => {
+    try {
+      console.log("P:", P);
+      var formdata = new FormData();
+      formdata.append("fPostId", P);
+      let response = await fetch(serverURL.removelikes, {
+        method: "DELETE", // http request method
+        headers: {
+          // http headers
+          Authorization: localStorage.getItem("Cycle link token"),
+        },
+        body: formdata,
+        cache: "no-cache",
+        credentials: "include",
+      });
+      let result = await response.json();
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+      // 錯誤處理
+    }
+  };
+
+  //新增文章：資料送回SQL
   const addArticletoSQL = async (CommunityId) => {
     try {
       let nowtime = new Date();
@@ -599,50 +676,64 @@ let popUpEditDiv = "";
     }
   };
 
-  //TODO新增喜歡
-  const addLikeToSQL = async (P) => {
+  //編輯文章：資料送回SQL
+   const editArticletoSQL = async (postid) => {
     try {
-      var formdata = new FormData();
-      formdata.append("fPostId", P);
-      let response = await fetch(serverURL.addlikes, {
-        method: "POST", // http request method
+      let nowtime = new Date();
+      let editarticletime =
+        nowtime.toLocaleDateString() +
+        " " +
+        timeFormatAdjust(nowtime.getHours()) +
+        ":" +
+        timeFormatAdjust(nowtime.getMinutes());
+
+      let form = document.getElementById("edit_article_form");
+      var editFormdata = new FormData(form);
+      editFormdata.append("fPostId", postid);
+      editFormdata.append("fPostTime", editarticletime);
+      // console.log(editFormdata);
+
+      let response = await fetch(serverURL.editarticle, {
+        method: "PUT",
         headers: {
-          // http headers
           Authorization: localStorage.getItem("Cycle link token"),
         },
-        body: formdata,
-        cache: "no-cache",
-        credentials: "include",
-      });
-      let result = await response.json();
-    } catch (err) {
-      console.log(err);
-      // 錯誤處理
-    }
-  };
-  //TODO刪除喜歡
-  const removeLikeToSQL = async (P) => {
-    try {
-      console.log("P:", P);
-      var formdata = new FormData();
-      formdata.append("fPostId", P);
-      let response = await fetch(serverURL.removelikes, {
-        method: "DELETE", // http request method
-        headers: {
-          // http headers
-          Authorization: localStorage.getItem("Cycle link token"),
-        },
-        body: formdata,
-        cache: "no-cache",
-        credentials: "include",
+        body: editFormdata,
+        // cache: "no-cache",
+        // credentials: "include",
       });
       let result = await response.json();
       console.log(result);
     } catch (err) {
       console.log(err);
-      // 錯誤處理
     }
   };
+
+  //點擊上傳照片的Icon觸發事件
+  // document
+  //   .getElementById("articleImgInput")
+  //   .addEventListener("click", function (e) {
+  //     console.log("我有被點到唷");
+  //     let addArticleInput = document.querySelector(".AddArticleInput").value;
+  //     addArticletoSQL(getCommunityIdFromUrl(), addArticleInput);
+  //     getPostInSingleCommunity(getCommunityIdFromUrl());
+  //   });
+  //TODO圖片載入測試中
+  // document
+  //   .getElementById("articleImgInput")
+  //   .addEventListener("change", function () {
+  //     console.log("12313123123");
+  //     let addArticleImgFile = document.getElementById("articleImgInput")[0]
+  //       .files[0];
+  //     let addArticleImgReader = new FileReader();
+  //     addArticleImgReader.onload = function (e) {
+  //       document
+  //         .querySelector(".AddArticleImgDisplay_img")
+  //         .attributes("src", e.target.result);
+  //     };
+  //     addArticleImgReader.readAsDataURL(addArticleImgFile);
+  //   });
+
   this.ComeonPost = getPostInSingleCommunity;
 }
 const CommunityArticle = new ClsCommunityArticle();

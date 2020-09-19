@@ -13,7 +13,8 @@ function ClsCommunityMain() {
         let imgArr = x.split(",,");
         // console.log(imgArr);
         var a = multiImgArr(imgArr);
-        return `<a class="Post_preIcon" href=""><i class="fas fa-chevron-left fa-2x" style="color:white"></i></a>${a}<a class="Post_nextIcon"href=""><i class="fas fa-chevron-right fa-2x" style="color:white"></i></a>`;
+        return `<a class="Post_preIcon" href=""><i class="fas fa-chevron-left fa-2x" style="color:white"></i></a>
+        ${a}<a class="Post_nextIcon"href=""><i class="fas fa-chevron-right fa-2x" style="color:white"></i></a>`;
       } else {
         return `
         <div class="CM_timeline_body_img">
@@ -388,7 +389,7 @@ ${ImgIsNullOrNot(x.PostImg)}
   //社團首頁：社團卡片字串匯入點
   const CM_recommend = document.querySelector(".CM_recommend_container");
 
-  //社團卡片字串匯入function
+  //社團首頁：社團卡片字串匯入function
   const display_recommendCommunity = (o) => {
     CM_recommend.classList.remove("CM_recommend_container_disappear");
     CM_recommend.innerHTML = "";
