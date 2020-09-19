@@ -1391,7 +1391,6 @@ function ClsCommuntityDetail() {
     };
     //todo 活動傳資料到社團
     const htmlcommunitydetial = (o)=>{
-        console.log("test1",o);
         return`
         <div class="card">
         <div class="GroupBottomCardTime">${o.fActivityDate}</div>
