@@ -56,6 +56,7 @@ function ClsActivity() {
 
 
     const display_active_main_level = (o) => {
+        ActSearch.innerHTML = "";
         o.map(
             (e, index) => {
                 ActSearch.innerHTML += htmlActSearch(e);
@@ -78,7 +79,6 @@ function ClsActivity() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-
             display_active_main_level(result.data);
             // *用 result  do something ...
 
@@ -304,7 +304,7 @@ function ClsActivity() {
     //抓取時間
     function getstartdate(startdate) {
         var startdatetext = document.getElementById("search_date_text");
-        startdatetext.innerHTML = "起始日" + "  " + startdate;
+        startdatetext.innerHTML = "起始日" + "  " + startdate+ "  " ;
     }
 
 
@@ -502,12 +502,12 @@ function ClsActivity() {
     //ActCardData
     //* ------------------------------------- 文字樣板 -------------------------------------
     const display_active = (o) => {
-        // console.group("----------------");
+      
         ActCard.innerHTML = "";
-        // console.log("o:", o);
+        
         o.map(
             (e, index) => {
-                // console.log(e);
+                
                 //todo 
                 {
                     ActCard.innerHTML += htmlActCard(e);
@@ -515,8 +515,7 @@ function ClsActivity() {
 
             }
         )
-        // console.groupEnd("----------------");
-
+        
     }
 
 
@@ -665,7 +664,6 @@ function ClsActivity() {
                 activeseenId = hrefsplit[hrefsplit.length - 1];
                 activeinsertseensql(activeseenId, now);
             }
-
         }
         let activelikeid;
         for (let i = 0; i < selectactivelike.length; i++) {
@@ -693,22 +691,7 @@ function ClsActivity() {
             removeactlikesql(activelikeid);
 
         }
-        // let actremoveid;
-        // for(let i=0;i<removelike.length;i++)
-        //             {
-        //                 removelike[i].onclcik = function(e){
-        //                     e.preventDefault();
-        //                     e.stopPropagation();
-        //                     removelike[i].classList.remove("actlikecolor");
-        //                     // console.log(removelike);
-        //                     let ahref = selectactive[i].href;
-        //                     var hrefsplit2 = ahref.split("/"); 
-        //                     actremoveid = hrefsplit2[hrefsplit2.length - 1];
-        //                     console.log(actremoveid);
-
-        //                 }
-        //             }
-
+      
     };
 
 
@@ -788,52 +771,10 @@ function ClsActivity() {
     }
 
 
-
-    //AJAX
-
-    //------------------------------------------------------
-    // const htmlActCard2 = (o) => {
-    //     return ` 
-    // <div id="ActCard2">
-    // <img src="${o.imgPath}" class="activity_event_img" alt="">
-    // <p>${o.date}</p>
-    // <h3>${o.title}</h3>
-    // <img src="img/icon1.svg" class="activity_icon" alt=""><span>${o.count}</span>
-    // </div>`;
-    // }
-
     const ActCard2 = document.querySelector("#activity_event_recommend");
 
     //AJAX
-    let ActCardData2 = [{
-            imgPath: "img/event9.jpg",
-            date: "2020/11/19",
-            title: "城市獵人 - 生態公園夜觀",
-            count: 999,
-            member: "彌勒佛",
-            local: "玉山國家公園"
-        },
-        {
-            imgPath: "img/event10.jpg",
-            date: "2020/08/20",
-            title: "綠的手作坊 - 漂流木新生命",
-            count: 999,
-            member: "彌勒佛",
-            local: "紅樹林"
-        },
-        {
-            imgPath: "img/event11.png",
-            date: "2020/10/16",
-            title: "海洋危機，拯救機會",
-            count: 999,
-            member: "彌勒佛",
-            local: "烏石港"
-        }
-    ]
 
-
-
-    // now = now.split("/").join(",");
 
 
     ActCardData2.map(

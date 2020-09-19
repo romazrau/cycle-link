@@ -448,30 +448,33 @@ function ClsCommuntityDetail() {
             }
 
             // DropDown Menu 藏起來
-            document.querySelectorAll(".DropDownMenu").forEach((o) => {
-                o.classList.add("hide");
-            })
-            document.querySelectorAll(".settingIcon").forEach((o) => {
-                o.classList.add("hide");
-            })
+            // 編輯按鈕藏起來
+            document.getElementById("leaveCommunityBtn").classList.add("hide");
+            document.getElementById("community_edit").classList.add("hide");
+            // document.querySelectorAll(".DropDownMenu").forEach((o) => {
+            //     o.classList.add("hide");
+            // })
+            // document.querySelectorAll(".settingIcon").forEach((o) => {
+            //     o.classList.add("hide");
+            // })
 
 
             // DropDown Menu 是管理員的話打開
             if (user == "管理員") {
-
-                document.querySelectorAll(".settingIcon").forEach((o) => {
-                    o.classList.remove("hide");
-                    o.addEventListener("click",(e)=>{
-                        console.log(e.target.dataset.openName);
-                        console.log([...document.querySelector(`#${e.target.dataset.openName}`).classList].includes("hide"));
-                        if([...document.querySelector(`#${e.target.dataset.openName}`).classList].includes("hide")){
-                        document.querySelector(`#${e.target.dataset.openName}`).classList.remove("hide");
-                        }
-                        else{
-                        document.querySelector(`#${e.target.dataset.openName}`).classList.add("hide");
-                        }
-                    })
-                })
+                document.querySelector("#community_edit").classList.remove("hide");
+                // document.querySelectorAll(".settingIcon").forEach((o) => {
+                //     o.classList.remove("hide");
+                //     o.addEventListener("click",(e)=>{
+                //         console.log(e.target.dataset.openName);
+                //         console.log([...document.querySelector(`#${e.target.dataset.openName}`).classList].includes("hide"));
+                //         if([...document.querySelector(`#${e.target.dataset.openName}`).classList].includes("hide")){
+                //         document.querySelector(`#${e.target.dataset.openName}`).classList.remove("hide");
+                //         }
+                //         else{
+                //         document.querySelector(`#${e.target.dataset.openName}`).classList.add("hide");
+                //         }
+                //     })
+                // })
             }
 
           
@@ -543,6 +546,8 @@ function ClsCommuntityDetail() {
             // console.log("+++++++++++++++++++++++++++++++++++++++!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             // console.log(result.data);
 
+        // console.log(result.data);
+
             //----------------------------------成員---------------------------------------
 
             document.querySelector("#MemberPageTemplateContainer").innerHTML = "";
@@ -613,9 +618,8 @@ function ClsCommuntityDetail() {
     // 撈資料放進資料
     // 抓到fCommunityId放進去formdata
     let fCommunityId;
-    document.querySelectorAll(".js_editCommunity").forEach((items) => {
-        items.addEventListener("click", async () => {
-            console.group("修改社團");
+    document.querySelector("#community_edit").addEventListener("click", async () => {
+            // console.group("修改社團");
             try {
                 // 導向社團編輯頁面
                 // -----# >>> 前端路由導向
@@ -827,8 +831,8 @@ function ClsCommuntityDetail() {
             } catch (err) {
                 console.log(err);
             }
-            console.groupEnd("修改社團");
-        });
+            // console.groupEnd("修改社團");
+        
     });
 
     // 處理使用者輸入Null值
