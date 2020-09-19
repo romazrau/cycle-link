@@ -66,14 +66,16 @@
 
 /* Itembox_Style--------------------------------------------- */
 .personalInfo {
-    justify-content: center;
+    /* margin-left: 5rem; */
+    /* justify-content: center; */
 }
 
 
 .ItemContainer {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 auto;
+    margin-left: 8rem;
+    /* margin: 0 auto; */
     /* justify-content: center; */
 }
 
@@ -94,17 +96,16 @@
 
 .procontent_imgbox {
     width: 45%;
-    margin: 0.4rem;
-
-
+    margin: 0.5rem;
     height: 11rem;
 }
 
 .procontent_imgbox img {
     width: 100%;
     height: 100%;
-    margin: 0.2rem;
-
+    object-fit: cover;
+    /* height: 100%; */
+    /* margin: 0.2rem; */
 }
 
 .procontent_menu {
@@ -115,11 +116,19 @@
 
 .procontent_menu p {
     color: grey;
+    margin: 0;
 }
 
 .procontent_menu span {
     color: grey;
     margin-right: 1rem;
+}
+
+.procontent_menu h3 {
+    height: 6rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
 }
 
 
@@ -174,7 +183,10 @@
 /* MyProfile-------------------------------------------- */
 .Memberfieldset {
     border: 0px;
+    margin-top: 1rem;
 }
+
+.Memberlegend {}
 
 .dataContainer {
     width: 80vw;
@@ -528,6 +540,11 @@
     color: var(--whitel-color);
 }
 
+.baritembox:hover {
+    background-color: var(--lightblue-color);
+    transition: all 0.5s;
+}
+
 /* .baritembox:hover {
     transform: scale(1.1); 
     TEXT-DECORATION: none;
@@ -549,9 +566,9 @@
     margin: 20px 40px; */
     /* display: flex;
     justify-content: space-evenly; */
-    min-height: 60vh;
+    /* min-height: 60vh; */
     /* border: 0.5rem solid var(--lightgrey-color); */
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 
 /*------------商品-------------*/
@@ -563,6 +580,7 @@
 
 
 .protitle {
+    margin-top: 1rem;
     /* background-color: var(--lightblue-color); */
     /* border: 0.5rem solid var(--lightgrey-color); */
 }
@@ -570,6 +588,7 @@
 .protitle h3 {
     padding: 10px;
     margin-bottom: 1rem;
+    margin-left: 5rem;
 }
 
 
@@ -631,6 +650,14 @@
     background-color: var(--blue-color);
     color: white;
     letter-spacing: 0.3rem;
+    border-radius: 15px;
+    margin-bottom: 3rem;
+}
+
+.save:hover {
+    cursor: pointer;
+    background-color: var(--lightblue-color);
+    transition: all 0.3s;
 }
 
 

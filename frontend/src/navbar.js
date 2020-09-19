@@ -1,5 +1,27 @@
 function ClsNavbar() {
 
+    // *second nav bar
+    let pageY2 = window.pageYOffset;
+    console.log("---------");
+    const activityNavbar = document.querySelector("#activity_navbar");
+    window.addEventListener(
+        'scroll',
+        () => {
+            if (window.pageYOffset - pageY2 > 0) {
+                console.log("hiiiiiiiii");
+                activityNavbar.classList.remove("transYsWidthTo0Bottom");
+            } else {
+                console.log("hZZZZZZ");
+                activityNavbar.classList.add("transYsWidthTo0Bottom");
+
+            }
+
+            pageY2 = window.pageYOffset;
+        }
+    );
+
+
+
     //menu switch
     let menu = document.querySelector(".navbar_menu");
     let navLinksContainer = document.querySelector(".div_dropdownmenu");

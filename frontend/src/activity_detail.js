@@ -5,6 +5,8 @@
 //用class包起來
 
 function ClsActivityDetail() {
+
+
     function actMap(x, y) {
         var map = L.map('actmapid')
         var marker = L.marker([x, y]).addTo(map);
@@ -272,6 +274,7 @@ function ClsActivityDetail() {
             for (let i = 0; i < tagFroBtn.length; i++) {
                 tagFroBtn[i].addEventListener('click', (e) => {
                     e.preventDefault();
+
                     let a = e.target.text.substr(1)
                     // console.log(a);
                     tagSearch(a)
@@ -304,7 +307,7 @@ function ClsActivityDetail() {
             location.href = "#activity"
             document.querySelector("#act_tag_main").innerHTML = `#${tag}`;
             ActivityIndex.display_active(result.data.tagSearch)
-
+            // location.reload();
         } catch (err) {
             console.log(err);
             // 錯誤處理

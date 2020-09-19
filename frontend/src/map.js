@@ -282,12 +282,11 @@ function ClsMap() {
     }).addTo(map);
 
     let val = document.getElementById("map_Setdistance").value;
-    if (val==0)
-      {document.getElementById("Activitydistance").innerHTML="距離不能為 0 !!!"
-  }else
-  {
-    document.getElementById("Activitydistance").innerHTML ="附近 "+ val+" 公里的活動";
-  }
+    if (val == 0) {
+      document.getElementById("Activitydistance").innerHTML = "距離不能為 0 !!!"
+    } else {
+      document.getElementById("Activitydistance").innerHTML = "附近 " + val + " 公里的活動";
+    }
 
     map_NearbyMarkShow(val, ActivityList);
   }
@@ -475,7 +474,7 @@ function ClsMap() {
 
 
   }
-  const MapMessageCardContent=(o)=>{
+  const MapMessageCardContent = (o) => {
     return `<a href='#activity/detail/${o.fId}'><img class="mapInfoImg" 
     src='http://localhost:3050/${o.fImgPath}'></a><p class="mapInfoTitle">${o.fActName}</p>`
   }
@@ -493,7 +492,7 @@ function ClsMap() {
     }
   }
 
- 
+
 
   //設定markingicon
   const ActivityIcon = L.icon({

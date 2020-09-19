@@ -501,7 +501,6 @@ function ClsCommuntityDetail() {
             console.log(err);
         }
     };
-
     const renderPageManager = async (id) => {
         try {
             let response = await fetch(serverURL.communityManager + id, {
@@ -541,6 +540,8 @@ function ClsCommuntityDetail() {
             });
 
             let result = await response.json();
+            // console.log("+++++++++++++++++++++++++++++++++++++++!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            // console.log(result.data);
 
             //----------------------------------成員---------------------------------------
 
@@ -560,6 +561,24 @@ function ClsCommuntityDetail() {
                     }
                 });
             }
+
+            // //如果按了filter
+            // document.querySelector("#memberFilter").addEventListener("click",(e)=>{
+            //     e.preventDefault();
+            //     result.data.sort(function (a, b) {
+            //         let run1 =  a.fJoinDate.split()[0] < b.fJoinDate.split()[0]
+                
+
+            //         let run2 =  a.fJoinDate.split()[1] < b.fJoinDate.split()[1]
+                
+            //        });
+            // })
+
+            result.data.forEach(
+                (o)=>{
+                    console.log(o);
+                }
+            )
 
             //----------------------------------介紹---------------------------------------
             let MemberContainer = document.querySelector("#CommunityMember");
@@ -813,18 +832,18 @@ function ClsCommuntityDetail() {
     });
 
     // 處理使用者輸入Null值
-    document.querySelector("#create_community_name").addEventListener("input", () => {
-        if (document.querySelector("#create_community_name").value == 0) {
-            // done Btn 失靈 放棄
-            // document.querySelector("#create_community_btn_done").disabled = true;
-            document.querySelector("#fakeDoneBtn").addEventListener("click", () => {
-                alert("請輸入社團名稱!");
-            });
-        } else {
-            // document.querySelector("#create_community_btn_done").disabled = false;
-            console.log("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-        }
-    });
+    // document.querySelector("#create_community_name").addEventListener("input", () => {
+    //     if (!document.querySelector("#create_community_name").value) {
+    //         // done Btn 失靈 放棄
+    //         // document.querySelector("#create_community_btn_done").disabled = true;
+    //         document.querySelector("#fakeDoneBtn").addEventListener("click", () => {
+    //             alert("請輸入社團名稱!");
+    //         });
+    //     } else {
+    //         // document.querySelector("#create_community_btn_done").disabled = false;
+    //         console.log("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+    //     }
+    // });
 
     // 完成按鈕Onclik
     // 放進資料
@@ -1139,7 +1158,7 @@ function ClsCommuntityDetail() {
         o.map(
             (e, index) => {
                 
-                //todo 
+          
                 {
                     actcommunity.innerHTML += htmlcommunitydetial(e);
                 }
@@ -1150,6 +1169,9 @@ function ClsCommuntityDetail() {
 
     }
      
+  
+
+
 
     // 介紹分頁-- 管理員頭像的文字樣板
     const data2manageImg = (o) => {
@@ -1159,14 +1181,14 @@ function ClsCommuntityDetail() {
          <div class="GroupRightInfo FlexContainer GroupRightInfoText">
          <div class="activity_detail_info_img_circle">
          <div class="activity_detail_info_img_div">
+        <a href="#personal-page/${o.fId}">
              <img src="${serverURL.root}/${o.fPhotoPath}" class="activity_detail_info_img">
+             </a>
          </div>
          </div>
-         <a id="CommunityManager" href="#" class="GroupHolderName">${o.fName}</a>
+         <a id="CommunityManager" href="#personal-page/${o.fId}" class="GroupHolderName">${o.fName}</a>
          </div>
-         <a class="FlexContainer GroupEnglishFont GroupRightInfoM" href="#">
          <img data-user-id=${o.fId} class="lets-talk" src="./img/icon_chat.svg" width="20">
-         </a>
          </div>`;
     };
 
@@ -1175,8 +1197,10 @@ function ClsCommuntityDetail() {
     const data2memImg = (o) => {
         return ` <div id="GroupMemberPicLessThan4" class="activity_detail_info_img_circle GroupMemberPic GroupMemberPicLessThan4">
         <div class="activity_detail_info_img_div">
+        <a href="#personal-page/${o.fMemberId}">
             <img class="activity_detail_info_img GoupRightInfoPhoto" src="${serverURL.root}/${o.fPhotoPath}"
                 width="30">
+                </a>
         </div>
     </div>`;
     };
@@ -1202,7 +1226,7 @@ function ClsCommuntityDetail() {
                 </div>
             </div>
         </div>
-        <a href="#">
+        <a>
             <img data-user-id=${o.fMemberId} class="lets-talk" class="Size20IconMarginRight" src="./img/icon_chat.svg"
                 width="20">
         </a>
@@ -1272,6 +1296,8 @@ function ClsCommuntityDetail() {
        
     </div>`
     }
+
+
 
     // this 指的是 ClsCommuntityDetail
     this.renderMainCommunityInfo = renderPage;
