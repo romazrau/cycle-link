@@ -2,7 +2,7 @@
     position: relative;
     width: 100vw;
     height: 300px;
-    background-color: cadetblue;
+    background-color: var(--blue-color);
 }
 
 .personalManager_left {
@@ -60,7 +60,7 @@ h4 {
     height: 2rem;
     border: 1px solid white;
     border-radius: 5px;
-    background-color: cadetblue;
+    background-color: var(--blue-color);
     color: white;
     padding: 0 0.3rem;
     line-height: 0;
@@ -91,22 +91,22 @@ h4 {
 }
 
 .personalManager_right_title_btn {
-    border: 1px solid cadetblue;
+    border: 1px solid var(--blue-color);
     border-radius: 0.5rem;
     padding: 1.5rem 2.5rem;
-    background-color: cadetblue;
+    background-color: var(--blue-color);
     color: white;
     font-size: x-large;
     font-weight: bold;
 }
 
 .personalManager_right_title_btn i {
-    background-color: cadetblue;
+    background-color: var(--blue-color);
     margin-right: 0.3rem;
 }
 
 .personalManager_right_title_btn p {
-    background-color: cadetblue;
+    background-color: var(--blue-color);
     margin: 0;
 }
 
@@ -121,7 +121,7 @@ h4 {
 .personalManager_right_content h2 {
     width: 12vw;
     margin-bottom: 3vh;
-    border-bottom: 3px solid cadetblue;
+    border-bottom: 3px solid var(--blue-color);
     padding: 0 0 0.5rem 0;
     font-weight: bold;
 }
@@ -143,7 +143,7 @@ h4 {
 .personalManager_right_content_infoBasic input {
     width: 20vw;
     border: 0;
-    border-bottom: 1px solid cadetblue;
+    border-bottom: 1px solid var(--blue-color);
     background-color: white;
     /* border-radius: 0.5rem 0.5rem 0 0; */
     line-height: 2rem;
@@ -158,7 +158,7 @@ h4 {
     width: 5rem;
     border: 1px solid white;
     border-radius: 5px;
-    background-color: cadetblue;
+    background-color: var(--blue-color);
     color: white;
     padding: 0.5rem;
 }
@@ -203,7 +203,7 @@ h4 {
 
 .personalManager_right_content_info h3 {
     background-color: white;
-    border-bottom: 2px solid cadetblue;
+    border-bottom: 2px solid var(--blue-color);
     width: 25vw;
     padding: 0 0 0.6rem 0;
     margin: 0 0 0.5rem 0;
@@ -220,6 +220,6 @@ h4 {
 
 .personalManager_right_content_infoText i {
     margin-right: 0.3rem;
-    color: cadetblue;
+    color: var(--blue-color);
     background-color: white;
 }
