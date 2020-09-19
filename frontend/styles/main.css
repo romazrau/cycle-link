@@ -44,62 +44,11 @@ body::-webkit-scrollbar {
 }
 
 
-/* 小nav bar---------- */
-.page_navbar {
-  color: #ffffff;
-  /* background-color: #8fc1e379; */
-  background-color: #9794942c;
-  box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.712);
-
-  box-sizing: border-box;
-  width: 100%;
-  /* height: 3rem; */
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2000;
-  transition: transform 0.3s;
-}
-
-.page_navbar_row {
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.page_navbar_btn {
-  padding: 0.5rem 2vw;
+/*隱藏滾輪*/
 
 
-  color: var(--blue-color);
-  /* background-color: var(--blue-color);
-   */
 
-  border: none;
-  border-radius: 0px;
-  margin-left: -0.05rem;
-  
-  /* height: 2rem; */
-}
 
-.page_navbar_btn > i{
-  margin-right: 0.3rem;
-}
-
-.page_navbar_btn:hover {
-  transform: translate(1px, 1px);
-  box-shadow: 1px 1px 3px 0px #0000009f;
-  cursor: pointer;
-  transition: all 0.5s;
-}
-
-.page_navbar_btn:focus {
-  border: 0;
-  transform: translate(0px, 0px);
-  box-shadow: 0px 0px 0px 0px #000000;
-}
 
 /* *附加class 區------ */
 .widthAndHeight2Zero {
@@ -116,6 +65,10 @@ body::-webkit-scrollbar {
 .transYsWidthTo0Bottom {
   transform-origin: bottom left;
   transform: scaleY(0);
+}
+
+.rotate45{
+  transform: rotate(45deg);
 }
 
 .upside_down {
