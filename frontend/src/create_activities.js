@@ -214,6 +214,12 @@ $("#actMinPeopleCk").click(function () {
 
 // -- 取得目前位置
 function geoFindMe() {
+
+    let localInput = document.querySelector("#create_active_local_tags")
+    localInput.value = "資策會 數位教育研究所"
+    // console.log(localInput.value);
+
+
     var output = document.getElementById("out");
     document.querySelector("#createActMapId").setAttribute("style", "display:block")
     if (!navigator.geolocation) {

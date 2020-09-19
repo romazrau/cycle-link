@@ -6,7 +6,6 @@
   max-width: 100%;
   box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.712);
 
-
   position: fixed;
   top: 0;
   left: 0;
@@ -35,7 +34,7 @@
   text-decoration: none;
 }
 
-.header_title>img {
+.header_title > img {
   width: auto;
   /* logo 大小 */
   height: 4rem;
@@ -45,29 +44,124 @@
   display: flex;
 }
 
-.div_dropdownmenu>div {
+.div_dropdownmenu > div {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-
-.div_container_login{
+.div_container_login {
   display: flex;
-
 }
 
-.navebar_msg_icons{
+/* 下拉新增區 */
+.navebar_add_icons {
   display: flex;
   justify-items: flex-end;
   align-items: center;
+  /* width: 2rem; */
+  padding-right: 0.5rem;
 }
 
-.navebar_add_icons{
+.navebar_add_postition_icons {
+  position: relative;
+}
+
+.navebar_down_list {
+  position: absolute;
+  top: 2.5rem;
+  left: -2.5rem;
+
+  transition: all .5s;
+}
+
+.navebar_down_list > button {
+  font-size: 1rem;
+  width: max-content;
+  box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.712);
+  cursor: pointer;
+
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.1rem;
+  color: var(--blue-color);
+  background-color: var(--white-color);
+
+  border: 0;
+  border-radius: 0px;
+  /* transition: all .5s; */
+  transform: scaleY(0);
+}
+
+.navebar_down_list > button:hover {
+  box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.712);
+}
+
+.foldingCurtain{
+  animation: App-create-list-down 1 .5s ease;
+  transform-origin: top;
+  transform: scaleY(1) !important;
+}
+
+@keyframes App-create-list-down {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+
+.foldingCurtainUp{
+  animation: App-create-list-up 1 .5s ease;
+  transform-origin: top;
+  transform: scaleY(0) !important;
+}
+
+@keyframes App-create-list-up {
+  0% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(0);
+  }
+}
+
+
+
+.navebar_plus_icon {
+  position: absolute;
+  bottom: 0.2rem;
+}
+
+#navebar_down_icon {
+  cursor: pointer;
+  font-size: 1rem;
+  padding-left: 1.2rem;
+  opacity: 0.5;
+}
+
+#navebar_down_icon:hover {
+  animation: App-navebar-down-icon infinite 1s ease;
+}
+
+@keyframes App-navebar-down-icon {
+  0% {
+    transform: translateY(0rem);
+  }
+  50% {
+    transform: translateY(0.3rem);
+  }
+  100% {
+    transform: translateY(0rem);
+  }
+}
+
+/* 登出區 */
+.navebar_msg_icons {
   display: flex;
   justify-items: flex-end;
   align-items: center;
-  width: 2rem;
 }
 
 .login_bullhorn {
@@ -75,12 +169,11 @@
   margin-right: 1rem;
 }
 
-#header_link_login{
+#header_link_login {
   display: flex;
   align-items: center;
   padding: 1rem 2vw;
 }
-
 
 #navbar_logout {
   transform: scale(1.2);
@@ -90,20 +183,10 @@
   transform: scale(1.4);
 }
 
-
-
 .login_bullhorn:hover {
   transform: scale(1.2);
   cursor: pointer;
 }
-
-
-
-
-
-
-
-
 
 .navbar_menu {
   display: none;
@@ -123,7 +206,7 @@
   transform: scale(1.2);
 }
 
-.navbar_menu>div {
+.navbar_menu > div {
   background-color: #fff;
   border-radius: 0.5rem;
   height: 0.3rem;
@@ -136,15 +219,15 @@
 /* 漢堡鍵被點擊 */
 /* .navbar_menu_line_change {
 } */
-.navbar_menu_line_change>div:nth-of-type(2) {
+.navbar_menu_line_change > div:nth-of-type(2) {
   opacity: 0;
 }
 
-.navbar_menu_line_change>div:nth-of-type(1) {
+.navbar_menu_line_change > div:nth-of-type(1) {
   transform: translateY(0.63rem) rotate(45deg);
 }
 
-.navbar_menu_line_change>div:nth-of-type(3) {
+.navbar_menu_line_change > div:nth-of-type(3) {
   transform: translateY(-0.63rem) rotate(-45deg);
 }
 
@@ -199,13 +282,12 @@
     z-index: 1500;
   }
 
-  .navbar_menu>div {
+  .navbar_menu > div {
     background-color: var(--blue-color);
   }
 
   .nav-underline:before {
     left: 8em;
-
   }
 
   .nav-underline:hover:before {
@@ -230,32 +312,26 @@
     height: 100vh;
     font-size: 1.5rem;
     background-color: var(--lightblue-color);
-    transition:
-      opacity .6s,
-      clip-path .8s;
+    transition: opacity 0.6s, clip-path 0.8s;
 
     clip-path: circle(200px at top right);
   }
 
-  .div_dropdownmenu>div {
+  .div_dropdownmenu > div {
     opacity: 0;
     transform: translateX(100%);
     width: 100%;
     text-align: center;
   }
 
-
-  .div_dropdownmenu>div>a {
+  .div_dropdownmenu > div > a {
     width: 100vw;
-
   }
 
   .nav-underline:hover:before {
     width: 4rem;
   }
-
 }
-
 
 /* 切換css */
 .navbar_menu_show {
@@ -263,34 +339,27 @@
   clip-path: circle(100% at center);
 }
 
-
 .navbarLink_show {
   opacity: 1 !important;
   transform: translateX(0) !important;
 }
 
 .navbarLink_show:nth-of-type(1) {
-  transition:
-    opacity .4s ease-in-out .3s,
-    transform .6s cubic-bezier(0.175, 0.885, 0.32, 1.275) .3s !important;
+  transition: opacity 0.4s ease-in-out 0.3s,
+    transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s !important;
 }
 
 .navbarLink_show:nth-of-type(2) {
-  transition:
-    opacity .4s ease-in-out .4s,
-    transform .6s cubic-bezier(0.175, 0.885, 0.32, 1.275) .4s !important;
-
+  transition: opacity 0.4s ease-in-out 0.4s,
+    transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s !important;
 }
 
 .navbarLink_show:nth-of-type(3) {
-  transition:
-    opacity .4s ease-in-out .5s,
-    transform .6s cubic-bezier(0.175, 0.885, 0.32, 1.275) .5s !important;
+  transition: opacity 0.4s ease-in-out 0.5s,
+    transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s !important;
 }
 
 .navbarLink_show:nth-of-type(4) {
-  transition:
-    opacity .4s ease-in-out .6s,
-    transform .6s cubic-bezier(0.175, 0.885, 0.32, 1.275) .6s !important;
-
+  transition: opacity 0.4s ease-in-out 0.6s,
+    transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.6s !important;
 }

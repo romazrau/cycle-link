@@ -216,6 +216,23 @@ function ClsCommuntityDetail() {
 
     // *照片牆---------------------------------------------
     const CommunityOfPictures = async (id) => {
+        
+        //有幾條col
+        const myPhotoFlowCols = [
+            "photo_flow_col_1",
+            "photo_flow_col_2",
+            "photo_flow_col_3",
+            "photo_flow_col_4",
+            "photo_flow_col_5",
+        ]
+
+        myPhotoFlowCols.map(item => {
+            document.querySelector(`#${item}`).innerHTML = "";
+        })
+
+
+        photoFlowData1 = [];
+
         try {
             let response = await fetch(
                 serverURL.community + "communitypicture/" + id,
@@ -229,7 +246,9 @@ function ClsCommuntityDetail() {
             let result = await response.json();
 
             let picture_data = result.data.recordset;
-            photoFlowData1 = [];
+
+          
+
             for (let i = 0; i < picture_data.length; i++) {
 
                 if (picture_data[i].fImgPaths == null) continue;
@@ -249,141 +268,13 @@ function ClsCommuntityDetail() {
                 }
             }
 
+            console.groupEnd("------------------");
+
+
         } catch (err) {
             console.log(err);
         }
 
-        //假資料
-        // photoFlowData = [{
-        //     id: 1,
-        //     msg: "春吶善後",
-        //     src: "01.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "社員交流",
-        //     src: "02.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "市集",
-        //     src: "03.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "朔溪",
-        //     src: "04.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "嘉南平原",
-        //     src: "05.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "杉林溪",
-        //     src: "06.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "聚餐",
-        //     src: "07.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "談笑風生",
-        //     src: "08.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "彩虹勝利趴",
-        //     src: "09.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "大稻埕煙火",
-        //     src: "10.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "喝酒囉",
-        //     src: "11.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "最後的中餐",
-        //     src: "12.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "中二病",
-        //     src: "13.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "海洋圍觀",
-        //     src: "14.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "01.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "06.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "01.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "02.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "03.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "04.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "02.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "06.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "01.jpg"
-        // },
-        // {
-        //     id: 1,
-        //     msg: "哈哈哈",
-        //     src: "02.jpg"
-        // },
-        // ]
-
-        //有幾條col
-        const myPhotoFlowCols = [
-            "photo_flow_col_1",
-            "photo_flow_col_2",
-            "photo_flow_col_3",
-            "photo_flow_col_4",
-            "photo_flow_col_5",
-        ]
 
 
 
@@ -412,7 +303,6 @@ function ClsCommuntityDetail() {
             return result;
         }
         const loadingPhotoFlow = async function loop() {
-            whoIsShortest(myPhotoFlowCols).innerHTML = "";
             for (let i = 0; i < photoFlowData1.length; i++) {
                 await new Promise(resolve => {
                     whoIsShortest(myPhotoFlowCols).innerHTML += data2PhotoFlowCard(photoFlowData1[i]);
@@ -1251,7 +1141,6 @@ function ClsCommuntityDetail() {
             });
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
-            console.log("test",result);
             display_active_community(result.data);
             // getactid();
         } catch (err) {
@@ -1499,5 +1388,8 @@ const communityDetailChangeHash = () => {
     }
 };
 
-window.addEventListener("hashchange", communityDetailChangeHash);
+window.addEventListener("hashchange", ()=>{ 
+    communityDetailChangeHash();
+    document.querySelector("#Group_navlink_info").click();
+});
 window.addEventListener("load", communityDetailChangeHash);

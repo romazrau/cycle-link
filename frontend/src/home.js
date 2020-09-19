@@ -159,8 +159,14 @@ function getBannerTime(t, index) {
 
     let sec = parseInt(offsetTime % 60); // 秒
     let min = parseInt((offsetTime / 60) % 60); // 分 ex: 90秒
-    let hr = parseInt(offsetTime / 60 / 60) % 60; // 時
-    let day = parseInt((offsetTime / 60 / 60) % 24)
+    let hr = parseInt(offsetTime / 60 / 60/60) ; // 時
+    let day = parseInt((offsetTime / 60 / 60) / 24)
+    if(hr<10)
+    {hr="0"+hr}
+    if(min<10)
+    {min="0"+min}
+    if(sec<10)
+    {sec="0"+sec}
 
     $(".home_top_event_p2").eq(i).html(`倒數${day}天${hr}時${min}分${sec}秒`)
 
@@ -235,8 +241,7 @@ const home_picturesItem = (o) => {
 }
 //todo
 const display_home_weather = (o, t) => {
-  // console.log("sdasdasdasda",o);
-  // console.log(o.time)
+
   o.time.map((e, index) => {
         // console.log(e.elementValue[1].value,index)
         if (index % 2 == 0)
@@ -260,6 +265,7 @@ const home_weather = (o) => {
   var day_list = ['日', '一', '二', '三', '四', '五', '六'];
   let nowtime = new Date();
   let day = nowtime.getDay();
+  console.log(day);
   if (o == '01' || o == '02' || o == '03') {
     return `
     
@@ -291,7 +297,6 @@ const home_weather = (o) => {
   }
 
 }
-
 
 //todo 折線圖
 const home_weather_line = (o) => {

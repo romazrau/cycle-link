@@ -264,7 +264,7 @@ function ClsActivity() {
             maxDate: "+1m",
 
             onclick: function () {
-                console.log("sdffsd");
+               
             }
         });
 
@@ -389,35 +389,7 @@ function ClsActivity() {
                  </div>
              </a>
              </div>`;
-        // if(o.fJoinTypeId == 0)
-        // {
-        //     return ` 
-        //     <div class="">
-        //     <a  href="#activity/detail/${o.fId}" class="activecard">
-        //          <div class="active_card_container">
-        //          <div class="active_card" >
-        //              <div class="addlike">
-        //                  <i class="fas fa-heart fa-lg active_card_heart actlikecolor "></i>
-        //              </div>
-        //              <div class="active_card_div">
-        //                  <img src="${o.fImgPath}" alt="" class="active_card_img">
-        //              </div>
-
-        //              <div class="active_card_info">
-        //                  <p>${o.fActivityDate}</p>
-        //                  <p class="active_card_title">${o.fActName}</p>
-
-        //              <div class="active_card_location_div">
-        //                  <img src="img/929497.svg" class="active_card_location">
-        //                  <p>${o.fActLocation}</p>
-        //              </div>
-        //          </div>
-        //          </div>
-        //          </div>
-        //      </a>
-        //      </div>`;
-        // }
-        // else{
+        
     }
 
 

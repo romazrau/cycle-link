@@ -100,7 +100,7 @@ function ClsActivityDetail() {
 
     const actDetail_textDetail = (o) => {
         return `
-        <p>${o.fIntroduction}</p>
+        <pre>${o.fIntroduction}</pre>
         `;
     };
 
@@ -353,6 +353,12 @@ function ClsActivityDetail() {
 
 
     // ! ************************ [ END ] actDetail ajax [ END ] ************************ //
+    // --- textarea ---
+    // function textareaReplace() {
+    //     let acTextarea = document.querySelector("#create_active_text")
+    //     acTextarea.value.replace(' ', "<br/>")
+    //     console.log(acTextarea.value);
+    // }
 
 
 
@@ -608,6 +614,12 @@ function ClsActivityDetail() {
     // * -------------------------------- 參加活動 -------------------------------- //
     $("#joinActBtn").click(async (e) => {
         e.preventDefault();
+        var yes = confirm("確定要參加活動嗎?")
+        if (yes) {
+            alert('已參加活動');
+        } else {
+            alert('你按了取消按鈕');
+        }
         let nowtime = new Date();
         let date = nowtime.toLocaleDateString();
         let actID = location.hash.split("/")[2];
@@ -642,6 +654,12 @@ function ClsActivityDetail() {
     // * -------------------------------- 取消參加活動 -------------------------------- //
     $("#cancelJoinActBtn").click(async (e) => {
         e.preventDefault();
+        var yes = confirm("確定要取消參加活動嗎?")
+        if (yes) {
+            alert('已取消參加活動');
+        } else {
+            alert('你按了取消按鈕');
+        }
         let actID = location.hash.split("/")[2];
         try {
             let response = await fetch(serverURL.actDetail + "CancelJoinAct", {
@@ -784,6 +802,9 @@ function ClsActivityDetail() {
     })
     //icon
     activityselectlike.addEventListener("click", function () {
+
+
+
         let nowtime = new Date();
         let date = nowtime.toLocaleDateString();
         let timesplit = nowtime.toTimeString().split(" ");
@@ -795,9 +816,11 @@ function ClsActivityDetail() {
         if (activityselectlike.classList.contains("actlikecolor") == true) {
             activityselectlike.classList.remove("actlikecolor");
             removeactlikesql(id, now);
+            // alert('已取消追蹤活動');
         } else {
             activityselectlike.classList.add("actlikecolor");
             addActLikeToSQL(id, now);
+            // alert('已追蹤活動');
         }
     })
     const addActLikeToSQL = async (activelikeid, now) => {
