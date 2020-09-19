@@ -1223,7 +1223,7 @@
                                     <!-- 活動標籤 -->
                                 </div>
                             </div>
-                            <h5 style="margin-top: 1rem;font-weight: bold;">Detail</h5>
+                            <h5 style="margin-top: 1rem;font-weight: bold;">詳細內容</h5>
                             <div class="activity_detail_text_detail">
                                 <!-- 活動內文 -->
                             </div>
@@ -2499,9 +2499,7 @@
                         <form id="creatAct_form" method="POST">
                             <div class="create_active_basicInfo">
                                 <h2>基本資料</h2>
-                                <p>Name your event and tell event-goers why they should come. Add
-                                    details that highlight what makes it unique.
-                                </p>
+                                
                                 <div class="create_active_basicInfo_div">
                                     <div class="create_active_basicInfo_div2 ">
                                         <p>活動名稱</p>
@@ -2539,7 +2537,7 @@
                                         <br>
                                         <div id="createActMapId" style="display: none;"></div>
                                         <div id="actMapEdit" style="display: none;"></div>
-                                        <div onclick="geoFindMe()" class="actShowLocation">Show my location</div>
+                                        <div onclick="geoFindMe()" class="actShowLocation">定位目前位置</div>
                                         <div id="out" style="display: none;"></div>
                                     </div>
                                 </div>
@@ -2547,21 +2545,21 @@
                                     <div class="create_active_basicInfo_div2">
                                         <p>活動日期</p>
                                         <div class="actDateDiv create_active_flex">
-                                            <label for="ac_date_from">Start</label>
+                                            <label for="ac_date_from">開始日期</label>
                                             <!-- ! fActivityDate-->
                                             <input type="text" id="ac_date_from" name="" autocomplete="off" />
                                             <div id="ac_date_from_div" style="display: none;">
-                                                <label for="">Start Time</label>
+                                                <label for="">開始時間</label>
                                                 <select name="ac_date_from_time" id="ac_date_from_time">
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="actDateDiv create_active_flex">
-                                            <label for="ac_date_to">End&nbsp;&nbsp;</label>
+                                            <label for="ac_date_to">結束日期</label>
                                             <!-- ! fActivityEndDate-->
                                             <input type="text" id="ac_date_to" name="" autocomplete="off" />
                                             <div id="ac_date_to_div" style="display: none;">
-                                                <label for="">End Time</label>
+                                                <label for="">結束時間</label>
                                                 <select name="ac_date_to_time" id="ac_date_to_time">
                                                     <!-- <option value="07:30">07:30</option>
                                             <option value="08:00">08:00</option> -->
@@ -2571,7 +2569,7 @@
                                     </div>
                                 </div>
                                 <div class="create_active_basicInfo_div3">
-                                    <button id="create_active_btn_next">Next</button>
+                                    <button id="create_active_btn_next">下一步</button>
                                 </div>
                             </div>
 
@@ -2579,10 +2577,6 @@
 
                             <div class="create_active_basicInfo">
                                 <h2>詳細資料</h2>
-                                <p>
-                                    Name your event and tell event-goers why they should come. Add
-                                    details that highlight what makes it unique.
-                                </p>
 
                                 <div class="create_active_basicInfo_div">
 
@@ -2660,11 +2654,11 @@
                                     </div>
                                 </div>
                                 <div class="create_active_basicInfo_div3">
-                                    <button id="create_active_btn_pre">Pre</button>
+                                    <button id="create_active_btn_pre">上一步</button>
                                     <button type="submit" id="create_active_btn_done"
-                                        style="display:block">Done</button>
+                                        style="display:block">送出</button>
                                     <button type="submit" id="create_active_btn_done_edit"
-                                        style="display: none;">Done</button>
+                                        style="display: none;">送出</button>
                                 </div>
 
                             </div>
