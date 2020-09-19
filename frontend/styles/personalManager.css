@@ -1,0 +1,225 @@
+.personalManager_banner {
+    position: relative;
+    width: 100vw;
+    height: 300px;
+    background-color: cadetblue;
+}
+
+.personalManager_left {
+    position: absolute;
+    top: 10vw;
+    left: 20vh;
+    border-radius: 1rem;
+    width: 300px;
+}
+
+.personalManager_left_Info {
+    position: relative;
+    text-align: center;
+    line-height: 3rem;
+    box-shadow: 1px 1px 25px rgba(167, 167, 167, 0.384);
+    background-color: white;
+    border-radius: 1rem;
+    padding-bottom: 1rem;
+}
+
+.personalManager_SeaTurtleCoin {
+    width: 2rem;
+    background-color: white;
+    line-height: 3rem;
+    margin: 0;
+}
+
+.personalManager_left_Info h3,
+h4 {
+    background-color: white;
+    line-height: 3rem;
+    font-weight: bold;
+}
+
+.personalManager_left_Info p {
+    background-color: white;
+    border-radius: 0 0 1rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+
+}
+
+.personalManager_left_Info_img {
+    width: 100%;
+    border-radius: 1rem 1rem 0 0;
+    margin-bottom: 2rem;
+}
+
+.personalManager_left_Info button {
+    position: absolute;
+    top: 16rem;
+    right: 1rem;
+    height: 2rem;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: cadetblue;
+    color: white;
+    padding: 0 0.3rem;
+    line-height: 0;
+}
+
+.personalManager_left_Info button:hover {
+    cursor: pointer;
+}
+
+
+.personalManager_right {
+    display: grid;
+    justify-content: flex-end;
+}
+
+.personalManager_right_title {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    border-radius: 1rem;
+    width: 50vw;
+    height: 15vh;
+    margin-top: 8vh;
+    margin-right: 15vw;
+    /* padding: 0 1.5rem; */
+    box-shadow: 1px 1px 25px rgba(167, 167, 167, 0.384);
+}
+
+.personalManager_right_title_btn {
+    border: 1px solid cadetblue;
+    border-radius: 0.5rem;
+    padding: 1.5rem 2.5rem;
+    background-color: cadetblue;
+    color: white;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.personalManager_right_title_btn i {
+    background-color: cadetblue;
+    margin-right: 0.3rem;
+}
+
+.personalManager_right_title_btn p {
+    background-color: cadetblue;
+    margin: 0;
+}
+
+.personalManager_right_title_btn:hover {
+    cursor: pointer;
+}
+
+.personalManager_right_content {
+    margin-top: 5vh;
+}
+
+.personalManager_right_content h2 {
+    width: 12vw;
+    margin-bottom: 3vh;
+    border-bottom: 3px solid cadetblue;
+    padding: 0 0 0.5rem 0;
+    font-weight: bold;
+}
+
+.personalManager_right_content_infoBasic {
+    position: relative;
+    display: grid;
+    /* justify-content: center; */
+    align-items: center;
+    margin-bottom: 3rem;
+    padding: 3rem 0;
+    background-color: white;
+    border-radius: 1rem;
+    width: 50vw;
+    /* height: 25vh; */
+    box-shadow: 1px 1px 25px rgba(167, 167, 167, 0.384);
+}
+
+.personalManager_right_content_infoBasic input {
+    width: 20vw;
+    border: 0;
+    border-bottom: 1px solid cadetblue;
+    background-color: white;
+    /* border-radius: 0.5rem 0.5rem 0 0; */
+    line-height: 2rem;
+    padding: 0 1rem;
+    font-size: medium;
+}
+
+.personalManager_right_content_infoBasic button {
+    position: absolute;
+    right: 6rem;
+    bottom: 2rem;
+    width: 5rem;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: cadetblue;
+    color: white;
+    padding: 0.5rem;
+}
+
+.personalManager_right_content_infoBasic button:hover {
+    cursor: pointer;
+}
+
+.personalManager_right_content_infoBasic p {
+    background-color: white;
+    line-height: 5rem;
+    padding: 0 5rem;
+    font-weight: bolder;
+    font-size: larger;
+    margin: 0;
+
+}
+
+.personalManager_right_content_info {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding: 1rem 0;
+    background-color: white;
+    border-radius: 1rem;
+    width: 50vw;
+    /* height: 25vh; */
+    box-shadow: 1px 1px 25px rgba(167, 167, 167, 0.384);
+}
+
+.personalManager_right_content_info_img {
+    border-radius: 1rem;
+    margin: 0 0 0 1rem;
+}
+
+.personalManager_right_content_infoText {
+    background-color: white;
+    margin-left: 3rem;
+    line-height: 3rem;
+}
+
+.personalManager_right_content_info h3 {
+    background-color: white;
+    border-bottom: 2px solid cadetblue;
+    width: 25vw;
+    padding: 0 0 0.6rem 0;
+    margin: 0 0 0.5rem 0;
+    font-weight: bold;
+    /* align-items: flex-start; */
+}
+
+.personalManager_right_content_info p {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.personalManager_right_content_infoText i {
+    margin-right: 0.3rem;
+    color: cadetblue;
+    background-color: white;
+}
