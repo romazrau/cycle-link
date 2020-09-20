@@ -1190,7 +1190,7 @@ function ClsCommuntityDetail() {
     const data2manageImg = (o) => {
         // console.log(o.fPhotoPath);
         return `
-        <div class="FlexContainer Group_FlexJustifyContentSB groupManagerMarginTop">
+        <div class="FlexContainer  groupManagerMarginTop">
          <div class="GroupRightInfo FlexContainer GroupRightInfoText">
          <div class="activity_detail_info_img_circle">
          <div class="activity_detail_info_img_div">

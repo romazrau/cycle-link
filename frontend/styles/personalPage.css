@@ -16,7 +16,8 @@
 }
 
 .personal_file_title_text{
-  width: 25rem;
+  width: 8rem;
+  white-space: nowrap;
 }
 
 .personal_file_imgs{
