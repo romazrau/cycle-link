@@ -260,6 +260,10 @@
   background-color: var(--blue-color);
 }
 
+.CM_timeline_body{
+  position: relative;
+}
+
 .CM_timeline_body > p {
   padding: 0 20px;
   margin: 10px 0;
@@ -555,18 +559,20 @@
 
 .CM_reply_item_header_img_circle_border {
   position: relative;
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--lightblue-color);
+  width: 60px;
+  height: 60px;
+  border: 1.5px solid var(--lightblue-color);
   border-radius: 50%;
-  margin: 20px;
+  margin: 15px;
 }
 
 .CM_reply_item_header_img {
   position: absolute;
   /* margin: 10px; */
-  width: 40px;
-  height: 40px;
+  top: 4px;
+  left: 4px;
+  width: 50px;
+  height: 50px;
   overflow: hidden;
   border-radius: 50%;
 }
@@ -615,22 +621,18 @@
 }
 
 .Post_preIcon {
-  position: relative;
-  top: 10.75rem;
+  position: absolute;
+  cursor: pointer;
+  top: 14rem;
+  left:0.8rem;
 }
 
 .Post_nextIcon {
-  position: relative;
-  left: 27.75rem;
-  bottom: 10.75rem;
+  position: absolute;
+  cursor: pointer;
+  top: 14rem;
+  right:0.8rem;
 }
-
-/* .Post_preIcon2 {
-  position: relative;
-  top: 12rem;
-}*/
-
-
 
 /* 要讓編輯Icon消失ㄉClass */
 .editIconDisappear {

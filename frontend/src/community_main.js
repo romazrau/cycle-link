@@ -13,8 +13,8 @@ function ClsCommunityMain() {
         let imgArr = x.split(",,");
         // console.log(imgArr);
         var a = multiImgArr(imgArr);
-        return `<a class="Post_preIcon" href=""><i class="fas fa-chevron-left fa-2x" style="color:white"></i></a>
-        ${a}<a class="Post_nextIcon"href=""><i class="fas fa-chevron-right fa-2x" style="color:white"></i></a>`;
+        return `<i class="fas fa-chevron-left fa-2x Post_preIcon" style="color:white"></i>
+        ${a}<i class="fas fa-chevron-right fa-2x Post_nextIcon" style="color:white"></i>`;
       } else {
         return `
         <div class="CM_timeline_body_img">
@@ -365,7 +365,7 @@ ${ImgIsNullOrNot(x.PostImg)}
     .addEventListener("click", function () {
       let nowtime = new Date();
       let nowMonth = timeFormatAdjust(nowtime.getMonth() + 1);
-      document.querySelector(".CM_recommend_container").style.display="block";
+      document.querySelector(".CM_recommend_container").style.display="flex";
       document.querySelector(".CM_recommend_container").innerHTML="";
       getRecommendCommunity(nowMonth);
     });

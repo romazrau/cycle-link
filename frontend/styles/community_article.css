@@ -62,6 +62,10 @@
   margin-right: 30px;
 }
 
+.community_article_body{
+  position: relative;
+}
+
 .community_article_body > p {
   padding: 0 20px;
   margin: 10px 0;
@@ -144,17 +148,14 @@
 }
 
 .AddArticleInput {
-  /* width: 360px;*/
-  /* height: 50px; */
-  font-size: 1.2rem;
-  margin-top: 15px;
-  color: black;
-  background-color: var(--lightgrey-color);
+  font-size: 20px;
   border: 1px solid var(--grey-color);
   border-radius: 4px;
+  background-color: var(--lightgrey-color);
   color: var(--grey-color);
-  /* padding-left: 10px; */
-  margin-left: 20px;
+  padding-left: 10px;
+  padding-top: 5px;
+  margin: 10px 15px ;
   resize: none;
   overflow-y: auto;
 }
@@ -231,8 +232,91 @@
   position: relative;
   top: 14.75rem;
 }
+
 .Post_Community_nextIcon{
   position: relative;
   left: 43.5rem;
   bottom: 17rem;
+}
+
+.ArticlePost_preIcon {
+  position: absolute;
+  cursor: pointer;
+  top: 16rem;
+  left:0.8rem;
+}
+
+.ArticlePost_nextIcon{
+  position: absolute;
+  cursor: pointer;
+  top: 16rem;
+  right:0.8rem;
+}
+
+
+/* 留言區 */
+.community_article_reply_header {
+  display: flex;
+}
+
+/* .community_article_reply_header_img_container {
+  width: 20%;
+} */
+
+.community_article_reply_header_img_circle_border {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border: 1.5px solid var(--lightblue-color);
+  border-radius: 50%;
+  margin: 15px;
+}
+
+.community_article_reply_header_img {
+  position: absolute;
+  /* margin: 10px; */
+  top: 3px;
+  left: 3px;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.community_article_reply_header_img_img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.community_article_reply_header_content {
+  width: 100%;
+}
+
+.community_article_reply_header_content_info {
+  width: 95%;
+  margin: 10px;
+  /* float: right; */
+}
+
+.community_article_reply_header_content_text {
+  width: 80%;
+  margin: 10px;
+  /* float: right; */
+}
+
+/* 輸入資料區 */
+
+.CM_reply_input_container {
+  display: flex;
+  background-color: var(--lightgrey-color);
+}
+
+.CM_reply_input_container input {
+  border: none;
+  width: 90%;
+  margin: 15px 20px;
+  outline: none;
 }
