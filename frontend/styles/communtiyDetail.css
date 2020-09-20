@@ -670,8 +670,8 @@ hr {
 }
 
 .GroupHolderName {
-  margin-right: 2rem;
-  margin-left: 2rem;
+  margin-right: 3rem;
+  margin-left: 1rem;
 }
 .groupManagerMarginTop{
   margin-top: 1rem;
@@ -1218,6 +1218,7 @@ hr {
 
     .LinkBar{
       flex-direction: column;
+      padding: 0;
     }
 
     .MiddleNavBar {
@@ -1238,7 +1239,7 @@ hr {
     }
 
     .GroupTopLeftW60{
-      width: 100%;      
+      width: 30%;      
     }
 
     .settingIcon{
@@ -1252,6 +1253,7 @@ hr {
    .GroupLink {
     box-sizing: border-box;
     height: 2.7rem;
+    text-align: center;
     }
 
     .GroupBottomRight{
@@ -1314,6 +1316,7 @@ hr {
     .rwd_manager_name{
       font-size: 1.8rem;
       color: var(--blue-color);
+      margin-bottom: 3rem;
     }
 
     .width80{
