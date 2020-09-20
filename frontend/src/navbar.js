@@ -7,17 +7,17 @@ function ClsNavbar() {
         let createListBtn = document.querySelectorAll("#navebar_down_list > button");
         let createPlusBtn = document.querySelector("#navebar_plus_icon");
 
-        if ([...createListBtn[0].classList].includes("foldingCurtain")) {
+        if ([...createListContainer.classList].includes("foldingCurtain")) {
             createListContainer.classList.add("foldingCurtainUp");
             createListContainer.classList.remove("foldingCurtain");
-            createListBtn.forEach(item => item.classList.remove("foldingCurtain"));
-            createListBtn.forEach(item => item.classList.add("foldingCurtainUp"));
+            // createListBtn.forEach(item => item.classList.remove("foldingCurtain"));
+            // createListBtn.forEach(item => item.classList.add("foldingCurtainUp"));
             createPlusBtn.classList.remove("rotate45");
         } else if(isCanShow) {
             createListContainer.classList.remove("foldingCurtainUp");
             createListContainer.classList.add("foldingCurtain");
-            createListBtn.forEach(item => item.classList.add("foldingCurtain"));
-            createListBtn.forEach(item => item.classList.remove("foldingCurtainUp"));
+            // createListBtn.forEach(item => item.classList.add("foldingCurtain"));
+            // createListBtn.forEach(item => item.classList.remove("foldingCurtainUp"));
             createPlusBtn.classList.add("rotate45");
         }
     }

@@ -60,6 +60,7 @@ function ClsChat() {
                 return;
             }
 
+            console.log(result);
             // console.group("chatroom List");
             result.data.map(item => {
                 if (item.fIsMeLastChat) {
@@ -314,7 +315,7 @@ function ClsChat() {
     const data2cahtList = (array) => {
         let result = "";
         array.map((e) => {
-            result += `<li id="chat-list-${e.fId}" data-chatRoom-id=${e.fId} data-title=${e.fMemberName}>
+            result += `<li id="chat-list-${e.fId}" data-chatRoom-id=${e.fId} data-member-id=${e.fMemberId} data-title=${e.fMemberName}>
                             <span class="chat_list_online">${e.isOnline ? "●" : ""}</span>
                             ${e.fMemberName}
                             <span class="chat_list_o">${e.fIsReaded ? "" : '<i class="far fa-comment-dots"></i>'}</span>
@@ -560,7 +561,7 @@ function ClsChat() {
 
     document.addEventListener("click", async (e) => {
 
-        if (![...e.target.classList].includes("lets-talk") || !e.target.dataset.userId || !typeof e.target.dataset.userId === "undefined" ) {
+        if (![...e.target.classList].includes("lets-talk") || !e.target.dataset.userId || !typeof e.target.dataset.userId === "undefined") {
             return;
         }
 
@@ -585,7 +586,14 @@ function ClsChat() {
             if (result.result) {
                 await initChatroomList();
                 chatListWindow.classList.remove("hide");
-                // TODO 最新的空資料庫要放最上面
+                [...document.querySelectorAll(".chat_list > li")].find(item => 
+                    item.dataset.memberId === e.target.dataset.userId
+                ).click();
+            } else {
+                chatListWindow.classList.remove("hide");
+                [...document.querySelectorAll(".chat_list > li")].find(item => 
+                    item.dataset.memberId === e.target.dataset.userId
+                ).click();
             }
 
         } catch (ex) {
