@@ -137,7 +137,7 @@ const memberDetailById = async (id) => {
                 where fMemberId = ${id} 
                 group by fMemberId
              )
-            select M.fId, M.fName, M.fCity, M.fCoins, M.fBirthdate, M.fCeilphoneNumber, C.fActiviteCount, i.fActiviteInterestCount, cum.fCommunityCount, T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority' , M.fIntroduction, M.fPhotoPath, M.fLastTime
+            select M.fId, M.fName, M.fCity, M.fCoins, M.fBirthdate, M.fMail, M.fAccount, M.fCeilphoneNumber, C.fActiviteCount, i.fActiviteInterestCount, cum.fCommunityCount, T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority' , M.fIntroduction, M.fPhotoPath, M.fLastTime
                     from Member.tMember as M
                     LEFT join Member.tAccountType as T
                     on M.fAccountTypeId = T.fId
