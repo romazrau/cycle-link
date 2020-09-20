@@ -118,6 +118,7 @@ hr {
   justify-content: space-between;
 }
 
+
 .FontSectionTitle {
   /* font-family: monospace; */
   font-weight: 300;
@@ -1183,7 +1184,13 @@ hr {
 
 
 /************* class for RWD **************/
+.rwd_manager{
+  display: none;
+}
 
+.rwd_topInfo{
+  flex-direction: column;
+}
 
 /******************* RWD*******************/
 
@@ -1197,7 +1204,111 @@ hr {
       width:100% !important; 
       padding-left: 0;
     }
-}
+
+    .GroupTopMainPicDivForImg{
+      height: auto;
+    }
+
+    .LinkBar{
+      flex-direction: column;
+    }
+
+    .MiddleNavBar {
+      flex-direction: column;
+    }
+
+    .GroupDiveBtn{
+      padding-left: 0px;
+      justify-content: flex-start;
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    .statusBtn{
+      width: 100%;
+      background-color: var(--lightgrey-color);
+      text-align: center;
+    }
+
+    .GroupTopLeftW60{
+      width: 100%;      
+    }
+
+    .settingIcon{
+      display: none;
+    }
+
+    .GroupDiveBtnText{
+      margin: auto !important;
+    }
+
+   .GroupLink {
+    box-sizing: border-box;
+    height: 2.7rem;
+    }
+
+    .GroupBottomRight{
+      display: none;
+    }
+
+    .GroupBottomLeft{
+      width: 100%;     
+    }
+
+
+    .fc-toolbar-chunk{ display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      height: 5.2rem;
+      align-items: self-start;}
+
+    .BottomLeftInfoCard{
+      display: none;
+    }
+
+    .photo_flow_container{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .MemberBottomLeft{
+      width: 0%;
+    }
+
+    .MemberBottomRight{
+      width: 100%;
+    }
+
+    .rwd_manager{
+      display: unset;
+      width: 100%;
+    }
+
+    .rwd_manager_width100{
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    .rwd_grouptop_info{
+      /* margin-top: 2rem; */
+      margin-bottom: 2rem;
+      margin-top: -0.5rem;  
+      font-size: 1.5rem;
+    }
+    .Boldtitle{
+      display: none;
+    }
+
+    .rwd_icon{
+      margin-left: 0px;
+      
+    }
+
+    .rwd_manager_name{
+      font-size: 1.5rem;
+      color: var(--blue-color);
+    }
+  }
 
 
 

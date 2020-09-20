@@ -41,14 +41,18 @@ function ClsPersonalPage() {
     }
     function display_information(data) {
         personalpage_information.innerHTML = htmlPerCard(data[0]);
-        personal_community.innerHTML = ` <span class="personal_file_title">加入的社團</span>
-        <span class="personal_file_middle">:</span>
-        <span class="personal_file_text"></span>`;
-        data.map(function (e, index) {
-            
-            personal_community.innerHTML += htmlPerCommunityCard(e);
+        personal_community.innerHTML = ` <div class="personal_file_title_text"><span class="personal_file_title">加入的社團</span>
+        <span>:</span>
+        <span class="personal_file_text"></span></div>`;
+
+        let htmlData = '<div class="personal_file_imgs">';
+        data.map(function (e, index) {         
+            htmlData += htmlPerCommunityCard(e);
         })
-        personal_imgbox.innerHTML = htmlPerImgCard(data[0])
+        htmlData += '</div>';
+
+        personal_community.innerHTML += htmlData;
+        personal_imgbox.innerHTML = htmlPerImgCard(data[0]);
     }
 
 
