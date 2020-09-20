@@ -743,7 +743,6 @@ const communityMainChanging = () => {
   let cumDetailId = cumDetailArr[2];
   if (location.hash.includes("#community/detail/")) {
     CommunityArticle.ComeonPost(cumDetailId);
-    console.log("xxxxxxxxxxxxxxxx");
   }
 };
 window.addEventListener("hashchange", communityMainChanging);

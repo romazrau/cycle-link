@@ -32,12 +32,7 @@ function ClsActivity() {
         var searchtxt = searchtext.value;
 
         if (!searchtxt) {
-            activity_card_ALL.classList.remove("hide");
-            searchAnsContainer.classList.add("hide");
-            search_container.classList.add("search_hidden");
-
-            activity_main.style.display = 'flex';
-
+            reflashPage(1);
             return;
         }
 
@@ -66,7 +61,7 @@ function ClsActivity() {
 
 
     const display_active_main_level = (o) => {
-        ActSearch.innerHTML = "";
+        ActSearch.innerHTML = ` <option class="ActivitySearchOption" value=7>請選擇</option>`;
         o.map(
             (e, index) => {
                 ActSearch.innerHTML += htmlActSearch(e);
@@ -91,7 +86,7 @@ function ClsActivity() {
             let result = await response.json();
             display_active_main_level(result.data);
 
-            console.log(object);
+            // console.log(object);
 
             // for(let i=0;i<ActivitySearchOption.length;i++)
             // {
@@ -527,6 +522,8 @@ function ClsActivity() {
     //ActCardData
     //* ------------------------------------- 文字樣板 -------------------------------------
     const display_active = (o) => {
+        reflashPage(0);
+        console.log("o:",o)
 
         ActCard.innerHTML = "";
 
@@ -576,6 +573,7 @@ function ClsActivity() {
         })
     }
 
+    let activeData;
     const activeAwait = async () => {
         try {
             // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
@@ -592,6 +590,7 @@ function ClsActivity() {
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
 
+            activeData = result.data;
             display_active(result.data);
             likelistfromsql();
             // getactid();
@@ -802,12 +801,12 @@ function ClsActivity() {
 
 
 
-    ActCardData2.map(
-        (e, index) => {
+    // ActCardData2.map(
+    //     (e, index) => {
 
-            ActCard2.innerHTML += htmlActCard(e);
-        }
-    )
+    //         ActCard2.innerHTML += htmlActCard(e);
+    //     }
+    // )
     /*---------------YM修改活動 */
     const likelistfromsql = async () => {
         try {
@@ -856,23 +855,31 @@ function ClsActivity() {
             )
         }
     )
-    this.render = () => {
-        activeseenAwait()
-    };
-    this.display_active = display_active;
-    this.reRender = () => {
+
+        
+    const reflashPage = (isFlashMainAct = 1) => {
+        // 清空
         activity_card_ALL.classList.remove("hide");
         searchAnsContainer.classList.add("hide");
         search_container.classList.add("search_hidden");
 
         activity_main.style.display = 'flex';
-
         // searchtext.value = "";
-        activity_option.value = ""
-    }
+        searchtext.value = ""
+        activity_option.value = 7;
+        
+        if(isFlashMainAct){
+            document.querySelector("#act_tag_main").innerHTML = "主題活動";
+        display_active(activeData);
+        }
+        
+    };
+
+    this.activeseenAwait = activeseenAwait;
+    this.display_active = display_active;
 }
 
-let ActivityIndex;
+const ActivityIndex = new ClsActivity();
 
 //* 利用 hash , 如下
 
@@ -880,9 +887,7 @@ let ActivityIndex;
 
 const activityChangeHash = () => {
     if (location.hash === "#activity") {
-        // ActivityIndex.render();
-        ActivityIndex = new ClsActivity();
-        ActivityIndex.reRender();
+        ActivityIndex.activeseenAwait();
     }
 }
 
