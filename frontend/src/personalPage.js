@@ -185,10 +185,10 @@ function ClsPersonalPage() {
         return `
                 <div>
                 <div class="personal_title_line" >
-                    <h3>${o.fName}(${o.fAccount})</h3>
+                    <h3>${o.fName}</h3>
                     <img data-user-id=${o.fId} class="lets-talk"  src="./img/icon_chat.svg" width="25">
-                    
                 </div>
+                <h4>${o.fAccount}</h4>
                     <p>${o.fIntroduction}</p>
                 </div>
                 <div class="personal_pro_file">

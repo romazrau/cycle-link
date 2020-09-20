@@ -27,7 +27,8 @@
     width: 2rem;
     background-color: white;
     line-height: 3rem;
-    margin: 0;
+    margin: 0 0.5rem 0 0;
+
 }
 
 .personalManager_left_Info h3,
@@ -91,9 +92,10 @@ h4 {
 }
 
 .personalManager_right_title_btn {
+    /* width: 18vw; */
     border: 1px solid var(--blue-color);
     border-radius: 0.5rem;
-    padding: 1.5rem 2.5rem;
+    padding: 1.5rem 2rem;
     background-color: var(--blue-color);
     color: white;
     font-size: x-large;
@@ -188,12 +190,20 @@ h4 {
     width: 50vw;
     /* height: 25vh; */
     box-shadow: 1px 1px 25px rgba(167, 167, 167, 0.384);
+    color: rgb(36, 36, 36);
+}
+
+.personalManager_right_content_info:hover {
+    color: rgb(36, 36, 36);
+    /* transition: all 0.3s; */
 }
 
 .personalManager_right_content_info_img {
     border-radius: 1rem;
     margin: 0 0 0 1rem;
-    width: 200px;
+    width: 30%;
+    height: 30%;
+    overflow: hidden;
 }
 
 .personalManager_right_content_infoText {
@@ -217,15 +227,30 @@ h4 {
     display: flex;
     align-items: center;
     margin: 0;
+    font-weight: bolder;
 }
 
 .personalManager_right_content_infoText i {
-    margin-right: 0.3rem;
+    margin-right: 0.5rem;
     color: var(--blue-color);
     background-color: white;
 }
 
+.personalManager_right_content_infoText img {
+    /* margin-right: 0.5rem; */
 
-.personal-manager-txt{
-    height: 5rem;
+}
+
+.personal-manager-txt {
+    width: 50vw;
+    height: 13vh;
+    /* border: 1px solid red; */
+    border-radius: 1rem;
+    box-shadow: 1px 1px 25px rgba(167, 167, 167, 0.384);
+    background-color: white;
+    margin-bottom: 3rem;
+    text-align: center;
+    line-height: 13vh;
+    font-size: x-large;
+    font-weight: bolder;
 }

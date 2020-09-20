@@ -1,7 +1,16 @@
 .personal_container {
   max-width: 1140px;
   display: flex;
-  padding: 25vh 0 5vh 0;
+  padding: 20vh 0 5vh 0;
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: center;
+}
+
+.personal_container2 {
+  max-width: 1140px;
+  display: flex;
+  padding: 5vh 0 5vh 0;
   margin-right: auto;
   margin-left: auto;
   justify-content: center;
@@ -73,17 +82,19 @@
   font-weight: 700;
   width: 100px;
   display: inline-block;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
+  font-size: larger;
 }
 
 .personal_file_middle {
   font-weight: 900;
-  width: 40px;
+  width: 20px;
   display: inline-block;
 }
 
 .personal_file_text {
   color: var(--grey-color);
+  font-size: larger;
 }
 
 .personal_section {
@@ -233,6 +244,10 @@
 .personal_title_line {
   display: flex;
   justify-content: space-between;
+}
+
+.personal_title_line h4 {
+  text-align: center;
 }
 
 .personal_banner {
