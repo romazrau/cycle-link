@@ -26,7 +26,7 @@ function ClsPersonalPage() {
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
             let data = result.data;
-            console.log("data",data);
+            console.log("data", data);
             display_information(data);
 
 
@@ -39,14 +39,14 @@ function ClsPersonalPage() {
 
         }
     }
+
     function display_information(data) {
         personalpage_information.innerHTML = htmlPerCard(data[0]);
         personal_community.innerHTML = ` <div class="personal_file_title_text"><span class="personal_file_title">加入的社團</span>
-        <span>:</span>
-        <span class="personal_file_text"></span></div>`;
+        <span class="personal_file_middle">:</span>`;
 
         let htmlData = '<div class="personal_file_imgs">';
-        data.map(function (e, index) {         
+        data.map(function (e, index) {
             htmlData += htmlPerCommunityCard(e);
         })
         htmlData += '</div>';
@@ -187,7 +187,7 @@ function ClsPersonalPage() {
                 <div class="personal_title_line" >
                     <h3>${o.fName}(${o.fAccount})</h3>
                     <img data-user-id=${o.fId} class="lets-talk"  src="./img/icon_chat.svg" width="25">
-                    <span></span>
+                    
                 </div>
                     <p>${o.fIntroduction}</p>
                 </div>
@@ -195,17 +195,17 @@ function ClsPersonalPage() {
                     <ul>
                         
                         <li>
-                            <span class="personal_file_title">海龜幣</span>
+                        <img src="./img/海龜幣.png" alt="" width="20" style="margin-right:0.5rem"><span class="personal_file_title">海龜幣</span>
                             <span class="personal_file_middle">:</span>
                             <span class="personal_file_text">${o.fCoins}</span>
                         </li>
                         <li>
-                            <span class="personal_file_title">所在縣市</span>
+                        <i class="fas fa-map-marker-alt" style="margin-right:1rem;color:var(--green-color)"></i><span class="personal_file_title">所在縣市</span>
                             <span class="personal_file_middle">:</span>
                             <span class="personal_file_text">${o.fCity}</span>
                         </li>
                         <li>
-                            <span class="personal_file_title">會員等級</span>
+                        <i class="fas fa-crown" style="margin-right:0.5rem;color:var(--green-color)"></i><span class="personal_file_title">會員等級</span>
                             <span class="personal_file_middle">:</span>
                             <span class="personal_file_text">${o.fAccountType}</span>
                         </li>
@@ -222,7 +222,7 @@ function ClsPersonalPage() {
 
 
     const htmlPerCommunityCard = o => {
-        
+
 
         return `<div class="personal_detail_Societies_img_circle">
                 <a href="#community/detail/${o.fCommunityId}">

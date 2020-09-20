@@ -90,10 +90,6 @@ function ClsRouter() {
                     break;
 
                 // 沒有navbar 區
-                case "sign-Up":
-                    document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
-                    break;
-
                 case "personal-maneger":
                     if ( !localStorage.getItem("Cycle link user data") || !localStorage.getItem("Cycle link token")) {
                         location.hash = `#log-in`

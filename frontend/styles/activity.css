@@ -310,7 +310,7 @@
 
 .active_detail_card_heart {
     position: absolute;
-    left: 8.12rem;
+    right: 1.7rem;
     top: 0.8rem;
     width: 1.5rem;
     height: 1.5rem;
@@ -439,6 +439,17 @@
     width: 80px;
     height: 55px;
     border-radius: 10px;
+}
+
+.rwd_activity_divFormainImg{
+    position: relative;
+}
+
+
+.rwd_activity_mainImg{
+ /* position: absolute; */
+ /* left: 0px; */
+ /* left: -50px; */
 }
 
 }

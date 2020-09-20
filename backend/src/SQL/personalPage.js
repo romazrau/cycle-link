@@ -71,61 +71,65 @@ const PersonalPageOfData = async (fMemberId) => {
         // make sure that any items are correctly URL encoded in the connection string
         // 連接資料庫
         await sql.connect(config)
-        let likelist = `WITH JLA as(SELECT TOP(6) JL.fActivityId,A.fActName,A.fActivityDate,fImgPath,A.fMemberId
+        let likelist = `WITH JLA as(SELECT TOP(6) JL.fActivityId,A.fActName,A.fActivityDate,fImgPath,A.fMemberId, A.fActAttestId
         FROM Activity.tJoinList AS JL
         LEFT JOIN Activity.tActivity AS A
         ON fActivityId=A.fId
-        WHERE fJoinTypeId=0 AND JL.fMemberId=${fMemberId}
-        order by fJoinTime)
-        
-        SELECT JLA.*,m.fName 
+        WHERE fJoinTypeId = 0 AND JL.fMemberId= ${fMemberId}
+        order by fJoinTime
+	 )  
+        SELECT JLA.*, m.fName, t.fAttestName, t.fPayCoin 
         from JLA
         LEFT JOIN Member.tMember as m
-        ON JLA.fMemberId=M.fId
-        
-            `
-        let createlist = `WITH JLA as(SELECT TOP(6) JL.fActivityId,A.fActName,A.fActivityDate,fImgPath,A.fMemberId
+        ON JLA.fMemberId = M.fId
+		Left JOIN Activity.tAttestType as t
+		ON JLA.fActAttestId = t.fId
+            `;
+
+        let createlist = `WITH JLA as(SELECT TOP(6) JL.fActivityId,A.fActName,A.fActivityDate,fImgPath,A.fMemberId, A.fActAttestId
         FROM Activity.tJoinList AS JL
         LEFT JOIN Activity.tActivity AS A
         ON fActivityId=A.fId
         WHERE fJoinTypeId=6 AND JL.fMemberId=${fMemberId}
-        order by fJoinTime)
-
-        SELECT JLA.*,m.fName 
+        order by fJoinTime
+        )
+        SELECT JLA.*,m.fName, t.fAttestName, t.fPayCoin 
         from JLA
         LEFT JOIN Member.tMember as m
         ON JLA.fMemberId=M.fId
-            `
-        let Expiredattendedlist = `WITH JLA as(SELECT TOP(6) JL.fActivityId,A.fActName,A.fActivityDate,fImgPath,A.fMemberId
+        Left JOIN Activity.tAttestType as t
+		ON JLA.fActAttestId = t.fId
+            `;
+
+        let Expiredattendedlist = `WITH JLA as(SELECT TOP(6) JL.fActivityId,A.fActName,A.fActivityDate,fImgPath,A.fMemberId,  A.fActAttestId
         FROM Activity.tJoinList AS JL
         LEFT JOIN Activity.tActivity AS A
         ON fActivityId=A.fId
         WHERE fJoinTypeId=2 AND fActivityDate<GETDATE() AND JL.fMemberId=${fMemberId}
-        order by fJoinTime) 
-
-        SELECT JLA.*,m.fName 
+        order by fJoinTime
+        ) 
+        SELECT JLA.*,m.fName, t.fAttestName, t.fPayCoin  
         from JLA
         LEFT JOIN Member.tMember as m
         ON JLA.fMemberId=M.fId
-            `
-        let attendedlist = `WITH JLA as(SELECT TOP(6) JL.fActivityId,A.fActName,A.fActivityDate,fImgPath,A.fMemberId
+        Left JOIN Activity.tAttestType as t
+		ON JLA.fActAttestId = t.fId
+            `;
+
+        let attendedlist = `WITH JLA as(SELECT TOP(6) JL.fActivityId,A.fActName,A.fActivityDate,fImgPath,A.fMemberId,  A.fActAttestId
         FROM Activity.tJoinList AS JL
         LEFT JOIN Activity.tActivity AS A
         ON fActivityId=A.fId
         WHERE fJoinTypeId=2 AND fActivityDate>GETDATE() AND JL.fMemberId=${fMemberId}
-        order by fJoinTime) 
-
-        SELECT JLA.*,m.fName 
+        order by fJoinTime
+        ) 
+        SELECT JLA.*,m.fName, t.fAttestName, t.fPayCoin 
         from JLA
         LEFT JOIN Member.tMember as m
         ON JLA.fMemberId=M.fId
+        Left JOIN Activity.tAttestType as t
+		ON JLA.fActAttestId = t.fId
             `
-
-
-
-
-
-
 
         const likelist_result = await sql.query(likelist)
         const createlist_result = await sql.query(createlist)
@@ -133,21 +137,17 @@ const PersonalPageOfData = async (fMemberId) => {
         const attendedlist_result = await sql.query(attendedlist)
         // 看一下回傳結果
 
-        console.dir(Expiredattendedlist_result);
+        console.log("createlist_result--------------");
+        console.dir(createlist_result.rowsAffected);
 
-        if (!likelist_result.rowsAffected[0]) {
-            return {
-                result: 1,
-                msg: "沒有喜愛活動",
-                data: {
-                    likes: likelist_result.recordset,
-                    creates: createlist_result.recordset,
-                    Expiredattended: Expiredattendedlist_result.recordset,
-                    attendedlist: attendedlist_result.recordset,
-                }
-            }
-        }
+        console.log("Expiredattendedlist_result--------------");
+        console.dir(Expiredattendedlist_result.rowsAffected);
 
+        console.log("likelist_result--------------");
+        console.dir(likelist_result.rowsAffected);
+
+        console.log("attendedlist_result--------------");
+        console.dir(attendedlist_result.rowsAffected);
 
 
         // *回傳結果，包成物件，統一用 result 紀錄成功(1)或失敗(0)，msg存敘述，data傳資料，其他需求就新增其他屬性

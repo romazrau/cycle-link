@@ -13,6 +13,15 @@
   font-size: 14px;
 }
 
+.width70{
+  width: 70%;
+}
+
+.width20{
+  width: 15%;
+  height: 50px;
+}
+
 #calendar {
   max-width: 1100px;
   margin: 0 auto;
@@ -497,13 +506,6 @@ hr {
   z-index: 100;
 }
 
-.GroupNavBtn:hover {
-  border: 1px solid none;
-  padding: 0.5rem 0.8rem;
-  border-radius: 4px;
-  background-color: var(--lightgrey-color);
-  color: gray;
-}
 
 .GroupNavBtn {
   cursor: pointer;
@@ -668,7 +670,7 @@ hr {
 }
 
 .GroupHolderName {
-  margin-right: 0.5rem;
+  margin-right: 2rem;
   margin-left: 2rem;
 }
 .groupManagerMarginTop{
@@ -688,6 +690,7 @@ hr {
   font-family: monospace;
   font-size: 1.2rem;
   color: var(--blue-color);
+  margin-top: 1.2rem;
 }
 
 .GroupBottomCardEventName {
@@ -1189,7 +1192,7 @@ hr {
 }
 
 .rwd_topInfo{
-  flex-direction: column;
+  flex-direction:flex;
 }
 
 /******************* RWD*******************/
@@ -1198,6 +1201,10 @@ hr {
     .GroupTopLeft{
         width:100% !important;
       
+    }
+
+    .rwd_topInfo{
+      flex-direction: column;
     }
 
     .GroupTopRight{
@@ -1305,8 +1312,12 @@ hr {
     }
 
     .rwd_manager_name{
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: var(--blue-color);
+    }
+
+    .width80{
+      width: 100%;
     }
   }
 
