@@ -504,7 +504,6 @@
         </div>
 
         <!-- * Community  ****************      ****************       ****************   -->
-
         <div id="page_community" class="page hide">
 
             <div class="community_main_container">
@@ -1084,83 +1083,6 @@
 
 
         <!-- * 路徑在別人底下的頁面 #.. / 這些頁面  ****************      ****************       ****************   -->
-
-        <!-- * news-detail  ****************      ****************       ****************   -->
-        <div id="page_news-detail" class="page hide">
-            <!-------------------------------------- 左側作者欄 -------------------------------------->
-            <div class="newsDe_writer_info_left">
-                <p>Anupam Chugh</p>
-                <span class="newsDe_writer_info_left_span">For the uninitiated, a lot of apps today use an Advertising
-                    identifier
-                    (IDFA). It allows developers and marketers to track activity for advertising purposes.</span>
-                <br><i class="far fa-heart"></i><span>35</span>
-            </div>
-            <!-------------------------------------- main -------------------------------------->
-            <main class="newsDe_main">
-                <!-------------------------------------- 文章標題 -------------------------------------->
-                <div>
-                    <h1>
-                        Apple Is Killing A Billion-Dollar Ad Industry With One Popup
-                    </h1>
-                    <h2>The new iOS 14 privacy feature spells trouble for advertisement agencies and promises to end an
-                        era of
-                        personalized ads</h2>
-                </div>
-                <!-------------------------------------- 作者資訊 -------------------------------------->
-                <div class="newsDe_writer">
-                    <div class="newsDe_writer_info">
-                        <div>
-                            <img src="img/c1.jpeg" alt="">
-                        </div>
-                        <div>
-                            <a href="#">Anupam Chugh</a><br>
-                            <span>Jul 7 · 4 min read</span>
-                        </div>
-                    </div>
-                    <div class="newsDe_writen_icon">
-                        <i class="fab fa-facebook-square fa-2x" style="color: var(--blue-color);"></i>
-                        <i class="fab fa-twitter-square fa-2x" style="color: var(--blue-color);"></i>
-                        <i class="fab fa-linkedin fa-2x" style="color: var(--blue-color);"></i>
-                    </div>
-                </div>
-                <!-------------------------------------- 文章內容 -------------------------------------->
-                <figure>
-                    <img src="img/news_title.jpg" title="Photo by Tobias Moore on Unsplash" alt="">
-                    <figcaption>Photo by Tobias Moore on Unsplash</figcaption>
-                </figure>
-                <div>
-                    <p>When Apple’s WWDC 2020 digital-only Keynote event kickstarted, all eyes were on the new mac OS
-                        Big Sur
-                        and the ambitious Apple Silicon chips.</p>
-                    <p>But, from the perspective of advertisement agencies, it was the new iOS 14 privacy-based features
-                        that
-                        sent shockwaves in their industry and became the major talking point.</p>
-                    <p>For the uninitiated, a lot of apps today use an Advertising identifier (IDFA). It allows
-                        developers and
-                        marketers to track activity for advertising purposes.</p>
-                    <p>Plenty of marketing agencies backed by Google and Facebook run campaigns to record purchases,
-                        usage time,
-                        user actions, and subsequently serve personalized ads.</p>
-                    <p>Over 100K apps on the App Store today have the Facebook or Google SDK integrated which tracks and
-                        sends
-                        your data to the tech giants and third party brokers.</p>
-                    <p>But iOS 14 is all set to change that by being upfront and transparent with users about how their
-                        data is
-                        used for ads.</p>
-                </div>
-                <!-------------------------------------- 文章標籤 -------------------------------------->
-                <div class="newsDe_tag">
-                    <ul>
-                        <li><a href="#">Apple</a></li>
-                        <li><a href="#">Marketing</a></li>
-                        <li><a href="#">Business</a></li>
-                        <li><a href="#">Advertising</a></li>
-                    </ul>
-                </div>
-
-            </main>
-        </div>
-
 
         <!-- * activity-detail  ****************      ****************       ****************   -->
         <div id="page_activity-detail" class="page hide">
@@ -2173,368 +2095,92 @@
             </div>
             <div class="personalManager_left">
                 <div class="personalManager_left_Info">
-                    <img src="https://fakeimg.pl/300x300/" class="personalManager_left_Info_img">
+                    <img id="personal-manege-img" src="https://fakeimg.pl/300x300/" class="personalManager_left_Info_img">
                     <button>上傳圖片</button>
-                    <h3>饒孝天</h3>
-                    <h4>Romazrau</h4>
-                    <p><img src="img/海龜幣.png" alt="" class="personalManager_SeaTurtleCoin"> 海龜積分：300</p>
-                    <p>會員等級：白鯨會員</p>
-                    <p>參與活動次數：13</p>
-                    <p>追蹤活動：5</p>
-                    <p>參加社團：6</p>
+                    <h3 id="personal-manege-name">訪客</h3>
+                    <h4 id="personal-manege-account">guest</h4>
+                    <p><img src="img/海龜幣.png" alt="" class="personalManager_SeaTurtleCoin"> 海龜積分：<span id="personal-manege-coin">0</span></p>
+                    <p>會員等級：<span id="personal-manege-account-type">普通會員<span></p>
+                    <p>參與活動次數： <span id="personal-manege-act-count">0</span></p>
+                    <p>追蹤活動：<span id="personal-manege-act-int-count">0</span></p>
+                    <p>參加社團：<span id="personal-manege-com-count">0</span></p>
                 </div>
             </div>
             <div class="personalManager_right">
                 <div class="personalManager_right_title">
-                    <div class="personalManager_right_title_btn">
+                    <div class="personalManager_right_title_btn" data-page-id="personalManager_right_page_info">
                         <p><i class="fas fa-user-alt"></i>基本資料</p>
                     </div>
-                    <div class="personalManager_right_title_btn">
+                    <div class="personalManager_right_title_btn" data-page-id="personalManager_right_page_loveact">
                         <p><i class="fa fa-gratipay" aria-hidden="true"></i></i>追蹤活動</p>
                     </div>
-                    <div class="personalManager_right_title_btn">
+                    <div class="personalManager_right_title_btn" data-page-id="personalManager_right_page_myact">
                         <p><i class="fa fa-check-circle" aria-hidden="true"></i>我的活動</p>
                     </div>
-                    <div class="personalManager_right_title_btn">
+                    <div class="personalManager_right_title_btn" data-page-id="personalManager_right_page_mycom">
                         <p><i class="fa fa-users" aria-hidden="true"></i></i>我的社團</p>
                     </div>
                 </div>
 
-                <div class="personalManager_right_content">
+                <div id="personalManager_right_page_info" class="personalManager_right_content">
                     <h2>基本資料</h2>
                     <div class="personalManager_right_content_infoBasic">
-                        <p>姓名：<input type="text" value="饒孝天"></p>
-                        <p>帳號：<input type="text" value="Romazrau"></p>
-                        <p>Email：<input type="text" value="aaabbbb@gmail.com"></p>
-                        <p>密碼：<input type="text" value="*********"></p>
-                        <p>生日：<input type="text" value="1998/01/01"></p>
-                        <p>地址：<input type="text" value="台北市大安區復興南路復興園"></p>
-                        <p>電話：<input type="text" value="0956368956"></p>
+                        <p>姓名：<input type="text" id="personal-maneger-input-name" value="--"></p>
+                        <p>生日：<input type="text" id="personal-maneger-input-birth" value="--"></p>
+                        <p>Email：<input type="text" id="personal-maneger-input-email" value="--"></p>
+                        <p>居住城市：<input type="text" id="personal-maneger-input-address" value="--"></p>
+                        <p>行動電話：<input type="text" id="personal-maneger-input-phone" value="--"></p>
+                        <p>個人簡介：<textarea id="personal-maneger-input-introduction" name="" cols="45"
+                            rows="5">範例</textarea></p>
                         <button>修改</button>
                     </div>
-                    <h2>我的活動</h2>
-                    <div class=" personalManager_right_content_info">
-                        <img class="personalManager_right_content_info_img" src="https://fakeimg.pl/200x200/">
-                        <div class="personalManager_right_content_infoText">
-                            <h3>Plogging河濱樂跑團</h3>
-                            <p><i class="fas fa-map-marker-alt fa-2x"></i>地點：台北河濱</p>
-                            <p><i class="fas fa-clock fa-2x"></i>開始時間：2020/10/07 19:00</p>
-                            <p><img src="img/海龜幣.png" alt="" class="personalManager_SeaTurtleCoin">海龜積分：500</p>
+
+                </div>
+
+                <div id="personalManager_right_page_loveact" class="personalManager_right_content hide">
+                    <h2>追蹤活動</h2>  
+                    <div id="likeContainer"></div>
+                </div>
+
+                <div id="personalManager_right_page_myact" class="personalManager_right_content hide">
+                    <h2>正在參加活動</h2>
+                    <div id="attendContainer"></div>
+                
+                    <h2>曾經參與的活動</h2>
+                    <div id="ExpiredattendedContainer"></div>
+                </div>
+
+                <div id="personalManager_right_page_mycom" class="personalManager_right_content hide">
+                    <h2>管理社團</h2>
+                    <div id="ItemContainerCommunityManager" >
+                        <div class="personalManager_right_content_info">
+                            <img class="personalManager_right_content_info_img" src="https://fakeimg.pl/200x200/">
+                            <div class="personalManager_right_content_infoText">
+                                <h3>Plogging河濱樂跑團</h3>
+                                <p><i class="fas fa-map-marker-alt fa-2x"></i>地點：台北河濱</p>
+                                <p><i class="fas fa-clock fa-2x"></i>開始時間：2020/10/07 19:00</p>
+                                <p><img src="img/海龜幣.png" alt="" class="personalManager_SeaTurtleCoin">海龜積分：500</p>
+                            </div>
                         </div>
+
                     </div>
-                    <div class="personalManager_right_content_info">
-                        <img class="personalManager_right_content_info_img" src="https://fakeimg.pl/200x200/">
-                        <div class="personalManager_right_content_infoText">
-                            <h3>Plogging河濱樂跑團</h3>
-                            <p><i class="fas fa-map-marker-alt fa-2x"></i>地點：台北河濱</p>
-                            <p><i class="fas fa-clock fa-2x"></i>開始時間：2020/10/07 19:00</p>
-                            <p><img src="img/海龜幣.png" alt="" class="personalManager_SeaTurtleCoin">海龜積分：500</p>
+
+                    <h3>所屬社團</h3>
+                    <div id="ItemContainerCommunity" >
+                        <div class="personalManager_right_content_info">
+                            <img class="personalManager_right_content_info_img" src="https://fakeimg.pl/200x200/">
+                            <div class="personalManager_right_content_infoText">
+                                <h3>Plogging河濱樂跑團</h3>
+                                <p><i class="fas fa-map-marker-alt fa-2x"></i>地點：台北河濱</p>
+                                <p><i class="fas fa-clock fa-2x"></i>開始時間：2020/10/07 19:00</p>
+                                <p><img src="img/海龜幣.png" alt="" class="personalManager_SeaTurtleCoin">海龜積分：500</p>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
-        <!-- **** ---------------------- 舊版個人頁面分隔線 ---------------------- **** -->
-        <div class="personal-maneger-header hide">
-            <div class="headerbox">
-                <div class="imgbox">
-                    <img id="personal-manege-img" class="avatar" src="./img/images1.jpg" alt="">
-                    <div class="titlebox">
-                        <div>
-                            <h4>您好，</h4>
-                            <h3 id="personal-manege-name">勒克萊爾</h3>
-                        </div>
-                        <div class="imgfile">
-                            <label class="ca_imgUpload_lbl">
-                                <input class='input_pictureUpload' id="input_pictureUpload" type="file" value=''
-                                    style="display:none;">
-                                <i class="fa fa-photo"></i> 上傳圖片
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="peoplefilebox">
-                    <div class="peoplefilebox_right">
-                        <div class="peoplefilebox_right_items">帳號權限：
-                            <span id="personal-manege-account-type">普通會員</span>
-                        </div>
-                        <div class="peoplefilebox_right_items">
-                            <img src="./img/海龜幣.png" alt="">：
-                            <span id="personal-manege-coin">1300</span>
-                        </div>
-                        <div class="peoplefilebox_right_items">參與活動次數：
-                            <span id="personal-manege-act-count">79</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container hide">
-            <div class="bar-block">
-                <a href="javascript:void(0)" class="bar-item button tablink activefocus personal-maneger-navlink"
-                    data-cls='personal-maneger-class4'>
-                    <div class="baritembox">基本資料</div>
-                </a>
-                <a href="javascript:void(0)"
-                    class="bar-item button tablink testbtn activefocus personal-maneger-navlink"
-                    data-cls='personal-maneger-class1'>
-                    <div class="baritembox">追蹤活動</div>
-                </a>
-                <a href="javascript:void(0)" class="bar-item button tablink activefocus personal-maneger-navlink"
-                    data-cls='personal-maneger-class2'>
-                    <div class="baritembox">我的活動</div>
-                </a>
-                <a href="javascript:void(0)" class="bar-item button tablink activefocus personal-maneger-navlink"
-                    data-cls='personal-maneger-class3'>
-                    <div class="baritembox">我的社團</div>
-                </a>
-            </div>
-            <div class="procontent">
-
-                <div id="personal-maneger-class1" class=" class">
-                    <div class="protitle">
-                        <h3>追蹤活動</h3>
-                    </div>
-                    <div class="ItemContainer" id="likeContainer">
-                        <div class="ItemBox ">
-                            <a href="">
-                                <div class="procontent_imgbox">
-                                    <img src="./img/Activity2.jpg" class="event_img" alt="">
-                                </div>
-                                <div class="procontent_menu">
-                                    <p>Sunday, July 30,2020,10:30</p>
-                                    <h3>潛水撿垃圾，愛海洋！</h3>
-                                    <img src="" class="icon" alt=""><span>發起人</span><span>999</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="ItemBox ">
-                            <a href="">
-                                <div class="procontent_imgbox">
-                                    <img src="./img/Activity2.jpg" class="event_img" alt="">
-                                </div>
-                                <div class="procontent_menu">
-                                    <p>Sunday, July 30,2020,10:30</p>
-                                    <h3>潛水撿垃圾，愛海洋！</h3>
-                                    <img src="" class="icon" alt=""><span>發起人</span><span>999</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="ItemBox ">
-                            <a href="">
-                                <div class="procontent_imgbox">
-                                    <img src="./img/Activity2.jpg" class="event_img" alt="">
-                                </div>
-                                <div class="procontent_menu">
-                                    <p>Sunday, July 30,2020,10:30</p>
-                                    <h3>潛水撿垃圾，愛海洋！</h3>
-                                    <img src="" class="icon" alt=""><span>發起人</span><span>999</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="ItemBox ">
-                            <a href="">
-                                <div class="procontent_imgbox">
-                                    <img src="./img/Activity2.jpg" class="event_img" alt="">
-                                </div>
-                                <div class="procontent_menu">
-                                    <p>Sunday, July 30,2020,10:30</p>
-                                    <h3>潛水撿垃圾，愛海洋！</h3>
-                                    <img src="" class="icon" alt=""><span>發起人</span><span>999</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div id="personal-maneger-class2" class=" class">
-                    <div class="protitle">
-                        <h3>正在參加活動</h3>
-                    </div>
-                    <div class="ItemContainer" id="attendContainer">
-                        <div class="ItemBox ">
-                            <a href="">
-                                <div class="procontent_imgbox">
-                                    <img src="./img/Activity2.jpg" class="event_img" alt="">
-                                </div>
-                                <div class="procontent_menu">
-                                    <div class="flex">
-                                        <p>Sunday, July 30,2020,10:30</p>
-                                        <button class="btnpersonedit">...</button>
-                                    </div>
-
-                                    <h3>潛水撿垃圾，愛海洋！</h3>
-                                    <img src="" class="icon" alt=""><span>發起人</span><span>999</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="protitle">
-                        <h3>曾經參與的活動</h3>
-                    </div>
-                    <div class="ItemContainer" id="ExpiredattendedContainer">
-                        <div class="ItemBox ">
-                            <a href="">
-                                <div class="procontent_imgbox">
-                                    <img src="img/images3.jpg" class="event_img" alt="">
-                                </div>
-                                <div class="procontent_menu">
-                                    <p>Sunday, July 30,2020,10:30</p>
-                                    <h3>潛水撿垃圾，愛海洋！</h3>
-                                    <img src="" class="icon" alt=""><span>發起人</span><span>999</span>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="ItemBox ">
-                            <a href="">
-                                <div class="procontent_imgbox">
-                                    <img src="" class="event_img" alt="">
-                                </div>
-                                <div class="procontent_menu">
-                                    <p>Sunday, July 30,2020,10:30</p>
-                                    <h3>潛水撿垃圾，愛海洋！</h3>
-                                    <img src="" class="icon" alt=""><span>發起人</span><span>999</span>
-                                </div>
-                            </a>
-
-                        </div>
-
-                        <div class="ItemBox ">
-                            <a href="">
-                                <div class="procontent_imgbox">
-                                    <img src="" class="event_img" alt="">
-                                </div>
-                                <div class="procontent_menu">
-                                    <p>Sunday, July 30,2020,10:30</p>
-                                    <h3>潛水撿垃圾，愛海洋！</h3>
-                                    <img src="" class="icon" alt=""><span>發起人</span><span>999</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="ItemBox ">
-                            <a href="">
-                                <div class="procontent_imgbox">
-                                    <img src="" class="event_img" alt="">
-                                </div>
-                                <div class="procontent_menu">
-                                    <p>Sunday, July 30,2020,10:30</p>
-                                    <h3>潛水撿垃圾，愛海洋！</h3>
-                                    <img src="" class="icon" alt=""><span>發起人</span><span>999</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="personal-maneger-class3" class="container class personalInfo">
-                    <div class="protitle">
-                        <h3>所屬社團</h3>
-                    </div>
-                    <div id="ItemContainerCommunity" class="ItemContainer">
-                        <div class="ItemBox ">
-                            <a href="">
-                                <div class="procontent_imgbox">
-                                    <img src="img/event06.jpg" class="event_img" alt="">
-                                </div>
-                                <div class="procontent_menu">
-                                    <p>Sunday, July 30,2020,10:30</p>
-                                    <h3>我們是一群熱愛環境的人</h3>
-                                    <img src="" class="icon" alt=""><span>發起人</span><span>999</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="ItemBox ">
-                            <a href="">
-                                <div class="procontent_imgbox">
-                                    <img src="img/event06.jpg" class="event_img" alt="">
-                                </div>
-                                <div class="procontent_menu">
-                                    <p>Sunday, July 30,2020,10:30</p>
-                                    <h3>我們是一群熱愛環境的人</h3>
-                                    <img src="" class="icon" alt=""><span>發起人</span><span>999</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="protitle">
-                        <h3>管理社團</h3>
-                    </div>
-                    <div id="ItemContainerCommunityManager" class="ItemContainer">
-                        <div class="ItemBox ">
-                            <a href="">
-                                <div class="procontent_imgbox">
-                                    <img src="img/event06.jpg" class="event_img" alt="">
-                                </div>
-                                <div class="procontent_menu">
-                                    <div class="flex">
-                                        <p>Sunday, July 30,2020,10:30</p>
-                                        <button class="btnpersonedit">...</button>
-                                    </div>
-                                    <h3>我們是一群熱愛環境的人</h3>
-                                    <img src="" class="icon" alt=""><span>發起人</span><span>999</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div id="personal-maneger-class4" class="container class">
-                    <form action="" class="form_member">
-                        <fieldset class="Memberfieldset">
-                            <legend class="Memberlegend">
-                                <h3>
-                                    會員資料
-                                </h3>
-                            </legend>
-                            <div class="datawrap">
-                                <div class="dataContainer">
-                                    <div class="dataItem"><label for="">姓名:</label><input type="text" name="Name"
-                                            id="personal-maneger-input-name" value="小龜"></div>
-                                    <div class="dataItem"><label for="">生日:</label><input type="text" name="Birth"
-                                            id="personal-maneger-input-birth" value=""></div>
-                                    <div class="dataItem"><label for="">居住城市:</label><input type="text" name="Address"
-                                            id="personal-maneger-input-address" value="台北市大安區和平東路二段106號"> </div>
-                                    <div class="dataItem"><label for="">聯絡電話:</label><input type="text" name="Phone"
-                                            id="personal-maneger-input-phone" value="0999123456">
-                                    </div>
-
-                                    <div class="dataItem"><label for="">介紹:</label>
-                                        <br>
-                                        <textarea id="personal-maneger-input-introduction" name="" cols="80"
-                                            rows="5">範例</textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <button class="save" type="button" id="member_submit">儲存</button>
-                    </form>
-                </div>
-
-
-            </div>
-        </div>
-
-        <!-- <div class="div_FavorActivity">
-                <div class="div_FavorActivity_Title">
-                    <span class="span_FavorActivity_Title">關注的活動</span>
-                </div>
-                <div class="div_FavorActivityList">
-                    <div class="div_FavorActivityBlock">
-                        <a href="">
-                            <div class="div_FavorActivityimg"><img src="img/Activity1.jpg" alt=""></div>
-                            <div class="div_FavorActivityItems">
-                                <span>台南淨灘活動</span>
-                            </div>
-                        </a></div>
-                    <div class="div_FavorActivityBlock">
-                        <a href="">
-                            <div class="div_FavorActivityimg"><img src="img/Activity1.jpg" alt=""></div>
-                            <div class="div_FavorActivityItems">
-                                <span>台南淨灘活動</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div> -->
     </div>
 
     <!-- * create-activity  ****************      ****************       ****************   -->
@@ -3132,9 +2778,7 @@
                 </div>
             </div>
     </div>
-    </main>
-    </div>
-    </div>
+
 
     <!-- * ****************     **************** footer ****************    **************** -->
     <footer>
@@ -3201,7 +2845,6 @@
     <script src="./src/activity.js"></script>
     <script type="module" src="./src/home.js"></script>
     <script type="module" src="./src/login.js"></script>
-    <script src="./src/news_detial.js"></script>
     <script src="./src/personalPage.js"></script>
     <script src="./src/personal_maneger.js"></script>
     <script src="./src/aboutUs.js"></script>
