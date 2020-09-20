@@ -122,7 +122,7 @@ function ClsActivityDetail() {
     // * ---------------- 活動參與者數量 文字樣板 ---------------- //
 
     const actDetail_participant_count = (o) => {
-        return `<h5 id="activity_detail_participant_count">活動參與者(${o})</h5>
+        return `<h5 id="activity_detail_participant_count" style="font-size:1.8rem;">活動參與者(${o})</h5>
                 <a href="#">See All</a>
                 `;
     };
@@ -155,7 +155,7 @@ function ClsActivityDetail() {
     // * ---------------- 活動隸屬社團 文字樣板 ---------------- //
 
     const actDetailSocietiesALL = (o) => {
-        return `<h5 style="margin-top: 2rem;margin-bottom:1.5rem;font-weight: bold;">活動所屬社團</h5>
+        return `<h5 style="margin-top: 5rem;margin-bottom:1.5rem;font-size:1.8rem;">活動所屬社團</h5>
                 <div class="activity_detail_Societies2">
                 <a href="#community/detail/${o.fCommunityId}" class="activity_detail_Societies_a">
                 <div class="activity_detail_Societies_img_circle" style="margin-left: 1rem;">

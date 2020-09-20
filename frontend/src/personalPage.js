@@ -43,8 +43,7 @@ function ClsPersonalPage() {
     function display_information(data) {
         personalpage_information.innerHTML = htmlPerCard(data[0]);
         personal_community.innerHTML = ` <div class="personal_file_title_text"><span class="personal_file_title">加入的社團</span>
-        <span>:</span>
-        <span class="personal_file_text"></span></div>`;
+        <span class="personal_file_middle">:</span>`;
 
         let htmlData = '<div class="personal_file_imgs">';
         data.map(function (e, index) {

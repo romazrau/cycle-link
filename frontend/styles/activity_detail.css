@@ -21,7 +21,7 @@
   justify-content: space-between;
   align-items: flex-end;
   margin: 0px auto;
-  width: 1060px;
+  width: 65vw;
   padding: 1.5rem 0;
 }
 
@@ -80,12 +80,13 @@
 }
 
 .activity_detail_info_name_H {
-  font-size: 14px;
+  font-size: 1rem;
   color: grey;
 }
 
 .activity_detail_info_name a {
   color: black;
+  font-size: 1.2rem;
 }
 
 .activity_detail_info_status {
@@ -95,9 +96,10 @@
 
 /* 活動左側 內文 */
 .activity_detail_text_all {
-  width: 1200px;
+  width: 65vw;;
   display: flex;
   margin: 0 auto;
+  justify-content: space-between;
 }
 
 .activity_detail_text_detail {
@@ -113,7 +115,7 @@
 }
 
 .activity_detail_text_left {
-  margin: 0px auto;
+  /* margin: 0px auto; */
   width: 700px;
   padding: 1.5rem 0;
 }
@@ -156,7 +158,7 @@
 /* 活動右側 */
 .activity_detail_right_container {
   width: 20%;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   /* width: 35vw; */
   /* border: 1px solid red; */
 }
@@ -181,11 +183,11 @@
 .activity_detail_right_top button {
   border: 1px solid var(--blue-color);
   border-radius: 0.8rem;
-  padding: 0.7rem 2rem;
+  padding: 0.7rem 7rem;
   /* margin-bottom: 1rem; */
   background-color: var(--blue-color);
   color: white;
-  font-size: 20px;
+  font-size: 1.2rem;
 }
 
 .activity_detail_right_top button:hover {
@@ -238,7 +240,7 @@
 }
 
 .activity_detail_participant_all h5 {
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .activity_detail_participant_all a {
@@ -610,4 +612,9 @@
 
 #inputDemo:hover {
   cursor: pointer;
+}
+
+
+.activity_detail_initiatorbox {
+  margin-top: 2rem;
 }

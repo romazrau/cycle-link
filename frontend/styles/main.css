@@ -30,6 +30,33 @@
   text-decoration: none !important;
 }
 
+/* a:link {
+  color:black;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color:black;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color:black;
+  background-color: transparent;
+  text-decoration: none;
+
+}
+
+a:active {
+  color:black;
+  background-color: transparent;
+  text-decoration: none;
+
+} */
+
+
 /*隱藏滾輪*/
 body::-webkit-scrollbar {
   display: none;
