@@ -28,12 +28,15 @@ const Article_ImgIsNullOrNot = (x) => {
       let imgArr = x.split(",,");
       // console.log(imgArr);
       var a = Article_multiImgArr(imgArr);
-      return `<a class="ArticlePost_preIcon" href="">
-                <i class="fas fa-chevron-left fa-2x" style="color:white"></i>
-              </a>${a}
-              <a class="ArticlePost_nextIcon" href="">
-                <i class="fas fa-chevron-right fa-2x" style="color:white"></i>
-              </a>`;
+      return `<i class="fas fa-chevron-left fa-2x ArticlePost_preIcon" style="color:white"></i>
+      <i class="fas fa-chevron-right fa-2x ArticlePost_nextIcon" style="color:white"></i>
+      ${a}`;
+      // return `<a class="ArticlePost_preIcon" href="">
+      //           <i class="fas fa-chevron-left fa-2x" style="color:white"></i>
+      //         </a>${a}
+      //         <a class="ArticlePost_nextIcon" href="">
+      //           <i class="fas fa-chevron-right fa-2x" style="color:white"></i>
+      //         </a>`;
     } else {
       return `
       <div class="community_article_body_img">
@@ -70,6 +73,7 @@ const Article_multiImgArr = (k) => {
   }
   //下一張
   var allNextIcon = document.querySelectorAll(".ArticlePost_nextIcon");
+  // console.log(allNextIcon);
   for (let i = 0; i < allNextIcon.length; i++) {
     allNextIcon[i].addEventListener("click", function (e) {
       e.preventDefault();
@@ -134,9 +138,9 @@ const Article_multiImgArr = (k) => {
   function Article_addClickEventToReply(pIds) {
     pIds.map((e, index)=>{
       let TheReplyIcon = document.getElementById("Article_replyIconbyfId" + e)
-        TheReplyIcon.addEventListener("click", function () {
-          e.preventDefault();
-          Article_showReplyInput(e);
+        TheReplyIcon.addEventListener("click", async()=>{
+          getArticleReply(e);
+          // Article_showReplyInput(e);
         });
     })
   }
@@ -307,32 +311,32 @@ const Edit_ImgIsNullOrNot = (x) => {
 //TODO社團留言：文字樣板
 const htmlCommunityMainReply = (x) => {
   return `
-  <div class="CM_reply_item">
-  <div class="CM_reply_item_header">
-    <div class="CM_reply_item_header_img_container">
-      <div class="CM_reply_item_header_img_circle_border">
-        <div class="CM_reply_item_header_img">
+  <div class="community_article_reply">
+  <div class="community_article_reply_header">
+    <div class="community_article_reply_header_img_container">
+      <div class="community_article_reply_header_img_circle_border">
+        <div class="community_article_reply_header_img">
           <img
             src="http://localhost:3050/${x.ReplyMemberImg}"
-            class="CM_reply_item_header_img_img"
+            class="community_article_reply_header_img_img"
           />
         </div>
       </div>
     </div>
-    <div class="CM_reply_item_header_content">
-      <div class="CM_reply_item_header_content_info">
+    <div class="community_article_reply_header_content">
+      <div class="community_article_reply_header_content_info">
         <span>${x.ReplyMemberName}</span>
         <span>${x.fReplyTime}</span>
         <i class="fas fa-stream editIconforReply"></i>
       </div>
-      <div class="CM_reply_item_header_content_text">
+      <div class="community_article_reply_header_content_text">
         <span
           >${x.fContent}</span
         >
       </div>
     </div>
   </div>
-  <div class="CM_reply_item_content" id=""></div>
+  <div class="community_article_reply_content" id=""></div>
 </div>`;
 };
 
@@ -377,17 +381,19 @@ const htmlCommunityArticleReplyInput = (x) => {
       }
       await goInside(e);
       // console.log(document.getElementById("Article_replyIconbyfId" + e.PostId));
-      document
-        .getElementById("Article_replyIconbyfId" + e.PostId)
-        .addEventListener("click", function () {
-          console.log("icon event has been added!");
-          getArticleReply(e.PostId);
-        });
+      //留言Icon：加入點擊事件
+      // document
+      //   .getElementById("Article_replyIconbyfId" + e.PostId)
+      //   .addEventListener("click", function () {
+      //     console.log("icon event has been added!");
+      //     getArticleReply(e.PostId);
+      //   });
     });
   };
 
 //社團頁面：留言字串匯入function
 const display_replyDetail = (o, x) => {
+  document.getElementById("Article_bindPostReplybyfId" + x).innerHTML = "";
   o.map((e, index) => {
     if (e.fPostId == x) {
       document.getElementById(
@@ -395,11 +401,13 @@ const display_replyDetail = (o, x) => {
       ).innerHTML += htmlCommunityMainReply(e);
     }
   });
+  
   //匯入我要留言區
   Article_showReplyInput(x);
-  // 此時增加留言發出的點擊事件
+
+  //此時增加留言發出的點擊事件
   document.getElementById("ArticleReplySend" + x).addEventListener("click", () => {
-    // 抓取Text內容
+    //抓取Text內容
     let content = document.getElementById("ArticleReplyText" + x).value;
     Article_addReplyToSQL(x, content);
   });
@@ -469,12 +477,10 @@ const display_replyDetail = (o, x) => {
       }
       Article_addClickEventToReply(postidArr);
       Article_addClickEventToLike(postidArr);
-      addClickEventToEdit(postidArr);
+      // addClickEventToEdit(postidArr);
       Article_MultiImgFunction();
       Article_MemberLikePost();
       //*--------------------------------------*//
-
-      
       // 抓PostID，對編輯Icon增加點擊事件
       result.data.map((e, index) => {
         document
@@ -488,8 +494,6 @@ const display_replyDetail = (o, x) => {
       });
 
       // Article_addClickEventToReply(result.data);
-      //TODO編輯點擊事件
-      //TODO典籍喜歡
       // Article_addClickEventToLike(result.data.length);
     } catch (err) {
       console.log(err);
@@ -505,14 +509,7 @@ const display_replyDetail = (o, x) => {
         let result = await response.json();
         // console.log(result);
         // console.log(result.data);
-        for (let i = 0; i < result.data.length; i++) {
-          if (result.data[i].fPostId == postid) {
-            console.log(result.data[i].fPostId);
-            display_replyDetail(result.data, postid);
-            return;
-          }
-        }
-
+        display_replyDetail(result.data, postid);
       } catch (err) {
         console.log(err);
       }
@@ -718,21 +715,25 @@ const display_replyDetail = (o, x) => {
   //     addArticletoSQL(getCommunityIdFromUrl(), addArticleInput);
   //     getPostInSingleCommunity(getCommunityIdFromUrl());
   //   });
+
   //TODO圖片載入測試中
-  // document
-  //   .getElementById("articleImgInput")
-  //   .addEventListener("change", function () {
-  //     console.log("12313123123");
-  //     let addArticleImgFile = document.getElementById("articleImgInput")[0]
-  //       .files[0];
-  //     let addArticleImgReader = new FileReader();
-  //     addArticleImgReader.onload = function (e) {
-  //       document
-  //         .querySelector(".AddArticleImgDisplay_img")
-  //         .attributes("src", e.target.result);
-  //     };
-  //     addArticleImgReader.readAsDataURL(addArticleImgFile);
-  //   });
+  const htmladdArticleImgItem = (x) => {
+    return ` <img src="${x}" class="AddArticleImgDisplay_img">`;
+  };
+  document
+    .getElementById("articleImgInput")
+    .addEventListener("change", function () {
+      let addArticleImgFiles = document.getElementById("articleImgInput").files;
+      let addArticleImgDisplay = document.getElementById(".AddArticleImgDisplay");
+      let addArticleImgReader = new FileReader();
+
+      addArticleImgReader.onload = function (e) {
+        document
+          .querySelector(".AddArticleImgDisplay_img")
+          .attributes("src", e.target.result);
+      };
+      addArticleImgReader.readAsDataURL(addArticleImgFile);
+    });
 
   this.ComeonPost = getPostInSingleCommunity;
 }
