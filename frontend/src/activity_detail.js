@@ -309,7 +309,7 @@ function ClsActivityDetail() {
             // console.log(result.data);
             location.href = "#activity"
             document.querySelector("#act_tag_main").innerHTML = `#${tag}`;
-
+            console.log("data",result.data.tagSearch);
             ActivityIndex.display_active(result.data.tagSearch)
             // location.reload();
         } catch (err) {

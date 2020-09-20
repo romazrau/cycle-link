@@ -365,6 +365,8 @@ ${ImgIsNullOrNot(x.PostImg)}
     .addEventListener("click", function () {
       let nowtime = new Date();
       let nowMonth = timeFormatAdjust(nowtime.getMonth() + 1);
+      document.querySelector(".CM_recommend_container").style.display="block";
+      document.querySelector(".CM_recommend_container").innerHTML="";
       getRecommendCommunity(nowMonth);
     });
 
@@ -372,6 +374,8 @@ ${ImgIsNullOrNot(x.PostImg)}
   document
     .querySelector(".CM_searchbar_explore_item")
     .addEventListener("click", function () {
+      document.querySelector(".CM_recommend_container").style.display="flex";
+      document.querySelector(".CM_recommend_container").innerHTML="";
       getExploreCommunity();
     });
 
@@ -503,7 +507,8 @@ ${ImgIsNullOrNot(x.PostImg)}
         credentials: "include",
       });
       let result = await response.json();
-      // console.log(result.data);
+
+      console.log("sadasd:",result.data);
       display_recommendCommunity(result.data.exploreCard);
       display_postDetail(result.data.explorePost);
 
@@ -694,20 +699,25 @@ ${ImgIsNullOrNot(x.PostImg)}
   //TODO postime判斷距離現在時間
   //TODO 刪除留言
   //TODO 刪除文章
-
+    this.getCommunityPost=getCommunityPost;
   // this.GetAllPosts = getCommunityPost;
   // this.SearchtxtCommunity = document.querySelector(".CM_banner_searchbar_text").value;
   // this.SearchCardCommunity = document.querySelector(".CM_recommend_container").innerHTML;
 }
 const CommunityMain = new ClsCommunityMain();
 
-// const communityMainChanging123 = () => {
-//   if (location.hash.includes("#community")) {
-//     CommunityMain.GetAllPosts();
-//     CommunityMain.SearchtxtCommunity = "";
-//     CommunityMain.SearchCardCommunity = "";
-//     console.log("yyyyyyyyyy");
-//   }
-// };
-// window.addEventListener("hashchange", communityMainChanging123);
-// window.addEventListener("load", communityMainChanging123);
+const communityMainChanging123 = () => {
+  if (location.hash.includes("#community")) {
+    // CommunityMain.GetAllPosts();
+    // CommunityMain.SearchtxtCommunity = "";
+    // CommunityMain.SearchCardCommunity = "";
+    //搜尋結果隱藏
+    document.querySelector(".CM_recommend_container").style.display="none";
+    //清空原本搜尋結果
+    // document.querySelector(".community_main_ul_timeline").innerHTML="";
+    CommunityMain.getCommunityPost();
+    
+  }
+};
+window.addEventListener("hashchange", communityMainChanging123);
+window.addEventListener("load", communityMainChanging123);
