@@ -5,6 +5,11 @@ function ClsLogin() {
     document.querySelector("#loginSubmit").onclick =
         async (e) => {
             e.preventDefault();
+            if(!document.querySelector(".Login_CheckBox").innerHTML)
+            {
+                alert("未進行認證!!!!")
+                return;
+            }else{
             // console.log(e);
             let form = document.querySelector("#form_signIn"); // 抓登入 form element
             let formData = new FormData(form); // 打包成 FormData
@@ -42,7 +47,7 @@ function ClsLogin() {
             }
         }
 
-
+    }
 
 
 
@@ -64,43 +69,60 @@ function ClsLogin() {
 
 
 
-    /***********-------------------------- */
-    const checkBox = document.getElementById('Login_CheckBox');
+    /***********---------機器人----------------- ****/
+    const SetcheckData=[
+        {
+            answer:[0, 1, 1, 1, 1, 1, 0, 0, 0]
+        },
+        {
+            answer:[0, 0, 1, 0, 0, 1, 0, 0, 0]
+        },
+        {
+            answer:[1, 0, 0, 1, 0, 0, 0, 0, 0]
+        }
+    ]
+    let index=Math.floor(Math.random()*3)
+    
+    // document.querySelector(".Login_CheckBox_Link").addEventListener("click",function(e){
+    //     e.preventDefault();
+    // })
 
-    const answer = [0, 1, 1, 1, 1, 1, 0, 0, 0];
+
+    const checkBox = document.getElementById('Login_CheckBox');
+    const answer = SetcheckData[index];
+    
     var checkimgs = document.querySelectorAll(".Login_checkimgbox img");
     var checkimgsbox = document.querySelectorAll(".Login_checkimgbox");
-    var count = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    var check_useranswer = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+
 
 
     for (let i = 0; i < checkimgs.length; i++) {
-        checkimgs[i].src = `./img/signin/${i + 1}.jpg`
+        checkimgs[i].src = `./img/signin/${index+1}-${i + 1}.jpg`
         //src="./img/1.jpg"
         checkimgs[i].addEventListener("click", () => {
 
-            if (count[i] % 2 == 0) {
-                console.log(count[i]);
+            if (check_useranswer[i] % 2 == 0) {
+                console.log(check_useranswer[i]);
                 checkimgs[i].style.opacity = 0.5;
                 checkimgsbox[i].style.opacity = 0.5;
-                count[i]++;
+                check_useranswer[i]++;
 
             } else {
-                console.log(count[i]);
+                console.log(check_useranswer[i]);
                 checkimgs[i].style.opacity = 1;
                 checkimgsbox[i].style.opacity = 1;
-                count[i]--;
+                check_useranswer[i]--;
             }
-            console.log(count);
         })
     }
+
     document.querySelector(".Login_answerBtn").addEventListener("click", () => {
+        if (JSON.stringify(check_useranswer) !== JSON.stringify(answer.answer)) {
+            window.alert("錯誤!!!!!");
 
-
-        if (JSON.stringify(count) !== JSON.stringify(answer)) {
-            window.alert("錯誤");
-
-        } else {
-
+        } else 
+        {
             document.querySelector(".Login_checkviewcontainer").style.display = "none";
             document.querySelector(".Login_backgroundview").style.display = "none";
             document.querySelector(".Login_CheckBox").innerHTML = `<i class="fas fa-check"></i>`;
