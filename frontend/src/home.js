@@ -248,10 +248,13 @@ const display_home_weather = (o, t,day) => {
             var day_list = ['日', '一', '二', '三', '四', '五', '六'];
             // for(let i=0;i<)
             let homepage_weather_day =document.querySelectorAll(".homepage_weather_day")
+            console.log("homepage_weather_day",homepage_weather_day);
+            if(day>day_list.length-1)
+             day=0;
+             console.log("day",day);
             document.querySelectorAll(".homepage_weather_day")[homepage_weather_day.length-1].innerHTML="星期"+day_list[day]
             day++;
-            // if(day>day_list.length)
-            //  day=0;
+            
           }
     }    ),
     t.time.map((e, index) => {
