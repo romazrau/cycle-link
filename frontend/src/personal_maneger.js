@@ -27,8 +27,8 @@ function ClsPersonalManeger() {
             });
             let result = await response.json();
 
-            console.log("+++++++++++++++++++");
-            console.log(result);
+            // console.log("+++++++++++++++++++");
+            // console.log(result);
             document.querySelector("#personal-manege-img").src = serverURL.root + "/" + result.data.fPhotoPath;
             document.querySelector("#personal-manege-name").innerHTML = result.data.fName;
             document.querySelector("#personal-manege-account").innerHTML = result.data.fAccount;
@@ -165,11 +165,11 @@ function ClsPersonalManeger() {
              let attendContainer = document.querySelector("#attendContainer");
             attendContainer.innerHTML = "";
             for (let i = 0; i < result.data.creates.length; i++) {
-                console.log("創建囉", result.data.creates[i]);
+                // console.log("創建囉", result.data.creates[i]);
                 attendContainer.innerHTML += ActivityCardPersonal(result.data.creates[i]);
             }
             for (let i = 0; i < result.data.attendedlist.length; i++) {
-                console.log("參加囉", result.data.attendedlist[i]);
+                // console.log("參加囉", result.data.attendedlist[i]);
                 attendContainer.innerHTML += ActivityCardPersonal(result.data.attendedlist[i]);
             }
             if(!attendContainer.innerHTML){
