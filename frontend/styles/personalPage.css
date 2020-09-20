@@ -1,7 +1,7 @@
 .personal_container {
   max-width: 1140px;
   display: flex;
-  padding: 20px 0;
+  padding: 25vh 0 5vh 0;
   margin-right: auto;
   margin-left: auto;
   justify-content: center;
@@ -15,23 +15,30 @@
   justify-content: space-around;
 }
 
-.personal_file_title_text{
+.personal_file_title_text {
   width: 25rem;
 }
 
-.personal_file_imgs{
+.personal_file_imgs {
   display: flex;
   flex-wrap: wrap;
 }
 
 .personal_imgbox {
-  margin: 50px;
-  width: 570px;
+  /* position: absolute; */
+  border-radius: 50%;
+  padding: 0.5rem;
+  border: 3px solid var(--blue-color);
+  /* margin: 50px; */
+  margin: 0 auto;
+  width: 20vw;
   height: auto;
+  background-color: white;
 }
 
 .personal_imgbox img {
-  max-width: 550px;
+  border-radius: 50%;
+  /* max-width: 550px; */
   width: 100%;
 }
 
@@ -40,10 +47,11 @@
   flex-direction: column;
   justify-content: space-between;
   border: 10px solid var(--whitle-color);
-  width: 570px;
-  height: auto;
-  /* margin: 60px 20px; */
-  padding: 60px 0;
+  width: 30vw;
+  /* height: auto; */
+  /* margin: 1rem; */
+  padding: 1rem;
+  /* border: 1px solid red; */
 }
 
 .personal_pro_file {
@@ -187,6 +195,10 @@
   padding-left: 0px;
 }
 
+.personal_pro_file li {
+  line-height: 3rem;
+}
+
 .personal_detail_Societies_img_circle {
   position: relative;
   width: 70px;
@@ -218,7 +230,17 @@
   margin-right: 50px;
 }
 
-.personal_title_line{
+.personal_title_line {
   display: flex;
   justify-content: space-between;
+}
+
+.personal_banner {
+  height: 40vh;
+  background-color: var(--lightblue-color);
+  /* margin: 0 auto; */
+}
+
+.personal_banner p {
+  height: 15vh;
 }
