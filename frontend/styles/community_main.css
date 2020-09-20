@@ -649,3 +649,14 @@
   margin-top: 25px;
   color: var(--grey-color);
 }
+
+
+
+/******************* RWD*******************/
+
+@media(max-width: 800px){
+  
+.community_main_ul_timeline {
+  padding-right: 1.5rem;}
+
+}

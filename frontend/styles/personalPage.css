@@ -15,6 +15,15 @@
   justify-content: space-around;
 }
 
+.personal_file_title_text{
+  width: 25rem;
+}
+
+.personal_file_imgs{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .personal_imgbox {
   margin: 50px;
   width: 570px;
@@ -185,6 +194,7 @@
   border: 2px solid var(--blue-color);
   border-radius: 15%;
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .personal_detail_Societies_img_div {

@@ -410,3 +410,35 @@
 #activity_card_ALL {
     display: block;
 }
+
+
+/******************* RWD*******************/
+
+
+@media(max-width: 800px){
+
+
+
+.activity_search_container {
+    left: 15vw;
+}
+
+.active_main_search input {
+    width: 70vw;
+}
+
+.active_main_search select {
+    top: 5rem;
+    left: 0;
+    border-radius: 10px;
+}
+
+.activity_top button {
+    left: calc(15vw + 150px);
+    top: 20rem;
+    width: 80px;
+    height: 55px;
+    border-radius: 10px;
+}
+
+}
