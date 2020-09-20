@@ -426,10 +426,10 @@ function ClsCommuntityDetail() {
             //   console.log(user);
 
             // 狀態按鈕
-            document.querySelector("#ApplyBtn").setAttribute("class", "hide");
-            document.querySelector("#ManagerBtn").setAttribute("class", "hide");
-            document.querySelector("#MemberBtn").setAttribute("class", "hide");
-            document.querySelector("#PendingBtn").setAttribute("class", "hide");
+            document.querySelector("#ApplyBtn").classList.add("hide");
+            document.querySelector("#ManagerBtn").classList.add("hide");
+            document.querySelector("#MemberBtn").classList.add("hide");
+            document.querySelector("#PendingBtn").classList.add("hide");
             // console.log(user);
             // 管理員 社員 非社員(含訪客) 待審核會員
             switch (user) {
@@ -514,17 +514,26 @@ function ClsCommuntityDetail() {
             });
 
             let result = await response.json();
-            // console.log("+++++++++++++++++++++++++++");
-            // console.log(result.data);
+            console.log("+++++++++++++++++++++++++++");
+            console.log(result.data);
 
             let MemberContainer = document.querySelector("#MemberTemplate");
             MemberContainer.innerHTML = "";
+            document.querySelector(".managerCommunity").innerHTML = "";
 
             if (result.result) {
+
                 result.data.map((item) => {
                     MemberContainer.innerHTML += data2manageImg(item);
                     // console.log(item);
+
+                    document.querySelector(".managerCommunity").innerHTML  += data2manageImg(item);
+               
                 });
+
+                
+                
+                // document.querySelector(".managerCommunity").innerHTML = `${result.data[0]}`;
             }
 
             // document.querySelector("#CommunityManager").innerHTML = result.data[0].fName;
@@ -1046,7 +1055,7 @@ function ClsCommuntityDetail() {
             console.log(fCommunityId);
 
             document.querySelector("#PendingBtn").classList.remove("hide");
-            document.querySelector("#ApplyBtn").setAttribute("class", "hide");
+            document.querySelector("#ApplyBtn").classList.add("hide");
 
             let response = await fetch(
                 serverURL.communityMemberAccessRight,

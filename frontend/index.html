@@ -819,7 +819,7 @@
                         <input name="fAccount" type="text" placeholder="Account" />
                         <input name="fPassword" type="password" placeholder="Password" />
                         <div class="Login_CheckContainer">
-                            <a href="">
+                            <a class="Login_CheckBox_Link" href="">
                                 <div class="Login_CheckBox" id="Login_CheckBox"></div>
                             </a>
                             <p>我不是機器人</p>
@@ -908,7 +908,7 @@
                 <div class="Login_checkfooter"><input type="button" value="驗證" class="Login_answerBtn"></div>
             </div>
             <div class="Login_backgroundview Login_hide"></div>
-            <script src="./src/login.js"></script>
+           
 
 
             <!-- <div class="page_signIn_left">
@@ -948,11 +948,14 @@
 
         <!-- * Personal page  ****************      ****************       ****************   -->
         <div id='page_personal-page' class='page  hide'>
-
-            <div class="personal_container">
+            <div class="personal_banner">
+                <p></p>
                 <div class="personal_imgbox">
                     <!-- <img src="img/id1.jpg" alt=""> -->
                 </div>
+            </div>
+            <div class="personal_container">
+                
                 <div class="personal_wrapper">
                     <div class="personal_information">
                         <!-- <div class="">
@@ -1284,133 +1287,150 @@
                     <div>台北,台灣</div>
                 </div> -->
 
-                            <div class="FlexContainer Group_FlexJustifyContentSB">
-                                <div>
-                                    <div class="FlexContainer GroupTopRightEventInfoBox">
-                                        <div class="Size20IconMarginRight"><img src="./img/icon_group.svg" width="20">
+                            <div class="FlexContainer Group_FlexJustifyContentSB rwd_topInfo">
+                              
+
+
+                                        <div class="FlexContainer GroupTopRightEventInfoBox rwd_grouptop_info">
+                                            <div class="Size20IconMarginRight"><img src="./img/icon_group.svg"
+                                                    width="20">
+                                            </div>
+                                            <div>社團人數&nbsp;<span id="CommunityNumberOfPeople">50</span>&nbsp;人</div>
+                                            <span>-</span>
+                                            <div>
+                                                <sapn id="CommunityStatus">私人</sapn>社團
+                                            </div>
+                                            <div class="Size20IconMarginLeft"><img src="./img/icon_question.svg"
+                                                    width="20">
+                                            </div>
                                         </div>
-                                        <div>社團人數&nbsp;<span id="CommunityNumberOfPeople">50</span>&nbsp;人</div>
-                                        <span>-</span>
-                                        <div>
-                                            <sapn id="CommunityStatus">私人</sapn>社團
+
+                                        <div class="FlexContainer rwd_grouptop_info">
+                                            <div class="Boldtitle">Share:</div>
+                                            <div class="Size20IconMarginLeft Size20IconMarginRight rwd_icon"><img
+                                                    src="./img/icon_facebook.svg" width="20"></div>
+                                            <div class="Size20IconMarginRight"><img src="./img/icon_twitter.svg"
+                                                    width="20">
+                                            </div>
+                                            <div class="Size20IconMarginRight"><img src="./img/icon_instagram.svg"
+                                                    width="20">
+                                            </div>
                                         </div>
-                                        <div class="Size20IconMarginLeft"><img src="./img/icon_question.svg" width="20">
-                                        </div>
+                                    <!-- </div> -->
+                                    <button class="divForRightPartInfo" id="community_edit">
+                                        <img src="img/edit-regular.svg" width="20px">
+                                    </button>
+                                    <div class="rwd_manager">
+                                        <!-- <div class="FlexContainer "> -->
+                                            <div class="rwd_manager_width100">
+                                                    
+                                                    <div class="rwd_manager_name">管理員:</div>
+                                                    <div class="managerCommunity">咬孝天</div>
+                                                    <!-- </div> -->
+                                                    <!-- <img src="./img/icon_chat.svg" width="20px"> -->
+                                                    <!-- </div> -->
+                                             
+                                            </div>
                                     </div>
 
-                                    <div class="FlexContainer ">
-                                        <div class="Boldtitle">Share:</div>
-                                        <div class="Size20IconMarginLeft Size20IconMarginRight"><img
-                                                src="./img/icon_facebook.svg" width="20"></div>
-                                        <div class="Size20IconMarginRight"><img src="./img/icon_twitter.svg" width="20">
-                                        </div>
-                                        <div class="Size20IconMarginRight"><img src="./img/icon_instagram.svg"
-                                                width="20">
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="divForRightPartInfo" id="community_edit">
-                                    <img src="img/edit-regular.svg" width="20px">
-                                </button>
                             </div>
 
                         </div>
-
                     </div>
                 </div>
-            </div>
 
-            <!-- <hr class="DividedLine PositionRalative"> -->
+                <!-- <hr class="DividedLine PositionRalative"> -->
 
 
-            <!-- page -->
-            <div class="aboutMe">
-                <div class="Container">
+                <!-- page -->
+                <div class="aboutMe">
+                    <div class="Container">
 
-                    <!---------------------下層關於我---------------------->
-                    <div class="dropdown-relative-container">
-                        <div class="FlexContainer Group_FlexJustifyContentSB">
-                            <div class="FontSectionTitle">關於我們</div>
-                            <!-- <div class="GroupAboutUsDivImg">
+                        <!---------------------下層關於我---------------------->
+                        <div class="dropdown-relative-container">
+                            <div class="FlexContainer Group_FlexJustifyContentSB">
+                                <div class="FontSectionTitle">關於我們</div>
+                                <!-- <div class="GroupAboutUsDivImg">
                                         <img class="GroupAboutUsImg settingIcon" data-open-name="DropDownMenu_edit"
                                             src="/img/icon_seemore.svg" width="25px">
                                     </div> -->
-                        </div>
-                        <!-- <div class="DropDownMenu" id="DropDownMenu_edit">
+                            </div>
+                            <!-- <div class="DropDownMenu" id="DropDownMenu_edit">
                                     <div class="dropdown-triangleD"></div>
                                     <div class="dropdownD js_editCommunity">編輯</div>
                                 </div> -->
-                    </div>
-                    <div id="CommunityAboutUs" class="FontSectionText">
-                        當您已完成潛水課程，成為一位合格的潛水員後，當然水世界潛水會為您安排接續探索水下風光的活動！
-                        剛結訓的學員基本上對台灣海域不熟悉、也不知道該從哪裡開始玩起，也擔心沒人準備後勤作業，也沒有同伴一起分享。
-                        水世界潛水俱樂部可以帶領喜愛潛水的同好，更重要的就是可以找到志同道合的潛友成為彼此的潛伴，一同下水遊覽美麗的海底世界；「水世界潛水俱樂部」是由專業導潛、資深教練、資深潛友、潛水新手聚集而成的團體，帶您體驗大自然。
-                        您要如何加入會員
-                        資格：
-                        (1) 水世界潛水結訓的學員 或
-                        (2) 於水世界潛水購買整套重裝者
-                        俱樂部會員權益與義務
-                        1.入會費
-                        入會費為$1000元，您將獲的一張會員卡及10張氣瓶卷(有效期為當年有效)。而會籍是終身有效。
-                        *當年度於水世界潛水結訓之學員，享免年費優惠，只需繳交$1,000元入會費即可享有會員權益。
-                    </div>
-
-                </div>
-            </div>
-            <!------------------------------------- 中間nav bar ----------------------------------->
-            <div class="Container">
-                <div class="FlexContainer MiddleNavBar">
-                    <div class="GroupTopLeftW60">
-
-                        <div class="FlexContainer LinkBar Group_FlexJustifyContentSB">
-                            <div class="GroupLink GroupLinkFocus" id="Group_navlink_info" value="GroupDetailPage_home">介
-                                紹
-                            </div>
-                            <div class="GroupLink" id="Group_navlink_Post" value="GroupDetailPage_Discussion">文
-                                章</div>
-                            <div class="GroupLink" id="Group_navlink_Picture" value="GroupDetailPage_Picture">照 片
-                            </div>
-                            <div class="GroupLink" value="GroupDetailPage_Event">活
-                                動
-                            </div>
-                            <div class="GroupLink" value="GroupDetailPage_Member">成
-                                員
-                            </div>
+                        </div>
+                        <div id="CommunityAboutUs" class="FontSectionText">
+                            當您已完成潛水課程，成為一位合格的潛水員後，當然水世界潛水會為您安排接續探索水下風光的活動！
+                            剛結訓的學員基本上對台灣海域不熟悉、也不知道該從哪裡開始玩起，也擔心沒人準備後勤作業，也沒有同伴一起分享。
+                            水世界潛水俱樂部可以帶領喜愛潛水的同好，更重要的就是可以找到志同道合的潛友成為彼此的潛伴，一同下水遊覽美麗的海底世界；「水世界潛水俱樂部」是由專業導潛、資深教練、資深潛友、潛水新手聚集而成的團體，帶您體驗大自然。
+                            您要如何加入會員
+                            資格：
+                            (1) 水世界潛水結訓的學員 或
+                            (2) 於水世界潛水購買整套重裝者
+                            俱樂部會員權益與義務
+                            1.入會費
+                            入會費為$1000元，您將獲的一張會員卡及10張氣瓶卷(有效期為當年有效)。而會籍是終身有效。
+                            *當年度於水世界潛水結訓之學員，享免年費優惠，只需繳交$1,000元入會費即可享有會員權益。
                         </div>
 
                     </div>
+                </div>
+                <!------------------------------------- 中間nav bar ----------------------------------->
+                <div class="Container">
+                    <div class="FlexContainer MiddleNavBar">
+                        <div class="GroupTopLeftW60">
 
-                    <div class="GroupDiveBtn FlexContainer">
-                        <div id="statusBtn" class=" FlexContainer statusBtn">
-                            <img src="./img/icon_setting.svg" width="25px">
-                            <div id="ApplyBtn" href="#community/detail/" class="GroupDiveBtnText">&nbsp;&nbsp;加入社團
-                            </div>
-                            <div id="ManagerBtn" class="GroupDiveBtnText hide">&nbsp&nbsp管理員</div>
-                            <div id="PendingBtn" class="js_forLeave_btn GroupDiveBtnText hide">&nbsp&nbsp審核中</div>
-
-                            <div id="MemberBtn" class="js_forLeave_btn GroupNavBtn GroupDiveBtnText hide">
-                                &nbsp&nbsp我是社員</div>
-                            <!-- <img src="./img/icon_triangle_downside.svg" width="25px"> -->
-                            <div class="DropDownMenu js_leaveDropDown " id="leaveCommunityBtn">
-                                <div class="dropdown-triangleLeave"></div>
-                                <div class="dropdownLeave">
-                                    <div>退出社團</div>
+                            <div class="FlexContainer LinkBar Group_FlexJustifyContentSB">
+                                <div class="GroupLink GroupLinkFocus" id="Group_navlink_info"
+                                    value="GroupDetailPage_home">介
+                                    紹
+                                </div>
+                                <div class="GroupLink" id="Group_navlink_Post" value="GroupDetailPage_Discussion">文
+                                    章</div>
+                                <div class="GroupLink" id="Group_navlink_Picture" value="GroupDetailPage_Picture">照 片
+                                </div>
+                                <div class="GroupLink" value="GroupDetailPage_Event">活
+                                    動
+                                </div>
+                                <div class="GroupLink" value="GroupDetailPage_Member">成
+                                    員
                                 </div>
                             </div>
-                            <!-- <div class="dropdown">
+
+                        </div>
+
+                        <div class="GroupDiveBtn FlexContainer">
+                            <div id="statusBtn" class=" FlexContainer statusBtn">
+                                <img src="./img/icon_setting.svg" width="25px" class="settingIcon">
+                                <div id="ApplyBtn" href="#community/detail/" class="GroupDiveBtnText">&nbsp;&nbsp;加入社團
+                                </div>
+                                <div id="ManagerBtn" class="GroupDiveBtnText hide">&nbsp&nbsp管理員</div>
+                                <div id="PendingBtn" class="js_forLeave_btn GroupDiveBtnText hide">&nbsp&nbsp審核中</div>
+
+                                <div id="MemberBtn" class="js_forLeave_btn GroupNavBtn GroupDiveBtnText hide">
+                                    &nbsp&nbsp我是社員</div>
+                                <!-- <img src="./img/icon_triangle_downside.svg" width="25px"> -->
+                                <div class="DropDownMenu js_leaveDropDown " id="leaveCommunityBtn">
+                                    <div class="dropdown-triangleLeave"></div>
+                                    <div class="dropdownLeave">
+                                        <div>退出社團</div>
+                                    </div>
+                                </div>
+                                <!-- <div class="dropdown">
                                         <div>編輯社團</div>
                                     </div> -->
 
-                        </div>
+                            </div>
 
-                        <!-- <div class="GroupNavBtn FlexContainer">
+                            <!-- <div class="GroupNavBtn FlexContainer">
                                 <img src="./img/icon_user.svg" width="25px">
                                 <div class="GroupDiveBtnText">退出社團</div>
                             </div> -->
+                        </div>
+
                     </div>
-
                 </div>
-            </div>
 
 
 
@@ -1418,28 +1438,28 @@
 
 
 
-            <div class="GrayBackGround">
+                <div class="GrayBackGround">
 
-                <div class="Container">
+                    <div class="Container">
 
-                    <!----------------------------------------////// 下層＿主頁 ////////---------------------------------------->
-                    <div class="GroupBottomMain FlexContainer GroupDetailPage" id="GroupDetailPage_home">
-                        <!-- <a class="ReadMoreLink GroupEnglishFont" href="#">read more</a> -->
-                        <!-- 沒抓到  -->
-                        <!----------------------------------下層左----------------------------------->
-                        <div class="GroupBottomLeft">
-                            <!-------------------下層即將到來活動------------------>
-                            <div class="FlexContainer FontSectionTitle">
-                                <div class="GroupComingEvent">近期活動</div>
-                            </div>
-                            <!-- !!!!!!!!!!!!需要再切沒有活動的小格!!!!!!!!!!!!!!!! -->
-                            <!------ 一張卡 ------->
-                            <div id="actcommunity">
+                        <!----------------------------------------////// 下層＿主頁 ////////---------------------------------------->
+                        <div class="GroupBottomMain FlexContainer GroupDetailPage" id="GroupDetailPage_home">
+                            <!-- <a class="ReadMoreLink GroupEnglishFont" href="#">read more</a> -->
+                            <!-- 沒抓到  -->
+                            <!----------------------------------下層左----------------------------------->
+                            <div class="GroupBottomLeft">
+                                <!-------------------下層即將到來活動------------------>
+                                <div class="FlexContainer FontSectionTitle">
+                                    <div class="GroupComingEvent">近期活動</div>
+                                </div>
+                                <!-- !!!!!!!!!!!!需要再切沒有活動的小格!!!!!!!!!!!!!!!! -->
+                                <!------ 一張卡 ------->
+                                <div id="actcommunity">
 
-                            </div>
+                                </div>
 
-                            <!------ 一張卡 ------->
-                            <!-- <div class="card">
+                                <!------ 一張卡 ------->
+                                <!-- <div class="card">
                                     <div class="GroupBottomCardTime">SAT,AUG 12, 9:00 AM</div>
                                     <div class="GroupBottomCardEventName">水肺淨海</div>
                                     <div class="FlexContainer">
@@ -1458,10 +1478,10 @@
                                         30 April to 3 May 2020 to 1-4 April 2021 (Thur-Sun).
                                     </div>
                                 </div> -->
-                            <!------ 一張卡 --------->
+                                <!------ 一張卡 --------->
 
-                            <!-------------------下層活動照片------------------>
-                            <!-- <div class="FlexContainer FontSectionTitle">
+                                <!-------------------下層活動照片------------------>
+                                <!-- <div class="FlexContainer FontSectionTitle">
                                     <div class="FlexContainer">
                                         <div class="GroupComingEvent">社團照片</div>
                                         <div>(450)</div>
@@ -1481,16 +1501,16 @@
                                 </div> -->
 
 
-                        </div>
-                        <div>
+                            </div>
+                            <div>
 
 
-                            <!-------------------- 下層左 cls tag -------------------------->
-                        </div>
+                                <!-------------------- 下層左 cls tag -------------------------->
+                            </div>
 
 
 
-                        <!-- <div class="activity_detail_info_img_circle">
+                            <!-- <div class="activity_detail_info_img_circle">
                                         <div class="activity_detail_info_img_div">
                                             <img src="./img/c1.jpeg" class="activity_detail_info_img">
                                         </div>
@@ -1499,485 +1519,492 @@
 
 
 
-                        <!----------------------------------下層右----------------------------------->
-                        <div class="GroupBottomRight">
-                            <div class="dropdown-relative-container">
+                            <!----------------------------------下層右----------------------------------->
+                            <div class="GroupBottomRight">
+                                <div class="dropdown-relative-container">
 
-                                <div class="FlexContainer Group_FlexJustifyContentSB">
-                                    <div class="FontSectionTitle">社團管理員</div>
-                                    <!-- <img class="GroupBottomRightSetImg settingIcon"
+                                    <div class="FlexContainer Group_FlexJustifyContentSB">
+                                        <div class="FontSectionTitle">社團管理員</div>
+                                        <!-- <img class="GroupBottomRightSetImg settingIcon"
                                             data-open-name="DropDownMenu_List" src="/img/icon_seemore.svg" width="25px"> -->
-                                </div>
-                                <!-- <div class="DropDownMenu" id="DropDownMenu_List">
+                                    </div>
+                                    <!-- <div class="DropDownMenu" id="DropDownMenu_List">
                                         <div class="dropdown-triangleDR"></div>
                                         <div class="dropdownDR js_editCommunity">編輯管理員名單</div>
                                     </div> -->
-                            </div>
-                            <div id="MemberTemplate" class="FlexContainer GroupRight MemberTemplateFlexDirection">
-                                <div class="activity_detail_info_img_circle">
-                                    <div class="activity_detail_info_img_div">
-                                        <img src="./img/id2.jpg" class="activity_detail_info_img">
+                                </div>
+                                <div id="MemberTemplate" class="FlexContainer GroupRight MemberTemplateFlexDirection">
+                                    <div class="activity_detail_info_img_circle">
+                                        <div class="activity_detail_info_img_div">
+                                            <img src="./img/id2.jpg" class="activity_detail_info_img">
+                                        </div>
+                                    </div>
+                                    <div class="GroupRightInfo FlexContainer GroupRightInfoText">
+
+                                        <a id="CommunityManager" href="#" class="GroupHolderName">蘇菲唐納</a>
+                                        <a class="GroupEnglishFont GroupRightInfoM" href="#">
+                                            <img src="./img/icon_chat.svg" width="20"></a>
+
                                     </div>
                                 </div>
-                                <div class="GroupRightInfo FlexContainer GroupRightInfoText">
-
-                                    <a id="CommunityManager" href="#" class="GroupHolderName">蘇菲唐納</a>
-                                    <a class="GroupEnglishFont GroupRightInfoM" href="#">
-                                        <img src="./img/icon_chat.svg" width="20"></a>
-
-                                </div>
-                            </div>
 
 
-                            <div class="dropdown-relative-container">
-                                <div class="FlexContainer RightPartTopInfo Group_FlexJustifyContentSB ">
-                                    <div class="FlexContainer">
-                                        <div class="GroupComingEvent FontSectionTitle">社團成員</div>
-                                        <div id="NumOfMem" class="FontSectionTitle">(4)</div>
-                                    </div>
-                                    <!-- <img class="GroupComingEventImg settingIcon"
+                                <div class="dropdown-relative-container">
+                                    <div class="FlexContainer RightPartTopInfo Group_FlexJustifyContentSB ">
+                                        <div class="FlexContainer">
+                                            <div class="GroupComingEvent FontSectionTitle">社團成員</div>
+                                            <div id="NumOfMem" class="FontSectionTitle">(4)</div>
+                                        </div>
+                                        <!-- <img class="GroupComingEventImg settingIcon"
                                             data-open-name="DropDownMenu_memList" src="/img/icon_seemore.svg"
                                             width="25px"> -->
-                                    <!-- <a href="#" class="SeeAllRight FontSectionTitle">see all</a> -->
-                                </div>
-                                <!-- <div class="DropDownMenu" id="DropDownMenu_memList">
+                                        <!-- <a href="#" class="SeeAllRight FontSectionTitle">see all</a> -->
+                                    </div>
+                                    <!-- <div class="DropDownMenu" id="DropDownMenu_memList">
                                         <div class="dropdown-triangleDR"></div>
                                         <div class="dropdownDR js_editCommunity">編輯會員名單</div>
                                     </div> -->
-                            </div>
-                            <div id="CommunityMember" class="FlexContainer GroupRightInfoPhotoContainer">
-                                <div class="activity_detail_info_img_circle GroupMemberPic">
-                                    <div class="activity_detail_info_img_div">
-                                        <img class="activity_detail_info_img GoupRightInfoPhoto" src="./img/id1.jpg"
-                                            width="30">
-                                    </div>
                                 </div>
-
-                                <div class="activity_detail_info_img_circle GroupMemberPic">
-                                    <div class="activity_detail_info_img_div"><img
-                                            class="GoupRightInfoPhoto activity_detail_info_img" src="./img/id2.jpg"
-                                            width="30"></div>
-                                </div>
-                                <div class="activity_detail_info_img_circle GroupMemberPic">
-                                    <div class="activity_detail_info_img_div"><img
-                                            class="GoupRightInfoPhoto activity_detail_info_img" src="./img/id3.jpg"
-                                            width="30"></div>
-                                </div>
-
-                                <div class="activity_detail_info_img_circle GroupMemberPic">
-                                    <div class="activity_detail_info_img_div"><img
-                                            class="GoupRightInfoPhoto activity_detail_info_img" src="./img/id4.jpeg"
-                                            width="30"></div>
-                                </div>
-                            </div>
-                            <div id="CommunityMemberNone" class="CommunityMemberNone FlexContainer hide">
-                                <img src="./img/icon_lock.svg" width="20px" class="iconlock">
-                                <div>私密社團</div>
-                            </div>
-
-
-
-
-
-                            <!-------------------- 下層右 cls tag -------------------------->
-                        </div>
-                        <!---------------------/////////////// 下層Main cls tag /////////////////------------------------->
-                    </div>
-
-                    <!----------------------------------------////// 下層＿活動 ////////---------------------------------------->
-                    <div class="GroupBottomMain GroupDetailPage hide" id="GroupDetailPage_Event">
-                        <!-------------------------- switch bar ------------------------>
-                        <div class="Calender FlexContainer">
-                            <!-- <button class="btn-event-shift">活動列表</button><button
-                                    class="btn-event-shift">行事曆</button> -->
-                        </div>
-                        <!----------------------- calendar or event ----------------------->
-                        <!-------------------------- event -------------------------->
-                        <div class="FlexContainer EventBottom hide">
-
-                            <!--------------- event left part  ------------------->
-                            <div class="EventBottomLeft ">
-                                <div class="BottomLeftInfoCard LeftSwitchCard">
-                                    <a id="commingEvent" class="LO" href="#community/detail">即將到來活動</a>
-                                    <a id="pastEvent" class="LO" href="#community/detail">過去活動</a>
-
-                                </div>
-                            </div>
-                            <!---------------///  event right part coming event ///  ------------------->
-                            <div class="EventBottomRight comingEvent">
-                                <!-- 一張卡 -->
-                                <div class="BottomRightInfoCard">
-                                    <div class="GroupBottomCardTime">Saturday, August 1, 2020</div>
-                                    <div class="GroupBottomCardEventName">週六清晨潮境水肺淨海</div>
-                                    <div class="FlexContainer">
-                                        <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                        <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
-                                    </div>
-                                </div>
-                                <!-- 一張卡end -->
-
-                                <div class="BottomRightInfoCard">
-                                    <div class="GroupBottomCardTime">Saturday, Sep 1, 2020</div>
-                                    <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                    <div class="FlexContainer">
-                                        <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                        <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
-                                    </div>
-                                    <div class="GroupBottomCardDD">
-                                        潛水安全注意事項
-                                        潛水一定要找伴，絕對不可獨自下水，熟悉的地方，可以潛伴一同下水，不熟的地方，需有潛導帶領，不可貿然下水，如有潛導帶隊，需全程服從潛導的指令，不可自行脫隊潛水。
-                                        不潛原則，天氣不好不潛，能見度不好不潛，身體狀況不好不潛，浪大不潛，閃電打雷不潛，上下岸困難不潛，沒有潛伴不潛，裝備不齊不潛，酒後或宿醉不潛，有流不潛。
-                                    </div>
-
-                                    <button class="GroupCardBtn">候補</button>
-
-
-                                </div>
-
-                                <div class="BottomRightInfoCard">
-                                    <div class="GroupBottomCardTime">Saturday, Oct 1, 2020</div>
-                                    <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                    <div class="FlexContainer">
-                                        <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                        <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
-                                    </div>
-                                    <div class="GroupBottomCardDD">
-                                        潛水安全注意事項
-                                        潛水一定要找伴，絕對不可獨自下水，熟悉的地方，可以潛伴一同下水，不熟的地方，需有潛導帶領，不可貿然下水，如有潛導帶隊，需全程服從潛導的指令，不可自行脫隊潛水。
-                                        不潛原則，天氣不好不潛，能見度不好不潛，身體狀況不好不潛，浪大不潛，閃電打雷不潛，上下岸困難不潛，沒有潛伴不潛，裝備不齊不潛，酒後或宿醉不潛，有流不潛。
-                                    </div>
-                                    <button class="GroupCardBtn">參加</button>
-                                </div>
-
-                                <div class="BottomRightInfoCard">
-                                    <div class="GroupBottomCardTime">Saturday, Oct 10, 2020</div>
-                                    <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                    <div class="FlexContainer">
-                                        <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                        <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
-                                    </div>
-                                    <div class="GroupBottomCardDD">
-                                        潛水安全注意事項
-                                        潛水一定要找伴，絕對不可獨自下水，熟悉的地方，可以潛伴一同下水，不熟的地方，需有潛導帶領，不可貿然下水，如有潛導帶隊，需全程服從潛導的指令，不可自行脫隊潛水。
-                                        不潛原則，天氣不好不潛，能見度不好不潛，身體狀況不好不潛，浪大不潛，閃電打雷不潛，上下岸困難不潛，沒有潛伴不潛，裝備不齊不潛，酒後或宿醉不潛，有流不潛。
-                                    </div>
-                                    <div
-                                        class="FlexContainer EventCardBottom GroupAlignItemsC Group_FlexJustifyContentSB">
-                                        <div class="FlexContainer GroupEventBtnText GroupFontFamily">
-                                            <div><img src="./img/id1.jpg" width="30"></div>
-                                            <div class="MarginLeft1rem">1</div>
-                                            <div>人參加</div>
-                                        </div>
-                                        <button class="GroupCardBtn">參加</button>
-                                    </div>
-
-                                </div>
-                                <button class="SeeMoreBtnforUnderCard">show more</button>
-                                <!--------------- event right part  ------------------->
-                                <!---------------///  event right part coming event end ///  ------------------->
-                            </div>
-                            <!---------------///  event right part past event ///  ------------------->
-                            <div class="EventBottomRight pastEvent hide">
-                                <!-- 一張卡 -->
-                                <div class="BottomRightInfoCard">
-                                    <div class="GroupBottomCardTime">Saturday, Dec 1, 2019</div>
-                                    <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                    <div class="FlexContainer">
-                                        <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                        <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
-                                    </div>
-                                </div>
-                                <!--  -->
-
-                                <!-- 一張卡 -->
-                                <div class="BottomRightInfoCard">
-                                    <div class="GroupBottomCardTime">Saturday, Nov 1, 2019</div>
-                                    <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                    <div class="FlexContainer">
-                                        <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                        <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
-                                    </div>
-                                </div>
-                                <!--  -->
-                                <!-- 一張卡 -->
-                                <div class="BottomRightInfoCard">
-                                    <div class="GroupBottomCardTime">Saturday, Oct 1, 2019</div>
-                                    <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                    <div class="FlexContainer">
-                                        <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                        <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
-                                    </div>
-                                    <div class="GroupBottomCardDD">
-                                        潛水安全注意事項
-                                        潛水一定要找伴，絕對不可獨自下水，熟悉的地方，可以潛伴一同下水，不熟的地方，需有潛導帶領，不可貿然下水，如有潛導帶隊，需全程服從潛導的指令，不可自行脫隊潛水。
-                                        不潛原則，天氣不好不潛，能見度不好不潛，身體狀況不好不潛，浪大不潛，閃電打雷不潛，上下岸困難不潛，沒有潛伴不潛，裝備不齊不潛，酒後或宿醉不潛，有流不潛。
-                                    </div>
-                                </div>
-                                <!--  -->
-                                <!-- 一張卡 -->
-                                <div class="BottomRightInfoCard">
-                                    <div class="GroupBottomCardTime">Saturday, Sep 1, 2019</div>
-                                    <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                    <div class="FlexContainer">
-                                        <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                        <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
-                                    </div>
-                                    <div class="GroupBottomCardDD">
-                                        潛水安全注意事項
-                                        潛水一定要找伴，絕對不可獨自下水，熟悉的地方，可以潛伴一同下水，不熟的地方，需有潛導帶領，不可貿然下水，如有潛導帶隊，需全程服從潛導的指令，不可自行脫隊潛水。
-                                        不潛原則，天氣不好不潛，能見度不好不潛，身體狀況不好不潛，浪大不潛，閃電打雷不潛，上下岸困難不潛，沒有潛伴不潛，裝備不齊不潛，酒後或宿醉不潛，有流不潛。
-                                    </div>
-                                </div>
-                                <!--  -->
-
-                                <!-- 一張卡 -->
-                                <div class="BottomRightInfoCard">
-                                    <div class="GroupBottomCardTime">Saturday, Jul 1, 2019</div>
-                                    <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                    <div class="FlexContainer">
-                                        <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                        <div class="GroupBottomCardLocation">藍色海洋潛水店</div>
-                                    </div>
-                                    <div class="FlexContainer">
-                                        <div><img src="./img/id1.jpg" width="30"></div>
-                                        <div>1</div>
-                                        <div>人參加</div><img src="./img/icon_chat.svg" width="20">
-                                        <div>3</div>
-                                    </div>
-                                </div>
-                                <!--  -->
-                                <!-- 一張卡 -->
-                                <div class="BottomRightInfoCard">
-                                    <div class="GroupBottomCardTime">Saturday, Jun 1, 2019</div>
-                                    <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
-                                    <div class="FlexContainer">
-                                        <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
-                                        <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
-                                    </div>
-                                    <div class="FlexContainer">
-                                        <div><img src="./img/id1.jpg" width="30"></div>
-                                        <div>1</div>
-                                        <div>人參加</div>
-                                    </div>
-                                </div>
-                                <!--  -->
-                                <button class="SeeMoreBtnforUnderCard">show more</button>
-
-                            </div>
-
-                        </div>
-                        <!-------------------------- calendar -------------------------->
-                        <div class="calenderbody" id='calendar'></div>
-
-
-
-                    </div>
-                    <!----------------------------------------////// 下層＿會員 ////////---------------------------------------->
-                    <div class="GroupBottomMain FlexContainer GroupBottomMainMember GroupDetailPage hide"
-                        id="GroupDetailPage_Member">
-                        <div class="MemberBottomLeft GroupBottomMainMember">
-                            <div class="BottomLeftInfoCard LeftSwitchCard">
-                                <a id="allMember" class="LO">所有成員</a>
-                                <a id="rankingMember" class="LO">管理員</a>
-                            </div>
-                        </div>
-
-                        <div class="MemberBottomRight GroupBottomMainMember">
-
-                            <!-- 框 -->
-                            <div class="BottomRightSearchList">
-                                <!------------------------ /// Member right part switch hidden（所有成員）///  ------------------------>
-                                <div class="allMember">
-                                    <div class="FlexContainer Group_FlexJustifyContentSB GroupMemberSearch">
-                                        <div>成員列表</div>
-                                        <div class="FlexContainer">
-                                            <div class="GroupMemberSort  Size20IconMarginRight ">排序方式</div>
-                                            <a href="#">
-                                                <div class="Size20IconMarginRight Size20IconOpacity"><img
-                                                        src="./img/icon_arrowDropdown.svg" width="20"></div>
-                                            </a>
-                                            <a href="#" id="memberFilter">
-                                                <div class="Size20IconMarginRight Size20IconOpacity Rotate90"><img
-                                                        src="./img/icon_arrow.svg" width="20">
-                                                </div>
-                                            </a>
+                                <div id="CommunityMember" class="FlexContainer GroupRightInfoPhotoContainer">
+                                    <div class="activity_detail_info_img_circle GroupMemberPic">
+                                        <div class="activity_detail_info_img_div">
+                                            <img class="activity_detail_info_img GoupRightInfoPhoto" src="./img/id1.jpg"
+                                                width="30">
                                         </div>
                                     </div>
-                                    <input class="GroupMemberSearchInput" type="text"
-                                        placeholder="who you wanna search for?">
-                                    <div id="MemberPageTemplateContainer">
-                                        <!------- 會員卡 -------->
-                                        <div
-                                            class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
-                                            <div class="FlexContainer">
-                                                <a href="#" class="DivForImg">
-                                                    <div class="activity_detail_info_img_circle">
-                                                        <div class="activity_detail_info_img_div">
-                                                            <img src="./img/id3.jpg" class="activity_detail_info_img">
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <div class="GroupMemberCardInfo">
-                                                    <a href="#">Wwill354</a>
-                                                    <div class="FlexContainer">
-                                                        <div>May 11, 2019</div>
-                                                        <div>加入此社團</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="#">
-                                                <img class="Size20IconMarginRight" src="./img/icon_chat.svg" width="20">
-                                            </a>
-                                        </div>
 
-                                        <!-------  -------->
-                                        <hr>
-                                        <!------- 會員卡 -------->
-                                        <div
-                                            class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
-                                            <div class="FlexContainer">
-                                                <a href="#" class="DivForImg">
-                                                    <div class="activity_detail_info_img_circle">
-                                                        <div class="activity_detail_info_img_div">
-                                                            <img src="./img/home08.jpg"
-                                                                class="activity_detail_info_img">
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <div class="GroupMemberCardInfo">
-                                                    <a href="#">奔跑8boy</a>
-                                                    <div class="FlexContainer">
-                                                        <div>March 03, 2019</div>
-                                                        <div>加入此社團</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="#">
-                                                <img class="Size20IconMarginRight" src="./img/icon_chat.svg" width="20">
-                                            </a>
-                                        </div>
-                                        <!-------  -------->
-                                        <hr>
-                                        <!------- 會員卡 -------->
-                                        <div
-                                            class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
-                                            <div class="FlexContainer">
-                                                <a href="#" class="DivForImg">
-                                                    <div class="activity_detail_info_img_circle">
-                                                        <div class="activity_detail_info_img_div">
-                                                            <img src="./img/id1.jpg" class="activity_detail_info_img">
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <div class="GroupMemberCardInfo">
-                                                    <a href="#">aa5568</a>
-                                                    <div class="FlexContainer">
-                                                        <div>Jun 6, 2019</div>
-                                                        <div>加入此社團</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="#">
-                                                <img class="Size20IconMarginRight" src="./img/icon_chat.svg" width="20">
-                                            </a>
-                                        </div>
-                                        <!-------  -------->
+                                    <div class="activity_detail_info_img_circle GroupMemberPic">
+                                        <div class="activity_detail_info_img_div"><img
+                                                class="GoupRightInfoPhoto activity_detail_info_img" src="./img/id2.jpg"
+                                                width="30"></div>
                                     </div>
-                                    <button class="ShowMoreBtn">show more!</button>
-
-                                </div>
-                                <!------------------------ /// Member right part switch hidden（管理員）///  ------------------------>
-                                <div class="rankingMember hide">
-                                    <div class="FlexContainer Group_FlexJustifyContentSB GroupMemberSearch">
-                                        <div>管理員列表</div>
-                                        <div class="FlexContainer">
-                                            <div class="GroupMemberSort">排序方式</div>
-                                            <a href="#"><img class="Size20IconMarginLeft Size20IconOpacity"
-                                                    src="./img/icon_arrowDropdown.svg" width="20"></a>
-                                            <a href="#"><img class="Size20IconMarginLeft Rotate90 Size20IconOpacity"
-                                                    src="./img/icon_arrow.svg" width="20"></a>
-                                        </div>
+                                    <div class="activity_detail_info_img_circle GroupMemberPic">
+                                        <div class="activity_detail_info_img_div"><img
+                                                class="GoupRightInfoPhoto activity_detail_info_img" src="./img/id3.jpg"
+                                                width="30"></div>
                                     </div>
-                                    <!------- 會員卡 -------->
-                                    <div id="MemberPageTemplateContainerM">
 
-                                        <div
-                                            class="FlexContainer GroupMemberBottomRightMemberCard Group_FlexJustifyContentSB">
-                                            <div class="FlexContainer">
-                                                <a href="#" class="DivForImg">
-                                                    <div class="activity_detail_info_img_circle">
-                                                        <div class="activity_detail_info_img_div">
-                                                            <img src="./img/id2.jpg" class="activity_detail_info_img">
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <div class="GroupMemberCardInfo">
-                                                    <a href="#">蘇菲唐納</a>
-                                                    <div class="FlexContainer">
-                                                        <div class="GroupMemberBottomRightInfoCardText">May 11, 2019
-                                                        </div>
-                                                        <div>加入此社團</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a href="#">
-                                            <img src="./img/icon_chat.svg" width="20">
-                                        </a>
+                                    <div class="activity_detail_info_img_circle GroupMemberPic">
+                                        <div class="activity_detail_info_img_div"><img
+                                                class="GoupRightInfoPhoto activity_detail_info_img" src="./img/id4.jpeg"
+                                                width="30"></div>
                                     </div>
                                 </div>
-                            </div>
-                            <div id="CommunityMemberNone" class="CommunityMemberNone FlexContainer hide">
-                                <img src="./img/icon_lock.svg" width="20px" class="iconlock">
-                                <div>私密社團</div>
+                                <div id="CommunityMemberNone" class="CommunityMemberNone FlexContainer hide">
+                                    <img src="./img/icon_lock.svg" width="20px" class="iconlock">
+                                    <div>私密社團</div>
+                                </div>
+
+
+
+
+
+                                <!-------------------- 下層右 cls tag -------------------------->
                             </div>
                             <!---------------------/////////////// 下層Main cls tag /////////////////------------------------->
                         </div>
 
-                    </div>
-                    <!----------------------------------------////// 下層＿文章 ////////---------------------------------------->
-                    <div class="GroupBottomMain GroupDetailPage hide GroupDiscussion " id="GroupDetailPage_Discussion">
+                        <!----------------------------------------////// 下層＿活動 ////////---------------------------------------->
+                        <div class="GroupBottomMain GroupDetailPage hide" id="GroupDetailPage_Event">
+                            <!-------------------------- switch bar ------------------------>
+                            <div class="Calender FlexContainer">
+                                <!-- <button class="btn-event-shift">活動列表</button><button
+                                    class="btn-event-shift">行事曆</button> -->
+                            </div>
+                            <!----------------------- calendar or event ----------------------->
+                            <!-------------------------- event -------------------------->
+                            <div class="FlexContainer EventBottom hide">
 
+                                <!--------------- event left part  ------------------->
+                                <div class="EventBottomLeft ">
+                                    <div class="BottomLeftInfoCard LeftSwitchCard">
+                                        <a id="commingEvent" class="LO" href="#community/detail">即將到來活動</a>
+                                        <a id="pastEvent" class="LO" href="#community/detail">過去活動</a>
 
-                        <div class="FlexContainer GroupDiscussionTitle">
-                            <div class="GroupComingEvent FontSectionTitle">文章</div>
-                            <!-- 可惡啊這邊還沒動態寫入 -->
-                            <div class="FontSectionTitle">(10)</div>
-                        </div>
-
-
-                        <!------------------------/// Left part ///  ------------------------>
-                        <div class="FlexContainer">
-                            <div id="DiscussionLeft" class="DiscussionLeft">
-                                <div class="FlexContainer MessageBox">
-                                    <div class="Group_detail_Societies_img_div">
-                                        <!-- <img class="Group_detail_Societies_img" src="./img/id1.jpg" width="30"> -->
                                     </div>
-                                    <form id="article_form">
-                                        <textarea class="AddArticleInput" name="fContent"
-                                            placeholder="Post something..." cols=30 rows=2></textarea>
-                                        <label class="AddArticleLabel">
-                                            <input type="file" name="fPhoto" id="articleImgInput" multiple="multiple"
-                                                style="display: none;">
-                                            <!-- <img src="./img/icon_photo.svg" width="23" class="UploadImgforArticle"> -->
-                                            <i class="fas fa-images"></i>
-                                        </label>
-                                        <label class="AddArticleLabel">
-                                            <input type="submit" id="articleSubmitIcon" style="display: none;">
-                                            <!-- <img src="./img/icon_send.svg" width="20" class="AddArticleinCommunity" -->
-                                            <i class="far fa-paper-plane"></i>
-                                        </label>
-                                        <!-- <div class="AddArticleImgDisplay">
+                                </div>
+                                <!---------------///  event right part coming event ///  ------------------->
+                                <div class="EventBottomRight comingEvent">
+                                    <!-- 一張卡 -->
+                                    <div class="BottomRightInfoCard">
+                                        <div class="GroupBottomCardTime">Saturday, August 1, 2020</div>
+                                        <div class="GroupBottomCardEventName">週六清晨潮境水肺淨海</div>
+                                        <div class="FlexContainer">
+                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                        </div>
+                                    </div>
+                                    <!-- 一張卡end -->
+
+                                    <div class="BottomRightInfoCard">
+                                        <div class="GroupBottomCardTime">Saturday, Sep 1, 2020</div>
+                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                        <div class="FlexContainer">
+                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                        </div>
+                                        <div class="GroupBottomCardDD">
+                                            潛水安全注意事項
+                                            潛水一定要找伴，絕對不可獨自下水，熟悉的地方，可以潛伴一同下水，不熟的地方，需有潛導帶領，不可貿然下水，如有潛導帶隊，需全程服從潛導的指令，不可自行脫隊潛水。
+                                            不潛原則，天氣不好不潛，能見度不好不潛，身體狀況不好不潛，浪大不潛，閃電打雷不潛，上下岸困難不潛，沒有潛伴不潛，裝備不齊不潛，酒後或宿醉不潛，有流不潛。
+                                        </div>
+
+                                        <button class="GroupCardBtn">候補</button>
+
+
+                                    </div>
+
+                                    <div class="BottomRightInfoCard">
+                                        <div class="GroupBottomCardTime">Saturday, Oct 1, 2020</div>
+                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                        <div class="FlexContainer">
+                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                        </div>
+                                        <div class="GroupBottomCardDD">
+                                            潛水安全注意事項
+                                            潛水一定要找伴，絕對不可獨自下水，熟悉的地方，可以潛伴一同下水，不熟的地方，需有潛導帶領，不可貿然下水，如有潛導帶隊，需全程服從潛導的指令，不可自行脫隊潛水。
+                                            不潛原則，天氣不好不潛，能見度不好不潛，身體狀況不好不潛，浪大不潛，閃電打雷不潛，上下岸困難不潛，沒有潛伴不潛，裝備不齊不潛，酒後或宿醉不潛，有流不潛。
+                                        </div>
+                                        <button class="GroupCardBtn">參加</button>
+                                    </div>
+
+                                    <div class="BottomRightInfoCard">
+                                        <div class="GroupBottomCardTime">Saturday, Oct 10, 2020</div>
+                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                        <div class="FlexContainer">
+                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                        </div>
+                                        <div class="GroupBottomCardDD">
+                                            潛水安全注意事項
+                                            潛水一定要找伴，絕對不可獨自下水，熟悉的地方，可以潛伴一同下水，不熟的地方，需有潛導帶領，不可貿然下水，如有潛導帶隊，需全程服從潛導的指令，不可自行脫隊潛水。
+                                            不潛原則，天氣不好不潛，能見度不好不潛，身體狀況不好不潛，浪大不潛，閃電打雷不潛，上下岸困難不潛，沒有潛伴不潛，裝備不齊不潛，酒後或宿醉不潛，有流不潛。
+                                        </div>
+                                        <div
+                                            class="FlexContainer EventCardBottom GroupAlignItemsC Group_FlexJustifyContentSB">
+                                            <div class="FlexContainer GroupEventBtnText GroupFontFamily">
+                                                <div><img src="./img/id1.jpg" width="30"></div>
+                                                <div class="MarginLeft1rem">1</div>
+                                                <div>人參加</div>
+                                            </div>
+                                            <button class="GroupCardBtn">參加</button>
+                                        </div>
+
+                                    </div>
+                                    <button class="SeeMoreBtnforUnderCard">show more</button>
+                                    <!--------------- event right part  ------------------->
+                                    <!---------------///  event right part coming event end ///  ------------------->
+                                </div>
+                                <!---------------///  event right part past event ///  ------------------->
+                                <div class="EventBottomRight pastEvent hide">
+                                    <!-- 一張卡 -->
+                                    <div class="BottomRightInfoCard">
+                                        <div class="GroupBottomCardTime">Saturday, Dec 1, 2019</div>
+                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                        <div class="FlexContainer">
+                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                        </div>
+                                    </div>
+                                    <!--  -->
+
+                                    <!-- 一張卡 -->
+                                    <div class="BottomRightInfoCard">
+                                        <div class="GroupBottomCardTime">Saturday, Nov 1, 2019</div>
+                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                        <div class="FlexContainer">
+                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                        </div>
+                                    </div>
+                                    <!--  -->
+                                    <!-- 一張卡 -->
+                                    <div class="BottomRightInfoCard">
+                                        <div class="GroupBottomCardTime">Saturday, Oct 1, 2019</div>
+                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                        <div class="FlexContainer">
+                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                        </div>
+                                        <div class="GroupBottomCardDD">
+                                            潛水安全注意事項
+                                            潛水一定要找伴，絕對不可獨自下水，熟悉的地方，可以潛伴一同下水，不熟的地方，需有潛導帶領，不可貿然下水，如有潛導帶隊，需全程服從潛導的指令，不可自行脫隊潛水。
+                                            不潛原則，天氣不好不潛，能見度不好不潛，身體狀況不好不潛，浪大不潛，閃電打雷不潛，上下岸困難不潛，沒有潛伴不潛，裝備不齊不潛，酒後或宿醉不潛，有流不潛。
+                                        </div>
+                                    </div>
+                                    <!--  -->
+                                    <!-- 一張卡 -->
+                                    <div class="BottomRightInfoCard">
+                                        <div class="GroupBottomCardTime">Saturday, Sep 1, 2019</div>
+                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                        <div class="FlexContainer">
+                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                        </div>
+                                        <div class="GroupBottomCardDD">
+                                            潛水安全注意事項
+                                            潛水一定要找伴，絕對不可獨自下水，熟悉的地方，可以潛伴一同下水，不熟的地方，需有潛導帶領，不可貿然下水，如有潛導帶隊，需全程服從潛導的指令，不可自行脫隊潛水。
+                                            不潛原則，天氣不好不潛，能見度不好不潛，身體狀況不好不潛，浪大不潛，閃電打雷不潛，上下岸困難不潛，沒有潛伴不潛，裝備不齊不潛，酒後或宿醉不潛，有流不潛。
+                                        </div>
+                                    </div>
+                                    <!--  -->
+
+                                    <!-- 一張卡 -->
+                                    <div class="BottomRightInfoCard">
+                                        <div class="GroupBottomCardTime">Saturday, Jul 1, 2019</div>
+                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                        <div class="FlexContainer">
+                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                            <div class="GroupBottomCardLocation">藍色海洋潛水店</div>
+                                        </div>
+                                        <div class="FlexContainer">
+                                            <div><img src="./img/id1.jpg" width="30"></div>
+                                            <div>1</div>
+                                            <div>人參加</div><img src="./img/icon_chat.svg" width="20">
+                                            <div>3</div>
+                                        </div>
+                                    </div>
+                                    <!--  -->
+                                    <!-- 一張卡 -->
+                                    <div class="BottomRightInfoCard">
+                                        <div class="GroupBottomCardTime">Saturday, Jun 1, 2019</div>
+                                        <div class="GroupBottomCardEventName">清晨潮境水肺淨海</div>
+                                        <div class="FlexContainer">
+                                            <div><img class="Icon20Color" src="./img/icon_gps.svg" width="20"></div>
+                                            <div class="GroupBottomCardLocation ">藍色海洋潛水店</div>
+                                        </div>
+                                        <div class="FlexContainer">
+                                            <div><img src="./img/id1.jpg" width="30"></div>
+                                            <div>1</div>
+                                            <div>人參加</div>
+                                        </div>
+                                    </div>
+                                    <!--  -->
+                                    <button class="SeeMoreBtnforUnderCard">show more</button>
+
+                                </div>
+
+                            </div>
+                            <!-------------------------- calendar -------------------------->
+                            <div class="calenderbody" id='calendar'></div>
+
+
+
+                        </div>
+                        <!----------------------------------------////// 下層＿會員 ////////---------------------------------------->
+                        <div class="GroupBottomMain FlexContainer GroupBottomMainMember GroupDetailPage hide"
+                            id="GroupDetailPage_Member">
+                            <div class="MemberBottomLeft GroupBottomMainMember">
+                                <div class="BottomLeftInfoCard LeftSwitchCard">
+                                    <a id="allMember" class="LO">所有成員</a>
+                                    <a id="rankingMember" class="LO">管理員</a>
+                                </div>
+                            </div>
+
+                            <div class="MemberBottomRight GroupBottomMainMember">
+
+                                <!-- 框 -->
+                                <div class="BottomRightSearchList">
+                                    <!------------------------ /// Member right part switch hidden（所有成員）///  ------------------------>
+                                    <div class="allMember">
+                                        <div class="FlexContainer Group_FlexJustifyContentSB GroupMemberSearch">
+                                            <div>成員列表</div>
+                                            <div class="FlexContainer">
+                                                <div class="GroupMemberSort  Size20IconMarginRight ">排序方式</div>
+                                                <a href="#">
+                                                    <div class="Size20IconMarginRight Size20IconOpacity"><img
+                                                            src="./img/icon_arrowDropdown.svg" width="20"></div>
+                                                </a>
+                                                <a href="#" id="memberFilter">
+                                                    <div class="Size20IconMarginRight Size20IconOpacity Rotate90"><img
+                                                            src="./img/icon_arrow.svg" width="20">
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <input class="GroupMemberSearchInput" type="text"
+                                            placeholder="who you wanna search for?">
+                                        <div id="MemberPageTemplateContainer">
+                                            <!------- 會員卡 -------->
+                                            <div
+                                                class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
+                                                <div class="FlexContainer">
+                                                    <a href="#" class="DivForImg">
+                                                        <div class="activity_detail_info_img_circle">
+                                                            <div class="activity_detail_info_img_div">
+                                                                <img src="./img/id3.jpg"
+                                                                    class="activity_detail_info_img">
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <div class="GroupMemberCardInfo">
+                                                        <a href="#">Wwill354</a>
+                                                        <div class="FlexContainer">
+                                                            <div>May 11, 2019</div>
+                                                            <div>加入此社團</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a href="#">
+                                                    <img class="Size20IconMarginRight" src="./img/icon_chat.svg"
+                                                        width="20">
+                                                </a>
+                                            </div>
+
+                                            <!-------  -------->
+                                            <hr>
+                                            <!------- 會員卡 -------->
+                                            <div
+                                                class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
+                                                <div class="FlexContainer">
+                                                    <a href="#" class="DivForImg">
+                                                        <div class="activity_detail_info_img_circle">
+                                                            <div class="activity_detail_info_img_div">
+                                                                <img src="./img/home08.jpg"
+                                                                    class="activity_detail_info_img">
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <div class="GroupMemberCardInfo">
+                                                        <a href="#">奔跑8boy</a>
+                                                        <div class="FlexContainer">
+                                                            <div>March 03, 2019</div>
+                                                            <div>加入此社團</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a href="#">
+                                                    <img class="Size20IconMarginRight" src="./img/icon_chat.svg"
+                                                        width="20">
+                                                </a>
+                                            </div>
+                                            <!-------  -------->
+                                            <hr>
+                                            <!------- 會員卡 -------->
+                                            <div
+                                                class="BottomRightMemberCard FlexContainer GroupEventMemberCard Group_FlexJustifyContentSB ">
+                                                <div class="FlexContainer">
+                                                    <a href="#" class="DivForImg">
+                                                        <div class="activity_detail_info_img_circle">
+                                                            <div class="activity_detail_info_img_div">
+                                                                <img src="./img/id1.jpg"
+                                                                    class="activity_detail_info_img">
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <div class="GroupMemberCardInfo">
+                                                        <a href="#">aa5568</a>
+                                                        <div class="FlexContainer">
+                                                            <div>Jun 6, 2019</div>
+                                                            <div>加入此社團</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a href="#">
+                                                    <img class="Size20IconMarginRight" src="./img/icon_chat.svg"
+                                                        width="20">
+                                                </a>
+                                            </div>
+                                            <!-------  -------->
+                                        </div>
+                                        <button class="ShowMoreBtn">show more!</button>
+
+                                    </div>
+                                    <!------------------------ /// Member right part switch hidden（管理員）///  ------------------------>
+                                    <div class="rankingMember hide">
+                                        <div class="FlexContainer Group_FlexJustifyContentSB GroupMemberSearch">
+                                            <div>管理員列表</div>
+                                            <div class="FlexContainer">
+                                                <div class="GroupMemberSort">排序方式</div>
+                                                <a href="#"><img class="Size20IconMarginLeft Size20IconOpacity"
+                                                        src="./img/icon_arrowDropdown.svg" width="20"></a>
+                                                <a href="#"><img class="Size20IconMarginLeft Rotate90 Size20IconOpacity"
+                                                        src="./img/icon_arrow.svg" width="20"></a>
+                                            </div>
+                                        </div>
+                                        <!------- 會員卡 -------->
+                                        <div id="MemberPageTemplateContainerM">
+
+                                            <div
+                                                class="FlexContainer GroupMemberBottomRightMemberCard Group_FlexJustifyContentSB">
+                                                <div class="FlexContainer">
+                                                    <a href="#" class="DivForImg">
+                                                        <div class="activity_detail_info_img_circle">
+                                                            <div class="activity_detail_info_img_div">
+                                                                <img src="./img/id2.jpg"
+                                                                    class="activity_detail_info_img">
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <div class="GroupMemberCardInfo">
+                                                        <a href="#">蘇菲唐納</a>
+                                                        <div class="FlexContainer">
+                                                            <div class="GroupMemberBottomRightInfoCardText">May 11, 2019
+                                                            </div>
+                                                            <div>加入此社團</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="#">
+                                                <img src="./img/icon_chat.svg" width="20">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="CommunityMemberNone" class="CommunityMemberNone FlexContainer hide">
+                                    <img src="./img/icon_lock.svg" width="20px" class="iconlock">
+                                    <div>私密社團</div>
+                                </div>
+                                <!---------------------/////////////// 下層Main cls tag /////////////////------------------------->
+                            </div>
+
+                        </div>
+                        <!----------------------------------------////// 下層＿文章 ////////---------------------------------------->
+                        <div class="GroupBottomMain GroupDetailPage hide GroupDiscussion "
+                            id="GroupDetailPage_Discussion">
+
+
+                            <div class="FlexContainer GroupDiscussionTitle">
+                                <div class="GroupComingEvent FontSectionTitle">文章</div>
+                                <!-- 可惡啊這邊還沒動態寫入 -->
+                                <div class="FontSectionTitle">(10)</div>
+                            </div>
+
+
+                            <!------------------------/// Left part ///  ------------------------>
+                            <div class="FlexContainer">
+                                <div id="DiscussionLeft" class="DiscussionLeft">
+                                    <div class="FlexContainer MessageBox">
+                                        <div class="Group_detail_Societies_img_div">
+                                            <!-- <img class="Group_detail_Societies_img" src="./img/id1.jpg" width="30"> -->
+                                        </div>
+                                        <form id="article_form">
+                                            <textarea class="AddArticleInput" name="fContent"
+                                                placeholder="Post something..." cols=30 rows=2></textarea>
+                                            <label class="AddArticleLabel">
+                                                <input type="file" name="fPhoto" id="articleImgInput"
+                                                    multiple="multiple" style="display: none;">
+                                                <!-- <img src="./img/icon_photo.svg" width="23" class="UploadImgforArticle"> -->
+                                                <i class="fas fa-images"></i>
+                                            </label>
+                                            <label class="AddArticleLabel">
+                                                <input type="submit" id="articleSubmitIcon" style="display: none;">
+                                                <!-- <img src="./img/icon_send.svg" width="20" class="AddArticleinCommunity" -->
+                                                <i class="far fa-paper-plane"></i>
+                                            </label>
+                                            <!-- <div class="AddArticleImgDisplay">
                                                 <img src="" class="AddArticleImgDisplay_img">
                                             </div> -->
-                                    </form>
-                                </div>
+                                        </form>
+                                    </div>
 
-                                <div class="community_article_container">
-                                    <ul class="community_article_ul"></ul>
-                                </div>
-                                <!------ 一張卡 ------->
-                                <!-- <div class="card MessagePost">
+                                    <div class="community_article_container">
+                                        <ul class="community_article_ul"></ul>
+                                    </div>
+                                    <!------ 一張卡 ------->
+                                    <!-- <div class="card MessagePost">
                                         <div class="FlexContainer Group_FlexJustifyContentSB">
                                             <div class="FlexContainer GroupAlignItemsC">
                                                 <div class="Group_detail_Societies_img_div">
@@ -2007,85 +2034,85 @@
 
                                     </div> -->
 
-                                <!-- <a href="#" class="GroupMemberSeeAllBtn">see all</a>  -->
+                                    <!-- <a href="#" class="GroupMemberSeeAllBtn">see all</a>  -->
+                                </div>
+                                <div id="CommunityMemberNone" class="CommunityMemberNone FlexContainer hide">
+                                    <img src="./img/icon_lock.svg" width="20px" class="iconlock">
+                                    <div>私密社團</div>
+                                </div>
+
+                                <div class="popUpforEdit popUpforEdit_disappear">
+
+                                </div>
+                                <!------------------------/// Right part///  ------------------------>
+                                <div class="DiscussionRight ">
+                                    <div class="FlexContainer SearchBox">
+                                        <div>
+                                            <img class="GroupSearchIcon" src="./img/icon_search.svg" width="30px">
+                                        </div>
+                                        <input class="LeaveMessageRight" type="text" placeholder="Search post?">
+                                        <div class="GroupRightHash">
+                                            <a href="#" class="HashBtn">#淨灘</a>
+                                            <a href="#" class="HashBtn">#垃圾</a>
+                                            <!-- <a href="#" class="HashBtn"></a> -->
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-------------不知道是不是彈跳出來？////文章發文////------------->
+                        <!-- <div class=“MessageBoxCover”>
+                            <div>
+
+                            </div>
+                        </div> -->
+                        <!----------------------------------------////// 下層＿照片 ////////---------------------------------------->
+                        <div class="GroupBottomMain GroupDetailPage hide GroupDiscussion" id="GroupDetailPage_Picture">
+
+                            <div class="photo_flow_container">
+
+                                <div id="photo_flow_col_1" class="photo_flow_col">
+                                    <!-- <div class="photo_flow_card">
+                            <img class="photo_flow_card_img" src="./img/01.jpg" alt="">
+                            <div class="photo_flow_card_wrapper">
+                                <div class="photo_flow_card_msg">向日葵</div>
+                            </div>
+                        </div> -->
+                                </div>
+                                <div id="photo_flow_col_2" class="photo_flow_col">
+                                    <!-- <div class="photo_flow_card"><img class="photo_flow_card_img" src="./img/02.jpg" alt=""></div> -->
+                                </div>
+                                <div id="photo_flow_col_3" class="photo_flow_col">
+                                    <!-- <div class="photo_flow_card"><img class="photo_flow_card_img" src="./img/03.jpg" alt=""></div> -->
+                                </div>
+                                <div id="photo_flow_col_4" class="photo_flow_col">
+                                    <!-- <div class="photo_flow_card"><img class="photo_flow_card_img" src="./img/04.jpg" alt=""></div> -->
+                                </div>
+                                <div id="photo_flow_col_5" class="photo_flow_col">
+                                    <!-- <div class="photo_flow_card"><img class="photo_flow_card_img" src="./img/05.jpg" alt=""></div> -->
+                                </div>
+
                             </div>
                             <div id="CommunityMemberNone" class="CommunityMemberNone FlexContainer hide">
                                 <img src="./img/icon_lock.svg" width="20px" class="iconlock">
                                 <div>私密社團</div>
                             </div>
 
-                            <div class="popUpforEdit popUpforEdit_disappear">
-
-                            </div>
-                            <!------------------------/// Right part///  ------------------------>
-                            <div class="DiscussionRight ">
-                                <div class="FlexContainer SearchBox">
-                                    <div>
-                                        <img class="GroupSearchIcon" src="./img/icon_search.svg" width="30px">
-                                    </div>
-                                    <input class="LeaveMessageRight" type="text" placeholder="Search post?">
-                                    <div class="GroupRightHash">
-                                        <a href="#" class="HashBtn">#淨灘</a>
-                                        <a href="#" class="HashBtn">#垃圾</a>
-                                        <!-- <a href="#" class="HashBtn"></a> -->
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-------------不知道是不是彈跳出來？////文章發文////------------->
-                    <!-- <div class=“MessageBoxCover”>
-                            <div>
-
-                            </div>
-                        </div> -->
-                    <!----------------------------------------////// 下層＿照片 ////////---------------------------------------->
-                    <div class="GroupBottomMain GroupDetailPage hide GroupDiscussion" id="GroupDetailPage_Picture">
-
-                        <div class="photo_flow_container">
-
-                            <div id="photo_flow_col_1" class="photo_flow_col">
-                                <!-- <div class="photo_flow_card">
-                            <img class="photo_flow_card_img" src="./img/01.jpg" alt="">
-                            <div class="photo_flow_card_wrapper">
-                                <div class="photo_flow_card_msg">向日葵</div>
-                            </div>
-                        </div> -->
-                            </div>
-                            <div id="photo_flow_col_2" class="photo_flow_col">
-                                <!-- <div class="photo_flow_card"><img class="photo_flow_card_img" src="./img/02.jpg" alt=""></div> -->
-                            </div>
-                            <div id="photo_flow_col_3" class="photo_flow_col">
-                                <!-- <div class="photo_flow_card"><img class="photo_flow_card_img" src="./img/03.jpg" alt=""></div> -->
-                            </div>
-                            <div id="photo_flow_col_4" class="photo_flow_col">
-                                <!-- <div class="photo_flow_card"><img class="photo_flow_card_img" src="./img/04.jpg" alt=""></div> -->
-                            </div>
-                            <div id="photo_flow_col_5" class="photo_flow_col">
-                                <!-- <div class="photo_flow_card"><img class="photo_flow_card_img" src="./img/05.jpg" alt=""></div> -->
-                            </div>
-
-                        </div>
-                        <div id="CommunityMemberNone" class="CommunityMemberNone FlexContainer hide">
-                            <img src="./img/icon_lock.svg" width="20px" class="iconlock">
-                            <div>私密社團</div>
                         </div>
 
                     </div>
-
                 </div>
             </div>
         </div>
-    </div>
 
 
 
-    <!-- * 不在navbar link上的頁面  ****************      ****************       ****************   -->
+        <!-- * 不在navbar link上的頁面  ****************      ****************       ****************   -->
 
     <!-- * 會員頁面  ****************      ****************       ****************   -->
     <div id="page_personal-maneger" class="page hide">
@@ -2183,353 +2210,354 @@
         </div>
     </div>
 
-    <!-- * create-activity  ****************      ****************       ****************   -->
-    <div id="page_create-activity" class="page hide">
-        <main>
-            <!-- ------------- 左側資訊 --------------- -->
+        <!-- * create-activity  ****************      ****************       ****************   -->
+        <div id="page_create-activity" class="page hide">
+            <main>
+                <!-- ------------- 左側資訊 --------------- -->
 
-            <div class="create_active_flex">
-                <div class="create_active_title">
-                    <h2 id="creatActTitle">創建活動</h2>
-                    <div>
-                        <a href="#create-activity" class="create_active_title_div">
-                            <p class="create_active_title_circle">1</p>基本資料
-                        </a>
-                        <a href="#create-activity" class="create_active_title_div">
-                            <p class="create_active_title_circle">2</p>詳細資料
-                        </a>
-                        <!-- <a href="#create-activity" class="create_active_title_div">
+                <div class="create_active_flex">
+                    <div class="create_active_title">
+                        <h2 id="creatActTitle">創建活動</h2>
+                        <div>
+                            <a href="#create-activity" class="create_active_title_div">
+                                <p class="create_active_title_circle">1</p>基本資料
+                            </a>
+                            <a href="#create-activity" class="create_active_title_div">
+                                <p class="create_active_title_circle">2</p>詳細資料
+                            </a>
+                            <!-- <a href="#create-activity" class="create_active_title_div">
                                 <p class="create_active_title_circle">✓</p>活動參與審核
                             </a> -->
-                        <button id="inputDemo">Demo</button>
-                    </div>
-                </div>
-
-                <!-- ------------- Basic Info --------------- -->
-
-                <div class="create_active_basicInfo_container">
-                    <form id="creatAct_form" method="POST">
-                        <div class="create_active_basicInfo">
-                            <h2>基本資料</h2>
-
-                            <div class="create_active_basicInfo_div">
-                                <div class="create_active_basicInfo_div2 ">
-                                    <p>活動名稱</p>
-                                    <div class="create_active_flex ">
-                                        <!-- ! -->
-                                        <input type="text" maxlength="50" id="create_active_name"
-                                            class="create_active_full" name="fActName" />
-                                        <p class="create_active_ml" id="create_active_name_count">0</p>
-                                        <p>&nbsp;/&nbsp;50</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="create_active_basicInfo_div">
-                                <div class="create_active_basicInfo_div2" id="createPeople">
-                                    <p>活動發起者</p>
-                                    <!-- ! -->
-                                    <select name="type" id="actCreaterType">
-                                        <option value="0">個人</option>
-                                        <option value="1">社團管理員</option>
-                                    </select>
-                                    <span id="actCreaterTypeSpan" style="display: none;"></span>
-                                </div>
-                            </div>
-                            <div class="create_active_basicInfo_div">
-                                <!-- Google API??????-->
-                                <div class="create_active_basicInfo_div2">
-                                    <p>活動地點</p>
-                                    <div class="create_active_flex" style="align-items: center;">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        <!-- ! -->
-                                        <input type="text" class="create_active_ml create_active_full"
-                                            style="background-color: white;" id="create_active_local_tags"
-                                            name="fActLocation" />
-                                    </div>
-                                    <br>
-                                    <div id="createActMapId" style="display: none;"></div>
-                                    <div id="actMapEdit" style="display: none;"></div>
-                                    <div onclick="geoFindMe()" class="actShowLocation">定位目前位置</div>
-                                    <div id="out" style="display: none;"></div>
-                                </div>
-                            </div>
-                            <div class="create_active_basicInfo_div">
-                                <div class="create_active_basicInfo_div2">
-                                    <p>活動日期</p>
-                                    <div class="actDateDiv create_active_flex">
-                                        <label for="ac_date_from">開始日期</label>
-                                        <!-- ! fActivityDate-->
-                                        <input type="text" id="ac_date_from" name="" autocomplete="off" />
-                                        <div id="ac_date_from_div" style="display: none;">
-                                            <label for="">開始時間</label>
-                                            <select name="ac_date_from_time" id="ac_date_from_time">
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="actDateDiv create_active_flex">
-                                        <label for="ac_date_to">結束日期</label>
-                                        <!-- ! fActivityEndDate-->
-                                        <input type="text" id="ac_date_to" name="" autocomplete="off" />
-                                        <div id="ac_date_to_div" style="display: none;">
-                                            <label for="">結束時間</label>
-                                            <select name="ac_date_to_time" id="ac_date_to_time">
-                                                <!-- <option value="07:30">07:30</option>
-                                            <option value="08:00">08:00</option> -->
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="create_active_basicInfo_div3">
-                                <button id="create_active_btn_next">下一步</button>
-                            </div>
+                            <button id="inputDemo">Demo</button>
                         </div>
+                    </div>
 
-                        <!-- ------------- Details --------------- -->
+                    <!-- ------------- Basic Info --------------- -->
 
-                        <div class="create_active_basicInfo">
-                            <h2>詳細資料</h2>
+                    <div class="create_active_basicInfo_container">
+                        <form id="creatAct_form" method="POST">
+                            <div class="create_active_basicInfo">
+                                <h2>基本資料</h2>
 
-                            <div class="create_active_basicInfo_div">
-
-                                <div class="create_active_basicInfo_div2">
-                                    <p>活動圖片</p>
-                                    <div>
-                                        <label class="ca_imgUpload_lbl">
+                                <div class="create_active_basicInfo_div">
+                                    <div class="create_active_basicInfo_div2 ">
+                                        <p>活動名稱</p>
+                                        <div class="create_active_flex ">
                                             <!-- ! -->
-                                            <input class="ca_imgUpload" style="display:none;" type="file" name="fPhoto">
-                                            <i class="fa fa-photo"></i> 上傳圖片
-                                        </label>
-                                        <div class="ca_imgUpload_div">
-                                            <img src="" class="ca_img_avatar">
+                                            <input type="text" maxlength="50" id="create_active_name"
+                                                class="create_active_full" name="fActName" />
+                                            <p class="create_active_ml" id="create_active_name_count">0</p>
+                                            <p>&nbsp;/&nbsp;50</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="create_active_basicInfo_div">
+                                    <div class="create_active_basicInfo_div2" id="createPeople">
+                                        <p>活動發起者</p>
+                                        <!-- ! -->
+                                        <select name="type" id="actCreaterType">
+                                            <option value="0">個人</option>
+                                            <option value="1">社團管理員</option>
+                                        </select>
+                                        <span id="actCreaterTypeSpan" style="display: none;"></span>
+                                    </div>
+                                </div>
+                                <div class="create_active_basicInfo_div">
+                                    <!-- Google API??????-->
+                                    <div class="create_active_basicInfo_div2">
+                                        <p>活動地點</p>
+                                        <div class="create_active_flex" style="align-items: center;">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <!-- ! -->
+                                            <input type="text" class="create_active_ml create_active_full"
+                                                style="background-color: white;" id="create_active_local_tags"
+                                                name="fActLocation" />
+                                        </div>
+                                        <br>
+                                        <div id="createActMapId" style="display: none;"></div>
+                                        <div id="actMapEdit" style="display: none;"></div>
+                                        <div onclick="geoFindMe()" class="actShowLocation">定位目前位置</div>
+                                        <div id="out" style="display: none;"></div>
+                                    </div>
+                                </div>
+                                <div class="create_active_basicInfo_div">
+                                    <div class="create_active_basicInfo_div2">
+                                        <p>活動日期</p>
+                                        <div class="actDateDiv create_active_flex">
+                                            <label for="ac_date_from">開始日期</label>
+                                            <!-- ! fActivityDate-->
+                                            <input type="text" id="ac_date_from" name="" autocomplete="off" />
+                                            <div id="ac_date_from_div" style="display: none;">
+                                                <label for="">開始時間</label>
+                                                <select name="ac_date_from_time" id="ac_date_from_time">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="actDateDiv create_active_flex">
+                                            <label for="ac_date_to">結束日期</label>
+                                            <!-- ! fActivityEndDate-->
+                                            <input type="text" id="ac_date_to" name="" autocomplete="off" />
+                                            <div id="ac_date_to_div" style="display: none;">
+                                                <label for="">結束時間</label>
+                                                <select name="ac_date_to_time" id="ac_date_to_time">
+                                                    <!-- <option value="07:30">07:30</option>
+                                            <option value="08:00">08:00</option> -->
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="create_active_basicInfo_div3">
+                                    <button id="create_active_btn_next">下一步</button>
+                                </div>
+                            </div>
+
+                            <!-- ------------- Details --------------- -->
+
+                            <div class="create_active_basicInfo">
+                                <h2>詳細資料</h2>
+
+                                <div class="create_active_basicInfo_div">
+
+                                    <div class="create_active_basicInfo_div2">
+                                        <p>活動圖片</p>
+                                        <div>
+                                            <label class="ca_imgUpload_lbl">
+                                                <!-- ! -->
+                                                <input class="ca_imgUpload" style="display:none;" type="file"
+                                                    name="fPhoto">
+                                                <i class="fa fa-photo"></i> 上傳圖片
+                                            </label>
+                                            <div class="ca_imgUpload_div">
+                                                <img src="" class="ca_img_avatar">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="create_active_basicInfo_div">
+                                    <div class="create_active_basicInfo_div2">
+                                        <p>活動內容描述</p>
+                                        <div class="create_active_flex">
+                                            <!-- ! -->
+                                            <textarea id="create_active_text" cols="60" rows="10" maxlength="500"
+                                                name="fIntroduction"></textarea><br>
+                                            <p class="create_active_flex_end create_active_ml"
+                                                id="create_active_text_count">0</p>
+                                            <p class="create_active_flex_end">&nbsp;/&nbsp;500</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="create_active_basicInfo_div">
+                                    <div class="create_active_basicInfo_div2">
+                                        <p>活動標籤(小標籤最多五個)</p>
+
+                                        <div class="create_active_flex">
+                                            <!-- ! -->
+                                            <select name="fActLabelId" id="ac_detail_type">
+                                                <option value="0">其他</option>
+                                                <option value="1">志工活動</option>
+                                                <option value="2">環境清潔</option>
+                                                <option value="3">自然教育</option>
+                                                <option value="4">二手市集</option>
+                                                <option value="5">運動</option>
+                                                <option value="6">線上活動</option>
+                                            </select>
+                                            <!-- ! -->
+
+                                            <input type="text" class="create_active_ml create_active_full"
+                                                id="create_active_tag_input" value="" onblur="inputTag()"
+                                                placeholder="此處輸入可輸入五個小標籤" onfocus="this.placeholder=''" /><span
+                                                id="create_active_please"></span>
+                                            <!-- <input type="text" name="fLabelName"> -->
+                                        </div>
+                                        <div id="act5Tag" style="display: flex;"></div>
+                                        <!-- <input type="submit" value="Submit" id="actCreatTagSubmit"> -->
+
+                                    </div>
+
+                                </div>
+                                <div class="create_active_basicInfo_div">
+                                    <div class="create_active_basicInfo_div2 create_active_flex">
+                                        <div class="actPeople">
+                                            <p>最小人數</p>
+                                            <!-- ! -->
+                                            <!-- <input type="checkbox" id="actMinPeopleCk" /> -->
+                                            <input type="text" maxlength="4" name="fMinLimit" id="actMinPeople" />
+                                        </div>
+                                        <div class="actPeople">
+                                            <p>最大人數</p>
+                                            <!-- ! -->
+                                            <!-- <input type="checkbox" /> -->
+                                            <input type="text" maxlength="4" name="fMaxLimit" id="actMaxPeople" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="create_active_basicInfo_div3">
+                                    <button id="create_active_btn_pre">上一步</button>
+                                    <button type="submit" id="create_active_btn_done" style="display:block">送出</button>
+                                    <button type="submit" id="create_active_btn_done_edit"
+                                        style="display: none;">送出</button>
+                                </div>
+
+                            </div>
+                        </form>
+                        <!-- ------------- 審核 --------------- -->
+                        <div class="create_active_basicInfo" style="display: none;">
+                            <h2>活動參與審核</h2>
+                            <p>
+                                Name your event and tell event-goers why they should come. Add
+                                details that highlight what makes it unique.
+                            </p>
+                            <div class="create_active_basicInfo_div">
+                                <div class="create_active_basicInfo_div2">
+                                    <p>待審核&nbsp;</p>
+                                    <div class="create_active_flex">
+                                        <input type="checkbox" style="align-self: center;" />
+                                        <div class="create_active_check">
+                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                                            <p>JL1992</p>
+                                        </div>
+                                        <input type="checkbox" style="align-self: center;" />
+                                        <div class="create_active_check">
+                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                                            <p>Wwill35489</p>
+                                        </div>
+                                        <input type="checkbox" style="align-self: center;" />
+                                        <div class="create_active_check">
+                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                                            <p>romazrau</p>
+                                        </div>
+                                        <input type="checkbox" style="align-self: center;" />
+                                        <div class="create_active_check">
+                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                                            <p>Wwill35489</p>
+                                        </div>
+                                        <input type="checkbox" style="align-self: center;" />
+                                        <div class="create_active_check">
+                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                                            <p>romazrau</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="create_active_basicInfo_div3">
+                                <button id="create_active_btn_done">Done</button>
+                            </div>
+                            <div class="create_active_basicInfo_div">
+                                <div class="create_active_basicInfo_div2">
+                                    <p>參加成員&nbsp;(&nbsp;6&nbsp;)</p>
+                                    <div class="create_active_flex">
+                                        <div class="create_active_check">
+                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                                            <p>ddd555</p>
+                                        </div>
+                                        <div class="create_active_check">
+                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                                            <p>ccc666</p>
+                                        </div>
+                                        <div class="create_active_check">
+                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                                            <p>AndyKao123</p>
+                                        </div>
+                                        <div class="create_active_check">
+                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                                            <p>ddd555</p>
+                                        </div>
+                                        <div class="create_active_check">
+                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                                            <p>ccc666</p>
+                                        </div>
+                                        <div class="create_active_check">
+                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                                            <p>AndyKao123</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="create_active_basicInfo_div">
                                 <div class="create_active_basicInfo_div2">
-                                    <p>活動內容描述</p>
+                                    <p>候補成員&nbsp;(&nbsp;3&nbsp;)</p>
                                     <div class="create_active_flex">
-                                        <!-- ! -->
-                                        <textarea id="create_active_text" cols="60" rows="10" maxlength="500"
-                                            name="fIntroduction"></textarea><br>
-                                        <p class="create_active_flex_end create_active_ml"
-                                            id="create_active_text_count">0</p>
-                                        <p class="create_active_flex_end">&nbsp;/&nbsp;500</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="create_active_basicInfo_div">
-                                <div class="create_active_basicInfo_div2">
-                                    <p>活動標籤(小標籤最多五個)</p>
-
-                                    <div class="create_active_flex">
-                                        <!-- ! -->
-                                        <select name="fActLabelId" id="ac_detail_type">
-                                            <option value="0">其他</option>
-                                            <option value="1">志工活動</option>
-                                            <option value="2">環境清潔</option>
-                                            <option value="3">自然教育</option>
-                                            <option value="4">二手市集</option>
-                                            <option value="5">運動</option>
-                                            <option value="6">線上活動</option>
-                                        </select>
-                                        <!-- ! -->
-
-                                        <input type="text" class="create_active_ml create_active_full"
-                                            id="create_active_tag_input" value="" onblur="inputTag()"
-                                            placeholder="此處輸入可輸入五個小標籤" onfocus="this.placeholder=''" /><span
-                                            id="create_active_please"></span>
-                                        <!-- <input type="text" name="fLabelName"> -->
-                                    </div>
-                                    <div id="act5Tag" style="display: flex;"></div>
-                                    <!-- <input type="submit" value="Submit" id="actCreatTagSubmit"> -->
-
-                                </div>
-
-                            </div>
-                            <div class="create_active_basicInfo_div">
-                                <div class="create_active_basicInfo_div2 create_active_flex">
-                                    <div class="actPeople">
-                                        <p>最小人數</p>
-                                        <!-- ! -->
-                                        <!-- <input type="checkbox" id="actMinPeopleCk" /> -->
-                                        <input type="text" maxlength="4" name="fMinLimit" id="actMinPeople" />
-                                    </div>
-                                    <div class="actPeople">
-                                        <p>最大人數</p>
-                                        <!-- ! -->
-                                        <!-- <input type="checkbox" /> -->
-                                        <input type="text" maxlength="4" name="fMaxLimit" id="actMaxPeople" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="create_active_basicInfo_div3">
-                                <button id="create_active_btn_pre">上一步</button>
-                                <button type="submit" id="create_active_btn_done" style="display:block">送出</button>
-                                <button type="submit" id="create_active_btn_done_edit"
-                                    style="display: none;">送出</button>
-                            </div>
-
-                        </div>
-                    </form>
-                    <!-- ------------- 審核 --------------- -->
-                    <div class="create_active_basicInfo" style="display: none;">
-                        <h2>活動參與審核</h2>
-                        <p>
-                            Name your event and tell event-goers why they should come. Add
-                            details that highlight what makes it unique.
-                        </p>
-                        <div class="create_active_basicInfo_div">
-                            <div class="create_active_basicInfo_div2">
-                                <p>待審核&nbsp;</p>
-                                <div class="create_active_flex">
-                                    <input type="checkbox" style="align-self: center;" />
-                                    <div class="create_active_check">
-                                        <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                        <p>JL1992</p>
-                                    </div>
-                                    <input type="checkbox" style="align-self: center;" />
-                                    <div class="create_active_check">
-                                        <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                        <p>Wwill35489</p>
-                                    </div>
-                                    <input type="checkbox" style="align-self: center;" />
-                                    <div class="create_active_check">
-                                        <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                        <p>romazrau</p>
-                                    </div>
-                                    <input type="checkbox" style="align-self: center;" />
-                                    <div class="create_active_check">
-                                        <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                        <p>Wwill35489</p>
-                                    </div>
-                                    <input type="checkbox" style="align-self: center;" />
-                                    <div class="create_active_check">
-                                        <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                        <p>romazrau</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="create_active_basicInfo_div3">
-                            <button id="create_active_btn_done">Done</button>
-                        </div>
-                        <div class="create_active_basicInfo_div">
-                            <div class="create_active_basicInfo_div2">
-                                <p>參加成員&nbsp;(&nbsp;6&nbsp;)</p>
-                                <div class="create_active_flex">
-                                    <div class="create_active_check">
-                                        <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                        <p>ddd555</p>
-                                    </div>
-                                    <div class="create_active_check">
-                                        <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                        <p>ccc666</p>
-                                    </div>
-                                    <div class="create_active_check">
-                                        <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                        <p>AndyKao123</p>
-                                    </div>
-                                    <div class="create_active_check">
-                                        <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                        <p>ddd555</p>
-                                    </div>
-                                    <div class="create_active_check">
-                                        <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                        <p>ccc666</p>
-                                    </div>
-                                    <div class="create_active_check">
-                                        <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                        <p>AndyKao123</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="create_active_basicInfo_div">
-                            <div class="create_active_basicInfo_div2">
-                                <p>候補成員&nbsp;(&nbsp;3&nbsp;)</p>
-                                <div class="create_active_flex">
-                                    <div class="create_active_check">
-                                        <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                        <p>happytree78</p>
-                                    </div>
-                                    <div class="create_active_check">
-                                        <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                        <p>omg666</p>
-                                    </div>
-                                    <div class="create_active_check">
-                                        <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                        <p>forever520</p>
+                                        <div class="create_active_check">
+                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                                            <p>happytree78</p>
+                                        </div>
+                                        <div class="create_active_check">
+                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                                            <p>omg666</p>
+                                        </div>
+                                        <div class="create_active_check">
+                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                                            <p>forever520</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
 
 
-    </div>
+        </div>
 
 
-    <!-- * create-communtity  ****************      ****************       ****************   -->
-    <div id="page_create-community" class="page hide">
+        <!-- * create-communtity  ****************      ****************       ****************   -->
+        <div id="page_create-community" class="page hide">
 
-        <main>
-            <!-- ------------- 左側資訊 --------------- -->
+            <main>
+                <!-- ------------- 左側資訊 --------------- -->
 
-            <div class="create_community_flex">
-                <div class="create_community_title">
-                    <h2 id="UpdatePageName">創建社團</h2>
-                    <div>
-                        <a href="#create-community" class="create_community_title_div">
-                            <p class="create_community_title_circle">1</p>
-                            基本資料
-                        </a>
-                        <a href="#create-community" class="create_community_title_div">
-                            <p class="create_community_title_circle">2</p>
-                            詳細資料
-                        </a>
-                        <a href="#create-community" id="approveMemberSide" class="create_community_title_div hide">
-                            <p class="create_community_title_circle">✓</p>
-                            社團加入審核
-                        </a>
+                <div class="create_community_flex">
+                    <div class="create_community_title">
+                        <h2 id="UpdatePageName">創建社團</h2>
+                        <div>
+                            <a href="#create-community" class="create_community_title_div">
+                                <p class="create_community_title_circle">1</p>
+                                基本資料
+                            </a>
+                            <a href="#create-community" class="create_community_title_div">
+                                <p class="create_community_title_circle">2</p>
+                                詳細資料
+                            </a>
+                            <a href="#create-community" id="approveMemberSide" class="create_community_title_div hide">
+                                <p class="create_community_title_circle">✓</p>
+                                社團加入審核
+                            </a>
+                        </div>
                     </div>
-                </div>
 
-                <!-- ------------- Basic Info --------------- -->
+                    <!-- ------------- Basic Info --------------- -->
 
-                <div class="create_community_basicInfo_container">
-                    <form id="formOfCreate">
-                        <div class="create_community_basicInfo">
-                            <h2>基本資料</h2>
-                            <!-- <p>
+                    <div class="create_community_basicInfo_container">
+                        <form id="formOfCreate">
+                            <div class="create_community_basicInfo">
+                                <h2>基本資料</h2>
+                                <!-- <p>
                                     Name your event and tell event-goers why they should come. Add
                                     details that highlight what makes it unique.
                                 </p> -->
-                            <div class="create_community_basicInfo_div">
-                                <div class="create_community_basicInfo_div2">
-                                    <p>社團名稱</p>
-                                    <div class="create_community_flex">
-                                        <input name="fName" type="text" maxlength="20" id="create_community_name"
-                                            class="create_community_full" />
-                                        <p class="create_community_ml" id="create_community_name_count">0</p>
-                                        <p>&nbsp;/&nbsp;20</p>
+                                <div class="create_community_basicInfo_div">
+                                    <div class="create_community_basicInfo_div2">
+                                        <p>社團名稱</p>
+                                        <div class="create_community_flex">
+                                            <input name="fName" type="text" maxlength="20" id="create_community_name"
+                                                class="create_community_full" />
+                                            <p class="create_community_ml" id="create_community_name_count">0</p>
+                                            <p>&nbsp;/&nbsp;20</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="create_community_basicInfo_div">
-                                <div class="create_community_basicInfo_div2">
-                                    <!-- <p>Privacy Settings</p> -->
-                                    <select name="fStatusId" id="selectStatus">
-                                        <option value="1">公開</option>
-                                        <option value="2">私人</option>
-                                    </select>
+                                <div class="create_community_basicInfo_div">
+                                    <div class="create_community_basicInfo_div2">
+                                        <!-- <p>Privacy Settings</p> -->
+                                        <select name="fStatusId" id="selectStatus">
+                                            <option value="1">公開</option>
+                                            <option value="2">私人</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- <div class="create_community_basicInfo_div">
+                                <!-- <div class="create_community_basicInfo_div">
                                 <div class="create_community_basicInfo_div2">
                                     <p>社團類別</p>
                                     <select name="type">
@@ -2540,48 +2568,48 @@
                                     </select>
                                 </div>
                             </div> -->
-                            <div class="create_community_basicInfo_div3">
+                                <div class="create_community_basicInfo_div3">
 
-                                <button id="create_community_btn_next">Next</button>
+                                    <button id="create_community_btn_next">Next</button>
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- ------------- Details --------------- -->
+                            <!-- ------------- Details --------------- -->
 
-                        <div id="detailBlock" name="formDetails" class="create_community_basicInfo">
-                            <h2>詳細資料</h2>
-                            <!-- <p>
+                            <div id="detailBlock" name="formDetails" class="create_community_basicInfo">
+                                <h2>詳細資料</h2>
+                                <!-- <p>
                                     Name your event and tell event-goers why they should come. Add
                                     details that highlight what makes it unique.
                                 </p> -->
-                            <div class="create_community_basicInfo_div">
-                                <div class="create_community_basicInfo_div2">
-                                    <p>社團首頁圖片</p>
-                                    <div>
-                                        <label class="cc_imgUpload_lbl">
-                                            <input id="fImgPath" name="fPhoto" class="cc_imgUpload"
-                                                style="display:none;" type="file">
-                                            <i class="fa fa-photo"></i> 上傳圖片
-                                        </label>
-                                        <div class="cc_imgUpload_div">
-                                            <img src="" class="cc_img_avatar" id="communityImg">
+                                <div class="create_community_basicInfo_div">
+                                    <div class="create_community_basicInfo_div2">
+                                        <p>社團首頁圖片</p>
+                                        <div>
+                                            <label class="cc_imgUpload_lbl">
+                                                <input id="fImgPath" name="fPhoto" class="cc_imgUpload"
+                                                    style="display:none;" type="file">
+                                                <i class="fa fa-photo"></i> 上傳圖片
+                                            </label>
+                                            <div class="cc_imgUpload_div">
+                                                <img src="" class="cc_img_avatar" id="communityImg">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="create_community_basicInfo_div">
-                                <div class="create_community_basicInfo_div2">
-                                    <p>社團描述</p>
-                                    <div class="create_community_flex">
-                                        <textarea name="fInfo" id="create_community_text" cols="60" rows="8"
-                                            maxlength="500"></textarea>
-                                        <p class="create_community_flex_end create_community_ml"
-                                            id="create_community_text_count">0</p>
-                                        <p class="create_community_flex_end">&nbsp;/&nbsp;500</p>
+                                <div class="create_community_basicInfo_div">
+                                    <div class="create_community_basicInfo_div2">
+                                        <p>社團描述</p>
+                                        <div class="create_community_flex">
+                                            <textarea name="fInfo" id="create_community_text" cols="60" rows="8"
+                                                maxlength="500"></textarea>
+                                            <p class="create_community_flex_end create_community_ml"
+                                                id="create_community_text_count">0</p>
+                                            <p class="create_community_flex_end">&nbsp;/&nbsp;500</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- <div class="create_community_basicInfo_div">
+                                <!-- <div class="create_community_basicInfo_div">
                                     <div class="create_community_basicInfo_div2">
                                         <p>社團邀請</p>
                                         <div class="create_community_flex">
@@ -2590,75 +2618,42 @@
                                         </div>
                                     </div>
                                 </div> -->
-                            <div class="create_community_basicInfo_div3">
-                                <button id="create_community_btn_pre">Pre</button>
-                                <button id="create_community_btn_done">Done</button>
+                                <div class="create_community_basicInfo_div3">
+                                    <button id="create_community_btn_pre">Pre</button>
+                                    <button id="create_community_btn_done">Done</button>
 
 
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
 
 
 
-                    <div id="approveMember" class="create_community_basicInfo hide">
-                        <h2 id="approveCommunityTitle">社團加入審核</h2>
-                        <!-- <p>
+                        <div id="approveMember" class="create_community_basicInfo hide">
+                            <h2 id="approveCommunityTitle">社團加入審核</h2>
+                            <!-- <p>
                                 Name your event and tell event-goers why they should come. Add
                                 details that highlight what makes it unique.
                             </p> -->
 
-                        <div id="managerBlcok" class="create_community_basicInfo_div ">
-                            <div class="create_community_basicInfo_div2 managerBlcokShow">
-                                <p>&nbsp;社團管理員</p>
-                                <div id="ManagerContainer" class="create_community_flex">
-                                    <div class="create_community_check">
-                                        <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                        <p>ddd555</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <form id="formDelManager">
-                            <div id="managerBlcok" class="create_community_basicInfo_div removeBlock">
-                                <div class="create_community_basicInfo_div2">
-                                    <p>&nbsp;去除管理員</p>
-                                    <div id="re" class="create_community_flex create_community_flex_wrap">
-                                        <div class="create_community_flex">
-                                            <input type="checkbox" style="align-self: center;" />
-                                            <div class="create_community_check">
-                                                <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                                <p>ddd555</p>
-                                            </div>
+                            <div id="managerBlcok" class="create_community_basicInfo_div ">
+                                <div class="create_community_basicInfo_div2 managerBlcokShow">
+                                    <p>&nbsp;社團管理員</p>
+                                    <div id="ManagerContainer" class="create_community_flex">
+                                        <div class="create_community_check">
+                                            <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
+                                            <p>ddd555</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                        <form id="formAddManager">
-                            <div id="managerBlcok" class="create_community_basicInfo_div">
-                                <div class="create_community_basicInfo_div2">
-                                    <p>&nbsp;新增管理員</p>
-                                    <div id="addManager" class="create_community_flex create_community_flex_wrap">
-                                        <div class="create_community_flex">
-                                            <input type="checkbox" style="align-self: center;" />
-                                            <div class="create_community_check">
-                                                <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                                <p>ddd555</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                        <form id="formDelMember">
-                            <div class="create_community_basicInfo_div">
-                                <div class="create_community_basicInfo_div2">
-                                    <p id="memTitle">社團成員&nbsp;</p>
-                                    <div id="deletMem" class="create_community_flex create_community_flex_wrap">
-                                        <div class="create_community_flex">
+
+
+                            <form id="formDelManager">
+                                <div id="managerBlcok" class="create_community_basicInfo_div removeBlock">
+                                    <div class="create_community_basicInfo_div2">
+                                        <p>&nbsp;去除管理員</p>
+                                        <div id="re" class="create_community_flex create_community_flex_wrap">
                                             <div class="create_community_flex">
                                                 <input type="checkbox" style="align-self: center;" />
                                                 <div class="create_community_check">
@@ -2666,25 +2661,34 @@
                                                         style="border-radius: 50%;" />
                                                     <p>ddd555</p>
                                                 </div>
-
-                                                <div class="create_community_flex">
-                                                    <input type="checkbox" style="align-self: center;" />
-                                                    <div class="create_community_check">
-                                                        <img src="https://fakeimg.pl/40/212121/"
-                                                            style="border-radius: 50%;" />
-                                                        <p>ccc666</p>
-                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <form id="formAddManager">
+                                <div id="managerBlcok" class="create_community_basicInfo_div">
+                                    <div class="create_community_basicInfo_div2">
+                                        <p>&nbsp;新增管理員</p>
+                                        <div id="addManager" class="create_community_flex create_community_flex_wrap">
+                                            <div class="create_community_flex">
+                                                <input type="checkbox" style="align-self: center;" />
+                                                <div class="create_community_check">
+                                                    <img src="https://fakeimg.pl/40/212121/"
+                                                        style="border-radius: 50%;" />
+                                                    <p>ddd555</p>
                                                 </div>
-
-                                                <div class="create_community_flex">
-                                                    <input type="checkbox" style="align-self: center;" />
-                                                    <div class="create_community_check">
-                                                        <img src="https://fakeimg.pl/40/212121/"
-                                                            style="border-radius: 50%;" />
-                                                        <p>AndyKao123</p>
-                                                    </div>
-                                                </div>
-
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <form id="formDelMember">
+                                <div class="create_community_basicInfo_div">
+                                    <div class="create_community_basicInfo_div2">
+                                        <p id="memTitle">社團成員&nbsp;</p>
+                                        <div id="deletMem" class="create_community_flex create_community_flex_wrap">
+                                            <div class="create_community_flex">
                                                 <div class="create_community_flex">
                                                     <input type="checkbox" style="align-self: center;" />
                                                     <div class="create_community_check">
@@ -2692,89 +2696,121 @@
                                                             style="border-radius: 50%;" />
                                                         <p>ddd555</p>
                                                     </div>
-                                                </div>
 
-                                                <div class="create_community_flex">
-                                                    <input type="checkbox" style="align-self: center;" />
-                                                    <div class="create_community_check">
-                                                        <img src="https://fakeimg.pl/40/212121/"
-                                                            style="border-radius: 50%;" />
-                                                        <p>ccc666</p>
+                                                    <div class="create_community_flex">
+                                                        <input type="checkbox" style="align-self: center;" />
+                                                        <div class="create_community_check">
+                                                            <img src="https://fakeimg.pl/40/212121/"
+                                                                style="border-radius: 50%;" />
+                                                            <p>ccc666</p>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="create_community_flex">
-                                                    <input type="checkbox" style="align-self: center;" />
-                                                    <div class="create_community_check">
-                                                        <img src="https://fakeimg.pl/40/212121/"
-                                                            style="border-radius: 50%;" />
-                                                        <p>AndyKao123</p>
+                                                    <div class="create_community_flex">
+                                                        <input type="checkbox" style="align-self: center;" />
+                                                        <div class="create_community_check">
+                                                            <img src="https://fakeimg.pl/40/212121/"
+                                                                style="border-radius: 50%;" />
+                                                            <p>AndyKao123</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="create_community_flex">
+                                                        <input type="checkbox" style="align-self: center;" />
+                                                        <div class="create_community_check">
+                                                            <img src="https://fakeimg.pl/40/212121/"
+                                                                style="border-radius: 50%;" />
+                                                            <p>ddd555</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="create_community_flex">
+                                                        <input type="checkbox" style="align-self: center;" />
+                                                        <div class="create_community_check">
+                                                            <img src="https://fakeimg.pl/40/212121/"
+                                                                style="border-radius: 50%;" />
+                                                            <p>ccc666</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="create_community_flex">
+                                                        <input type="checkbox" style="align-self: center;" />
+                                                        <div class="create_community_check">
+                                                            <img src="https://fakeimg.pl/40/212121/"
+                                                                style="border-radius: 50%;" />
+                                                            <p>AndyKao123</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                        </form>
-                        <form id="formPending">
-                            <div class="create_community_basicInfo_div">
-                                <div class="create_community_basicInfo_div2">
-                                    <p>待審核&nbsp;</p>
-                                    <div class="create_community_flex create_community_flex_wrap"
-                                        id="penddingMemberContainer">
-                                        <div class="create_community_flex">
-                                            <input type="checkbox" style="align-self: center;" />
-                                            <div class="create_community_check">
-                                                <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                                <p>JL1992</p>
+                            </form>
+                            <form id="formPending">
+                                <div class="create_community_basicInfo_div">
+                                    <div class="create_community_basicInfo_div2">
+                                        <p>待審核&nbsp;</p>
+                                        <div class="create_community_flex create_community_flex_wrap"
+                                            id="penddingMemberContainer">
+                                            <div class="create_community_flex">
+                                                <input type="checkbox" style="align-self: center;" />
+                                                <div class="create_community_check">
+                                                    <img src="https://fakeimg.pl/40/212121/"
+                                                        style="border-radius: 50%;" />
+                                                    <p>JL1992</p>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="create_community_flex">
-                                            <input type="checkbox" style="align-self: center;" />
-                                            <div class="create_community_check">
-                                                <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                                <p>Wwill35489</p>
+                                            <div class="create_community_flex">
+                                                <input type="checkbox" style="align-self: center;" />
+                                                <div class="create_community_check">
+                                                    <img src="https://fakeimg.pl/40/212121/"
+                                                        style="border-radius: 50%;" />
+                                                    <p>Wwill35489</p>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="create_community_flex">
-                                            <input type="checkbox" style="align-self: center;" />
-                                            <div class="create_community_check">
-                                                <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                                <p>romazrau</p>
+                                            <div class="create_community_flex">
+                                                <input type="checkbox" style="align-self: center;" />
+                                                <div class="create_community_check">
+                                                    <img src="https://fakeimg.pl/40/212121/"
+                                                        style="border-radius: 50%;" />
+                                                    <p>romazrau</p>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="create_community_flex">
-                                            <input type="checkbox" style="align-self: center;" />
-                                            <div class="create_community_check">
-                                                <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                                <p>Wwill35489</p>
+                                            <div class="create_community_flex">
+                                                <input type="checkbox" style="align-self: center;" />
+                                                <div class="create_community_check">
+                                                    <img src="https://fakeimg.pl/40/212121/"
+                                                        style="border-radius: 50%;" />
+                                                    <p>Wwill35489</p>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="create_community_flex">
-                                            <input type="checkbox" style="align-self: center;" />
-                                            <div class="create_community_check">
-                                                <img src="https://fakeimg.pl/40/212121/" style="border-radius: 50%;" />
-                                                <p>romazrau</p>
+                                            <div class="create_community_flex">
+                                                <input type="checkbox" style="align-self: center;" />
+                                                <div class="create_community_check">
+                                                    <img src="https://fakeimg.pl/40/212121/"
+                                                        style="border-radius: 50%;" />
+                                                    <p>romazrau</p>
+                                                </div>
                                             </div>
+
+
                                         </div>
-
-
                                     </div>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="create_community_basicInfo_div3">
-                        <div id="fakeDoneBtn">
-                            <button id="create_community_btn_done">Done</button>
+                            </form>
                         </div>
-                    </div>
 
+                        <div class="create_community_basicInfo_div3">
+                            <div id="fakeDoneBtn">
+                                <button id="create_community_btn_done">Done</button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
     </div>

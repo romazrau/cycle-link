@@ -58,18 +58,18 @@ const GetHomePageWeather = async () => {
     let result = await response.json();
 
 
-    console.group("----------------")
+    // console.group("----------------")
     //顯示天氣
     // console.log(result)
     HomePageWeather(result);
 
-    console.groupEnd("----------------")
+    // console.groupEnd("----------------")
 
 
 
   } catch (err) {
     console.log(err);
-    console.groupEnd("----------------")
+    // console.groupEnd("----------------")
 
   }
 }
@@ -118,13 +118,11 @@ function HomePageWeather(data) {
   } else {
     WeatherTitleimg.src = "/img/rain.svg";
   }
-
-  display_home_weather(weatherElements.Wx, weatherElements.T);
+  
+  display_home_weather(weatherElements.Wx, weatherElements.T,day);
   //天氣描述:weatherElements.Wx.time[0].elementValue[0].value
   //代碼:weatherElements.Wx.time[0].elementValue[1].value
-
-
-
+  
 }
 
 
@@ -240,15 +238,22 @@ const home_picturesItem = (o) => {
                     </div>`
 }
 //todo
-const display_home_weather = (o, t) => {
+const display_home_weather = (o, t,day) => {
 
   o.time.map((e, index) => {
         // console.log(e.elementValue[1].value,index)
         if (index % 2 == 0)
-          document.querySelector(".Wcontainer").innerHTML += home_weather(e.elementValue[1].value);
-      }
-
-    ),
+          {
+            document.querySelector(".Wcontainer").innerHTML += home_weather(e.elementValue[1].value);
+            var day_list = ['日', '一', '二', '三', '四', '五', '六'];
+            // for(let i=0;i<)
+            let homepage_weather_day =document.querySelectorAll(".homepage_weather_day")
+            document.querySelectorAll(".homepage_weather_day")[homepage_weather_day.length-1].innerHTML="星期"+day_list[day]
+            day++;
+            // if(day>day_list.length)
+            //  day=0;
+          }
+    }    ),
     t.time.map((e, index) => {
       // console.log(e.elementValue[0].value);
       // if(index%2 == 0) 
@@ -271,7 +276,7 @@ const home_weather = (o,index) => {
     return `
     
     <div class="divtest_weather" >
-        <div></div>
+        <div class="homepage_weather_day"></div>
         <div class="weather_img_css" style="width:50px; height:50px ; margin:10px 0" >
           <img id="" src="/img/sun.svg"" alt="">
         </div>
@@ -280,7 +285,7 @@ const home_weather = (o,index) => {
   } else if (o == '04' || o == '05' || o == '06' || o == '07') {
     return `
     <div class="divtest_weather" >
-        <div></div>
+        <div class="homepage_weather_day"></div>
         <div class="weather_img_css" style="width:50px; height:50px ; margin:10px 0" >
           <img id="" src="/img/cloud.svg"" alt="">
         </div>
@@ -289,7 +294,7 @@ const home_weather = (o,index) => {
   } else {
     return `
     <div class="divtest_weather" >
-        <div></div>
+        <div class="homepage_weather_day"></div>
         <div class="weather_img_css" style="width:50px; height:50px ; margin:10px 0" >
           <img id="" src="/img/rain.svg"" alt="">
         </div>
