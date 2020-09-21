@@ -1,7 +1,7 @@
 .personal_container {
   max-width: 1140px;
   display: flex;
-  padding: 20vh 0 5vh 0;
+  padding: 15vh 0 5vh 0;
   margin-right: auto;
   margin-left: auto;
   justify-content: center;
@@ -34,13 +34,16 @@
 }
 
 .personal_imgbox {
-  /* position: absolute; */
+  position: absolute;
+  top: 25vh;
+  left: 42%;
+
   border-radius: 50%;
   padding: 0.5rem;
   border: 3px solid var(--blue-color);
   /* margin: 50px; */
   margin: 0 auto;
-  width: 20vw;
+  width: 300px;
   height: auto;
   background-color: white;
 }
@@ -243,7 +246,8 @@
 
 .personal_title_line {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .personal_title_line h4 {
@@ -251,11 +255,21 @@
 }
 
 .personal_banner {
+  position: relative;
   height: 40vh;
-  background-color: var(--lightblue-color);
+  filter: grayscale(100%);
+  /* background-color: var(--lightblue-color); */
   /* margin: 0 auto; */
 }
 
 .personal_banner p {
   height: 15vh;
+}
+
+.page-position-relative{
+  position: relative;
+}
+
+.personal_title_line > h3{
+  margin: 1.5rem;
 }

@@ -96,7 +96,8 @@
 
 /* 活動左側 內文 */
 .activity_detail_text_all {
-  width: 65vw;;
+  width: 65vw;
+  ;
   display: flex;
   margin: 0 auto;
   justify-content: space-between;
@@ -157,7 +158,7 @@
 
 /* 活動右側 */
 .activity_detail_right_container {
-  width: 20%;
+  width: 30%;
   /* margin: 0 auto; */
   /* width: 35vw; */
   /* border: 1px solid red; */

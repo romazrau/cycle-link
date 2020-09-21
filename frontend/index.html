@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="./styles/main.css">
 
 
-    <title>小海龜</title>
+    <title>Cycle-Link</title>
 </head>
 
 <body>
@@ -531,19 +531,6 @@
                                 <!-- </a> -->
                             </div>
                         </div>
-
-                        <!--社團類別選項刪除 
-                            <div class="CM_appearCategory_item_container">
-                            <div class="CM_appearCategory_item">
-                                種樹社團
-                            </div>
-                            <div class="CM_appearCategory_item">
-                                種樹社團
-                            </div>
-                            <div class="CM_appearCategory_item">
-                                種樹社團
-                            </div>
-                        </div> -->
                     </div>
                     <div class="community_main_topImg">
                         <img src="img/mountain(衰熊版).svg" />
@@ -554,19 +541,8 @@
                     <ul class="community_main_ul_timeline"></ul>
                 </div>
             </div>
-            <!-- ///達達切的讚讚社團首頁就給活動用ㄅ -->
-            <!-- <div id="community_navbar" class="page_navbar">
-                <div class="container page_navbar_row">
-                    <div>CC</div>
-                    <div>
-                        <button class="page_navbar_btn" onclick="location.hash = '#create-community'">創建社團</button>
-                    </div>
-                </div>
-            </div> -->
-
         </div>
-
-
+        
         <!-- * news  ****************      ****************       ****************   -->
         <div id="page_map" class="page hide">
             <!-------------------------------------- main -------------------------------------->
@@ -947,12 +923,13 @@
 
 
         <!-- * Personal page  ****************      ****************       ****************   -->
-        <div id='page_personal-page' class='page  hide'>
+        <div id='page_personal-page' class='page page-position-relative hide'>
             <div class="personal_banner">
                 <p></p>
-                <div class="personal_imgbox">
-                    <!-- <img src="img/id1.jpg" alt=""> -->
-                </div>
+              
+            </div>
+            <div class="personal_imgbox">
+                <!-- <img src="img/id1.jpg" alt=""> -->
             </div>
             <div class="personal_container">
 
@@ -1966,8 +1943,8 @@
                                             <!-- <img class="Group_detail_Societies_img" src="./img/id1.jpg" width="30"> -->
                                         </div>
                                         <form id="article_form">
-                                            <textarea class="AddArticleInput" name="fContent" placeholder="在想些什麼呢？"
-                                                cols=40 rows=2></textarea>
+                                            <textarea class="AddArticleInput" onkeyup="autogrow(this);" name="fContent" placeholder="在想些什麼呢？"
+                                              cols="40"  ></textarea>
                                             <label class="AddArticleLabel">
                                                 <input type="file" name="fPhoto" id="articleImgInput"
                                                     multiple="multiple" style="display: none;">
@@ -1979,7 +1956,7 @@
                                                 <!-- <img src="./img/icon_send.svg" width="20" class="AddArticleinCommunity" -->
                                                 <i class="far fa-paper-plane"></i>
                                             </label>
-                                            
+
                                         </form>
                                         <output class="AddArticleImgDisplay"></output>
                                         <!-- <div class="AddArticleImgDisplay">
@@ -2108,18 +2085,23 @@
                 </div>
                 <div class="personalManager_left">
                     <div class="personalManager_left_Info">
-                        <img id="personal-manege-img" src="https://fakeimg.pl/300x300/"
-                            class="personalManager_left_Info_img">
-                        <button>上傳圖片</button>
-                        <h3 id="personal-manege-name">訪客</h3>
-                        <h4 id="personal-manege-account">guest</h4>
-                        <p><img src="img/海龜幣.png" alt="" class="personalManager_SeaTurtleCoin"> 海龜積分：<span
-                                id="personal-manege-coin">0</span></p>
-                        <p><i class="fas fa-crown" style="margin-right:0.5rem;color:var(--green-color)"></i>會員等級：<span
-                                id="personal-manege-account-type">普通會員<span></p>
-                        <p>參與活動次數： <span id="personal-manege-act-count">0</span></p>
-                        <p>追蹤活動：<span id="personal-manege-act-int-count">0</span></p>
-                        <p>參加社團：<span id="personal-manege-com-count">0</span></p>
+                        <div>
+                            <img id="personal-manege-img" src="https://fakeimg.pl/300x300/"
+                                class="personalManager_left_Info_img">
+                            <button>編輯圖片</button>
+                        </div>
+                        <div class="personalManager_left_Info_txt">
+                            <h3 id="personal-manege-name">訪客</h3>
+                            <h4 id="personal-manege-account">guest</h4>
+                            <p><img src="img/海龜幣.png" alt="" class="personalManager_SeaTurtleCoin"> 海龜積分：<span
+                                    id="personal-manege-coin">0</span></p>
+                            <p><i class="fas fa-crown"
+                                    style="margin-right:0.5rem;color:var(--green-color)"></i>會員等級：<span
+                                    id="personal-manege-account-type">普通會員<span></p>
+                            <p>參與活動次數： <span id="personal-manege-act-count">0</span></p>
+                            <p>追蹤活動：<span id="personal-manege-act-int-count">0</span></p>
+                            <p>參加社團：<span id="personal-manege-com-count">0</span></p>
+                        </div>
                     </div>
                 </div>
                 <div class="personalManager_right">
@@ -2138,24 +2120,24 @@
                         </div>
                     </div>
 
-                    <div id="personalManager_right_page_info" class="personalManager_right_content">
+                    <div id="personalManager_right_page_info" class="personalManager_right_content hide">
                         <h2>基本資料</h2>
                         <div class="personalManager_right_content_infoBasic">
-                            <p>姓名：<input type="text" id="personal-maneger-input-name" value="--"></p>
-                            <p>生日：<input type="text" id="personal-maneger-input-birth" value="--"></p>
-                            <p>Email：<input type="text" id="personal-maneger-input-email" value="--">
+                            <p><span>姓名：</span><input type="text" id="personal-maneger-input-name" value="--"></p>
+                            <p><span>生日：</span><input type="text" id="personal-maneger-input-birth" value="--"></p>
+                            <p><span>Email：</span><input type="text" id="personal-maneger-input-email" value="--">
                             </p>
-                            <p>居住城市：<input type="text" id="personal-maneger-input-address" value="--"></p>
-                            <p>行動電話：<input type="text" id="personal-maneger-input-phone" value="--"></p>
-                            <p style="display: flex;align-self: start;">個人簡介：<textarea
-                                    id="personal-maneger-input-introduction" name="" cols="45" rows="3">範例</textarea>
+                            <p><span>居住城市：</span><input type="text" id="personal-maneger-input-address" value="--"></p>
+                            <p><span>行動電話：</span><input type="text" id="personal-maneger-input-phone" value="--"></p>
+                            <p style="display: flex;align-self: start;"><span >個人簡介：</span><textarea
+                                    id="personal-maneger-input-introduction" name="" cols="45" rows="8">範例</textarea>
                             </p>
                             <button>修改</button>
                         </div>
 
                     </div>
 
-                    <div id="personalManager_right_page_loveact" class="personalManager_right_content hide">
+                    <div id="personalManager_right_page_loveact" class="personalManager_right_content">
                         <h2>追蹤活動</h2>
                         <div id="likeContainer"></div>
                     </div>
