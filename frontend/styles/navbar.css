@@ -54,6 +54,27 @@
   display: flex;
 }
 
+.navbar_my_photo_border {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid var(--blue-color);
+  border-radius: 50%;
+
+  overflow: hidden;
+}
+
+.navbar_my_photo{
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  border: 2px solid rgba(255, 255, 255, 0);
+  border-radius: 50%;
+}
+
 /* 下拉新增區 */
 .navebar_add_icons {
   display: flex;
@@ -75,8 +96,7 @@
   background-color: var(--white-color);
   box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.712);
 
-
-  transition: all .5s;
+  transition: all 0.5s;
 }
 
 .navebar_down_list > button {
@@ -100,8 +120,8 @@
   box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.712);
 }
 
-.foldingCurtain{
-  animation: App-create-list-down 1 .5s ease;
+.foldingCurtain {
+  animation: App-create-list-down 1 0.2s ease;
   transform-origin: top;
   transform: scaleY(1) !important;
 }
@@ -115,9 +135,8 @@
   }
 }
 
-
-.foldingCurtainUp{
-  animation: App-create-list-up 1 .5s ease;
+.foldingCurtainUp {
+  animation: App-create-list-up 1 0.2s ease;
   transform-origin: top;
   transform: scaleY(0) !important;
 }
@@ -130,8 +149,6 @@
     transform: scaleY(0);
   }
 }
-
-
 
 .navebar_plus_icon {
   position: absolute;
@@ -177,6 +194,7 @@
   display: flex;
   align-items: center;
   padding: 1rem 2vw;
+  height: 5rem;
 }
 
 #navbar_logout {

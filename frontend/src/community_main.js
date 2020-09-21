@@ -365,7 +365,7 @@ ${ImgIsNullOrNot(x.PostImg)}
     .addEventListener("click", function () {
       let nowtime = new Date();
       let nowMonth = timeFormatAdjust(nowtime.getMonth() + 1);
-      document.querySelector(".CM_recommend_container").style.display="flex";
+      // document.querySelector(".CM_recommend_container").style.display="flex";
       document.querySelector(".CM_recommend_container").innerHTML="";
       getRecommendCommunity(nowMonth);
     });
@@ -374,7 +374,7 @@ ${ImgIsNullOrNot(x.PostImg)}
   document
     .querySelector(".CM_searchbar_explore_item")
     .addEventListener("click", function () {
-      document.querySelector(".CM_recommend_container").style.display="flex";
+      // document.querySelector(".CM_recommend_container").style.display="flex";
       document.querySelector(".CM_recommend_container").innerHTML="";
       getExploreCommunity();
     });
@@ -385,6 +385,7 @@ ${ImgIsNullOrNot(x.PostImg)}
     .addEventListener("click", function () {
       let input_text = document.querySelector(".CM_banner_searchbar_text")
         .value;
+        CM_recommend.classList.remove("CM_recommend_container_disappear");
       txtsearchCommunityCard(input_text);
       txtsearchCommunityArticle(input_text);
     });
@@ -553,6 +554,7 @@ ${ImgIsNullOrNot(x.PostImg)}
       });
       let result = await response.json();
       display_recommendCommunity(result.data);
+      // console.log(result.data);
     } catch (err) {
       console.log(err);
     }
@@ -706,18 +708,12 @@ ${ImgIsNullOrNot(x.PostImg)}
 }
 const CommunityMain = new ClsCommunityMain();
 
-const communityMainChanging123 = () => {
+const communityMainChanging = () => {
   if (location.hash.includes("#community")) {
-    // CommunityMain.GetAllPosts();
-    // CommunityMain.SearchtxtCommunity = "";
-    // CommunityMain.SearchCardCommunity = "";
     //搜尋結果隱藏
-    document.querySelector(".CM_recommend_container").style.display="none";
-    //清空原本搜尋結果
-    // document.querySelector(".community_main_ul_timeline").innerHTML="";
+    document.querySelector(".CM_recommend_container").classList.add("CM_recommend_container_disappear");
     CommunityMain.getCommunityPost();
-    
   }
 };
-window.addEventListener("hashchange", communityMainChanging123);
-window.addEventListener("load", communityMainChanging123);
+window.addEventListener("hashchange", communityMainChanging);
+window.addEventListener("load", communityMainChanging);

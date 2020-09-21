@@ -29,9 +29,13 @@ function ClsPersonalPage() {
             console.log("data", data);
             display_information(data);
 
+            let backgrondImg =  `background-image: url(${serverURL.root}/${data[0].fPhotoPath});
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;`
 
-
-
+            document.querySelector(".personal_banner").setAttribute("style", backgrondImg);
+           
 
         } catch (err) {
             console.log(err);

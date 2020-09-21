@@ -146,8 +146,8 @@ function ClsPersonalManeger() {
             });
             let result = await response.json();
 
-            console.log("個人參加活動列表-----------");
-            console.log(result);
+            // console.log("個人參加活動列表-----------");
+            // console.log(result);
 
             //喜愛的活動
             let likeContainer = document.querySelector("#likeContainer");

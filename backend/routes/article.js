@@ -27,6 +27,7 @@ router.get("/community/:communityid", async function (req, res, next) {
   }
 });
 
+//使用者頭像輸出
 router.get("/userinfo", async function (req, res, next) {
   try {
     let fMemberId = req.user.fId;
@@ -63,6 +64,7 @@ router.get("/hottiest/:nowMonth", async function (req, res, next) {
     res.send(err);
   }
 });
+
 //探索社團
 router.get("/explore", async function (req, res, next) {
   try {
