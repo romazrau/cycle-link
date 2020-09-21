@@ -1,6 +1,4 @@
 // import { serverURL } from "./api.js";
-
-// TODO這到底是三小？？？為啥突然跑不了
 // const { IgnorePlugin } = require("webpack");
 
 function ClsCommunityArticle() {
@@ -152,6 +150,7 @@ function ClsCommunityArticle() {
         addArticleImgReader.addEventListener("load", function (e) {
           let picfile = e.target;
           let createDiv = document.createElement("div");
+          createDiv.setAttribute("class", "removeTest");
           createDiv.innerHTML =
             "<img src=" +
             picfile.result +
@@ -385,6 +384,7 @@ function ClsCommunityArticle() {
       addArticletoSQL(getCommunityIdFromUrl());
       getPostInSingleCommunity(getCommunityIdFromUrl());
       document.querySelector(".AddArticleInput").value = "";
+      document.querySelector(".removeTest").remove();
     });
 
   //*----------------------------------資料陣列匯入文字樣板function----------------------------------*//
@@ -698,7 +698,8 @@ function ClsCommunityArticle() {
         // credentials: "include",
       });
       let result = await response.json();
-      console.log(result);
+      getPostInSingleCommunity(getCommunityIdFromUrl());
+      // console.log(result);
     } catch (err) {
       console.log(err);
     }
