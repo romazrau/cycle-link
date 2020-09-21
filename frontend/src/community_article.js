@@ -20,7 +20,7 @@ function ClsCommunityArticle() {
 
   //社團頁面：文章字串判斷是否有圖片，沒有就不匯入div
   const Article_ImgIsNullOrNot = (x) => {
-    if (x === null) {
+    if (x === null || x === "") {
       return ``;
     } else {
       var y = x.includes(",,");
@@ -31,12 +31,6 @@ function ClsCommunityArticle() {
         return `<i class="fas fa-chevron-left fa-2x ArticlePost_preIcon" style="color:white"></i>
       <i class="fas fa-chevron-right fa-2x ArticlePost_nextIcon" style="color:white"></i>
       ${a}`;
-        // return `<a class="ArticlePost_preIcon" href="">
-        //           <i class="fas fa-chevron-left fa-2x" style="color:white"></i>
-        //         </a>${a}
-        //         <a class="ArticlePost_nextIcon" href="">
-        //           <i class="fas fa-chevron-right fa-2x" style="color:white"></i>
-        //         </a>`;
       } else {
         return `
       <div class="community_article_body_img">
@@ -150,7 +144,7 @@ function ClsCommunityArticle() {
         addArticleImgReader.addEventListener("load", function (e) {
           let picfile = e.target;
           let createDiv = document.createElement("div");
-          createDiv.setAttribute("class", "removeTest");
+          createDiv.setAttribute("class", "removeImgClass");
           createDiv.innerHTML =
             "<img src=" +
             picfile.result +
@@ -160,7 +154,6 @@ function ClsCommunityArticle() {
         addArticleImgReader.readAsDataURL(imgFilesItem);
       }
     });
-
 
   //社團頁面留言：Icon點擊觸動function寫入留言內容
   function Article_addClickEventToReply(pIds) {
@@ -384,7 +377,9 @@ function ClsCommunityArticle() {
       addArticletoSQL(getCommunityIdFromUrl());
       getPostInSingleCommunity(getCommunityIdFromUrl());
       document.querySelector(".AddArticleInput").value = "";
-      document.querySelector(".removeTest").remove();
+      let addArticleInput_height = document.querySelector(".AddArticleInput");
+      addArticleInput_height.style.height = "4rem";
+      document.querySelector(".removeImgClass").remove();
     });
 
   //*----------------------------------資料陣列匯入文字樣板function----------------------------------*//
@@ -570,12 +565,15 @@ function ClsCommunityArticle() {
     try {
       let nowtime = new Date();
       let replytime =
-        nowtime.toLocaleDateString() +
+        timeFormatAdjust(nowtime.getFullYear()) +
+        "/" +
+        timeFormatAdjust(nowtime.getMonth() + 1) +
+        "/" +
+        timeFormatAdjust(nowtime.getDate()) +
         " " +
         timeFormatAdjust(nowtime.getHours()) +
         ":" +
         timeFormatAdjust(nowtime.getMinutes());
-
       let replyFormdata = new FormData();
       replyFormdata.append("fPostId", postid);
       replyFormdata.append("fContent", content);
@@ -676,11 +674,15 @@ function ClsCommunityArticle() {
     try {
       let nowtime = new Date();
       let addarticletime =
-        nowtime.toLocaleDateString() +
-        " " +
-        timeFormatAdjust(nowtime.getHours()) +
-        ":" +
-        timeFormatAdjust(nowtime.getMinutes());
+      timeFormatAdjust(nowtime.getFullYear()) +
+      "/" +
+      timeFormatAdjust(nowtime.getMonth() + 1) +
+      "/" +
+      timeFormatAdjust(nowtime.getDate()) +
+      " " +
+      timeFormatAdjust(nowtime.getHours()) +
+      ":" +
+      timeFormatAdjust(nowtime.getMinutes());
       let form = document.getElementById("article_form");
       var articleFormdata = new FormData(form);
       articleFormdata.append("fCommunityId", CommunityId);
@@ -710,11 +712,15 @@ function ClsCommunityArticle() {
     try {
       let nowtime = new Date();
       let editarticletime =
-        nowtime.toLocaleDateString() +
-        " " +
-        timeFormatAdjust(nowtime.getHours()) +
-        ":" +
-        timeFormatAdjust(nowtime.getMinutes());
+      timeFormatAdjust(nowtime.getFullYear()) +
+      "/" +
+      timeFormatAdjust(nowtime.getMonth() + 1) +
+      "/" +
+      timeFormatAdjust(nowtime.getDate()) +
+      " " +
+      timeFormatAdjust(nowtime.getHours()) +
+      ":" +
+      timeFormatAdjust(nowtime.getMinutes());
 
       let form = document.getElementById("edit_article_form");
       var editFormdata = new FormData(form);

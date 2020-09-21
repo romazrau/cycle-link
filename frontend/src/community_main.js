@@ -5,7 +5,7 @@ function ClsCommunityMain() {
   //*----------------------------------------奇形怪狀的方法們----------------------------------------*//
   //判斷是否有圖片，沒有就不匯入div
   const ImgIsNullOrNot = (x) => {
-    if (x === null) {
+    if (x === null || x === "") {
       return ``;
     } else {
       var y = x.includes(",,");
@@ -595,11 +595,15 @@ ${ImgIsNullOrNot(x.PostImg)}
     try {
       let nowtime = new Date();
       let replytime =
-        nowtime.toLocaleDateString() +
-        " " +
-        timeFormatAdjust(nowtime.getHours()) +
-        ":" +
-        timeFormatAdjust(nowtime.getMinutes());
+      timeFormatAdjust(nowtime.getFullYear()) +
+      "/" +
+      timeFormatAdjust(nowtime.getMonth() + 1) +
+      "/" +
+      timeFormatAdjust(nowtime.getDate()) +
+      " " +
+      timeFormatAdjust(nowtime.getHours()) +
+      ":" +
+      timeFormatAdjust(nowtime.getMinutes());
 
       let replyFormdata = new FormData();
       replyFormdata.append("fPostId", postid);
