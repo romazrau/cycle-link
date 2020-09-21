@@ -696,7 +696,8 @@ function ClsCommunityArticle() {
         // credentials: "include",
       });
       let result = await response.json();
-      console.log(result);
+      getPostInSingleCommunity(getCommunityIdFromUrl());
+      // console.log(result);
     } catch (err) {
       console.log(err);
     }
