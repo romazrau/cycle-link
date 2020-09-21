@@ -60,7 +60,7 @@ function ClsChat() {
                 return;
             }
 
-            console.log(result);
+            // console.log(result);
             // console.group("chatroom List");
             result.data.map(item => {
                 if (item.fIsMeLastChat) {
