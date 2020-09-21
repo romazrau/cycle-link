@@ -52,7 +52,8 @@ const articlelist = async () => {
       left join PostLikeCount as l
       on par.PostId = l.fPostId)
       select *
-      from PostAndReplyAndLike`;
+      from PostAndReplyAndLike
+      order by Convert(datetime, fPostTime) DESC`;
     const result = await sql.query(str);
     // 看一下回傳結果
     // console.dir(result);
