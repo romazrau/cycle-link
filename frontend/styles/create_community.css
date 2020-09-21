@@ -219,11 +219,11 @@
 }
 
 .cc_imgUpload_div {
-  width: 70vh;
+  width: 100%;
 }
 
 .cc_imgUpload_div img {
-  width: 95%;
+  width: 100%;
 }
 
 
