@@ -119,7 +119,7 @@ router.get("/edit/display/:postid", async function (req, res, next) {
   }
 });
 
-//* ----------------------- 編輯活動 ----------------------- //
+//* ----------------------- 編輯文章----------------------- //
 router.put('/edit', async function (req, res, next) {
   try {
       let {
@@ -128,15 +128,15 @@ router.put('/edit', async function (req, res, next) {
         fContent,
       } = req.body
 
-      let fImgPaths = "";
-      for (let i = 0; i < req.files.length; i++) {
-        fImgPaths += "img/" + req.files[i].filename;
-        fImgPaths += ",,";
-      }
+      // let fImgPaths = "";
+      // for (let i = 0; i < req.files.length; i++) {
+      //   fImgPaths += "img/" + req.files[i].filename;
+      //   fImgPaths += ",,";
+      // }
       
       let result = await Sql.updateEdited(
         fContent,
-        fImgPaths,
+        // fImgPaths,
         fPostTime,
         fPostId);
 
