@@ -362,7 +362,7 @@
   display: flex;
   flex-wrap: wrap;
   align-content: stretch;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   /* max-width: 800px; */
   margin: 1rem auto;
 }
@@ -602,10 +602,10 @@
 }
 
 #inputDemo {
-  border: 1px solid var(--blue-color);
+  border: 1px solid var(--lightblue-color);
   border-radius: 5px;
-  background-color: var(--blue-color);
-  color: white;
+  /* background-color: var(--lightblue-color); */
+  color: var(--lightblue-color);
   padding: 0.3rem;
   position: absolute;
   bottom: 1rem;
