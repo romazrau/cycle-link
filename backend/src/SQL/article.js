@@ -491,11 +491,11 @@ const displayArticleForEdit = async (x) => {
 };
 
 //編輯文章：2. 更新資料
-const updateEdited = async (fContent, fImgPaths, fPostTime, fPostId) => {
+const updateEdited = async (fContent, fPostTime, fPostId) => {
   try {
     await sql.connect(config);
     let str = `UPDATE Community.tPost
-    SET fContent='${fContent}',fImgPaths='${fImgPaths}', fPostTime='${fPostTime}'
+    SET fContent='${fContent}', fPostTime='${fPostTime}'
     WHERE fId = ${fPostId}`;
 
     console.log(str);

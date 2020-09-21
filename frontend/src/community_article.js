@@ -512,7 +512,7 @@ function ClsCommunityArticle() {
         document
           .getElementById("editIcon" + e.PostId)
           .addEventListener("click", function () {
-            console.log("被點到ㄌ");
+            // console.log("被點到ㄌ");
             popUpEditDiv = document.querySelector(".popUpforEdit");
             popUpEditDiv.classList.remove("popUpforEdit_disappear");
             getPostforEdit(e.PostId);
