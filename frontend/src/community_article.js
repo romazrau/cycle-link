@@ -379,7 +379,10 @@ function ClsCommunityArticle() {
       document.querySelector(".AddArticleInput").value = "";
       let addArticleInput_height = document.querySelector(".AddArticleInput");
       addArticleInput_height.style.height = "4rem";
-      document.querySelector(".removeImgClass").remove();
+      let removeImgDiv = document.querySelectorAll(".removeImgClass");
+      for (let i = 0; i < removeImgDiv.length; i++) {
+        removeImgDiv[i].remove();
+      }
     });
 
   //*----------------------------------資料陣列匯入文字樣板function----------------------------------*//
@@ -674,15 +677,15 @@ function ClsCommunityArticle() {
     try {
       let nowtime = new Date();
       let addarticletime =
-      timeFormatAdjust(nowtime.getFullYear()) +
-      "/" +
-      timeFormatAdjust(nowtime.getMonth() + 1) +
-      "/" +
-      timeFormatAdjust(nowtime.getDate()) +
-      " " +
-      timeFormatAdjust(nowtime.getHours()) +
-      ":" +
-      timeFormatAdjust(nowtime.getMinutes());
+        timeFormatAdjust(nowtime.getFullYear()) +
+        "/" +
+        timeFormatAdjust(nowtime.getMonth() + 1) +
+        "/" +
+        timeFormatAdjust(nowtime.getDate()) +
+        " " +
+        timeFormatAdjust(nowtime.getHours()) +
+        ":" +
+        timeFormatAdjust(nowtime.getMinutes());
       let form = document.getElementById("article_form");
       var articleFormdata = new FormData(form);
       articleFormdata.append("fCommunityId", CommunityId);
@@ -712,15 +715,15 @@ function ClsCommunityArticle() {
     try {
       let nowtime = new Date();
       let editarticletime =
-      timeFormatAdjust(nowtime.getFullYear()) +
-      "/" +
-      timeFormatAdjust(nowtime.getMonth() + 1) +
-      "/" +
-      timeFormatAdjust(nowtime.getDate()) +
-      " " +
-      timeFormatAdjust(nowtime.getHours()) +
-      ":" +
-      timeFormatAdjust(nowtime.getMinutes());
+        timeFormatAdjust(nowtime.getFullYear()) +
+        "/" +
+        timeFormatAdjust(nowtime.getMonth() + 1) +
+        "/" +
+        timeFormatAdjust(nowtime.getDate()) +
+        " " +
+        timeFormatAdjust(nowtime.getHours()) +
+        ":" +
+        timeFormatAdjust(nowtime.getMinutes());
 
       let form = document.getElementById("edit_article_form");
       var editFormdata = new FormData(form);
