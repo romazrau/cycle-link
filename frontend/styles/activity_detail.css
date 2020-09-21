@@ -29,6 +29,10 @@
   font-weight: bold;
 }
 
+.activity_detail_info_share {
+  padding: 0 2.5rem 0 0;
+}
+
 .activity_detail_info_share button {
   border: 0px;
   border-radius: 0.6rem;
@@ -90,7 +94,7 @@
 }
 
 .activity_detail_info_status {
-  width: 15px;
+  width: 16px;
   margin-left: 0.3rem;
 }
 
@@ -117,7 +121,7 @@
 
 .activity_detail_text_left {
   /* margin: 0px auto; */
-  width: 700px;
+  width: 760px;
   padding: 1.5rem 0;
 }
 
@@ -256,7 +260,7 @@
 .activity_detail_participant_flex {
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-between; */
+  justify-content: space-between;
 }
 
 .activity_detail_participant {
@@ -362,7 +366,7 @@
   display: flex;
   flex-wrap: wrap;
   align-content: stretch;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   /* max-width: 800px; */
   margin: 1rem auto;
 }
@@ -602,10 +606,10 @@
 }
 
 #inputDemo {
-  border: 1px solid var(--blue-color);
+  border: 1px solid var(--lightblue-color);
   border-radius: 5px;
-  background-color: var(--blue-color);
-  color: white;
+  /* background-color: var(--lightblue-color); */
+  color: var(--lightblue-color);
   padding: 0.3rem;
   position: absolute;
   bottom: 1rem;
