@@ -523,7 +523,7 @@ function ClsActivity() {
     //* ------------------------------------- 文字樣板 -------------------------------------
     const display_active = (o) => {
         reflashPage(0);
-        console.log("o:",o)
+        console.log("o:", o)
 
         ActCard.innerHTML = "";
 
@@ -856,7 +856,7 @@ function ClsActivity() {
         }
     )
 
-        
+
     const reflashPage = (isFlashMainAct = 1) => {
         // 清空
         activity_card_ALL.classList.remove("hide");
@@ -867,12 +867,12 @@ function ClsActivity() {
         // searchtext.value = "";
         searchtext.value = ""
         activity_option.value = 7;
-        
-        if(isFlashMainAct){
+
+        if (isFlashMainAct) {
             document.querySelector("#act_tag_main").innerHTML = "主題活動";
-        display_active(activeData);
+            display_active(activeData);
         }
-        
+
     };
 
     this.activeseenAwait = activeseenAwait;
@@ -893,3 +893,19 @@ const activityChangeHash = () => {
 
 window.addEventListener("hashchange", activityChangeHash);
 window.addEventListener("load", activityChangeHash);
+
+
+//* 社團文章的textarea自動適應文字高度
+var AddArticleInput = document.querySelector(".AddArticleInput")
+// console.log("AddArticleInput", AddArticleInput);
+
+function autogrow(AddArticleInput) {
+    // console.log("要放大啊");
+    var adjustedHeight = AddArticleInput.clientHeight;
+
+    adjustedHeight = Math.max(AddArticleInput.scrollHeight, adjustedHeight);
+
+    if (adjustedHeight > AddArticleInput.clientHeight) {
+        AddArticleInput.style.height = adjustedHeight + "px";
+    }
+}

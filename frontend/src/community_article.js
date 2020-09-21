@@ -152,6 +152,7 @@ function ClsCommunityArticle() {
         addArticleImgReader.addEventListener("load", function (e) {
           let picfile = e.target;
           let createDiv = document.createElement("div");
+          createDiv.setAttribute("class", "removeTest");
           createDiv.innerHTML =
             "<img src=" +
             picfile.result +
@@ -385,6 +386,7 @@ function ClsCommunityArticle() {
       addArticletoSQL(getCommunityIdFromUrl());
       getPostInSingleCommunity(getCommunityIdFromUrl());
       document.querySelector(".AddArticleInput").value = "";
+      document.querySelector(".removeTest").remove();
     });
 
   //*----------------------------------資料陣列匯入文字樣板function----------------------------------*//

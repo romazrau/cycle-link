@@ -98,7 +98,8 @@
   height: 260px;
   display: flex;
 }
-.CM_recommend_container_disappear{
+
+.CM_recommend_container_disappear {
   display: none;
 }
 
@@ -125,20 +126,21 @@
 }
 
 .CM_recommend_item_info {
-  margin-left: 20px; 
-  margin-top: 8px; 
+  margin-left: 20px;
+  margin-top: 8px;
 }
 
-.CM_recommend_item_info p{
+.CM_recommend_item_info p {
   font-size: 1.4rem;
-  margin-bottom:5px;
+  margin-bottom: 5px;
 }
 
-.CM_recommend_item_info i{
+.CM_recommend_item_info i {
   margin-right: 10px;
   color: var(--blue-color);
 }
-.CM_recommend_item_info span{
+
+.CM_recommend_item_info span {
   color: var(--grey-color);
 }
 
@@ -250,6 +252,10 @@
   font-size: 14px;
 }
 
+.CM_timeline_heading_userinfo a {
+  color: rgb(46, 46, 46);
+}
+
 .communityName_span {
   cursor: pointer;
   color: white;
@@ -260,16 +266,16 @@
   background-color: var(--blue-color);
 }
 
-.CM_timeline_body{
+.CM_timeline_body {
   position: relative;
 }
 
-.CM_timeline_body > p {
+.CM_timeline_body>p {
   padding: 0 20px;
   margin: 10px 0;
 }
 
-.CM_timeline_body > p + p {
+.CM_timeline_body>p+p {
   margin-top: 5px;
 }
 
@@ -291,6 +297,7 @@
 .CM_timeline_footer {
   padding: 10px 15px;
   background-color: #f4f4f4;
+  border-radius: 0 0 8px 8px;
 }
 
 .CM_timeline_footer i {
@@ -324,7 +331,7 @@
   margin-left: -1.5px;
 }
 
-.community_main_ul_timeline > li {
+.community_main_ul_timeline>li {
   margin-bottom: 30px;
   position: relative;
   width: 50%;
@@ -332,18 +339,18 @@
   clear: left;
 }
 
-.community_main_ul_timeline > li:before,
-.community_main_ul_timeline > li:after {
+.community_main_ul_timeline>li:before,
+.community_main_ul_timeline>li:after {
   content: " ";
   display: table;
 }
 
-.community_main_ul_timeline > li:after {
+.community_main_ul_timeline>li:after {
   clear: both;
 }
 
-.community_main_ul_timeline > li:before,
-.community_main_ul_timeline > li:after {
+.community_main_ul_timeline>li:before,
+.community_main_ul_timeline>li:after {
   content: " ";
   display: table;
 }
@@ -351,10 +358,12 @@
 .community_main_timeline_panel {
   width: 90%;
   float: left;
-  border: 1px solid #ddd;
-  border-radius: 3px;
+  /* border: 1px solid #ddd; */
+  border-radius: 8px;
   background-color: var(--white-color);
   position: relative;
+  box-shadow: 1px 1px 25px rgba(167, 167, 167, 0.384);
+
 }
 
 .community_main_timeline_panel::after {
@@ -381,7 +390,7 @@
   content: " ";
 }
 
-.timeline > li > .timeline-badge {
+.timeline>li>.timeline-badge {
   /* color: #fff;
     width: 24px;
     height: 24px;
@@ -401,25 +410,27 @@
       */
 }
 
-.community_main_timeline_inverted > .community_main_timeline_panel {
+.community_main_timeline_inverted>.community_main_timeline_panel {
   float: right;
+  box-shadow: 1px 1px 25px rgba(167, 167, 167, 0.384);
+
 }
 
-.community_main_timeline_inverted > .community_main_timeline_panel:before {
+.community_main_timeline_inverted>.community_main_timeline_panel:before {
   border-left-width: 0;
   border-right-width: 12px;
   left: -13px;
   right: auto;
 }
 
-.community_main_timeline_inverted > .community_main_timeline_panel:after {
+.community_main_timeline_inverted>.community_main_timeline_panel:after {
   border-left-width: 0;
   border-right-width: 11px;
   left: -11px;
   right: auto;
 }
 
-.timeline-badge > a {
+.timeline-badge>a {
   color: #b5b5b5 !important;
   font-size: 1.2em;
   line-height: 1.2em;
@@ -429,25 +440,23 @@
   color: #000 !important;
 }
 
-.timeline-badge > a > i {
+.timeline-badge>a>i {
   background-color: #efefef;
 }
 
-.community_main_ul_timeline > .community_main_timeline_inverted {
+.community_main_ul_timeline>.community_main_timeline_inverted {
   float: right;
   clear: right;
   margin-top: 70px;
   margin-bottom: 70px;
 }
 
-.community_main_ul_timeline
-  > .community_main_timeline_inverted
-  > .community_main_groupIcon {
+.community_main_ul_timeline>.community_main_timeline_inverted>.community_main_groupIcon {
   left: -35px;
   /* margin-top: 40px; */
 }
 
-.community_main_ul_timeline > li:nth-child(2) {
+.community_main_ul_timeline>li:nth-child(2) {
   margin-top: 150px;
 }
 
@@ -456,7 +465,7 @@
     left: 20px;
   }
 
-  ul.community_main_ul_timeline > li {
+  ul.community_main_ul_timeline>li {
     margin-bottom: 25px;
     position: relative;
     width: 100%;
@@ -464,51 +473,49 @@
     clear: left;
   }
 
-  ul.community_main_ul_timeline > li > .community_main_timeline_panel {
+  ul.community_main_ul_timeline>li>.community_main_timeline_panel {
     width: calc(100% - 46px);
     width: -moz-calc(100% - 46px);
     width: -webkit-calc(100% - 46px);
   }
 
   /* 不確定 */
-  ul.community_main_ul_timeline > li > .timeline-badge {
+  ul.community_main_ul_timeline>li>.timeline-badge {
     left: 8px;
     margin-left: 0;
     top: 18px;
   }
 
-  ul.community_main_ul_timeline > li > .community_main_groupIcon {
+  ul.community_main_ul_timeline>li>.community_main_groupIcon {
     display: none;
   }
 
-  ul.community_main_ul_timeline > li > .community_main_timeline_panel {
+  ul.community_main_ul_timeline>li>.community_main_timeline_panel {
     float: right;
   }
 
-  ul.community_main_ul_timeline > li > .community_main_timeline_panel:before {
+  ul.community_main_ul_timeline>li>.community_main_timeline_panel:before {
     border-left-width: 0;
     border-right-width: 13px;
     left: -13px;
     right: auto;
   }
 
-  ul.community_main_ul_timeline > li > .community_main_timeline_panel:after {
+  ul.community_main_ul_timeline>li>.community_main_timeline_panel:after {
     border-left-width: 0;
     border-right-width: 11px;
     left: -11px;
     right: auto;
   }
 
-  .community_main_ul_timeline > li.community_main_timeline_inverted {
+  .community_main_ul_timeline>li.community_main_timeline_inverted {
     float: left;
     clear: left;
     margin-top: 0px;
     margin-bottom: 25px;
   }
 
-  .community_main_ul_timeline
-    > li.community_main_timeline_inverted
-    > .timeline-badge {
+  .community_main_ul_timeline>li.community_main_timeline_inverted>.timeline-badge {
     left: 8px;
   }
 }
@@ -624,14 +631,14 @@
   position: absolute;
   cursor: pointer;
   top: 14rem;
-  left:0.8rem;
+  left: 0.8rem;
 }
 
 .Post_nextIcon {
   position: absolute;
   cursor: pointer;
   top: 14rem;
-  right:0.8rem;
+  right: 0.8rem;
 }
 
 /* 要讓編輯Icon消失ㄉClass */
@@ -656,9 +663,10 @@
 
 /******************* RWD*******************/
 
-@media(max-width: 800px){
-  
-.community_main_ul_timeline {
-  padding-right: 1.5rem;}
+@media(max-width: 800px) {
+
+  .community_main_ul_timeline {
+    padding-right: 1.5rem;
+  }
 
 }
