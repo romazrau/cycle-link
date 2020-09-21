@@ -385,7 +385,7 @@ function ClsActivity() {
     const htmlActCard = (o) => {
 
         return ` 
-            <div class="">
+            <div class="ac_card_margin">
             <a  href="#activity/detail/${o.fId}" class="activecard">
                  <div class="active_card_container">
                  <div class="active_card" >
@@ -418,7 +418,7 @@ function ClsActivity() {
     const htmlActCardseen = (o) => {
         if (o.fJoinTypeId == 0) {
             return ` 
-            <div class="">
+            <div class="ac_card_margin">
             <a  href="#activity/detail/${o.fActivityId}" class="activecard">
                  <div class="active_card_container">
                  <div class="active_card" >
@@ -444,7 +444,7 @@ function ClsActivity() {
              </div>`;
         } else {
             return ` 
-            <div class="">
+            <div class="ac_card_margin">
             <a  href="#activity/detail/${o.fActivityId}" class="activecard">
                  <div class="active_card_container">
                  <div class="active_card" >
@@ -498,7 +498,7 @@ function ClsActivity() {
     //todo 圖片路徑 目前是寫死的 如有更新後需更改為動態
     const htmlActSearchgo = (o) => {
         return `
-        
+        <div class="ac_card_margin">
         <a  href="#activity/detail/${o.fId}" >
         <div class="active_card_container">
             <div class="active_card" >
@@ -515,7 +515,8 @@ function ClsActivity() {
                     </div>
                 </div>
             </div>
-        </div></a>               
+        </div></a>
+        </div>
         `
     }
 
