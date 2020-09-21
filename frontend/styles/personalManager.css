@@ -51,6 +51,7 @@ h4 {
 .personalManager_left_Info_img {
     width: 100%;
     border-radius: 1rem 1rem 0 0;
+    border-bottom: 1px solid var(--lightgrey-color);
     margin-bottom: 2rem;
 }
 
@@ -121,7 +122,7 @@ h4 {
 }
 
 .personalManager_right_content h2 {
-    width: 12vw;
+    width: 15vw;
     margin-bottom: 3vh;
     border-bottom: 3px solid var(--blue-color);
     padding: 0 0 0.5rem 0;
