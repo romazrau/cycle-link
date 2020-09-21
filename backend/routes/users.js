@@ -43,6 +43,7 @@ const reflashToken = async (id) => {
           fName: result.data.fName,
           fAccountType: result.data.fAccountType,
           fAccountAuthority: result.data.fAccountAuthority,
+          fPhotoPath: result.data.fPhotoPath
         },
         "DayDayLuLuDaDaMiMiJJTenTen",
         {
@@ -88,6 +89,7 @@ router.post("/login", async function (req, res, next) {
           fName: result.data.fName,
           fAccountType: result.data.fAccountType,
           fAccountAuthority: result.data.fAccountAuthority,
+          fPhotoPath: result.data.fPhotoPath
         },
         "DayDayLuLuDaDaMiMiJJTenTen", // 加密文字，極重要，不可讓駭客知道喔啾咪
         {

@@ -211,6 +211,7 @@
 
 .CM_timeline_heading_img_circle_border {
   position: relative;
+  flex-shrink: 0;
   width: 70px;
   height: 70px;
   border: 2px solid var(--lightblue-color);
