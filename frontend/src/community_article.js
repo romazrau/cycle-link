@@ -20,7 +20,7 @@ function ClsCommunityArticle() {
 
   //社團頁面：文章字串判斷是否有圖片，沒有就不匯入div
   const Article_ImgIsNullOrNot = (x) => {
-    if (x === null) {
+    if (x === null || x === "") {
       return ``;
     } else {
       var y = x.includes(",,");
@@ -31,12 +31,6 @@ function ClsCommunityArticle() {
         return `<i class="fas fa-chevron-left fa-2x ArticlePost_preIcon" style="color:white"></i>
       <i class="fas fa-chevron-right fa-2x ArticlePost_nextIcon" style="color:white"></i>
       ${a}`;
-        // return `<a class="ArticlePost_preIcon" href="">
-        //           <i class="fas fa-chevron-left fa-2x" style="color:white"></i>
-        //         </a>${a}
-        //         <a class="ArticlePost_nextIcon" href="">
-        //           <i class="fas fa-chevron-right fa-2x" style="color:white"></i>
-        //         </a>`;
       } else {
         return `
       <div class="community_article_body_img">
@@ -150,6 +144,7 @@ function ClsCommunityArticle() {
         addArticleImgReader.addEventListener("load", function (e) {
           let picfile = e.target;
           let createDiv = document.createElement("div");
+          createDiv.setAttribute("class", "removeImgClass");
           createDiv.innerHTML =
             "<img src=" +
             picfile.result +
@@ -159,7 +154,6 @@ function ClsCommunityArticle() {
         addArticleImgReader.readAsDataURL(imgFilesItem);
       }
     });
-
 
   //社團頁面留言：Icon點擊觸動function寫入留言內容
   function Article_addClickEventToReply(pIds) {
@@ -383,6 +377,12 @@ function ClsCommunityArticle() {
       addArticletoSQL(getCommunityIdFromUrl());
       getPostInSingleCommunity(getCommunityIdFromUrl());
       document.querySelector(".AddArticleInput").value = "";
+      let addArticleInput_height = document.querySelector(".AddArticleInput");
+      addArticleInput_height.style.height = "4rem";
+      let removeImgDiv = document.querySelectorAll(".removeImgClass");
+      for (let i = 0; i < removeImgDiv.length; i++) {
+        removeImgDiv[i].remove();
+      }
     });
 
   //*----------------------------------資料陣列匯入文字樣板function----------------------------------*//
@@ -515,7 +515,7 @@ function ClsCommunityArticle() {
         document
           .getElementById("editIcon" + e.PostId)
           .addEventListener("click", function () {
-            console.log("被點到ㄌ");
+            // console.log("被點到ㄌ");
             popUpEditDiv = document.querySelector(".popUpforEdit");
             popUpEditDiv.classList.remove("popUpforEdit_disappear");
             getPostforEdit(e.PostId);
@@ -568,12 +568,15 @@ function ClsCommunityArticle() {
     try {
       let nowtime = new Date();
       let replytime =
-        nowtime.toLocaleDateString() +
+        timeFormatAdjust(nowtime.getFullYear()) +
+        "/" +
+        timeFormatAdjust(nowtime.getMonth() + 1) +
+        "/" +
+        timeFormatAdjust(nowtime.getDate()) +
         " " +
         timeFormatAdjust(nowtime.getHours()) +
         ":" +
         timeFormatAdjust(nowtime.getMinutes());
-
       let replyFormdata = new FormData();
       replyFormdata.append("fPostId", postid);
       replyFormdata.append("fContent", content);
@@ -674,7 +677,11 @@ function ClsCommunityArticle() {
     try {
       let nowtime = new Date();
       let addarticletime =
-        nowtime.toLocaleDateString() +
+        timeFormatAdjust(nowtime.getFullYear()) +
+        "/" +
+        timeFormatAdjust(nowtime.getMonth() + 1) +
+        "/" +
+        timeFormatAdjust(nowtime.getDate()) +
         " " +
         timeFormatAdjust(nowtime.getHours()) +
         ":" +
@@ -696,7 +703,8 @@ function ClsCommunityArticle() {
         // credentials: "include",
       });
       let result = await response.json();
-      console.log(result);
+      getPostInSingleCommunity(getCommunityIdFromUrl());
+      // console.log(result);
     } catch (err) {
       console.log(err);
     }
@@ -707,7 +715,11 @@ function ClsCommunityArticle() {
     try {
       let nowtime = new Date();
       let editarticletime =
-        nowtime.toLocaleDateString() +
+        timeFormatAdjust(nowtime.getFullYear()) +
+        "/" +
+        timeFormatAdjust(nowtime.getMonth() + 1) +
+        "/" +
+        timeFormatAdjust(nowtime.getDate()) +
         " " +
         timeFormatAdjust(nowtime.getHours()) +
         ":" +

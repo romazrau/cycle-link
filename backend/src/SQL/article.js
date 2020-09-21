@@ -394,7 +394,7 @@ const txtSearchCommunityCard = async (x) => {
       from CommunityStatus as cs
       left join CommunityMemberCount as ms
       on cs.CommunityId = ms.fId
-      where cs.CommunityName like '%${x}%`;
+      where cs.CommunityName like '%${x}%'`;
     const result = await sql.query(str);
     return {
       result: 1,
@@ -444,6 +444,8 @@ const txtSearchCommunityArticle = async (x) => {
       
       select *
       from PostDetail as c
+      left join ReplyAndLike as r
+	    on c.PostId = r.replypostId
       where c.CommunityName like '%${x}%'`;
 
     const result = await sql.query(str);
@@ -489,11 +491,11 @@ const displayArticleForEdit = async (x) => {
 };
 
 //編輯文章：2. 更新資料
-const updateEdited = async (fContent, fImgPaths, fPostTime, fPostId) => {
+const updateEdited = async (fContent, fPostTime, fPostId) => {
   try {
     await sql.connect(config);
     let str = `UPDATE Community.tPost
-    SET fContent='${fContent}',fImgPaths='${fImgPaths}', fPostTime='${fPostTime}'
+    SET fContent='${fContent}', fPostTime='${fPostTime}'
     WHERE fId = ${fPostId}`;
 
     console.log(str);

@@ -7,10 +7,12 @@
 
 .community_article_wrap {
   width: 100%;
-  border: 1px solid var(--lightgrey-color);
+  /* border: 1px solid rgb(175, 175, 175); */
   background-color: var(--white-color);
   margin-top: 1rem;
-  border-radius: 10px;
+  border-radius: 8px;
+  /* box-shadow: 1px 1px 25px rgba(167, 167, 167, 0.384); */
+
 }
 
 .community_article_heading {
@@ -26,6 +28,7 @@
   border-radius: 50%;
   margin: 1rem 0 0 1rem;
 }
+
 .community_article_heading_img_container {
   position: absolute;
   top: 3px;
@@ -62,16 +65,16 @@
   margin-right: 30px;
 }
 
-.community_article_body{
+.community_article_body {
   position: relative;
 }
 
-.community_article_body > p {
+.community_article_body>p {
   padding: 0 20px;
   margin: 10px 0;
 }
 
-.community_article_body > p + p {
+.community_article_body>p+p {
   margin-top: 5px;
 }
 
@@ -94,6 +97,7 @@
 .community_article_footer {
   padding: 10px 15px;
   background-color: #f4f4f4;
+  border-radius: 0 0 8px 8px;
 }
 
 .community_article_footer i {
@@ -113,6 +117,7 @@
   border-radius: 50%;
   margin: 0.3rem 0 0 0.7rem;
 }
+
 .community_article_user_img_container {
   position: absolute;
   top: 3px;
@@ -142,7 +147,7 @@
   cursor: pointer;
 }
 
-#article_form{
+#article_form {
   display: flex;
   align-items: center;
 }
@@ -155,9 +160,9 @@
   color: var(--grey-color);
   padding-left: 10px;
   padding-top: 5px;
-  margin: 10px 15px ;
+  margin: 10px 15px;
   resize: none;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 .AddArticleLabel {
@@ -166,17 +171,17 @@
   border: 1px solid rgb(209, 209, 209);
   background-color: white;
   color: var(--blue-color);
-  margin:  1rem 0 0 1rem;
+  margin: 1rem 0 0 1rem;
 }
 
-.AddArticleImgDisplay{
-  width:90%;
+.AddArticleImgDisplay {
+  width: 90%;
   /* align-items: center; */
   margin: 0px auto;
 }
 
-.AddArticleImgDisplay_img{
-  width:100%;
+.AddArticleImgDisplay_img {
+  width: 100%;
 }
 
 .SearchBox {
@@ -206,7 +211,7 @@
   display: none;
 }
 
-.EditArticleInput{
+.EditArticleInput {
   width: 90%;
   margin: 10% 0;
   font-size: 23px;
@@ -220,16 +225,16 @@
   overflow-y: auto;
 }
 
-.EditArticleImgDisplay{
+.EditArticleImgDisplay {
   width: 80%;
   margin: 10% 0;
 }
 
-.EditArticleImgDisplay_img{
-  width:100%;
+.EditArticleImgDisplay_img {
+  width: 100%;
 }
 
-.EditArticleLabel{
+.EditArticleLabel {
   padding: 10px;
   border-radius: 0.5rem;
   /* border: 1px solid rgb(209, 209, 209); */
@@ -238,12 +243,12 @@
   margin: 20px 10px 10px 0;
 }
 
-.Post_Community_preIcon{
+.Post_Community_preIcon {
   position: relative;
   top: 14.75rem;
 }
 
-.Post_Community_nextIcon{
+.Post_Community_nextIcon {
   position: relative;
   left: 43.5rem;
   bottom: 17rem;
@@ -253,14 +258,14 @@
   position: absolute;
   cursor: pointer;
   top: 16rem;
-  left:0.8rem;
+  left: 0.8rem;
 }
 
-.ArticlePost_nextIcon{
+.ArticlePost_nextIcon {
   position: absolute;
   cursor: pointer;
   top: 16rem;
-  right:0.8rem;
+  right: 0.8rem;
 }
 
 
