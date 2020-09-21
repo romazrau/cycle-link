@@ -1,153 +1,182 @@
 // import { serverURL } from "./api.js";
 
-function ClsCommunityArticle() {
+// TODO這到底是三小？？？為啥突然跑不了
+// const { IgnorePlugin } = require("webpack");
 
+function ClsCommunityArticle() {
   //*----------------------------------------奇形怪狀的方法們----------------------------------------*//
   //從網址抓取社團ID給大家用
-const getCommunityIdFromUrl = () => {
-  let whereAmI = window.location.hash.split("/");
-  let getCommunityId = whereAmI[2];
-  return getCommunityId;
-};
+  const getCommunityIdFromUrl = () => {
+    let whereAmI = window.location.hash.split("/");
+    let getCommunityId = whereAmI[2];
+    return getCommunityId;
+  };
 
   //調整時間格式：補0
-function timeFormatAdjust(x) {
-  if (x < 10) {
-    x = "0" + x;
+  function timeFormatAdjust(x) {
+    if (x < 10) {
+      x = "0" + x;
+    }
+    return x;
   }
-  return x;
-}
 
-//社團頁面：文章字串判斷是否有圖片，沒有就不匯入div
-const Article_ImgIsNullOrNot = (x) => {
-  if (x === null) {
-    return ``;
-  } else {
-    var y = x.includes(",,");
-    if (y) {
-      let imgArr = x.split(",,");
-      // console.log(imgArr);
-      var a = Article_multiImgArr(imgArr);
-      return `<i class="fas fa-chevron-left fa-2x ArticlePost_preIcon" style="color:white"></i>
+  //社團頁面：文章字串判斷是否有圖片，沒有就不匯入div
+  const Article_ImgIsNullOrNot = (x) => {
+    if (x === null) {
+      return ``;
+    } else {
+      var y = x.includes(",,");
+      if (y) {
+        let imgArr = x.split(",,");
+        // console.log(imgArr);
+        var a = Article_multiImgArr(imgArr);
+        return `<i class="fas fa-chevron-left fa-2x ArticlePost_preIcon" style="color:white"></i>
       <i class="fas fa-chevron-right fa-2x ArticlePost_nextIcon" style="color:white"></i>
       ${a}`;
-      // return `<a class="ArticlePost_preIcon" href="">
-      //           <i class="fas fa-chevron-left fa-2x" style="color:white"></i>
-      //         </a>${a}
-      //         <a class="ArticlePost_nextIcon" href="">
-      //           <i class="fas fa-chevron-right fa-2x" style="color:white"></i>
-      //         </a>`;
-    } else {
-      return `
+        // return `<a class="ArticlePost_preIcon" href="">
+        //           <i class="fas fa-chevron-left fa-2x" style="color:white"></i>
+        //         </a>${a}
+        //         <a class="ArticlePost_nextIcon" href="">
+        //           <i class="fas fa-chevron-right fa-2x" style="color:white"></i>
+        //         </a>`;
+      } else {
+        return `
       <div class="community_article_body_img">
     <img class="community_article_body_img_img" src='http://localhost:3050/${x}' />
     </div>`;
+      }
     }
-  }
-};
+  };
 
-//社團頁面：如果是多張圖片，則以陣列匯入div
-const Article_multiImgArr = (k) => {
-  let result = "";
-  k.map((e, index) => {
-    result += `<div class="community_article_body_img">
+  //社團頁面：如果是多張圖片，則以陣列匯入div
+  const Article_multiImgArr = (k) => {
+    let result = "";
+    k.map((e, index) => {
+      result += `<div class="community_article_body_img">
   <img class="community_article_body_img_img" src='http://localhost:3050/${e}' />
   </div>`;
-  });
-  return result;
-};
+    });
+    return result;
+  };
 
- //多張照片：輪播式呈現function
- function Article_MultiImgFunction() {
-  let community_article_body = document.querySelectorAll(".community_article_body");
-  //處理超過2張照片
-  for (let i = 0; i < community_article_body.length; i++) {
-    if (community_article_body[i].getElementsByTagName("img").length > 1) {
-      let PostImgs = community_article_body[i].querySelectorAll(
-        ".community_article_body_img"
-      );
-      for (let j = 0; j < PostImgs.length; j++) {
-        if (j > 0) PostImgs[j].style.display = "none";
+  //多張照片：輪播式呈現function
+  function Article_MultiImgFunction() {
+    let community_article_body = document.querySelectorAll(
+      ".community_article_body"
+    );
+    //處理超過2張照片
+    for (let i = 0; i < community_article_body.length; i++) {
+      if (community_article_body[i].getElementsByTagName("img").length > 1) {
+        let PostImgs = community_article_body[i].querySelectorAll(
+          ".community_article_body_img"
+        );
+        for (let j = 0; j < PostImgs.length; j++) {
+          if (j > 0) PostImgs[j].style.display = "none";
+        }
       }
     }
+    //下一張
+    var allNextIcon = document.querySelectorAll(".ArticlePost_nextIcon");
+    // console.log(allNextIcon);
+    for (let i = 0; i < allNextIcon.length; i++) {
+      allNextIcon[i].addEventListener("click", function (e) {
+        e.preventDefault();
+        //this取a物件>再取父層>父層下所有div
+        // this.parentNode.getElementsByTagName('div')
+        let thisImgBox = this.parentNode.getElementsByTagName("div");
+        var position = 0;
+        for (let p = 0; p < thisImgBox.length; p++) {
+          let display = thisImgBox[p].style.display;
+          if (display != "none") {
+            position = p;
+          }
+        }
+        position++;
+
+        if (position > thisImgBox.length - 1) {
+          position = 0;
+        }
+
+        for (let j = 0; j < thisImgBox.length; j++) {
+          // console.log("j:",j);
+          if (position == j) {
+            thisImgBox[j].style.display = "block";
+          } else {
+            thisImgBox[j].style.display = "none";
+          }
+        }
+      });
+    }
+    //上一張
+    var allPreIcon = document.querySelectorAll(".ArticlePost_preIcon");
+    for (let i = 0; i < allPreIcon.length; i++) {
+      allPreIcon[i].addEventListener("click", function (e) {
+        e.preventDefault();
+        //this取a物件>再取父層>父層下所有div
+        // this.parentNode.getElementsByTagName('div')
+        let thisImgBox = this.parentNode.getElementsByTagName("div");
+        //判斷postion位置
+        var position = 0;
+        for (let p = 0; p < thisImgBox.length; p++) {
+          let display = thisImgBox[p].style.display;
+          if (display != "none") {
+            position = p;
+          }
+        }
+        position--;
+        if (position < 0) {
+          position = thisImgBox.length - 1;
+        }
+        for (let j = 0; j < thisImgBox.length; j++) {
+          if (position == j) {
+            thisImgBox[j].style.display = "block";
+          } else {
+            thisImgBox[j].style.display = "none";
+          }
+        }
+      });
+    }
   }
-  //下一張
-  var allNextIcon = document.querySelectorAll(".ArticlePost_nextIcon");
-  // console.log(allNextIcon);
-  for (let i = 0; i < allNextIcon.length; i++) {
-    allNextIcon[i].addEventListener("click", function (e) {
-      e.preventDefault();
-      //this取a物件>再取父層>父層下所有div
-      // this.parentNode.getElementsByTagName('div')
-      let thisImgBox = this.parentNode.getElementsByTagName("div");
-      var position = 0;
-      for (let p = 0; p < thisImgBox.length; p++) {
-        let display = thisImgBox[p].style.display;
-        if (display != "none") {
-          position = p;
-        }
-      }
-      position++;
 
-      if (position > thisImgBox.length - 1) {
-        position = 0;
-      }
+  //新增文章：圖片上傳時觸發事件，能夠多張圖片載入
+  document
+    .getElementById("articleImgInput")
+    .addEventListener("change", function () {
+      let addArticleImgFiles = document.getElementById("articleImgInput").files;
+      let addArticleDisplay = document.querySelector(".AddArticleImgDisplay");
+      for (let i = 0; i < addArticleImgFiles.length; i++) {
+        let imgFilesItem = addArticleImgFiles[i];
+        if (!imgFilesItem.type.match("image")) continue;
 
-      for (let j = 0; j < thisImgBox.length; j++) {
-        // console.log("j:",j);
-        if (position == j) {
-          thisImgBox[j].style.display = "block";
-        } else {
-          thisImgBox[j].style.display = "none";
-        }
+        var addArticleImgReader = new FileReader();
+        addArticleImgReader.addEventListener("load", function (e) {
+          let picfile = e.target;
+          let createDiv = document.createElement("div");
+          createDiv.innerHTML =
+            "<img src=" +
+            picfile.result +
+            " class='AddArticleImgDisplay_img'></img>";
+          addArticleDisplay.insertBefore(createDiv, null);
+        });
+        addArticleImgReader.readAsDataURL(imgFilesItem);
       }
     });
-  }
-  //上一張
-  var allPreIcon = document.querySelectorAll(".ArticlePost_preIcon");
-  for (let i = 0; i < allPreIcon.length; i++) {
-    allPreIcon[i].addEventListener("click", function (e) {
-      e.preventDefault();
-      //this取a物件>再取父層>父層下所有div
-      // this.parentNode.getElementsByTagName('div')
-      let thisImgBox = this.parentNode.getElementsByTagName("div");
-      //判斷postion位置
-      var position = 0;
-      for (let p = 0; p < thisImgBox.length; p++) {
-        let display = thisImgBox[p].style.display;
-        if (display != "none") {
-          position = p;
-        }
-      }
-      position--;
-      if (position < 0) {
-        position = thisImgBox.length - 1;
-      }
-      for (let j = 0; j < thisImgBox.length; j++) {
-        if (position == j) {
-          thisImgBox[j].style.display = "block";
-        } else {
-          thisImgBox[j].style.display = "none";
-        }
-      }
-    });
-  }
-}
+
 
   //社團頁面留言：Icon點擊觸動function寫入留言內容
   function Article_addClickEventToReply(pIds) {
-    pIds.map((e, index)=>{
-      let TheReplyIcon = document.getElementById("Article_replyIconbyfId" + e)
-        TheReplyIcon.addEventListener("click", async()=>{
-          getArticleReply(e);
-          // Article_showReplyInput(e);
-        });
-    })
+    pIds.map((e, index) => {
+      let TheReplyIcon = document.getElementById("Article_replyIconbyfId" + e);
+      TheReplyIcon.addEventListener("click", async () => {
+        getArticleReply(e);
+        // Article_showReplyInput(e);
+      });
+    });
   }
 
   //社團頁面喜歡：Icon點擊觸動function寫入留言內容
   function Article_addClickEventToLike(pIds) {
-    pIds.map((e,index)=>{
+    pIds.map((e, index) => {
       let TheLikeIcon = document.getElementById("Article_likeIconbyfId" + e);
       TheLikeIcon.addEventListener("click", function () {
         if (
@@ -170,7 +199,7 @@ const Article_multiImgArr = (k) => {
           Article_likesMinusCount(this);
         }
       });
-    })
+    });
   }
 
   //喜歡增加：顯示數量增加
@@ -200,25 +229,25 @@ const Article_multiImgArr = (k) => {
     ).innerHTML += htmlCommunityArticleReplyInput(x);
   }
 
-//TODO編輯文章：判斷是否有圖片，沒有就不匯入div
-const Edit_ImgIsNullOrNot = (x) => {
-  if (x === null) {
-    return ``;
-  } else {
-    var y = x.includes(",,");
-    if (y) {
-      let imgArr = x.split(",,");
-      // console.log(imgArr);
-      var a = Article_multiImgArr(imgArr);
-      return a;
+  //TODO編輯文章：判斷是否有圖片，沒有就不匯入div
+  const Edit_ImgIsNullOrNot = (x) => {
+    if (x === null) {
+      return ``;
     } else {
-      return `
+      var y = x.includes(",,");
+      if (y) {
+        let imgArr = x.split(",,");
+        // console.log(imgArr);
+        var a = Article_multiImgArr(imgArr);
+        return a;
+      } else {
+        return `
       <div class="community_article_body_img">
     <img class="community_article_body_img_img" src='http://localhost:3050/${x}' />
     </div>`;
+      }
     }
-  }
-};
+  };
 
   //*----------------------------------------文字樣板----------------------------------------*//
   //社團頁面：文章文字樣板
@@ -289,9 +318,7 @@ const Edit_ImgIsNullOrNot = (x) => {
             }" onclick="location.hash='#personal-page/${x.MemberId}'"/>
           </div> </div>
           <div class="community_article_heading_userinfo">
-             <p>${
-      x.PostMemberName
-    }</p>
+             <p>${x.PostMemberName}</p>
     <p>${x.fPostTime}</p>
         </div>
         <label class="EditArticleLabel">
@@ -303,14 +330,16 @@ const Edit_ImgIsNullOrNot = (x) => {
         <i class="far fa-paper-plane"></i>
       </label>
     </div>
-        <textarea class="EditArticleInput" name="fContent" cols=30 rows=2>${x.PostContent}</textarea>
+        <textarea class="EditArticleInput" name="fContent" cols=30 rows=2>${
+          x.PostContent
+        }</textarea>
         ${Edit_ImgIsNullOrNot(x.PostImg)}
       </form>`;
   };
 
-//TODO社團留言：文字樣板
-const htmlCommunityMainReply = (x) => {
-  return `
+  //TODO社團留言：文字樣板
+  const htmlCommunityMainReply = (x) => {
+    return `
   <div class="community_article_reply">
   <div class="community_article_reply_header">
     <div class="community_article_reply_header_img_container">
@@ -338,15 +367,15 @@ const htmlCommunityMainReply = (x) => {
   </div>
   <div class="community_article_reply_content" id=""></div>
 </div>`;
-};
+  };
 
-//TODO社團：我要留言：文字樣板
-const htmlCommunityArticleReplyInput = (x) => {
-  return `<div class="CM_reply_input_container">
+  //TODO社團：我要留言：文字樣板
+  const htmlCommunityArticleReplyInput = (x) => {
+    return `<div class="CM_reply_input_container">
   <input type="text" id="ArticleReplyText${x}"/>
   <div class="ReplySendClass" id="ArticleReplySend${x}"><i class="fas fa-paper-plane"></i></div>
 </div>`;
-};
+  };
   //*------------------------------Index已經存在的東西，增加他們ㄉ點擊事件------------------------------*//
   //發表文章：點擊觸發
   document
@@ -359,18 +388,18 @@ const htmlCommunityArticleReplyInput = (x) => {
     });
 
   //*----------------------------------資料陣列匯入文字樣板function----------------------------------*//
-      //社團頁面：使用者頭像字串匯入點
-      let UserImgOnArticleAdd = document.querySelector(
-        ".Group_detail_Societies_img_div"
-      );
+  //社團頁面：使用者頭像字串匯入點
+  let UserImgOnArticleAdd = document.querySelector(
+    ".Group_detail_Societies_img_div"
+  );
 
-      //社團頁面：使用者頭像字串匯入function
-      const display_UserImg = (e) => {
-        UserImgOnArticleAdd.innerHTML += htmlCommunityAddArticleImg(e);
-      };
+  //社團頁面：使用者頭像字串匯入function
+  const display_UserImg = (e) => {
+    UserImgOnArticleAdd.innerHTML += htmlCommunityAddArticleImg(e);
+  };
 
-      //社團文章：匯入點
-       const ArticleUl = document.querySelector(".community_article_ul");
+  //社團文章：匯入點
+  const ArticleUl = document.querySelector(".community_article_ul");
 
   //社團頁面：文章字串匯入function
   const display_postDetail = (o) => {
@@ -391,29 +420,29 @@ const htmlCommunityArticleReplyInput = (x) => {
     });
   };
 
-//社團頁面：留言字串匯入function
-const display_replyDetail = (o, x) => {
-  document.getElementById("Article_bindPostReplybyfId" + x).innerHTML = "";
-  o.map((e, index) => {
-    if (e.fPostId == x) {
-      document.getElementById(
-        "Article_bindPostReplybyfId" + x
-      ).innerHTML += htmlCommunityMainReply(e);
-    }
-  });
-  
-  //匯入我要留言區
-  Article_showReplyInput(x);
+  //社團頁面：留言字串匯入function
+  const display_replyDetail = (o, x) => {
+    document.getElementById("Article_bindPostReplybyfId" + x).innerHTML = "";
+    o.map((e, index) => {
+      if (e.fPostId == x) {
+        document.getElementById(
+          "Article_bindPostReplybyfId" + x
+        ).innerHTML += htmlCommunityMainReply(e);
+      }
+    });
 
-  //此時增加留言發出的點擊事件
-  document.getElementById("ArticleReplySend" + x).addEventListener("click", () => {
-    //抓取Text內容
-    let content = document.getElementById("ArticleReplyText" + x).value;
-    Article_addReplyToSQL(x, content);
-  });
+    //匯入我要留言區
+    Article_showReplyInput(x);
 
-  
-};
+    //此時增加留言發出的點擊事件
+    document
+      .getElementById("ArticleReplySend" + x)
+      .addEventListener("click", () => {
+        //抓取Text內容
+        let content = document.getElementById("ArticleReplyText" + x).value;
+        Article_addReplyToSQL(x, content);
+      });
+  };
 
   //編輯文章：字串匯入點
   let EditArticlePopUP = document.querySelector(".popUpforEdit");
@@ -421,17 +450,19 @@ const display_replyDetail = (o, x) => {
 
   //編輯文章：資料放進文字樣板，匯入頁面
   const display_EditArticle = (o) => {
-    o.map((e,index)=>{EditArticlePopUP.innerHTML = htmlCommunityEditArticle(e);})
+    o.map((e, index) => {
+      EditArticlePopUP.innerHTML = htmlCommunityEditArticle(e);
+    });
     document
-  .getElementById("editArticleSubmitIcon")
-  .addEventListener("click", (e) => {
-    e.preventDefault();
-    console.log(o[0].PostId);
-    editArticletoSQL(o[0].PostId);
-    getPostInSingleCommunity(getCommunityIdFromUrl());
-    EditArticlePopUP.innerHTML = "";
-    popUpEditDiv.classList.add("popUpforEdit_disappear");
-  });
+      .getElementById("editArticleSubmitIcon")
+      .addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log(o[0].PostId);
+        editArticletoSQL(o[0].PostId);
+        getPostInSingleCommunity(getCommunityIdFromUrl());
+        EditArticlePopUP.innerHTML = "";
+        popUpEditDiv.classList.add("popUpforEdit_disappear");
+      });
   };
 
   //*----------------------------------------路由撈資料區----------------------------------------*//
@@ -471,8 +502,8 @@ const display_replyDetail = (o, x) => {
       // console.log(result.data);
 
       //*-----每個路由撈文章ㄉ地方都值得來一套-----*//
-      let postidArr=[];
-      for(let i = 0; i<result.data.length; i++){
+      let postidArr = [];
+      for (let i = 0; i < result.data.length; i++) {
         postidArr.push(result.data[i].PostId);
       }
       Article_addClickEventToReply(postidArr);
@@ -502,36 +533,36 @@ const display_replyDetail = (o, x) => {
   // 不用他ㄌ，拿去外面呼喚就好
   // getPostInSingleCommunity(getCommunityIdFromUrl());
 
-    //留言：路由撈資料 & 執行display
-    const getArticleReply = async (postid) => {
-      try {
-        let response = await fetch(serverURL.articlereply);
-        let result = await response.json();
-        // console.log(result);
-        // console.log(result.data);
-        display_replyDetail(result.data, postid);
-      } catch (err) {
-        console.log(err);
-      }
-    };
+  //留言：路由撈資料 & 執行display
+  const getArticleReply = async (postid) => {
+    try {
+      let response = await fetch(serverURL.articlereply);
+      let result = await response.json();
+      // console.log(result);
+      // console.log(result.data);
+      display_replyDetail(result.data, postid);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   //編輯文章：路由撈資料 & 執行display
   const getPostforEdit = async (x) => {
-    try{
+    try {
       let response = await fetch(serverURL.displayarticleforedit + x, {
-          method: "GET",
-          headers: {
-            Authorization: localStorage.getItem("Cycle link token"),
-          }
-        });
-        let result = await response.json();
-        console.log(result.data);
-        await display_EditArticle(result.data);
-        //編輯文章：Submit Icon加入點擊事件(抓取輸入ㄉ文章內容給SQL)
-      }catch (err) {
-        console.log(err);
-      }
+        method: "GET",
+        headers: {
+          Authorization: localStorage.getItem("Cycle link token"),
+        },
+      });
+      let result = await response.json();
+      console.log(result.data);
+      await display_EditArticle(result.data);
+      //編輯文章：Submit Icon加入點擊事件(抓取輸入ㄉ文章內容給SQL)
+    } catch (err) {
+      console.log(err);
     }
+  };
 
   //*----------------------------------------路由送回資料區----------------------------------------*//
   //新增留言：資料送回SQL
@@ -592,7 +623,7 @@ const display_replyDetail = (o, x) => {
       console.log(err);
       // 錯誤處理
     }
-  }; 
+  };
 
   //新增喜歡：資料送回SQL
   const Article_addLikeToSQL = async (P) => {
@@ -674,7 +705,7 @@ const display_replyDetail = (o, x) => {
   };
 
   //編輯文章：資料送回SQL
-   const editArticletoSQL = async (postid) => {
+  const editArticletoSQL = async (postid) => {
     try {
       let nowtime = new Date();
       let editarticletime =
@@ -716,24 +747,25 @@ const display_replyDetail = (o, x) => {
   //     getPostInSingleCommunity(getCommunityIdFromUrl());
   //   });
 
-  //TODO圖片載入測試中
-  const htmladdArticleImgItem = (x) => {
-    return ` <img src="${x}" class="AddArticleImgDisplay_img">`;
-  };
-  document
-    .getElementById("articleImgInput")
-    .addEventListener("change", function () {
-      let addArticleImgFiles = document.getElementById("articleImgInput").files;
-      let addArticleImgDisplay = document.getElementById(".AddArticleImgDisplay");
-      let addArticleImgReader = new FileReader();
+  // 一張圖片載入
+  // document
+  // .getElementById("articleImgInput")
+  // .addEventListener("change", function () {
 
-      addArticleImgReader.onload = function (e) {
-        document
-          .querySelector(".AddArticleImgDisplay_img")
-          .attributes("src", e.target.result);
-      };
-      addArticleImgReader.readAsDataURL(addArticleImgFile);
-    });
+  //   let addArticleImgFiles = document.getElementById("articleImgInput").files[1];
+  //   // let addArticleImgDisplay = document.querySelector(".AddArticleImgDisplay");
+  //   console.log(addArticleImgFiles);
+  //   let addArticleImgReader = new FileReader();
+
+  //   addArticleImgReader.addEventListener("load", function (e) {
+  //     // htmladdArticleImgItem(e.target.result)
+  //     // console.log(htmladdArticleImgItem(e.target.result));
+  //     document
+  //       .querySelector(".AddArticleImgDisplay_img")
+  //       .setAttribute("src", e.target.result);
+  //   });
+  //   addArticleImgReader.readAsDataURL(addArticleImgFiles);
+  // })
 
   this.ComeonPost = getPostInSingleCommunity;
 }

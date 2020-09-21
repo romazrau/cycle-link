@@ -169,6 +169,16 @@
   margin:  1rem 0 0 1rem;
 }
 
+.AddArticleImgDisplay{
+  width:90%;
+  /* align-items: center; */
+  margin: 0px auto;
+}
+
+.AddArticleImgDisplay_img{
+  width:100%;
+}
+
 .SearchBox {
   background-color: #e4e3e3;
   padding: 1rem;
