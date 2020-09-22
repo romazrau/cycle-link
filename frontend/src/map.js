@@ -175,6 +175,7 @@ function ClsMap() {
 
     OriginalPlacelat = e.latlng.lat;
     OriginalPlacelng = e.latlng.lng;
+    map.setView(new L.LatLng(OriginalPlacelat, OriginalPlacelng));
     clearcheckbox();
   }
   map.on('click', onMapClick);
@@ -311,7 +312,7 @@ function ClsMap() {
         var marker = event.target;
         var latlng = marker.getLatLng();
         map_setInformation(latlng.lat, latlng.lng);
-        map.setView(new L.LatLng(latlng.lat, latlng.lng), 11)
+        map.setView(new L.LatLng(latlng.lat, latlng.lng))
 
       });
 
