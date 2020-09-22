@@ -97,7 +97,7 @@ function ClsMap() {
 
   var OriginalPlacelat = 23.784789;
   var OriginalPlacelng = 120.93699;
-
+  var circle ;
   var map = L.map('mapid');
   // 設定地圖來源
   var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -166,9 +166,11 @@ function ClsMap() {
        //開小窗
        //設定小窗
 
-
-
-
+       if (circle != undefined) {
+        map.removeLayer(circle);
+      };
+      document.getElementById("map_Setdistance").value=0;
+      document.getElementById("Activitydistance").innerHTML="請選擇距離";
     L.marker(e.latlng, {
       icon: myIcon
     }).addTo(map);
@@ -266,16 +268,17 @@ function ClsMap() {
   }
   /*-----------------------------------------END--------------------- */
   /**距離搜尋 */
-  document.getElementById("map_Setdistance").addEventListener("input", map_ChangeDistance)
+  document.getElementById("map_Setdistance").addEventListener("click", map_ChangeDistance)
 
 
 
 
 
-
+  
   function map_ChangeDistance() {
     clearcheckbox();
     cleanMarker();
+   
     L.marker([OriginalPlacelat, OriginalPlacelng], {
       icon: myIcon
     }, {
@@ -288,7 +291,11 @@ function ClsMap() {
     } else {
       document.getElementById("Activitydistance").innerHTML = "附近 " + val + " 公里的活動";
     }
-
+    if (circle != undefined) {
+      map.removeLayer(circle);
+    };
+    circle= L.circle([OriginalPlacelat, OriginalPlacelng], {radius: val*1000});
+    circle.addTo(map);
     map_NearbyMarkShow(val, ActivityList);
   }
 
@@ -389,6 +396,9 @@ function ClsMap() {
 
         });
         layers.push(layer);
+        if (circle != undefined) {
+          map.removeLayer(circle);
+        };
       })
       myGroup1 = L.layerGroup(layers)
       map.addLayer(myGroup1);
@@ -407,6 +417,9 @@ function ClsMap() {
 
         });
         layers.push(layer);
+        if (circle != undefined) {
+          map.removeLayer(circle);
+        };
       })
       myGroup2 = L.layerGroup(layers)
       map.addLayer(myGroup2);
@@ -423,6 +436,9 @@ function ClsMap() {
           map.setView(new L.LatLng(latlng.lat, latlng.lng))
         });
         layers.push(layer);
+        if (circle != undefined) {
+          map.removeLayer(circle);
+        };
       })
       myGroup3 = L.layerGroup(layers)
       map.addLayer(myGroup3);
@@ -438,6 +454,9 @@ function ClsMap() {
           map.setView(new L.LatLng(latlng.lat, latlng.lng))
         });
         layers.push(layer);
+        if (circle != undefined) {
+          map.removeLayer(circle);
+        };
       })
       myGroup4 = L.layerGroup(layers)
       map.addLayer(myGroup4);
@@ -453,6 +472,9 @@ function ClsMap() {
           map.setView(new L.LatLng(latlng.lat, latlng.lng))
         });
         layers.push(layer);
+        if (circle != undefined) {
+          map.removeLayer(circle);
+        };
       })
       myGroup5 = L.layerGroup(layers)
       map.addLayer(myGroup5);
@@ -468,6 +490,9 @@ function ClsMap() {
           map.setView(new L.LatLng(latlng.lat, latlng.lng))
         });
         layers.push(layer);
+        if (circle != undefined) {
+          map.removeLayer(circle);
+        };
       })
       myGroup6 = L.layerGroup(layers)
       map.addLayer(myGroup6);
