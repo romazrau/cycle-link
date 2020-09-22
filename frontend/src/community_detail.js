@@ -552,8 +552,8 @@ function ClsCommuntityDetail() {
             });
 
             let result = await response.json();
-            // console.log("+++++++++++++++++++++++++++++++++++++++!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            // console.log(result.data);
+            console.log("+++++++++++++++++++++++++++++++++++++++!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            console.log(result.data);
 
         // console.log(result.data);
 
@@ -692,7 +692,7 @@ function ClsCommuntityDetail() {
                     result.data[0].fName;
                 document.querySelector("#selectStatus").value =
                     result.data[0].fStatusId + "";
-                document.querySelector("#communityImg").src = result.data[0].fImgPath;
+                document.querySelector("#communityImg").src =  serverURL.root + "/" + result.data[0].fImgPath;
 
                 // fetch舊資料_管理員基本資料
                 let responseManager = await fetch(

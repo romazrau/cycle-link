@@ -29,9 +29,13 @@ function ClsPersonalPage() {
             console.log("data", data);
             display_information(data);
 
+            let backgrondImg =  `background-image: url(${serverURL.root}/${data[0].fPhotoPath});
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;`
 
-
-
+            document.querySelector(".personal_banner").setAttribute("style", backgrondImg);
+           
 
         } catch (err) {
             console.log(err);
@@ -185,10 +189,10 @@ function ClsPersonalPage() {
         return `
                 <div>
                 <div class="personal_title_line" >
-                    <h3>${o.fName}(${o.fAccount})</h3>
+                    <h3>${o.fName}</h3>
                     <img data-user-id=${o.fId} class="lets-talk"  src="./img/icon_chat.svg" width="25">
-                    
                 </div>
+                <h4>${o.fAccount}</h4>
                     <p>${o.fIntroduction}</p>
                 </div>
                 <div class="personal_pro_file">

@@ -42,7 +42,7 @@ const login = async (account) => {
         // make sure that any items are correctly URL encoded in the connection string
         await sql.connect(config)
         const sqlString = `
-        select M.fId, M.fName , M.fPassword, T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority'
+        select M.fId, M.fName , M.fPassword, M.fPhotoPath, T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority'
         from Member.tMember as M
         LEFT join Member.tAccountType as T
         on M.fAccountTypeId = T.fId

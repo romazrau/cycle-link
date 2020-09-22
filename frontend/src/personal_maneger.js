@@ -2,10 +2,10 @@ function ClsPersonalManeger() {
 
 
     document.querySelectorAll(".personalManager_right_title_btn").forEach(item => {
-        item.addEventListener("click", function(e){
-            document.querySelectorAll(".personalManager_right_content").forEach( page => {
+        item.addEventListener("click", function (e) {
+            document.querySelectorAll(".personalManager_right_content").forEach(page => {
                 page.classList.add("hide");
-            } );
+            });
 
             document.querySelector(`#${e.currentTarget.dataset.pageId}`).classList.remove("hide");
         })
@@ -70,7 +70,7 @@ function ClsPersonalManeger() {
     // 活動文字樣板
     const ActivityCardPersonal = (o) => {
 
-        return  `<a href="#activity/detail/${o.fActivityId}" class=" personalManager_right_content_info">
+        return `<a href="#activity/detail/${o.fActivityId}" class=" personalManager_right_content_info">
                     <img class="personalManager_right_content_info_img" src="${serverURL.root}/${o.fImgPath}">
                     <div class="personalManager_right_content_infoText">
                         <h3>${o.fActName}</h3>
@@ -146,8 +146,8 @@ function ClsPersonalManeger() {
             });
             let result = await response.json();
 
-            console.log("個人參加活動列表-----------");
-            console.log(result);
+            // console.log("個人參加活動列表-----------");
+            // console.log(result);
 
             //喜愛的活動
             let likeContainer = document.querySelector("#likeContainer");
@@ -155,14 +155,14 @@ function ClsPersonalManeger() {
             for (let i = 0; i < result.data.likes.length; i++) {
                 likeContainer.innerHTML += ActivityCardPersonal(result.data.likes[i]);
             }
-            if(!likeContainer.innerHTML){
+            if (!likeContainer.innerHTML) {
                 likeContainer.innerHTML = "<div class='personal-manager-txt'>沒有追蹤的活動喔</div>"
             }
-            
 
 
-             // 舉辦and 參加 
-             let attendContainer = document.querySelector("#attendContainer");
+
+            // 舉辦and 參加 
+            let attendContainer = document.querySelector("#attendContainer");
             attendContainer.innerHTML = "";
             for (let i = 0; i < result.data.creates.length; i++) {
                 // console.log("創建囉", result.data.creates[i]);
@@ -172,7 +172,7 @@ function ClsPersonalManeger() {
                 // console.log("參加囉", result.data.attendedlist[i]);
                 attendContainer.innerHTML += ActivityCardPersonal(result.data.attendedlist[i]);
             }
-            if(!attendContainer.innerHTML){
+            if (!attendContainer.innerHTML) {
                 attendContainer.innerHTML = "<div class='personal-manager-txt'>趕快去參加活動吧</div>";
             }
 
@@ -183,7 +183,7 @@ function ClsPersonalManeger() {
             for (let i = 0; i < result.data.Expiredattended.length; i++) {
                 expiredattendedContainer.innerHTML += ActivityCardPersonal(result.data.Expiredattended[i]);
             }
-            if(!expiredattendedContainer.innerHTML){
+            if (!expiredattendedContainer.innerHTML) {
                 expiredattendedContainer.innerHTML = "<div class='personal-manager-txt'>沒有過去的活動</div>"
             }
 
@@ -197,7 +197,7 @@ function ClsPersonalManeger() {
             return;
         }
     }
-   
+
 
 
 
@@ -222,4 +222,3 @@ const personalManegerHash = () => {
 
 window.addEventListener("hashchange", personalManegerHash);
 window.addEventListener("load", personalManegerHash);
-

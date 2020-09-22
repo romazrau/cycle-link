@@ -27,6 +27,7 @@ router.get("/community/:communityid", async function (req, res, next) {
   }
 });
 
+//使用者頭像輸出
 router.get("/userinfo", async function (req, res, next) {
   try {
     let fMemberId = req.user.fId;
@@ -63,6 +64,7 @@ router.get("/hottiest/:nowMonth", async function (req, res, next) {
     res.send(err);
   }
 });
+
 //探索社團
 router.get("/explore", async function (req, res, next) {
   try {
@@ -117,7 +119,7 @@ router.get("/edit/display/:postid", async function (req, res, next) {
   }
 });
 
-//* ----------------------- 編輯活動 ----------------------- //
+//* ----------------------- 編輯文章----------------------- //
 router.put('/edit', async function (req, res, next) {
   try {
       let {
@@ -126,15 +128,15 @@ router.put('/edit', async function (req, res, next) {
         fContent,
       } = req.body
 
-      let fImgPaths = "";
-      for (let i = 0; i < req.files.length; i++) {
-        fImgPaths += "img/" + req.files[i].filename;
-        fImgPaths += ",,";
-      }
+      // let fImgPaths = "";
+      // for (let i = 0; i < req.files.length; i++) {
+      //   fImgPaths += "img/" + req.files[i].filename;
+      //   fImgPaths += ",,";
+      // }
       
       let result = await Sql.updateEdited(
         fContent,
-        fImgPaths,
+        // fImgPaths,
         fPostTime,
         fPostId);
 

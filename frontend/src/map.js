@@ -163,8 +163,8 @@ function ClsMap() {
     map_drag();
     cleanMarker();
     popup.setLatLng(e.latlng)
-      .openOn(map) //開小窗
-      .setContent("你點擊的位置：" + e.latlng.toString()) //設定小窗
+       //開小窗
+       //設定小窗
 
 
 
@@ -446,7 +446,7 @@ function ClsMap() {
       resultList.forEach(function (item, index, array) {
         var layer = new L.marker([item.fCoordinateX, item.fCoordinateY], {
           icon: marketIcon
-        }, ).addTo(map).bindPopup().addEventListener("click", function (event) {
+        }, ).addTo(map).bindPopup(MapMessageCardContent(item)).addEventListener("click", function (event) {
           var marker = event.target;
           var latlng = marker.getLatLng();
           map_setInformation(latlng.lat, latlng.lng);

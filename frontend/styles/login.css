@@ -434,3 +434,17 @@
 #forgot-password-submit:focus {
   outline: none;
 }
+@media (max-width: 1200px){
+  .Login_checkviewcontainer {
+    display: none;
+    position: fixed;
+    top: 6rem;
+    left: 15rem;
+    z-index: 1000;
+    max-width: 30vw;
+    background-color: #e9e2e2;
+    border-radius: 0.8rem;
+    padding: 0.5rem;
+  }
+
+}

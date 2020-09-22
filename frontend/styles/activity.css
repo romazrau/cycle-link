@@ -164,9 +164,10 @@
     display: flex;
     flex-wrap: wrap;
     align-content: stretch;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 1rem
 }
 
 
@@ -348,20 +349,20 @@
 }
 
 .search_box {
-    margin:0 2rem 0 2rem;
+    margin: 0 2rem 0 2rem;
     width: 150px;
     border: 1px solid black;
     border-radius: 10px;
-    height: min-content ;
- 
+    height: min-content;
+
 }
 
 .search_dbox {
     width: 350px;
     border: 1px solid black;
     border-radius: 10px;
-    height: min-content ;
-    
+    height: min-content;
+
     /* background-color: rgba(103, 160, 197, 0.384); */
 }
 
@@ -400,10 +401,11 @@
     background-color: white !important;
 }
 
-#ac_date_start_from{
+#ac_date_start_from {
     border-radius: 10px;
 }
-#ac_date_end_from{
+
+#ac_date_end_from {
     border-radius: 10px;
 }
 
@@ -411,45 +413,52 @@
     display: block;
 }
 
+.ac_card_margin {
+    margin: 0 1rem;
+}
 
 /******************* RWD*******************/
 
 
-@media(max-width: 800px){
+@media(max-width: 800px) {
 
 
 
-.activity_search_container {
-    left: 15vw;
-}
+    .activity_search_container {
+        left: 15vw;
+    }
 
-.active_main_search input {
-    width: 70vw;
-}
+    .active_main_search input {
+        width: 70vw;
+    }
 
-.active_main_search select {
-    top: 5rem;
-    left: 0;
-    border-radius: 10px;
-}
+    .active_main_search select {
+        top: 5rem;
+        left: 0;
+        border-radius: 10px;
+    }
 
-.activity_top button {
-    left: calc(15vw + 150px);
-    top: 20rem;
-    width: 80px;
-    height: 55px;
-    border-radius: 10px;
-}
+    .activity_top button {
+        left: calc(15vw + 150px);
+        top: 20rem;
+        width: 80px;
+        height: 55px;
+        border-radius: 10px;
+    }
 
-.rwd_activity_divFormainImg{
-    position: relative;
-}
+    .rwd_activity_divFormainImg {
+        position: relative;
+    }
 
 
-.rwd_activity_mainImg{
- /* position: absolute; */
- /* left: 0px; */
- /* left: -50px; */
-}
+    .rwd_activity_mainImg {
+        /* position: absolute; */
+        /* left: 0px; */
+        /* left: -50px; */
+    }
+
+    .activity_event {
+        justify-content: center;
+    }
 
 }

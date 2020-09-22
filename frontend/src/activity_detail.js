@@ -309,7 +309,7 @@ function ClsActivityDetail() {
             // console.log(result.data);
             location.href = "#activity"
             document.querySelector("#act_tag_main").innerHTML = `#${tag}`;
-            console.log("data",result.data.tagSearch);
+            console.log("data", result.data.tagSearch);
             ActivityIndex.display_active(result.data.tagSearch)
             // location.reload();
         } catch (err) {
@@ -895,13 +895,7 @@ function ClsActivityDetail() {
 那什麼淨街慢跑者？也就是從事淨街慢跑的運動者！
             
 淨街慢跑又是什麼？你沒有聽過嗎？別擔心，不認識淨街慢跑是很正常的事，
-因為這是項非常新的運動潮流。
-
-淨街慢跑運動開始於 2016 年，但直到 2018 年才成立法國淨街慢跑的 Instagram 頁面；
-而淨街慢跑源自位於法國北方的好鄰居：瑞典。
-
-淨街慢跑（Plogging）這個詞彙，是由慢跑（jogging）和 瑞典語中的撿垃圾（plocka upp）
-兩個單詞組合而成。因此，plogging 也就是所謂的淨街慢跑。`
+因為這是項非常新的運動潮流。`
         document.querySelector("#actMinPeople").value = "5"
         document.querySelector("#actMaxPeople").value = "20"
 
