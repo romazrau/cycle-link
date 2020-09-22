@@ -457,4 +457,8 @@
         /* left: -50px; */
     }
 
+    .activity_event {
+        justify-content: center;
+    }
+
 }
