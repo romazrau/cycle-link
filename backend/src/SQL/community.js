@@ -78,6 +78,7 @@ const communityByString = async (fName) => {
         (
         select MemberList.fCommunityId, COUNT(MemberList.fMemberId) as 'totalNumber'
         from Community.tMemberList as MemberList
+        WHERE MemberList.fAccessRightId != 1 and MemberList.fAccessRightId != 0
         GROUP BY MemberList.fCommunityId
         )
         
@@ -125,6 +126,7 @@ const communityByFullString = async (fName) => {
         (
         select MemberList.fCommunityId, COUNT(MemberList.fMemberId) as 'totalNumber'
         from Community.tMemberList as MemberList
+        WHERE MemberList.fAccessRightId != 1 and MemberList.fAccessRightId != 0
         GROUP BY MemberList.fCommunityId
         )
         
@@ -278,6 +280,7 @@ const communityById_communityDetail = async (fid) => {
         (
         select MemberList.fCommunityId, COUNT(MemberList.fMemberId) as 'totalNumber'
         from Community.tMemberList as MemberList
+        WHERE MemberList.fAccessRightId != 1 and MemberList.fAccessRightId != 0
         GROUP BY MemberList.fCommunityId
         )
         
@@ -374,6 +377,7 @@ const communityById_communityMember = async (fid) => {
     let sqlStr = `
         select CommunitytMemberList.fMemberId,
        CommunitytMemberList.fJoinDate,
+       CommunitytMemberList.fAccessRightId,
        MembertMember.fName,
 	   MembertMember.fPhotoPath
        
