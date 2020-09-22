@@ -666,6 +666,10 @@
 
 @media(max-width: 800px) {
 
+  .CM_recommend_container {
+    margin-left: 8rem;
+  }
+
   .community_main_ul_timeline {
     padding-right: 1.5rem;
   }
