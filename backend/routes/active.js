@@ -54,11 +54,15 @@ router.get('/:id/:text', async function(req, res, next) {
 
 router.get('/activeforyou', async function(req, res, next) {
   // 判斷前端req資料是否有登入，如為false回傳result:0
-  
+
+  if( !req.user ){
+    // res.json({result:0, msg:"TOKEN?"});
+    req.user.fId =2;
+  }
 
   try{
     // *用 await 等待資料庫回應
-    let resultforyou = await activesql.activeforyousql(); 
+    let resultforyou = await activesql.activeforyousql(req.user.fId); 
     // 物件用json格式回傳
     // 可以整理一下，刪掉不必要的資料再回傳
     res.json(resultforyou);
@@ -73,10 +77,7 @@ router.get('/activeforyou', async function(req, res, next) {
 
 router.get('/activeseen', async function(req, res, next) {
   // 判斷前端req資料是否有登入，如為false回傳result:0
-  if( !req.user ){
-    res.json({result:0, msg:"TOKEN?"});
-    return;
-  }
+ 
 
   try{
     // *用 await 等待資料庫回應

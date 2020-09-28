@@ -31,6 +31,7 @@ const GetHomePageBannerActivity = async () => {
     recent_activities.innerHTML = "";
     recent.map(
       (e, index) => {
+      
         recent_activities.innerHTML += home_recent_activities(e);
       }
     )
@@ -42,7 +43,7 @@ const GetHomePageBannerActivity = async () => {
 GetHomePageBannerActivity();
 
 const GetHomePageWeather = async () => {
-  try {
+   try {
     // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
     // *用變數接 fetch 結果 ，要用await等。
     let response = await fetch(serverURL.homePages + "weather", {
@@ -56,32 +57,94 @@ const GetHomePageWeather = async () => {
     });
     // 用變數接 fetch結果的資料內容， 要用await等。
     let result = await response.json();
+    let locationData = result.records.locations[0].location[7];
+    const weatherElements = locationData.weatherElement.reduce(
+      (neededElements, item) => {
+        if (['Wx', 'PoP12h', 'T', 'WS', 'RH'].includes(item.elementName)) {
+          neededElements[item.elementName] = item
+        }
+        return neededElements;
+      }, {}
+    );
+    let weitherid = weatherElements.Wx.time[0].elementValue[1].value;
+    
+    // console.group("----------------")
+    //顯示天氣
+    HomePageWeather(result);
+    // console.groupEnd("----------------")
+    GetHomePageWeatherInOut(weitherid);
 
+  } catch (err) {
+     console.log(err);
+  //   // console.groupEnd("----------------")
+
+   }
+}
+
+
+const GetHomePageWeatherInOut = async (weitherid) => {
+ // try {
+    // fetch 接兩個參數 ( "請求網址",  { 參數物件，可省略 }  )
+    // *用變數接 fetch 結果 ，要用await等。
+    let response = await fetch(serverURL.homePages + "weatherInOut", {
+      method: "GET", // http request method 
+      headers: { // http headers
+        'Content-Type': 'application/json' // 請求的資料類型
+      },
+      // 以下跟身分認證有關，後端要使用session 要帶這幾項
+      cache: 'no-cache',
+      credentials: 'include',
+    });
+    // 用變數接 fetch結果的資料內容， 要用await等。
+    let result = await response.json();
+    //recent_activities.innerHTML = "";
+    
+    let objresult = {};
+    let arr1 = [] ;
+    for(let i in result)
+    {
+      objresult[i] = result[i];
+    }
+    arr1.push(objresult);
+    recent_activities.innerHTML="";
+    console.log("arr1",arr1[0].data);
+    for(let i=0;i< arr1[0].data.length;i++)
+    {
+      recent_activities.innerHTML += home_recent_activities( arr1[0].data[i]);
+    }
+      
+    
+
+    // arr1.map(
+    //   (e, index) => {
+    //     console.log("test111111111",e);
+        
+    //   }
+    // )
 
     // console.group("----------------")
     //顯示天氣
-    // console.log(result)
-    HomePageWeather(result);
-
+    
     // console.groupEnd("----------------")
 
 
+  // } catch (err) {
+  //   console.log(err);
+  //   // console.groupEnd("----------------")
 
-  } catch (err) {
-    console.log(err);
-    // console.groupEnd("----------------")
-
-  }
+  // }
 }
 
-GetHomePageWeather();
 
+
+GetHomePageWeather();
 function HomePageWeather(data) {
   let city = data.records.locations[0].locationsName;
   let WeatherTitle = document.querySelector(".home_recent_weather_title h2");
   WeatherTitle.innerHTML = city;
   //區域:District 大安區
   let District = data.records.locations[0].location[7].locationName;
+  //寫入樣板title
   WeatherTitle.innerHTML += District;
   //大安區 天氣篩選 wx天氣,PoP12h降雨機率,T溫度
   let locationData = data.records.locations[0].location[7];
@@ -94,7 +157,7 @@ function HomePageWeather(data) {
       return neededElements;
     }, {}
   );
-  // console.log("weatherElements:", weatherElements);
+  console.log("weatherElements:", weatherElements);
 
   var day_list = ['日', '一', '二', '三', '四', '五', '六'];
   let nowtime = new Date();
@@ -111,6 +174,7 @@ function HomePageWeather(data) {
   WeatherTitle2.innerHTML += weatherElements.Wx.time[0].elementValue[0].value;
   let weitherid = weatherElements.Wx.time[0].elementValue[1].value;
   // console.log(weitherid);
+  //判斷天氣 帶入圖片
   if (weitherid == '01' || weitherid == '02' || weitherid == '03') {
     WeatherTitleimg.src = "/img/sun.svg";
   } else if (weitherid == '04' || weitherid == '05' || weitherid == '06') {
@@ -118,13 +182,11 @@ function HomePageWeather(data) {
   } else {
     WeatherTitleimg.src = "/img/rain.svg";
   }
-  
   display_home_weather(weatherElements.Wx, weatherElements.T,day);
   //天氣描述:weatherElements.Wx.time[0].elementValue[0].value
   //代碼:weatherElements.Wx.time[0].elementValue[1].value
   
 }
-
 
 var bannerdata
 
@@ -132,7 +194,6 @@ function CarouselBanner(data) {
   let home_bannerboxs = $(".home_bannerbox")
   let postion = -1;
   bannerdata = data
-
 
 
   setInterval(function () {
@@ -183,7 +244,7 @@ const home_bannerimgs = (o) => {
 }
 
 const home_recent_activities = (o) => {
-
+  
   return `
   <div class="home_recent_activity_item">
     <div class="home_recent_activity_item_img">
@@ -241,7 +302,7 @@ const home_picturesItem = (o) => {
 const display_home_weather = (o, t,day) => {
 
   o.time.map((e, index) => {
-        // console.log(e.elementValue[1].value,index)
+  
         if (index % 2 == 0)
           {
             document.querySelector(".Wcontainer").innerHTML += home_weather(e.elementValue[1].value);
@@ -251,15 +312,14 @@ const display_home_weather = (o, t,day) => {
             console.log("homepage_weather_day",homepage_weather_day);
             if(day>day_list.length-1)
              day=0;
-             console.log("day",day);
+            console.log("day",day);
             document.querySelectorAll(".homepage_weather_day")[homepage_weather_day.length-1].innerHTML="星期"+day_list[day]
             day++;
             
           }
     }    ),
     t.time.map((e, index) => {
-      // console.log(e.elementValue[0].value);
-      // if(index%2 == 0) 
+
       document.querySelector(".WTcontainer").innerHTML += home_weather_t(e.elementValue[0].value,index);
     })
 };

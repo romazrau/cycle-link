@@ -128,9 +128,6 @@ function ClsActivity() {
             display_search_go(result.data);
             // *用 result  do something ...
             getsearchdata(result.data);
-
-
-
             // search_result_arr =  result.data ; 
 
         } catch (err) {
@@ -144,11 +141,7 @@ function ClsActivity() {
 
     function getsearchdata(arr) {
         search_result_arr = arr;
-        console.log(search_result_arr);
-
     }
-
-
 
     //*進階搜尋區 天 ---------------------------------------------------------
     //show
@@ -172,18 +165,18 @@ function ClsActivity() {
         })
     }
 
-    //舉辦縣市
-    const activityCityData = [
-        "台北市",
-        "新北市",
-        "桃園市",
-        "台中市",
-        "台南市",
-        "高雄市",
-        "澎湖縣",
-        "連江縣",
-        "金門縣"
-    ]
+    // //舉辦縣市
+    // const activityCityData = [
+    //     "台北市",
+    //     "新北市",
+    //     "桃園市",
+    //     "台中市",
+    //     "台南市",
+    //     "高雄市",
+    //     "澎湖縣",
+    //     "連江縣",
+    //     "金門縣"
+    // ]
 
     const data2CityCheckbox = array => {
         let result = ""
@@ -196,18 +189,12 @@ function ClsActivity() {
 
 
 
-
     //顯示進階搜尋
     // document.querySelector('#active_advance_search_city').innerHTML = data2CityCheckbox(activityCityData);
     let search_container = document.querySelector(".search_container");
     search_container.addEventListener('click', function () {
 
     })
-
-
-
-
-
 
 
     // 進階搜尋_DA
@@ -267,7 +254,6 @@ function ClsActivity() {
                 getstartdate(dateAsString);
                 // startdate(dateAsString);
                 var startdate = dateText;
-
             },
             //顯示上個月日期 及下個月日期 ，但是不可選的。
             //default:false
@@ -278,13 +264,11 @@ function ClsActivity() {
             hideIfNoPrevNext: true,
             //設置一個最小的可選日期。可以是Date對象，或者是數字（從今天算起，例如+7），
             //或者有效的字符串('y'代表年, 'm'代表月, 'w'代表周, 'd'代表日, 例如：'+1m +7d')。
-            minDate: "+7d",
+            minDate: "",
             //  設置一個最大的可選日期。可以是Date對象，或者是數字（從今天算起，例如+7），
             //或者有效的字符串('y'代表年, 'm'代表月, 'w'代表周, 'd'代表日, 例如：'+1m +7d')。
             maxDate: "+1m",
-
             onclick: function () {
-
             }
         });
 
@@ -307,7 +291,7 @@ function ClsActivity() {
             hideIfNoPrevNext: true,
             //設置一個最小的可選日期。可以是Date對象，或者是數字（從今天算起，例如+7），
             //或者有效的字符串('y'代表年, 'm'代表月, 'w'代表周, 'd'代表日, 例如：'+1m +7d')。
-            minDate: "+7d",
+            minDate: "",
             //  設置一個最大的可選日期。可以是Date對象，或者是數字（從今天算起，例如+7），
             //或者有效的字符串('y'代表年, 'm'代表月, 'w'代表周, 'd'代表日, 例如：'+1m +7d')。
             maxDate: "+1m",
@@ -416,6 +400,7 @@ function ClsActivity() {
 
     //瀏覽過的活動
     const htmlActCardseen = (o) => {
+        //狀態是感興趣
         if (o.fJoinTypeId == 0) {
             return ` 
             <div class="ac_card_margin">
@@ -524,7 +509,6 @@ function ClsActivity() {
     //* ------------------------------------- 文字樣板 -------------------------------------
     const display_active = (o) => {
         reflashPage(0);
-        console.log("o:", o)
 
         ActCard.innerHTML = "";
 
@@ -609,7 +593,8 @@ function ClsActivity() {
             let response = await fetch(serverURL.activeforyou, {
                 method: "GET", // http request method 
                 headers: { // http headers
-                    'Content-Type': 'application/json' // 請求的資料類型
+                    'Content-Type': 'application/json', // 請求的資料類型
+                    Authorization: localStorage.getItem("Cycle link token"),
                 },
                 // 以下跟身分認證有關，後端要使用session 要帶這幾項
                 cache: 'no-cache',
@@ -619,7 +604,6 @@ function ClsActivity() {
             let result = await response.json();
 
             display_active_foryou(result.data);
-
             getactid();
             likelistfromsql();
         } catch (err) {
@@ -690,6 +674,8 @@ function ClsActivity() {
                 activeinsertseensql(activeseenId, now);
             }
         }
+
+        //todo 
         let activelikeid;
         for (let i = 0; i < selectactivelike.length; i++) {
 

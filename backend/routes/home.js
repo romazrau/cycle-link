@@ -18,11 +18,10 @@ router.get('/weather', async function(req, res, next) {
    
     // setInterval(function () {
       let weather;
-      request('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-063?Authorization=CWB-DFCC2695-9C94-49DF-BE65-118069C9A954&format=JSON&sort=time', { encoding: 'utf-8' }, function (err, response, body) {
-        
-        
-        weather=JSON.parse(body);
-        res.json(weather)
+      request('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-063?Authorization=CWB-DFCC2695-9C94-49DF-BE65-118069C9A954&format=JSON&sort=time', { encoding: 'utf-8' }, 
+      function (err, response, body) {
+        weather=JSON.parse(body);//轉js
+        res.json(weather)//轉json
       });
       
     // }, 60000)
@@ -31,6 +30,18 @@ router.get('/weather', async function(req, res, next) {
   } 
 });
 
+
+router.get('/weatherInOut', async function(req, res, next) {
+  try{
+   
+    // setInterval(function () {
+      let result = await homesql.HomePageActivityInOut(req.params.Wid);
+      res.json(result);
+    // }, 60000)
+  }catch(err){
+    res.send(err);
+  } 
+});
 
 
 
