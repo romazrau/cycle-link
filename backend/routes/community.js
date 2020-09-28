@@ -77,6 +77,8 @@ router.get('/:id', async function (req, res, next) {
         // console.log(memberOfCommunity);
 
         let pendingMem = await Sql.SearchMemberAccessRight(req.params.id);
+        console.log("*****************************11111111111111111111111111111111111");
+        console.log(pendingMem.data);
 
         if (!pendingMem.result) {
             console.log("沒有待審核");
@@ -197,12 +199,16 @@ router.get('/communityManager/:id', async function (req, res, next) {
 router.get('/communityById_communityMember/:id', async function (req, res, next) {
     try {
         let result = await Sql.communityById_communityMember(req.params.id);
+        console.log("*********************************************************");
+        console.log(result.data);
         let resultStatus = await Sql.communityById_communityManager(req.params.id);
         //權限:使用社團Id查詢社團SQL function
         let resultOftStatus = await Sql.communityById_communityDetail(req.params.id);
 
 
         // console.log(resultOftStatus.data[0].fStatusId);
+        console.log("------------------------");
+        console.log(result);
 
 
         if (result.result && resultStatus.result) {
@@ -261,16 +267,20 @@ router.get('/communityById_communityMember/:id', async function (req, res, next)
                 }
             })
 
+            if(isResponse){
+                return;
+            }
+
             let newResultArr = result.data.filter(item => item.ifManager == 1)
             result.data = newResultArr;
-            // console.log("!!!!!!!!!!!!!!*******************************!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            // console.log(result.data);
+            console.log("!!!!!!!!!!!!!!*******************************!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            console.log(result.data);
+
             res.json(result);
-            isResponse = 1;
             return;
         }
-        // console.log("*******************************!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        // console.log(result.data);
+        console.log("*******************************!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        console.log(result.data);
         //顯示在頁面上 
         if (isResponse) return;
         res.json(result);
