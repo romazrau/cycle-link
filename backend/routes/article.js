@@ -171,8 +171,11 @@ router.post("/add", async function (req, res, next) {
     let fContent = req.body.fContent;
     let fImgPaths = "";
     for (let i = 0; i < req.files.length; i++) {
-      fImgPaths += "img/" + req.files[i].filename;
-      fImgPaths += ",,";
+      if(i==(req.files.length-1)){
+        fImgPaths += "img/" + req.files[i].filename;
+      }else{
+        fImgPaths += "img/" + req.files[i].filename + ",,";
+      }
     }
 
     console.log("-----------------------------------");
