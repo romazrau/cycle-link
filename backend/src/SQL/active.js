@@ -35,9 +35,30 @@ const activesql = async () => {
         // left join jo as J
         // on A.fId = J.fActivityId
         // `
-        let sqlStr = `select top(6)  * from Activity.tActivity  as A
-        where A.fActivityDate > convert(char, getdate(), 111) and A.fActLabelId = 3
-        order by  newid()`
+        let sqlStr = `with a1 as(
+            select s.*, a.fActLabelId
+            from Activity.tSearchList as s 
+            left join Activity.tActivity as a
+            on s.fActivityId = a.fId
+        ),b2 as(
+            select b.fActLabelId,count(b.fMemberId) as c
+            from a1 as b 
+            group by b.fActLabelId
+        ),c3 as  (
+            select top(1) * 
+            from b2
+            order by c desc
+        ),d4 as (
+            select act.*
+            from c3 as clab 
+            left join Activity.tActivity as act 
+            on clab.fActLabelId = act.fActLabelId
+        )
+        
+        select top(6) *
+        from d4
+        where d4.fActivityDate > convert(char, getdate(), 111)
+        order by newid()`
         // todo where j.fMemberId = ${}
 
         const result = await sql.query(sqlStr)
@@ -133,15 +154,72 @@ const activegosearchsql = async (fid, text) => {
     }
 };
 //為您推薦
-const activeforyousql = async () => {
+const activeforyousql = async (fMemberId) => {
     try {
         // make sure that any items are correctly URL encoded in the connection string
         // 連接資料庫
         await sql.connect(config)
+        console.log(fMemberId)
+        console.log("===============================");
+        let sqlStr
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
-        let sqlStr = `select top(6) * from Activity.tActivity as A 
-        where A.fActivityDate > convert(char, getdate(), 111) 
-        order by  newid()`
+        if(fMemberId==2){
+            sqlstr=`with a1 as(
+                select top(6) a.fActivityId ,count(a.fMemberId) as b 
+                from Activity.tSearchList as a
+                group by a.fActivityId
+                order by b desc
+            ),b2 as (
+                select c.fActivityId ,ac.*
+                from a1 as c
+                left join Activity.tActivity as ac
+                on c.fActivityId = ac.fId
+            )
+            select *
+            from b2     `
+        }else{
+            sqlStr = `
+        with SAct AS (	
+            select s.* 	from Activity.tSearchList as s
+            where s.fMemberId=${fMemberId}
+        ), Act AS (
+            select A.fId , A.fActLabelId
+            from Activity.tActivity as A 
+        ), countACT as(
+        select count(a.fMemberId) as am ,b.fActLabelId
+        from SAct as a 
+        left join Act as b 
+        on a.fActivityId = b.fId 
+        group by b.fActLabelId
+        ), Maxlabel as (
+        select max(countACT.am) as c
+        from countACT
+        ), MaxlabelID as (
+
+        select  c.fActLabelId
+        from Maxlabel as d
+        left join countACT as c
+        on d.c = c.am
+        )
+        ,Labelreult as (
+        select a.*
+        from MaxlabelID as e
+        left join Activity.tActivity as A 
+        on A.fActLabelId = e.fActLabelId
+        )
+        select top(6) f.*
+        from Labelreult as f
+        WHERE fId NOT IN(
+        select fActivityId
+        from Activity.tSearchList
+        where fMemberId=${fMemberId}) and  f.fActivityDate > convert(char, getdate(), 111) 
+        order by  newid()
+        `
+        }
+             
+
+        console.log("ooooooooo",sqlStr);
+
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
         // console.dir(result)
