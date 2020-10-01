@@ -110,8 +110,8 @@ function ClsNavbar() {
             window.localStorage.removeItem("Cycle link token");
             window.localStorage.removeItem("Cycle link user data");
 
+            location.hash = "#log-in";
             location.reload();
-            // location.hash = "#log-in";
         }
     })
 
