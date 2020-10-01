@@ -102,9 +102,9 @@ function ClsNavbar() {
 
 
     // log out
-    document.querySelector('#navbar_logout').addEventListener("click", (e) => {
+    document.querySelector('#navbar_logout').addEventListener("click", async (e) => {
 
-        let isLogout = confirm("確定要登出嗎?", "Cycle Link");
+        let isLogout = await JSAlert.confirm("確定要登出嗎?", "Cycle Link");
 
         if (isLogout) {
             window.localStorage.removeItem("Cycle link token");

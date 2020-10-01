@@ -22,6 +22,7 @@
 
     <!-- 其他套件 -->
     <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>
+    <script src="./node_modules/js-alert/dist/jsalert.min.js"></script>
 
     <!-- 內部引用資料 -->
     <link rel="shortcut icon" href="./img/海龜幣.png" type="image/x-icon">
@@ -935,11 +936,11 @@
 
                 <div class="personal_wrapper">
                     <div class="personal_information">
-                       
+
                     </div>
                     <div class="personal_Flex">
 
-                       
+
                     </div>
                 </div>
 
@@ -1189,7 +1190,7 @@
                         <!--GroupTopLeft max-width:50%; -->
                         <div class="GroupTopLeft ">
                             <div class="GroupTopMainPicDivForImg">
-                                <img id="CommunityPic" src="./img/水下攝影與淨海.jpg" alt="cover pic of diving" width="100%">
+                                <img id="CommunityPic" src="./img/whiteImg.png" alt="cover pic of diving" width="100%">
                                 <!-- <img class="GroupImgSeeMoreIcon settingIcon" data-open-name="DropDownMenu_photo"
                                     src="./img/icon_seemore.svg" width="25px"> -->
                                 <!-- <div class="DropDownMenu" id="DropDownMenu_photo">
@@ -1203,8 +1204,7 @@
                         <div class="GroupTopRight FlexContainer">
 
                             <div class="GroupTopEventName">
-                                <h2 id="CommunityName" class="h2">週末北海岸
-                                    水下攝影fit淨海</h2>
+                                <h2 id="CommunityName" class="h2">Loading ...</h2>
                                 <!-- <img class="GroupTopRightImgIcon settingIcon" data-open-name="DropDownMenu_name"
                                     src="./img/icon_seemore.svg" width="25px">
                                 <div class="DropDownMenu" id="DropDownMenu_name">
@@ -1223,7 +1223,7 @@
                                     <div class="FlexContainer GroupTopRightEventInfoBox rwd_grouptop_info">
                                         <div class="Size20IconMarginRight"><img src="./img/icon_group.svg" width="20">
                                         </div>
-                                        <div>社團人數&nbsp;<span id="CommunityNumberOfPeople">50</span>&nbsp;人</div>
+                                        <div>社團人數&nbsp;<span id="CommunityNumberOfPeople">0</span>&nbsp;人</div>
                                         <span>-</span>
                                         <div>
                                             <sapn id="CommunityStatus">私人</sapn>社團
@@ -1251,7 +1251,7 @@
                                     <div class="rwd_manager_width100">
 
                                         <div class="rwd_manager_name">管理員:</div>
-                                        <div class="managerCommunity">咬孝天</div>
+                                        <div class="managerCommunity"> -- </div>
                                         <!-- </div> -->
                                         <!-- <img src="./img/icon_chat.svg" width="20px"> -->
                                         <!-- </div> -->
@@ -1287,17 +1287,7 @@
                                 </div> -->
                         </div>
                         <div id="CommunityAboutUs" class="FontSectionText">
-                            當您已完成潛水課程，成為一位合格的潛水員後，當然水世界潛水會為您安排接續探索水下風光的活動！
-                            剛結訓的學員基本上對台灣海域不熟悉、也不知道該從哪裡開始玩起，也擔心沒人準備後勤作業，也沒有同伴一起分享。
-                            水世界潛水俱樂部可以帶領喜愛潛水的同好，更重要的就是可以找到志同道合的潛友成為彼此的潛伴，一同下水遊覽美麗的海底世界；「水世界潛水俱樂部」是由專業導潛、資深教練、資深潛友、潛水新手聚集而成的團體，帶您體驗大自然。
-                            您要如何加入會員
-                            資格：
-                            (1) 水世界潛水結訓的學員 或
-                            (2) 於水世界潛水購買整套重裝者
-                            俱樂部會員權益與義務
-                            1.入會費
-                            入會費為$1000元，您將獲的一張會員卡及10張氣瓶卷(有效期為當年有效)。而會籍是終身有效。
-                            *當年度於水世界潛水結訓之學員，享免年費優惠，只需繳交$1,000元入會費即可享有會員權益。
+                            Loading ...
                         </div>
 
                     </div>
@@ -1459,7 +1449,7 @@
                                         <div class="dropdownDR js_editCommunity">編輯管理員名單</div>
                                     </div> -->
                                 </div>
-                                <div id="MemberTemplate" class="FlexContainer GroupRight MemberTemplateFlexDirection">
+                                <!-- <div id="MemberTemplate" class="FlexContainer GroupRight MemberTemplateFlexDirection">
                                     <div class="activity_detail_info_img_circle">
                                         <div class="activity_detail_info_img_div">
                                             <img src="./img/id2.jpg" class="activity_detail_info_img">
@@ -1472,14 +1462,14 @@
                                             <img src="./img/icon_chat.svg" width="20"></a>
 
                                     </div>
-                                </div>
+                                </div> -->
 
 
                                 <div class="dropdown-relative-container">
                                     <div class="FlexContainer RightPartTopInfo Group_FlexJustifyContentSB ">
                                         <div class="FlexContainer">
                                             <div class="GroupComingEvent FontSectionTitle">社團成員</div>
-                                            <div id="NumOfMem" class="FontSectionTitle">(4)</div>
+                                            <div id="NumOfMem" class="FontSectionTitle">(0)</div>
                                         </div>
                                         <!-- <img class="GroupComingEventImg settingIcon"
                                             data-open-name="DropDownMenu_memList" src="/img/icon_seemore.svg"
@@ -1492,7 +1482,7 @@
                                     </div> -->
                                 </div>
                                 <div id="CommunityMember" class="FlexContainer GroupRightInfoPhotoContainer">
-                                    <div class="activity_detail_info_img_circle GroupMemberPic">
+                                    <!-- <div class="activity_detail_info_img_circle GroupMemberPic">
                                         <div class="activity_detail_info_img_div">
                                             <img class="activity_detail_info_img GoupRightInfoPhoto" src="./img/id1.jpg"
                                                 width="30">
@@ -1514,7 +1504,7 @@
                                         <div class="activity_detail_info_img_div"><img
                                                 class="GoupRightInfoPhoto activity_detail_info_img" src="./img/id4.jpeg"
                                                 width="30"></div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div id="CommunityMemberNone" class="CommunityMemberNone FlexContainer hide">
                                     <img src="./img/icon_lock.svg" width="20px" class="iconlock">
@@ -2046,8 +2036,8 @@
                             <button>編輯圖片</button>
                         </div>
                         <div class="personalManager_left_Info_txt">
-                            <h3 id="personal-manege-name">訪客</h3>
-                            <h4 id="personal-manege-account">guest</h4>
+                            <h3 id="personal-manege-name">Loading ...</h3>
+                            <h4 id="personal-manege-account">Loading ...</h4>
                             <p><img src="img/海龜幣.png" alt="" class="personalManager_SeaTurtleCoin"> 海龜積分：<span
                                     id="personal-manege-coin">0</span></p>
                             <p><i class="fas fa-crown"
@@ -2064,7 +2054,8 @@
                         <div class="personalManager_right_title_btn" data-page-id="personalManager_right_page_info">
                             <p><i class="fas fa-user-alt"></i>基本資料</p>
                         </div>
-                        <div class="personalManager_right_title_btn" data-page-id="personalManager_right_page_loveact">
+                        <div class="personalManager_right_title_btn personalManager_btn_focus"
+                            data-page-id="personalManager_right_page_loveact">
                             <p><i class="fa fa-gratipay" aria-hidden="true"></i></i>追蹤活動</p>
                         </div>
                         <div class="personalManager_right_title_btn" data-page-id="personalManager_right_page_myact">

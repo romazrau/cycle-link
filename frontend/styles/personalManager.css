@@ -119,6 +119,19 @@ h4 {
   cursor: pointer;
 }
 
+
+.personalManager_btn_focus {
+  /* width: 18vw; */
+  border: 1px solid var(--grey-color);
+  background-color: var(--grey-color);
+}
+
+.personalManager_btn_focus i, .personalManager_btn_focus p{
+  background-color: var(--grey-color);
+}
+
+
+
 .personalManager_right_content {
   margin-top: 5vh;
 }

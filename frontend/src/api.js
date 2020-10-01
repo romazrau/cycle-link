@@ -105,3 +105,7 @@ const checkLogin = async () => {
 // checkLogin()
 
 // export { serverURL, checkLogin };
+
+
+// 警告視窗 覆寫
+window.alert = JSAlert.alert;

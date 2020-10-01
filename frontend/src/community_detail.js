@@ -211,8 +211,6 @@ function ClsCommuntityDetail() {
         });
     });
 
-    // let photoFlowData;
-    var photoFlowData1 = [];
 
     // *照片牆---------------------------------------------
     const CommunityOfPictures = async (id) => {
@@ -231,7 +229,9 @@ function ClsCommuntityDetail() {
         })
 
 
-        photoFlowData1 = [];
+        // let photoFlowData;
+        let photoFlowData1 = [];
+
 
         try {
             let response = await fetch(
@@ -367,6 +367,16 @@ function ClsCommuntityDetail() {
     // 判斷是否私密,私密的話進一步判斷否為會員
     // --會員的話都顯示
     // 不是的話顯示私密HTML
+    const renderPageLoading = () => {
+        // 初始化社團基本資料
+        document.querySelector("#CommunityPic").src = "./img/whiteImg.png"
+        document.querySelector("#CommunityName").innerHTML = "Loading ...";
+        document.querySelector("#CommunityNumberOfPeople").innerHTML = "0";
+        document.querySelector("#NumOfMem").innerHTML = `(0)`;
+        document.querySelector("#CommunityAboutUs").innerHTML = "Loading ...";
+    }
+
+
     const renderPage = async (id) => {
         try {
             let response = await fetch(serverURL.community + id, {
@@ -514,8 +524,8 @@ function ClsCommuntityDetail() {
             });
 
             let result = await response.json();
-            console.log("+++++++++++++++++++++++++++");
-            console.log(result.data);
+            // console.log("+++++++++++++++++++++++++++");
+            // console.log(result.data);
 
             let MemberContainer = document.querySelector("#MemberTemplate");
             MemberContainer.innerHTML = "";
@@ -1116,7 +1126,7 @@ function ClsCommuntityDetail() {
         })
     })
     // 按下按鈕退出社團
-    console.log(document.querySelector("#leaveCommunityBtn"));
+    // console.log(document.querySelector("#leaveCommunityBtn"));
     document.querySelector(".js_leaveDropDown").addEventListener("click", async () => {
         try {
 
@@ -1399,6 +1409,7 @@ function ClsCommuntityDetail() {
     this.renderManagerListInfo = renderPageManager;
     this.renderMemberListInfo = renderPageMember;
     this.CommunityOfPictures = CommunityOfPictures;
+    this.renderPageLoading = renderPageLoading;
 }
 
 const CommuntityDetail = new ClsCommuntityDetail();
@@ -1410,10 +1421,13 @@ const communityDetailChangeHash = () => {
     let cumDetailArr = window.location.hash.split("/"); // #community/detail/3  -> [ #community, detail, 3 ]
     let cumDetailId = cumDetailArr[2];
     if (location.hash.includes("#community/detail/")) {
+        if (CommuntityDetail.cumDetailId !== cumDetailId) {
+            CommuntityDetail.renderPageLoading();
+            CommuntityDetail.cumDetailId = cumDetailId;
+        }
         CommuntityDetail.renderMainCommunityInfo(cumDetailId);
         CommuntityDetail.renderManagerListInfo(cumDetailId);
         CommuntityDetail.renderMemberListInfo(cumDetailId);
-        CommuntityDetail.cumDetailId = cumDetailId;
         CommuntityDetail.CommunityOfPictures(cumDetailId);
     }
 };

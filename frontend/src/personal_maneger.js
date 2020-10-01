@@ -1,13 +1,16 @@
 function ClsPersonalManeger() {
-
-
-    document.querySelectorAll(".personalManager_right_title_btn").forEach(item => {
+    
+    let ctrlBtns = document.querySelectorAll(".personalManager_right_title_btn");
+    ctrlBtns.forEach(item => {
         item.addEventListener("click", function (e) {
             document.querySelectorAll(".personalManager_right_content").forEach(page => {
                 page.classList.add("hide");
             });
-
             document.querySelector(`#${e.currentTarget.dataset.pageId}`).classList.remove("hide");
+
+            ctrlBtns.forEach( item => item.classList.remove("personalManager_btn_focus"));
+            e.currentTarget.classList.add("personalManager_btn_focus");
+        
         })
     })
 
