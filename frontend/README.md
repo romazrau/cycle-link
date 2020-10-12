@@ -2,7 +2,10 @@
 + 請先`npm install`。
 
 ### 直接啟動
-+ vs code套件的live server啟動根目錄的index.html
++ `npm start`
++ 或 vs code套件的live server啟動根目錄的`public/index.html`
+
+
 
 ### 使用babel與webpack功能
 > 期中用不到
