@@ -38,7 +38,7 @@ function ClsHome() {
         }
       )
     } catch (err) {
-      console.log(err);
+      console.error(err);
       // 錯誤處理
     }
   }
@@ -77,9 +77,8 @@ function ClsHome() {
       GetHomePageWeatherInOut(weitherid);
 
     } catch (err) {
-      console.log(err);
+      console.error(err);
       //   // console.groupEnd("----------------")
-
     }
   }
 
@@ -108,7 +107,7 @@ function ClsHome() {
     }
     arr1.push(objresult);
     recent_activities.innerHTML = "";
-    console.log("arr1", arr1[0].data);
+    // console.log("arr1", arr1[0].data);
     for (let i = 0; i < arr1[0].data.length; i++) {
       recent_activities.innerHTML += home_recent_activities(arr1[0].data[i]);
     }
@@ -157,7 +156,7 @@ function ClsHome() {
         return neededElements;
       }, {}
     );
-    console.log("weatherElements:", weatherElements);
+    // console.log("weatherElements:", weatherElements);
 
     var day_list = ['日', '一', '二', '三', '四', '五', '六'];
     let nowtime = new Date();
@@ -212,7 +211,7 @@ function ClsHome() {
     let nowTime = time.getTime()
 
 
-    for (let i = 0; i < bannerdata.length; i++) {
+    for (let i = 0; i < (bannerdata ? bannerdata.length : 0); i++) {
       let endTime = Date.parse(bannerdata[i].fActivityDate); //"字串時間"
       let offsetTime = (endTime - nowTime) / 1000; // ** 以秒為單位
 
@@ -305,10 +304,10 @@ function ClsHome() {
         var day_list = ['日', '一', '二', '三', '四', '五', '六'];
         // for(let i=0;i<)
         let homepage_weather_day = document.querySelectorAll(".homepage_weather_day")
-        console.log("homepage_weather_day", homepage_weather_day);
+        // console.log("homepage_weather_day", homepage_weather_day);
         if (day > day_list.length - 1)
           day = 0;
-        console.log("day", day);
+        // console.log("day", day);
         document.querySelectorAll(".homepage_weather_day")[homepage_weather_day.length - 1].innerHTML = "星期" + day_list[day]
         day++;
 
@@ -329,7 +328,7 @@ function ClsHome() {
     var day_list = ['日', '一', '二', '三', '四', '五', '六'];
     let nowtime = new Date();
     let day = nowtime.getDay();
-    console.log(index);
+    // console.log(index);
 
     if (o == '01' || o == '02' || o == '03') {
       return `

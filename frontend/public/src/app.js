@@ -9,7 +9,7 @@
 // 啟動前端時 看看攜帶的 JWT 是不是合法的
 checkLogin()
     .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.result == "1" && res.data.fName) {
             // let show = `<div>${res.data.fName}<br/>歡迎</div>`;
             let show = `
@@ -35,7 +35,7 @@ checkLogin()
         window.localStorage.removeItem("Cycle link user data");
         window.localStorage.removeItem("Cycle link user id");
 
-        console.log(err)
+        console.error(err)
     });
 
 

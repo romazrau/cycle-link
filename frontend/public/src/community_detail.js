@@ -205,7 +205,7 @@ function ClsCommuntityDetail() {
                 i.classList.remove("LC");
             });
 
-            console.log(event.target);
+            // console.log(event.target);
             event.target.classList.add("LC");
             // i.removeEventListener("mouseout",whenMouseOut);
         });
@@ -548,7 +548,7 @@ function ClsCommuntityDetail() {
 
             // document.querySelector("#CommunityManager").innerHTML = result.data[0].fName;
         } catch (err) {
-            console.log(err);
+            console.error(err);
         }
     };
     const renderPageMember = async (id) => {

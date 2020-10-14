@@ -19,7 +19,7 @@ app.use('/', function (req, res) {
 
 
 app.listen(5502, function () {
-  console.log('Example app listening on port 5502!');
+  console.log('App listening on port 5502!');
   (async () => {
     // Opens the URL in the default browser.
     await open("http://localhost:5502");

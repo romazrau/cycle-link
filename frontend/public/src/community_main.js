@@ -460,10 +460,10 @@ ${ImgIsNullOrNot(x.PostImg)}
       //*--------------------------------------*//
 
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
-  getCommunityPost();
+  // getCommunityPost();
 
   //熱門社團：路由撈資料 & 執行display
   const getRecommendCommunity = async (x) => {
@@ -713,7 +713,7 @@ ${ImgIsNullOrNot(x.PostImg)}
 const CommunityMain = new ClsCommunityMain();
 
 const communityMainChanging = () => {
-  if (location.hash.includes("#community")) {
+  if (location.hash === "#community") {
     //搜尋結果隱藏
     document.querySelector(".CM_recommend_container").classList.add("CM_recommend_container_disappear");
     CommunityMain.getCommunityPost();

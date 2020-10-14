@@ -26,7 +26,7 @@ function ClsPersonalPage() {
             // 用變數接 fetch結果的資料內容， 要用await等。
             let result = await response.json();
             let data = result.data;
-            console.log("data", data);
+            // console.log("data", data);
             display_information(data);
 
             let backgrondImg =  `background-image: url(${serverURL.root}/${data[0].fPhotoPath});
