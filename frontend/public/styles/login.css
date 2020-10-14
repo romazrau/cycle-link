@@ -378,6 +378,11 @@
   text-align: center;
 }
 
+#forgot-password:hover{
+  color: var(--blue-color);
+}
+
+
 .forgot-password-close {
   color: #aaa;
   float: right;
@@ -434,6 +439,16 @@
 #forgot-password-submit:focus {
   outline: none;
 }
+
+
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+
+
+
 @media (max-width: 1200px){
   .Login_checkviewcontainer {
     display: none;
