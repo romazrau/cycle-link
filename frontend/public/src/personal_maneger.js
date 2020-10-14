@@ -1,5 +1,5 @@
 function ClsPersonalManeger() {
-    
+
     let ctrlBtns = document.querySelectorAll(".personalManager_right_title_btn");
     ctrlBtns.forEach(item => {
         item.addEventListener("click", function (e) {
@@ -8,11 +8,50 @@ function ClsPersonalManeger() {
             });
             document.querySelector(`#${e.currentTarget.dataset.pageId}`).classList.remove("hide");
 
-            ctrlBtns.forEach( item => item.classList.remove("personalManager_btn_focus"));
+            ctrlBtns.forEach(item => item.classList.remove("personalManager_btn_focus"));
             e.currentTarget.classList.add("personalManager_btn_focus");
-        
+
         })
     })
+
+
+    // 更改資料
+    document.querySelector("#personalManager_infoBasic_submit").addEventListener("click", async (e) => {
+        e.preventDefault();
+        let isLogout = await JSAlert.confirm("確定要送出嗎?", "Cycle Link");
+
+        if (!isLogout) {
+            return;
+        }
+
+        let form = document.querySelector(".personalManager_right_content_infoBasic");
+        let formdata = new FormData(form);
+
+        let response = await fetch(serverURL.users, {
+            method: "PUT",
+            cache: "no-cache", // 不准使用快取
+            headers: {
+                // *攜帶 http request headers
+                Authorization: localStorage.getItem("Cycle link token"), // *這個屬性帶 JWT
+            },
+            body: formdata,
+        });
+
+        if(!response.ok){
+            console.error(response);
+            alert("連線錯誤");
+        }
+
+        let result = await response.json();
+        await alert(result.msg);
+
+        if(result.result){
+            location.reload();
+        }
+
+    })
+
+
 
 
 

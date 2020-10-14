@@ -159,8 +159,8 @@ const activeforyousql = async (fMemberId) => {
         // make sure that any items are correctly URL encoded in the connection string
         // 連接資料庫
         await sql.connect(config)
-        console.log(fMemberId)
-        console.log("===============================");
+        // console.log(fMemberId)
+        // console.log("===============================");
         let sqlStr
         // *丟SQL 指令 並處存結果  ，  SQL指令，先去SQL server是成功在貼在這裡喔
         if(fMemberId==2){
@@ -218,7 +218,7 @@ const activeforyousql = async (fMemberId) => {
         }
              
 
-        console.log("ooooooooo",sqlStr);
+        // console.log("ooooooooo",sqlStr);
 
         const result = await sql.query(sqlStr)
         // 看一下回傳結果
@@ -429,7 +429,7 @@ const removeactlikesql = async (fActivityId, fMemberId) => {
         WHERE fActivityId=${fActivityId} AND fMemberId=${fMemberId}
         `;
         const result = await sql.query(sqlString);
-        console.dir(result);
+        // console.dir(result);
 
         return {
             result: 1,

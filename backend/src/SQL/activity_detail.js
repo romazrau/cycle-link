@@ -196,7 +196,7 @@ const TagSearch = async (tag) => {
             where fLabelName like '%${tag}%'
             `
         const result = await sql.query(sqlStr);
-        console.dir(result.recordset)
+        // console.dir(result.recordset)
         return {
             result: 1,
             msg: "請求成功",
