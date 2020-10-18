@@ -75,6 +75,10 @@
   border-radius: 50%;
 }
 
+#navbar_log-in-hide{
+  display: none;
+}
+
 /* 下拉新增區 */
 .navebar_add_icons {
   display: flex;
@@ -125,6 +129,7 @@
   transform-origin: top;
   transform: scaleY(1) !important;
 }
+
 
 @keyframes App-create-list-down {
   0% {
@@ -353,6 +358,10 @@
   .nav-underline:hover:before {
     width: 4rem;
   }
+
+  #navbar_log-in-hide{
+    display: block;
+  }
 }
 
 /* 切換css */
@@ -385,3 +394,9 @@
   transition: opacity 0.4s ease-in-out 0.6s,
     transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.6s !important;
 }
+
+.navbarLink_show:nth-of-type(5) {
+  transition: opacity 0.4s ease-in-out 0.7s,
+    transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.7s !important;
+}
+

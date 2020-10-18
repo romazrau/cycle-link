@@ -97,8 +97,8 @@ app.use(cors(corsOptions));
 // jwt
 app.use(
   jwt({
-    secret: "DayDayLuLuDaDaMiMiJJTenTen", // 加密文字，極重要，不可讓駭客知道喔啾咪
-    algorithms: ["HS256"],
+    secret: (process.env.JWT_SECRET || "DayDayLuLuDaDaMiMiJJTenTen"), // 加密文字，極重要，不可讓駭客知道喔啾咪
+    algorithms: [(process.env.JWT_ALGORITHMS || "HS256")],
     credentialsRequired: false, // 要不要擋下驗證失敗的 http request，不要，因為我們不用所有API 都需要登入
   })
 );
@@ -112,12 +112,12 @@ app.post("/login", function (req, res) {
         admin: "admin",
         tente: "eeeeee",
       },
-      "DayDayLuLuDaDaMiMiJJTenTen",
+      (process.env.JWT_SECRET || "DayDayLuLuDaDaMiMiJJTenTen"),
       {
         expiresIn: 3600 * 24 * 3,
       },
       {
-        algorithm: "HS256",
+        algorithm: (process.env.JWT_ALGORITHMS || "HS256"),
       }
     );
   res.json({

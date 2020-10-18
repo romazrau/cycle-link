@@ -152,7 +152,7 @@ function ClsChat() {
 
 
     const makeToast = (title, msg) => {
-        console.log("%c" + title + "  " + msg, "color:green;font-size:16px;");
+        console.log("%c"+ msg, `color:${title === "success" ? 'green' : 'orange'};font-size:16px;`);
     }
 
     // *設定 socket ---------------------------------------------------------------------

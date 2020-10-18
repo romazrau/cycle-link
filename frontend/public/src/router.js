@@ -13,10 +13,15 @@ function ClsRouter() {
             hashTitle = "log-in";
         }
 
-
-        let targetNav = document.querySelector(`#navbar_${hashTitle}`)
-        if (targetNav) { //確定這個nav存在，才套色
-            targetNav.classList.add('focus');
+        if (hashTitle === "log-in") {
+            document.querySelectorAll(`#navbar_${hashTitle}`).forEach((item)=>{
+                item.classList.add('focus');
+            })
+        } else {
+            let targetNav = document.querySelector(`#navbar_${hashTitle}`)
+            if (targetNav) { //確定這個nav存在，才套色
+                targetNav.classList.add('focus');
+            }
         }
     }
 
@@ -91,7 +96,7 @@ function ClsRouter() {
 
                 // 沒有navbar 區
                 case "personal-maneger":
-                    if ( !localStorage.getItem("Cycle link user data") || !localStorage.getItem("Cycle link token")) {
+                    if (!localStorage.getItem("Cycle link user data") || !localStorage.getItem("Cycle link token")) {
                         location.hash = `#log-in`
                         break;
                     }
@@ -111,7 +116,7 @@ function ClsRouter() {
 
                 case "create-community":
                     document.querySelector(`#page_${hashTitle}`).classList.remove("hide");
-                    console.log( document.querySelector(`#page_${hashTitle}`));
+                    console.log(document.querySelector(`#page_${hashTitle}`));
 
                     break;
 

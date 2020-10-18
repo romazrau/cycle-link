@@ -45,11 +45,11 @@ const reflashToken = async (id) => {
           fAccountAuthority: result.data.fAccountAuthority,
           fPhotoPath: result.data.fPhotoPath
         },
-        "DayDayLuLuDaDaMiMiJJTenTen",
+        (process.env.JWT_SECRET || "DayDayLuLuDaDaMiMiJJTenTen"),
         {
           expiresIn: 3600 * 24 * 3,
         },
-        { algorithm: "HS256" }
+        { algorithm: (process.env.JWT_ALGORITHMS || "HS256") }
       );
     return { result: 1, msg: "請求成功", token: token };
   } catch (ex) {
@@ -91,11 +91,11 @@ router.post("/login", async function (req, res, next) {
           fAccountAuthority: result.data.fAccountAuthority,
           fPhotoPath: result.data.fPhotoPath
         },
-        "DayDayLuLuDaDaMiMiJJTenTen", // 加密文字，極重要，不可讓駭客知道喔啾咪
+        (process.env.JWT_SECRET || "DayDayLuLuDaDaMiMiJJTenTen"), // 加密文字，極重要，不可讓駭客知道喔啾咪
         {
           expiresIn: 3600 * 24 * 3, // JWT 有效時間
         },
-        { algorithm: "HS256" } // 加密方式
+        { algorithm: (process.env.JWT_ALGORITHMS || "HS256") } // 加密方式
       );
 
     // console.log("user:", result);
@@ -259,12 +259,7 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-// router.post("/signupphoto", async (req, res) => {
-//   res.json({
-//     file: req.file,
-//     body: req.body,
-//   });
-// });
+
 
 // is Sign Up safyty code correct  and finish  Sign Up
 router.get("/signup/:code", async (req, res) => {
