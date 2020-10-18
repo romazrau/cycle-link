@@ -37,7 +37,7 @@ function ClsPersonalManeger() {
             body: formdata,
         });
 
-        if(!response.ok){
+        if (!response.ok) {
             console.error(response);
             alert("連線錯誤");
         }
@@ -45,14 +45,73 @@ function ClsPersonalManeger() {
         let result = await response.json();
         await alert(result.msg);
 
-        if(result.result){
+        if (result.result) {
             location.reload();
         }
 
     })
 
 
+    // 修改密碼
+    document.querySelector("#personalManage_infoBasic_change_password").addEventListener("click", async (e) => {
+        e.preventDefault();
 
+        let changePasswordModel = document.querySelector('#change-password-modal');
+        changePasswordModel.classList.remove('hide');
+
+        document.querySelector('#change-password-submit').addEventListener('click', async (e) => {
+            e.preventDefault();
+
+            let passwordValue = document.querySelector('#input_change-password').value;
+            let passwordCheckValue = document.querySelector('#input_change-password-check').value;
+
+            if (passwordValue !== passwordCheckValue) {
+                alert('密碼不相符');
+                return;
+            }
+
+            let isPasswordRight = /^(?=.*[A-Za-z])(?=.*\d).{8,24}$/.test(passwordValue);
+            if (!isPasswordRight) {
+                alert("密碼須為8~24個字，且包含英文字母與數字");
+                return;
+            }
+
+            let isLogout = await JSAlert.confirm("確定要送出嗎?", "Cycle Link");
+            if (!isLogout) {
+                return;
+            }
+
+            let form = document.querySelector('#change-password-form');
+            let formData = new FormData(form);
+
+            let response = await fetch(serverURL.password, {
+                method: "PUT",
+                cache: "no-cache",
+                headers: {
+                    Authorization: localStorage.getItem("Cycle link token"),
+                },
+                body: formData
+            })
+
+            if (!response.ok) {
+                alert('請求失敗');
+                return;
+            }
+
+            let result = await response.json();
+            await alert(result.msg);
+
+            if (result.result) {
+                changePasswordModel.classList.add("hide");
+            }
+        })
+
+        // 關閉談框
+        document.querySelector('.change-password-close').addEventListener('click', () => {
+            changePasswordModel.classList.add("hide");
+        })
+
+    })
 
 
     // rander 畫面

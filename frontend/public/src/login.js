@@ -5,49 +5,48 @@ function ClsLogin() {
     document.querySelector("#loginSubmit").onclick =
         async (e) => {
             e.preventDefault();
-            if(!document.querySelector(".Login_CheckBox").innerHTML)
-            {
+            if (!document.querySelector(".Login_CheckBox").innerHTML) {
                 alert("未進行認證!!!!")
                 return;
-            }else{
-            // console.log(e);
-            let form = document.querySelector("#form_signIn"); // 抓登入 form element
-            let formData = new FormData(form); // 打包成 FormData
+            } else {
+                // console.log(e);
+                let form = document.querySelector("#form_signIn"); // 抓登入 form element
+                let formData = new FormData(form); // 打包成 FormData
 
-            try {
-                let resopne = await fetch(serverURL.login, {
-                    method: "POST", // POST
-                    body: formData, // *攜帶的 FormData
-                    cache: 'no-cache',
-                    credentials: 'include',
-                    mode: 'cors',
-                    referrer: "client",
-                })
+                try {
+                    let resopne = await fetch(serverURL.login, {
+                        method: "POST", // POST
+                        body: formData, // *攜帶的 FormData
+                        cache: 'no-cache',
+                        credentials: 'include',
+                        mode: 'cors',
+                        referrer: "client",
+                    })
 
-                let result = await resopne.json() // 解析回傳的物件
+                    let result = await resopne.json() // 解析回傳的物件
 
-                console.log(result);
-                if (result.result == "1") {
-                    // let show = `<div>${result.data.fName}<br/>歡迎</div>`;
-                    // document.querySelector("#header_link_login").innerHTML = show;
-                    // document.querySelector('.navebar_msg_icons').classList.remove("hide");
-                    // location.hash = "#personal-maneger";
+                    console.log(result);
+                    if (result.result == "1") {
+                        // let show = `<div>${result.data.fName}<br/>歡迎</div>`;
+                        // document.querySelector("#header_link_login").innerHTML = show;
+                        // document.querySelector('.navebar_msg_icons').classList.remove("hide");
+                        // location.hash = "#personal-maneger";
 
-                    window.localStorage.setItem("Cycle link token", result.token); // *存前端來的 JWT 進 localStorage 裡
-                    window.localStorage.setItem("Cycle link user data", result.data.fName);
-                    window.localStorage.setItem("Cycle link user id", result.data.fId);
+                        window.localStorage.setItem("Cycle link token", result.token); // *存前端來的 JWT 進 localStorage 裡
+                        window.localStorage.setItem("Cycle link user data", result.data.fName);
+                        window.localStorage.setItem("Cycle link user id", result.data.fId);
 
 
-                    location.reload();
-                } else {
-                    alert(result.msg);
+                        location.reload();
+                    } else {
+                        alert(result.msg);
+                    }
+                } catch (ex) {
+                    console.log(ex);
                 }
-            } catch (ex) {
-                console.log(ex);
             }
-        }
 
-    }
+        }
 
 
     document.querySelector('#signup-submit').addEventListener("click", async (e) => {
@@ -57,7 +56,7 @@ function ClsLogin() {
         let accountValue = document.querySelector("#form_signup > input[type='text']").value;
         let passwordValue = document.querySelector("#form_signup > input[type='password']").value;
 
-        if(!(emailValue && accountValue && passwordValue)){
+        if (!(emailValue && accountValue && passwordValue)) {
             alert("尚有欄位空白");
             return;
         }
@@ -66,23 +65,23 @@ function ClsLogin() {
         let accountCheck = /^(?=.*[A-Za-z]).{4,16}$/.test(accountValue);
         let passwordCheck = /^(?=.*[A-Za-z])(?=.*\d).{8,24}$/.test(passwordValue);
 
-        if(!emailCheck){
+        if (!emailCheck) {
             alert("信箱格式錯誤");
             return;
         }
 
-        if(!accountCheck){
+        if (!accountCheck) {
             alert("帳號須為4~16個字，且包含英文字母");
             return;
         }
 
-        if(!passwordCheck){
+        if (!passwordCheck) {
             alert("密碼須為8~24個字，且包含英文字母與數字");
             return;
         }
-        
+
         let isCkeck = await JSAlert.confirm("確定要送出嗎?", "Cycle Link");
-        if(!isCkeck) return;
+        if (!isCkeck) return;
 
         let form = document.querySelector("#form_signup");
         let formData = new FormData(form);
@@ -97,10 +96,10 @@ function ClsLogin() {
         let response = await fetch(serverURL.signup, {
             method: "POST",
             body: formData,
-            credentials: 'include'  
+            credentials: 'include'
         });
 
-        if(!response.ok){
+        if (!response.ok) {
             alert("請求失敗");
             return;
         }
@@ -108,48 +107,46 @@ function ClsLogin() {
         let result = await response.json();
         console.log(result);
         await alert(result.msg);
-        if(!result.result) return;
+        if (!result.result) return;
 
 
-        let signupModel =  document.querySelector('#sign-up-auth-modal');
+        let signupModel = document.querySelector('#sign-up-auth-modal');
         signupModel.classList.remove('hide');
 
         document.querySelector('#sign-up-auth-submit').addEventListener("click", async (e) => {
             e.preventDefault();
 
             let codeValue = document.querySelector('#input-sign-up-auth-code').value;
-            if(!codeValue) return;
-            if(codeValue.length != 6){
+            if (!codeValue) return;
+            if (codeValue.length != 6) {
                 alert("驗證碼為六個數字");
                 return;
             }
 
             let res = await fetch(serverURL.signup + codeValue, {
-                credentials: 'include'  
+                credentials: 'include'
             });
-            if(!res.ok){
+            if (!res.ok) {
                 alert("請求失敗");
                 return;
             }
 
             let req = await res.json();
             await alert(req.msg);
-            if(!req.result) return;
+            if (!req.result) return;
 
             console.log(req);
 
             window.localStorage.setItem("Cycle link token", req.token);
             window.localStorage.setItem("Cycle link user data", req.data.fName);
             window.localStorage.setItem("Cycle link user id", req.data.fId);
-            
+
             location.reload();
         })
 
 
-        
+
     });
-
-
 
 
 
@@ -169,27 +166,23 @@ function ClsLogin() {
 
 
     /***********---------機器人----------------- ****/
-    const SetcheckData=[
+    const SetcheckData = [
         {
-            answer:[0, 1, 1, 1, 1, 1, 0, 0, 0]
+            answer: [0, 1, 1, 1, 1, 1, 0, 0, 0]
         },
         {
-            answer:[0, 0, 1, 0, 0, 1, 0, 0, 0]
+            answer: [0, 0, 1, 0, 0, 1, 0, 0, 0]
         },
         {
-            answer:[1, 0, 0, 1, 0, 0, 0, 0, 0]
+            answer: [1, 0, 0, 1, 0, 0, 0, 0, 0]
         }
     ]
-    let index=Math.floor(Math.random()*3)
-    
-    // document.querySelector(".Login_CheckBox_Link").addEventListener("click",function(e){
-    //     e.preventDefault();
-    // })
+    let index = Math.floor(Math.random() * 3)
 
 
     const checkBox = document.getElementById('Login_CheckBox');
     const answer = SetcheckData[index];
-    
+
     var checkimgs = document.querySelectorAll(".Login_checkimgbox img");
     var checkimgsbox = document.querySelectorAll(".Login_checkimgbox");
     var check_useranswer = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -197,7 +190,7 @@ function ClsLogin() {
 
 
     for (let i = 0; i < checkimgs.length; i++) {
-        checkimgs[i].src = `./img/signin/${index+1}-${i + 1}.jpg`
+        checkimgs[i].src = `./img/signin/${index + 1}-${i + 1}.jpg`
         //src="./img/1.jpg"
         checkimgs[i].addEventListener("click", () => {
 
@@ -220,8 +213,7 @@ function ClsLogin() {
         if (JSON.stringify(check_useranswer) !== JSON.stringify(answer.answer)) {
             window.alert("錯誤!!!!!");
 
-        } else 
-        {
+        } else {
             document.querySelector(".Login_checkviewcontainer").style.display = "none";
             document.querySelector(".Login_backgroundview").style.display = "none";
             document.querySelector(".Login_CheckBox").innerHTML = `<i class="fas fa-check"></i>`;

@@ -22,7 +22,7 @@
 
     <!-- 其他套件 -->
     <!-- <script src="./node_modules/socket.io-client/dist/socket.io.js"></script> -->
-   <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
     <!-- <script src="./node_modules/js-alert/dist/jsalert.min.js"></script> -->
     <script src="https://npmcdn.com/js-alert/dist/jsalert.min.js"></script>
 
@@ -52,14 +52,14 @@
                 </div>
 
                 <div id="navbar_map" class="li_menutitle header_nav">
-                    <a href="#map" class="nav-underline" >Map<br>地圖</a>
+                    <a href="#map" class="nav-underline">Map<br>地圖</a>
                 </div>
                 <!-- <div id="navbar_about-us" class="li_menutitle header_nav "><a href="#about-us"
                         class="nav-underline">About
                         Us<br>關於我們</a>
                 </div> -->
                 <div id="navbar_log-in-hide" class="li_menutitle header_nav navbar_log-in">
-                    <a href="#log-in" class="nav-underline" >Setting<br>設定</a>
+                    <a href="#log-in" class="nav-underline">Setting<br>設定</a>
                 </div>
             </div>
             <div class="div_container_login">
@@ -81,7 +81,8 @@
                     <i id="navbar_logout" class="fas fa-sign-out-alt login_bullhorn"></i>
                 </div>
 
-                <div id="navbar_log-in" class="li_menutitle header_nav navbar_log-in"><a id="header_link_login" href="#log-in">Log
+                <div id="navbar_log-in" class="li_menutitle header_nav navbar_log-in"><a id="header_link_login"
+                        href="#log-in">Log
                         in<br>登入</a></div>
 
 
@@ -781,9 +782,10 @@
                             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                         <span>或使用信箱註冊</span>
-                        <input type="email" name="fMail" placeholder="信箱"  />
+                        <input type="email" name="fMail" placeholder="信箱" />
                         <input type="text" name="fAccount" placeholder="帳號" />
-                        <input type="password" name="fPassword" placeholder="密碼須包含英文字母與數字" autocomplete="new-password" />
+                        <input type="password" name="fPassword" placeholder="密碼須包含英文字母與數字"
+                            autocomplete="new-password" />
                         <button id="signup-submit" class="cursor-pointer">確認</button>
                     </form>
                 </div>
@@ -813,12 +815,12 @@
                     <div class="Login_overlay">
                         <div class="Login_overlay-panel Login_overlay-left">
                             <h1>歡迎加入!</h1>
-                            <p>輸入個人資訊以建立帳號。<br/>已有帳號嗎？請登入吧！</p>
+                            <p>輸入個人資訊以建立帳號。<br />已有帳號嗎？請登入吧！</p>
                             <button class="Login_ghost cursor-pointer" id="Login_signIn">登入</button>
                         </div>
                         <div class="Login_overlay-panel Login_overlay-right">
                             <h1>歡迎回來!</h1>
-                            <p>輸入您的帳號與密碼進行登入。<br/>第一次登入嗎？歡迎註冊！</p>
+                            <p>輸入您的帳號與密碼進行登入。<br />第一次登入嗎？歡迎註冊！</p>
                             <button class="Login_ghost cursor-pointer" id="Login_signUp">註冊</button>
                         </div>
                     </div>
@@ -839,12 +841,11 @@
                             class="fab fa-linkedin"></i></a>
                 </div>
             </div> -->
+            <!-- 忘記密碼 -->
             <div id="forgot-password-modal" class="Forgotpasswordwindow hide">
-
                 <!-- 弹窗内容 -->
                 <div class="modal-content">
-                    <span class="forgot-password-close">&times;</span>
-
+                    <span class="forgot-password-close cursor-pointer">&times;</span>
                     <main>
                         <h2>忘記密碼</h2>
                         <form id="forgot-password-form">
@@ -858,7 +859,6 @@
                         </form>
                     </main>
                 </div>
-
             </div>
 
             <!-- 註冊驗證碼 -->
@@ -871,7 +871,7 @@
                         <h2>輸入驗證碼</h2>
                         <form id="form-sign-up-auth">
 
-                            <input class="login_input_item_input" id="input-sign-up-auth-code" type="text" 
+                            <input class="login_input_item_input" id="input-sign-up-auth-code" type="text"
                                 placeholder="驗證碼">
 
                             <input id="sign-up-auth-submit" class="forgot-password-submit" type="submit">
@@ -2092,14 +2092,21 @@
                     <div id="personalManager_right_page_info" class="personalManager_right_content hide">
                         <h2>基本資料</h2>
                         <form class="personalManager_right_content_infoBasic">
-                            <p><span>姓名：</span><input type="text" name="fName" id="personal-maneger-input-name" value="--"></p>
-                            <p><span>生日：</span><input type="text" name="fBirthdate" id="personal-maneger-input-birth" value="--"></p>
-                            <p><span>Email：</span><input type="text" name="fMail" id="personal-maneger-input-email" value="--">
+                            <p><span>姓名：</span><input type="text" name="fName" id="personal-maneger-input-name"
+                                    value="--"></p>
+                            <p><span>密碼：</span><button id="personalManage_infoBasic_change_password">修改密碼</button></p>
+                            <p><span>生日：</span><input type="text" name="fBirthdate" id="personal-maneger-input-birth"
+                                    value="--"></p>
+                            <p><span>Email：</span><input type="text" name="fMail" id="personal-maneger-input-email"
+                                    value="--">
                             </p>
-                            <p><span>居住城市：</span><input type="text" name="fCity" id="personal-maneger-input-address" value="--"></p>
-                            <p><span>行動電話：</span><input type="text" name="fCeilphoneNumber" id="personal-maneger-input-phone" value="--"></p>
+                            <p><span>居住城市：</span><input type="text" name="fCity" id="personal-maneger-input-address"
+                                    value="--"></p>
+                            <p><span>行動電話：</span><input type="text" name="fCeilphoneNumber"
+                                    id="personal-maneger-input-phone" value="--"></p>
                             <p style="display: flex;align-self: start;"><span>個人簡介：</span><textarea
-                                    id="personal-maneger-input-introduction" name="fIntroduction" cols="45" rows="8">範例</textarea>
+                                    id="personal-maneger-input-introduction" name="fIntroduction" cols="45"
+                                    rows="8">範例</textarea>
                             </p>
                             <button id="personalManager_infoBasic_submit">修改</button>
                         </form>
@@ -2149,6 +2156,25 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- 更改密碼 -->
+        <div id="change-password-modal" class="Forgotpasswordwindow hide">
+            <div class="modal-content">
+                <span class="change-password-close cursor-pointer">&times;</span>
+                <main>
+                    <h2>更改密碼</h2>
+                    <form id="change-password-form">
+
+                        <input class="login_input_item_input" id="input_change-password" type="password" name="fPassword"
+                            placeholder="新的密碼">
+                        <input class="login_input_item_input" id="input_change-password-check" type="password" name="fPassword2"
+                            placeholder="確認密碼">
+
+                        <input id="change-password-submit" class="forgot-password-submit" type="submit">
+                    </form>
+                </main>
             </div>
         </div>
 
