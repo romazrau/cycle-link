@@ -772,18 +772,18 @@
 
             <div class="Login_container" id="Login_container">
                 <div class="Login_form-container Login_sign-up-container">
-                    <form action="#">
+                    <form id="form_signup" autocomplete="off">
                         <h1>註 冊</h1>
                         <div class="Login_social-container">
                             <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                             <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                         </div>
-                        <span>or use your email for registration</span>
-                        <input type="text" placeholder="Name" />
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
-                        <button>確認</button>
+                        <span>或使用信箱註冊</span>
+                        <input type="email" name="fMail" placeholder="信箱"  />
+                        <input type="text" name="fAccount" placeholder="帳號" />
+                        <input type="password" name="fPassword" placeholder="密碼須包含英文字母與數字" autocomplete="new-password" />
+                        <button id="signup-submit" class="cursor-pointer">確認</button>
                     </form>
                 </div>
                 <div class="Login_form-container Login_sign-in-container">
@@ -795,8 +795,8 @@
                             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                         <span>或使用帳號密碼</span>
-                        <input name="fAccount" type="text" placeholder="Account" />
-                        <input name="fPassword" type="password" placeholder="Password" />
+                        <input name="fAccount" type="text" placeholder="帳號" />
+                        <input name="fPassword" type="password" placeholder="密碼" />
                         <div class="Login_CheckContainer">
                             <a class="Login_CheckBox_Link" href="">
                                 <div class="Login_CheckBox" id="Login_CheckBox"></div>
@@ -853,13 +853,32 @@
                             <input class="login_input_item_input" id="login_input_mail" type="text" name="fMail"
                                 placeholder="E-Mail">
 
-                            <input id="forgot-password-submit" type="submit">
+                            <input id="forgot-password-submit" class="forgot-password-submit" type="submit">
                         </form>
                     </main>
                 </div>
 
             </div>
 
+            <!-- 註冊驗證碼 -->
+            <div id="sign-up-auth-modal" class="Forgotpasswordwindow hide">
+
+                <!-- 弹窗内容 -->
+                <div class="modal-content">
+
+                    <main>
+                        <h2>輸入驗證碼</h2>
+                        <form id="form-sign-up-auth">
+
+                            <input class="login_input_item_input" id="input-sign-up-auth-code" type="text" 
+                                placeholder="驗證碼">
+
+                            <input id="sign-up-auth-submit" class="forgot-password-submit" type="submit">
+                        </form>
+                    </main>
+                </div>
+
+            </div>
 
 
             <div class="Login_checkviewcontainer">

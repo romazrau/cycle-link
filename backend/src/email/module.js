@@ -16,7 +16,7 @@ const sendEmail = async (account, title ,txt) =>{
 
     var options = {
         //寄件者
-        from: 'cycle2link@gmail.com',
+        from: process.env.EMAIL_ACCOUNT,
         //收件者
         to: account, 
         //副本
@@ -40,14 +40,34 @@ const sendEmail = async (account, title ,txt) =>{
     };
     
     //發送信件方法
+    let result = {result: 0, msg:"寄信伺服器無回應"};
+
     transporter.sendMail(options, function(error, info){
         if(error){
+            console.log('Send Email Error');
             console.log(error);
+            result = {result:0, msg: error};
         }else{
             console.log('訊息發送: ' + info.response);
+            result = {result:1, msg: info.response};
         }
     });
 
+    let turn = 0;
+    await (()=>{
+        return new Promise((res, rej)=>{
+            let timer = setInterval(() => {
+                if(!result.result && turn < 200){
+                    turn++;
+                }else{
+                    res();
+                    clearInterval(timer);
+                }
+            }, 100);
+        })
+    })();
+
+    return result;
 }
 // const testTxt = '<h2>Why and How</h2> <p>The <a href="http://en.wikipedia.org/wiki/Lorem_ipsum" title="Lorem ipsum - Wikipedia, the free encyclopedia">Lorem ipsum</a> text is typically composed of pseudo-Latin words. It is commonly used as placeholder text to examine or demonstrate the visual effects of various graphic design. Since the text itself is meaningless, the viewers are therefore able to focus on the overall layout without being attracted to the text.</p>';
 // sendEmail('adoro0920@gmail.com', 'Hi romaz', testTxt);

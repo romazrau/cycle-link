@@ -183,7 +183,7 @@ router.put("/password", async (req, res) => {
 });
 
 // Sign Up
-const uploadFile = require("../upload-module");
+// const uploadFile = require("../upload-module");
 // router.post("/signup", (req, res, next) => {
 //   console.log(req.body);
 //   req.postData = req.body;
@@ -194,9 +194,9 @@ const uploadFile = require("../upload-module");
 
 router.post("/signup", async (req, res) => {
   try {
-    console.log("------------------");
+    console.log("signup------------------");
     console.log(req.body);
-    console.log("檔案:",req.files[0].filename);
+    console.log("檔案:",req.files && req.files[0] && req.files[0].filename);
 
 
     let {
@@ -228,9 +228,15 @@ router.post("/signup", async (req, res) => {
     let password = await bcrypt.hash(fPassword, saltRounds);
     fPassword = password;
 
-    // TODO 接收img
-    let fPhotoPath = "img/"+ req.files[0].filename;
-    console.log("fPhotoPath:",fPhotoPath);
+    // *接收img
+    let fPhotoPath;
+    if(req.files && req.files[0] && req.files[0].filename){
+      fPhotoPath = "img/"+ req.files[0].filename;
+      console.log("fPhotoPath:",fPhotoPath);
+    }else{
+      fPhotoPath = "img/海龜幣.png";
+    }
+   
 
     req.session[sessionKey.SK_USER_DATA] = {
       fAccount,
@@ -301,6 +307,20 @@ router.get("/signup/:code", async (req, res) => {
 
     delete req.session[sessionKey.SK_USER_DATA];
     delete req.session[sessionKey.SK_SIGNUP_SAFTY_CODE];
+
+      
+    if(result.result){
+      let getUser = await memberSql.memberByAccount(fAccount);
+      console.log(getUser);
+
+      if (getUser.result) {
+        let newToken = await reflashToken(getUser.data.fId); // 發新的 token
+        if (newToken.result) {
+          result.token = newToken.token;
+          result.data = getUser.data;
+        }
+      }
+    }
 
     res.json(result);
   } catch (ex) {

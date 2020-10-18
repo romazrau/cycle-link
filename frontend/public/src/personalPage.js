@@ -1,13 +1,5 @@
 // import { serverURL } from "./api.js";
 
-
-
-
-
-
-
-
-
 function ClsPersonalPage() {
 
     const GetPersonalPageMember = async (id) => {

@@ -417,7 +417,7 @@
   width: 100%;
 }
 
-#forgot-password-submit {
+.forgot-password-submit {
   border-radius: 20px;
   border: 1px solid var(--blue-color);
   background: var(--blue-color);
@@ -432,11 +432,11 @@
   margin-top: 1rem;
 }
 
-#forgot-password-submit:active {
+.forgot-password-submit:active {
   transform: scale(0.95);
 }
 
-#forgot-password-submit:focus {
+.forgot-password-submit:focus {
   outline: none;
 }
 

@@ -50,6 +50,105 @@ function ClsLogin() {
     }
 
 
+    document.querySelector('#signup-submit').addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        let emailValue = document.querySelector("#form_signup > input[type='email']").value;
+        let accountValue = document.querySelector("#form_signup > input[type='text']").value;
+        let passwordValue = document.querySelector("#form_signup > input[type='password']").value;
+
+        if(!(emailValue && accountValue && passwordValue)){
+            alert("尚有欄位空白");
+            return;
+        }
+
+        let emailCheck = /^(([.](?=[^.]|^))|[\w_%{|}#$~`+!?-])+@(?:[\w-]+\.)+[a-zA-Z.]{2,63}$/.test(emailValue);
+        let accountCheck = /^(?=.*[A-Za-z]).{4,16}$/.test(accountValue);
+        let passwordCheck = /^(?=.*[A-Za-z])(?=.*\d).{8,24}$/.test(passwordValue);
+
+        if(!emailCheck){
+            alert("信箱格式錯誤");
+            return;
+        }
+
+        if(!accountCheck){
+            alert("帳號須為4~16個字，且包含英文字母");
+            return;
+        }
+
+        if(!passwordCheck){
+            alert("密碼須為8~24個字，且包含英文字母與數字");
+            return;
+        }
+        
+        let isCkeck = await JSAlert.confirm("確定要送出嗎?", "Cycle Link");
+        if(!isCkeck) return;
+
+        let form = document.querySelector("#form_signup");
+        let formData = new FormData(form);
+
+        formData.append("fName", '環境小鬥士');
+        formData.append('fBirthdate', '1996/01/01');
+        formData.append('fAddress', '地球村');
+        formData.append('fCity', '台北市');
+        formData.append('fCeilphoneNumber', '0900000000');
+        formData.append('fIntroduction', '你好！');
+
+        let response = await fetch(serverURL.signup, {
+            method: "POST",
+            body: formData,
+            credentials: 'include'  
+        });
+
+        if(!response.ok){
+            alert("請求失敗");
+            return;
+        }
+
+        let result = await response.json();
+        console.log(result);
+        await alert(result.msg);
+        if(!result.result) return;
+
+
+        let signupModel =  document.querySelector('#sign-up-auth-modal');
+        signupModel.classList.remove('hide');
+
+        document.querySelector('#sign-up-auth-submit').addEventListener("click", async (e) => {
+            e.preventDefault();
+
+            let codeValue = document.querySelector('#input-sign-up-auth-code').value;
+            if(!codeValue) return;
+            if(codeValue.length != 6){
+                alert("驗證碼為六個數字");
+                return;
+            }
+
+            let res = await fetch(serverURL.signup + codeValue, {
+                credentials: 'include'  
+            });
+            if(!res.ok){
+                alert("請求失敗");
+                return;
+            }
+
+            let req = await res.json();
+            await alert(req.msg);
+            if(!req.result) return;
+
+            console.log(req);
+
+            window.localStorage.setItem("Cycle link token", req.token);
+            window.localStorage.setItem("Cycle link user data", req.data.fName);
+            window.localStorage.setItem("Cycle link user id", req.data.fId);
+            
+            location.reload();
+        })
+
+
+        
+    });
+
 
 
 

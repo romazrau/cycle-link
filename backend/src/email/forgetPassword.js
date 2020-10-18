@@ -30,8 +30,9 @@ const sendSafyCode = async (email) => {
             `
 
     try {
-        await sendEmail(email, 'Cycle Link 忘記密碼通知', msg);
-        return { result: 1, msg: "發信成功", code: authKey };
+        let sendres =  await sendEmail(email, 'Cycle Link 忘記密碼通知', msg);
+        if(sendres.result) return { result: 1, msg: "發信成功", code: authKey };
+        return { result: 0, msg: "發信失敗", err:  sendres};
     } catch (ex) {
         return { result: 0, msg: "發信失敗", err: ex };
     }

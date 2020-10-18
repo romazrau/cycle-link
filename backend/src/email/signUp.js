@@ -21,10 +21,15 @@ const sendSafyCode = async (email) => {
             </p>`
 
     try {
-        await sendEmail(email, 'Cycle Link 註冊通知', msg);
-        return { result: 1, msg: "發信成功", code: authKey };
+        let sendReault = await sendEmail(email, 'Cycle Link 註冊通知', msg);
+        if (sendReault.result) {
+            return { result: 1, msg: "發信成功", code: authKey };
+        } else{
+            return { result: 0, msg: "發信失敗", err: result.msg };
+        }
     } catch (ex) {
-        return { result: 0, msg: "發信失敗", err: ex };
+        console.log(ex);
+        return { result: 0, msg: "發信失敗，例外錯誤", err: ex };
     }
 
 }

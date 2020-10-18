@@ -4,6 +4,7 @@ const serverURL = {
   root: rootURL,
   login: `${rootURL}/users/login`,
   users: `${rootURL}/users/`,
+  signup: `${rootURL}/users/signup/`,
   userDetail: `${rootURL}/users/detail/me`,
   forgetPassword: `${rootURL}/users/Forget/Password`,
   test: `${rootURL}/test/`,
