@@ -112,41 +112,40 @@ function ClsLogin() {
 
         let signupModel = document.querySelector('#sign-up-auth-modal');
         signupModel.classList.remove('hide');
-
-        document.querySelector('#sign-up-auth-submit').addEventListener("click", async (e) => {
-            e.preventDefault();
-
-            let codeValue = document.querySelector('#input-sign-up-auth-code').value;
-            if (!codeValue) return;
-            if (codeValue.length != 6) {
-                alert("驗證碼為六個數字");
-                return;
-            }
-
-            let res = await fetch(serverURL.signup + codeValue, {
-                credentials: 'include'
-            });
-            if (!res.ok) {
-                alert("請求失敗");
-                return;
-            }
-
-            let req = await res.json();
-            await alert(req.msg);
-            if (!req.result) return;
-
-            console.log(req);
-
-            window.localStorage.setItem("Cycle link token", req.token);
-            window.localStorage.setItem("Cycle link user data", req.data.fName);
-            window.localStorage.setItem("Cycle link user id", req.data.fId);
-
-            location.reload();
-        })
-
-
-
     });
+
+    document.querySelector('#sign-up-auth-submit').addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        let codeValue = document.querySelector('#input-sign-up-auth-code').value;
+        if (!codeValue) return;
+        if (codeValue.length != 6) {
+            alert("驗證碼為六個數字");
+            return;
+        }
+
+        let res = await fetch(serverURL.signup + codeValue, {
+            credentials: 'include'
+        });
+        if (!res.ok) {
+            alert("請求失敗");
+            return;
+        }
+
+        let req = await res.json();
+        await alert(req.msg);
+        if (!req.result) return;
+
+        console.log(req);
+
+        window.localStorage.setItem("Cycle link token", req.token);
+        window.localStorage.setItem("Cycle link user data", req.data.fName);
+        window.localStorage.setItem("Cycle link user id", req.data.fId);
+
+        location.reload();
+    })
+
+
 
 
 

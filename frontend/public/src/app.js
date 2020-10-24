@@ -14,7 +14,7 @@ checkLogin()
             // let show = `<div>${res.data.fName}<br/>歡迎</div>`;
             let show = `
             <div class="navbar_my_photo_border">
-                <img class="navbar_my_photo" src="${serverURL.root}/${res.data.fPhotoPath}" >
+                <img id="navbar_my_photo" class="navbar_my_photo" src="${serverURL.root}/${res.data.fPhotoPath}" >
             </div>
             `;
             document.querySelector("#header_link_login").innerHTML = show;

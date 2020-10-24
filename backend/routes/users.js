@@ -128,7 +128,7 @@ router.get("/login", async (req, res) => {
   res.json({ ...result, token: token });
 });
 
-// Log out // TODO 前端要刪掉Localstroge
+// Log out 
 router.get("/logout", (req, res) => {
   let result = req.user
     ? { result: 0, msg: "登出失敗", data: req.user }
@@ -144,7 +144,19 @@ router.put("/", async (req, res) => {
       return;
     }
 
-    console.dir(req.body);
+    console.log("Change Member Detail------------------");
+    console.log(req.body);
+    console.log("檔案:", req.files && req.files[0] && req.files[0].filename);
+
+    // *接收img
+    let fPhotoPath;
+    if (req.files && req.files[0] && req.files[0].filename) {
+      let fPhotoPath = "img/" + req.files[0].filename;
+      console.log("fPhotoPath:", fPhotoPath);
+      req.body.fPhotoPath = fPhotoPath;
+    } 
+
+
     let result = await memberSql.changeDetail(req.user.fId, req.body);
     let token;
 
@@ -196,7 +208,7 @@ router.post("/signup", async (req, res) => {
   try {
     console.log("signup------------------");
     console.log(req.body);
-    console.log("檔案:",req.files && req.files[0] && req.files[0].filename);
+    console.log("檔案:", req.files && req.files[0] && req.files[0].filename);
 
 
     let {
@@ -230,13 +242,13 @@ router.post("/signup", async (req, res) => {
 
     // *接收img
     let fPhotoPath;
-    if(req.files && req.files[0] && req.files[0].filename){
-      fPhotoPath = "img/"+ req.files[0].filename;
-      console.log("fPhotoPath:",fPhotoPath);
-    }else{
+    if (req.files && req.files[0] && req.files[0].filename) {
+      fPhotoPath = "img/" + req.files[0].filename;
+      console.log("fPhotoPath:", fPhotoPath);
+    } else {
       fPhotoPath = "img/海龜幣.png";
     }
-   
+
 
     req.session[sessionKey.SK_USER_DATA] = {
       fAccount,
@@ -303,8 +315,8 @@ router.get("/signup/:code", async (req, res) => {
     delete req.session[sessionKey.SK_USER_DATA];
     delete req.session[sessionKey.SK_SIGNUP_SAFTY_CODE];
 
-      
-    if(result.result){
+
+    if (result.result) {
       let getUser = await memberSql.memberByAccount(fAccount);
       console.log(getUser);
 

@@ -171,6 +171,16 @@
   animation: App-navebar-down-icon infinite 1s ease;
 }
 
+.navebar_down_icon_rotate180 {
+  transform: rotate(180deg);
+  padding-left: 0rem !important;
+  padding-right: 1.2rem;
+}
+
+.navebar_down_icon_rotate180:hover {
+  animation: App-navebar-up-icon infinite 1s ease !important;
+}
+
 @keyframes App-navebar-down-icon {
   0% {
     transform: translateY(0rem);
@@ -180,6 +190,18 @@
   }
   100% {
     transform: translateY(0rem);
+  }
+}
+
+@keyframes App-navebar-up-icon {
+  0% {
+    transform: rotate(180deg) translateY(0rem);
+  }
+  50% {
+    transform: rotate(180deg) translateY(0.3rem);
+  }
+  100% {
+    transform: rotate(180deg) translateY(0rem);
   }
 }
 

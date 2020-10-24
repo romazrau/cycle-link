@@ -6,6 +6,7 @@ function ClsNavbar() {
         let createListContainer = document.querySelector("#navebar_down_list");
         let createListBtn = document.querySelectorAll("#navebar_down_list > button");
         let createPlusBtn = document.querySelector("#navebar_plus_icon");
+        let arrowIcon = document.querySelector('#navebar_down_icon');
 
         if ([...createListContainer.classList].includes("foldingCurtain")) {
             createListContainer.classList.add("foldingCurtainUp");
@@ -13,12 +14,14 @@ function ClsNavbar() {
             // createListBtn.forEach(item => item.classList.remove("foldingCurtain"));
             // createListBtn.forEach(item => item.classList.add("foldingCurtainUp"));
             createPlusBtn.classList.remove("rotate45");
+            arrowIcon.classList.remove('navebar_down_icon_rotate180');
         } else if(isCanShow) {
             createListContainer.classList.remove("foldingCurtainUp");
             createListContainer.classList.add("foldingCurtain");
             // createListBtn.forEach(item => item.classList.add("foldingCurtain"));
             // createListBtn.forEach(item => item.classList.remove("foldingCurtainUp"));
             createPlusBtn.classList.add("rotate45");
+            arrowIcon.classList.add('navebar_down_icon_rotate180');
         }
     }
     document.querySelector("#navebar_down_icon").addEventListener("click", setCreateListBtns);

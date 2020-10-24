@@ -1,5 +1,8 @@
 .vs
 
+# my file -- user upload
+/backend/public/img/upload*
+
 # Logs
 logs
 *.log

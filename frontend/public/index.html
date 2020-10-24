@@ -548,7 +548,7 @@
             </div>
         </div>
 
-        <!-- * news  ****************      ****************       ****************   -->
+        <!-- * map  ****************      ****************       ****************   -->
         <div id="page_map" class="page hide">
             <!-------------------------------------- main -------------------------------------->
             <div class="map_container">
@@ -855,7 +855,7 @@
                             <input class="login_input_item_input" id="login_input_mail" type="text" name="fMail"
                                 placeholder="E-Mail">
 
-                            <input id="forgot-password-submit" class="forgot-password-submit" type="submit">
+                            <input id="forgot-password-submit" class="forgot-password-submit" type="submit" value="確定">
                         </form>
                     </main>
                 </div>
@@ -866,19 +866,15 @@
 
                 <!-- 弹窗内容 -->
                 <div class="modal-content">
-
                     <main>
                         <h2>輸入驗證碼</h2>
                         <form id="form-sign-up-auth">
-
                             <input class="login_input_item_input" id="input-sign-up-auth-code" type="text"
                                 placeholder="驗證碼">
-
-                            <input id="sign-up-auth-submit" class="forgot-password-submit" type="submit">
+                            <input id="sign-up-auth-submit" class="forgot-password-submit" type="submit" value="確定">
                         </form>
                     </main>
                 </div>
-
             </div>
 
 
@@ -2051,12 +2047,32 @@
                 <div class="personalManager_banner">
                     <!-- <p>hello</p> -->
                 </div>
+                <!-- 上傳圖片彈框 -->
+                <div id="personal-manege-img-modal" class="Forgotpasswordwindow hide">
+                    <!-- 弹窗内容 -->
+                    <div class="modal-content">
+                        <span id="personal-manege-img-close" class="cursor-pointer">&times;</span>
+                        <main>
+                            <h2>上傳個人圖片</h2>
+                            <form id="form-personal-manege-img">
+
+                                <input class="login_input_item_input" id="input-personal-manege-img" name="fPhoto" type="file"
+                                    placeholder="請選擇圖片">
+
+                                <input id="personal-manege-img-submit" class="forgot-password-submit" type="submit"
+                                    value="確定">
+                            </form>
+                        </main>
+                    </div>
+                </div>
+
                 <div class="personalManager_left">
                     <div class="personalManager_left_Info">
                         <div>
                             <img id="personal-manege-img" src="https://fakeimg.pl/300x300/"
                                 class="personalManager_left_Info_img">
-                            <button>編輯圖片</button>
+                            <button id="btn-personal-manege-img">編輯圖片</button>
+
                         </div>
                         <div class="personalManager_left_Info_txt">
                             <h3 id="personal-manege-name">Loading ...</h3>
@@ -2091,7 +2107,7 @@
 
                     <div id="personalManager_right_page_info" class="personalManager_right_content hide">
                         <h2>基本資料</h2>
-                        <form class="personalManager_right_content_infoBasic">
+                        <form id="personalManager_right_content_infoBasic" class="personalManager_right_content_infoBasic">
                             <p><span>姓名：</span><input type="text" name="fName" id="personal-maneger-input-name"
                                     value="--"></p>
                             <p><span>密碼：</span><button id="personalManage_infoBasic_change_password">修改密碼</button></p>
@@ -2129,7 +2145,7 @@
                     <div id="personalManager_right_page_mycom" class="personalManager_right_content hide">
                         <h2>管理社團</h2>
                         <div id="ItemContainerCommunityManager">
-                            <div class="personalManager_right_content_info">
+                            <!-- <div class="personalManager_right_content_info">
                                 <img class="personalManager_right_content_info_img" src="https://fakeimg.pl/200x200/">
                                 <div class="personalManager_right_content_infoText">
                                     <h3>Plogging河濱樂跑團</h3>
@@ -2137,13 +2153,14 @@
                                     <p><i class="fas fa-clock fa-2x"></i>開始時間：2020/10/07 19:00</p>
                                     <p><img src="img/海龜幣.png" alt="" class="personalManager_SeaTurtleCoin">海龜積分：500</p>
                                 </div>
-                            </div>
+                            </div> -->
+                            <div class="personal-manager-txt">沒有管理的社團</div>
 
                         </div>
 
                         <h2>所屬社團</h2>
                         <div id="ItemContainerCommunity">
-                            <div class="personalManager_right_content_info">
+                            <!-- <div class="personalManager_right_content_info">
                                 <img class="personalManager_right_content_info_img" src="https://fakeimg.pl/200x200/">
                                 <div class="personalManager_right_content_infoText">
                                     <h3>Plogging河濱樂跑團</h3>
@@ -2151,7 +2168,8 @@
                                     <p><i class="fas fa-clock fa-2x"></i>開始時間：2020/10/07 19:00</p>
                                     <p><img src="img/海龜幣.png" alt="" class="personalManager_SeaTurtleCoin">海龜積分：500</p>
                                 </div>
-                            </div>
+                            </div> -->
+                            <div class="personal-manager-txt">趕快去參加社團吧</div>
 
                         </div>
                     </div>
@@ -2162,17 +2180,17 @@
         <!-- 更改密碼 -->
         <div id="change-password-modal" class="Forgotpasswordwindow hide">
             <div class="modal-content">
-                <span class="change-password-close cursor-pointer">&times;</span>
+                <span id="change-password-close" class="cursor-pointer">&times;</span>
                 <main>
                     <h2>更改密碼</h2>
                     <form id="change-password-form">
 
-                        <input class="login_input_item_input" id="input_change-password" type="password" name="fPassword"
-                            placeholder="新的密碼">
-                        <input class="login_input_item_input" id="input_change-password-check" type="password" name="fPassword2"
-                            placeholder="確認密碼">
+                        <input class="login_input_item_input" id="input_change-password" type="password"
+                            name="fPassword" placeholder="新的密碼">
+                        <input class="login_input_item_input" id="input_change-password-check" type="password"
+                            name="fPassword2" placeholder="確認密碼">
 
-                        <input id="change-password-submit" class="forgot-password-submit" type="submit">
+                        <input id="change-password-submit" class="forgot-password-submit" type="submit" value="確定">
                     </form>
                 </main>
             </div>

@@ -254,7 +254,7 @@ const changeDetail = async (id, memberObj) => {
     try {
         delete memberObj.fId;                     //屬性中 fid 刪除，避免接下來的迴圈寫入ID
 
-        let objKeyArr = Object.keys(memberObj);  // [fBirthdate,  fAddress]
+        let objKeyArr = Object.keys(memberObj);  // ex: [fBirthdate,  fAddress]
         let setArr = objKeyArr.map((item) =>
             `${item} = '${memberObj[item]}'`    // ex: fBirthdate = '2000/02/20'                                             
         )                                       // [fBirthdate = '2000/02/20', fAddress = '復興南路一段390號2樓']
