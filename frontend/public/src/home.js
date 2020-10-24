@@ -175,11 +175,11 @@ function ClsHome() {
     // console.log(weitherid);
     //判斷天氣 帶入圖片
     if (weitherid == '01' || weitherid == '02' || weitherid == '03') {
-      WeatherTitleimg.src = "/img/sun.svg";
+      WeatherTitleimg.src = "/public/img/sun.svg";
     } else if (weitherid == '04' || weitherid == '05' || weitherid == '06') {
-      WeatherTitleimg.src = "/img/cloud.svg";
+      WeatherTitleimg.src = "/public/img/cloud.svg";
     } else {
-      WeatherTitleimg.src = "/img/rain.svg";
+      WeatherTitleimg.src = "/public/img/rain.svg";
     }
     display_home_weather(weatherElements.Wx, weatherElements.T, day);
     //天氣描述:weatherElements.Wx.time[0].elementValue[0].value
@@ -336,7 +336,7 @@ function ClsHome() {
     <div class="divtest_weather" >
         <div class="homepage_weather_day"></div>
         <div class="weather_img_css" style="width:50px; height:50px ; margin:10px 0" >
-          <img id="" src="/img/sun.svg"" alt="">
+          <img id="" src="/public/img/sun.svg"" alt="">
         </div>
     </div>
     `
@@ -345,7 +345,7 @@ function ClsHome() {
     <div class="divtest_weather" >
         <div class="homepage_weather_day"></div>
         <div class="weather_img_css" style="width:50px; height:50px ; margin:10px 0" >
-          <img id="" src="/img/cloud.svg"" alt="">
+          <img id="" src="/public/img/cloud.svg"" alt="">
         </div>
     </div>
     `
@@ -354,7 +354,7 @@ function ClsHome() {
     <div class="divtest_weather" >
         <div class="homepage_weather_day"></div>
         <div class="weather_img_css" style="width:50px; height:50px ; margin:10px 0" >
-          <img id="" src="/img/rain.svg"" alt="">
+          <img id="" src="/public/img/rain.svg"" alt="">
         </div>
     </div>
     `
