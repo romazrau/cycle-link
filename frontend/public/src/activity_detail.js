@@ -373,7 +373,7 @@ function ClsActivityDetail() {
         CreateActivity(); // 傳送表單
         alert("創建成功");
         location.href = "#activity";
-        location.reload();
+        // location.reload();
     })
 
 
