@@ -25,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
     <!-- <script src="./node_modules/js-alert/dist/jsalert.min.js"></script> -->
     <script src="https://npmcdn.com/js-alert/dist/jsalert.min.js"></script>
-
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!-- 內部引用資料 -->
     <link rel="shortcut icon" href="./img/海龜幣.png" type="image/x-icon">
     <link rel="stylesheet" href="./styles/main.css">
@@ -172,7 +172,7 @@
             </div>
             <div>
                 <div class="home_top_text_wrapper">
-                    <div class="home_top_text">
+                    <div class="home_top_text" data-aos="fade-left">
                         <p class="home_top_text_content">
                             行動帶來改變，加入守護環境的行列<br>
                             Cycle-Link的存在，因為脆弱的地球需要改變、需要行動。唯有結合大家的力量，才能讓地球永續發展；加入全臺灣300萬名支持者，和我們一起行動，帶來改變！<br>
@@ -2885,7 +2885,10 @@
     <!-- 其他 -->
     <script src="./src/navbar.js"></script>
     <script type="module" src="./src/chat.js"></script>
-
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
 </body>
 
 </html>

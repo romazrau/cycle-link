@@ -242,7 +242,7 @@ function ClsHome() {
   const home_recent_activities = (o) => {
 
     return `
-  <div class="home_recent_activity_item">
+  <div class="home_recent_activity_item" data-aos="fade-left">
     <div class="home_recent_activity_item_img">
     <a href="#activity/detail/${o.fId}"><img src="http://localhost:3050/${o.fImgPath}"></a></div>
     <div class="home_recent_activity_item_content">
@@ -267,29 +267,33 @@ function ClsHome() {
 
     return `
  <div class="home_showAct_left">
-                        <div class="home_left_top">
+                        <div class="home_left_top" data-aos="fade-down-right">
                         <a href="#activity/detail/${o[0].fId}"><img src='http://localhost:3050/${o[0].fImgPath}' class="home_left_top"></a>
                         </div>
-                        <div class="home_left_bottom">
+                        <div class="home_left_bottom" data-aos="fade-up-right">
                             <div class="home_left_bottom_item1">
                             <a href="#activity/detail/${o[1].fId}"><img src='http://localhost:3050/${o[1].fImgPath}'></a>
                             </div>
-                            <div class="home_left_bottom_item2">
+                            <div class="home_left_bottom_item2" data-aos="fade-up">
                             <a href="#activity/detail/${o[2].fId}"><img src='http://localhost:3050/${o[2].fImgPath}'></a>
                             </div>
                         </div>
                     </div>
-                    <div class="home_showAct_right">
+                    <div class="home_showAct_right" >
                         <div class="home_right_left">
-                        <a href="#activity/detail/${o[3].fId}"><div class="home_right_sm"><img src='http://localhost:3050/${o[3].fImgPath}'></a>
+                        <a href="#activity/detail/${o[3].fId}">
+                        <div class="home_right_sm" data-aos="fade-down">
+                        <img src='http://localhost:3050/${o[3].fImgPath}'></a>
                         </div>
-                        <a href="#activity/detail/${o[4].fId}"><div class="home_right_lg"><img src='http://localhost:3050/${o[4].fImgPath}'></a></div>
+                        <a href="#activity/detail/${o[4].fId}">
+                        <div class="home_right_lg" data-aos="fade-up">
+                        <img src='http://localhost:3050/${o[4].fImgPath}'></a></div>
                         </div>
                         <div class="home_right_right">
-                            <div class="home_right_lg">
+                            <div class="home_right_lg" data-aos="fade-down-left">
                             <a href="#activity/detail/${o[5].fId}"><img src='http://localhost:3050/${o[5].fImgPath}'></a>
                             </div>
-                            <div class="home_right_sm">
+                            <div class="home_right_sm" data-aos="fade-up-left">
                             <a href="#activity/detail/${o[6].fId}"><img src='http://localhost:3050/${o[6].fImgPath}'></a></div>
                         </div>
                     </div>`
