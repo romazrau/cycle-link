@@ -33,26 +33,14 @@ function ClsActivityDetail() {
     }
 
     // * -------------- 固定右側資訊 -------------- //
-    // function boxMove2(y) {
-    //     // console.log(y);
-    //     box = document.querySelector(".activity_detail_right");
-    //     box.style.marginTop = `${y}px`;
-    // }
-    // var last_known_scroll_position = 0;
-    // var ticking = false;
+    window.onscroll=function(){
+        // console.log(window.pageYOffset);
+        if(window.pageYOffset>100)
+        document.querySelector(".activity_detail_right").setAttribute("style","margin-top:-12rem")
+        else
+        document.querySelector(".activity_detail_right").setAttribute("style","margin-top:1.5rem")
 
-    // window.addEventListener("scroll", function (e) {
-    //     last_known_scroll_position = window.scrollY - 150;
-    //     if (window.scrollY > 150) {
-    //         if (!ticking) {
-    //             window.requestAnimationFrame(function () {
-    //                 boxMove2(last_known_scroll_position);
-    //                 ticking = false;
-    //             });
-    //         }
-    //         ticking = true;
-    //     }
-    // });
+    }
 
     // * ********************************** [ START ] 文字樣板 [ START ] ********************************** //
 

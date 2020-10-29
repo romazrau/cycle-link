@@ -101,7 +101,6 @@
 /* 活動左側 內文 */
 .activity_detail_text_all {
   width: 65vw;
-  ;
   display: flex;
   margin: 0 auto;
   justify-content: space-between;
@@ -133,7 +132,6 @@
 .activity_detail_text_left_img img {
   width: 100%;
   /* height: 100%; */
-
 }
 
 /* 活動左側 標籤 */
@@ -163,6 +161,7 @@
 /* 活動右側 */
 .activity_detail_right_container {
   width: 30%;
+  margin-left: 7%;
   /* margin: 0 auto; */
   /* width: 35vw; */
   /* border: 1px solid red; */
@@ -172,7 +171,7 @@
   margin-top: 1.5rem;
   width: 340px;
   position: fixed;
-
+  transition: all 0.5s;
   /* position: absolute; */
   /* left: 5rem; */
   /* height: 30rem; */
@@ -232,7 +231,7 @@
 }
 
 .activity_detail_right_info p {
-  margin: 0
+  margin: 0;
 }
 
 .activity_detail_right_map {
@@ -493,8 +492,6 @@
   height: 100%;
 } */
 
-
-
 /* 分享功能 */
 
 #ac_share_bg {
@@ -598,7 +595,6 @@
   transition: all 0.5s;
 }
 
-
 .activity_detail_title {
   margin-top: 3rem;
   margin-bottom: 3rem;
@@ -618,7 +614,6 @@
 #inputDemo:hover {
   cursor: pointer;
 }
-
 
 .activity_detail_initiatorbox {
   margin-top: 2rem;
